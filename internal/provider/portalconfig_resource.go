@@ -35,8 +35,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"regexp"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
+	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.

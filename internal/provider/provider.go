@@ -117,6 +117,7 @@ func (p *EpilotPortalProvider) Configure(ctx context.Context, req provider.Confi
 func (p *EpilotPortalProvider) Resources(ctx context.Context) []func() resource.Resource {
 	return []func() resource.Resource{
 		NewPortalConfigResource,
+		NewPortalPageResource,
 	}
 }
 

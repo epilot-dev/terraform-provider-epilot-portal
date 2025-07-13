@@ -40,3 +40,14 @@ actions:
   - target: $["components"]["schemas"]["CommonConfigAttributes"]["properties"]["approval_state_attributes"]
     update:
       x-speakeasy-type-override: any
+
+
+
+  # Portal Page
+  - target: $["paths"]["/v2/portal/pages"]["post"]
+    update:
+      x-speakeasy-entity-operation: PortalPage#create
+
+  - target: $["components"]["schemas"]["Page"]
+    update:
+      x-speakeasy-entity: PortalPage
