@@ -3,12 +3,12 @@
 page_title: "epilot-portal Provider"
 subcategory: ""
 description: |-
-  Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
+  Permissions API: Flexible Role-based Access Control for epilot
 ---
 
 # epilot-portal Provider
 
-Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
+Permissions API: Flexible Role-based Access Control for epilot
 
 ## Example Usage
 
@@ -17,7 +17,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.21.2"
+      version = "0.22.0"
     }
   }
 }
@@ -32,7 +32,6 @@ provider "epilot-portal" {
 
 ### Optional
 
-- `either_auth` (String, Sensitive)
 - `epilot_auth` (String, Sensitive)
-- `portal_auth` (String, Sensitive)
-- `server_url` (String) Server URL (defaults to https://customer-portal-api.sls.epilot.io)
+- `epilot_org` (String, Sensitive)
+- `server_url` (String) Server URL (defaults to https://permissions.sls.epilot.io)

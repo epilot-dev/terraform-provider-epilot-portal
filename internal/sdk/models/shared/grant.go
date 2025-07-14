@@ -8,7 +8,6 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
-// Effect of the permission
 type Effect string
 
 const (
@@ -36,12 +35,10 @@ func (e *Effect) UnmarshalJSON(data []byte) error {
 }
 
 type Grant struct {
-	// Action for granting permission
-	Action string `json:"action"`
-	// Effect of the permission
-	Effect *Effect `default:"allow" json:"effect"`
-	// Resource for granting permission
-	Resource *string `json:"resource,omitempty"`
+	Action     string           `json:"action"`
+	Conditions []GrantCondition `json:"conditions,omitempty"`
+	Effect     *Effect          `default:"allow" json:"effect"`
+	Resource   *string          `json:"resource,omitempty"`
 }
 
 func (g Grant) MarshalJSON() ([]byte, error) {
@@ -60,6 +57,13 @@ func (o *Grant) GetAction() string {
 		return ""
 	}
 	return o.Action
+}
+
+func (o *Grant) GetConditions() []GrantCondition {
+	if o == nil {
+		return nil
+	}
+	return o.Conditions
 }
 
 func (o *Grant) GetEffect() *Effect {
