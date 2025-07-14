@@ -1,13 +1,22 @@
-# epilot-dashboard
+# epilot-portal
 
-Terraform Provider for the *epilot-dashboard* API.
+Terraform Provider for the *epilot-portal* API.
 
 <div align="left">
-    <a href="https://www.speakeasy.com/?utm_source=epilot-dashboard&utm_campaign=terraform"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://www.speakeasy.com/?utm_source=epilot-portal&utm_campaign=terraform"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
 </div>
+
+
+## 🏗 **Welcome to your new Terraform Provider!** 🏗
+
+It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
+- [ ] 🛠 Add resources and datasources to your SDK by [annotating your OAS](https://www.speakeasy.com/docs/customize-terraform/terraform-extensions#map-api-entities-to-terraform-resources)
+- [ ] ♻️ Refine your terraform provider quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
+- [ ] 🎁 Publish your terraform provider to hashicorp registry by [configuring automatic publishing](https://www.speakeasy.com/docs/terraform-publishing)
+- [ ] ✨ When ready to productionize, delete this section from the README
 
 <!-- Start Summary [summary] -->
 ## Summary
@@ -18,7 +27,8 @@ Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [epilot-dashboard](#epilot-dashboard)
+* [epilot-portal](#epilot-portal)
+  * [🏗 **Welcome to your new Terraform Provider!** 🏗](#welcome-to-your-new-terraform-provider)
   * [Installation](#installation)
   * [Available Resources and Data Sources](#available-resources-and-data-sources)
   * [Testing the provider locally](#testing-the-provider-locally)
@@ -37,7 +47,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.21.4"
+      version = "0.21.5"
     }
   }
 }
@@ -113,4 +123,4 @@ provider_installation {
 While we value open-source contributions to this terraform provider, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation.
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
-### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=epilot-dashboard&utm_campaign=terraform)
+### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=epilot-portal&utm_campaign=terraform)
