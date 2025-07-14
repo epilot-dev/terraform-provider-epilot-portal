@@ -12,7 +12,7 @@ Terraform Provider for the *epilot-dashboard* API.
 <!-- Start Summary [summary] -->
 ## Summary
 
-Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
+Permissions API: Flexible Role-based Access Control for epilot
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -37,7 +37,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.21.2"
+      version = "0.22.0"
     }
   }
 }
@@ -53,8 +53,6 @@ provider "epilot-portal" {
 
 ### Resources
 
-* [epilot-portal_portal_config](docs/resources/portal_config.md)
-* [epilot-portal_portal_page](docs/resources/portal_page.md)
 ### Data Sources
 <!-- End Available Resources and Data Sources [operations] -->
 
