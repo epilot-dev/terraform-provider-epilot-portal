@@ -9,36 +9,27 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators"
-	speakeasy_numbervalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/numbervalidators"
-	speakeasy_objectvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/objectvalidators"
-	speakeasy_stringvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/stringvalidators"
-	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
-	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
-	"github.com/hashicorp/terraform-plugin-framework/resource"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringdefault"
-	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
+	"github.com/hashicorp/terraform-plugin-framework/datasource"
+	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"regexp"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
-var _ resource.Resource = &PortalConfigResource{}
-var _ resource.ResourceWithImportState = &PortalConfigResource{}
+var _ datasource.DataSource = &PortalConfigDataSource{}
+var _ datasource.DataSourceWithConfigure = &PortalConfigDataSource{}
 
-func NewPortalConfigResource() resource.Resource {
-	return &PortalConfigResource{}
+func NewPortalConfigDataSource() datasource.DataSource {
+	return &PortalConfigDataSource{}
 }
 
-// PortalConfigResource defines the resource implementation.
-type PortalConfigResource struct {
+// PortalConfigDataSource is the data source implementation.
+type PortalConfigDataSource struct {
 	client *sdk.SDK
 }
 
-// PortalConfigResourceModel describes the resource data model.
-type PortalConfigResourceModel struct {
+// PortalConfigDataSourceModel describes the data model.
+type PortalConfigDataSourceModel struct {
 	AccessToken                 types.String                                      `tfsdk:"access_token"`
 	AdvancedMfa                 *tfTypes.UpsertPortalConfigAdvancedMfa            `tfsdk:"advanced_mfa"`
 	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                    `tfsdk:"allowed_file_extensions"`
@@ -49,16 +40,12 @@ type PortalConfigResourceModel struct {
 	ContactIdentifiers          []types.String                                    `tfsdk:"contact_identifiers"`
 	ContractIdentifiers         []tfTypes.ContractIdentifier                      `tfsdk:"contract_identifiers"`
 	ContractSelectorConfig      *tfTypes.UpsertPortalConfigContractSelectorConfig `tfsdk:"contract_selector_config"`
-	DefaultUserToNotify         *tfTypes.DefaultUserToNotify                      `tfsdk:"default_user_to_notify"`
 	DesignID                    types.String                                      `tfsdk:"design_id"`
 	Domain                      types.String                                      `tfsdk:"domain"`
 	EmailTemplates              *tfTypes.EmailTemplates                           `tfsdk:"email_templates"`
 	Enabled                     types.Bool                                        `tfsdk:"enabled"`
-	EntityActions               []tfTypes.EntityActions                           `tfsdk:"entity_actions"`
 	EntityEditRules             []tfTypes.EntityEditRules                         `tfsdk:"entity_edit_rules"`
 	EntityIdentifiers           *tfTypes.UpsertPortalConfigEntityIdentifiers      `tfsdk:"entity_identifiers"`
-	ExtensionHooks              map[string]tfTypes.ExtensionHookConfig            `tfsdk:"extension_hooks"`
-	Extensions                  []tfTypes.ExtensionConfig                         `tfsdk:"extensions"`
 	FeatureFlags                map[string]types.Bool                             `tfsdk:"feature_flags"`
 	FeatureSettings             *tfTypes.UpsertPortalConfigFeatureSettings        `tfsdk:"feature_settings"`
 	Grants                      []tfTypes.Grant                                   `tfsdk:"grants"`
@@ -79,82 +66,71 @@ type PortalConfigResourceModel struct {
 	TriggeredJourneys           []tfTypes.TriggeredJourneys                       `tfsdk:"triggered_journeys"`
 }
 
-func (r *PortalConfigResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
+// Metadata returns the data source type name.
+func (r *PortalConfigDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
 	resp.TypeName = req.ProviderTypeName + "_portal_config"
 }
 
-func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+// Schema defines the schema for the data source.
+func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.SchemaRequest, resp *datasource.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		MarkdownDescription: "PortalConfig Resource",
+		MarkdownDescription: "PortalConfig DataSource",
+
 		Attributes: map[string]schema.Attribute{
 			"access_token": schema.StringAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Access token for the portal`,
 			},
 			"advanced_mfa": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"enabled": schema.BoolAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Advanced MFA feature flag`,
 					},
 				},
 			},
 			"allowed_file_extensions": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"archive": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"audio_video": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"cad": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"calendar": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"document": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"email": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"image": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"other": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"presentation": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 					"spreadsheet": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 				},
@@ -162,41 +138,25 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"approval_state_attributes": schema.StringAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Parsed as JSON.`,
-				Validators: []validator.String{
-					validators.IsValidJSON(),
-				},
 			},
 			"auth_settings": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"entry_point": schema.StringAttribute{
-						Computed:    true,
-						Optional:    true,
-						Description: `must be one of ["PASSWORD", "SSO"]`,
-						Validators: []validator.String{
-							stringvalidator.OneOf(
-								"PASSWORD",
-								"SSO",
-							),
-						},
+						Computed: true,
 					},
 					"passwordless_login": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"enabled": schema.BoolAttribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Passwordless login feature flag`,
 							},
 						},
 					},
 					"preferred_sso_providers": schema.ListAttribute{
 						Computed:    true,
-						Optional:    true,
 						ElementType: types.StringType,
 					},
 				},
@@ -204,50 +164,40 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"cognito_details": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"cognito_user_pool_arn": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Cognito user pool ARN`,
 					},
 					"cognito_user_pool_client_id": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Cognito user pool client ID`,
 					},
 					"cognito_user_pool_id": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Cognito user pool ID`,
 					},
 					"password_policy": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"minimum_length": schema.Int64Attribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Minimum password length`,
 							},
 							"require_lowercase": schema.BoolAttribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Require lowercase characters`,
 							},
 							"require_numbers": schema.BoolAttribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Require numbers`,
 							},
 							"require_symbols": schema.BoolAttribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Require symbols`,
 							},
 							"require_uppercase": schema.BoolAttribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Require uppercase characters`,
 							},
 						},
@@ -258,45 +208,24 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"config": schema.StringAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Stringified object with configuration details`,
 			},
 			"contact_identifiers": schema.ListAttribute{
 				Computed:    true,
-				Optional:    true,
 				ElementType: types.StringType,
 				Description: `Deprecated. Use registration_identifiers instead.`,
 			},
 			"contract_identifiers": schema.ListNestedAttribute{
 				Computed: true,
-				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
 					Attributes: map[string]schema.Attribute{
 						"name": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Name of the identifier/attribute`,
 						},
 						"schema": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
-							Description: `URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"contact",
-									"contract",
-									"file",
-									"order",
-									"opportunity",
-									"product",
-									"price",
-									"meter",
-									"meter_counter",
-								),
-							},
+							Description: `URL-friendly identifier for the entity schema`,
 						},
 					},
 				},
@@ -304,158 +233,83 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"contract_selector_config": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"show_inactive": schema.BoolAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Whether to show inactive contracts in the selector`,
 					},
 					"title_path": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Path to the property to use as the contract title`,
 					},
 				},
 				Description: `Configuration for contract selector in the portal`,
 			},
-			"default_user_to_notify": schema.SingleNestedAttribute{
-				Optional: true,
-				Attributes: map[string]schema.Attribute{
-					"on_pending_user": schema.ListNestedAttribute{
-						Optional: true,
-						NestedObject: schema.NestedAttributeObject{
-							Attributes: map[string]schema.Attribute{
-								"additional_properties": schema.StringAttribute{
-									Optional:    true,
-									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
-								},
-								"display_name": schema.StringAttribute{
-									Optional: true,
-								},
-								"email": schema.StringAttribute{
-									Optional: true,
-								},
-								"image_uri": schema.SingleNestedAttribute{
-									Optional: true,
-									Attributes: map[string]schema.Attribute{
-										"key": schema.StringAttribute{
-											Optional: true,
-										},
-										"original": schema.StringAttribute{
-											Optional: true,
-										},
-										"thumbnail_32": schema.StringAttribute{
-											Optional: true,
-										},
-										"thumbnail_64": schema.StringAttribute{
-											Optional: true,
-										},
-									},
-								},
-								"org_id": schema.StringAttribute{
-									Optional: true,
-								},
-								"phone": schema.StringAttribute{
-									Optional: true,
-								},
-								"type": schema.StringAttribute{
-									Optional: true,
-								},
-								"user_id": schema.StringAttribute{
-									Optional: true,
-								},
-							},
-						},
-						Description: `Default admin users for pending user notification to notify`,
-					},
-				},
-				Description: `Default 360 user to notify upon an internal notification`,
-			},
 			"design_id": schema.StringAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Entity ID`,
 			},
 			"domain": schema.StringAttribute{
-				Required:    true,
+				Computed:    true,
 				Description: `The URL on which the portal is accessible`,
 			},
 			"email_templates": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"advanced_auth": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"advanced_mfa": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"confirm_account": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"confirm_email_update": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"forgot_password": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"invitation": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"journey_login_otp": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"journey_sign_in_one_time_password": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"journey_sign_up": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"on_doc_upload": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"on_map_a_pending_user": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"on_new_quote": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"on_workflow_step_assigned": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 					"verify_code_to_set_password": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Entity ID`,
 					},
 				},
@@ -463,127 +317,42 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"enabled": schema.BoolAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Enable/Disable the portal access`,
-			},
-			"entity_actions": schema.ListNestedAttribute{
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"action_label": schema.SingleNestedAttribute{
-							Optional: true,
-							Attributes: map[string]schema.Attribute{
-								"de": schema.StringAttribute{
-									Optional: true,
-								},
-								"en": schema.StringAttribute{
-									Optional: true,
-								},
-							},
-						},
-						"journey_id": schema.StringAttribute{
-							Optional:    true,
-							Description: `Entity ID`,
-						},
-						"slug": schema.StringAttribute{
-							Optional:    true,
-							Description: `URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"contact",
-									"contract",
-									"file",
-									"order",
-									"opportunity",
-									"product",
-									"price",
-									"meter",
-									"meter_counter",
-								),
-							},
-						},
-					},
-				},
-				Description: `Journey actions allowed on an entity by a portal user`,
 			},
 			"entity_edit_rules": schema.ListNestedAttribute{
 				Computed: true,
-				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
 					Attributes: map[string]schema.Attribute{
 						"allowed_decrement": schema.StringAttribute{
 							Computed: true,
-							Optional: true,
 						},
 						"allowed_increment": schema.StringAttribute{
 							Computed: true,
-							Optional: true,
 						},
 						"attribute": schema.StringAttribute{
 							Computed: true,
-							Optional: true,
 						},
 						"cadence_period": schema.NumberAttribute{
 							Computed: true,
-							Optional: true,
 						},
 						"cadence_period_type": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `must be one of ["days", "weeks", "months"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"days",
-									"weeks",
-									"months",
-								),
-							},
+							Computed: true,
 						},
 						"changes_allowed": schema.Int64Attribute{
 							Computed: true,
-							Optional: true,
 						},
 						"grace_period": schema.Int64Attribute{
 							Computed: true,
-							Optional: true,
 						},
 						"number_of_days_before_restriction": schema.Int64Attribute{
 							Computed: true,
-							Optional: true,
 						},
 						"rule_type": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `must be one of ["cadence", "relative_to_current_value", "days_before_date", "overdue_payments"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"cadence",
-									"relative_to_current_value",
-									"days_before_date",
-									"overdue_payments",
-								),
-							},
+							Computed: true,
 						},
 						"slug": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
-							Description: `URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"contact",
-									"contract",
-									"file",
-									"order",
-									"opportunity",
-									"product",
-									"price",
-									"meter",
-									"meter_counter",
-								),
-							},
+							Description: `URL-friendly identifier for the entity schema`,
 						},
 					},
 				},
@@ -591,72 +360,23 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"entity_identifiers": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"type": schema.SingleNestedAttribute{
 						Computed: true,
-						Optional: true,
 						Attributes: map[string]schema.Attribute{
 							"attributes": schema.ListAttribute{
 								Computed:    true,
-								Optional:    true,
 								ElementType: types.StringType,
 								Description: `Attributes used to identify an entity`,
 							},
 							"is_enabled": schema.BoolAttribute{
 								Computed:    true,
-								Optional:    true,
 								Description: `Enable/Disable the entity identifier`,
 							},
 						},
 					},
 				},
 				Description: `Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.`,
-			},
-			"extension_hooks": schema.MapNestedAttribute{
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"app_id": schema.StringAttribute{
-							Optional:    true,
-							Description: `The ID of the app that is being hooked into.`,
-						},
-						"hook_id": schema.StringAttribute{
-							Optional:    true,
-							Description: `The ID of the hook that is being configured.`,
-						},
-					},
-				},
-				Description: `Configured Portal extensions hooks`,
-			},
-			"extensions": schema.ListNestedAttribute{
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"id": schema.StringAttribute{
-							Required:    true,
-							Description: `Name of the extension`,
-						},
-						"options": schema.MapAttribute{
-							Optional:    true,
-							ElementType: types.StringType,
-							Description: `Extension option values.`,
-						},
-						"status": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Default:     stringdefault.StaticString("installed"),
-							Description: `Status of the extension. Default: "installed"; must be one of ["installed", "enabled"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"installed",
-									"enabled",
-								),
-							},
-						},
-					},
-				},
-				Description: `Configured Portal extensions`,
 			},
 			"feature_flags": schema.MapAttribute{
 				Computed:    true,
@@ -665,26 +385,21 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"feature_settings": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"billing": schema.BoolAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Billing feature flag`,
 					},
 					"change_due_date": schema.BoolAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Change due date feature flag`,
 					},
 					"new_design": schema.BoolAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Enable or disable the new design for the portal`,
 					},
 					"start_page": schema.BoolAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `Start page feature flag`,
 					},
 				},
@@ -700,14 +415,7 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 						},
 						"effect": schema.StringAttribute{
 							Computed:    true,
-							Default:     stringdefault.StaticString("allow"),
-							Description: `Effect of the permission. Default: "allow"; must be one of ["allow", "deny"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"allow",
-									"deny",
-								),
-							},
+							Description: `Effect of the permission`,
 						},
 						"resource": schema.StringAttribute{
 							Computed:    true,
@@ -777,15 +485,7 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 									Description: `Issuing Authority URL`,
 								},
 								"prompt": schema.StringAttribute{
-									Computed:    true,
-									Description: `must be one of ["login", "select_account", "consent"]`,
-									Validators: []validator.String{
-										stringvalidator.OneOf(
-											"login",
-											"select_account",
-											"consent",
-										),
-									},
+									Computed: true,
 								},
 								"redirect_uri": schema.StringAttribute{
 									Computed:    true,
@@ -800,30 +500,23 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 						"slug": schema.StringAttribute{
 							Computed:    true,
 							Description: `URL-friendly slug to use as organization-unique identifier for Provider`,
-							Validators: []validator.String{
-								stringvalidator.RegexMatches(regexp.MustCompile(`[0-9a-z-]+`), "must match pattern "+regexp.MustCompile(`[0-9a-z-]+`).String()),
-							},
 						},
 					},
 				},
 			},
 			"images": schema.SingleNestedAttribute{
 				Computed: true,
-				Optional: true,
 				Attributes: map[string]schema.Attribute{
 					"order_left_teaser": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `URL of the order left teaser image`,
 					},
 					"order_right_teaser": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `URL of the order right teaser image`,
 					},
 					"welcome_banner": schema.StringAttribute{
 						Computed:    true,
-						Optional:    true,
 						Description: `URL of the welcome banner image`,
 					},
 				},
@@ -831,22 +524,18 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"inactive_contract_cutoff_years": schema.NumberAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Number of years to look back for showing inactive contracts in the portal`,
 			},
 			"is_epilot_domain": schema.BoolAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Mark true if the domain is an Epilot domain`,
 			},
 			"meter_reading_grace_period": schema.NumberAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Grace period in days for meter readings`,
 			},
 			"name": schema.StringAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `A short name to identify your portal`,
 			},
 			"org_settings": schema.SingleNestedAttribute{
@@ -880,281 +569,161 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 				Description: `ID of the organization`,
 			},
 			"origin": schema.StringAttribute{
-				Required:    true,
-				Description: `Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]`,
-				Validators: []validator.String{
-					stringvalidator.OneOf(
-						"END_CUSTOMER_PORTAL",
-						"INSTALLER_PORTAL",
-					),
-				},
+				Computed:    true,
+				Optional:    true,
+				Description: `Origin of the portal`,
 			},
 			"pages": schema.MapNestedAttribute{
 				Computed: true,
-				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
 					Attributes: map[string]schema.Attribute{
 						"additional_properties": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Parsed as JSON.`,
-							Validators: []validator.String{
-								validators.IsValidJSON(),
-							},
 						},
 						"blocks": schema.MapNestedAttribute{
 							Computed: true,
-							Optional: true,
 							NestedObject: schema.NestedAttributeObject{
-								Validators: []validator.Object{
-									speakeasy_objectvalidators.NotNull(),
-								},
 								Attributes: map[string]schema.Attribute{
 									"additional_properties": schema.StringAttribute{
 										Computed:    true,
-										Optional:    true,
 										Description: `Parsed as JSON.`,
-										Validators: []validator.String{
-											validators.IsValidJSON(),
-										},
 									},
 									"id": schema.StringAttribute{
 										Computed:    true,
-										Optional:    true,
-										Description: `The id of the block. Not Null`,
-										Validators: []validator.String{
-											speakeasy_stringvalidators.NotNull(),
-										},
+										Description: `The id of the block`,
 									},
 									"order": schema.NumberAttribute{
 										Computed:    true,
-										Optional:    true,
-										Description: `The order of the block. Not Null`,
-										Validators: []validator.Number{
-											speakeasy_numbervalidators.NotNull(),
-										},
+										Description: `The order of the block`,
 									},
 									"parent_id": schema.StringAttribute{
 										Computed:    true,
-										Optional:    true,
 										Description: `The id of the parent block`,
 									},
 									"props": schema.SingleNestedAttribute{
 										Computed: true,
-										Optional: true,
 										Attributes: map[string]schema.Attribute{
 											"additional_properties": schema.StringAttribute{
 												Computed:    true,
-												Optional:    true,
 												Description: `Parsed as JSON.`,
-												Validators: []validator.String{
-													validators.IsValidJSON(),
-												},
 											},
 											"content": schema.SingleNestedAttribute{
 												Computed:    true,
-												Optional:    true,
 												Description: `The content of the block`,
 											},
 											"design": schema.SingleNestedAttribute{
 												Computed:    true,
-												Optional:    true,
 												Description: `The design of the block`,
 											},
 											"visibility": schema.SingleNestedAttribute{
 												Computed:    true,
-												Optional:    true,
 												Description: `The conditions that need to be met for the block to be shown`,
 											},
 										},
 									},
 									"type": schema.StringAttribute{
 										Computed:    true,
-										Optional:    true,
-										Description: `The type of the block. eg; tabs, tab, group, attribute. Not Null`,
-										Validators: []validator.String{
-											speakeasy_stringvalidators.NotNull(),
-										},
+										Description: `The type of the block. eg; tabs, tab, group, attribute`,
 									},
 								},
 							},
 						},
 						"content": schema.MapAttribute{
 							Computed:    true,
-							Optional:    true,
 							ElementType: types.StringType,
 							Description: `The content of the page`,
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
 						},
 						"design": schema.MapAttribute{
 							Computed:    true,
-							Optional:    true,
 							ElementType: types.StringType,
 							Description: `The design of the page`,
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
 						},
 						"id": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
-							Description: `The id of the page. Not Null`,
-							Validators: []validator.String{
-								speakeasy_stringvalidators.NotNull(),
-							},
+							Description: `The id of the page`,
 						},
 						"is_deleted": schema.BoolAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Send the flag as true to delete the page`,
 						},
 						"is_entry_route": schema.BoolAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Whether the page is the entry route`,
 						},
 						"is_public": schema.BoolAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Whether the page is public`,
 						},
 						"is_system": schema.BoolAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Whether the page is a system page`,
 						},
 						"last_modified_at": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Last modified timestamp of the Page`,
-							Validators: []validator.String{
-								validators.IsRFC3339(),
-							},
 						},
 						"order": schema.NumberAttribute{
 							Computed:    true,
-							Optional:    true,
-							Description: `The order of the block. Not Null`,
-							Validators: []validator.Number{
-								speakeasy_numbervalidators.NotNull(),
-							},
+							Description: `The order of the block`,
 						},
 						"parent_id": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `The id of the parent page`,
 						},
 						"path": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `The path of the page`,
 						},
 						"schema": schema.ListAttribute{
 							Computed:    true,
-							Optional:    true,
 							ElementType: types.StringType,
 						},
 						"slug": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
-							Description: `The slug of the page. Not Null`,
-							Validators: []validator.String{
-								speakeasy_stringvalidators.NotNull(),
-							},
+							Description: `The slug of the page`,
 						},
 						"visibility": schema.MapAttribute{
 							Computed:    true,
-							Optional:    true,
 							ElementType: types.StringType,
 							Description: `The conditions that need to be met for the page to be shown`,
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
 						},
 					},
 				},
 			},
 			"prevent_search_engine_indexing": schema.BoolAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Prevent indexing by search engines`,
 			},
 			"registration_identifiers": schema.ListNestedAttribute{
 				Computed: true,
-				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
 					Attributes: map[string]schema.Attribute{
 						"name": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Name of the identifier/attribute`,
 						},
 						"schema": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
-							Description: `URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"contact",
-									"contract",
-									"file",
-									"order",
-									"opportunity",
-									"product",
-									"price",
-									"meter",
-									"meter_counter",
-								),
-							},
+							Description: `URL-friendly identifier for the entity schema`,
 						},
 					},
 				},
 				Description: `Identifiers to identify a contact of a portal user during the registration.`,
 			},
 			"self_registration_setting": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
-				Description: `must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]`,
-				Validators: []validator.String{
-					stringvalidator.OneOf(
-						"ALLOW_WITH_CONTACT_CREATION",
-						"ALLOW_WITHOUT_CONTACT_CREATION",
-						"DENY",
-					),
-				},
+				Computed: true,
 			},
 			"triggered_journeys": schema.ListNestedAttribute{
 				Computed: true,
-				Optional: true,
 				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
 					Attributes: map[string]schema.Attribute{
 						"journey_id": schema.StringAttribute{
 							Computed:    true,
-							Optional:    true,
 							Description: `Entity ID`,
 						},
 						"trigger_name": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `must be one of ["FIRST_LOGIN", "ACCEPT_ORDER", "DECLINE_ORDER"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"FIRST_LOGIN",
-									"ACCEPT_ORDER",
-									"DECLINE_ORDER",
-								),
-							},
+							Computed: true,
 						},
 					},
 				},
@@ -1164,7 +733,7 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 	}
 }
 
-func (r *PortalConfigResource) Configure(ctx context.Context, req resource.ConfigureRequest, resp *resource.ConfigureResponse) {
+func (r *PortalConfigDataSource) Configure(ctx context.Context, req datasource.ConfigureRequest, resp *datasource.ConfigureResponse) {
 	// Prevent panic if the provider has not been configured.
 	if req.ProviderData == nil {
 		return
@@ -1174,7 +743,7 @@ func (r *PortalConfigResource) Configure(ctx context.Context, req resource.Confi
 
 	if !ok {
 		resp.Diagnostics.AddError(
-			"Unexpected Resource Configure Type",
+			"Unexpected DataSource Configure Type",
 			fmt.Sprintf("Expected *sdk.SDK, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
@@ -1184,93 +753,11 @@ func (r *PortalConfigResource) Configure(ctx context.Context, req resource.Confi
 	r.client = client
 }
 
-func (r *PortalConfigResource) Create(ctx context.Context, req resource.CreateRequest, resp *resource.CreateResponse) {
-	var data *PortalConfigResourceModel
-	var plan types.Object
-
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	resp.Diagnostics.Append(plan.As(ctx, &data, basetypes.ObjectAsOptions{
-		UnhandledNullAsEmpty:    true,
-		UnhandledUnknownAsEmpty: true,
-	})...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	upsertPortalConfig := *data.ToSharedUpsertPortalConfig()
-	origin := shared.Origin(data.Origin.ValueString())
-	request := operations.UpsertPortalRequest{
-		UpsertPortalConfig: upsertPortalConfig,
-		Origin:             origin,
-	}
-	res, err := r.client.ECPAdmin.UpsertPortal(ctx, request)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res != nil && res.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
-		}
-		return
-	}
-	if res == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
-		return
-	}
-	if res.StatusCode != 201 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
-		return
-	}
-	if !(res.PortalConfig != nil) {
-		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
-		return
-	}
-	data.RefreshFromSharedPortalConfig(res.PortalConfig)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
-	origin1 := new(shared.Origin)
-	if !data.Origin.IsUnknown() && !data.Origin.IsNull() {
-		*origin1 = shared.Origin(data.Origin.ValueString())
-	} else {
-		origin1 = nil
-	}
-	request1 := operations.GetPortalConfigRequest{
-		Origin: origin1,
-	}
-	res1, err := r.client.ECPAdmin.GetPortalConfig(ctx, request1)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res1 != nil && res1.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res1.RawResponse))
-		}
-		return
-	}
-	if res1 == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res1))
-		return
-	}
-	if res1.StatusCode != 200 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res1.StatusCode), debugResponse(res1.RawResponse))
-		return
-	}
-	if !(res1.PortalConfig != nil) {
-		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res1.RawResponse))
-		return
-	}
-	data.RefreshFromSharedPortalConfig(res1.PortalConfig)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
-
-	// Save updated data into Terraform state
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-}
-
-func (r *PortalConfigResource) Read(ctx context.Context, req resource.ReadRequest, resp *resource.ReadResponse) {
-	var data *PortalConfigResourceModel
+func (r *PortalConfigDataSource) Read(ctx context.Context, req datasource.ReadRequest, resp *datasource.ReadResponse) {
+	var data *PortalConfigDataSourceModel
 	var item types.Object
 
-	resp.Diagnostics.Append(req.State.Get(ctx, &item)...)
+	resp.Diagnostics.Append(req.Config.Get(ctx, &item)...)
 	if resp.Diagnostics.HasError() {
 		return
 	}
@@ -1321,127 +808,4 @@ func (r *PortalConfigResource) Read(ctx context.Context, req resource.ReadReques
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-}
-
-func (r *PortalConfigResource) Update(ctx context.Context, req resource.UpdateRequest, resp *resource.UpdateResponse) {
-	var data *PortalConfigResourceModel
-	var plan types.Object
-
-	resp.Diagnostics.Append(req.Plan.Get(ctx, &plan)...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	merge(ctx, req, resp, &data)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	upsertPortalConfig := *data.ToSharedUpsertPortalConfig()
-	origin := shared.Origin(data.Origin.ValueString())
-	request := operations.UpsertPortalRequest{
-		UpsertPortalConfig: upsertPortalConfig,
-		Origin:             origin,
-	}
-	res, err := r.client.ECPAdmin.UpsertPortal(ctx, request)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res != nil && res.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
-		}
-		return
-	}
-	if res == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
-		return
-	}
-	if res.StatusCode != 201 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
-		return
-	}
-	if !(res.PortalConfig != nil) {
-		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
-		return
-	}
-	data.RefreshFromSharedPortalConfig(res.PortalConfig)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
-	origin1 := new(shared.Origin)
-	if !data.Origin.IsUnknown() && !data.Origin.IsNull() {
-		*origin1 = shared.Origin(data.Origin.ValueString())
-	} else {
-		origin1 = nil
-	}
-	request1 := operations.GetPortalConfigRequest{
-		Origin: origin1,
-	}
-	res1, err := r.client.ECPAdmin.GetPortalConfig(ctx, request1)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res1 != nil && res1.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res1.RawResponse))
-		}
-		return
-	}
-	if res1 == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res1))
-		return
-	}
-	if res1.StatusCode != 200 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res1.StatusCode), debugResponse(res1.RawResponse))
-		return
-	}
-	if !(res1.PortalConfig != nil) {
-		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res1.RawResponse))
-		return
-	}
-	data.RefreshFromSharedPortalConfig(res1.PortalConfig)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
-
-	// Save updated data into Terraform state
-	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
-}
-
-func (r *PortalConfigResource) Delete(ctx context.Context, req resource.DeleteRequest, resp *resource.DeleteResponse) {
-	var data *PortalConfigResourceModel
-	var item types.Object
-
-	resp.Diagnostics.Append(req.State.Get(ctx, &item)...)
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	resp.Diagnostics.Append(item.As(ctx, &data, basetypes.ObjectAsOptions{
-		UnhandledNullAsEmpty:    true,
-		UnhandledUnknownAsEmpty: true,
-	})...)
-
-	if resp.Diagnostics.HasError() {
-		return
-	}
-
-	origin := shared.Origin(data.Origin.ValueString())
-	request := operations.DeletePortalRequest{
-		Origin: origin,
-	}
-	res, err := r.client.ECPAdmin.DeletePortal(ctx, request)
-	if err != nil {
-		resp.Diagnostics.AddError("failure to invoke API", err.Error())
-		if res != nil && res.RawResponse != nil {
-			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
-		}
-		return
-	}
-	if res == nil {
-		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
-		return
-	}
-	if res.StatusCode != 204 {
-		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
-		return
-	}
-
-}
-
-func (r *PortalConfigResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resp.Diagnostics.AddError("Not Implemented", "No available import state operation is available for resource portal_config. Reason: no ID fields found")
 }

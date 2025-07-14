@@ -5,12 +5,6 @@ package provider
 import (
 	"context"
 	"fmt"
-	speakeasy_boolplanmodifier "github.com/epilot-dev/terraform-provider-epilot-portal/internal/planmodifiers/boolplanmodifier"
-	speakeasy_listplanmodifier "github.com/epilot-dev/terraform-provider-epilot-portal/internal/planmodifiers/listplanmodifier"
-	speakeasy_mapplanmodifier "github.com/epilot-dev/terraform-provider-epilot-portal/internal/planmodifiers/mapplanmodifier"
-	speakeasy_numberplanmodifier "github.com/epilot-dev/terraform-provider-epilot-portal/internal/planmodifiers/numberplanmodifier"
-	speakeasy_objectplanmodifier "github.com/epilot-dev/terraform-provider-epilot-portal/internal/planmodifiers/objectplanmodifier"
-	speakeasy_stringplanmodifier "github.com/epilot-dev/terraform-provider-epilot-portal/internal/planmodifiers/stringplanmodifier"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
@@ -19,13 +13,9 @@ import (
 	speakeasy_objectvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
+	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/boolplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/listplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/mapplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/numberplanmodifier"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/objectplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
@@ -76,13 +66,9 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 		MarkdownDescription: "PortalPage Resource",
 		Attributes: map[string]schema.Attribute{
 			"additional_properties": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-				},
-				Description: `Requires replacement if changed.; Parsed as JSON.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `Parsed as JSON.`,
 				Validators: []validator.String{
 					validators.IsValidJSON(),
 				},
@@ -90,152 +76,94 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 			"blocks": schema.MapNestedAttribute{
 				Computed: true,
 				Optional: true,
-				PlanModifiers: []planmodifier.Map{
-					mapplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_mapplanmodifier.SuppressDiff(speakeasy_mapplanmodifier.ExplicitSuppress),
-				},
 				NestedObject: schema.NestedAttributeObject{
 					Validators: []validator.Object{
 						speakeasy_objectvalidators.NotNull(),
 					},
-					PlanModifiers: []planmodifier.Object{
-						objectplanmodifier.RequiresReplaceIfConfigured(),
-						speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-					},
 					Attributes: map[string]schema.Attribute{
 						"additional_properties": schema.StringAttribute{
-							Computed: true,
-							Optional: true,
-							PlanModifiers: []planmodifier.String{
-								stringplanmodifier.RequiresReplaceIfConfigured(),
-								speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-							},
-							Description: `Requires replacement if changed.; Parsed as JSON.`,
+							Computed:    true,
+							Optional:    true,
+							Description: `Parsed as JSON.`,
 							Validators: []validator.String{
 								validators.IsValidJSON(),
 							},
 						},
 						"id": schema.StringAttribute{
-							Computed: true,
-							Optional: true,
-							PlanModifiers: []planmodifier.String{
-								stringplanmodifier.RequiresReplaceIfConfigured(),
-								speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-							},
-							Description: `The id of the block. Not Null; Requires replacement if changed.`,
+							Computed:    true,
+							Optional:    true,
+							Description: `The id of the block. Not Null`,
 							Validators: []validator.String{
 								speakeasy_stringvalidators.NotNull(),
 							},
 						},
 						"order": schema.NumberAttribute{
-							Computed: true,
-							Optional: true,
-							PlanModifiers: []planmodifier.Number{
-								numberplanmodifier.RequiresReplaceIfConfigured(),
-								speakeasy_numberplanmodifier.SuppressDiff(speakeasy_numberplanmodifier.ExplicitSuppress),
-							},
-							Description: `The order of the block. Not Null; Requires replacement if changed.`,
+							Computed:    true,
+							Optional:    true,
+							Description: `The order of the block. Not Null`,
 							Validators: []validator.Number{
 								speakeasy_numbervalidators.NotNull(),
 							},
 						},
 						"parent_id": schema.StringAttribute{
-							Computed: true,
-							Optional: true,
-							PlanModifiers: []planmodifier.String{
-								stringplanmodifier.RequiresReplaceIfConfigured(),
-								speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-							},
-							Description: `The id of the parent block. Requires replacement if changed.`,
+							Computed:    true,
+							Optional:    true,
+							Description: `The id of the parent block`,
 						},
 						"props": schema.SingleNestedAttribute{
 							Computed: true,
 							Optional: true,
-							PlanModifiers: []planmodifier.Object{
-								objectplanmodifier.RequiresReplaceIfConfigured(),
-								speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-							},
 							Attributes: map[string]schema.Attribute{
 								"additional_properties": schema.StringAttribute{
-									Computed: true,
-									Optional: true,
-									PlanModifiers: []planmodifier.String{
-										stringplanmodifier.RequiresReplaceIfConfigured(),
-										speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-									},
-									Description: `Requires replacement if changed.; Parsed as JSON.`,
+									Computed:    true,
+									Optional:    true,
+									Description: `Parsed as JSON.`,
 									Validators: []validator.String{
 										validators.IsValidJSON(),
 									},
 								},
 								"content": schema.SingleNestedAttribute{
-									Computed: true,
-									Optional: true,
-									PlanModifiers: []planmodifier.Object{
-										objectplanmodifier.RequiresReplaceIfConfigured(),
-										speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-									},
-									Description: `The content of the block. Requires replacement if changed.`,
+									Computed:    true,
+									Optional:    true,
+									Description: `The content of the block`,
 								},
 								"design": schema.SingleNestedAttribute{
-									Computed: true,
-									Optional: true,
-									PlanModifiers: []planmodifier.Object{
-										objectplanmodifier.RequiresReplaceIfConfigured(),
-										speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-									},
-									Description: `The design of the block. Requires replacement if changed.`,
+									Computed:    true,
+									Optional:    true,
+									Description: `The design of the block`,
 								},
 								"visibility": schema.SingleNestedAttribute{
-									Computed: true,
-									Optional: true,
-									PlanModifiers: []planmodifier.Object{
-										objectplanmodifier.RequiresReplaceIfConfigured(),
-										speakeasy_objectplanmodifier.SuppressDiff(speakeasy_objectplanmodifier.ExplicitSuppress),
-									},
-									Description: `The conditions that need to be met for the block to be shown. Requires replacement if changed.`,
+									Computed:    true,
+									Optional:    true,
+									Description: `The conditions that need to be met for the block to be shown`,
 								},
 							},
-							Description: `Requires replacement if changed.`,
 						},
 						"type": schema.StringAttribute{
-							Computed: true,
-							Optional: true,
-							PlanModifiers: []planmodifier.String{
-								stringplanmodifier.RequiresReplaceIfConfigured(),
-								speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-							},
-							Description: `The type of the block. eg; tabs, tab, group, attribute. Not Null; Requires replacement if changed.`,
+							Computed:    true,
+							Optional:    true,
+							Description: `The type of the block. eg; tabs, tab, group, attribute. Not Null`,
 							Validators: []validator.String{
 								speakeasy_stringvalidators.NotNull(),
 							},
 						},
 					},
 				},
-				Description: `Requires replacement if changed.`,
 			},
 			"content": schema.MapAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Map{
-					mapplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_mapplanmodifier.SuppressDiff(speakeasy_mapplanmodifier.ExplicitSuppress),
-				},
+				Computed:    true,
+				Optional:    true,
 				ElementType: types.StringType,
-				Description: `The content of the page. Requires replacement if changed.`,
+				Description: `The content of the page`,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 				},
 			},
 			"design": schema.MapAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Map{
-					mapplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_mapplanmodifier.SuppressDiff(speakeasy_mapplanmodifier.ExplicitSuppress),
-				},
+				Computed:    true,
+				Optional:    true,
 				ElementType: types.StringType,
-				Description: `The design of the page. Requires replacement if changed.`,
+				Description: `The design of the page`,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 				},
@@ -252,40 +180,24 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 				Description: `The id of the page`,
 			},
 			"is_deleted": schema.BoolAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Bool{
-					boolplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_boolplanmodifier.SuppressDiff(speakeasy_boolplanmodifier.ExplicitSuppress),
-				},
-				Description: `Send the flag as true to delete the page. Requires replacement if changed.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `Send the flag as true to delete the page`,
 			},
 			"is_entry_route": schema.BoolAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Bool{
-					boolplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_boolplanmodifier.SuppressDiff(speakeasy_boolplanmodifier.ExplicitSuppress),
-				},
-				Description: `Whether the page is the entry route. Requires replacement if changed.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `Whether the page is the entry route`,
 			},
 			"is_public": schema.BoolAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Bool{
-					boolplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_boolplanmodifier.SuppressDiff(speakeasy_boolplanmodifier.ExplicitSuppress),
-				},
-				Description: `Whether the page is public. Requires replacement if changed.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `Whether the page is public`,
 			},
 			"is_system": schema.BoolAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Bool{
-					boolplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_boolplanmodifier.SuppressDiff(speakeasy_boolplanmodifier.ExplicitSuppress),
-				},
-				Description: `Whether the page is a system page. Requires replacement if changed.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `Whether the page is a system page`,
 			},
 			"last_modified_at": schema.StringAttribute{
 				Computed:    true,
@@ -295,58 +207,33 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 				},
 			},
 			"order": schema.NumberAttribute{
-				Required: true,
-				PlanModifiers: []planmodifier.Number{
-					numberplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_numberplanmodifier.SuppressDiff(speakeasy_numberplanmodifier.ExplicitSuppress),
-				},
-				Description: `The order of the block. Requires replacement if changed.`,
+				Required:    true,
+				Description: `The order of the block`,
 			},
 			"parent_id": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-				},
-				Description: `The id of the parent page. Requires replacement if changed.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `The id of the parent page`,
 			},
 			"path": schema.StringAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-				},
-				Description: `The path of the page. Requires replacement if changed.`,
+				Computed:    true,
+				Optional:    true,
+				Description: `The path of the page`,
 			},
 			"schema": schema.ListAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.List{
-					listplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_listplanmodifier.SuppressDiff(speakeasy_listplanmodifier.ExplicitSuppress),
-				},
+				Computed:    true,
+				Optional:    true,
 				ElementType: types.StringType,
-				Description: `Requires replacement if changed.`,
 			},
 			"slug": schema.StringAttribute{
-				Required: true,
-				PlanModifiers: []planmodifier.String{
-					stringplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_stringplanmodifier.SuppressDiff(speakeasy_stringplanmodifier.ExplicitSuppress),
-				},
-				Description: `The slug of the page. Requires replacement if changed.`,
+				Required:    true,
+				Description: `The slug of the page`,
 			},
 			"visibility": schema.MapAttribute{
-				Computed: true,
-				Optional: true,
-				PlanModifiers: []planmodifier.Map{
-					mapplanmodifier.RequiresReplaceIfConfigured(),
-					speakeasy_mapplanmodifier.SuppressDiff(speakeasy_mapplanmodifier.ExplicitSuppress),
-				},
+				Computed:    true,
+				Optional:    true,
 				ElementType: types.StringType,
-				Description: `The conditions that need to be met for the page to be shown. Requires replacement if changed.`,
+				Description: `The conditions that need to be met for the page to be shown`,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 				},
@@ -423,6 +310,34 @@ func (r *PortalPageResource) Create(ctx context.Context, req resource.CreateRequ
 	}
 	data.RefreshFromSharedPage(res.Page)
 	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	var id string
+	id = data.ID.ValueString()
+
+	request1 := operations.GetPortalPageRequest{
+		ID: id,
+	}
+	res1, err := r.client.ECPAdmin.GetPortalPage(ctx, request1)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res1 != nil && res1.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res1.RawResponse))
+		}
+		return
+	}
+	if res1 == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res1))
+		return
+	}
+	if res1.StatusCode != 200 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res1.StatusCode), debugResponse(res1.RawResponse))
+		return
+	}
+	if !(res1.Page != nil) {
+		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res1.RawResponse))
+		return
+	}
+	data.RefreshFromSharedPage(res1.Page)
+	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -446,7 +361,37 @@ func (r *PortalPageResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	// Not Implemented; we rely entirely on CREATE API request response
+	var id string
+	id = data.ID.ValueString()
+
+	request := operations.GetPortalPageRequest{
+		ID: id,
+	}
+	res, err := r.client.ECPAdmin.GetPortalPage(ctx, request)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
+		return
+	}
+	if res == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode == 404 {
+		resp.State.RemoveResource(ctx)
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
+		return
+	}
+	if !(res.Page != nil) {
+		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
+		return
+	}
+	data.RefreshFromSharedPage(res.Page)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -466,7 +411,36 @@ func (r *PortalPageResource) Update(ctx context.Context, req resource.UpdateRequ
 		return
 	}
 
-	// Not Implemented; all attributes marked as RequiresReplace
+	pageRequest := *data.ToSharedPageRequest()
+	var id string
+	id = data.ID.ValueString()
+
+	request := operations.UpdatePortalPageRequest{
+		PageRequest: pageRequest,
+		ID:          id,
+	}
+	res, err := r.client.ECPAdmin.UpdatePortalPage(ctx, request)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
+		return
+	}
+	if res == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode != 200 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
+		return
+	}
+	if !(res.Page != nil) {
+		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
+		return
+	}
+	data.RefreshFromSharedPage(res.Page)
+	refreshPlan(ctx, plan, &data, resp.Diagnostics)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -490,9 +464,31 @@ func (r *PortalPageResource) Delete(ctx context.Context, req resource.DeleteRequ
 		return
 	}
 
-	// Not Implemented; entity does not have a configured DELETE operation
+	var id string
+	id = data.ID.ValueString()
+
+	request := operations.DeletePortalPageRequest{
+		ID: id,
+	}
+	res, err := r.client.ECPAdmin.DeletePortalPage(ctx, request)
+	if err != nil {
+		resp.Diagnostics.AddError("failure to invoke API", err.Error())
+		if res != nil && res.RawResponse != nil {
+			resp.Diagnostics.AddError("unexpected http request/response", debugResponse(res.RawResponse))
+		}
+		return
+	}
+	if res == nil {
+		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
+		return
+	}
+	if res.StatusCode != 204 {
+		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
+		return
+	}
+
 }
 
 func (r *PortalPageResource) ImportState(ctx context.Context, req resource.ImportStateRequest, resp *resource.ImportStateResponse) {
-	resp.Diagnostics.AddError("Not Implemented", "No available import state operation is available for resource portal_page.")
+	resp.Diagnostics.Append(resp.State.SetAttribute(ctx, path.Root("id"), req.ID)...)
 }

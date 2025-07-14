@@ -122,7 +122,10 @@ func (p *EpilotPortalProvider) Resources(ctx context.Context) []func() resource.
 }
 
 func (p *EpilotPortalProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{}
+	return []func() datasource.DataSource{
+		NewPortalConfigDataSource,
+		NewPortalPageDataSource,
+	}
 }
 
 func New(version string) func() provider.Provider {

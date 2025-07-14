@@ -251,41 +251,41 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 
 ### Required
 
-- `domain` (String) The URL on which the portal is accessible. Requires replacement if changed.
-- `origin` (String) Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]; Requires replacement if changed.
+- `domain` (String) The URL on which the portal is accessible
+- `origin` (String) Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]
 
 ### Optional
 
-- `access_token` (String) Access token for the portal. Requires replacement if changed.
-- `advanced_mfa` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--advanced_mfa))
-- `allowed_file_extensions` (Attributes) Allowed file extensions for upload. Requires replacement if changed. (see [below for nested schema](#nestedatt--allowed_file_extensions))
-- `approval_state_attributes` (String) Requires replacement if changed.; Parsed as JSON.
-- `auth_settings` (Attributes) Authentication settings for the portal. Requires replacement if changed. (see [below for nested schema](#nestedatt--auth_settings))
-- `cognito_details` (Attributes) AWS Cognito Pool details for the portal. Requires replacement if changed. (see [below for nested schema](#nestedatt--cognito_details))
-- `config` (String) Stringified object with configuration details. Requires replacement if changed.
-- `contact_identifiers` (List of String) Deprecated. Use registration_identifiers instead. Requires replacement if changed.
-- `contract_identifiers` (Attributes List) Identifiers to identify a contract by a portal user. Requires replacement if changed. (see [below for nested schema](#nestedatt--contract_identifiers))
-- `contract_selector_config` (Attributes) Configuration for contract selector in the portal. Requires replacement if changed. (see [below for nested schema](#nestedatt--contract_selector_config))
-- `default_user_to_notify` (Attributes) Default 360 user to notify upon an internal notification. Requires replacement if changed. (see [below for nested schema](#nestedatt--default_user_to_notify))
-- `design_id` (String) Entity ID. Requires replacement if changed.
-- `email_templates` (Attributes) Email templates used for authentication and internal processes. Requires replacement if changed. (see [below for nested schema](#nestedatt--email_templates))
-- `enabled` (Boolean) Enable/Disable the portal access. Requires replacement if changed.
-- `entity_actions` (Attributes List) Journey actions allowed on an entity by a portal user. Requires replacement if changed. (see [below for nested schema](#nestedatt--entity_actions))
-- `entity_edit_rules` (Attributes List) Rules for editing an entity by a portal user. Requires replacement if changed. (see [below for nested schema](#nestedatt--entity_edit_rules))
-- `entity_identifiers` (Attributes) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. Requires replacement if changed. (see [below for nested schema](#nestedatt--entity_identifiers))
-- `extension_hooks` (Attributes Map) Configured Portal extensions hooks. Requires replacement if changed. (see [below for nested schema](#nestedatt--extension_hooks))
-- `extensions` (Attributes List) Configured Portal extensions. Requires replacement if changed. (see [below for nested schema](#nestedatt--extensions))
-- `feature_settings` (Attributes) Feature settings for the portal. Requires replacement if changed. (see [below for nested schema](#nestedatt--feature_settings))
-- `images` (Attributes) Teaser & Banner Image web links. Requires replacement if changed. (see [below for nested schema](#nestedatt--images))
-- `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal. Requires replacement if changed.
-- `is_epilot_domain` (Boolean) Mark true if the domain is an Epilot domain. Requires replacement if changed.
-- `meter_reading_grace_period` (Number) Grace period in days for meter readings. Requires replacement if changed.
-- `name` (String) A short name to identify your portal. Requires replacement if changed.
-- `pages` (Attributes Map) Requires replacement if changed. (see [below for nested schema](#nestedatt--pages))
-- `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines. Requires replacement if changed.
-- `registration_identifiers` (Attributes List) Identifiers to identify a contact of a portal user during the registration. Requires replacement if changed. (see [below for nested schema](#nestedatt--registration_identifiers))
-- `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]; Requires replacement if changed.
-- `triggered_journeys` (Attributes List) Journeys automatically opened on a portal user action. Requires replacement if changed. (see [below for nested schema](#nestedatt--triggered_journeys))
+- `access_token` (String) Access token for the portal
+- `advanced_mfa` (Attributes) (see [below for nested schema](#nestedatt--advanced_mfa))
+- `allowed_file_extensions` (Attributes) Allowed file extensions for upload (see [below for nested schema](#nestedatt--allowed_file_extensions))
+- `approval_state_attributes` (String) Parsed as JSON.
+- `auth_settings` (Attributes) Authentication settings for the portal (see [below for nested schema](#nestedatt--auth_settings))
+- `cognito_details` (Attributes) AWS Cognito Pool details for the portal (see [below for nested schema](#nestedatt--cognito_details))
+- `config` (String) Stringified object with configuration details
+- `contact_identifiers` (List of String) Deprecated. Use registration_identifiers instead.
+- `contract_identifiers` (Attributes List) Identifiers to identify a contract by a portal user. (see [below for nested schema](#nestedatt--contract_identifiers))
+- `contract_selector_config` (Attributes) Configuration for contract selector in the portal (see [below for nested schema](#nestedatt--contract_selector_config))
+- `default_user_to_notify` (Attributes) Default 360 user to notify upon an internal notification (see [below for nested schema](#nestedatt--default_user_to_notify))
+- `design_id` (String) Entity ID
+- `email_templates` (Attributes) Email templates used for authentication and internal processes (see [below for nested schema](#nestedatt--email_templates))
+- `enabled` (Boolean) Enable/Disable the portal access
+- `entity_actions` (Attributes List) Journey actions allowed on an entity by a portal user (see [below for nested schema](#nestedatt--entity_actions))
+- `entity_edit_rules` (Attributes List) Rules for editing an entity by a portal user (see [below for nested schema](#nestedatt--entity_edit_rules))
+- `entity_identifiers` (Attributes) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. (see [below for nested schema](#nestedatt--entity_identifiers))
+- `extension_hooks` (Attributes Map) Configured Portal extensions hooks (see [below for nested schema](#nestedatt--extension_hooks))
+- `extensions` (Attributes List) Configured Portal extensions (see [below for nested schema](#nestedatt--extensions))
+- `feature_settings` (Attributes) Feature settings for the portal (see [below for nested schema](#nestedatt--feature_settings))
+- `images` (Attributes) Teaser & Banner Image web links (see [below for nested schema](#nestedatt--images))
+- `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal
+- `is_epilot_domain` (Boolean) Mark true if the domain is an Epilot domain
+- `meter_reading_grace_period` (Number) Grace period in days for meter readings
+- `name` (String) A short name to identify your portal
+- `pages` (Attributes Map) (see [below for nested schema](#nestedatt--pages))
+- `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
+- `registration_identifiers` (Attributes List) Identifiers to identify a contact of a portal user during the registration. (see [below for nested schema](#nestedatt--registration_identifiers))
+- `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]
+- `triggered_journeys` (Attributes List) Journeys automatically opened on a portal user action (see [below for nested schema](#nestedatt--triggered_journeys))
 
 ### Read-Only
 
@@ -301,7 +301,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 
 Optional:
 
-- `enabled` (Boolean) Advanced MFA feature flag. Requires replacement if changed.
+- `enabled` (Boolean) Advanced MFA feature flag
 
 
 <a id="nestedatt--allowed_file_extensions"></a>
@@ -309,16 +309,16 @@ Optional:
 
 Optional:
 
-- `archive` (List of String) Requires replacement if changed.
-- `audio_video` (List of String) Requires replacement if changed.
-- `cad` (List of String) Requires replacement if changed.
-- `calendar` (List of String) Requires replacement if changed.
-- `document` (List of String) Requires replacement if changed.
-- `email` (List of String) Requires replacement if changed.
-- `image` (List of String) Requires replacement if changed.
-- `other` (List of String) Requires replacement if changed.
-- `presentation` (List of String) Requires replacement if changed.
-- `spreadsheet` (List of String) Requires replacement if changed.
+- `archive` (List of String)
+- `audio_video` (List of String)
+- `cad` (List of String)
+- `calendar` (List of String)
+- `document` (List of String)
+- `email` (List of String)
+- `image` (List of String)
+- `other` (List of String)
+- `presentation` (List of String)
+- `spreadsheet` (List of String)
 
 
 <a id="nestedatt--auth_settings"></a>
@@ -326,16 +326,16 @@ Optional:
 
 Optional:
 
-- `entry_point` (String) must be one of ["PASSWORD", "SSO"]; Requires replacement if changed.
-- `passwordless_login` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--auth_settings--passwordless_login))
-- `preferred_sso_providers` (List of String) Requires replacement if changed.
+- `entry_point` (String) must be one of ["PASSWORD", "SSO"]
+- `passwordless_login` (Attributes) (see [below for nested schema](#nestedatt--auth_settings--passwordless_login))
+- `preferred_sso_providers` (List of String)
 
 <a id="nestedatt--auth_settings--passwordless_login"></a>
 ### Nested Schema for `auth_settings.passwordless_login`
 
 Optional:
 
-- `enabled` (Boolean) Passwordless login feature flag. Requires replacement if changed.
+- `enabled` (Boolean) Passwordless login feature flag
 
 
 
@@ -344,21 +344,21 @@ Optional:
 
 Optional:
 
-- `cognito_user_pool_arn` (String) Cognito user pool ARN. Requires replacement if changed.
-- `cognito_user_pool_client_id` (String) Cognito user pool client ID. Requires replacement if changed.
-- `cognito_user_pool_id` (String) Cognito user pool ID. Requires replacement if changed.
-- `password_policy` (Attributes) Password policy for the portal. Requires replacement if changed. (see [below for nested schema](#nestedatt--cognito_details--password_policy))
+- `cognito_user_pool_arn` (String) Cognito user pool ARN
+- `cognito_user_pool_client_id` (String) Cognito user pool client ID
+- `cognito_user_pool_id` (String) Cognito user pool ID
+- `password_policy` (Attributes) Password policy for the portal (see [below for nested schema](#nestedatt--cognito_details--password_policy))
 
 <a id="nestedatt--cognito_details--password_policy"></a>
 ### Nested Schema for `cognito_details.password_policy`
 
 Optional:
 
-- `minimum_length` (Number) Minimum password length. Requires replacement if changed.
-- `require_lowercase` (Boolean) Require lowercase characters. Requires replacement if changed.
-- `require_numbers` (Boolean) Require numbers. Requires replacement if changed.
-- `require_symbols` (Boolean) Require symbols. Requires replacement if changed.
-- `require_uppercase` (Boolean) Require uppercase characters. Requires replacement if changed.
+- `minimum_length` (Number) Minimum password length
+- `require_lowercase` (Boolean) Require lowercase characters
+- `require_numbers` (Boolean) Require numbers
+- `require_symbols` (Boolean) Require symbols
+- `require_uppercase` (Boolean) Require uppercase characters
 
 
 
@@ -367,8 +367,8 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the identifier/attribute. Requires replacement if changed.
-- `schema` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]; Requires replacement if changed.
+- `name` (String) Name of the identifier/attribute
+- `schema` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]
 
 
 <a id="nestedatt--contract_selector_config"></a>
@@ -376,8 +376,8 @@ Optional:
 
 Optional:
 
-- `show_inactive` (Boolean) Whether to show inactive contracts in the selector. Requires replacement if changed.
-- `title_path` (String) Path to the property to use as the contract title. Requires replacement if changed.
+- `show_inactive` (Boolean) Whether to show inactive contracts in the selector
+- `title_path` (String) Path to the property to use as the contract title
 
 
 <a id="nestedatt--default_user_to_notify"></a>
@@ -385,31 +385,31 @@ Optional:
 
 Optional:
 
-- `on_pending_user` (Attributes List) Default admin users for pending user notification to notify. Requires replacement if changed. (see [below for nested schema](#nestedatt--default_user_to_notify--on_pending_user))
+- `on_pending_user` (Attributes List) Default admin users for pending user notification to notify (see [below for nested schema](#nestedatt--default_user_to_notify--on_pending_user))
 
 <a id="nestedatt--default_user_to_notify--on_pending_user"></a>
 ### Nested Schema for `default_user_to_notify.on_pending_user`
 
 Optional:
 
-- `additional_properties` (String) Requires replacement if changed.; Parsed as JSON.
-- `display_name` (String) Requires replacement if changed.
-- `email` (String) Requires replacement if changed.
-- `image_uri` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--default_user_to_notify--on_pending_user--image_uri))
-- `org_id` (String) Requires replacement if changed.
-- `phone` (String) Requires replacement if changed.
-- `type` (String) Requires replacement if changed.
-- `user_id` (String) Requires replacement if changed.
+- `additional_properties` (String) Parsed as JSON.
+- `display_name` (String)
+- `email` (String)
+- `image_uri` (Attributes) (see [below for nested schema](#nestedatt--default_user_to_notify--on_pending_user--image_uri))
+- `org_id` (String)
+- `phone` (String)
+- `type` (String)
+- `user_id` (String)
 
 <a id="nestedatt--default_user_to_notify--on_pending_user--image_uri"></a>
 ### Nested Schema for `default_user_to_notify.on_pending_user.image_uri`
 
 Optional:
 
-- `key` (String) Requires replacement if changed.
-- `original` (String) Requires replacement if changed.
-- `thumbnail_32` (String) Requires replacement if changed.
-- `thumbnail_64` (String) Requires replacement if changed.
+- `key` (String)
+- `original` (String)
+- `thumbnail_32` (String)
+- `thumbnail_64` (String)
 
 
 
@@ -419,20 +419,20 @@ Optional:
 
 Optional:
 
-- `advanced_auth` (String) Entity ID. Requires replacement if changed.
-- `advanced_mfa` (String) Entity ID. Requires replacement if changed.
-- `confirm_account` (String) Entity ID. Requires replacement if changed.
-- `confirm_email_update` (String) Entity ID. Requires replacement if changed.
-- `forgot_password` (String) Entity ID. Requires replacement if changed.
-- `invitation` (String) Entity ID. Requires replacement if changed.
-- `journey_login_otp` (String) Entity ID. Requires replacement if changed.
-- `journey_sign_in_one_time_password` (String) Entity ID. Requires replacement if changed.
-- `journey_sign_up` (String) Entity ID. Requires replacement if changed.
-- `on_doc_upload` (String) Entity ID. Requires replacement if changed.
-- `on_map_a_pending_user` (String) Entity ID. Requires replacement if changed.
-- `on_new_quote` (String) Entity ID. Requires replacement if changed.
-- `on_workflow_step_assigned` (String) Entity ID. Requires replacement if changed.
-- `verify_code_to_set_password` (String) Entity ID. Requires replacement if changed.
+- `advanced_auth` (String) Entity ID
+- `advanced_mfa` (String) Entity ID
+- `confirm_account` (String) Entity ID
+- `confirm_email_update` (String) Entity ID
+- `forgot_password` (String) Entity ID
+- `invitation` (String) Entity ID
+- `journey_login_otp` (String) Entity ID
+- `journey_sign_in_one_time_password` (String) Entity ID
+- `journey_sign_up` (String) Entity ID
+- `on_doc_upload` (String) Entity ID
+- `on_map_a_pending_user` (String) Entity ID
+- `on_new_quote` (String) Entity ID
+- `on_workflow_step_assigned` (String) Entity ID
+- `verify_code_to_set_password` (String) Entity ID
 
 
 <a id="nestedatt--entity_actions"></a>
@@ -440,17 +440,17 @@ Optional:
 
 Optional:
 
-- `action_label` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--entity_actions--action_label))
-- `journey_id` (String) Entity ID. Requires replacement if changed.
-- `slug` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]; Requires replacement if changed.
+- `action_label` (Attributes) (see [below for nested schema](#nestedatt--entity_actions--action_label))
+- `journey_id` (String) Entity ID
+- `slug` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]
 
 <a id="nestedatt--entity_actions--action_label"></a>
 ### Nested Schema for `entity_actions.action_label`
 
 Optional:
 
-- `de` (String) Requires replacement if changed.
-- `en` (String) Requires replacement if changed.
+- `de` (String)
+- `en` (String)
 
 
 
@@ -459,16 +459,16 @@ Optional:
 
 Optional:
 
-- `allowed_decrement` (String) Requires replacement if changed.
-- `allowed_increment` (String) Requires replacement if changed.
-- `attribute` (String) Requires replacement if changed.
-- `cadence_period` (Number) Requires replacement if changed.
-- `cadence_period_type` (String) must be one of ["days", "weeks", "months"]; Requires replacement if changed.
-- `changes_allowed` (Number) Requires replacement if changed.
-- `grace_period` (Number) Requires replacement if changed.
-- `number_of_days_before_restriction` (Number) Requires replacement if changed.
-- `rule_type` (String) must be one of ["cadence", "relative_to_current_value", "days_before_date", "overdue_payments"]; Requires replacement if changed.
-- `slug` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]; Requires replacement if changed.
+- `allowed_decrement` (String)
+- `allowed_increment` (String)
+- `attribute` (String)
+- `cadence_period` (Number)
+- `cadence_period_type` (String) must be one of ["days", "weeks", "months"]
+- `changes_allowed` (Number)
+- `grace_period` (Number)
+- `number_of_days_before_restriction` (Number)
+- `rule_type` (String) must be one of ["cadence", "relative_to_current_value", "days_before_date", "overdue_payments"]
+- `slug` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]
 
 
 <a id="nestedatt--entity_identifiers"></a>
@@ -476,15 +476,15 @@ Optional:
 
 Optional:
 
-- `type` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--entity_identifiers--type))
+- `type` (Attributes) (see [below for nested schema](#nestedatt--entity_identifiers--type))
 
 <a id="nestedatt--entity_identifiers--type"></a>
 ### Nested Schema for `entity_identifiers.type`
 
 Optional:
 
-- `attributes` (List of String) Attributes used to identify an entity. Requires replacement if changed.
-- `is_enabled` (Boolean) Enable/Disable the entity identifier. Requires replacement if changed.
+- `attributes` (List of String) Attributes used to identify an entity
+- `is_enabled` (Boolean) Enable/Disable the entity identifier
 
 
 
@@ -493,8 +493,8 @@ Optional:
 
 Optional:
 
-- `app_id` (String) The ID of the app that is being hooked into. Requires replacement if changed.
-- `hook_id` (String) The ID of the hook that is being configured. Requires replacement if changed.
+- `app_id` (String) The ID of the app that is being hooked into.
+- `hook_id` (String) The ID of the hook that is being configured.
 
 
 <a id="nestedatt--extensions"></a>
@@ -502,12 +502,12 @@ Optional:
 
 Required:
 
-- `id` (String) Name of the extension. Requires replacement if changed.
+- `id` (String) Name of the extension
 
 Optional:
 
-- `options` (Map of String) Extension option values. Requires replacement if changed.
-- `status` (String) Status of the extension. Default: "installed"; must be one of ["installed", "enabled"]; Requires replacement if changed.
+- `options` (Map of String) Extension option values.
+- `status` (String) Status of the extension. Default: "installed"; must be one of ["installed", "enabled"]
 
 
 <a id="nestedatt--feature_settings"></a>
@@ -515,10 +515,10 @@ Optional:
 
 Optional:
 
-- `billing` (Boolean) Billing feature flag. Requires replacement if changed.
-- `change_due_date` (Boolean) Change due date feature flag. Requires replacement if changed.
-- `new_design` (Boolean) Enable or disable the new design for the portal. Requires replacement if changed.
-- `start_page` (Boolean) Start page feature flag. Requires replacement if changed.
+- `billing` (Boolean) Billing feature flag
+- `change_due_date` (Boolean) Change due date feature flag
+- `new_design` (Boolean) Enable or disable the new design for the portal
+- `start_page` (Boolean) Start page feature flag
 
 
 <a id="nestedatt--images"></a>
@@ -526,9 +526,9 @@ Optional:
 
 Optional:
 
-- `order_left_teaser` (String) URL of the order left teaser image. Requires replacement if changed.
-- `order_right_teaser` (String) URL of the order right teaser image. Requires replacement if changed.
-- `welcome_banner` (String) URL of the welcome banner image. Requires replacement if changed.
+- `order_left_teaser` (String) URL of the order left teaser image
+- `order_right_teaser` (String) URL of the order right teaser image
+- `welcome_banner` (String) URL of the welcome banner image
 
 
 <a id="nestedatt--pages"></a>
@@ -536,44 +536,44 @@ Optional:
 
 Optional:
 
-- `additional_properties` (String) Requires replacement if changed.; Parsed as JSON.
-- `blocks` (Attributes Map) Requires replacement if changed. (see [below for nested schema](#nestedatt--pages--blocks))
-- `content` (Map of String) The content of the page. Requires replacement if changed.
-- `design` (Map of String) The design of the page. Requires replacement if changed.
-- `id` (String) The id of the page. Not Null; Requires replacement if changed.
-- `is_deleted` (Boolean) Send the flag as true to delete the page. Requires replacement if changed.
-- `is_entry_route` (Boolean) Whether the page is the entry route. Requires replacement if changed.
-- `is_public` (Boolean) Whether the page is public. Requires replacement if changed.
-- `is_system` (Boolean) Whether the page is a system page. Requires replacement if changed.
-- `last_modified_at` (String) Last modified timestamp of the Page. Requires replacement if changed.
-- `order` (Number) The order of the block. Not Null; Requires replacement if changed.
-- `parent_id` (String) The id of the parent page. Requires replacement if changed.
-- `path` (String) The path of the page. Requires replacement if changed.
-- `schema` (List of String) Requires replacement if changed.
-- `slug` (String) The slug of the page. Not Null; Requires replacement if changed.
-- `visibility` (Map of String) The conditions that need to be met for the page to be shown. Requires replacement if changed.
+- `additional_properties` (String) Parsed as JSON.
+- `blocks` (Attributes Map) (see [below for nested schema](#nestedatt--pages--blocks))
+- `content` (Map of String) The content of the page
+- `design` (Map of String) The design of the page
+- `id` (String) The id of the page. Not Null
+- `is_deleted` (Boolean) Send the flag as true to delete the page
+- `is_entry_route` (Boolean) Whether the page is the entry route
+- `is_public` (Boolean) Whether the page is public
+- `is_system` (Boolean) Whether the page is a system page
+- `last_modified_at` (String) Last modified timestamp of the Page
+- `order` (Number) The order of the block. Not Null
+- `parent_id` (String) The id of the parent page
+- `path` (String) The path of the page
+- `schema` (List of String)
+- `slug` (String) The slug of the page. Not Null
+- `visibility` (Map of String) The conditions that need to be met for the page to be shown
 
 <a id="nestedatt--pages--blocks"></a>
 ### Nested Schema for `pages.blocks`
 
 Optional:
 
-- `additional_properties` (String) Requires replacement if changed.; Parsed as JSON.
-- `id` (String) The id of the block. Not Null; Requires replacement if changed.
-- `order` (Number) The order of the block. Not Null; Requires replacement if changed.
-- `parent_id` (String) The id of the parent block. Requires replacement if changed.
-- `props` (Attributes) Requires replacement if changed. (see [below for nested schema](#nestedatt--pages--blocks--props))
-- `type` (String) The type of the block. eg; tabs, tab, group, attribute. Not Null; Requires replacement if changed.
+- `additional_properties` (String) Parsed as JSON.
+- `id` (String) The id of the block. Not Null
+- `order` (Number) The order of the block. Not Null
+- `parent_id` (String) The id of the parent block
+- `props` (Attributes) (see [below for nested schema](#nestedatt--pages--blocks--props))
+- `type` (String) The type of the block. eg; tabs, tab, group, attribute. Not Null
 
 <a id="nestedatt--pages--blocks--props"></a>
 ### Nested Schema for `pages.blocks.props`
 
 Optional:
 
-- `additional_properties` (String) Requires replacement if changed.; Parsed as JSON.
-- `content` (Attributes) The content of the block. Requires replacement if changed. (see [below for nested schema](#nestedatt--pages--blocks--props--content))
-- `design` (Attributes) The design of the block. Requires replacement if changed. (see [below for nested schema](#nestedatt--pages--blocks--props--design))
-- `visibility` (Attributes) The conditions that need to be met for the block to be shown. Requires replacement if changed. (see [below for nested schema](#nestedatt--pages--blocks--props--visibility))
+- `additional_properties` (String) Parsed as JSON.
+- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--pages--blocks--props--content))
+- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--pages--blocks--props--design))
+- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--pages--blocks--props--visibility))
 
 <a id="nestedatt--pages--blocks--props--content"></a>
 ### Nested Schema for `pages.blocks.props.content`
@@ -595,8 +595,8 @@ Optional:
 
 Optional:
 
-- `name` (String) Name of the identifier/attribute. Requires replacement if changed.
-- `schema` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]; Requires replacement if changed.
+- `name` (String) Name of the identifier/attribute
+- `schema` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]
 
 
 <a id="nestedatt--triggered_journeys"></a>
@@ -604,8 +604,8 @@ Optional:
 
 Optional:
 
-- `journey_id` (String) Entity ID. Requires replacement if changed.
-- `trigger_name` (String) must be one of ["FIRST_LOGIN", "ACCEPT_ORDER", "DECLINE_ORDER"]; Requires replacement if changed.
+- `journey_id` (String) Entity ID
+- `trigger_name` (String) must be one of ["FIRST_LOGIN", "ACCEPT_ORDER", "DECLINE_ORDER"]
 
 
 <a id="nestedatt--grants"></a>

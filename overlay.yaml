@@ -20,33 +20,41 @@ actions:
   # Portal
   - target: $["paths"]["/v2/portal/portal"]["post"]
     update:
-      x-speakeasy-entity-operation: PortalConfig#create
+      x-speakeasy-entity-operation: PortalConfig#create,update
+
+  - target: $["paths"]["/v2/portal/config"]["get"]
+    update:
+      x-speakeasy-entity-operation: PortalConfig#get
+
+  - target: $["paths"]["/v2/portal/config"]["delete"]
+    update:
+      x-speakeasy-entity-operation: PortalConfig#delete
 
   - target: $["components"]["schemas"]["PortalConfig"]
     update:
       x-speakeasy-entity: PortalConfig
-
-  # - target: $["paths"]["/v1/permissions/roles/{roleId}"]["get"]["parameters"][0]
-  #   update:
-  #     x-speakeasy-match: id
-
-  # - target: $["paths"]["/v1/permissions/roles/{roleId}"]["put"]["parameters"][0]
-  #   update:
-  #     x-speakeasy-match: id
-  # - target: $["paths"]["/v1/permissions/roles/{roleId}"]["delete"]["parameters"][0]
-  #   update:
-  #     x-speakeasy-match: id
 
   - target: $["components"]["schemas"]["CommonConfigAttributes"]["properties"]["approval_state_attributes"]
     update:
       x-speakeasy-type-override: any
 
 
-
   # Portal Page
   - target: $["paths"]["/v2/portal/pages"]["post"]
     update:
       x-speakeasy-entity-operation: PortalPage#create
+
+  - target: $["paths"]["/v2/portal/pages/{id}"]["get"]
+    update:
+      x-speakeasy-entity-operation: PortalPage#get
+
+  - target: $["paths"]["/v2/portal/pages/{id}"]["put"]
+    update:
+      x-speakeasy-entity-operation: PortalPage#update
+
+  - target: $["paths"]["/v2/portal/pages/{id}"]["delete"]
+    update:
+      x-speakeasy-entity-operation: PortalPage#delete
 
   - target: $["components"]["schemas"]["Page"]
     update:

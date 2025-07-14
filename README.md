@@ -37,7 +37,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.21.2"
+      version = "0.21.3"
     }
   }
 }
@@ -56,6 +56,9 @@ provider "epilot-portal" {
 * [epilot-portal_portal_config](docs/resources/portal_config.md)
 * [epilot-portal_portal_page](docs/resources/portal_page.md)
 ### Data Sources
+
+* [epilot-portal_portal_config](docs/data-sources/portal_config.md)
+* [epilot-portal_portal_page](docs/data-sources/portal_page.md)
 <!-- End Available Resources and Data Sources [operations] -->
 
 <!-- Start Testing the provider locally [usage] -->
