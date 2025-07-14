@@ -59,3 +59,12 @@ actions:
   - target: $["components"]["schemas"]["Page"]
     update:
       x-speakeasy-entity: PortalPage
+
+  # Portal Widget
+  - target: $["paths"]["/v2/portal/widgets"]["post"]
+    update:
+      x-speakeasy-entity-operation: PortalWidget#create
+
+  - target: $["components"]["schemas"]["PortalWidget"]
+    update:
+      x-speakeasy-entity: PortalWidget

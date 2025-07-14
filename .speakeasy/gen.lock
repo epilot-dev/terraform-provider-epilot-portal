@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 5a857039-7f4b-42d5-86fd-449767242ed2
 management:
-  docChecksum: dc7df0da5c9c78bbc3075146f3bce131
+  docChecksum: d0e129c63a503c11685583b4a99a493f
   docVersion: 1.0.0
   speakeasyVersion: 1.477.0
   generationVersion: 2.497.0
-  releaseVersion: 0.21.3
-  configChecksum: f2e6e067279afb03591edbc415828514
+  releaseVersion: 0.21.4
+  configChecksum: 8b237946fe4bab09efa7f6b09c291c15
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-product.git
   repoSubDirectory: .
   published: true
@@ -43,6 +43,7 @@ generatedFiles:
   - examples/resources/epilot-portal_portal_config/resource.tf
   - examples/resources/epilot-portal_portal_page/import.sh
   - examples/resources/epilot-portal_portal_page/resource.tf
+  - examples/resources/epilot-portal_portal_widget/resource.tf
   - go.mod
   - go.sum
   - internal/planmodifiers/boolplanmodifier/suppress_diff.go
@@ -63,6 +64,8 @@ generatedFiles:
   - internal/provider/portalpage_data_source_sdk.go
   - internal/provider/portalpage_resource.go
   - internal/provider/portalpage_resource_sdk.go
+  - internal/provider/portalwidget_resource.go
+  - internal/provider/portalwidget_resource_sdk.go
   - internal/provider/provider.go
   - internal/provider/reflect/diags.go
   - internal/provider/reflect/doc.go
@@ -82,6 +85,7 @@ generatedFiles:
   - internal/provider/types/allowed_file_extensions.go
   - internal/provider/types/block.go
   - internal/provider/types/block_props.go
+  - internal/provider/types/button.go
   - internal/provider/types/content.go
   - internal/provider/types/contract_identifier.go
   - internal/provider/types/default_user_to_notify.go
@@ -98,6 +102,7 @@ generatedFiles:
   - internal/provider/types/org_settings.go
   - internal/provider/types/page.go
   - internal/provider/types/provider_public_config.go
+  - internal/provider/types/schemas.go
   - internal/provider/types/triggered_journeys.go
   - internal/provider/types/upsert_portal_config_action_label.go
   - internal/provider/types/upsert_portal_config_advanced_mfa.go
@@ -109,6 +114,8 @@ generatedFiles:
   - internal/provider/types/upsert_portal_config_images.go
   - internal/provider/types/upsert_portal_config_password_policy.go
   - internal/provider/types/upsert_portal_config_type.go
+  - internal/provider/types/widget_action.go
+  - internal/provider/types/widget_action_rules.go
   - internal/provider/utils.go
   - internal/sdk/.gitattributes
   - internal/sdk/activity.go
@@ -229,7 +236,6 @@ generatedFiles:
   - internal/sdk/models/operations/validatetoken.go
   - internal/sdk/models/shared/acceptancedecision.go
   - internal/sdk/models/shared/actionlabel.go
-  - internal/sdk/models/shared/actionwidget.go
   - internal/sdk/models/shared/activitycallercontext.go
   - internal/sdk/models/shared/activityitem.go
   - internal/sdk/models/shared/adminuser.go
@@ -239,10 +245,8 @@ generatedFiles:
   - internal/sdk/models/shared/block.go
   - internal/sdk/models/shared/blockprops.go
   - internal/sdk/models/shared/blockrequest.go
-  - internal/sdk/models/shared/campaignwidget.go
   - internal/sdk/models/shared/contact.go
   - internal/sdk/models/shared/contactexistsrequest.go
-  - internal/sdk/models/shared/contentwidget.go
   - internal/sdk/models/shared/contract.go
   - internal/sdk/models/shared/contractidentifier.go
   - internal/sdk/models/shared/createuserrequest.go
@@ -254,7 +258,6 @@ generatedFiles:
   - internal/sdk/models/shared/entityitem.go
   - internal/sdk/models/shared/entitysearchparams.go
   - internal/sdk/models/shared/entityslug.go
-  - internal/sdk/models/shared/entitywidget.go
   - internal/sdk/models/shared/errorresp.go
   - internal/sdk/models/shared/extension.go
   - internal/sdk/models/shared/extensionauthblock.go
@@ -270,10 +273,8 @@ generatedFiles:
   - internal/sdk/models/shared/identifierattribute.go
   - internal/sdk/models/shared/journeyactions.go
   - internal/sdk/models/shared/meter.go
-  - internal/sdk/models/shared/meterchartwidget.go
   - internal/sdk/models/shared/meterreadingphoto.go
   - internal/sdk/models/shared/meterreadingphotodata.go
-  - internal/sdk/models/shared/meterreadingwidget.go
   - internal/sdk/models/shared/moblieoidcconfig.go
   - internal/sdk/models/shared/oidcproviderconfig.go
   - internal/sdk/models/shared/oidcprovidermetadata.go
@@ -285,6 +286,7 @@ generatedFiles:
   - internal/sdk/models/shared/pagerequest.go
   - internal/sdk/models/shared/portalconfig.go
   - internal/sdk/models/shared/portaluser.go
+  - internal/sdk/models/shared/portalwidget.go
   - internal/sdk/models/shared/product.go
   - internal/sdk/models/shared/providerpublicconfig.go
   - internal/sdk/models/shared/publiccontractidentificationdetails.go
@@ -298,12 +300,10 @@ generatedFiles:
   - internal/sdk/models/shared/security.go
   - internal/sdk/models/shared/ssocallbackrequest.go
   - internal/sdk/models/shared/ssocallbackresponse.go
-  - internal/sdk/models/shared/teaserwidget.go
   - internal/sdk/models/shared/triggerportalflow.go
   - internal/sdk/models/shared/upsertportalconfig.go
   - internal/sdk/models/shared/upsertportalwidget.go
   - internal/sdk/models/shared/widgetaction.go
-  - internal/sdk/models/shared/widgetbase.go
   - internal/sdk/public.go
   - internal/sdk/retry/config.go
   - internal/sdk/sdk.go

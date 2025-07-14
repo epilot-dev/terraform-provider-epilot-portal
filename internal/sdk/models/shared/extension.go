@@ -370,72 +370,72 @@ func (o *Resolved) GetDataPath() *string {
 	return o.DataPath
 }
 
-type Type string
+type SchemasExtensionHookConsumptionDataRetrievalType string
 
 const (
-	TypeConsumptionDataRetrieval Type = "consumptionDataRetrieval"
+	SchemasExtensionHookConsumptionDataRetrievalTypeConsumptionDataRetrieval SchemasExtensionHookConsumptionDataRetrievalType = "consumptionDataRetrieval"
 )
 
-func (e Type) ToPointer() *Type {
+func (e SchemasExtensionHookConsumptionDataRetrievalType) ToPointer() *SchemasExtensionHookConsumptionDataRetrievalType {
 	return &e
 }
-func (e *Type) UnmarshalJSON(data []byte) error {
+func (e *SchemasExtensionHookConsumptionDataRetrievalType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "consumptionDataRetrieval":
-		*e = Type(v)
+		*e = SchemasExtensionHookConsumptionDataRetrievalType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Type: %v", v)
+		return fmt.Errorf("invalid value for SchemasExtensionHookConsumptionDataRetrievalType: %v", v)
 	}
 }
 
-// Schemas - Hook that will allow using the specified source as data for consumption visualizations. This hook is triggered to fetch the data. Format of the request and response has to follow the following specification: TBD. The expected response to the call is:
+// ExtensionHookConsumptionDataRetrievalSchemas - Hook that will allow using the specified source as data for consumption visualizations. This hook is triggered to fetch the data. Format of the request and response has to follow the following specification: TBD. The expected response to the call is:
 //
 //   - 200 with the time series data
-type Schemas struct {
+type ExtensionHookConsumptionDataRetrievalSchemas struct {
 	Auth *ExtensionAuthBlock `json:"auth,omitempty"`
 	Call Call                `json:"call"`
 	// Identifier of the hook. Should not change between updates.
-	ID       *string   `json:"id,omitempty"`
-	Resolved *Resolved `json:"resolved,omitempty"`
-	Type     Type      `json:"type"`
+	ID       *string                                          `json:"id,omitempty"`
+	Resolved *Resolved                                        `json:"resolved,omitempty"`
+	Type     SchemasExtensionHookConsumptionDataRetrievalType `json:"type"`
 }
 
-func (o *Schemas) GetAuth() *ExtensionAuthBlock {
+func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
 	if o == nil {
 		return nil
 	}
 	return o.Auth
 }
 
-func (o *Schemas) GetCall() Call {
+func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetCall() Call {
 	if o == nil {
 		return Call{}
 	}
 	return o.Call
 }
 
-func (o *Schemas) GetID() *string {
+func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Schemas) GetResolved() *Resolved {
+func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetResolved() *Resolved {
 	if o == nil {
 		return nil
 	}
 	return o.Resolved
 }
 
-func (o *Schemas) GetType() Type {
+func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetType() SchemasExtensionHookConsumptionDataRetrievalType {
 	if o == nil {
-		return Type("")
+		return SchemasExtensionHookConsumptionDataRetrievalType("")
 	}
 	return o.Type
 }
@@ -634,26 +634,26 @@ func (o *Explanation) GetEn() string {
 	return o.En
 }
 
-type SchemasType string
+type SchemasExtensionHookContractIdentificationType string
 
 const (
-	SchemasTypeContractIdentification SchemasType = "contractIdentification"
+	SchemasExtensionHookContractIdentificationTypeContractIdentification SchemasExtensionHookContractIdentificationType = "contractIdentification"
 )
 
-func (e SchemasType) ToPointer() *SchemasType {
+func (e SchemasExtensionHookContractIdentificationType) ToPointer() *SchemasExtensionHookContractIdentificationType {
 	return &e
 }
-func (e *SchemasType) UnmarshalJSON(data []byte) error {
+func (e *SchemasExtensionHookContractIdentificationType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "contractIdentification":
-		*e = SchemasType(v)
+		*e = SchemasExtensionHookContractIdentificationType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SchemasType: %v", v)
+		return fmt.Errorf("invalid value for SchemasExtensionHookContractIdentificationType: %v", v)
 	}
 }
 
@@ -673,8 +673,8 @@ type ExtensionHookContractIdentificationSchemas struct {
 	// Explanation of the hook.
 	Explanation *Explanation `json:"explanation,omitempty"`
 	// Identifier of the hook. Should not change between updates.
-	ID   *string     `json:"id,omitempty"`
-	Type SchemasType `json:"type"`
+	ID   *string                                        `json:"id,omitempty"`
+	Type SchemasExtensionHookContractIdentificationType `json:"type"`
 }
 
 func (o *ExtensionHookContractIdentificationSchemas) GetAuth() *ExtensionAuthBlock {
@@ -712,9 +712,9 @@ func (o *ExtensionHookContractIdentificationSchemas) GetID() *string {
 	return o.ID
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetType() SchemasType {
+func (o *ExtensionHookContractIdentificationSchemas) GetType() SchemasExtensionHookContractIdentificationType {
 	if o == nil {
-		return SchemasType("")
+		return SchemasExtensionHookContractIdentificationType("")
 	}
 	return o.Type
 }
@@ -826,7 +826,7 @@ const (
 	HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas  HooksType = "ExtensionHookRegistrationIdentifiersCheck_Schemas"
 	HooksTypeExtensionHookContractIdentificationSchemas        HooksType = "ExtensionHookContractIdentification_Schemas"
 	HooksTypeExtensionHookPriceDataRetrievalSchemas            HooksType = "ExtensionHookPriceDataRetrieval_Schemas"
-	HooksTypeSchemas                                           HooksType = "Schemas"
+	HooksTypeExtensionHookConsumptionDataRetrievalSchemas      HooksType = "ExtensionHookConsumptionDataRetrieval_Schemas"
 	HooksTypeExtensionHookCostDataRetrievalSchemas             HooksType = "ExtensionHookCostDataRetrieval_Schemas"
 	HooksTypeExtensionHookMeterReadingPlausibilityCheckSchemas HooksType = "ExtensionHookMeterReadingPlausibilityCheck_Schemas"
 )
@@ -835,7 +835,7 @@ type Hooks struct {
 	ExtensionHookRegistrationIdentifiersCheckSchemas  *ExtensionHookRegistrationIdentifiersCheckSchemas  `queryParam:"inline"`
 	ExtensionHookContractIdentificationSchemas        *ExtensionHookContractIdentificationSchemas        `queryParam:"inline"`
 	ExtensionHookPriceDataRetrievalSchemas            *ExtensionHookPriceDataRetrievalSchemas            `queryParam:"inline"`
-	Schemas                                           *Schemas                                           `queryParam:"inline"`
+	ExtensionHookConsumptionDataRetrievalSchemas      *ExtensionHookConsumptionDataRetrievalSchemas      `queryParam:"inline"`
 	ExtensionHookCostDataRetrievalSchemas             *ExtensionHookCostDataRetrievalSchemas             `queryParam:"inline"`
 	ExtensionHookMeterReadingPlausibilityCheckSchemas *ExtensionHookMeterReadingPlausibilityCheckSchemas `queryParam:"inline"`
 
@@ -869,12 +869,12 @@ func CreateHooksExtensionHookPriceDataRetrievalSchemas(extensionHookPriceDataRet
 	}
 }
 
-func CreateHooksSchemas(schemas Schemas) Hooks {
-	typ := HooksTypeSchemas
+func CreateHooksExtensionHookConsumptionDataRetrievalSchemas(extensionHookConsumptionDataRetrievalSchemas ExtensionHookConsumptionDataRetrievalSchemas) Hooks {
+	typ := HooksTypeExtensionHookConsumptionDataRetrievalSchemas
 
 	return Hooks{
-		Schemas: &schemas,
-		Type:    typ,
+		ExtensionHookConsumptionDataRetrievalSchemas: &extensionHookConsumptionDataRetrievalSchemas,
+		Type: typ,
 	}
 }
 
@@ -912,10 +912,10 @@ func (u *Hooks) UnmarshalJSON(data []byte) error {
 		return nil
 	}
 
-	var schemas Schemas = Schemas{}
-	if err := utils.UnmarshalJSON(data, &schemas, "", true, true); err == nil {
-		u.Schemas = &schemas
-		u.Type = HooksTypeSchemas
+	var extensionHookConsumptionDataRetrievalSchemas ExtensionHookConsumptionDataRetrievalSchemas = ExtensionHookConsumptionDataRetrievalSchemas{}
+	if err := utils.UnmarshalJSON(data, &extensionHookConsumptionDataRetrievalSchemas, "", true, true); err == nil {
+		u.ExtensionHookConsumptionDataRetrievalSchemas = &extensionHookConsumptionDataRetrievalSchemas
+		u.Type = HooksTypeExtensionHookConsumptionDataRetrievalSchemas
 		return nil
 	}
 
@@ -956,8 +956,8 @@ func (u Hooks) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ExtensionHookPriceDataRetrievalSchemas, "", true)
 	}
 
-	if u.Schemas != nil {
-		return utils.MarshalJSON(u.Schemas, "", true)
+	if u.ExtensionHookConsumptionDataRetrievalSchemas != nil {
+		return utils.MarshalJSON(u.ExtensionHookConsumptionDataRetrievalSchemas, "", true)
 	}
 
 	if u.ExtensionHookCostDataRetrievalSchemas != nil {

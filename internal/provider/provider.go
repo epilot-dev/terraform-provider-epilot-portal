@@ -118,6 +118,7 @@ func (p *EpilotPortalProvider) Resources(ctx context.Context) []func() resource.
 	return []func() resource.Resource{
 		NewPortalConfigResource,
 		NewPortalPageResource,
+		NewPortalWidgetResource,
 	}
 }
 
