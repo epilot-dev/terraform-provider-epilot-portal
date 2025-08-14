@@ -660,7 +660,7 @@ type GetOrgPortalConfigResponseBody struct {
 	AdvancedMfa *AdvancedMfa `json:"advanced_mfa,omitempty"`
 	// Allowed file extensions for upload
 	AllowedFileExtensions   *shared.AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
-	ApprovalStateAttributes any                           `json:"approval_state_attributes,omitempty"`
+	ApprovalStateAttributes map[string][]string           `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
 	AuthSettings       *AuthSettings       `json:"auth_settings,omitempty"`
 	CertificateDetails *CertificateDetails `json:"certificate_details,omitempty"`
@@ -705,6 +705,8 @@ type GetOrgPortalConfigResponseBody struct {
 	Images *Images `json:"images,omitempty"`
 	// Number of years to look back for showing inactive contracts in the portal
 	InactiveContractCutoffYears *float64 `json:"inactive_contract_cutoff_years,omitempty"`
+	// Whether this is a dummy/test portal configuration
+	IsDummy *bool `json:"is_dummy,omitempty"`
 	// Mark true if the domain is an Epilot domain
 	IsEpilotDomain *bool `json:"is_epilot_domain,omitempty"`
 	// Grace period in days for meter readings
@@ -718,6 +720,8 @@ type GetOrgPortalConfigResponseBody struct {
 	// Origin of the portal
 	Origin *shared.Origin         `json:"origin,omitempty"`
 	Pages  map[string]shared.Page `json:"pages,omitempty"`
+	// ID of the portal
+	PortalID *string `json:"portal_id,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
@@ -748,7 +752,7 @@ func (o *GetOrgPortalConfigResponseBody) GetAllowedFileExtensions() *shared.Allo
 	return o.AllowedFileExtensions
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetApprovalStateAttributes() any {
+func (o *GetOrgPortalConfigResponseBody) GetApprovalStateAttributes() map[string][]string {
 	if o == nil {
 		return nil
 	}
@@ -895,6 +899,13 @@ func (o *GetOrgPortalConfigResponseBody) GetInactiveContractCutoffYears() *float
 	return o.InactiveContractCutoffYears
 }
 
+func (o *GetOrgPortalConfigResponseBody) GetIsDummy() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsDummy
+}
+
 func (o *GetOrgPortalConfigResponseBody) GetIsEpilotDomain() *bool {
 	if o == nil {
 		return nil
@@ -942,6 +953,13 @@ func (o *GetOrgPortalConfigResponseBody) GetPages() map[string]shared.Page {
 		return nil
 	}
 	return o.Pages
+}
+
+func (o *GetOrgPortalConfigResponseBody) GetPortalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalID
 }
 
 func (o *GetOrgPortalConfigResponseBody) GetPreventSearchEngineIndexing() *bool {

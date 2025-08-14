@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type UpsertPortalConfigPasswordPolicy struct {
+type UpsertPortalConfigV3PasswordPolicy struct {
 	MinimumLength    types.Int64 `tfsdk:"minimum_length"`
 	RequireLowercase types.Bool  `tfsdk:"require_lowercase"`
 	RequireNumbers   types.Bool  `tfsdk:"require_numbers"`

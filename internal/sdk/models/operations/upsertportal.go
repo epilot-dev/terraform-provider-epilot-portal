@@ -33,7 +33,7 @@ type UpsertPortalResponse struct {
 	ContentType string
 	// The request could not be validated
 	ErrorResp *shared.ErrorResp
-	// Portal upserted successfully.
+	// Portal updated successfully.
 	PortalConfig *shared.PortalConfig
 	// HTTP response status code for this operation
 	StatusCode int

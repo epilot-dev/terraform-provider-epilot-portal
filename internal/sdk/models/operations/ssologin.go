@@ -70,7 +70,16 @@ func (o *SsoLoginRequest) GetOrigin() shared.Origin {
 
 // SsoLoginResponseBody - Cognito login parameters to use with the CUSTOM_AUTH_FLOW
 type SsoLoginResponseBody struct {
+	// The email address of the user to log in as
+	Email *string `json:"email,omitempty"`
 	Token *string `json:"token,omitempty"`
+}
+
+func (o *SsoLoginResponseBody) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
 }
 
 func (o *SsoLoginResponseBody) GetToken() *string {

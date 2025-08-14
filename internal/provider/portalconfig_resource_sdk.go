@@ -11,14 +11,14 @@ import (
 	"time"
 )
 
-func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertPortalConfig {
+func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.UpsertPortalConfigV3 {
 	accessToken := new(string)
 	if !r.AccessToken.IsUnknown() && !r.AccessToken.IsNull() {
 		*accessToken = r.AccessToken.ValueString()
 	} else {
 		accessToken = nil
 	}
-	var advancedMfa *shared.UpsertPortalConfigAdvancedMfa
+	var advancedMfa *shared.UpsertPortalConfigV3AdvancedMfa
 	if r.AdvancedMfa != nil {
 		enabled := new(bool)
 		if !r.AdvancedMfa.Enabled.IsUnknown() && !r.AdvancedMfa.Enabled.IsNull() {
@@ -26,7 +26,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			enabled = nil
 		}
-		advancedMfa = &shared.UpsertPortalConfigAdvancedMfa{
+		advancedMfa = &shared.UpsertPortalConfigV3AdvancedMfa{
 			Enabled: enabled,
 		}
 	}
@@ -89,15 +89,15 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
 		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
 	}
-	var authSettings *shared.UpsertPortalConfigAuthSettings
+	var authSettings *shared.UpsertPortalConfigV3AuthSettings
 	if r.AuthSettings != nil {
-		entryPoint := new(shared.UpsertPortalConfigEntryPoint)
+		entryPoint := new(shared.UpsertPortalConfigV3EntryPoint)
 		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
-			*entryPoint = shared.UpsertPortalConfigEntryPoint(r.AuthSettings.EntryPoint.ValueString())
+			*entryPoint = shared.UpsertPortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
 		} else {
 			entryPoint = nil
 		}
-		var passwordlessLogin *shared.UpsertPortalConfigPasswordlessLogin
+		var passwordlessLogin *shared.UpsertPortalConfigV3PasswordlessLogin
 		if r.AuthSettings.PasswordlessLogin != nil {
 			enabled1 := new(bool)
 			if !r.AuthSettings.PasswordlessLogin.Enabled.IsUnknown() && !r.AuthSettings.PasswordlessLogin.Enabled.IsNull() {
@@ -105,7 +105,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			} else {
 				enabled1 = nil
 			}
-			passwordlessLogin = &shared.UpsertPortalConfigPasswordlessLogin{
+			passwordlessLogin = &shared.UpsertPortalConfigV3PasswordlessLogin{
 				Enabled: enabled1,
 			}
 		}
@@ -113,13 +113,13 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		for _, preferredSsoProvidersItem := range r.AuthSettings.PreferredSsoProviders {
 			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
 		}
-		authSettings = &shared.UpsertPortalConfigAuthSettings{
+		authSettings = &shared.UpsertPortalConfigV3AuthSettings{
 			EntryPoint:            entryPoint,
 			PasswordlessLogin:     passwordlessLogin,
 			PreferredSsoProviders: preferredSsoProviders,
 		}
 	}
-	var cognitoDetails *shared.UpsertPortalConfigCognitoDetails
+	var cognitoDetails *shared.UpsertPortalConfigV3CognitoDetails
 	if r.CognitoDetails != nil {
 		cognitoUserPoolArn := new(string)
 		if !r.CognitoDetails.CognitoUserPoolArn.IsUnknown() && !r.CognitoDetails.CognitoUserPoolArn.IsNull() {
@@ -139,7 +139,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			cognitoUserPoolID = nil
 		}
-		var passwordPolicy *shared.UpsertPortalConfigPasswordPolicy
+		var passwordPolicy *shared.UpsertPortalConfigV3PasswordPolicy
 		if r.CognitoDetails.PasswordPolicy != nil {
 			minimumLength := new(int64)
 			if !r.CognitoDetails.PasswordPolicy.MinimumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MinimumLength.IsNull() {
@@ -171,7 +171,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			} else {
 				requireUppercase = nil
 			}
-			passwordPolicy = &shared.UpsertPortalConfigPasswordPolicy{
+			passwordPolicy = &shared.UpsertPortalConfigV3PasswordPolicy{
 				MinimumLength:    minimumLength,
 				RequireLowercase: requireLowercase,
 				RequireNumbers:   requireNumbers,
@@ -179,7 +179,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 				RequireUppercase: requireUppercase,
 			}
 		}
-		cognitoDetails = &shared.UpsertPortalConfigCognitoDetails{
+		cognitoDetails = &shared.UpsertPortalConfigV3CognitoDetails{
 			CognitoUserPoolArn:      cognitoUserPoolArn,
 			CognitoUserPoolClientID: cognitoUserPoolClientID,
 			CognitoUserPoolID:       cognitoUserPoolID,
@@ -215,7 +215,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			Schema: schema,
 		})
 	}
-	var contractSelectorConfig *shared.UpsertPortalConfigContractSelectorConfig
+	var contractSelectorConfig *shared.UpsertPortalConfigV3ContractSelectorConfig
 	if r.ContractSelectorConfig != nil {
 		showInactive := new(bool)
 		if !r.ContractSelectorConfig.ShowInactive.IsUnknown() && !r.ContractSelectorConfig.ShowInactive.IsNull() {
@@ -229,12 +229,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			titlePath = nil
 		}
-		contractSelectorConfig = &shared.UpsertPortalConfigContractSelectorConfig{
+		contractSelectorConfig = &shared.UpsertPortalConfigV3ContractSelectorConfig{
 			ShowInactive: showInactive,
 			TitlePath:    titlePath,
 		}
 	}
-	var defaultUserToNotify *shared.DefaultUserToNotify
+	var defaultUserToNotify *shared.UpsertPortalConfigV3DefaultUserToNotify
 	if r.DefaultUserToNotify != nil {
 		var onPendingUser []shared.AdminUser = []shared.AdminUser{}
 		for _, onPendingUserItem := range r.DefaultUserToNotify.OnPendingUser {
@@ -322,7 +322,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 				UserID:               userID,
 			})
 		}
-		defaultUserToNotify = &shared.DefaultUserToNotify{
+		defaultUserToNotify = &shared.UpsertPortalConfigV3DefaultUserToNotify{
 			OnPendingUser: onPendingUser,
 		}
 	}
@@ -332,9 +332,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 	} else {
 		designID = nil
 	}
-	var domain string
-	domain = r.Domain.ValueString()
-
+	domain := new(string)
+	if !r.Domain.IsUnknown() && !r.Domain.IsNull() {
+		*domain = r.Domain.ValueString()
+	} else {
+		domain = nil
+	}
 	var emailTemplates *shared.EmailTemplates
 	if r.EmailTemplates != nil {
 		advancedAuth := new(string)
@@ -444,9 +447,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 	} else {
 		enabled2 = nil
 	}
-	var entityActions []shared.EntityActions = []shared.EntityActions{}
+	var entityActions []shared.UpsertPortalConfigV3EntityActions = []shared.UpsertPortalConfigV3EntityActions{}
 	for _, entityActionsItem := range r.EntityActions {
-		var actionLabel *shared.UpsertPortalConfigActionLabel
+		var actionLabel *shared.UpsertPortalConfigV3ActionLabel
 		if entityActionsItem.ActionLabel != nil {
 			de := new(string)
 			if !entityActionsItem.ActionLabel.De.IsUnknown() && !entityActionsItem.ActionLabel.De.IsNull() {
@@ -460,7 +463,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			} else {
 				en = nil
 			}
-			actionLabel = &shared.UpsertPortalConfigActionLabel{
+			actionLabel = &shared.UpsertPortalConfigV3ActionLabel{
 				De: de,
 				En: en,
 			}
@@ -477,13 +480,13 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			slug = nil
 		}
-		entityActions = append(entityActions, shared.EntityActions{
+		entityActions = append(entityActions, shared.UpsertPortalConfigV3EntityActions{
 			ActionLabel: actionLabel,
 			JourneyID:   journeyID,
 			Slug:        slug,
 		})
 	}
-	var entityEditRules []shared.UpsertPortalConfigEntityEditRules = []shared.UpsertPortalConfigEntityEditRules{}
+	var entityEditRules []shared.UpsertPortalConfigV3EntityEditRules = []shared.UpsertPortalConfigV3EntityEditRules{}
 	for _, entityEditRulesItem := range r.EntityEditRules {
 		allowedDecrement := new(string)
 		if !entityEditRulesItem.AllowedDecrement.IsUnknown() && !entityEditRulesItem.AllowedDecrement.IsNull() {
@@ -509,9 +512,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			cadencePeriod = nil
 		}
-		cadencePeriodType := new(shared.UpsertPortalConfigCadencePeriodType)
+		cadencePeriodType := new(shared.UpsertPortalConfigV3CadencePeriodType)
 		if !entityEditRulesItem.CadencePeriodType.IsUnknown() && !entityEditRulesItem.CadencePeriodType.IsNull() {
-			*cadencePeriodType = shared.UpsertPortalConfigCadencePeriodType(entityEditRulesItem.CadencePeriodType.ValueString())
+			*cadencePeriodType = shared.UpsertPortalConfigV3CadencePeriodType(entityEditRulesItem.CadencePeriodType.ValueString())
 		} else {
 			cadencePeriodType = nil
 		}
@@ -533,9 +536,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			numberOfDaysBeforeRestriction = nil
 		}
-		ruleType := new(shared.UpsertPortalConfigRuleType)
+		ruleType := new(shared.UpsertPortalConfigV3RuleType)
 		if !entityEditRulesItem.RuleType.IsUnknown() && !entityEditRulesItem.RuleType.IsNull() {
-			*ruleType = shared.UpsertPortalConfigRuleType(entityEditRulesItem.RuleType.ValueString())
+			*ruleType = shared.UpsertPortalConfigV3RuleType(entityEditRulesItem.RuleType.ValueString())
 		} else {
 			ruleType = nil
 		}
@@ -545,7 +548,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			slug1 = nil
 		}
-		entityEditRules = append(entityEditRules, shared.UpsertPortalConfigEntityEditRules{
+		entityEditRules = append(entityEditRules, shared.UpsertPortalConfigV3EntityEditRules{
 			AllowedDecrement:              allowedDecrement,
 			AllowedIncrement:              allowedIncrement,
 			Attribute:                     attribute,
@@ -558,9 +561,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			Slug:                          slug1,
 		})
 	}
-	var entityIdentifiers *shared.UpsertPortalConfigEntityIdentifiers
+	var entityIdentifiers *shared.UpsertPortalConfigV3EntityIdentifiers
 	if r.EntityIdentifiers != nil {
-		var typeVar1 *shared.UpsertPortalConfigType
+		var typeVar1 *shared.UpsertPortalConfigV3Type
 		if r.EntityIdentifiers.Type != nil {
 			var attributes []string = []string{}
 			for _, attributesItem := range r.EntityIdentifiers.Type.Attributes {
@@ -572,12 +575,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			} else {
 				isEnabled = nil
 			}
-			typeVar1 = &shared.UpsertPortalConfigType{
+			typeVar1 = &shared.UpsertPortalConfigV3Type{
 				Attributes: attributes,
 				IsEnabled:  isEnabled,
 			}
 		}
-		entityIdentifiers = &shared.UpsertPortalConfigEntityIdentifiers{
+		entityIdentifiers = &shared.UpsertPortalConfigV3EntityIdentifiers{
 			Type: typeVar1,
 		}
 	}
@@ -625,7 +628,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			Status:  status,
 		})
 	}
-	var featureSettings *shared.UpsertPortalConfigFeatureSettings
+	var featureSettings *shared.UpsertPortalConfigV3FeatureSettings
 	if r.FeatureSettings != nil {
 		billing := new(bool)
 		if !r.FeatureSettings.Billing.IsUnknown() && !r.FeatureSettings.Billing.IsNull() {
@@ -651,14 +654,14 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			startPage = nil
 		}
-		featureSettings = &shared.UpsertPortalConfigFeatureSettings{
+		featureSettings = &shared.UpsertPortalConfigV3FeatureSettings{
 			Billing:       billing,
 			ChangeDueDate: changeDueDate,
 			NewDesign:     newDesign,
 			StartPage:     startPage,
 		}
 	}
-	var images *shared.UpsertPortalConfigImages
+	var images *shared.UpsertPortalConfigV3Images
 	if r.Images != nil {
 		orderLeftTeaser := new(string)
 		if !r.Images.OrderLeftTeaser.IsUnknown() && !r.Images.OrderLeftTeaser.IsNull() {
@@ -678,7 +681,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			welcomeBanner = nil
 		}
-		images = &shared.UpsertPortalConfigImages{
+		images = &shared.UpsertPortalConfigV3Images{
 			OrderLeftTeaser:  orderLeftTeaser,
 			OrderRightTeaser: orderRightTeaser,
 			WelcomeBanner:    welcomeBanner,
@@ -689,6 +692,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		*inactiveContractCutoffYears, _ = r.InactiveContractCutoffYears.ValueBigFloat().Float64()
 	} else {
 		inactiveContractCutoffYears = nil
+	}
+	isDummy := new(bool)
+	if !r.IsDummy.IsUnknown() && !r.IsDummy.IsNull() {
+		*isDummy = r.IsDummy.ValueBool()
+	} else {
+		isDummy = nil
 	}
 	isEpilotDomain := new(bool)
 	if !r.IsEpilotDomain.IsUnknown() && !r.IsEpilotDomain.IsNull() {
@@ -888,13 +897,13 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 			Schema: schema2,
 		})
 	}
-	selfRegistrationSetting := new(shared.UpsertPortalConfigSelfRegistrationSetting)
+	selfRegistrationSetting := new(shared.UpsertPortalConfigV3SelfRegistrationSetting)
 	if !r.SelfRegistrationSetting.IsUnknown() && !r.SelfRegistrationSetting.IsNull() {
-		*selfRegistrationSetting = shared.UpsertPortalConfigSelfRegistrationSetting(r.SelfRegistrationSetting.ValueString())
+		*selfRegistrationSetting = shared.UpsertPortalConfigV3SelfRegistrationSetting(r.SelfRegistrationSetting.ValueString())
 	} else {
 		selfRegistrationSetting = nil
 	}
-	var triggeredJourneys []shared.UpsertPortalConfigTriggeredJourneys = []shared.UpsertPortalConfigTriggeredJourneys{}
+	var triggeredJourneys []shared.UpsertPortalConfigV3TriggeredJourneys = []shared.UpsertPortalConfigV3TriggeredJourneys{}
 	for _, triggeredJourneysItem := range r.TriggeredJourneys {
 		journeyId1 := new(string)
 		if !triggeredJourneysItem.JourneyID.IsUnknown() && !triggeredJourneysItem.JourneyID.IsNull() {
@@ -902,18 +911,18 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		} else {
 			journeyId1 = nil
 		}
-		triggerName := new(shared.UpsertPortalConfigTriggerName)
+		triggerName := new(shared.UpsertPortalConfigV3TriggerName)
 		if !triggeredJourneysItem.TriggerName.IsUnknown() && !triggeredJourneysItem.TriggerName.IsNull() {
-			*triggerName = shared.UpsertPortalConfigTriggerName(triggeredJourneysItem.TriggerName.ValueString())
+			*triggerName = shared.UpsertPortalConfigV3TriggerName(triggeredJourneysItem.TriggerName.ValueString())
 		} else {
 			triggerName = nil
 		}
-		triggeredJourneys = append(triggeredJourneys, shared.UpsertPortalConfigTriggeredJourneys{
+		triggeredJourneys = append(triggeredJourneys, shared.UpsertPortalConfigV3TriggeredJourneys{
 			JourneyID:   journeyId1,
 			TriggerName: triggerName,
 		})
 	}
-	out := shared.UpsertPortalConfig{
+	out := shared.UpsertPortalConfigV3{
 		AccessToken:                 accessToken,
 		AdvancedMfa:                 advancedMfa,
 		AllowedFileExtensions:       allowedFileExtensions,
@@ -937,6 +946,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 		FeatureSettings:             featureSettings,
 		Images:                      images,
 		InactiveContractCutoffYears: inactiveContractCutoffYears,
+		IsDummy:                     isDummy,
 		IsEpilotDomain:              isEpilotDomain,
 		MeterReadingGracePeriod:     meterReadingGracePeriod,
 		Name:                        name1,
@@ -949,13 +959,13 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfig() *shared.UpsertP
 	return &out
 }
 
-func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.PortalConfig) {
+func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(resp *shared.PortalConfigV3) {
 	if resp != nil {
 		r.AccessToken = types.StringPointerValue(resp.AccessToken)
 		if resp.AdvancedMfa == nil {
 			r.AdvancedMfa = nil
 		} else {
-			r.AdvancedMfa = &tfTypes.UpsertPortalConfigAdvancedMfa{}
+			r.AdvancedMfa = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 			r.AdvancedMfa.Enabled = types.BoolPointerValue(resp.AdvancedMfa.Enabled)
 		}
 		if resp.AllowedFileExtensions == nil {
@@ -1012,7 +1022,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.AuthSettings == nil {
 			r.AuthSettings = nil
 		} else {
-			r.AuthSettings = &tfTypes.UpsertPortalConfigAuthSettings{}
+			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
 			if resp.AuthSettings.EntryPoint != nil {
 				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
 			} else {
@@ -1021,7 +1031,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 			if resp.AuthSettings.PasswordlessLogin == nil {
 				r.AuthSettings.PasswordlessLogin = nil
 			} else {
-				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigAdvancedMfa{}
+				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
 			}
 			r.AuthSettings.PreferredSsoProviders = []types.String{}
@@ -1032,14 +1042,14 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.CognitoDetails == nil {
 			r.CognitoDetails = nil
 		} else {
-			r.CognitoDetails = &tfTypes.UpsertPortalConfigCognitoDetails{}
+			r.CognitoDetails = &tfTypes.UpsertPortalConfigV3CognitoDetails{}
 			r.CognitoDetails.CognitoUserPoolArn = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolArn)
 			r.CognitoDetails.CognitoUserPoolClientID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolClientID)
 			r.CognitoDetails.CognitoUserPoolID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolID)
 			if resp.CognitoDetails.PasswordPolicy == nil {
 				r.CognitoDetails.PasswordPolicy = nil
 			} else {
-				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigPasswordPolicy{}
+				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigV3PasswordPolicy{}
 				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
 				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
 				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
@@ -1074,12 +1084,12 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.ContractSelectorConfig == nil {
 			r.ContractSelectorConfig = nil
 		} else {
-			r.ContractSelectorConfig = &tfTypes.UpsertPortalConfigContractSelectorConfig{}
+			r.ContractSelectorConfig = &tfTypes.UpsertPortalConfigV3ContractSelectorConfig{}
 			r.ContractSelectorConfig.ShowInactive = types.BoolPointerValue(resp.ContractSelectorConfig.ShowInactive)
 			r.ContractSelectorConfig.TitlePath = types.StringPointerValue(resp.ContractSelectorConfig.TitlePath)
 		}
 		r.DesignID = types.StringPointerValue(resp.DesignID)
-		r.Domain = types.StringValue(resp.Domain)
+		r.Domain = types.StringPointerValue(resp.Domain)
 		if resp.EmailTemplates == nil {
 			r.EmailTemplates = nil
 		} else {
@@ -1100,12 +1110,12 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 			r.EmailTemplates.VerifyCodeToSetPassword = types.StringPointerValue(resp.EmailTemplates.VerifyCodeToSetPassword)
 		}
 		r.Enabled = types.BoolPointerValue(resp.Enabled)
-		r.EntityEditRules = []tfTypes.EntityEditRules{}
+		r.EntityEditRules = []tfTypes.PortalConfigV3EntityEditRules{}
 		if len(r.EntityEditRules) > len(resp.EntityEditRules) {
 			r.EntityEditRules = r.EntityEditRules[:len(resp.EntityEditRules)]
 		}
 		for entityEditRulesCount, entityEditRulesItem := range resp.EntityEditRules {
-			var entityEditRules1 tfTypes.EntityEditRules
+			var entityEditRules1 tfTypes.PortalConfigV3EntityEditRules
 			entityEditRules1.AllowedDecrement = types.StringPointerValue(entityEditRulesItem.AllowedDecrement)
 			entityEditRules1.AllowedIncrement = types.StringPointerValue(entityEditRulesItem.AllowedIncrement)
 			entityEditRules1.Attribute = types.StringPointerValue(entityEditRulesItem.Attribute)
@@ -1150,11 +1160,11 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.EntityIdentifiers == nil {
 			r.EntityIdentifiers = nil
 		} else {
-			r.EntityIdentifiers = &tfTypes.UpsertPortalConfigEntityIdentifiers{}
+			r.EntityIdentifiers = &tfTypes.UpsertPortalConfigV3EntityIdentifiers{}
 			if resp.EntityIdentifiers.Type == nil {
 				r.EntityIdentifiers.Type = nil
 			} else {
-				r.EntityIdentifiers.Type = &tfTypes.UpsertPortalConfigType{}
+				r.EntityIdentifiers.Type = &tfTypes.UpsertPortalConfigV3Type{}
 				r.EntityIdentifiers.Type.Attributes = []types.String{}
 				for _, v := range resp.EntityIdentifiers.Type.Attributes {
 					r.EntityIdentifiers.Type.Attributes = append(r.EntityIdentifiers.Type.Attributes, types.StringValue(v))
@@ -1171,7 +1181,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.FeatureSettings == nil {
 			r.FeatureSettings = nil
 		} else {
-			r.FeatureSettings = &tfTypes.UpsertPortalConfigFeatureSettings{}
+			r.FeatureSettings = &tfTypes.UpsertPortalConfigV3FeatureSettings{}
 			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
 			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
 			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
@@ -1198,7 +1208,6 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 				r.Grants[grantsCount].Resource = grants1.Resource
 			}
 		}
-		r.ID = types.StringPointerValue(resp.ID)
 		r.IdentityProviders = []tfTypes.ProviderPublicConfig{}
 		if len(r.IdentityProviders) > len(resp.IdentityProviders) {
 			r.IdentityProviders = r.IdentityProviders[:len(resp.IdentityProviders)]
@@ -1219,12 +1228,15 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 				identityProviders1.OidcConfig = &tfTypes.OIDCProviderConfig{}
 				identityProviders1.OidcConfig.ClientID = types.StringValue(identityProvidersItem.OidcConfig.ClientID)
 				identityProviders1.OidcConfig.ClientSecret = types.StringPointerValue(identityProvidersItem.OidcConfig.ClientSecret)
+				identityProviders1.OidcConfig.HasClientSecret = types.BoolPointerValue(identityProvidersItem.OidcConfig.HasClientSecret)
 				if identityProvidersItem.OidcConfig.Metadata == nil {
 					identityProviders1.OidcConfig.Metadata = nil
 				} else {
 					identityProviders1.OidcConfig.Metadata = &tfTypes.OIDCProviderMetadata{}
 					identityProviders1.OidcConfig.Metadata.AuthorizationEndpoint = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.AuthorizationEndpoint)
 					identityProviders1.OidcConfig.Metadata.MobileRedirectURI = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.MobileRedirectURI)
+					identityProviders1.OidcConfig.Metadata.TestAuthPassword = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.TestAuthPassword)
+					identityProviders1.OidcConfig.Metadata.TestAuthUsername = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.TestAuthUsername)
 					identityProviders1.OidcConfig.Metadata.TokenEndpoint = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.TokenEndpoint)
 					identityProviders1.OidcConfig.Metadata.UserinfoEndpoint = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.UserinfoEndpoint)
 				}
@@ -1236,6 +1248,11 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 				}
 				identityProviders1.OidcConfig.RedirectURI = types.StringPointerValue(identityProvidersItem.OidcConfig.RedirectURI)
 				identityProviders1.OidcConfig.Scope = types.StringValue(identityProvidersItem.OidcConfig.Scope)
+				if identityProvidersItem.OidcConfig.Type != nil {
+					identityProviders1.OidcConfig.Type = types.StringValue(string(*identityProvidersItem.OidcConfig.Type))
+				} else {
+					identityProviders1.OidcConfig.Type = types.StringNull()
+				}
 			}
 			identityProviders1.Slug = types.StringValue(identityProvidersItem.Slug)
 			if identityProvidersCount+1 > len(r.IdentityProviders) {
@@ -1250,7 +1267,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.Images == nil {
 			r.Images = nil
 		} else {
-			r.Images = &tfTypes.UpsertPortalConfigImages{}
+			r.Images = &tfTypes.UpsertPortalConfigV3Images{}
 			r.Images.OrderLeftTeaser = types.StringPointerValue(resp.Images.OrderLeftTeaser)
 			r.Images.OrderRightTeaser = types.StringPointerValue(resp.Images.OrderRightTeaser)
 			r.Images.WelcomeBanner = types.StringPointerValue(resp.Images.WelcomeBanner)
@@ -1260,6 +1277,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		} else {
 			r.InactiveContractCutoffYears = types.NumberNull()
 		}
+		r.IsDummy = types.BoolPointerValue(resp.IsDummy)
 		r.IsEpilotDomain = types.BoolPointerValue(resp.IsEpilotDomain)
 		if resp.MeterReadingGracePeriod != nil {
 			r.MeterReadingGracePeriod = types.NumberValue(big.NewFloat(float64(*resp.MeterReadingGracePeriod)))
@@ -1270,17 +1288,17 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		if resp.OrgSettings == nil {
 			r.OrgSettings = nil
 		} else {
-			r.OrgSettings = &tfTypes.OrgSettings{}
+			r.OrgSettings = &tfTypes.PortalConfigV3OrgSettings{}
 			if resp.OrgSettings.Canary == nil {
 				r.OrgSettings.Canary = nil
 			} else {
-				r.OrgSettings.Canary = &tfTypes.UpsertPortalConfigAdvancedMfa{}
+				r.OrgSettings.Canary = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.OrgSettings.Canary.Enabled = types.BoolPointerValue(resp.OrgSettings.Canary.Enabled)
 			}
 			if resp.OrgSettings.Notracking == nil {
 				r.OrgSettings.Notracking = nil
 			} else {
-				r.OrgSettings.Notracking = &tfTypes.UpsertPortalConfigAdvancedMfa{}
+				r.OrgSettings.Notracking = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.OrgSettings.Notracking.Enabled = types.BoolPointerValue(resp.OrgSettings.Notracking.Enabled)
 			}
 		}
@@ -1385,6 +1403,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 				r.Pages[pageKey] = pageResult
 			}
 		}
+		r.PortalID = types.StringPointerValue(resp.PortalID)
 		r.PreventSearchEngineIndexing = types.BoolPointerValue(resp.PreventSearchEngineIndexing)
 		r.RegistrationIdentifiers = []tfTypes.ContractIdentifier{}
 		if len(r.RegistrationIdentifiers) > len(resp.RegistrationIdentifiers) {
@@ -1410,12 +1429,12 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfig(resp *shared.P
 		} else {
 			r.SelfRegistrationSetting = types.StringNull()
 		}
-		r.TriggeredJourneys = []tfTypes.TriggeredJourneys{}
+		r.TriggeredJourneys = []tfTypes.PortalConfigV3TriggeredJourneys{}
 		if len(r.TriggeredJourneys) > len(resp.TriggeredJourneys) {
 			r.TriggeredJourneys = r.TriggeredJourneys[:len(resp.TriggeredJourneys)]
 		}
 		for triggeredJourneysCount, triggeredJourneysItem := range resp.TriggeredJourneys {
-			var triggeredJourneys1 tfTypes.TriggeredJourneys
+			var triggeredJourneys1 tfTypes.PortalConfigV3TriggeredJourneys
 			triggeredJourneys1.JourneyID = types.StringPointerValue(triggeredJourneysItem.JourneyID)
 			if triggeredJourneysItem.TriggerName != nil {
 				triggeredJourneys1.TriggerName = types.StringValue(string(*triggeredJourneysItem.TriggerName))

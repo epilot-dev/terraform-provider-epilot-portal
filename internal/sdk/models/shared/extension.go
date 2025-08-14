@@ -42,7 +42,7 @@ func (o *Description) GetEn() string {
 }
 
 type SchemasExtensionHookMeterReadingPlausibilityCheckCall struct {
-	// JSON body to use for authentication. Supports variable interpolation.
+	// JSON body to use for the call. Supports variable interpolation.
 	Body map[string]string `json:"body"`
 	// Headers to use. Supports variable interpolation.
 	Headers map[string]string `json:"headers"`
@@ -126,6 +126,7 @@ func (e *SchemasExtensionHookMeterReadingPlausibilityCheckType) UnmarshalJSON(da
 }
 
 // ExtensionHookMeterReadingPlausibilityCheckSchemas - Hook that checks the plausibility of meter readings before they are saved. This hook makes a POST call whenever a user is trying to save a meter reading. The expected response to the call is:
+//
 //   - 200:
 //     If meter reading is plausible, the response should contain:
 //   - valid: true
@@ -177,6 +178,8 @@ func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetType() SchemasExt
 }
 
 type SchemasExtensionHookCostDataRetrievalCall struct {
+	// Request body to send. Supports variable interpolation. Content format is determined by Content-Type header.
+	Body map[string]string `json:"body,omitempty"`
 	// Headers to use. Supports variable interpolation.
 	Headers map[string]string `json:"headers,omitempty"`
 	// HTTP method to use for the call
@@ -196,6 +199,13 @@ func (s *SchemasExtensionHookCostDataRetrievalCall) UnmarshalJSON(data []byte) e
 		return err
 	}
 	return nil
+}
+
+func (o *SchemasExtensionHookCostDataRetrievalCall) GetBody() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Body
 }
 
 func (o *SchemasExtensionHookCostDataRetrievalCall) GetHeaders() map[string]string {
@@ -309,6 +319,8 @@ func (o *ExtensionHookCostDataRetrievalSchemas) GetType() SchemasExtensionHookCo
 }
 
 type Call struct {
+	// Request body to send. Supports variable interpolation. Content format is determined by Content-Type header.
+	Body map[string]string `json:"body,omitempty"`
 	// Headers to use. Supports variable interpolation.
 	Headers map[string]string `json:"headers,omitempty"`
 	// HTTP method to use for the call
@@ -328,6 +340,13 @@ func (c *Call) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *Call) GetBody() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Body
 }
 
 func (o *Call) GetHeaders() map[string]string {
@@ -441,6 +460,8 @@ func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetType() SchemasExtensio
 }
 
 type SchemasExtensionHookPriceDataRetrievalCall struct {
+	// Request body to send. Supports variable interpolation. Content format is determined by Content-Type header.
+	Body map[string]string `json:"body,omitempty"`
 	// Headers to use. Supports variable interpolation.
 	Headers map[string]string `json:"headers,omitempty"`
 	// HTTP method to use for the call
@@ -460,6 +481,13 @@ func (s *SchemasExtensionHookPriceDataRetrievalCall) UnmarshalJSON(data []byte) 
 		return err
 	}
 	return nil
+}
+
+func (o *SchemasExtensionHookPriceDataRetrievalCall) GetBody() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Body
 }
 
 func (o *SchemasExtensionHookPriceDataRetrievalCall) GetHeaders() map[string]string {
@@ -782,6 +810,7 @@ func (e *SchemasExtensionHookRegistrationIdentifiersCheckType) UnmarshalJSON(dat
 }
 
 // ExtensionHookRegistrationIdentifiersCheckSchemas - Hook that replaces the built-in registration identifiers check. This hook makes a POST call whenever a user is trying to register to find the corresponding contact. The expected response to the call is:
+//
 //   - 200 with contact id if exactly one contact is found
 //   - 404 if no contact is found or more than contact is found
 type ExtensionHookRegistrationIdentifiersCheckSchemas struct {

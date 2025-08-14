@@ -8,9 +8,11 @@ type SSOCallbackResponse struct {
 	// The expires in
 	ExpiresIn float64 `json:"expires_in"`
 	// The id token
-	IDToken string `json:"id_token"`
+	IDToken *string `json:"id_token,omitempty"`
 	// The refresh token
 	RefreshToken string `json:"refresh_token"`
+	// The scope of the access token
+	Scope *string `json:"scope,omitempty"`
 	// The token type
 	TokenType string `json:"token_type"`
 }
@@ -29,9 +31,9 @@ func (o *SSOCallbackResponse) GetExpiresIn() float64 {
 	return o.ExpiresIn
 }
 
-func (o *SSOCallbackResponse) GetIDToken() string {
+func (o *SSOCallbackResponse) GetIDToken() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.IDToken
 }
@@ -41,6 +43,13 @@ func (o *SSOCallbackResponse) GetRefreshToken() string {
 		return ""
 	}
 	return o.RefreshToken
+}
+
+func (o *SSOCallbackResponse) GetScope() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Scope
 }
 
 func (o *SSOCallbackResponse) GetTokenType() string {

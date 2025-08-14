@@ -8,10 +8,19 @@ import (
 )
 
 type GetRecipientsToNotifyOnAutomationRequestBody struct {
+	// Entity ID
+	ContextID string `json:"context_id"`
 	// Emails array that are part of the automation
 	Emails []string `json:"emails"`
 	// Entity ID
 	TemplateID string `json:"template_id"`
+}
+
+func (o *GetRecipientsToNotifyOnAutomationRequestBody) GetContextID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContextID
 }
 
 func (o *GetRecipientsToNotifyOnAutomationRequestBody) GetEmails() []string {

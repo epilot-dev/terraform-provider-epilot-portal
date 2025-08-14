@@ -7,6 +7,10 @@ type OIDCProviderMetadata struct {
 	AuthorizationEndpoint *string `json:"authorization_endpoint,omitempty"`
 	// URL of the mobile redirect URI
 	MobileRedirectURI *string `json:"mobile_redirect_uri,omitempty"`
+	// The password for the test auth, only used for testing on auth code flow
+	TestAuthPassword *string `json:"test_auth_password,omitempty"`
+	// The username for the test auth, only used for testing on auth code flow
+	TestAuthUsername *string `json:"test_auth_username,omitempty"`
 	// URL of the token endpoint
 	TokenEndpoint *string `json:"token_endpoint,omitempty"`
 	// URL of the userinfo endpoint
@@ -25,6 +29,20 @@ func (o *OIDCProviderMetadata) GetMobileRedirectURI() *string {
 		return nil
 	}
 	return o.MobileRedirectURI
+}
+
+func (o *OIDCProviderMetadata) GetTestAuthPassword() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestAuthPassword
+}
+
+func (o *OIDCProviderMetadata) GetTestAuthUsername() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TestAuthUsername
 }
 
 func (o *OIDCProviderMetadata) GetTokenEndpoint() *string {

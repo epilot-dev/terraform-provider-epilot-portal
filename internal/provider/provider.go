@@ -41,7 +41,7 @@ func (p *EpilotPortalProvider) Schema(ctx context.Context, req provider.SchemaRe
 		Description: `Portal API: Backend for epilot portals - End Customer Portal & Installer Portal`,
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
-				MarkdownDescription: "Server URL (defaults to https://customer-portal-api.sls.epilot.io)",
+				MarkdownDescription: "Server URL (defaults to https://customer-portal-api.sls.epilot.io/)",
 				Optional:            true,
 				Required:            false,
 			},
@@ -73,7 +73,7 @@ func (p *EpilotPortalProvider) Configure(ctx context.Context, req provider.Confi
 	ServerURL := data.ServerURL.ValueString()
 
 	if ServerURL == "" {
-		ServerURL = "https://customer-portal-api.sls.epilot.io"
+		ServerURL = "https://customer-portal-api.sls.epilot.io/"
 	}
 
 	eitherAuth := new(string)

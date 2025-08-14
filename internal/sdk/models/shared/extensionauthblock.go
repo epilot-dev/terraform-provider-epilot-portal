@@ -28,7 +28,7 @@ func (o *Cache) GetTTL() string {
 }
 
 type ExtensionAuthBlock struct {
-	// JSON body to use for authentication. Supports variable interpolation.
+	// JSON body to use for authentication. Supports variable interpolation. Content format is determined by Content-Type header.
 	Body  map[string]string `json:"body,omitempty"`
 	Cache *Cache            `json:"cache,omitempty"`
 	// Headers to use for authentication. Supports variable interpolation.

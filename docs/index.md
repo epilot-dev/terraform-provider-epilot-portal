@@ -17,7 +17,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.21.4"
+      version = "0.23.1"
     }
   }
 }
@@ -35,4 +35,4 @@ provider "epilot-portal" {
 - `either_auth` (String, Sensitive)
 - `epilot_auth` (String, Sensitive)
 - `portal_auth` (String, Sensitive)
-- `server_url` (String) Server URL (defaults to https://customer-portal-api.sls.epilot.io)
+- `server_url` (String) Server URL (defaults to https://customer-portal-api.sls.epilot.io/)

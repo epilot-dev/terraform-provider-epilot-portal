@@ -5,14 +5,14 @@ package shared
 type SSOCallbackRequest struct {
 	// The client id
 	ClientID string `json:"client_id"`
-	// The client secret
-	ClientSecret *string `json:"client_secret,omitempty"`
 	// The code received from the external SSO provider
 	Code string `json:"code"`
 	// The code verifier
 	CodeVerifier string `json:"code_verifier"`
 	// The grant type
 	GrantType string `json:"grant_type"`
+	// URL-friendly slug to use as organization-unique identifier for Provider
+	ProviderSlug *string `json:"provider_slug,omitempty"`
 	// The redirect uri
 	RedirectURI string `json:"redirect_uri"`
 	// URL of the authorization endpoint
@@ -24,13 +24,6 @@ func (o *SSOCallbackRequest) GetClientID() string {
 		return ""
 	}
 	return o.ClientID
-}
-
-func (o *SSOCallbackRequest) GetClientSecret() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ClientSecret
 }
 
 func (o *SSOCallbackRequest) GetCode() string {
@@ -52,6 +45,13 @@ func (o *SSOCallbackRequest) GetGrantType() string {
 		return ""
 	}
 	return o.GrantType
+}
+
+func (o *SSOCallbackRequest) GetProviderSlug() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ProviderSlug
 }
 
 func (o *SSOCallbackRequest) GetRedirectURI() string {

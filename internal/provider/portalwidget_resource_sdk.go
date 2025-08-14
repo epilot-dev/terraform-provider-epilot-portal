@@ -725,7 +725,7 @@ func (r *PortalWidgetResourceModel) RefreshFromSharedPortalWidget(resp *shared.P
 		if resp.EntityWidgetSchemas.Headline == nil {
 			r.Schemas.Headline = nil
 		} else {
-			r.Schemas.Headline = &tfTypes.UpsertPortalConfigActionLabel{}
+			r.Schemas.Headline = &tfTypes.UpsertPortalConfigV3ActionLabel{}
 			r.Schemas.Headline.De = types.StringPointerValue(resp.EntityWidgetSchemas.Headline.De)
 			r.Schemas.Headline.En = types.StringPointerValue(resp.EntityWidgetSchemas.Headline.En)
 		}
@@ -738,7 +738,7 @@ func (r *PortalWidgetResourceModel) RefreshFromSharedPortalWidget(resp *shared.P
 		if resp.EntityWidgetSchemas.SubHeadline == nil {
 			r.Schemas.SubHeadline = nil
 		} else {
-			r.Schemas.SubHeadline = &tfTypes.UpsertPortalConfigActionLabel{}
+			r.Schemas.SubHeadline = &tfTypes.UpsertPortalConfigV3ActionLabel{}
 			r.Schemas.SubHeadline.De = types.StringPointerValue(resp.EntityWidgetSchemas.SubHeadline.De)
 			r.Schemas.SubHeadline.En = types.StringPointerValue(resp.EntityWidgetSchemas.SubHeadline.En)
 		}

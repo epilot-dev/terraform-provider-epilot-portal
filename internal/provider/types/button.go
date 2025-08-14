@@ -5,6 +5,6 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type Button struct {
-	Label *UpsertPortalConfigActionLabel `tfsdk:"label"`
-	URL   types.String                   `tfsdk:"url"`
+	Label *UpsertPortalConfigV3ActionLabel `tfsdk:"label"`
+	URL   types.String                     `tfsdk:"url"`
 }

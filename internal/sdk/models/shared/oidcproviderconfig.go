@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
 type Prompt string
@@ -36,17 +37,57 @@ func (e *Prompt) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type OIDCProviderConfigType string
+
+const (
+	OIDCProviderConfigTypeAuthorizationCode OIDCProviderConfigType = "authorization_code"
+	OIDCProviderConfigTypeImplicit          OIDCProviderConfigType = "implicit"
+)
+
+func (e OIDCProviderConfigType) ToPointer() *OIDCProviderConfigType {
+	return &e
+}
+func (e *OIDCProviderConfigType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "authorization_code":
+		fallthrough
+	case "implicit":
+		*e = OIDCProviderConfigType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for OIDCProviderConfigType: %v", v)
+	}
+}
+
 type OIDCProviderConfig struct {
-	ClientID     string                `json:"client_id"`
-	ClientSecret *string               `json:"client_secret,omitempty"`
-	Metadata     *OIDCProviderMetadata `json:"metadata,omitempty"`
+	ClientID     string  `json:"client_id"`
+	ClientSecret *string `json:"client_secret,omitempty"`
+	// Whether the client secret is present
+	HasClientSecret *bool                 `json:"has_client_secret,omitempty"`
+	Metadata        *OIDCProviderMetadata `json:"metadata,omitempty"`
 	// Issuing Authority URL
 	OidcIssuer string  `json:"oidc_issuer"`
 	Prompt     *Prompt `json:"prompt,omitempty"`
 	// Redirect URI for the OIDC flow
 	RedirectURI *string `json:"redirect_uri,omitempty"`
 	// Space-separated list of OAuth 2.0 scopes to request from OpenID Connect
-	Scope string `json:"scope"`
+	Scope string                  `json:"scope"`
+	Type  *OIDCProviderConfigType `default:"implicit" json:"type"`
+}
+
+func (o OIDCProviderConfig) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OIDCProviderConfig) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *OIDCProviderConfig) GetClientID() string {
@@ -61,6 +102,13 @@ func (o *OIDCProviderConfig) GetClientSecret() *string {
 		return nil
 	}
 	return o.ClientSecret
+}
+
+func (o *OIDCProviderConfig) GetHasClientSecret() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasClientSecret
 }
 
 func (o *OIDCProviderConfig) GetMetadata() *OIDCProviderMetadata {
@@ -96,4 +144,11 @@ func (o *OIDCProviderConfig) GetScope() string {
 		return ""
 	}
 	return o.Scope
+}
+
+func (o *OIDCProviderConfig) GetType() *OIDCProviderConfigType {
+	if o == nil {
+		return nil
+	}
+	return o.Type
 }

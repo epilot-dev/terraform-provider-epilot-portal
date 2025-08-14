@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type UpsertPortalConfigType struct {
+type UpsertPortalConfigV3Type struct {
 	Attributes []types.String `tfsdk:"attributes"`
 	IsEnabled  types.Bool     `tfsdk:"is_enabled"`
 }

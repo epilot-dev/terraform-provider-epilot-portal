@@ -3,29 +3,75 @@
 package operations
 
 import (
+	"errors"
+	"fmt"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"net/http"
 )
 
-// SearchPortalUserEntitiesResponseBody - The entities is retrieved successfully for the portal user.
+type SearchPortalUserEntitiesResponseBodyType string
+
+const (
+	SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits        SearchPortalUserEntitiesResponseBodyType = "EntityResponseWithHits"
+	SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits SearchPortalUserEntitiesResponseBodyType = "EntityResponseGroupedWithHits"
+)
+
+// SearchPortalUserEntitiesResponseBody - The entities have been retrieved successfully for the portal user.
 type SearchPortalUserEntitiesResponseBody struct {
-	// Total number of entities for pagination
-	Hits    *float64            `json:"hits,omitempty"`
-	Results []shared.EntityItem `json:"results,omitempty"`
+	EntityResponseWithHits        *shared.EntityResponseWithHits        `queryParam:"inline"`
+	EntityResponseGroupedWithHits *shared.EntityResponseGroupedWithHits `queryParam:"inline"`
+
+	Type SearchPortalUserEntitiesResponseBodyType
 }
 
-func (o *SearchPortalUserEntitiesResponseBody) GetHits() *float64 {
-	if o == nil {
-		return nil
+func CreateSearchPortalUserEntitiesResponseBodyEntityResponseWithHits(entityResponseWithHits shared.EntityResponseWithHits) SearchPortalUserEntitiesResponseBody {
+	typ := SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits
+
+	return SearchPortalUserEntitiesResponseBody{
+		EntityResponseWithHits: &entityResponseWithHits,
+		Type:                   typ,
 	}
-	return o.Hits
 }
 
-func (o *SearchPortalUserEntitiesResponseBody) GetResults() []shared.EntityItem {
-	if o == nil {
+func CreateSearchPortalUserEntitiesResponseBodyEntityResponseGroupedWithHits(entityResponseGroupedWithHits shared.EntityResponseGroupedWithHits) SearchPortalUserEntitiesResponseBody {
+	typ := SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits
+
+	return SearchPortalUserEntitiesResponseBody{
+		EntityResponseGroupedWithHits: &entityResponseGroupedWithHits,
+		Type:                          typ,
+	}
+}
+
+func (u *SearchPortalUserEntitiesResponseBody) UnmarshalJSON(data []byte) error {
+
+	var entityResponseWithHits shared.EntityResponseWithHits = shared.EntityResponseWithHits{}
+	if err := utils.UnmarshalJSON(data, &entityResponseWithHits, "", true, true); err == nil {
+		u.EntityResponseWithHits = &entityResponseWithHits
+		u.Type = SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits
 		return nil
 	}
-	return o.Results
+
+	var entityResponseGroupedWithHits shared.EntityResponseGroupedWithHits = shared.EntityResponseGroupedWithHits{}
+	if err := utils.UnmarshalJSON(data, &entityResponseGroupedWithHits, "", true, true); err == nil {
+		u.EntityResponseGroupedWithHits = &entityResponseGroupedWithHits
+		u.Type = SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchPortalUserEntitiesResponseBody", string(data))
+}
+
+func (u SearchPortalUserEntitiesResponseBody) MarshalJSON() ([]byte, error) {
+	if u.EntityResponseWithHits != nil {
+		return utils.MarshalJSON(u.EntityResponseWithHits, "", true)
+	}
+
+	if u.EntityResponseGroupedWithHits != nil {
+		return utils.MarshalJSON(u.EntityResponseGroupedWithHits, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SearchPortalUserEntitiesResponseBody: all fields are null")
 }
 
 type SearchPortalUserEntitiesResponse struct {
@@ -37,8 +83,8 @@ type SearchPortalUserEntitiesResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-	// The entities is retrieved successfully for the portal user.
-	Object *SearchPortalUserEntitiesResponseBody
+	// The entities have been retrieved successfully for the portal user.
+	OneOf *SearchPortalUserEntitiesResponseBody
 }
 
 func (o *SearchPortalUserEntitiesResponse) GetContentType() string {
@@ -69,9 +115,9 @@ func (o *SearchPortalUserEntitiesResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *SearchPortalUserEntitiesResponse) GetObject() *SearchPortalUserEntitiesResponseBody {
+func (o *SearchPortalUserEntitiesResponse) GetOneOf() *SearchPortalUserEntitiesResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.OneOf
 }

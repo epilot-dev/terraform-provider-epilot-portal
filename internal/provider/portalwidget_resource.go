@@ -44,19 +44,19 @@ type PortalWidgetResource struct {
 
 // PortalWidgetResourceModel describes the resource data model.
 type PortalWidgetResourceModel struct {
-	Actions     []tfTypes.WidgetAction                 `tfsdk:"actions"`
-	Button      *tfTypes.Button                        `tfsdk:"button"`
-	CampaignID  types.String                           `tfsdk:"campaign_id"`
-	Content     types.String                           `tfsdk:"content"`
-	Headline    *tfTypes.UpsertPortalConfigActionLabel `tfsdk:"headline"`
-	ID          types.String                           `tfsdk:"id"`
-	ImageURL    types.String                           `tfsdk:"image_url"`
-	ListIndex   types.Int64                            `tfsdk:"list_index"`
-	Origin      types.String                           `tfsdk:"origin"`
-	Schema      types.String                           `tfsdk:"schema"`
-	Schemas     *tfTypes.Schemas                       `tfsdk:"schemas" tfPlanOnly:"true"`
-	SubHeadline *tfTypes.UpsertPortalConfigActionLabel `tfsdk:"sub_headline"`
-	Type        types.String                           `tfsdk:"type"`
+	Actions     []tfTypes.WidgetAction                   `tfsdk:"actions"`
+	Button      *tfTypes.Button                          `tfsdk:"button"`
+	CampaignID  types.String                             `tfsdk:"campaign_id"`
+	Content     types.String                             `tfsdk:"content"`
+	Headline    *tfTypes.UpsertPortalConfigV3ActionLabel `tfsdk:"headline"`
+	ID          types.String                             `tfsdk:"id"`
+	ImageURL    types.String                             `tfsdk:"image_url"`
+	ListIndex   types.Int64                              `tfsdk:"list_index"`
+	Origin      types.String                             `tfsdk:"origin"`
+	Schema      types.String                             `tfsdk:"schema"`
+	Schemas     *tfTypes.Schemas                         `tfsdk:"schemas" tfPlanOnly:"true"`
+	SubHeadline *tfTypes.UpsertPortalConfigV3ActionLabel `tfsdk:"sub_headline"`
+	Type        types.String                             `tfsdk:"type"`
 }
 
 func (r *PortalWidgetResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {

@@ -166,10 +166,10 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     welcome_banner     = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"
   }
   inactive_contract_cutoff_years = 6.78
+  is_dummy                       = true
   is_epilot_domain               = true
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
-  origin                         = "INSTALLER_PORTAL"
   pages = {
     additional_properties = "{ \"see\": \"documentation\" }"
     blocks = {

@@ -18,23 +18,39 @@ actions:
         retryConnectionErrors: true
 
   # Portal
-  - target: $["paths"]["/v2/portal/portal"]["post"]
+  - target: $["paths"]["/v3/portal/config"]["post"]
     update:
-      x-speakeasy-entity-operation: PortalConfig#create,update
+      x-speakeasy-entity-operation: PortalConfig#create
 
-  - target: $["paths"]["/v2/portal/config"]["get"]
+  - target: $["paths"]["/v3/portal/config/{portal_id}"]["get"]
     update:
       x-speakeasy-entity-operation: PortalConfig#get
 
-  - target: $["paths"]["/v2/portal/config"]["delete"]
+  - target: $["paths"]["/v3/portal/config/{portal_id}"]["put"]
+    update:
+      x-speakeasy-entity-operation: PortalConfig#update
+
+  - target: $["paths"]["/v3/portal/config/{portal_id}"]["delete"]
     update:
       x-speakeasy-entity-operation: PortalConfig#delete
 
-  - target: $["components"]["schemas"]["PortalConfig"]
+  # - target:  $["paths"]["/v3/portal/config/{portal_id}"]["get"]["parameters"][0]
+  #   update:
+  #     x-speakeasy-match: portal_id
+
+  # - target:  $["paths"]["/v3/portal/config/{portal_id}"]["put"]["parameters"][0]
+  #   update:
+  #     x-speakeasy-match: portal_id
+
+  # - target:  $["paths"]["/v3/portal/config/{portal_id}"]["delete"]["parameters"][0]
+  #   update:
+  #     x-speakeasy-match: portal_id
+
+  - target: $["components"]["schemas"]["PortalConfigV3"]
     update:
       x-speakeasy-entity: PortalConfig
 
-  - target: $["components"]["schemas"]["CommonConfigAttributes"]["properties"]["approval_state_attributes"]
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["approval_state_attributes"]
     update:
       x-speakeasy-type-override: any
 

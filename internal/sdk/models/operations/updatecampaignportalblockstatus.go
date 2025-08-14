@@ -14,8 +14,8 @@ type Status string
 
 const (
 	StatusSeen      Status = "seen"
-	StatusAccepted  Status = "accepted"
 	StatusDismissed Status = "dismissed"
+	StatusClicked   Status = "clicked"
 )
 
 func (e Status) ToPointer() *Status {
@@ -29,9 +29,9 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 	switch v {
 	case "seen":
 		fallthrough
-	case "accepted":
-		fallthrough
 	case "dismissed":
+		fallthrough
+	case "clicked":
 		*e = Status(v)
 		return nil
 	default:

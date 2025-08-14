@@ -3,17 +3,64 @@
 package shared
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
+
+// Filters - Elasticsearch filter object
+type Filters struct {
+}
+
+// GroupSort - Sort order for groups
+type GroupSort string
+
+const (
+	GroupSortAsc  GroupSort = "asc"
+	GroupSortDesc GroupSort = "desc"
+)
+
+func (e GroupSort) ToPointer() *GroupSort {
+	return &e
+}
+func (e *GroupSort) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "asc":
+		fallthrough
+	case "desc":
+		*e = GroupSort(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for GroupSort: %v", v)
+	}
+}
 
 type EntitySearchParams struct {
 	// List of entity fields to include in search results
 	Fields []string `json:"fields,omitempty"`
-	From   *int64   `default:"0" json:"from"`
+	// Additional filters to apply to the search query
+	Filters []Filters `json:"filters,omitempty"`
+	From    *int64    `default:"0" json:"from"`
+	// Field to group results by
+	Group *string `json:"group,omitempty"`
+	// Composite aggregation key for group pagination
+	GroupAfterKey map[string]string `json:"group_after_key,omitempty"`
+	// Number of groups to return
+	GroupSize *int64 `default:"100" json:"group_size"`
+	// Sort order for groups
+	GroupSort *GroupSort `default:"asc" json:"group_sort"`
 	// When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
 	Hydrate *bool `default:"false" json:"hydrate"`
+	// Keyword search query
+	Q *string `json:"q,omitempty"`
+	// List of fields that can be searched
+	QFields []string `json:"q_fields,omitempty"`
 	// Max search size is 1000 with higher values defaulting to 1000
-	Size *int64 `default:"10" json:"size"`
+	Size *int64 `default:"100" json:"size"`
 	// URL-friendly identifier for the entity schema
 	Slug EntitySlug `json:"slug"`
 	Sort *string    `json:"sort,omitempty"`
@@ -37,6 +84,13 @@ func (o *EntitySearchParams) GetFields() []string {
 	return o.Fields
 }
 
+func (o *EntitySearchParams) GetFilters() []Filters {
+	if o == nil {
+		return nil
+	}
+	return o.Filters
+}
+
 func (o *EntitySearchParams) GetFrom() *int64 {
 	if o == nil {
 		return nil
@@ -44,11 +98,53 @@ func (o *EntitySearchParams) GetFrom() *int64 {
 	return o.From
 }
 
+func (o *EntitySearchParams) GetGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *EntitySearchParams) GetGroupAfterKey() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.GroupAfterKey
+}
+
+func (o *EntitySearchParams) GetGroupSize() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.GroupSize
+}
+
+func (o *EntitySearchParams) GetGroupSort() *GroupSort {
+	if o == nil {
+		return nil
+	}
+	return o.GroupSort
+}
+
 func (o *EntitySearchParams) GetHydrate() *bool {
 	if o == nil {
 		return nil
 	}
 	return o.Hydrate
+}
+
+func (o *EntitySearchParams) GetQ() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Q
+}
+
+func (o *EntitySearchParams) GetQFields() []string {
+	if o == nil {
+		return nil
+	}
+	return o.QFields
 }
 
 func (o *EntitySearchParams) GetSize() *int64 {

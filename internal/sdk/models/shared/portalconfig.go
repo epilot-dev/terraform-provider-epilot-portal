@@ -579,7 +579,7 @@ type PortalConfig struct {
 	AdvancedMfa *AdvancedMfa `json:"advanced_mfa,omitempty"`
 	// Allowed file extensions for upload
 	AllowedFileExtensions   *AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
-	ApprovalStateAttributes any                    `json:"approval_state_attributes,omitempty"`
+	ApprovalStateAttributes map[string][]string    `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
 	AuthSettings *AuthSettings `json:"auth_settings,omitempty"`
 	// AWS Cognito Pool details for the portal
@@ -623,6 +623,8 @@ type PortalConfig struct {
 	Images *Images `json:"images,omitempty"`
 	// Number of years to look back for showing inactive contracts in the portal
 	InactiveContractCutoffYears *float64 `json:"inactive_contract_cutoff_years,omitempty"`
+	// Whether this is a dummy/test portal configuration
+	IsDummy *bool `json:"is_dummy,omitempty"`
 	// Mark true if the domain is an Epilot domain
 	IsEpilotDomain *bool `json:"is_epilot_domain,omitempty"`
 	// Grace period in days for meter readings
@@ -636,6 +638,8 @@ type PortalConfig struct {
 	// Origin of the portal
 	Origin *Origin         `json:"origin,omitempty"`
 	Pages  map[string]Page `json:"pages,omitempty"`
+	// ID of the portal
+	PortalID *string `json:"portal_id,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
@@ -666,7 +670,7 @@ func (o *PortalConfig) GetAllowedFileExtensions() *AllowedFileExtensions {
 	return o.AllowedFileExtensions
 }
 
-func (o *PortalConfig) GetApprovalStateAttributes() any {
+func (o *PortalConfig) GetApprovalStateAttributes() map[string][]string {
 	if o == nil {
 		return nil
 	}
@@ -806,6 +810,13 @@ func (o *PortalConfig) GetInactiveContractCutoffYears() *float64 {
 	return o.InactiveContractCutoffYears
 }
 
+func (o *PortalConfig) GetIsDummy() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsDummy
+}
+
 func (o *PortalConfig) GetIsEpilotDomain() *bool {
 	if o == nil {
 		return nil
@@ -853,6 +864,13 @@ func (o *PortalConfig) GetPages() map[string]Page {
 		return nil
 	}
 	return o.Pages
+}
+
+func (o *PortalConfig) GetPortalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalID
 }
 
 func (o *PortalConfig) GetPreventSearchEngineIndexing() *bool {

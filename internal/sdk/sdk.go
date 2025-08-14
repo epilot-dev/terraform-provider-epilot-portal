@@ -15,7 +15,8 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	"https://customer-portal-api.sls.epilot.io",
+	// Production
+	"https://customer-portal-api.sls.epilot.io/",
 }
 
 // HTTPClient provides an interface for suplying the SDK with a custom HTTP client
@@ -71,10 +72,11 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 type SDK struct {
 	// APIs defined for a ECP Admin
 	ECPAdmin *ECPAdmin
-	Balance  *Balance
 	// APIs defined for a portal user
 	Ecp      *Ecp
+	Balance  *Balance
 	Activity *Activity
+	Internal *Internal
 	// Public APIs
 	Public *Public
 	Login  *Login
@@ -155,9 +157,9 @@ func New(opts ...SDKOption) *SDK {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.0.0",
-			SDKVersion:        "0.21.5",
+			SDKVersion:        "0.23.1",
 			GenVersion:        "2.497.0",
-			UserAgent:         "speakeasy-sdk/terraform 0.21.5 2.497.0 1.0.0 github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk",
+			UserAgent:         "speakeasy-sdk/terraform 0.23.1 2.497.0 1.0.0 github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -179,11 +181,13 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.ECPAdmin = newECPAdmin(sdk.sdkConfiguration)
 
-	sdk.Balance = newBalance(sdk.sdkConfiguration)
-
 	sdk.Ecp = newEcp(sdk.sdkConfiguration)
 
+	sdk.Balance = newBalance(sdk.sdkConfiguration)
+
 	sdk.Activity = newActivity(sdk.sdkConfiguration)
+
+	sdk.Internal = newInternal(sdk.sdkConfiguration)
 
 	sdk.Public = newPublic(sdk.sdkConfiguration)
 

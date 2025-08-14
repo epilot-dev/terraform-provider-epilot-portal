@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type UpsertPortalConfigContractSelectorConfig struct {
+type UpsertPortalConfigV3ContractSelectorConfig struct {
 	ShowInactive types.Bool   `tfsdk:"show_inactive"`
 	TitlePath    types.String `tfsdk:"title_path"`
 }

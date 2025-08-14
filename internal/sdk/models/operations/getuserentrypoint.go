@@ -59,6 +59,8 @@ func (e *EntryPoint) UnmarshalJSON(data []byte) error {
 type GetUserEntryPointResponseBody struct {
 	// The entry point for the user
 	EntryPoint EntryPoint `json:"entry_point"`
+	// Whether the user is soft deleted
+	IsSoftDeleted *bool `json:"is_soft_deleted,omitempty"`
 	// The SSO providers for the user
 	PreferredSsoProviders []string `json:"preferred_sso_providers,omitempty"`
 	// Whether the user exists in the portal
@@ -70,6 +72,13 @@ func (o *GetUserEntryPointResponseBody) GetEntryPoint() EntryPoint {
 		return EntryPoint("")
 	}
 	return o.EntryPoint
+}
+
+func (o *GetUserEntryPointResponseBody) GetIsSoftDeleted() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsSoftDeleted
 }
 
 func (o *GetUserEntryPointResponseBody) GetPreferredSsoProviders() []string {

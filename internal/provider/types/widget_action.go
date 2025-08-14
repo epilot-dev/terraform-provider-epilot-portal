@@ -5,9 +5,9 @@ package types
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
 type WidgetAction struct {
-	ID    types.String                  `tfsdk:"id"`
-	Label UpsertPortalConfigActionLabel `tfsdk:"label"`
-	Rules []WidgetActionRules           `tfsdk:"rules"`
-	Type  types.String                  `tfsdk:"type"`
-	URL   types.String                  `tfsdk:"url"`
+	ID    types.String                    `tfsdk:"id"`
+	Label UpsertPortalConfigV3ActionLabel `tfsdk:"label"`
+	Rules []WidgetActionRules             `tfsdk:"rules"`
+	Type  types.String                    `tfsdk:"type"`
+	URL   types.String                    `tfsdk:"url"`
 }

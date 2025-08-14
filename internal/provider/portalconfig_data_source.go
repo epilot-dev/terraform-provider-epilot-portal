@@ -8,7 +8,6 @@ import (
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -30,40 +29,41 @@ type PortalConfigDataSource struct {
 
 // PortalConfigDataSourceModel describes the data model.
 type PortalConfigDataSourceModel struct {
-	AccessToken                 types.String                                      `tfsdk:"access_token"`
-	AdvancedMfa                 *tfTypes.UpsertPortalConfigAdvancedMfa            `tfsdk:"advanced_mfa"`
-	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                    `tfsdk:"allowed_file_extensions"`
-	ApprovalStateAttributes     types.String                                      `tfsdk:"approval_state_attributes"`
-	AuthSettings                *tfTypes.UpsertPortalConfigAuthSettings           `tfsdk:"auth_settings"`
-	CognitoDetails              *tfTypes.UpsertPortalConfigCognitoDetails         `tfsdk:"cognito_details"`
-	Config                      types.String                                      `tfsdk:"config"`
-	ContactIdentifiers          []types.String                                    `tfsdk:"contact_identifiers"`
-	ContractIdentifiers         []tfTypes.ContractIdentifier                      `tfsdk:"contract_identifiers"`
-	ContractSelectorConfig      *tfTypes.UpsertPortalConfigContractSelectorConfig `tfsdk:"contract_selector_config"`
-	DesignID                    types.String                                      `tfsdk:"design_id"`
-	Domain                      types.String                                      `tfsdk:"domain"`
-	EmailTemplates              *tfTypes.EmailTemplates                           `tfsdk:"email_templates"`
-	Enabled                     types.Bool                                        `tfsdk:"enabled"`
-	EntityEditRules             []tfTypes.EntityEditRules                         `tfsdk:"entity_edit_rules"`
-	EntityIdentifiers           *tfTypes.UpsertPortalConfigEntityIdentifiers      `tfsdk:"entity_identifiers"`
-	FeatureFlags                map[string]types.Bool                             `tfsdk:"feature_flags"`
-	FeatureSettings             *tfTypes.UpsertPortalConfigFeatureSettings        `tfsdk:"feature_settings"`
-	Grants                      []tfTypes.Grant                                   `tfsdk:"grants"`
-	ID                          types.String                                      `tfsdk:"id"`
-	IdentityProviders           []tfTypes.ProviderPublicConfig                    `tfsdk:"identity_providers"`
-	Images                      *tfTypes.UpsertPortalConfigImages                 `tfsdk:"images"`
-	InactiveContractCutoffYears types.Number                                      `tfsdk:"inactive_contract_cutoff_years"`
-	IsEpilotDomain              types.Bool                                        `tfsdk:"is_epilot_domain"`
-	MeterReadingGracePeriod     types.Number                                      `tfsdk:"meter_reading_grace_period"`
-	Name                        types.String                                      `tfsdk:"name"`
-	OrgSettings                 *tfTypes.OrgSettings                              `tfsdk:"org_settings"`
-	OrganizationID              types.String                                      `tfsdk:"organization_id"`
-	Origin                      types.String                                      `tfsdk:"origin"`
-	Pages                       map[string]tfTypes.Page                           `tfsdk:"pages"`
-	PreventSearchEngineIndexing types.Bool                                        `tfsdk:"prevent_search_engine_indexing"`
-	RegistrationIdentifiers     []tfTypes.ContractIdentifier                      `tfsdk:"registration_identifiers"`
-	SelfRegistrationSetting     types.String                                      `tfsdk:"self_registration_setting"`
-	TriggeredJourneys           []tfTypes.TriggeredJourneys                       `tfsdk:"triggered_journeys"`
+	AccessToken                 types.String                                        `tfsdk:"access_token"`
+	AdvancedMfa                 *tfTypes.UpsertPortalConfigV3AdvancedMfa            `tfsdk:"advanced_mfa"`
+	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                      `tfsdk:"allowed_file_extensions"`
+	ApprovalStateAttributes     types.String                                        `tfsdk:"approval_state_attributes"`
+	AuthSettings                *tfTypes.UpsertPortalConfigV3AuthSettings           `tfsdk:"auth_settings"`
+	CognitoDetails              *tfTypes.UpsertPortalConfigV3CognitoDetails         `tfsdk:"cognito_details"`
+	Config                      types.String                                        `tfsdk:"config"`
+	ContactIdentifiers          []types.String                                      `tfsdk:"contact_identifiers"`
+	ContractIdentifiers         []tfTypes.ContractIdentifier                        `tfsdk:"contract_identifiers"`
+	ContractSelectorConfig      *tfTypes.UpsertPortalConfigV3ContractSelectorConfig `tfsdk:"contract_selector_config"`
+	DesignID                    types.String                                        `tfsdk:"design_id"`
+	Domain                      types.String                                        `tfsdk:"domain"`
+	EmailTemplates              *tfTypes.EmailTemplates                             `tfsdk:"email_templates"`
+	Enabled                     types.Bool                                          `tfsdk:"enabled"`
+	EntityEditRules             []tfTypes.PortalConfigV3EntityEditRules             `tfsdk:"entity_edit_rules"`
+	EntityIdentifiers           *tfTypes.UpsertPortalConfigV3EntityIdentifiers      `tfsdk:"entity_identifiers"`
+	FeatureFlags                map[string]types.Bool                               `tfsdk:"feature_flags"`
+	FeatureSettings             *tfTypes.UpsertPortalConfigV3FeatureSettings        `tfsdk:"feature_settings"`
+	Grants                      []tfTypes.Grant                                     `tfsdk:"grants"`
+	IdentityProviders           []tfTypes.ProviderPublicConfig                      `tfsdk:"identity_providers"`
+	Images                      *tfTypes.UpsertPortalConfigV3Images                 `tfsdk:"images"`
+	InactiveContractCutoffYears types.Number                                        `tfsdk:"inactive_contract_cutoff_years"`
+	IsDummy                     types.Bool                                          `tfsdk:"is_dummy"`
+	IsEpilotDomain              types.Bool                                          `tfsdk:"is_epilot_domain"`
+	MeterReadingGracePeriod     types.Number                                        `tfsdk:"meter_reading_grace_period"`
+	Name                        types.String                                        `tfsdk:"name"`
+	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings                  `tfsdk:"org_settings"`
+	OrganizationID              types.String                                        `tfsdk:"organization_id"`
+	Origin                      types.String                                        `tfsdk:"origin"`
+	Pages                       map[string]tfTypes.Page                             `tfsdk:"pages"`
+	PortalID                    types.String                                        `tfsdk:"portal_id"`
+	PreventSearchEngineIndexing types.Bool                                          `tfsdk:"prevent_search_engine_indexing"`
+	RegistrationIdentifiers     []tfTypes.ContractIdentifier                        `tfsdk:"registration_identifiers"`
+	SelfRegistrationSetting     types.String                                        `tfsdk:"self_registration_setting"`
+	TriggeredJourneys           []tfTypes.PortalConfigV3TriggeredJourneys           `tfsdk:"triggered_journeys"`
 }
 
 // Metadata returns the data source type name.
@@ -425,10 +425,6 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 				},
 				Description: `Permissions granted to a portal user while accessing entities`,
 			},
-			"id": schema.StringAttribute{
-				Computed:    true,
-				Description: `ID of the organization`,
-			},
 			"identity_providers": schema.ListNestedAttribute{
 				Computed: true,
 				NestedObject: schema.NestedAttributeObject{
@@ -459,6 +455,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 								"client_secret": schema.StringAttribute{
 									Computed: true,
 								},
+								"has_client_secret": schema.BoolAttribute{
+									Computed:    true,
+									Description: `Whether the client secret is present`,
+								},
 								"metadata": schema.SingleNestedAttribute{
 									Computed: true,
 									Attributes: map[string]schema.Attribute{
@@ -469,6 +469,14 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 										"mobile_redirect_uri": schema.StringAttribute{
 											Computed:    true,
 											Description: `URL of the mobile redirect URI`,
+										},
+										"test_auth_password": schema.StringAttribute{
+											Computed:    true,
+											Description: `The password for the test auth, only used for testing on auth code flow`,
+										},
+										"test_auth_username": schema.StringAttribute{
+											Computed:    true,
+											Description: `The username for the test auth, only used for testing on auth code flow`,
 										},
 										"token_endpoint": schema.StringAttribute{
 											Computed:    true,
@@ -494,6 +502,9 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 								"scope": schema.StringAttribute{
 									Computed:    true,
 									Description: `Space-separated list of OAuth 2.0 scopes to request from OpenID Connect`,
+								},
+								"type": schema.StringAttribute{
+									Computed: true,
 								},
 							},
 						},
@@ -525,6 +536,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 			"inactive_contract_cutoff_years": schema.NumberAttribute{
 				Computed:    true,
 				Description: `Number of years to look back for showing inactive contracts in the portal`,
+			},
+			"is_dummy": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Whether this is a dummy/test portal configuration`,
 			},
 			"is_epilot_domain": schema.BoolAttribute{
 				Computed:    true,
@@ -570,7 +585,6 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 			},
 			"origin": schema.StringAttribute{
 				Computed:    true,
-				Optional:    true,
 				Description: `Origin of the portal`,
 			},
 			"pages": schema.MapNestedAttribute{
@@ -691,6 +705,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 					},
 				},
 			},
+			"portal_id": schema.StringAttribute{
+				Required:    true,
+				Description: `Portal ID (readonly UUID generated on portal creation)`,
+			},
 			"prevent_search_engine_indexing": schema.BoolAttribute{
 				Computed:    true,
 				Description: `Prevent indexing by search engines`,
@@ -771,16 +789,13 @@ func (r *PortalConfigDataSource) Read(ctx context.Context, req datasource.ReadRe
 		return
 	}
 
-	origin := new(shared.Origin)
-	if !data.Origin.IsUnknown() && !data.Origin.IsNull() {
-		*origin = shared.Origin(data.Origin.ValueString())
-	} else {
-		origin = nil
+	var portalID string
+	portalID = data.PortalID.ValueString()
+
+	request := operations.GetPortalConfigV3Request{
+		PortalID: portalID,
 	}
-	request := operations.GetPortalConfigRequest{
-		Origin: origin,
-	}
-	res, err := r.client.ECPAdmin.GetPortalConfig(ctx, request)
+	res, err := r.client.ECPAdmin.GetPortalConfigV3(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -800,11 +815,11 @@ func (r *PortalConfigDataSource) Read(ctx context.Context, req datasource.ReadRe
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}
-	if !(res.PortalConfig != nil) {
+	if !(res.PortalConfigV3 != nil) {
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedPortalConfig(res.PortalConfig)
+	data.RefreshFromSharedPortalConfigV3(res.PortalConfigV3)
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type TriggeredJourneys struct {
+type PortalConfigV3TriggeredJourneys struct {
 	JourneyID   types.String `tfsdk:"journey_id"`
 	TriggerName types.String `tfsdk:"trigger_name"`
 }

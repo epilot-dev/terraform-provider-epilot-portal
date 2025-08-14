@@ -2,7 +2,7 @@
 
 package shared
 
-// ErrorResp - The request could not be validated
+// ErrorResp - Could not authenticate the user
 type ErrorResp struct {
 	// Error message
 	Message *string `json:"message,omitempty"`

@@ -7,6 +7,25 @@ import (
 	"net/http"
 )
 
+type SsoCallbackRequest struct {
+	SSOCallbackRequest shared.SSOCallbackRequest `request:"mediaType=application/json"`
+	Domain             *string                   `queryParam:"style=form,explode=true,name=domain"`
+}
+
+func (o *SsoCallbackRequest) GetSSOCallbackRequest() shared.SSOCallbackRequest {
+	if o == nil {
+		return shared.SSOCallbackRequest{}
+	}
+	return o.SSOCallbackRequest
+}
+
+func (o *SsoCallbackRequest) GetDomain() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Domain
+}
+
 type SsoCallbackResponse struct {
 	// HTTP response content type for this operation
 	ContentType string

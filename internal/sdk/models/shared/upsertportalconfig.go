@@ -592,7 +592,7 @@ type UpsertPortalConfig struct {
 	AdvancedMfa *UpsertPortalConfigAdvancedMfa `json:"advanced_mfa,omitempty"`
 	// Allowed file extensions for upload
 	AllowedFileExtensions   *AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
-	ApprovalStateAttributes any                    `json:"approval_state_attributes,omitempty"`
+	ApprovalStateAttributes map[string][]string    `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
 	AuthSettings *UpsertPortalConfigAuthSettings `json:"auth_settings,omitempty"`
 	// AWS Cognito Pool details for the portal
@@ -635,6 +635,8 @@ type UpsertPortalConfig struct {
 	Images *UpsertPortalConfigImages `json:"images,omitempty"`
 	// Number of years to look back for showing inactive contracts in the portal
 	InactiveContractCutoffYears *float64 `json:"inactive_contract_cutoff_years,omitempty"`
+	// Whether this is a dummy/test portal configuration
+	IsDummy *bool `json:"is_dummy,omitempty"`
 	// Mark true if the domain is an Epilot domain
 	IsEpilotDomain *bool `json:"is_epilot_domain,omitempty"`
 	// Grace period in days for meter readings
@@ -672,7 +674,7 @@ func (o *UpsertPortalConfig) GetAllowedFileExtensions() *AllowedFileExtensions {
 	return o.AllowedFileExtensions
 }
 
-func (o *UpsertPortalConfig) GetApprovalStateAttributes() any {
+func (o *UpsertPortalConfig) GetApprovalStateAttributes() map[string][]string {
 	if o == nil {
 		return nil
 	}
@@ -810,6 +812,13 @@ func (o *UpsertPortalConfig) GetInactiveContractCutoffYears() *float64 {
 		return nil
 	}
 	return o.InactiveContractCutoffYears
+}
+
+func (o *UpsertPortalConfig) GetIsDummy() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsDummy
 }
 
 func (o *UpsertPortalConfig) GetIsEpilotDomain() *bool {

@@ -4,7 +4,6 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type UpsertPortalConfigActionLabel struct {
-	De types.String `tfsdk:"de"`
-	En types.String `tfsdk:"en"`
+type UpsertPortalConfigV3AdvancedMfa struct {
+	Enabled types.Bool `tfsdk:"enabled"`
 }

@@ -4,7 +4,7 @@ package types
 
 import "github.com/hashicorp/terraform-plugin-framework/types"
 
-type EntityEditRules struct {
+type PortalConfigV3EntityEditRules struct {
 	AllowedDecrement              types.String `tfsdk:"allowed_decrement"`
 	AllowedIncrement              types.String `tfsdk:"allowed_increment"`
 	Attribute                     types.String `tfsdk:"attribute"`

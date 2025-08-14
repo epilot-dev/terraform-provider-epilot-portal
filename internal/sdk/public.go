@@ -2741,7 +2741,7 @@ func (s *Public) GetUserEntryPoint(ctx context.Context, request operations.GetUs
 // SsoCallback - ssoCallback
 // Handles the callback from the external SSO provider, validates the authorization `code`
 // and generates a external provider token to be used with the CUSTOM_AUTH flow against Cognito.
-func (s *Public) SsoCallback(ctx context.Context, request shared.SSOCallbackRequest, opts ...operations.Option) (*operations.SsoCallbackResponse, error) {
+func (s *Public) SsoCallback(ctx context.Context, request operations.SsoCallbackRequest, opts ...operations.Option) (*operations.SsoCallbackResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
 		OperationID:    "ssoCallback",
@@ -2772,7 +2772,7 @@ func (s *Public) SsoCallback(ctx context.Context, request shared.SSOCallbackRequ
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "SSOCallbackRequest", "json", `request:"mediaType=application/json"`)
 	if err != nil {
 		return nil, err
 	}
@@ -2796,6 +2796,10 @@ func (s *Public) SsoCallback(ctx context.Context, request shared.SSOCallbackRequ
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 	if reqContentType != "" {
 		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
 	for k, v := range o.SetHeaders {
