@@ -49,7 +49,7 @@ func (g Grant) MarshalJSON() ([]byte, error) {
 }
 
 func (g *Grant) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"action"}); err != nil {
 		return err
 	}
 	return nil

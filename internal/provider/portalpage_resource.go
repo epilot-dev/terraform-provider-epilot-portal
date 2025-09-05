@@ -7,11 +7,11 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators"
-	speakeasy_numbervalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/numbervalidators"
+	speakeasy_float64validators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/float64validators"
 	speakeasy_objectvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/stringvalidators"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -33,28 +33,29 @@ func NewPortalPageResource() resource.Resource {
 
 // PortalPageResource defines the resource implementation.
 type PortalPageResource struct {
+	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
 // PortalPageResourceModel describes the resource data model.
 type PortalPageResourceModel struct {
-	AdditionalProperties types.String             `tfsdk:"additional_properties"`
-	Blocks               map[string]tfTypes.Block `tfsdk:"blocks"`
-	Content              map[string]types.String  `tfsdk:"content"`
-	Design               map[string]types.String  `tfsdk:"design"`
-	Domain               types.String             `tfsdk:"domain"`
-	ID                   types.String             `tfsdk:"id"`
-	IsDeleted            types.Bool               `tfsdk:"is_deleted"`
-	IsEntryRoute         types.Bool               `tfsdk:"is_entry_route"`
-	IsPublic             types.Bool               `tfsdk:"is_public"`
-	IsSystem             types.Bool               `tfsdk:"is_system"`
-	LastModifiedAt       types.String             `tfsdk:"last_modified_at"`
-	Order                types.Number             `tfsdk:"order"`
-	ParentID             types.String             `tfsdk:"parent_id"`
-	Path                 types.String             `tfsdk:"path"`
-	Schema               []types.String           `tfsdk:"schema"`
-	Slug                 types.String             `tfsdk:"slug"`
-	Visibility           map[string]types.String  `tfsdk:"visibility"`
+	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
+	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
+	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
+	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
+	Domain               types.String                    `queryParam:"style=form,explode=true,name=domain" tfsdk:"domain"`
+	ID                   types.String                    `tfsdk:"id"`
+	IsDeleted            types.Bool                      `tfsdk:"is_deleted"`
+	IsEntryRoute         types.Bool                      `tfsdk:"is_entry_route"`
+	IsPublic             types.Bool                      `tfsdk:"is_public"`
+	IsSystem             types.Bool                      `tfsdk:"is_system"`
+	LastModifiedAt       types.String                    `tfsdk:"last_modified_at"`
+	Order                types.Float64                   `tfsdk:"order"`
+	ParentID             types.String                    `tfsdk:"parent_id"`
+	Path                 types.String                    `tfsdk:"path"`
+	Schema               []types.String                  `tfsdk:"schema"`
+	Slug                 types.String                    `tfsdk:"slug"`
+	Visibility           map[string]jsontypes.Normalized `tfsdk:"visibility"`
 }
 
 func (r *PortalPageResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -66,12 +67,10 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 		MarkdownDescription: "PortalPage Resource",
 		Attributes: map[string]schema.Attribute{
 			"additional_properties": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Optional:    true,
 				Description: `Parsed as JSON.`,
-				Validators: []validator.String{
-					validators.IsValidJSON(),
-				},
 			},
 			"blocks": schema.MapNestedAttribute{
 				Computed: true,
@@ -82,12 +81,10 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 					},
 					Attributes: map[string]schema.Attribute{
 						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
 							Computed:    true,
 							Optional:    true,
 							Description: `Parsed as JSON.`,
-							Validators: []validator.String{
-								validators.IsValidJSON(),
-							},
 						},
 						"id": schema.StringAttribute{
 							Computed:    true,
@@ -97,12 +94,12 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 								speakeasy_stringvalidators.NotNull(),
 							},
 						},
-						"order": schema.NumberAttribute{
+						"order": schema.Float64Attribute{
 							Computed:    true,
 							Optional:    true,
 							Description: `The order of the block. Not Null`,
-							Validators: []validator.Number{
-								speakeasy_numbervalidators.NotNull(),
+							Validators: []validator.Float64{
+								speakeasy_float64validators.NotNull(),
 							},
 						},
 						"parent_id": schema.StringAttribute{
@@ -115,12 +112,10 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 							Optional: true,
 							Attributes: map[string]schema.Attribute{
 								"additional_properties": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Optional:    true,
 									Description: `Parsed as JSON.`,
-									Validators: []validator.String{
-										validators.IsValidJSON(),
-									},
 								},
 								"content": schema.SingleNestedAttribute{
 									Computed:    true,
@@ -153,7 +148,7 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 			"content": schema.MapAttribute{
 				Computed:    true,
 				Optional:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Description: `The content of the page`,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
@@ -162,7 +157,7 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 			"design": schema.MapAttribute{
 				Computed:    true,
 				Optional:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Description: `The design of the page`,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
@@ -206,7 +201,7 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 					validators.IsRFC3339(),
 				},
 			},
-			"order": schema.NumberAttribute{
+			"order": schema.Float64Attribute{
 				Required:    true,
 				Description: `The order of the block`,
 			},
@@ -216,9 +211,10 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 				Description: `The id of the parent page`,
 			},
 			"path": schema.StringAttribute{
-				Computed:    true,
-				Optional:    true,
-				Description: `The path of the page`,
+				Computed:           true,
+				Optional:           true,
+				DeprecationMessage: `This will be removed in a future release, please migrate away from it as soon as possible`,
+				Description:        `The path of the page`,
 			},
 			"schema": schema.ListAttribute{
 				Computed:    true,
@@ -232,7 +228,7 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 			"visibility": schema.MapAttribute{
 				Computed:    true,
 				Optional:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Description: `The conditions that need to be met for the page to be shown`,
 				Validators: []validator.Map{
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
@@ -280,15 +276,13 @@ func (r *PortalPageResource) Create(ctx context.Context, req resource.CreateRequ
 		return
 	}
 
-	pageRequest := *data.ToSharedPageRequest()
-	var domain string
-	domain = data.Domain.ValueString()
+	request, requestDiags := data.ToOperationsCreatePortalPageRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.CreatePortalPageRequest{
-		PageRequest: pageRequest,
-		Domain:      domain,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.ECPAdmin.CreatePortalPage(ctx, request)
+	res, err := r.client.ECPAdmin.CreatePortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -308,15 +302,24 @@ func (r *PortalPageResource) Create(ctx context.Context, req resource.CreateRequ
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedPage(res.Page)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
-	var id string
-	id = data.ID.ValueString()
+	resp.Diagnostics.Append(data.RefreshFromSharedPage(ctx, res.Page)...)
 
-	request1 := operations.GetPortalPageRequest{
-		ID: id,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res1, err := r.client.ECPAdmin.GetPortalPage(ctx, request1)
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	request1, request1Diags := data.ToOperationsGetPortalPageRequest(ctx)
+	resp.Diagnostics.Append(request1Diags...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+	res1, err := r.client.ECPAdmin.GetPortalPage(ctx, *request1)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res1 != nil && res1.RawResponse != nil {
@@ -336,8 +339,17 @@ func (r *PortalPageResource) Create(ctx context.Context, req resource.CreateRequ
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res1.RawResponse))
 		return
 	}
-	data.RefreshFromSharedPage(res1.Page)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedPage(ctx, res1.Page)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -361,13 +373,13 @@ func (r *PortalPageResource) Read(ctx context.Context, req resource.ReadRequest,
 		return
 	}
 
-	var id string
-	id = data.ID.ValueString()
+	request, requestDiags := data.ToOperationsGetPortalPageRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetPortalPageRequest{
-		ID: id,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.ECPAdmin.GetPortalPage(ctx, request)
+	res, err := r.client.ECPAdmin.GetPortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -391,7 +403,11 @@ func (r *PortalPageResource) Read(ctx context.Context, req resource.ReadRequest,
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedPage(res.Page)
+	resp.Diagnostics.Append(data.RefreshFromSharedPage(ctx, res.Page)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -411,15 +427,13 @@ func (r *PortalPageResource) Update(ctx context.Context, req resource.UpdateRequ
 		return
 	}
 
-	pageRequest := *data.ToSharedPageRequest()
-	var id string
-	id = data.ID.ValueString()
+	request, requestDiags := data.ToOperationsUpdatePortalPageRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.UpdatePortalPageRequest{
-		PageRequest: pageRequest,
-		ID:          id,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.ECPAdmin.UpdatePortalPage(ctx, request)
+	res, err := r.client.ECPAdmin.UpdatePortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -439,8 +453,17 @@ func (r *PortalPageResource) Update(ctx context.Context, req resource.UpdateRequ
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedPage(res.Page)
-	refreshPlan(ctx, plan, &data, resp.Diagnostics)
+	resp.Diagnostics.Append(data.RefreshFromSharedPage(ctx, res.Page)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
+
+	resp.Diagnostics.Append(refreshPlan(ctx, plan, &data)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)
@@ -464,13 +487,13 @@ func (r *PortalPageResource) Delete(ctx context.Context, req resource.DeleteRequ
 		return
 	}
 
-	var id string
-	id = data.ID.ValueString()
+	request, requestDiags := data.ToOperationsDeletePortalPageRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.DeletePortalPageRequest{
-		ID: id,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.ECPAdmin.DeletePortalPage(ctx, request)
+	res, err := r.client.ECPAdmin.DeletePortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

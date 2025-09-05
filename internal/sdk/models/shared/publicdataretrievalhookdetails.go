@@ -17,7 +17,7 @@ func (p PublicDataRetrievalHookDetailsName) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PublicDataRetrievalHookDetailsName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil

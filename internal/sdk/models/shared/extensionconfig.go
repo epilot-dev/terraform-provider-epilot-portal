@@ -49,7 +49,7 @@ func (e ExtensionConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil

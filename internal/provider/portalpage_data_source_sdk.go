@@ -3,44 +3,49 @@
 package provider
 
 import (
+	"context"
 	"encoding/json"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/typeconvert"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"math/big"
-	"time"
 )
 
-func (r *PortalPageDataSourceModel) RefreshFromSharedPage(resp *shared.Page) {
+func (r *PortalPageDataSourceModel) RefreshFromSharedPage(ctx context.Context, resp *shared.Page) diag.Diagnostics {
+	var diags diag.Diagnostics
+
 	if resp != nil {
 		if resp.AdditionalProperties == nil {
-			r.AdditionalProperties = types.StringNull()
+			r.AdditionalProperties = jsontypes.NewNormalizedNull()
 		} else {
 			additionalPropertiesResult, _ := json.Marshal(resp.AdditionalProperties)
-			r.AdditionalProperties = types.StringValue(string(additionalPropertiesResult))
+			r.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
 		}
 		if len(resp.Blocks) > 0 {
-			r.Blocks = make(map[string]tfTypes.Block)
+			r.Blocks = make(map[string]tfTypes.Block, len(resp.Blocks))
 			for blockKey, blockValue := range resp.Blocks {
 				var blockResult tfTypes.Block
 				if blockValue.AdditionalProperties == nil {
-					blockResult.AdditionalProperties = types.StringNull()
+					blockResult.AdditionalProperties = jsontypes.NewNormalizedNull()
 				} else {
 					additionalPropertiesResult1, _ := json.Marshal(blockValue.AdditionalProperties)
-					blockResult.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
+					blockResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
 				}
 				blockResult.ID = types.StringValue(blockValue.ID)
-				blockResult.Order = types.NumberValue(big.NewFloat(float64(blockValue.Order)))
+				blockResult.Order = types.Float64Value(blockValue.Order)
 				blockResult.ParentID = types.StringPointerValue(blockValue.ParentID)
 				if blockValue.Props == nil {
 					blockResult.Props = nil
 				} else {
 					blockResult.Props = &tfTypes.BlockProps{}
 					if blockValue.Props.AdditionalProperties == nil {
-						blockResult.Props.AdditionalProperties = types.StringNull()
+						blockResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
 					} else {
 						additionalPropertiesResult2, _ := json.Marshal(blockValue.Props.AdditionalProperties)
-						blockResult.Props.AdditionalProperties = types.StringValue(string(additionalPropertiesResult2))
+						blockResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
 					}
 					if blockValue.Props.Content == nil {
 						blockResult.Props.Content = nil
@@ -59,21 +64,22 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(resp *shared.Page) {
 					}
 				}
 				blockResult.Type = types.StringValue(blockValue.Type)
+
 				r.Blocks[blockKey] = blockResult
 			}
 		}
 		if len(resp.Content) > 0 {
-			r.Content = make(map[string]types.String)
+			r.Content = make(map[string]jsontypes.Normalized, len(resp.Content))
 			for key, value := range resp.Content {
 				result, _ := json.Marshal(value)
-				r.Content[key] = types.StringValue(string(result))
+				r.Content[key] = jsontypes.NewNormalizedValue(string(result))
 			}
 		}
 		if len(resp.Design) > 0 {
-			r.Design = make(map[string]types.String)
+			r.Design = make(map[string]jsontypes.Normalized, len(resp.Design))
 			for key1, value1 := range resp.Design {
 				result1, _ := json.Marshal(value1)
-				r.Design[key1] = types.StringValue(string(result1))
+				r.Design[key1] = jsontypes.NewNormalizedValue(string(result1))
 			}
 		}
 		r.ID = types.StringValue(resp.ID)
@@ -81,25 +87,36 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(resp *shared.Page) {
 		r.IsEntryRoute = types.BoolPointerValue(resp.IsEntryRoute)
 		r.IsPublic = types.BoolPointerValue(resp.IsPublic)
 		r.IsSystem = types.BoolPointerValue(resp.IsSystem)
-		if resp.LastModifiedAt != nil {
-			r.LastModifiedAt = types.StringValue(resp.LastModifiedAt.Format(time.RFC3339Nano))
-		} else {
-			r.LastModifiedAt = types.StringNull()
-		}
-		r.Order = types.NumberValue(big.NewFloat(float64(resp.Order)))
+		r.LastModifiedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(resp.LastModifiedAt))
+		r.Order = types.Float64Value(resp.Order)
 		r.ParentID = types.StringPointerValue(resp.ParentID)
 		r.Path = types.StringPointerValue(resp.Path)
-		r.Schema = []types.String{}
+		r.Schema = make([]types.String, 0, len(resp.Schema))
 		for _, v := range resp.Schema {
 			r.Schema = append(r.Schema, types.StringValue(string(v)))
 		}
 		r.Slug = types.StringValue(resp.Slug)
 		if len(resp.Visibility) > 0 {
-			r.Visibility = make(map[string]types.String)
+			r.Visibility = make(map[string]jsontypes.Normalized, len(resp.Visibility))
 			for key2, value2 := range resp.Visibility {
 				result2, _ := json.Marshal(value2)
-				r.Visibility[key2] = types.StringValue(string(result2))
+				r.Visibility[key2] = jsontypes.NewNormalizedValue(string(result2))
 			}
 		}
 	}
+
+	return diags
+}
+
+func (r *PortalPageDataSourceModel) ToOperationsGetPortalPageRequest(ctx context.Context) (*operations.GetPortalPageRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var id string
+	id = r.ID.ValueString()
+
+	out := operations.GetPortalPageRequest{
+		ID: id,
+	}
+
+	return &out, diags
 }

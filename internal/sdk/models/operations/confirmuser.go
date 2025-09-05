@@ -20,7 +20,7 @@ func (c ConfirmUserRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ConfirmUserRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"confirmation_link_token"}); err != nil {
 		return err
 	}
 	return nil

@@ -55,7 +55,7 @@ func (o Order) MarshalJSON() ([]byte, error) {
 }
 
 func (o *Order) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
 		return err
 	}
 	return nil

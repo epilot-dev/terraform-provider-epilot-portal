@@ -2,11 +2,26 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 type JourneyActions struct {
 	ActionLabel *ActionLabel `json:"action_label,omitempty"`
 	JourneyID   *string      `json:"journey_id,omitempty"`
 	Rules       []Rule       `json:"rules,omitempty"`
 	Slug        *string      `json:"slug,omitempty"`
+}
+
+func (j JourneyActions) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(j, "", false)
+}
+
+func (j *JourneyActions) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &j, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *JourneyActions) GetActionLabel() *ActionLabel {

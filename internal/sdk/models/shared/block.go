@@ -24,7 +24,7 @@ func (b Block) MarshalJSON() ([]byte, error) {
 }
 
 func (b *Block) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id", "order", "type"}); err != nil {
 		return err
 	}
 	return nil

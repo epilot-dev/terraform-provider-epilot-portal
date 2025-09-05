@@ -2,11 +2,13 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+)
 
 type BlockProps struct {
-	AdditionalProperties types.String `tfsdk:"additional_properties"`
-	Content              *Content     `tfsdk:"content"`
-	Design               *Content     `tfsdk:"design"`
-	Visibility           *Content     `tfsdk:"visibility"`
+	AdditionalProperties jsontypes.Normalized `tfsdk:"additional_properties"`
+	Content              *Content             `tfsdk:"content"`
+	Design               *Content             `tfsdk:"design"`
+	Visibility           *Content             `tfsdk:"visibility"`
 }

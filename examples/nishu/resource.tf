@@ -1,6 +1,4 @@
-resource "epilot-portal_portal_config" "nishu" {
-  name = "nishu"
-  enabled = true
-  domain = "nishu.epilot.ai"
-  origin = "END_CUSTOMER_PORTAL"
+import {
+  to = epilot-portal_portal_config.my_ecp
+  id = "784f26f9-322a-4eef-94fb-f742687cb632" // Portal ID
 }

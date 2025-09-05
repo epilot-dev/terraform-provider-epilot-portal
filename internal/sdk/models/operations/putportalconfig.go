@@ -9,16 +9,16 @@ import (
 
 type PutPortalConfigRequest struct {
 	// Portal configuration payload
-	UpsertPortalConfigV3 shared.UpsertPortalConfigV3 `request:"mediaType=application/json"`
+	PortalConfigV3 shared.PortalConfigV3 `request:"mediaType=application/json"`
 	// Portal ID (readonly UUID generated on portal creation)
 	PortalID string `pathParam:"style=simple,explode=false,name=portal_id"`
 }
 
-func (o *PutPortalConfigRequest) GetUpsertPortalConfigV3() shared.UpsertPortalConfigV3 {
+func (o *PutPortalConfigRequest) GetPortalConfigV3() shared.PortalConfigV3 {
 	if o == nil {
-		return shared.UpsertPortalConfigV3{}
+		return shared.PortalConfigV3{}
 	}
-	return o.UpsertPortalConfigV3
+	return o.PortalConfigV3
 }
 
 func (o *PutPortalConfigRequest) GetPortalID() string {

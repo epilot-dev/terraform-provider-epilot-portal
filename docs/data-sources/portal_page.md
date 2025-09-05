@@ -35,7 +35,7 @@ data "epilot-portal_portal_page" "my_portalpage" {
 - `last_modified_at` (String) Last modified timestamp of the Page
 - `order` (Number) The order of the block
 - `parent_id` (String) The id of the parent page
-- `path` (String) The path of the page
+- `path` (String, Deprecated) The path of the page
 - `schema` (List of String)
 - `slug` (String) The slug of the page
 - `visibility` (Map of String) The conditions that need to be met for the page to be shown

@@ -2,10 +2,25 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 type Rule struct {
 	Attribute      *string `json:"attribute,omitempty"`
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	Entity         *string `json:"entity,omitempty"`
+}
+
+func (r Rule) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Rule) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Rule) GetAttribute() *string {

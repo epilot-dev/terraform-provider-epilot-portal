@@ -55,7 +55,7 @@ func (f File) MarshalJSON() ([]byte, error) {
 }
 
 func (f *File) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
 		return err
 	}
 	return nil

@@ -7,7 +7,7 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
@@ -24,27 +24,28 @@ func NewPortalPageDataSource() datasource.DataSource {
 
 // PortalPageDataSource is the data source implementation.
 type PortalPageDataSource struct {
+	// Provider configured SDK client.
 	client *sdk.SDK
 }
 
 // PortalPageDataSourceModel describes the data model.
 type PortalPageDataSourceModel struct {
-	AdditionalProperties types.String             `tfsdk:"additional_properties"`
-	Blocks               map[string]tfTypes.Block `tfsdk:"blocks"`
-	Content              map[string]types.String  `tfsdk:"content"`
-	Design               map[string]types.String  `tfsdk:"design"`
-	ID                   types.String             `tfsdk:"id"`
-	IsDeleted            types.Bool               `tfsdk:"is_deleted"`
-	IsEntryRoute         types.Bool               `tfsdk:"is_entry_route"`
-	IsPublic             types.Bool               `tfsdk:"is_public"`
-	IsSystem             types.Bool               `tfsdk:"is_system"`
-	LastModifiedAt       types.String             `tfsdk:"last_modified_at"`
-	Order                types.Number             `tfsdk:"order"`
-	ParentID             types.String             `tfsdk:"parent_id"`
-	Path                 types.String             `tfsdk:"path"`
-	Schema               []types.String           `tfsdk:"schema"`
-	Slug                 types.String             `tfsdk:"slug"`
-	Visibility           map[string]types.String  `tfsdk:"visibility"`
+	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
+	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
+	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
+	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
+	ID                   types.String                    `tfsdk:"id"`
+	IsDeleted            types.Bool                      `tfsdk:"is_deleted"`
+	IsEntryRoute         types.Bool                      `tfsdk:"is_entry_route"`
+	IsPublic             types.Bool                      `tfsdk:"is_public"`
+	IsSystem             types.Bool                      `tfsdk:"is_system"`
+	LastModifiedAt       types.String                    `tfsdk:"last_modified_at"`
+	Order                types.Float64                   `tfsdk:"order"`
+	ParentID             types.String                    `tfsdk:"parent_id"`
+	Path                 types.String                    `tfsdk:"path"`
+	Schema               []types.String                  `tfsdk:"schema"`
+	Slug                 types.String                    `tfsdk:"slug"`
+	Visibility           map[string]jsontypes.Normalized `tfsdk:"visibility"`
 }
 
 // Metadata returns the data source type name.
@@ -59,6 +60,7 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 
 		Attributes: map[string]schema.Attribute{
 			"additional_properties": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
@@ -67,6 +69,7 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 				NestedObject: schema.NestedAttributeObject{
 					Attributes: map[string]schema.Attribute{
 						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
 							Computed:    true,
 							Description: `Parsed as JSON.`,
 						},
@@ -74,7 +77,7 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 							Computed:    true,
 							Description: `The id of the block`,
 						},
-						"order": schema.NumberAttribute{
+						"order": schema.Float64Attribute{
 							Computed:    true,
 							Description: `The order of the block`,
 						},
@@ -86,6 +89,7 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 							Computed: true,
 							Attributes: map[string]schema.Attribute{
 								"additional_properties": schema.StringAttribute{
+									CustomType:  jsontypes.NormalizedType{},
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
@@ -112,12 +116,12 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 			},
 			"content": schema.MapAttribute{
 				Computed:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Description: `The content of the page`,
 			},
 			"design": schema.MapAttribute{
 				Computed:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Description: `The design of the page`,
 			},
 			"id": schema.StringAttribute{
@@ -143,7 +147,7 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 				Computed:    true,
 				Description: `Last modified timestamp of the Page`,
 			},
-			"order": schema.NumberAttribute{
+			"order": schema.Float64Attribute{
 				Computed:    true,
 				Description: `The order of the block`,
 			},
@@ -152,8 +156,9 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 				Description: `The id of the parent page`,
 			},
 			"path": schema.StringAttribute{
-				Computed:    true,
-				Description: `The path of the page`,
+				Computed:           true,
+				DeprecationMessage: `This will be removed in a future release, please migrate away from it as soon as possible`,
+				Description:        `The path of the page`,
 			},
 			"schema": schema.ListAttribute{
 				Computed:    true,
@@ -165,7 +170,7 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 			},
 			"visibility": schema.MapAttribute{
 				Computed:    true,
-				ElementType: types.StringType,
+				ElementType: jsontypes.NormalizedType{},
 				Description: `The conditions that need to be met for the page to be shown`,
 			},
 		},
@@ -210,13 +215,13 @@ func (r *PortalPageDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		return
 	}
 
-	var id string
-	id = data.ID.ValueString()
+	request, requestDiags := data.ToOperationsGetPortalPageRequest(ctx)
+	resp.Diagnostics.Append(requestDiags...)
 
-	request := operations.GetPortalPageRequest{
-		ID: id,
+	if resp.Diagnostics.HasError() {
+		return
 	}
-	res, err := r.client.ECPAdmin.GetPortalPage(ctx, request)
+	res, err := r.client.ECPAdmin.GetPortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -228,10 +233,6 @@ func (r *PortalPageDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode == 404 {
-		resp.State.RemoveResource(ctx)
-		return
-	}
 	if res.StatusCode != 200 {
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
@@ -240,7 +241,11 @@ func (r *PortalPageDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		resp.Diagnostics.AddError("unexpected response from API. Got an unexpected response body", debugResponse(res.RawResponse))
 		return
 	}
-	data.RefreshFromSharedPage(res.Page)
+	resp.Diagnostics.Append(data.RefreshFromSharedPage(ctx, res.Page)...)
+
+	if resp.Diagnostics.HasError() {
+		return
+	}
 
 	// Save updated data into Terraform state
 	resp.Diagnostics.Append(resp.State.Set(ctx, &data)...)

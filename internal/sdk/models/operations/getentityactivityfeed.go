@@ -33,7 +33,7 @@ func (g GetEntityActivityFeedRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetEntityActivityFeedRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "slug"}); err != nil {
 		return err
 	}
 	return nil

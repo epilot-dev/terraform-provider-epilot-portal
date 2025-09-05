@@ -73,7 +73,7 @@ func (f Files) MarshalJSON() ([]byte, error) {
 }
 
 func (f *Files) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"filename", "s3ref"}); err != nil {
 		return err
 	}
 	return nil

@@ -73,7 +73,7 @@ func (g GetSearchResultsForOpportunitiesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSearchResultsForOpportunitiesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"RequestBody"}); err != nil {
 		return err
 	}
 	return nil

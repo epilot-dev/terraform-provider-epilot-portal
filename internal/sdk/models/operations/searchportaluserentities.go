@@ -19,8 +19,8 @@ const (
 
 // SearchPortalUserEntitiesResponseBody - The entities have been retrieved successfully for the portal user.
 type SearchPortalUserEntitiesResponseBody struct {
-	EntityResponseWithHits        *shared.EntityResponseWithHits        `queryParam:"inline"`
-	EntityResponseGroupedWithHits *shared.EntityResponseGroupedWithHits `queryParam:"inline"`
+	EntityResponseWithHits        *shared.EntityResponseWithHits        `queryParam:"inline" name:"responseBody"`
+	EntityResponseGroupedWithHits *shared.EntityResponseGroupedWithHits `queryParam:"inline" name:"responseBody"`
 
 	Type SearchPortalUserEntitiesResponseBodyType
 }
@@ -46,14 +46,14 @@ func CreateSearchPortalUserEntitiesResponseBodyEntityResponseGroupedWithHits(ent
 func (u *SearchPortalUserEntitiesResponseBody) UnmarshalJSON(data []byte) error {
 
 	var entityResponseWithHits shared.EntityResponseWithHits = shared.EntityResponseWithHits{}
-	if err := utils.UnmarshalJSON(data, &entityResponseWithHits, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityResponseWithHits, "", true, nil); err == nil {
 		u.EntityResponseWithHits = &entityResponseWithHits
 		u.Type = SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits
 		return nil
 	}
 
 	var entityResponseGroupedWithHits shared.EntityResponseGroupedWithHits = shared.EntityResponseGroupedWithHits{}
-	if err := utils.UnmarshalJSON(data, &entityResponseGroupedWithHits, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &entityResponseGroupedWithHits, "", true, nil); err == nil {
 		u.EntityResponseGroupedWithHits = &entityResponseGroupedWithHits
 		u.Type = SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits
 		return nil

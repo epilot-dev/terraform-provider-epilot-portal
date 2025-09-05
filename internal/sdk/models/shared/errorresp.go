@@ -2,10 +2,25 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 // ErrorResp - Could not authenticate the user
 type ErrorResp struct {
 	// Error message
 	Message *string `json:"message,omitempty"`
+}
+
+func (e ErrorResp) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ErrorResp) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ErrorResp) GetMessage() *string {

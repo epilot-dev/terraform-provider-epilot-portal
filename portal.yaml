@@ -4272,7 +4272,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpsertPortalConfigV3"
+              $ref: "#/components/schemas/PortalConfigV3"
       security:
         - EpilotAuth: []
       responses:
@@ -4348,7 +4348,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpsertPortalConfigV3"
+              $ref: "#/components/schemas/PortalConfigV3"
       security:
         - EpilotAuth: []
       responses:
@@ -8101,13 +8101,10 @@ components:
           type: object
           additionalProperties:
             $ref: "#/components/schemas/Page"
-   
-    UpsertPortalConfigV3:
-      allOf:
-        - $ref: "#/components/schemas/UpdateOnlyPortalConfigAttributes"
-        - $ref: "#/components/schemas/CommonConfigAttributesV3"
+         
     PortalConfigV3:
       allOf:
+        - $ref: "#/components/schemas/UpdateOnlyPortalConfigAttributes"
         - $ref: "#/components/schemas/CommonConfigAttributesV3"
         - properties:
             portal_id:

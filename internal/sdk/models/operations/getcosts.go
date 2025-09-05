@@ -64,7 +64,7 @@ func (g GetCostsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCostsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"extensionId", "from", "hookId", "interval", "meter_id", "to"}); err != nil {
 		return err
 	}
 	return nil
@@ -159,7 +159,7 @@ func (c Costs) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Costs) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"tax_behavior", "tax_rate", "timestamp", "unit_amount", "unit_amount_currency", "unit_amount_decimal"}); err != nil {
 		return err
 	}
 	return nil

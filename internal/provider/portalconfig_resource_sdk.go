@@ -3,22 +3,420 @@
 package provider
 
 import (
+	"context"
 	"encoding/json"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"math/big"
-	"time"
 )
 
-func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.UpsertPortalConfigV3 {
+func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.Context, resp *shared.PortalConfigV3) diag.Diagnostics {
+	var diags diag.Diagnostics
+
+	if resp != nil {
+		r.AccessToken = types.StringPointerValue(resp.AccessToken)
+		if resp.AdvancedMfa == nil {
+			r.AdvancedMfa = nil
+		} else {
+			r.AdvancedMfa = &tfTypes.PortalConfigV3AdvancedMfa{}
+			r.AdvancedMfa.Enabled = types.BoolPointerValue(resp.AdvancedMfa.Enabled)
+		}
+		if resp.AllowedFileExtensions == nil {
+			r.AllowedFileExtensions = nil
+		} else {
+			r.AllowedFileExtensions = &tfTypes.AllowedFileExtensions{}
+			r.AllowedFileExtensions.Archive = make([]types.String, 0, len(resp.AllowedFileExtensions.Archive))
+			for _, v := range resp.AllowedFileExtensions.Archive {
+				r.AllowedFileExtensions.Archive = append(r.AllowedFileExtensions.Archive, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.AudioVideo = make([]types.String, 0, len(resp.AllowedFileExtensions.AudioVideo))
+			for _, v := range resp.AllowedFileExtensions.AudioVideo {
+				r.AllowedFileExtensions.AudioVideo = append(r.AllowedFileExtensions.AudioVideo, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Cad = make([]types.String, 0, len(resp.AllowedFileExtensions.Cad))
+			for _, v := range resp.AllowedFileExtensions.Cad {
+				r.AllowedFileExtensions.Cad = append(r.AllowedFileExtensions.Cad, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Calendar = make([]types.String, 0, len(resp.AllowedFileExtensions.Calendar))
+			for _, v := range resp.AllowedFileExtensions.Calendar {
+				r.AllowedFileExtensions.Calendar = append(r.AllowedFileExtensions.Calendar, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Document = make([]types.String, 0, len(resp.AllowedFileExtensions.Document))
+			for _, v := range resp.AllowedFileExtensions.Document {
+				r.AllowedFileExtensions.Document = append(r.AllowedFileExtensions.Document, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Email = make([]types.String, 0, len(resp.AllowedFileExtensions.Email))
+			for _, v := range resp.AllowedFileExtensions.Email {
+				r.AllowedFileExtensions.Email = append(r.AllowedFileExtensions.Email, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Image = make([]types.String, 0, len(resp.AllowedFileExtensions.Image))
+			for _, v := range resp.AllowedFileExtensions.Image {
+				r.AllowedFileExtensions.Image = append(r.AllowedFileExtensions.Image, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Other = make([]types.String, 0, len(resp.AllowedFileExtensions.Other))
+			for _, v := range resp.AllowedFileExtensions.Other {
+				r.AllowedFileExtensions.Other = append(r.AllowedFileExtensions.Other, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Presentation = make([]types.String, 0, len(resp.AllowedFileExtensions.Presentation))
+			for _, v := range resp.AllowedFileExtensions.Presentation {
+				r.AllowedFileExtensions.Presentation = append(r.AllowedFileExtensions.Presentation, types.StringValue(v))
+			}
+			r.AllowedFileExtensions.Spreadsheet = make([]types.String, 0, len(resp.AllowedFileExtensions.Spreadsheet))
+			for _, v := range resp.AllowedFileExtensions.Spreadsheet {
+				r.AllowedFileExtensions.Spreadsheet = append(r.AllowedFileExtensions.Spreadsheet, types.StringValue(v))
+			}
+		}
+		if resp.ApprovalStateAttributes == nil {
+			r.ApprovalStateAttributes = jsontypes.NewNormalizedNull()
+		} else {
+			approvalStateAttributesResult, _ := json.Marshal(resp.ApprovalStateAttributes)
+			r.ApprovalStateAttributes = jsontypes.NewNormalizedValue(string(approvalStateAttributesResult))
+		}
+		if resp.AuthSettings == nil {
+			r.AuthSettings = nil
+		} else {
+			r.AuthSettings = &tfTypes.PortalConfigV3AuthSettings{}
+			if resp.AuthSettings.EntryPoint != nil {
+				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
+			} else {
+				r.AuthSettings.EntryPoint = types.StringNull()
+			}
+			if resp.AuthSettings.PasswordlessLogin == nil {
+				r.AuthSettings.PasswordlessLogin = nil
+			} else {
+				r.AuthSettings.PasswordlessLogin = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
+			}
+			r.AuthSettings.PreferredSsoProviders = make([]types.String, 0, len(resp.AuthSettings.PreferredSsoProviders))
+			for _, v := range resp.AuthSettings.PreferredSsoProviders {
+				r.AuthSettings.PreferredSsoProviders = append(r.AuthSettings.PreferredSsoProviders, types.StringValue(v))
+			}
+		}
+		if resp.CognitoDetails == nil {
+			r.CognitoDetails = nil
+		} else {
+			r.CognitoDetails = &tfTypes.PortalConfigV3CognitoDetails{}
+			r.CognitoDetails.CognitoUserPoolArn = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolArn)
+			r.CognitoDetails.CognitoUserPoolClientID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolClientID)
+			r.CognitoDetails.CognitoUserPoolID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolID)
+			if resp.CognitoDetails.PasswordPolicy == nil {
+				r.CognitoDetails.PasswordPolicy = nil
+			} else {
+				r.CognitoDetails.PasswordPolicy = &tfTypes.PortalConfigV3PasswordPolicy{}
+				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
+				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
+				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
+				r.CognitoDetails.PasswordPolicy.RequireSymbols = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireSymbols)
+				r.CognitoDetails.PasswordPolicy.RequireUppercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireUppercase)
+			}
+		}
+		r.Config = types.StringPointerValue(resp.Config)
+		r.ContactIdentifiers = make([]types.String, 0, len(resp.ContactIdentifiers))
+		for _, v := range resp.ContactIdentifiers {
+			r.ContactIdentifiers = append(r.ContactIdentifiers, types.StringValue(v))
+		}
+		if resp.ContractIdentifiers == nil {
+			r.ContractIdentifiers = jsontypes.NewNormalizedNull()
+		} else {
+			contractIdentifiersResult, _ := json.Marshal(resp.ContractIdentifiers)
+			r.ContractIdentifiers = jsontypes.NewNormalizedValue(string(contractIdentifiersResult))
+		}
+		if resp.ContractSelectorConfig == nil {
+			r.ContractSelectorConfig = nil
+		} else {
+			r.ContractSelectorConfig = &tfTypes.PortalConfigV3ContractSelectorConfig{}
+			r.ContractSelectorConfig.ShowInactive = types.BoolPointerValue(resp.ContractSelectorConfig.ShowInactive)
+			r.ContractSelectorConfig.TitlePath = types.StringPointerValue(resp.ContractSelectorConfig.TitlePath)
+		}
+		if resp.DefaultUserToNotify == nil {
+			r.DefaultUserToNotify = nil
+		} else {
+			r.DefaultUserToNotify = &tfTypes.DefaultUserToNotify{}
+			r.DefaultUserToNotify.OnPendingUser = []tfTypes.AdminUser{}
+
+			for _, onPendingUserItem := range resp.DefaultUserToNotify.OnPendingUser {
+				var onPendingUser tfTypes.AdminUser
+
+				if onPendingUserItem.AdditionalProperties == nil {
+					onPendingUser.AdditionalProperties = jsontypes.NewNormalizedNull()
+				} else {
+					additionalPropertiesResult, _ := json.Marshal(onPendingUserItem.AdditionalProperties)
+					onPendingUser.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
+				}
+				onPendingUser.DisplayName = types.StringPointerValue(onPendingUserItem.DisplayName)
+				onPendingUser.Email = types.StringPointerValue(onPendingUserItem.Email)
+				if onPendingUserItem.ImageURI == nil {
+					onPendingUser.ImageURI = nil
+				} else {
+					onPendingUser.ImageURI = &tfTypes.ImageURI{}
+					onPendingUser.ImageURI.Key = types.StringPointerValue(onPendingUserItem.ImageURI.Key)
+					onPendingUser.ImageURI.Original = types.StringPointerValue(onPendingUserItem.ImageURI.Original)
+					onPendingUser.ImageURI.Thumbnail32 = types.StringPointerValue(onPendingUserItem.ImageURI.Thumbnail32)
+					onPendingUser.ImageURI.Thumbnail64 = types.StringPointerValue(onPendingUserItem.ImageURI.Thumbnail64)
+				}
+				onPendingUser.OrgID = types.StringPointerValue(onPendingUserItem.OrgID)
+				onPendingUser.Phone = types.StringPointerValue(onPendingUserItem.Phone)
+				onPendingUser.Type = types.StringPointerValue(onPendingUserItem.Type)
+				onPendingUser.UserID = types.StringPointerValue(onPendingUserItem.UserID)
+
+				r.DefaultUserToNotify.OnPendingUser = append(r.DefaultUserToNotify.OnPendingUser, onPendingUser)
+			}
+		}
+		r.DesignID = types.StringPointerValue(resp.DesignID)
+		r.Domain = types.StringPointerValue(resp.Domain)
+		if resp.EmailTemplates == nil {
+			r.EmailTemplates = nil
+		} else {
+			r.EmailTemplates = &tfTypes.EmailTemplates{}
+			r.EmailTemplates.AdvancedAuth = types.StringPointerValue(resp.EmailTemplates.AdvancedAuth)
+			r.EmailTemplates.AdvancedMFA = types.StringPointerValue(resp.EmailTemplates.AdvancedMFA)
+			r.EmailTemplates.ConfirmAccount = types.StringPointerValue(resp.EmailTemplates.ConfirmAccount)
+			r.EmailTemplates.ConfirmEmailUpdate = types.StringPointerValue(resp.EmailTemplates.ConfirmEmailUpdate)
+			r.EmailTemplates.ForgotPassword = types.StringPointerValue(resp.EmailTemplates.ForgotPassword)
+			r.EmailTemplates.Invitation = types.StringPointerValue(resp.EmailTemplates.Invitation)
+			r.EmailTemplates.JourneyLoginOTP = types.StringPointerValue(resp.EmailTemplates.JourneyLoginOTP)
+			r.EmailTemplates.JourneySignInOneTimePassword = types.StringPointerValue(resp.EmailTemplates.JourneySignInOneTimePassword)
+			r.EmailTemplates.JourneySignUp = types.StringPointerValue(resp.EmailTemplates.JourneySignUp)
+			r.EmailTemplates.OnDocUpload = types.StringPointerValue(resp.EmailTemplates.OnDocUpload)
+			r.EmailTemplates.OnMapAPendingUser = types.StringPointerValue(resp.EmailTemplates.OnMapAPendingUser)
+			r.EmailTemplates.OnNewQuote = types.StringPointerValue(resp.EmailTemplates.OnNewQuote)
+			r.EmailTemplates.OnWorkflowStepAssigned = types.StringPointerValue(resp.EmailTemplates.OnWorkflowStepAssigned)
+			r.EmailTemplates.VerifyCodeToSetPassword = types.StringPointerValue(resp.EmailTemplates.VerifyCodeToSetPassword)
+		}
+		r.Enabled = types.BoolPointerValue(resp.Enabled)
+		r.EntityActions = []tfTypes.EntityActions{}
+
+		for _, entityActionsItem := range resp.EntityActions {
+			var entityActions tfTypes.EntityActions
+
+			if entityActionsItem.ActionLabel == nil {
+				entityActions.ActionLabel = nil
+			} else {
+				entityActions.ActionLabel = &tfTypes.PortalConfigV3ActionLabel{}
+				entityActions.ActionLabel.De = types.StringPointerValue(entityActionsItem.ActionLabel.De)
+				entityActions.ActionLabel.En = types.StringPointerValue(entityActionsItem.ActionLabel.En)
+			}
+			entityActions.JourneyID = types.StringPointerValue(entityActionsItem.JourneyID)
+			if entityActionsItem.Slug != nil {
+				entityActions.Slug = types.StringValue(string(*entityActionsItem.Slug))
+			} else {
+				entityActions.Slug = types.StringNull()
+			}
+
+			r.EntityActions = append(r.EntityActions, entityActions)
+		}
+		if resp.EntityEditRules == nil {
+			r.EntityEditRules = jsontypes.NewNormalizedNull()
+		} else {
+			entityEditRulesResult, _ := json.Marshal(resp.EntityEditRules)
+			r.EntityEditRules = jsontypes.NewNormalizedValue(string(entityEditRulesResult))
+		}
+		if resp.EntityIdentifiers == nil {
+			r.EntityIdentifiers = nil
+		} else {
+			r.EntityIdentifiers = &tfTypes.PortalConfigV3EntityIdentifiers{}
+			if resp.EntityIdentifiers.Type == nil {
+				r.EntityIdentifiers.Type = nil
+			} else {
+				r.EntityIdentifiers.Type = &tfTypes.PortalConfigV3Type{}
+				r.EntityIdentifiers.Type.Attributes = make([]types.String, 0, len(resp.EntityIdentifiers.Type.Attributes))
+				for _, v := range resp.EntityIdentifiers.Type.Attributes {
+					r.EntityIdentifiers.Type.Attributes = append(r.EntityIdentifiers.Type.Attributes, types.StringValue(v))
+				}
+				r.EntityIdentifiers.Type.IsEnabled = types.BoolPointerValue(resp.EntityIdentifiers.Type.IsEnabled)
+			}
+		}
+		if len(resp.ExtensionHooks) > 0 {
+			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookConfig, len(resp.ExtensionHooks))
+			for extensionHookConfigKey, extensionHookConfigValue := range resp.ExtensionHooks {
+				var extensionHookConfigResult tfTypes.ExtensionHookConfig
+				extensionHookConfigResult.AppID = types.StringPointerValue(extensionHookConfigValue.AppID)
+				extensionHookConfigResult.HookID = types.StringPointerValue(extensionHookConfigValue.HookID)
+
+				r.ExtensionHooks[extensionHookConfigKey] = extensionHookConfigResult
+			}
+		}
+		r.Extensions = []tfTypes.ExtensionConfig{}
+
+		for _, extensionsItem := range resp.Extensions {
+			var extensions tfTypes.ExtensionConfig
+
+			extensions.ID = types.StringValue(extensionsItem.ID)
+			if len(extensionsItem.Options) > 0 {
+				extensions.Options = make(map[string]types.String, len(extensionsItem.Options))
+				for key, value := range extensionsItem.Options {
+					extensions.Options[key] = types.StringValue(value)
+				}
+			}
+			if extensionsItem.Status != nil {
+				extensions.Status = types.StringValue(string(*extensionsItem.Status))
+			} else {
+				extensions.Status = types.StringNull()
+			}
+
+			r.Extensions = append(r.Extensions, extensions)
+		}
+		if resp.FeatureFlags == nil {
+			r.FeatureFlags = jsontypes.NewNormalizedNull()
+		} else {
+			featureFlagsResult, _ := json.Marshal(resp.FeatureFlags)
+			r.FeatureFlags = jsontypes.NewNormalizedValue(string(featureFlagsResult))
+		}
+		if resp.FeatureSettings == nil {
+			r.FeatureSettings = nil
+		} else {
+			r.FeatureSettings = &tfTypes.PortalConfigV3FeatureSettings{}
+			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
+			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
+			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
+			r.FeatureSettings.StartPage = types.BoolPointerValue(resp.FeatureSettings.StartPage)
+		}
+		if resp.Grants == nil {
+			r.Grants = jsontypes.NewNormalizedNull()
+		} else {
+			grantsResult, _ := json.Marshal(resp.Grants)
+			r.Grants = jsontypes.NewNormalizedValue(string(grantsResult))
+		}
+		if resp.IdentityProviders == nil {
+			r.IdentityProviders = jsontypes.NewNormalizedNull()
+		} else {
+			identityProvidersResult, _ := json.Marshal(resp.IdentityProviders)
+			r.IdentityProviders = jsontypes.NewNormalizedValue(string(identityProvidersResult))
+		}
+		if resp.Images == nil {
+			r.Images = nil
+		} else {
+			r.Images = &tfTypes.PortalConfigV3Images{}
+			r.Images.OrderLeftTeaser = types.StringPointerValue(resp.Images.OrderLeftTeaser)
+			r.Images.OrderRightTeaser = types.StringPointerValue(resp.Images.OrderRightTeaser)
+			r.Images.WelcomeBanner = types.StringPointerValue(resp.Images.WelcomeBanner)
+		}
+		r.InactiveContractCutoffYears = types.Float64PointerValue(resp.InactiveContractCutoffYears)
+		r.IsDummy = types.BoolPointerValue(resp.IsDummy)
+		r.IsEpilotDomain = types.BoolPointerValue(resp.IsEpilotDomain)
+		r.MeterReadingGracePeriod = types.Float64PointerValue(resp.MeterReadingGracePeriod)
+		r.Name = types.StringPointerValue(resp.Name)
+		if resp.OrgSettings == nil {
+			r.OrgSettings = nil
+		} else {
+			r.OrgSettings = &tfTypes.PortalConfigV3OrgSettings{}
+			if resp.OrgSettings.Canary == nil {
+				r.OrgSettings.Canary = nil
+			} else {
+				r.OrgSettings.Canary = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.OrgSettings.Canary.Enabled = types.BoolPointerValue(resp.OrgSettings.Canary.Enabled)
+			}
+			if resp.OrgSettings.Notracking == nil {
+				r.OrgSettings.Notracking = nil
+			} else {
+				r.OrgSettings.Notracking = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.OrgSettings.Notracking.Enabled = types.BoolPointerValue(resp.OrgSettings.Notracking.Enabled)
+			}
+		}
+		r.OrganizationID = types.StringPointerValue(resp.OrganizationID)
+		if resp.Origin != nil {
+			r.Origin = types.StringValue(string(*resp.Origin))
+		} else {
+			r.Origin = types.StringNull()
+		}
+		if resp.Pages == nil {
+			r.Pages = jsontypes.NewNormalizedNull()
+		} else {
+			pagesResult, _ := json.Marshal(resp.Pages)
+			r.Pages = jsontypes.NewNormalizedValue(string(pagesResult))
+		}
+		r.PortalID = types.StringPointerValue(resp.PortalID)
+		r.PreventSearchEngineIndexing = types.BoolPointerValue(resp.PreventSearchEngineIndexing)
+		if resp.RegistrationIdentifiers == nil {
+			r.RegistrationIdentifiers = jsontypes.NewNormalizedNull()
+		} else {
+			registrationIdentifiersResult, _ := json.Marshal(resp.RegistrationIdentifiers)
+			r.RegistrationIdentifiers = jsontypes.NewNormalizedValue(string(registrationIdentifiersResult))
+		}
+		if resp.SelfRegistrationSetting != nil {
+			r.SelfRegistrationSetting = types.StringValue(string(*resp.SelfRegistrationSetting))
+		} else {
+			r.SelfRegistrationSetting = types.StringNull()
+		}
+		r.TriggeredJourneys = []tfTypes.PortalConfigV3TriggeredJourneys{}
+
+		for _, triggeredJourneysItem := range resp.TriggeredJourneys {
+			var triggeredJourneys tfTypes.PortalConfigV3TriggeredJourneys
+
+			triggeredJourneys.JourneyID = types.StringPointerValue(triggeredJourneysItem.JourneyID)
+			if triggeredJourneysItem.TriggerName != nil {
+				triggeredJourneys.TriggerName = types.StringValue(string(*triggeredJourneysItem.TriggerName))
+			} else {
+				triggeredJourneys.TriggerName = types.StringNull()
+			}
+
+			r.TriggeredJourneys = append(r.TriggeredJourneys, triggeredJourneys)
+		}
+	}
+
+	return diags
+}
+
+func (r *PortalConfigResourceModel) ToOperationsDeletePortalConfigRequest(ctx context.Context) (*operations.DeletePortalConfigRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var portalID string
+	portalID = r.PortalID.ValueString()
+
+	out := operations.DeletePortalConfigRequest{
+		PortalID: portalID,
+	}
+
+	return &out, diags
+}
+
+func (r *PortalConfigResourceModel) ToOperationsGetPortalConfigV3Request(ctx context.Context) (*operations.GetPortalConfigV3Request, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	var portalID string
+	portalID = r.PortalID.ValueString()
+
+	out := operations.GetPortalConfigV3Request{
+		PortalID: portalID,
+	}
+
+	return &out, diags
+}
+
+func (r *PortalConfigResourceModel) ToOperationsPutPortalConfigRequest(ctx context.Context) (*operations.PutPortalConfigRequest, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	portalConfigV3, portalConfigV3Diags := r.ToSharedPortalConfigV3(ctx)
+	diags.Append(portalConfigV3Diags...)
+
+	if diags.HasError() {
+		return nil, diags
+	}
+
+	var portalID string
+	portalID = r.PortalID.ValueString()
+
+	out := operations.PutPortalConfigRequest{
+		PortalConfigV3: *portalConfigV3,
+		PortalID:       portalID,
+	}
+
+	return &out, diags
+}
+
+func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) (*shared.PortalConfigV3, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
 	accessToken := new(string)
 	if !r.AccessToken.IsUnknown() && !r.AccessToken.IsNull() {
 		*accessToken = r.AccessToken.ValueString()
 	} else {
 		accessToken = nil
 	}
-	var advancedMfa *shared.UpsertPortalConfigV3AdvancedMfa
+	var advancedMfa *shared.PortalConfigV3AdvancedMfa
 	if r.AdvancedMfa != nil {
 		enabled := new(bool)
 		if !r.AdvancedMfa.Enabled.IsUnknown() && !r.AdvancedMfa.Enabled.IsNull() {
@@ -26,49 +424,49 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			enabled = nil
 		}
-		advancedMfa = &shared.UpsertPortalConfigV3AdvancedMfa{
+		advancedMfa = &shared.PortalConfigV3AdvancedMfa{
 			Enabled: enabled,
 		}
 	}
 	var allowedFileExtensions *shared.AllowedFileExtensions
 	if r.AllowedFileExtensions != nil {
-		var archive []string = []string{}
+		archive := make([]string, 0, len(r.AllowedFileExtensions.Archive))
 		for _, archiveItem := range r.AllowedFileExtensions.Archive {
 			archive = append(archive, archiveItem.ValueString())
 		}
-		var audioVideo []string = []string{}
+		audioVideo := make([]string, 0, len(r.AllowedFileExtensions.AudioVideo))
 		for _, audioVideoItem := range r.AllowedFileExtensions.AudioVideo {
 			audioVideo = append(audioVideo, audioVideoItem.ValueString())
 		}
-		var cad []string = []string{}
+		cad := make([]string, 0, len(r.AllowedFileExtensions.Cad))
 		for _, cadItem := range r.AllowedFileExtensions.Cad {
 			cad = append(cad, cadItem.ValueString())
 		}
-		var calendar []string = []string{}
+		calendar := make([]string, 0, len(r.AllowedFileExtensions.Calendar))
 		for _, calendarItem := range r.AllowedFileExtensions.Calendar {
 			calendar = append(calendar, calendarItem.ValueString())
 		}
-		var document []string = []string{}
+		document := make([]string, 0, len(r.AllowedFileExtensions.Document))
 		for _, documentItem := range r.AllowedFileExtensions.Document {
 			document = append(document, documentItem.ValueString())
 		}
-		var email []string = []string{}
+		email := make([]string, 0, len(r.AllowedFileExtensions.Email))
 		for _, emailItem := range r.AllowedFileExtensions.Email {
 			email = append(email, emailItem.ValueString())
 		}
-		var image []string = []string{}
+		image := make([]string, 0, len(r.AllowedFileExtensions.Image))
 		for _, imageItem := range r.AllowedFileExtensions.Image {
 			image = append(image, imageItem.ValueString())
 		}
-		var other []string = []string{}
+		other := make([]string, 0, len(r.AllowedFileExtensions.Other))
 		for _, otherItem := range r.AllowedFileExtensions.Other {
 			other = append(other, otherItem.ValueString())
 		}
-		var presentation []string = []string{}
+		presentation := make([]string, 0, len(r.AllowedFileExtensions.Presentation))
 		for _, presentationItem := range r.AllowedFileExtensions.Presentation {
 			presentation = append(presentation, presentationItem.ValueString())
 		}
-		var spreadsheet []string = []string{}
+		spreadsheet := make([]string, 0, len(r.AllowedFileExtensions.Spreadsheet))
 		for _, spreadsheetItem := range r.AllowedFileExtensions.Spreadsheet {
 			spreadsheet = append(spreadsheet, spreadsheetItem.ValueString())
 		}
@@ -89,15 +487,15 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
 		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
 	}
-	var authSettings *shared.UpsertPortalConfigV3AuthSettings
+	var authSettings *shared.PortalConfigV3AuthSettings
 	if r.AuthSettings != nil {
-		entryPoint := new(shared.UpsertPortalConfigV3EntryPoint)
+		entryPoint := new(shared.PortalConfigV3EntryPoint)
 		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
-			*entryPoint = shared.UpsertPortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
+			*entryPoint = shared.PortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
 		} else {
 			entryPoint = nil
 		}
-		var passwordlessLogin *shared.UpsertPortalConfigV3PasswordlessLogin
+		var passwordlessLogin *shared.PortalConfigV3PasswordlessLogin
 		if r.AuthSettings.PasswordlessLogin != nil {
 			enabled1 := new(bool)
 			if !r.AuthSettings.PasswordlessLogin.Enabled.IsUnknown() && !r.AuthSettings.PasswordlessLogin.Enabled.IsNull() {
@@ -105,21 +503,21 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 			} else {
 				enabled1 = nil
 			}
-			passwordlessLogin = &shared.UpsertPortalConfigV3PasswordlessLogin{
+			passwordlessLogin = &shared.PortalConfigV3PasswordlessLogin{
 				Enabled: enabled1,
 			}
 		}
-		var preferredSsoProviders []string = []string{}
+		preferredSsoProviders := make([]string, 0, len(r.AuthSettings.PreferredSsoProviders))
 		for _, preferredSsoProvidersItem := range r.AuthSettings.PreferredSsoProviders {
 			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
 		}
-		authSettings = &shared.UpsertPortalConfigV3AuthSettings{
+		authSettings = &shared.PortalConfigV3AuthSettings{
 			EntryPoint:            entryPoint,
 			PasswordlessLogin:     passwordlessLogin,
 			PreferredSsoProviders: preferredSsoProviders,
 		}
 	}
-	var cognitoDetails *shared.UpsertPortalConfigV3CognitoDetails
+	var cognitoDetails *shared.PortalConfigV3CognitoDetails
 	if r.CognitoDetails != nil {
 		cognitoUserPoolArn := new(string)
 		if !r.CognitoDetails.CognitoUserPoolArn.IsUnknown() && !r.CognitoDetails.CognitoUserPoolArn.IsNull() {
@@ -139,7 +537,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			cognitoUserPoolID = nil
 		}
-		var passwordPolicy *shared.UpsertPortalConfigV3PasswordPolicy
+		var passwordPolicy *shared.PortalConfigV3PasswordPolicy
 		if r.CognitoDetails.PasswordPolicy != nil {
 			minimumLength := new(int64)
 			if !r.CognitoDetails.PasswordPolicy.MinimumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MinimumLength.IsNull() {
@@ -171,7 +569,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 			} else {
 				requireUppercase = nil
 			}
-			passwordPolicy = &shared.UpsertPortalConfigV3PasswordPolicy{
+			passwordPolicy = &shared.PortalConfigV3PasswordPolicy{
 				MinimumLength:    minimumLength,
 				RequireLowercase: requireLowercase,
 				RequireNumbers:   requireNumbers,
@@ -179,7 +577,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 				RequireUppercase: requireUppercase,
 			}
 		}
-		cognitoDetails = &shared.UpsertPortalConfigV3CognitoDetails{
+		cognitoDetails = &shared.PortalConfigV3CognitoDetails{
 			CognitoUserPoolArn:      cognitoUserPoolArn,
 			CognitoUserPoolClientID: cognitoUserPoolClientID,
 			CognitoUserPoolID:       cognitoUserPoolID,
@@ -192,30 +590,15 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 	} else {
 		config = nil
 	}
-	var contactIdentifiers []string = []string{}
+	contactIdentifiers := make([]string, 0, len(r.ContactIdentifiers))
 	for _, contactIdentifiersItem := range r.ContactIdentifiers {
 		contactIdentifiers = append(contactIdentifiers, contactIdentifiersItem.ValueString())
 	}
-	var contractIdentifiers []shared.ContractIdentifier = []shared.ContractIdentifier{}
-	for _, contractIdentifiersItem := range r.ContractIdentifiers {
-		name := new(string)
-		if !contractIdentifiersItem.Name.IsUnknown() && !contractIdentifiersItem.Name.IsNull() {
-			*name = contractIdentifiersItem.Name.ValueString()
-		} else {
-			name = nil
-		}
-		schema := new(shared.EntitySlug)
-		if !contractIdentifiersItem.Schema.IsUnknown() && !contractIdentifiersItem.Schema.IsNull() {
-			*schema = shared.EntitySlug(contractIdentifiersItem.Schema.ValueString())
-		} else {
-			schema = nil
-		}
-		contractIdentifiers = append(contractIdentifiers, shared.ContractIdentifier{
-			Name:   name,
-			Schema: schema,
-		})
+	var contractIdentifiers interface{}
+	if !r.ContractIdentifiers.IsUnknown() && !r.ContractIdentifiers.IsNull() {
+		_ = json.Unmarshal([]byte(r.ContractIdentifiers.ValueString()), &contractIdentifiers)
 	}
-	var contractSelectorConfig *shared.UpsertPortalConfigV3ContractSelectorConfig
+	var contractSelectorConfig *shared.PortalConfigV3ContractSelectorConfig
 	if r.ContractSelectorConfig != nil {
 		showInactive := new(bool)
 		if !r.ContractSelectorConfig.ShowInactive.IsUnknown() && !r.ContractSelectorConfig.ShowInactive.IsNull() {
@@ -229,14 +612,14 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			titlePath = nil
 		}
-		contractSelectorConfig = &shared.UpsertPortalConfigV3ContractSelectorConfig{
+		contractSelectorConfig = &shared.PortalConfigV3ContractSelectorConfig{
 			ShowInactive: showInactive,
 			TitlePath:    titlePath,
 		}
 	}
-	var defaultUserToNotify *shared.UpsertPortalConfigV3DefaultUserToNotify
+	var defaultUserToNotify *shared.DefaultUserToNotify
 	if r.DefaultUserToNotify != nil {
-		var onPendingUser []shared.AdminUser = []shared.AdminUser{}
+		onPendingUser := make([]shared.AdminUser, 0, len(r.DefaultUserToNotify.OnPendingUser))
 		for _, onPendingUserItem := range r.DefaultUserToNotify.OnPendingUser {
 			var additionalProperties interface{}
 			if !onPendingUserItem.AdditionalProperties.IsUnknown() && !onPendingUserItem.AdditionalProperties.IsNull() {
@@ -322,7 +705,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 				UserID:               userID,
 			})
 		}
-		defaultUserToNotify = &shared.UpsertPortalConfigV3DefaultUserToNotify{
+		defaultUserToNotify = &shared.DefaultUserToNotify{
 			OnPendingUser: onPendingUser,
 		}
 	}
@@ -447,9 +830,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 	} else {
 		enabled2 = nil
 	}
-	var entityActions []shared.UpsertPortalConfigV3EntityActions = []shared.UpsertPortalConfigV3EntityActions{}
+	entityActions := make([]shared.EntityActions, 0, len(r.EntityActions))
 	for _, entityActionsItem := range r.EntityActions {
-		var actionLabel *shared.UpsertPortalConfigV3ActionLabel
+		var actionLabel *shared.PortalConfigV3ActionLabel
 		if entityActionsItem.ActionLabel != nil {
 			de := new(string)
 			if !entityActionsItem.ActionLabel.De.IsUnknown() && !entityActionsItem.ActionLabel.De.IsNull() {
@@ -463,7 +846,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 			} else {
 				en = nil
 			}
-			actionLabel = &shared.UpsertPortalConfigV3ActionLabel{
+			actionLabel = &shared.PortalConfigV3ActionLabel{
 				De: de,
 				En: en,
 			}
@@ -480,92 +863,21 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			slug = nil
 		}
-		entityActions = append(entityActions, shared.UpsertPortalConfigV3EntityActions{
+		entityActions = append(entityActions, shared.EntityActions{
 			ActionLabel: actionLabel,
 			JourneyID:   journeyID,
 			Slug:        slug,
 		})
 	}
-	var entityEditRules []shared.UpsertPortalConfigV3EntityEditRules = []shared.UpsertPortalConfigV3EntityEditRules{}
-	for _, entityEditRulesItem := range r.EntityEditRules {
-		allowedDecrement := new(string)
-		if !entityEditRulesItem.AllowedDecrement.IsUnknown() && !entityEditRulesItem.AllowedDecrement.IsNull() {
-			*allowedDecrement = entityEditRulesItem.AllowedDecrement.ValueString()
-		} else {
-			allowedDecrement = nil
-		}
-		allowedIncrement := new(string)
-		if !entityEditRulesItem.AllowedIncrement.IsUnknown() && !entityEditRulesItem.AllowedIncrement.IsNull() {
-			*allowedIncrement = entityEditRulesItem.AllowedIncrement.ValueString()
-		} else {
-			allowedIncrement = nil
-		}
-		attribute := new(string)
-		if !entityEditRulesItem.Attribute.IsUnknown() && !entityEditRulesItem.Attribute.IsNull() {
-			*attribute = entityEditRulesItem.Attribute.ValueString()
-		} else {
-			attribute = nil
-		}
-		cadencePeriod := new(float64)
-		if !entityEditRulesItem.CadencePeriod.IsUnknown() && !entityEditRulesItem.CadencePeriod.IsNull() {
-			*cadencePeriod, _ = entityEditRulesItem.CadencePeriod.ValueBigFloat().Float64()
-		} else {
-			cadencePeriod = nil
-		}
-		cadencePeriodType := new(shared.UpsertPortalConfigV3CadencePeriodType)
-		if !entityEditRulesItem.CadencePeriodType.IsUnknown() && !entityEditRulesItem.CadencePeriodType.IsNull() {
-			*cadencePeriodType = shared.UpsertPortalConfigV3CadencePeriodType(entityEditRulesItem.CadencePeriodType.ValueString())
-		} else {
-			cadencePeriodType = nil
-		}
-		changesAllowed := new(int64)
-		if !entityEditRulesItem.ChangesAllowed.IsUnknown() && !entityEditRulesItem.ChangesAllowed.IsNull() {
-			*changesAllowed = entityEditRulesItem.ChangesAllowed.ValueInt64()
-		} else {
-			changesAllowed = nil
-		}
-		gracePeriod := new(int64)
-		if !entityEditRulesItem.GracePeriod.IsUnknown() && !entityEditRulesItem.GracePeriod.IsNull() {
-			*gracePeriod = entityEditRulesItem.GracePeriod.ValueInt64()
-		} else {
-			gracePeriod = nil
-		}
-		numberOfDaysBeforeRestriction := new(int64)
-		if !entityEditRulesItem.NumberOfDaysBeforeRestriction.IsUnknown() && !entityEditRulesItem.NumberOfDaysBeforeRestriction.IsNull() {
-			*numberOfDaysBeforeRestriction = entityEditRulesItem.NumberOfDaysBeforeRestriction.ValueInt64()
-		} else {
-			numberOfDaysBeforeRestriction = nil
-		}
-		ruleType := new(shared.UpsertPortalConfigV3RuleType)
-		if !entityEditRulesItem.RuleType.IsUnknown() && !entityEditRulesItem.RuleType.IsNull() {
-			*ruleType = shared.UpsertPortalConfigV3RuleType(entityEditRulesItem.RuleType.ValueString())
-		} else {
-			ruleType = nil
-		}
-		slug1 := new(shared.EntitySlug)
-		if !entityEditRulesItem.Slug.IsUnknown() && !entityEditRulesItem.Slug.IsNull() {
-			*slug1 = shared.EntitySlug(entityEditRulesItem.Slug.ValueString())
-		} else {
-			slug1 = nil
-		}
-		entityEditRules = append(entityEditRules, shared.UpsertPortalConfigV3EntityEditRules{
-			AllowedDecrement:              allowedDecrement,
-			AllowedIncrement:              allowedIncrement,
-			Attribute:                     attribute,
-			CadencePeriod:                 cadencePeriod,
-			CadencePeriodType:             cadencePeriodType,
-			ChangesAllowed:                changesAllowed,
-			GracePeriod:                   gracePeriod,
-			NumberOfDaysBeforeRestriction: numberOfDaysBeforeRestriction,
-			RuleType:                      ruleType,
-			Slug:                          slug1,
-		})
+	var entityEditRules interface{}
+	if !r.EntityEditRules.IsUnknown() && !r.EntityEditRules.IsNull() {
+		_ = json.Unmarshal([]byte(r.EntityEditRules.ValueString()), &entityEditRules)
 	}
-	var entityIdentifiers *shared.UpsertPortalConfigV3EntityIdentifiers
+	var entityIdentifiers *shared.PortalConfigV3EntityIdentifiers
 	if r.EntityIdentifiers != nil {
-		var typeVar1 *shared.UpsertPortalConfigV3Type
+		var typeVar1 *shared.PortalConfigV3Type
 		if r.EntityIdentifiers.Type != nil {
-			var attributes []string = []string{}
+			attributes := make([]string, 0, len(r.EntityIdentifiers.Type.Attributes))
 			for _, attributesItem := range r.EntityIdentifiers.Type.Attributes {
 				attributes = append(attributes, attributesItem.ValueString())
 			}
@@ -575,17 +887,18 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 			} else {
 				isEnabled = nil
 			}
-			typeVar1 = &shared.UpsertPortalConfigV3Type{
+			typeVar1 = &shared.PortalConfigV3Type{
 				Attributes: attributes,
 				IsEnabled:  isEnabled,
 			}
 		}
-		entityIdentifiers = &shared.UpsertPortalConfigV3EntityIdentifiers{
+		entityIdentifiers = &shared.PortalConfigV3EntityIdentifiers{
 			Type: typeVar1,
 		}
 	}
-	extensionHooks := make(map[string]shared.ExtensionHookConfig)
+	extensionHooks := make(map[string]*shared.ExtensionHookConfig)
 	for extensionHooksKey, extensionHooksValue := range r.ExtensionHooks {
+		var extensionHooksInst *shared.ExtensionHookConfig
 		appID := new(string)
 		if !extensionHooksValue.AppID.IsUnknown() && !extensionHooksValue.AppID.IsNull() {
 			*appID = extensionHooksValue.AppID.ValueString()
@@ -598,13 +911,13 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			hookID = nil
 		}
-		extensionHooksInst := shared.ExtensionHookConfig{
+		extensionHooksInst = &shared.ExtensionHookConfig{
 			AppID:  appID,
 			HookID: hookID,
 		}
 		extensionHooks[extensionHooksKey] = extensionHooksInst
 	}
-	var extensions []shared.ExtensionConfig = []shared.ExtensionConfig{}
+	extensions := make([]shared.ExtensionConfig, 0, len(r.Extensions))
 	for _, extensionsItem := range r.Extensions {
 		var id string
 		id = extensionsItem.ID.ValueString()
@@ -628,7 +941,11 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 			Status:  status,
 		})
 	}
-	var featureSettings *shared.UpsertPortalConfigV3FeatureSettings
+	var featureFlags interface{}
+	if !r.FeatureFlags.IsUnknown() && !r.FeatureFlags.IsNull() {
+		_ = json.Unmarshal([]byte(r.FeatureFlags.ValueString()), &featureFlags)
+	}
+	var featureSettings *shared.PortalConfigV3FeatureSettings
 	if r.FeatureSettings != nil {
 		billing := new(bool)
 		if !r.FeatureSettings.Billing.IsUnknown() && !r.FeatureSettings.Billing.IsNull() {
@@ -654,14 +971,22 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			startPage = nil
 		}
-		featureSettings = &shared.UpsertPortalConfigV3FeatureSettings{
+		featureSettings = &shared.PortalConfigV3FeatureSettings{
 			Billing:       billing,
 			ChangeDueDate: changeDueDate,
 			NewDesign:     newDesign,
 			StartPage:     startPage,
 		}
 	}
-	var images *shared.UpsertPortalConfigV3Images
+	var grants interface{}
+	if !r.Grants.IsUnknown() && !r.Grants.IsNull() {
+		_ = json.Unmarshal([]byte(r.Grants.ValueString()), &grants)
+	}
+	var identityProviders interface{}
+	if !r.IdentityProviders.IsUnknown() && !r.IdentityProviders.IsNull() {
+		_ = json.Unmarshal([]byte(r.IdentityProviders.ValueString()), &identityProviders)
+	}
+	var images *shared.PortalConfigV3Images
 	if r.Images != nil {
 		orderLeftTeaser := new(string)
 		if !r.Images.OrderLeftTeaser.IsUnknown() && !r.Images.OrderLeftTeaser.IsNull() {
@@ -681,7 +1006,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			welcomeBanner = nil
 		}
-		images = &shared.UpsertPortalConfigV3Images{
+		images = &shared.PortalConfigV3Images{
 			OrderLeftTeaser:  orderLeftTeaser,
 			OrderRightTeaser: orderRightTeaser,
 			WelcomeBanner:    welcomeBanner,
@@ -689,7 +1014,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 	}
 	inactiveContractCutoffYears := new(float64)
 	if !r.InactiveContractCutoffYears.IsUnknown() && !r.InactiveContractCutoffYears.IsNull() {
-		*inactiveContractCutoffYears, _ = r.InactiveContractCutoffYears.ValueBigFloat().Float64()
+		*inactiveContractCutoffYears = r.InactiveContractCutoffYears.ValueFloat64()
 	} else {
 		inactiveContractCutoffYears = nil
 	}
@@ -707,170 +1032,68 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 	}
 	meterReadingGracePeriod := new(float64)
 	if !r.MeterReadingGracePeriod.IsUnknown() && !r.MeterReadingGracePeriod.IsNull() {
-		*meterReadingGracePeriod, _ = r.MeterReadingGracePeriod.ValueBigFloat().Float64()
+		*meterReadingGracePeriod = r.MeterReadingGracePeriod.ValueFloat64()
 	} else {
 		meterReadingGracePeriod = nil
 	}
-	name1 := new(string)
+	name := new(string)
 	if !r.Name.IsUnknown() && !r.Name.IsNull() {
-		*name1 = r.Name.ValueString()
+		*name = r.Name.ValueString()
 	} else {
-		name1 = nil
+		name = nil
 	}
-	pages := make(map[string]shared.Page)
-	for pagesKey, pagesValue := range r.Pages {
-		var additionalProperties1 interface{}
-		if !pagesValue.AdditionalProperties.IsUnknown() && !pagesValue.AdditionalProperties.IsNull() {
-			_ = json.Unmarshal([]byte(pagesValue.AdditionalProperties.ValueString()), &additionalProperties1)
-		}
-		blocks := make(map[string]shared.Block)
-		for blocksKey, blocksValue := range pagesValue.Blocks {
-			var additionalProperties2 interface{}
-			if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
-				_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties2)
-			}
-			var id1 string
-			id1 = blocksValue.ID.ValueString()
-
-			var order float64
-			order, _ = blocksValue.Order.ValueBigFloat().Float64()
-
-			parentID := new(string)
-			if !blocksValue.ParentID.IsUnknown() && !blocksValue.ParentID.IsNull() {
-				*parentID = blocksValue.ParentID.ValueString()
+	var orgSettings *shared.PortalConfigV3OrgSettings
+	if r.OrgSettings != nil {
+		var canary *shared.PortalConfigV3Canary
+		if r.OrgSettings.Canary != nil {
+			enabled3 := new(bool)
+			if !r.OrgSettings.Canary.Enabled.IsUnknown() && !r.OrgSettings.Canary.Enabled.IsNull() {
+				*enabled3 = r.OrgSettings.Canary.Enabled.ValueBool()
 			} else {
-				parentID = nil
+				enabled3 = nil
 			}
-			var props *shared.BlockProps
-			if blocksValue.Props != nil {
-				var additionalProperties3 interface{}
-				if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
-					_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties3)
-				}
-				var content *shared.Content
-				if blocksValue.Props.Content != nil {
-					content = &shared.Content{}
-				}
-				var design *shared.Design
-				if blocksValue.Props.Design != nil {
-					design = &shared.Design{}
-				}
-				var visibility *shared.Visibility
-				if blocksValue.Props.Visibility != nil {
-					visibility = &shared.Visibility{}
-				}
-				props = &shared.BlockProps{
-					AdditionalProperties: additionalProperties3,
-					Content:              content,
-					Design:               design,
-					Visibility:           visibility,
-				}
+			canary = &shared.PortalConfigV3Canary{
+				Enabled: enabled3,
 			}
-			var typeVar2 string
-			typeVar2 = blocksValue.Type.ValueString()
-
-			blocksInst := shared.Block{
-				AdditionalProperties: additionalProperties2,
-				ID:                   id1,
-				Order:                order,
-				ParentID:             parentID,
-				Props:                props,
-				Type:                 typeVar2,
+		}
+		var notracking *shared.PortalConfigV3Notracking
+		if r.OrgSettings.Notracking != nil {
+			enabled4 := new(bool)
+			if !r.OrgSettings.Notracking.Enabled.IsUnknown() && !r.OrgSettings.Notracking.Enabled.IsNull() {
+				*enabled4 = r.OrgSettings.Notracking.Enabled.ValueBool()
+			} else {
+				enabled4 = nil
 			}
-			blocks[blocksKey] = blocksInst
+			notracking = &shared.PortalConfigV3Notracking{
+				Enabled: enabled4,
+			}
 		}
-		content1 := make(map[string]interface{})
-		for contentKey, contentValue := range pagesValue.Content {
-			var contentInst interface{}
-			_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
-			content1[contentKey] = contentInst
+		orgSettings = &shared.PortalConfigV3OrgSettings{
+			Canary:     canary,
+			Notracking: notracking,
 		}
-		design1 := make(map[string]interface{})
-		for designKey, designValue := range pagesValue.Design {
-			var designInst interface{}
-			_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
-			design1[designKey] = designInst
-		}
-		var id2 string
-		id2 = pagesValue.ID.ValueString()
-
-		isDeleted := new(bool)
-		if !pagesValue.IsDeleted.IsUnknown() && !pagesValue.IsDeleted.IsNull() {
-			*isDeleted = pagesValue.IsDeleted.ValueBool()
-		} else {
-			isDeleted = nil
-		}
-		isEntryRoute := new(bool)
-		if !pagesValue.IsEntryRoute.IsUnknown() && !pagesValue.IsEntryRoute.IsNull() {
-			*isEntryRoute = pagesValue.IsEntryRoute.ValueBool()
-		} else {
-			isEntryRoute = nil
-		}
-		isPublic := new(bool)
-		if !pagesValue.IsPublic.IsUnknown() && !pagesValue.IsPublic.IsNull() {
-			*isPublic = pagesValue.IsPublic.ValueBool()
-		} else {
-			isPublic = nil
-		}
-		isSystem := new(bool)
-		if !pagesValue.IsSystem.IsUnknown() && !pagesValue.IsSystem.IsNull() {
-			*isSystem = pagesValue.IsSystem.ValueBool()
-		} else {
-			isSystem = nil
-		}
-		lastModifiedAt := new(time.Time)
-		if !pagesValue.LastModifiedAt.IsUnknown() && !pagesValue.LastModifiedAt.IsNull() {
-			*lastModifiedAt, _ = time.Parse(time.RFC3339Nano, pagesValue.LastModifiedAt.ValueString())
-		} else {
-			lastModifiedAt = nil
-		}
-		var order1 float64
-		order1, _ = pagesValue.Order.ValueBigFloat().Float64()
-
-		parentId1 := new(string)
-		if !pagesValue.ParentID.IsUnknown() && !pagesValue.ParentID.IsNull() {
-			*parentId1 = pagesValue.ParentID.ValueString()
-		} else {
-			parentId1 = nil
-		}
-		path := new(string)
-		if !pagesValue.Path.IsUnknown() && !pagesValue.Path.IsNull() {
-			*path = pagesValue.Path.ValueString()
-		} else {
-			path = nil
-		}
-		var schema1 []shared.PageSchema = []shared.PageSchema{}
-		for _, schemaItem := range pagesValue.Schema {
-			schema1 = append(schema1, shared.PageSchema(schemaItem.ValueString()))
-		}
-		var slug2 string
-		slug2 = pagesValue.Slug.ValueString()
-
-		visibility1 := make(map[string]interface{})
-		for visibilityKey, visibilityValue := range pagesValue.Visibility {
-			var visibilityInst interface{}
-			_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
-			visibility1[visibilityKey] = visibilityInst
-		}
-		pagesInst := shared.Page{
-			AdditionalProperties: additionalProperties1,
-			Blocks:               blocks,
-			Content:              content1,
-			Design:               design1,
-			ID:                   id2,
-			IsDeleted:            isDeleted,
-			IsEntryRoute:         isEntryRoute,
-			IsPublic:             isPublic,
-			IsSystem:             isSystem,
-			LastModifiedAt:       lastModifiedAt,
-			Order:                order1,
-			ParentID:             parentId1,
-			Path:                 path,
-			Schema:               schema1,
-			Slug:                 slug2,
-			Visibility:           visibility1,
-		}
-		pages[pagesKey] = pagesInst
+	}
+	organizationID := new(string)
+	if !r.OrganizationID.IsUnknown() && !r.OrganizationID.IsNull() {
+		*organizationID = r.OrganizationID.ValueString()
+	} else {
+		organizationID = nil
+	}
+	origin := new(shared.Origin)
+	if !r.Origin.IsUnknown() && !r.Origin.IsNull() {
+		*origin = shared.Origin(r.Origin.ValueString())
+	} else {
+		origin = nil
+	}
+	var pages interface{}
+	if !r.Pages.IsUnknown() && !r.Pages.IsNull() {
+		_ = json.Unmarshal([]byte(r.Pages.ValueString()), &pages)
+	}
+	portalID := new(string)
+	if !r.PortalID.IsUnknown() && !r.PortalID.IsNull() {
+		*portalID = r.PortalID.ValueString()
+	} else {
+		portalID = nil
 	}
 	preventSearchEngineIndexing := new(bool)
 	if !r.PreventSearchEngineIndexing.IsUnknown() && !r.PreventSearchEngineIndexing.IsNull() {
@@ -878,32 +1101,17 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 	} else {
 		preventSearchEngineIndexing = nil
 	}
-	var registrationIdentifiers []shared.ContractIdentifier = []shared.ContractIdentifier{}
-	for _, registrationIdentifiersItem := range r.RegistrationIdentifiers {
-		name2 := new(string)
-		if !registrationIdentifiersItem.Name.IsUnknown() && !registrationIdentifiersItem.Name.IsNull() {
-			*name2 = registrationIdentifiersItem.Name.ValueString()
-		} else {
-			name2 = nil
-		}
-		schema2 := new(shared.EntitySlug)
-		if !registrationIdentifiersItem.Schema.IsUnknown() && !registrationIdentifiersItem.Schema.IsNull() {
-			*schema2 = shared.EntitySlug(registrationIdentifiersItem.Schema.ValueString())
-		} else {
-			schema2 = nil
-		}
-		registrationIdentifiers = append(registrationIdentifiers, shared.ContractIdentifier{
-			Name:   name2,
-			Schema: schema2,
-		})
+	var registrationIdentifiers interface{}
+	if !r.RegistrationIdentifiers.IsUnknown() && !r.RegistrationIdentifiers.IsNull() {
+		_ = json.Unmarshal([]byte(r.RegistrationIdentifiers.ValueString()), &registrationIdentifiers)
 	}
-	selfRegistrationSetting := new(shared.UpsertPortalConfigV3SelfRegistrationSetting)
+	selfRegistrationSetting := new(shared.PortalConfigV3SelfRegistrationSetting)
 	if !r.SelfRegistrationSetting.IsUnknown() && !r.SelfRegistrationSetting.IsNull() {
-		*selfRegistrationSetting = shared.UpsertPortalConfigV3SelfRegistrationSetting(r.SelfRegistrationSetting.ValueString())
+		*selfRegistrationSetting = shared.PortalConfigV3SelfRegistrationSetting(r.SelfRegistrationSetting.ValueString())
 	} else {
 		selfRegistrationSetting = nil
 	}
-	var triggeredJourneys []shared.UpsertPortalConfigV3TriggeredJourneys = []shared.UpsertPortalConfigV3TriggeredJourneys{}
+	triggeredJourneys := make([]shared.PortalConfigV3TriggeredJourneys, 0, len(r.TriggeredJourneys))
 	for _, triggeredJourneysItem := range r.TriggeredJourneys {
 		journeyId1 := new(string)
 		if !triggeredJourneysItem.JourneyID.IsUnknown() && !triggeredJourneysItem.JourneyID.IsNull() {
@@ -911,18 +1119,18 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		} else {
 			journeyId1 = nil
 		}
-		triggerName := new(shared.UpsertPortalConfigV3TriggerName)
+		triggerName := new(shared.PortalConfigV3TriggerName)
 		if !triggeredJourneysItem.TriggerName.IsUnknown() && !triggeredJourneysItem.TriggerName.IsNull() {
-			*triggerName = shared.UpsertPortalConfigV3TriggerName(triggeredJourneysItem.TriggerName.ValueString())
+			*triggerName = shared.PortalConfigV3TriggerName(triggeredJourneysItem.TriggerName.ValueString())
 		} else {
 			triggerName = nil
 		}
-		triggeredJourneys = append(triggeredJourneys, shared.UpsertPortalConfigV3TriggeredJourneys{
+		triggeredJourneys = append(triggeredJourneys, shared.PortalConfigV3TriggeredJourneys{
 			JourneyID:   journeyId1,
 			TriggerName: triggerName,
 		})
 	}
-	out := shared.UpsertPortalConfigV3{
+	out := shared.PortalConfigV3{
 		AccessToken:                 accessToken,
 		AdvancedMfa:                 advancedMfa,
 		AllowedFileExtensions:       allowedFileExtensions,
@@ -943,510 +1151,26 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3() *shared.Upser
 		EntityIdentifiers:           entityIdentifiers,
 		ExtensionHooks:              extensionHooks,
 		Extensions:                  extensions,
+		FeatureFlags:                featureFlags,
 		FeatureSettings:             featureSettings,
+		Grants:                      grants,
+		IdentityProviders:           identityProviders,
 		Images:                      images,
 		InactiveContractCutoffYears: inactiveContractCutoffYears,
 		IsDummy:                     isDummy,
 		IsEpilotDomain:              isEpilotDomain,
 		MeterReadingGracePeriod:     meterReadingGracePeriod,
-		Name:                        name1,
+		Name:                        name,
+		OrgSettings:                 orgSettings,
+		OrganizationID:              organizationID,
+		Origin:                      origin,
 		Pages:                       pages,
+		PortalID:                    portalID,
 		PreventSearchEngineIndexing: preventSearchEngineIndexing,
 		RegistrationIdentifiers:     registrationIdentifiers,
 		SelfRegistrationSetting:     selfRegistrationSetting,
 		TriggeredJourneys:           triggeredJourneys,
 	}
-	return &out
-}
 
-func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(resp *shared.PortalConfigV3) {
-	if resp != nil {
-		r.AccessToken = types.StringPointerValue(resp.AccessToken)
-		if resp.AdvancedMfa == nil {
-			r.AdvancedMfa = nil
-		} else {
-			r.AdvancedMfa = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
-			r.AdvancedMfa.Enabled = types.BoolPointerValue(resp.AdvancedMfa.Enabled)
-		}
-		if resp.AllowedFileExtensions == nil {
-			r.AllowedFileExtensions = nil
-		} else {
-			r.AllowedFileExtensions = &tfTypes.AllowedFileExtensions{}
-			r.AllowedFileExtensions.Archive = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Archive {
-				r.AllowedFileExtensions.Archive = append(r.AllowedFileExtensions.Archive, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.AudioVideo = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.AudioVideo {
-				r.AllowedFileExtensions.AudioVideo = append(r.AllowedFileExtensions.AudioVideo, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Cad = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Cad {
-				r.AllowedFileExtensions.Cad = append(r.AllowedFileExtensions.Cad, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Calendar = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Calendar {
-				r.AllowedFileExtensions.Calendar = append(r.AllowedFileExtensions.Calendar, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Document = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Document {
-				r.AllowedFileExtensions.Document = append(r.AllowedFileExtensions.Document, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Email = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Email {
-				r.AllowedFileExtensions.Email = append(r.AllowedFileExtensions.Email, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Image = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Image {
-				r.AllowedFileExtensions.Image = append(r.AllowedFileExtensions.Image, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Other = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Other {
-				r.AllowedFileExtensions.Other = append(r.AllowedFileExtensions.Other, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Presentation = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Presentation {
-				r.AllowedFileExtensions.Presentation = append(r.AllowedFileExtensions.Presentation, types.StringValue(v))
-			}
-			r.AllowedFileExtensions.Spreadsheet = []types.String{}
-			for _, v := range resp.AllowedFileExtensions.Spreadsheet {
-				r.AllowedFileExtensions.Spreadsheet = append(r.AllowedFileExtensions.Spreadsheet, types.StringValue(v))
-			}
-		}
-		if resp.ApprovalStateAttributes == nil {
-			r.ApprovalStateAttributes = types.StringNull()
-		} else {
-			approvalStateAttributesResult, _ := json.Marshal(resp.ApprovalStateAttributes)
-			r.ApprovalStateAttributes = types.StringValue(string(approvalStateAttributesResult))
-		}
-		if resp.AuthSettings == nil {
-			r.AuthSettings = nil
-		} else {
-			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
-			if resp.AuthSettings.EntryPoint != nil {
-				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
-			} else {
-				r.AuthSettings.EntryPoint = types.StringNull()
-			}
-			if resp.AuthSettings.PasswordlessLogin == nil {
-				r.AuthSettings.PasswordlessLogin = nil
-			} else {
-				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
-				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
-			}
-			r.AuthSettings.PreferredSsoProviders = []types.String{}
-			for _, v := range resp.AuthSettings.PreferredSsoProviders {
-				r.AuthSettings.PreferredSsoProviders = append(r.AuthSettings.PreferredSsoProviders, types.StringValue(v))
-			}
-		}
-		if resp.CognitoDetails == nil {
-			r.CognitoDetails = nil
-		} else {
-			r.CognitoDetails = &tfTypes.UpsertPortalConfigV3CognitoDetails{}
-			r.CognitoDetails.CognitoUserPoolArn = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolArn)
-			r.CognitoDetails.CognitoUserPoolClientID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolClientID)
-			r.CognitoDetails.CognitoUserPoolID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolID)
-			if resp.CognitoDetails.PasswordPolicy == nil {
-				r.CognitoDetails.PasswordPolicy = nil
-			} else {
-				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigV3PasswordPolicy{}
-				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
-				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
-				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
-				r.CognitoDetails.PasswordPolicy.RequireSymbols = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireSymbols)
-				r.CognitoDetails.PasswordPolicy.RequireUppercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireUppercase)
-			}
-		}
-		r.Config = types.StringPointerValue(resp.Config)
-		r.ContactIdentifiers = []types.String{}
-		for _, v := range resp.ContactIdentifiers {
-			r.ContactIdentifiers = append(r.ContactIdentifiers, types.StringValue(v))
-		}
-		r.ContractIdentifiers = []tfTypes.ContractIdentifier{}
-		if len(r.ContractIdentifiers) > len(resp.ContractIdentifiers) {
-			r.ContractIdentifiers = r.ContractIdentifiers[:len(resp.ContractIdentifiers)]
-		}
-		for contractIdentifiersCount, contractIdentifiersItem := range resp.ContractIdentifiers {
-			var contractIdentifiers1 tfTypes.ContractIdentifier
-			contractIdentifiers1.Name = types.StringPointerValue(contractIdentifiersItem.Name)
-			if contractIdentifiersItem.Schema != nil {
-				contractIdentifiers1.Schema = types.StringValue(string(*contractIdentifiersItem.Schema))
-			} else {
-				contractIdentifiers1.Schema = types.StringNull()
-			}
-			if contractIdentifiersCount+1 > len(r.ContractIdentifiers) {
-				r.ContractIdentifiers = append(r.ContractIdentifiers, contractIdentifiers1)
-			} else {
-				r.ContractIdentifiers[contractIdentifiersCount].Name = contractIdentifiers1.Name
-				r.ContractIdentifiers[contractIdentifiersCount].Schema = contractIdentifiers1.Schema
-			}
-		}
-		if resp.ContractSelectorConfig == nil {
-			r.ContractSelectorConfig = nil
-		} else {
-			r.ContractSelectorConfig = &tfTypes.UpsertPortalConfigV3ContractSelectorConfig{}
-			r.ContractSelectorConfig.ShowInactive = types.BoolPointerValue(resp.ContractSelectorConfig.ShowInactive)
-			r.ContractSelectorConfig.TitlePath = types.StringPointerValue(resp.ContractSelectorConfig.TitlePath)
-		}
-		r.DesignID = types.StringPointerValue(resp.DesignID)
-		r.Domain = types.StringPointerValue(resp.Domain)
-		if resp.EmailTemplates == nil {
-			r.EmailTemplates = nil
-		} else {
-			r.EmailTemplates = &tfTypes.EmailTemplates{}
-			r.EmailTemplates.AdvancedAuth = types.StringPointerValue(resp.EmailTemplates.AdvancedAuth)
-			r.EmailTemplates.AdvancedMFA = types.StringPointerValue(resp.EmailTemplates.AdvancedMFA)
-			r.EmailTemplates.ConfirmAccount = types.StringPointerValue(resp.EmailTemplates.ConfirmAccount)
-			r.EmailTemplates.ConfirmEmailUpdate = types.StringPointerValue(resp.EmailTemplates.ConfirmEmailUpdate)
-			r.EmailTemplates.ForgotPassword = types.StringPointerValue(resp.EmailTemplates.ForgotPassword)
-			r.EmailTemplates.Invitation = types.StringPointerValue(resp.EmailTemplates.Invitation)
-			r.EmailTemplates.JourneyLoginOTP = types.StringPointerValue(resp.EmailTemplates.JourneyLoginOTP)
-			r.EmailTemplates.JourneySignInOneTimePassword = types.StringPointerValue(resp.EmailTemplates.JourneySignInOneTimePassword)
-			r.EmailTemplates.JourneySignUp = types.StringPointerValue(resp.EmailTemplates.JourneySignUp)
-			r.EmailTemplates.OnDocUpload = types.StringPointerValue(resp.EmailTemplates.OnDocUpload)
-			r.EmailTemplates.OnMapAPendingUser = types.StringPointerValue(resp.EmailTemplates.OnMapAPendingUser)
-			r.EmailTemplates.OnNewQuote = types.StringPointerValue(resp.EmailTemplates.OnNewQuote)
-			r.EmailTemplates.OnWorkflowStepAssigned = types.StringPointerValue(resp.EmailTemplates.OnWorkflowStepAssigned)
-			r.EmailTemplates.VerifyCodeToSetPassword = types.StringPointerValue(resp.EmailTemplates.VerifyCodeToSetPassword)
-		}
-		r.Enabled = types.BoolPointerValue(resp.Enabled)
-		r.EntityEditRules = []tfTypes.PortalConfigV3EntityEditRules{}
-		if len(r.EntityEditRules) > len(resp.EntityEditRules) {
-			r.EntityEditRules = r.EntityEditRules[:len(resp.EntityEditRules)]
-		}
-		for entityEditRulesCount, entityEditRulesItem := range resp.EntityEditRules {
-			var entityEditRules1 tfTypes.PortalConfigV3EntityEditRules
-			entityEditRules1.AllowedDecrement = types.StringPointerValue(entityEditRulesItem.AllowedDecrement)
-			entityEditRules1.AllowedIncrement = types.StringPointerValue(entityEditRulesItem.AllowedIncrement)
-			entityEditRules1.Attribute = types.StringPointerValue(entityEditRulesItem.Attribute)
-			if entityEditRulesItem.CadencePeriod != nil {
-				entityEditRules1.CadencePeriod = types.NumberValue(big.NewFloat(float64(*entityEditRulesItem.CadencePeriod)))
-			} else {
-				entityEditRules1.CadencePeriod = types.NumberNull()
-			}
-			if entityEditRulesItem.CadencePeriodType != nil {
-				entityEditRules1.CadencePeriodType = types.StringValue(string(*entityEditRulesItem.CadencePeriodType))
-			} else {
-				entityEditRules1.CadencePeriodType = types.StringNull()
-			}
-			entityEditRules1.ChangesAllowed = types.Int64PointerValue(entityEditRulesItem.ChangesAllowed)
-			entityEditRules1.GracePeriod = types.Int64PointerValue(entityEditRulesItem.GracePeriod)
-			entityEditRules1.NumberOfDaysBeforeRestriction = types.Int64PointerValue(entityEditRulesItem.NumberOfDaysBeforeRestriction)
-			if entityEditRulesItem.RuleType != nil {
-				entityEditRules1.RuleType = types.StringValue(string(*entityEditRulesItem.RuleType))
-			} else {
-				entityEditRules1.RuleType = types.StringNull()
-			}
-			if entityEditRulesItem.Slug != nil {
-				entityEditRules1.Slug = types.StringValue(string(*entityEditRulesItem.Slug))
-			} else {
-				entityEditRules1.Slug = types.StringNull()
-			}
-			if entityEditRulesCount+1 > len(r.EntityEditRules) {
-				r.EntityEditRules = append(r.EntityEditRules, entityEditRules1)
-			} else {
-				r.EntityEditRules[entityEditRulesCount].AllowedDecrement = entityEditRules1.AllowedDecrement
-				r.EntityEditRules[entityEditRulesCount].AllowedIncrement = entityEditRules1.AllowedIncrement
-				r.EntityEditRules[entityEditRulesCount].Attribute = entityEditRules1.Attribute
-				r.EntityEditRules[entityEditRulesCount].CadencePeriod = entityEditRules1.CadencePeriod
-				r.EntityEditRules[entityEditRulesCount].CadencePeriodType = entityEditRules1.CadencePeriodType
-				r.EntityEditRules[entityEditRulesCount].ChangesAllowed = entityEditRules1.ChangesAllowed
-				r.EntityEditRules[entityEditRulesCount].GracePeriod = entityEditRules1.GracePeriod
-				r.EntityEditRules[entityEditRulesCount].NumberOfDaysBeforeRestriction = entityEditRules1.NumberOfDaysBeforeRestriction
-				r.EntityEditRules[entityEditRulesCount].RuleType = entityEditRules1.RuleType
-				r.EntityEditRules[entityEditRulesCount].Slug = entityEditRules1.Slug
-			}
-		}
-		if resp.EntityIdentifiers == nil {
-			r.EntityIdentifiers = nil
-		} else {
-			r.EntityIdentifiers = &tfTypes.UpsertPortalConfigV3EntityIdentifiers{}
-			if resp.EntityIdentifiers.Type == nil {
-				r.EntityIdentifiers.Type = nil
-			} else {
-				r.EntityIdentifiers.Type = &tfTypes.UpsertPortalConfigV3Type{}
-				r.EntityIdentifiers.Type.Attributes = []types.String{}
-				for _, v := range resp.EntityIdentifiers.Type.Attributes {
-					r.EntityIdentifiers.Type.Attributes = append(r.EntityIdentifiers.Type.Attributes, types.StringValue(v))
-				}
-				r.EntityIdentifiers.Type.IsEnabled = types.BoolPointerValue(resp.EntityIdentifiers.Type.IsEnabled)
-			}
-		}
-		if len(resp.FeatureFlags) > 0 {
-			r.FeatureFlags = make(map[string]types.Bool)
-			for key, value := range resp.FeatureFlags {
-				r.FeatureFlags[key] = types.BoolValue(value)
-			}
-		}
-		if resp.FeatureSettings == nil {
-			r.FeatureSettings = nil
-		} else {
-			r.FeatureSettings = &tfTypes.UpsertPortalConfigV3FeatureSettings{}
-			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
-			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
-			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
-			r.FeatureSettings.StartPage = types.BoolPointerValue(resp.FeatureSettings.StartPage)
-		}
-		r.Grants = []tfTypes.Grant{}
-		if len(r.Grants) > len(resp.Grants) {
-			r.Grants = r.Grants[:len(resp.Grants)]
-		}
-		for grantsCount, grantsItem := range resp.Grants {
-			var grants1 tfTypes.Grant
-			grants1.Action = types.StringValue(grantsItem.Action)
-			if grantsItem.Effect != nil {
-				grants1.Effect = types.StringValue(string(*grantsItem.Effect))
-			} else {
-				grants1.Effect = types.StringNull()
-			}
-			grants1.Resource = types.StringPointerValue(grantsItem.Resource)
-			if grantsCount+1 > len(r.Grants) {
-				r.Grants = append(r.Grants, grants1)
-			} else {
-				r.Grants[grantsCount].Action = grants1.Action
-				r.Grants[grantsCount].Effect = grants1.Effect
-				r.Grants[grantsCount].Resource = grants1.Resource
-			}
-		}
-		r.IdentityProviders = []tfTypes.ProviderPublicConfig{}
-		if len(r.IdentityProviders) > len(resp.IdentityProviders) {
-			r.IdentityProviders = r.IdentityProviders[:len(resp.IdentityProviders)]
-		}
-		for identityProvidersCount, identityProvidersItem := range resp.IdentityProviders {
-			var identityProviders1 tfTypes.ProviderPublicConfig
-			identityProviders1.DisplayName = types.StringValue(identityProvidersItem.DisplayName)
-			if identityProvidersItem.MobileOidcConfig == nil {
-				identityProviders1.MobileOidcConfig = nil
-			} else {
-				identityProviders1.MobileOidcConfig = &tfTypes.MoblieOIDCConfig{}
-				identityProviders1.MobileOidcConfig.ClientID = types.StringPointerValue(identityProvidersItem.MobileOidcConfig.ClientID)
-				identityProviders1.MobileOidcConfig.ClientSecret = types.StringPointerValue(identityProvidersItem.MobileOidcConfig.ClientSecret)
-			}
-			if identityProvidersItem.OidcConfig == nil {
-				identityProviders1.OidcConfig = nil
-			} else {
-				identityProviders1.OidcConfig = &tfTypes.OIDCProviderConfig{}
-				identityProviders1.OidcConfig.ClientID = types.StringValue(identityProvidersItem.OidcConfig.ClientID)
-				identityProviders1.OidcConfig.ClientSecret = types.StringPointerValue(identityProvidersItem.OidcConfig.ClientSecret)
-				identityProviders1.OidcConfig.HasClientSecret = types.BoolPointerValue(identityProvidersItem.OidcConfig.HasClientSecret)
-				if identityProvidersItem.OidcConfig.Metadata == nil {
-					identityProviders1.OidcConfig.Metadata = nil
-				} else {
-					identityProviders1.OidcConfig.Metadata = &tfTypes.OIDCProviderMetadata{}
-					identityProviders1.OidcConfig.Metadata.AuthorizationEndpoint = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.AuthorizationEndpoint)
-					identityProviders1.OidcConfig.Metadata.MobileRedirectURI = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.MobileRedirectURI)
-					identityProviders1.OidcConfig.Metadata.TestAuthPassword = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.TestAuthPassword)
-					identityProviders1.OidcConfig.Metadata.TestAuthUsername = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.TestAuthUsername)
-					identityProviders1.OidcConfig.Metadata.TokenEndpoint = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.TokenEndpoint)
-					identityProviders1.OidcConfig.Metadata.UserinfoEndpoint = types.StringPointerValue(identityProvidersItem.OidcConfig.Metadata.UserinfoEndpoint)
-				}
-				identityProviders1.OidcConfig.OidcIssuer = types.StringValue(identityProvidersItem.OidcConfig.OidcIssuer)
-				if identityProvidersItem.OidcConfig.Prompt != nil {
-					identityProviders1.OidcConfig.Prompt = types.StringValue(string(*identityProvidersItem.OidcConfig.Prompt))
-				} else {
-					identityProviders1.OidcConfig.Prompt = types.StringNull()
-				}
-				identityProviders1.OidcConfig.RedirectURI = types.StringPointerValue(identityProvidersItem.OidcConfig.RedirectURI)
-				identityProviders1.OidcConfig.Scope = types.StringValue(identityProvidersItem.OidcConfig.Scope)
-				if identityProvidersItem.OidcConfig.Type != nil {
-					identityProviders1.OidcConfig.Type = types.StringValue(string(*identityProvidersItem.OidcConfig.Type))
-				} else {
-					identityProviders1.OidcConfig.Type = types.StringNull()
-				}
-			}
-			identityProviders1.Slug = types.StringValue(identityProvidersItem.Slug)
-			if identityProvidersCount+1 > len(r.IdentityProviders) {
-				r.IdentityProviders = append(r.IdentityProviders, identityProviders1)
-			} else {
-				r.IdentityProviders[identityProvidersCount].DisplayName = identityProviders1.DisplayName
-				r.IdentityProviders[identityProvidersCount].MobileOidcConfig = identityProviders1.MobileOidcConfig
-				r.IdentityProviders[identityProvidersCount].OidcConfig = identityProviders1.OidcConfig
-				r.IdentityProviders[identityProvidersCount].Slug = identityProviders1.Slug
-			}
-		}
-		if resp.Images == nil {
-			r.Images = nil
-		} else {
-			r.Images = &tfTypes.UpsertPortalConfigV3Images{}
-			r.Images.OrderLeftTeaser = types.StringPointerValue(resp.Images.OrderLeftTeaser)
-			r.Images.OrderRightTeaser = types.StringPointerValue(resp.Images.OrderRightTeaser)
-			r.Images.WelcomeBanner = types.StringPointerValue(resp.Images.WelcomeBanner)
-		}
-		if resp.InactiveContractCutoffYears != nil {
-			r.InactiveContractCutoffYears = types.NumberValue(big.NewFloat(float64(*resp.InactiveContractCutoffYears)))
-		} else {
-			r.InactiveContractCutoffYears = types.NumberNull()
-		}
-		r.IsDummy = types.BoolPointerValue(resp.IsDummy)
-		r.IsEpilotDomain = types.BoolPointerValue(resp.IsEpilotDomain)
-		if resp.MeterReadingGracePeriod != nil {
-			r.MeterReadingGracePeriod = types.NumberValue(big.NewFloat(float64(*resp.MeterReadingGracePeriod)))
-		} else {
-			r.MeterReadingGracePeriod = types.NumberNull()
-		}
-		r.Name = types.StringPointerValue(resp.Name)
-		if resp.OrgSettings == nil {
-			r.OrgSettings = nil
-		} else {
-			r.OrgSettings = &tfTypes.PortalConfigV3OrgSettings{}
-			if resp.OrgSettings.Canary == nil {
-				r.OrgSettings.Canary = nil
-			} else {
-				r.OrgSettings.Canary = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
-				r.OrgSettings.Canary.Enabled = types.BoolPointerValue(resp.OrgSettings.Canary.Enabled)
-			}
-			if resp.OrgSettings.Notracking == nil {
-				r.OrgSettings.Notracking = nil
-			} else {
-				r.OrgSettings.Notracking = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
-				r.OrgSettings.Notracking.Enabled = types.BoolPointerValue(resp.OrgSettings.Notracking.Enabled)
-			}
-		}
-		r.OrganizationID = types.StringPointerValue(resp.OrganizationID)
-		if resp.Origin != nil {
-			r.Origin = types.StringValue(string(*resp.Origin))
-		} else {
-			r.Origin = types.StringNull()
-		}
-		if len(resp.Pages) > 0 {
-			r.Pages = make(map[string]tfTypes.Page)
-			for pageKey, pageValue := range resp.Pages {
-				var pageResult tfTypes.Page
-				if pageValue.AdditionalProperties == nil {
-					pageResult.AdditionalProperties = types.StringNull()
-				} else {
-					additionalPropertiesResult, _ := json.Marshal(pageValue.AdditionalProperties)
-					pageResult.AdditionalProperties = types.StringValue(string(additionalPropertiesResult))
-				}
-				if len(pageValue.Blocks) > 0 {
-					pageResult.Blocks = make(map[string]tfTypes.Block)
-					for blockKey, blockValue := range pageValue.Blocks {
-						var blockResult tfTypes.Block
-						if blockValue.AdditionalProperties == nil {
-							blockResult.AdditionalProperties = types.StringNull()
-						} else {
-							additionalPropertiesResult1, _ := json.Marshal(blockValue.AdditionalProperties)
-							blockResult.AdditionalProperties = types.StringValue(string(additionalPropertiesResult1))
-						}
-						blockResult.ID = types.StringValue(blockValue.ID)
-						blockResult.Order = types.NumberValue(big.NewFloat(float64(blockValue.Order)))
-						blockResult.ParentID = types.StringPointerValue(blockValue.ParentID)
-						if blockValue.Props == nil {
-							blockResult.Props = nil
-						} else {
-							blockResult.Props = &tfTypes.BlockProps{}
-							if blockValue.Props.AdditionalProperties == nil {
-								blockResult.Props.AdditionalProperties = types.StringNull()
-							} else {
-								additionalPropertiesResult2, _ := json.Marshal(blockValue.Props.AdditionalProperties)
-								blockResult.Props.AdditionalProperties = types.StringValue(string(additionalPropertiesResult2))
-							}
-							if blockValue.Props.Content == nil {
-								blockResult.Props.Content = nil
-							} else {
-								blockResult.Props.Content = &tfTypes.Content{}
-							}
-							if blockValue.Props.Design == nil {
-								blockResult.Props.Design = nil
-							} else {
-								blockResult.Props.Design = &tfTypes.Content{}
-							}
-							if blockValue.Props.Visibility == nil {
-								blockResult.Props.Visibility = nil
-							} else {
-								blockResult.Props.Visibility = &tfTypes.Content{}
-							}
-						}
-						blockResult.Type = types.StringValue(blockValue.Type)
-						pageResult.Blocks[blockKey] = blockResult
-					}
-				}
-				if len(pageValue.Content) > 0 {
-					pageResult.Content = make(map[string]types.String)
-					for key1, value1 := range pageValue.Content {
-						result, _ := json.Marshal(value1)
-						pageResult.Content[key1] = types.StringValue(string(result))
-					}
-				}
-				if len(pageValue.Design) > 0 {
-					pageResult.Design = make(map[string]types.String)
-					for key2, value2 := range pageValue.Design {
-						result1, _ := json.Marshal(value2)
-						pageResult.Design[key2] = types.StringValue(string(result1))
-					}
-				}
-				pageResult.ID = types.StringValue(pageValue.ID)
-				pageResult.IsDeleted = types.BoolPointerValue(pageValue.IsDeleted)
-				pageResult.IsEntryRoute = types.BoolPointerValue(pageValue.IsEntryRoute)
-				pageResult.IsPublic = types.BoolPointerValue(pageValue.IsPublic)
-				pageResult.IsSystem = types.BoolPointerValue(pageValue.IsSystem)
-				if pageValue.LastModifiedAt != nil {
-					pageResult.LastModifiedAt = types.StringValue(pageValue.LastModifiedAt.Format(time.RFC3339Nano))
-				} else {
-					pageResult.LastModifiedAt = types.StringNull()
-				}
-				pageResult.Order = types.NumberValue(big.NewFloat(float64(pageValue.Order)))
-				pageResult.ParentID = types.StringPointerValue(pageValue.ParentID)
-				pageResult.Path = types.StringPointerValue(pageValue.Path)
-				pageResult.Schema = []types.String{}
-				for _, v := range pageValue.Schema {
-					pageResult.Schema = append(pageResult.Schema, types.StringValue(string(v)))
-				}
-				pageResult.Slug = types.StringValue(pageValue.Slug)
-				if len(pageValue.Visibility) > 0 {
-					pageResult.Visibility = make(map[string]types.String)
-					for key3, value3 := range pageValue.Visibility {
-						result2, _ := json.Marshal(value3)
-						pageResult.Visibility[key3] = types.StringValue(string(result2))
-					}
-				}
-				r.Pages[pageKey] = pageResult
-			}
-		}
-		r.PortalID = types.StringPointerValue(resp.PortalID)
-		r.PreventSearchEngineIndexing = types.BoolPointerValue(resp.PreventSearchEngineIndexing)
-		r.RegistrationIdentifiers = []tfTypes.ContractIdentifier{}
-		if len(r.RegistrationIdentifiers) > len(resp.RegistrationIdentifiers) {
-			r.RegistrationIdentifiers = r.RegistrationIdentifiers[:len(resp.RegistrationIdentifiers)]
-		}
-		for registrationIdentifiersCount, registrationIdentifiersItem := range resp.RegistrationIdentifiers {
-			var registrationIdentifiers1 tfTypes.ContractIdentifier
-			registrationIdentifiers1.Name = types.StringPointerValue(registrationIdentifiersItem.Name)
-			if registrationIdentifiersItem.Schema != nil {
-				registrationIdentifiers1.Schema = types.StringValue(string(*registrationIdentifiersItem.Schema))
-			} else {
-				registrationIdentifiers1.Schema = types.StringNull()
-			}
-			if registrationIdentifiersCount+1 > len(r.RegistrationIdentifiers) {
-				r.RegistrationIdentifiers = append(r.RegistrationIdentifiers, registrationIdentifiers1)
-			} else {
-				r.RegistrationIdentifiers[registrationIdentifiersCount].Name = registrationIdentifiers1.Name
-				r.RegistrationIdentifiers[registrationIdentifiersCount].Schema = registrationIdentifiers1.Schema
-			}
-		}
-		if resp.SelfRegistrationSetting != nil {
-			r.SelfRegistrationSetting = types.StringValue(string(*resp.SelfRegistrationSetting))
-		} else {
-			r.SelfRegistrationSetting = types.StringNull()
-		}
-		r.TriggeredJourneys = []tfTypes.PortalConfigV3TriggeredJourneys{}
-		if len(r.TriggeredJourneys) > len(resp.TriggeredJourneys) {
-			r.TriggeredJourneys = r.TriggeredJourneys[:len(resp.TriggeredJourneys)]
-		}
-		for triggeredJourneysCount, triggeredJourneysItem := range resp.TriggeredJourneys {
-			var triggeredJourneys1 tfTypes.PortalConfigV3TriggeredJourneys
-			triggeredJourneys1.JourneyID = types.StringPointerValue(triggeredJourneysItem.JourneyID)
-			if triggeredJourneysItem.TriggerName != nil {
-				triggeredJourneys1.TriggerName = types.StringValue(string(*triggeredJourneysItem.TriggerName))
-			} else {
-				triggeredJourneys1.TriggerName = types.StringNull()
-			}
-			if triggeredJourneysCount+1 > len(r.TriggeredJourneys) {
-				r.TriggeredJourneys = append(r.TriggeredJourneys, triggeredJourneys1)
-			} else {
-				r.TriggeredJourneys[triggeredJourneysCount].JourneyID = triggeredJourneys1.JourneyID
-				r.TriggeredJourneys[triggeredJourneysCount].TriggerName = triggeredJourneys1.TriggerName
-			}
-		}
-	}
+	return &out, diags
 }

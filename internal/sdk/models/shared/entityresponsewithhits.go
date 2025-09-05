@@ -2,11 +2,26 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 // EntityResponseWithHits - Response for entity search requests
 type EntityResponseWithHits struct {
 	// Total number of entities for pagination
 	Hits    *float64     `json:"hits,omitempty"`
 	Results []EntityItem `json:"results,omitempty"`
+}
+
+func (e EntityResponseWithHits) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityResponseWithHits) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EntityResponseWithHits) GetHits() *float64 {

@@ -196,145 +196,61 @@ func (o *PortalConfigV3ContractSelectorConfig) GetTitlePath() *string {
 	return o.TitlePath
 }
 
-type PortalConfigV3CadencePeriodType string
-
-const (
-	PortalConfigV3CadencePeriodTypeDays   PortalConfigV3CadencePeriodType = "days"
-	PortalConfigV3CadencePeriodTypeWeeks  PortalConfigV3CadencePeriodType = "weeks"
-	PortalConfigV3CadencePeriodTypeMonths PortalConfigV3CadencePeriodType = "months"
-)
-
-func (e PortalConfigV3CadencePeriodType) ToPointer() *PortalConfigV3CadencePeriodType {
-	return &e
+// DefaultUserToNotify - Default 360 user to notify upon an internal notification
+type DefaultUserToNotify struct {
+	// Default admin users for pending user notification to notify
+	OnPendingUser []AdminUser `json:"onPendingUser,omitempty"`
 }
-func (e *PortalConfigV3CadencePeriodType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "days":
-		fallthrough
-	case "weeks":
-		fallthrough
-	case "months":
-		*e = PortalConfigV3CadencePeriodType(v)
+
+func (o *DefaultUserToNotify) GetOnPendingUser() []AdminUser {
+	if o == nil {
 		return nil
-	default:
-		return fmt.Errorf("invalid value for PortalConfigV3CadencePeriodType: %v", v)
 	}
+	return o.OnPendingUser
 }
 
-type PortalConfigV3RuleType string
-
-const (
-	PortalConfigV3RuleTypeCadence                PortalConfigV3RuleType = "cadence"
-	PortalConfigV3RuleTypeRelativeToCurrentValue PortalConfigV3RuleType = "relative_to_current_value"
-	PortalConfigV3RuleTypeDaysBeforeDate         PortalConfigV3RuleType = "days_before_date"
-	PortalConfigV3RuleTypeOverduePayments        PortalConfigV3RuleType = "overdue_payments"
-)
-
-func (e PortalConfigV3RuleType) ToPointer() *PortalConfigV3RuleType {
-	return &e
+type PortalConfigV3ActionLabel struct {
+	De *string `json:"de,omitempty"`
+	En *string `json:"en,omitempty"`
 }
-func (e *PortalConfigV3RuleType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "cadence":
-		fallthrough
-	case "relative_to_current_value":
-		fallthrough
-	case "days_before_date":
-		fallthrough
-	case "overdue_payments":
-		*e = PortalConfigV3RuleType(v)
+
+func (o *PortalConfigV3ActionLabel) GetDe() *string {
+	if o == nil {
 		return nil
-	default:
-		return fmt.Errorf("invalid value for PortalConfigV3RuleType: %v", v)
 	}
+	return o.De
 }
 
-type PortalConfigV3EntityEditRules struct {
-	AllowedDecrement              *string                          `json:"allowed_decrement,omitempty"`
-	AllowedIncrement              *string                          `json:"allowed_increment,omitempty"`
-	Attribute                     *string                          `json:"attribute,omitempty"`
-	CadencePeriod                 *float64                         `json:"cadence_period,omitempty"`
-	CadencePeriodType             *PortalConfigV3CadencePeriodType `json:"cadence_period_type,omitempty"`
-	ChangesAllowed                *int64                           `json:"changes_allowed,omitempty"`
-	GracePeriod                   *int64                           `json:"grace_period,omitempty"`
-	NumberOfDaysBeforeRestriction *int64                           `json:"number_of_days_before_restriction,omitempty"`
-	RuleType                      *PortalConfigV3RuleType          `json:"rule_type,omitempty"`
+func (o *PortalConfigV3ActionLabel) GetEn() *string {
+	if o == nil {
+		return nil
+	}
+	return o.En
+}
+
+type EntityActions struct {
+	ActionLabel *PortalConfigV3ActionLabel `json:"action_Label,omitempty"`
+	// Entity ID
+	JourneyID *string `json:"journey_id,omitempty"`
 	// URL-friendly identifier for the entity schema
 	Slug *EntitySlug `json:"slug,omitempty"`
 }
 
-func (o *PortalConfigV3EntityEditRules) GetAllowedDecrement() *string {
+func (o *EntityActions) GetActionLabel() *PortalConfigV3ActionLabel {
 	if o == nil {
 		return nil
 	}
-	return o.AllowedDecrement
+	return o.ActionLabel
 }
 
-func (o *PortalConfigV3EntityEditRules) GetAllowedIncrement() *string {
+func (o *EntityActions) GetJourneyID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.AllowedIncrement
+	return o.JourneyID
 }
 
-func (o *PortalConfigV3EntityEditRules) GetAttribute() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Attribute
-}
-
-func (o *PortalConfigV3EntityEditRules) GetCadencePeriod() *float64 {
-	if o == nil {
-		return nil
-	}
-	return o.CadencePeriod
-}
-
-func (o *PortalConfigV3EntityEditRules) GetCadencePeriodType() *PortalConfigV3CadencePeriodType {
-	if o == nil {
-		return nil
-	}
-	return o.CadencePeriodType
-}
-
-func (o *PortalConfigV3EntityEditRules) GetChangesAllowed() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.ChangesAllowed
-}
-
-func (o *PortalConfigV3EntityEditRules) GetGracePeriod() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.GracePeriod
-}
-
-func (o *PortalConfigV3EntityEditRules) GetNumberOfDaysBeforeRestriction() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.NumberOfDaysBeforeRestriction
-}
-
-func (o *PortalConfigV3EntityEditRules) GetRuleType() *PortalConfigV3RuleType {
-	if o == nil {
-		return nil
-	}
-	return o.RuleType
-}
-
-func (o *PortalConfigV3EntityEditRules) GetSlug() *EntitySlug {
+func (o *EntityActions) GetSlug() *EntitySlug {
 	if o == nil {
 		return nil
 	}
@@ -591,9 +507,11 @@ type PortalConfigV3 struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	ContactIdentifiers []string `json:"contact_identifiers,omitempty"`
 	// Identifiers to identify a contract by a portal user.
-	ContractIdentifiers []ContractIdentifier `json:"contract_identifiers,omitempty"`
+	ContractIdentifiers any `json:"contract_identifiers,omitempty"`
 	// Configuration for contract selector in the portal
 	ContractSelectorConfig *PortalConfigV3ContractSelectorConfig `json:"contract_selector_config,omitempty"`
+	// Default 360 user to notify upon an internal notification
+	DefaultUserToNotify *DefaultUserToNotify `json:"default_user_to_notify,omitempty"`
 	// Entity ID
 	DesignID *string `json:"design_id,omitempty"`
 	// The URL on which the portal is accessible
@@ -602,19 +520,25 @@ type PortalConfigV3 struct {
 	EmailTemplates *EmailTemplates `json:"email_templates,omitempty"`
 	// Enable/Disable the portal access
 	Enabled *bool `json:"enabled,omitempty"`
+	// Journey actions allowed on an entity by a portal user
+	EntityActions []EntityActions `json:"entity_actions,omitempty"`
 	// Rules for editing an entity by a portal user
-	EntityEditRules []PortalConfigV3EntityEditRules `json:"entity_edit_rules,omitempty"`
+	EntityEditRules any `json:"entity_edit_rules,omitempty"`
 	// Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *PortalConfigV3EntityIdentifiers `json:"entity_identifiers,omitempty"`
+	// Configured Portal extensions hooks
+	ExtensionHooks map[string]*ExtensionHookConfig `json:"extension_hooks,omitempty"`
+	// Configured Portal extensions
+	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature flags for the portal
-	FeatureFlags map[string]bool `json:"feature_flags,omitempty"`
+	FeatureFlags any `json:"feature_flags,omitempty"`
 	// Feature settings for the portal
 	FeatureSettings *PortalConfigV3FeatureSettings `json:"feature_settings,omitempty"`
 	// Permissions granted to a portal user while accessing entities
-	Grants            []Grant                `json:"grants,omitempty"`
-	IdentityProviders []ProviderPublicConfig `json:"identity_providers,omitempty"`
+	Grants            any `json:"grants,omitempty"`
+	IdentityProviders any `json:"identity_providers,omitempty"`
 	// Teaser & Banner Image web links
 	Images *PortalConfigV3Images `json:"images,omitempty"`
 	// Number of years to look back for showing inactive contracts in the portal
@@ -632,14 +556,14 @@ type PortalConfigV3 struct {
 	// ID of the organization
 	OrganizationID *string `json:"organization_id,omitempty"`
 	// Origin of the portal
-	Origin *Origin         `json:"origin,omitempty"`
-	Pages  map[string]Page `json:"pages,omitempty"`
+	Origin *Origin `json:"origin,omitempty"`
+	Pages  any     `json:"pages,omitempty"`
 	// ID of the portal
 	PortalID *string `json:"portal_id,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
-	RegistrationIdentifiers []ContractIdentifier                   `json:"registration_identifiers,omitempty"`
+	RegistrationIdentifiers any                                    `json:"registration_identifiers,omitempty"`
 	SelfRegistrationSetting *PortalConfigV3SelfRegistrationSetting `json:"self_registration_setting,omitempty"`
 	// Journeys automatically opened on a portal user action
 	TriggeredJourneys []PortalConfigV3TriggeredJourneys `json:"triggered_journeys,omitempty"`
@@ -701,7 +625,7 @@ func (o *PortalConfigV3) GetContactIdentifiers() []string {
 	return o.ContactIdentifiers
 }
 
-func (o *PortalConfigV3) GetContractIdentifiers() []ContractIdentifier {
+func (o *PortalConfigV3) GetContractIdentifiers() any {
 	if o == nil {
 		return nil
 	}
@@ -713,6 +637,13 @@ func (o *PortalConfigV3) GetContractSelectorConfig() *PortalConfigV3ContractSele
 		return nil
 	}
 	return o.ContractSelectorConfig
+}
+
+func (o *PortalConfigV3) GetDefaultUserToNotify() *DefaultUserToNotify {
+	if o == nil {
+		return nil
+	}
+	return o.DefaultUserToNotify
 }
 
 func (o *PortalConfigV3) GetDesignID() *string {
@@ -743,7 +674,14 @@ func (o *PortalConfigV3) GetEnabled() *bool {
 	return o.Enabled
 }
 
-func (o *PortalConfigV3) GetEntityEditRules() []PortalConfigV3EntityEditRules {
+func (o *PortalConfigV3) GetEntityActions() []EntityActions {
+	if o == nil {
+		return nil
+	}
+	return o.EntityActions
+}
+
+func (o *PortalConfigV3) GetEntityEditRules() any {
 	if o == nil {
 		return nil
 	}
@@ -757,7 +695,21 @@ func (o *PortalConfigV3) GetEntityIdentifiers() *PortalConfigV3EntityIdentifiers
 	return o.EntityIdentifiers
 }
 
-func (o *PortalConfigV3) GetFeatureFlags() map[string]bool {
+func (o *PortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
+	if o == nil {
+		return nil
+	}
+	return o.ExtensionHooks
+}
+
+func (o *PortalConfigV3) GetExtensions() []ExtensionConfig {
+	if o == nil {
+		return nil
+	}
+	return o.Extensions
+}
+
+func (o *PortalConfigV3) GetFeatureFlags() any {
 	if o == nil {
 		return nil
 	}
@@ -771,14 +723,14 @@ func (o *PortalConfigV3) GetFeatureSettings() *PortalConfigV3FeatureSettings {
 	return o.FeatureSettings
 }
 
-func (o *PortalConfigV3) GetGrants() []Grant {
+func (o *PortalConfigV3) GetGrants() any {
 	if o == nil {
 		return nil
 	}
 	return o.Grants
 }
 
-func (o *PortalConfigV3) GetIdentityProviders() []ProviderPublicConfig {
+func (o *PortalConfigV3) GetIdentityProviders() any {
 	if o == nil {
 		return nil
 	}
@@ -848,7 +800,7 @@ func (o *PortalConfigV3) GetOrigin() *Origin {
 	return o.Origin
 }
 
-func (o *PortalConfigV3) GetPages() map[string]Page {
+func (o *PortalConfigV3) GetPages() any {
 	if o == nil {
 		return nil
 	}
@@ -869,7 +821,7 @@ func (o *PortalConfigV3) GetPreventSearchEngineIndexing() *bool {
 	return o.PreventSearchEngineIndexing
 }
 
-func (o *PortalConfigV3) GetRegistrationIdentifiers() []ContractIdentifier {
+func (o *PortalConfigV3) GetRegistrationIdentifiers() any {
 	if o == nil {
 		return nil
 	}

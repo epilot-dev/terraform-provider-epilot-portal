@@ -22,7 +22,7 @@ func (g GetAllRequestsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllRequestsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -89,7 +89,7 @@ func (o OrderSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OrderSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
 		return err
 	}
 	return nil
@@ -205,7 +205,7 @@ func (s Schemas) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Schemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
 		return err
 	}
 	return nil
@@ -282,8 +282,8 @@ const (
 )
 
 type Results struct {
-	Schemas      *Schemas      `queryParam:"inline"`
-	OrderSchemas *OrderSchemas `queryParam:"inline"`
+	Schemas      *Schemas      `queryParam:"inline" name:"results"`
+	OrderSchemas *OrderSchemas `queryParam:"inline" name:"results"`
 
 	Type ResultsType
 }
@@ -309,14 +309,14 @@ func CreateResultsOrderSchemas(orderSchemas OrderSchemas) Results {
 func (u *Results) UnmarshalJSON(data []byte) error {
 
 	var schemas Schemas = Schemas{}
-	if err := utils.UnmarshalJSON(data, &schemas, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &schemas, "", true, nil); err == nil {
 		u.Schemas = &schemas
 		u.Type = ResultsTypeSchemas
 		return nil
 	}
 
 	var orderSchemas OrderSchemas = OrderSchemas{}
-	if err := utils.UnmarshalJSON(data, &orderSchemas, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &orderSchemas, "", true, nil); err == nil {
 		u.OrderSchemas = &orderSchemas
 		u.Type = ResultsTypeOrderSchemas
 		return nil

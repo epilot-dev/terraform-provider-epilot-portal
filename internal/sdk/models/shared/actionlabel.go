@@ -2,9 +2,24 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 type ActionLabel struct {
 	De *string `json:"de,omitempty"`
 	En *string `json:"en,omitempty"`
+}
+
+func (a ActionLabel) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActionLabel) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ActionLabel) GetDe() *string {

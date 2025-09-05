@@ -40,8 +40,8 @@ const (
 
 // UpdateContractECPResponseBody - The user is not allowed to access this resource
 type UpdateContractECPResponseBody struct {
-	ErrorResp           *shared.ErrorResp           `queryParam:"inline"`
-	FailedRuleErrorResp *shared.FailedRuleErrorResp `queryParam:"inline"`
+	ErrorResp           *shared.ErrorResp           `queryParam:"inline" name:"responseBody"`
+	FailedRuleErrorResp *shared.FailedRuleErrorResp `queryParam:"inline" name:"responseBody"`
 
 	Type UpdateContractECPResponseBodyType
 }
@@ -67,14 +67,14 @@ func CreateUpdateContractECPResponseBodyFailedRuleErrorResp(failedRuleErrorResp 
 func (u *UpdateContractECPResponseBody) UnmarshalJSON(data []byte) error {
 
 	var errorResp shared.ErrorResp = shared.ErrorResp{}
-	if err := utils.UnmarshalJSON(data, &errorResp, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &errorResp, "", true, nil); err == nil {
 		u.ErrorResp = &errorResp
 		u.Type = UpdateContractECPResponseBodyTypeErrorResp
 		return nil
 	}
 
 	var failedRuleErrorResp shared.FailedRuleErrorResp = shared.FailedRuleErrorResp{}
-	if err := utils.UnmarshalJSON(data, &failedRuleErrorResp, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &failedRuleErrorResp, "", true, nil); err == nil {
 		u.FailedRuleErrorResp = &failedRuleErrorResp
 		u.Type = UpdateContractECPResponseBodyTypeFailedRuleErrorResp
 		return nil

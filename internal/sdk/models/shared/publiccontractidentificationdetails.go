@@ -18,7 +18,7 @@ func (p PublicContractIdentificationDetailsExplanation) MarshalJSON() ([]byte, e
 }
 
 func (p *PublicContractIdentificationDetailsExplanation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil

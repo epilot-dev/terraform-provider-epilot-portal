@@ -64,7 +64,7 @@ func (g GetConsumptionRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetConsumptionRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"extensionId", "from", "hookId", "interval", "meter_id", "to"}); err != nil {
 		return err
 	}
 	return nil
@@ -126,7 +126,7 @@ func (c Consumptions) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Consumptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"timestamp", "value"}); err != nil {
 		return err
 	}
 	return nil

@@ -16,29 +16,31 @@ PortalPage Resource
 resource "epilot-portal_portal_page" "my_portalpage" {
   additional_properties = "{ \"see\": \"documentation\" }"
   blocks = {
-    additional_properties = "{ \"see\": \"documentation\" }"
-    id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
-    order                 = 1
-    parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
-    props = {
+    key = {
       additional_properties = "{ \"see\": \"documentation\" }"
-      content = {
-        # ...
+      id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
+      order                 = 1
+      parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
+      props = {
+        additional_properties = "{ \"see\": \"documentation\" }"
+        content = {
+          # ...
+        }
+        design = {
+          # ...
+        }
+        visibility = {
+          # ...
+        }
       }
-      design = {
-        # ...
-      }
-      visibility = {
-        # ...
-      }
+      type = "tab"
     }
-    type = "tab"
   }
   content = {
-    key = jsonencode("value"),
+    key = jsonencode("value")
   }
   design = {
-    key = jsonencode("value"),
+    key = jsonencode("value")
   }
   domain         = "customer-portal.epilot.io"
   is_deleted     = false
@@ -53,7 +55,7 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   ]
   slug = "dashboard"
   visibility = {
-    key = jsonencode("value"),
+    key = jsonencode("value")
   }
 }
 ```
@@ -78,7 +80,7 @@ resource "epilot-portal_portal_page" "my_portalpage" {
 - `is_public` (Boolean) Whether the page is public
 - `is_system` (Boolean) Whether the page is a system page
 - `parent_id` (String) The id of the parent page
-- `path` (String) The path of the page
+- `path` (String, Deprecated) The path of the page
 - `schema` (List of String)
 - `visibility` (Map of String) The conditions that need to be met for the page to be shown
 
@@ -123,6 +125,17 @@ Optional:
 ## Import
 
 Import is supported using the following syntax:
+
+In Terraform v1.5.0 and later, the [`import` block](https://developer.hashicorp.com/terraform/language/import) can be used with the `id` attribute, for example:
+
+```terraform
+import {
+  to = epilot-portal_portal_page.my_epilot-portal_portal_page
+  id = "5da0a718-c822-403d-9f5d-20d4584e0528"
+}
+```
+
+The [`terraform import` command](https://developer.hashicorp.com/terraform/cli/commands/import) can be used, for example:
 
 ```shell
 terraform import epilot-portal_portal_page.my_epilot-portal_portal_page "5da0a718-c822-403d-9f5d-20d4584e0528"

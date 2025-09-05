@@ -34,19 +34,23 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `auth_settings` (Attributes) Authentication settings for the portal (see [below for nested schema](#nestedatt--auth_settings))
 - `cognito_details` (Attributes) AWS Cognito Pool details for the portal (see [below for nested schema](#nestedatt--cognito_details))
 - `config` (String) Stringified object with configuration details
-- `contact_identifiers` (List of String) Deprecated. Use registration_identifiers instead.
-- `contract_identifiers` (Attributes List) Identifiers to identify a contract by a portal user. (see [below for nested schema](#nestedatt--contract_identifiers))
+- `contact_identifiers` (List of String, Deprecated) Deprecated. Use registration_identifiers instead.
+- `contract_identifiers` (String) Identifiers to identify a contract by a portal user. Parsed as JSON.
 - `contract_selector_config` (Attributes) Configuration for contract selector in the portal (see [below for nested schema](#nestedatt--contract_selector_config))
+- `default_user_to_notify` (Attributes) Default 360 user to notify upon an internal notification (see [below for nested schema](#nestedatt--default_user_to_notify))
 - `design_id` (String) Entity ID
 - `domain` (String) The URL on which the portal is accessible
 - `email_templates` (Attributes) Email templates used for authentication and internal processes (see [below for nested schema](#nestedatt--email_templates))
 - `enabled` (Boolean) Enable/Disable the portal access
-- `entity_edit_rules` (Attributes List) Rules for editing an entity by a portal user (see [below for nested schema](#nestedatt--entity_edit_rules))
-- `entity_identifiers` (Attributes) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. (see [below for nested schema](#nestedatt--entity_identifiers))
-- `feature_flags` (Map of Boolean) Feature flags for the portal
+- `entity_actions` (Attributes List) Journey actions allowed on an entity by a portal user (see [below for nested schema](#nestedatt--entity_actions))
+- `entity_edit_rules` (String) Rules for editing an entity by a portal user. Parsed as JSON.
+- `entity_identifiers` (Attributes, Deprecated) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. (see [below for nested schema](#nestedatt--entity_identifiers))
+- `extension_hooks` (Attributes Map) Configured Portal extensions hooks (see [below for nested schema](#nestedatt--extension_hooks))
+- `extensions` (Attributes List) Configured Portal extensions (see [below for nested schema](#nestedatt--extensions))
+- `feature_flags` (String) Feature flags for the portal. Parsed as JSON.
 - `feature_settings` (Attributes) Feature settings for the portal (see [below for nested schema](#nestedatt--feature_settings))
-- `grants` (Attributes List) Permissions granted to a portal user while accessing entities (see [below for nested schema](#nestedatt--grants))
-- `identity_providers` (Attributes List) (see [below for nested schema](#nestedatt--identity_providers))
+- `grants` (String) Permissions granted to a portal user while accessing entities. Parsed as JSON.
+- `identity_providers` (String) Parsed as JSON.
 - `images` (Attributes) Teaser & Banner Image web links (see [below for nested schema](#nestedatt--images))
 - `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal
 - `is_dummy` (Boolean) Whether this is a dummy/test portal configuration
@@ -56,9 +60,9 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `org_settings` (Attributes) Organization settings (see [below for nested schema](#nestedatt--org_settings))
 - `organization_id` (String) ID of the organization
 - `origin` (String) Origin of the portal
-- `pages` (Attributes Map) (see [below for nested schema](#nestedatt--pages))
+- `pages` (String) Parsed as JSON.
 - `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
-- `registration_identifiers` (Attributes List) Identifiers to identify a contact of a portal user during the registration. (see [below for nested schema](#nestedatt--registration_identifiers))
+- `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
 - `self_registration_setting` (String)
 - `triggered_journeys` (Attributes List) Journeys automatically opened on a portal user action (see [below for nested schema](#nestedatt--triggered_journeys))
 
@@ -128,15 +132,6 @@ Read-Only:
 
 
 
-<a id="nestedatt--contract_identifiers"></a>
-### Nested Schema for `contract_identifiers`
-
-Read-Only:
-
-- `name` (String) Name of the identifier/attribute
-- `schema` (String) URL-friendly identifier for the entity schema
-
-
 <a id="nestedatt--contract_selector_config"></a>
 ### Nested Schema for `contract_selector_config`
 
@@ -144,6 +139,40 @@ Read-Only:
 
 - `show_inactive` (Boolean) Whether to show inactive contracts in the selector
 - `title_path` (String) Path to the property to use as the contract title
+
+
+<a id="nestedatt--default_user_to_notify"></a>
+### Nested Schema for `default_user_to_notify`
+
+Read-Only:
+
+- `on_pending_user` (Attributes List) Default admin users for pending user notification to notify (see [below for nested schema](#nestedatt--default_user_to_notify--on_pending_user))
+
+<a id="nestedatt--default_user_to_notify--on_pending_user"></a>
+### Nested Schema for `default_user_to_notify.on_pending_user`
+
+Read-Only:
+
+- `additional_properties` (String) Parsed as JSON.
+- `display_name` (String)
+- `email` (String)
+- `image_uri` (Attributes) (see [below for nested schema](#nestedatt--default_user_to_notify--on_pending_user--image_uri))
+- `org_id` (String)
+- `phone` (String)
+- `type` (String)
+- `user_id` (String)
+
+<a id="nestedatt--default_user_to_notify--on_pending_user--image_uri"></a>
+### Nested Schema for `default_user_to_notify.on_pending_user.image_uri`
+
+Read-Only:
+
+- `key` (String)
+- `original` (String)
+- `thumbnail_32` (String)
+- `thumbnail_64` (String)
+
+
 
 
 <a id="nestedatt--email_templates"></a>
@@ -167,21 +196,23 @@ Read-Only:
 - `verify_code_to_set_password` (String) Entity ID
 
 
-<a id="nestedatt--entity_edit_rules"></a>
-### Nested Schema for `entity_edit_rules`
+<a id="nestedatt--entity_actions"></a>
+### Nested Schema for `entity_actions`
 
 Read-Only:
 
-- `allowed_decrement` (String)
-- `allowed_increment` (String)
-- `attribute` (String)
-- `cadence_period` (Number)
-- `cadence_period_type` (String)
-- `changes_allowed` (Number)
-- `grace_period` (Number)
-- `number_of_days_before_restriction` (Number)
-- `rule_type` (String)
+- `action_label` (Attributes) (see [below for nested schema](#nestedatt--entity_actions--action_label))
+- `journey_id` (String) Entity ID
 - `slug` (String) URL-friendly identifier for the entity schema
+
+<a id="nestedatt--entity_actions--action_label"></a>
+### Nested Schema for `entity_actions.action_label`
+
+Read-Only:
+
+- `de` (String)
+- `en` (String)
+
 
 
 <a id="nestedatt--entity_identifiers"></a>
@@ -201,6 +232,25 @@ Read-Only:
 
 
 
+<a id="nestedatt--extension_hooks"></a>
+### Nested Schema for `extension_hooks`
+
+Read-Only:
+
+- `app_id` (String) The ID of the app that is being hooked into.
+- `hook_id` (String) The ID of the hook that is being configured.
+
+
+<a id="nestedatt--extensions"></a>
+### Nested Schema for `extensions`
+
+Read-Only:
+
+- `id` (String) Name of the extension
+- `options` (Map of String) Extension option values.
+- `status` (String) Status of the extension
+
+
 <a id="nestedatt--feature_settings"></a>
 ### Nested Schema for `feature_settings`
 
@@ -210,65 +260,6 @@ Read-Only:
 - `change_due_date` (Boolean) Change due date feature flag
 - `new_design` (Boolean) Enable or disable the new design for the portal
 - `start_page` (Boolean) Start page feature flag
-
-
-<a id="nestedatt--grants"></a>
-### Nested Schema for `grants`
-
-Read-Only:
-
-- `action` (String) Action for granting permission
-- `effect` (String) Effect of the permission
-- `resource` (String) Resource for granting permission
-
-
-<a id="nestedatt--identity_providers"></a>
-### Nested Schema for `identity_providers`
-
-Read-Only:
-
-- `display_name` (String) Human-readable display name for identity provider shown in login
-- `mobile_oidc_config` (Attributes) (see [below for nested schema](#nestedatt--identity_providers--mobile_oidc_config))
-- `oidc_config` (Attributes) (see [below for nested schema](#nestedatt--identity_providers--oidc_config))
-- `slug` (String) URL-friendly slug to use as organization-unique identifier for Provider
-
-<a id="nestedatt--identity_providers--mobile_oidc_config"></a>
-### Nested Schema for `identity_providers.mobile_oidc_config`
-
-Read-Only:
-
-- `client_id` (String) Client ID for the mobile app
-- `client_secret` (String) Client Secret for the mobile app
-
-
-<a id="nestedatt--identity_providers--oidc_config"></a>
-### Nested Schema for `identity_providers.oidc_config`
-
-Read-Only:
-
-- `client_id` (String)
-- `client_secret` (String)
-- `has_client_secret` (Boolean) Whether the client secret is present
-- `metadata` (Attributes) (see [below for nested schema](#nestedatt--identity_providers--oidc_config--metadata))
-- `oidc_issuer` (String) Issuing Authority URL
-- `prompt` (String)
-- `redirect_uri` (String) Redirect URI for the OIDC flow
-- `scope` (String) Space-separated list of OAuth 2.0 scopes to request from OpenID Connect
-- `type` (String)
-
-<a id="nestedatt--identity_providers--oidc_config--metadata"></a>
-### Nested Schema for `identity_providers.oidc_config.metadata`
-
-Read-Only:
-
-- `authorization_endpoint` (String) URL of the authorization endpoint
-- `mobile_redirect_uri` (String) URL of the mobile redirect URI
-- `test_auth_password` (String) The password for the test auth, only used for testing on auth code flow
-- `test_auth_username` (String) The username for the test auth, only used for testing on auth code flow
-- `token_endpoint` (String) URL of the token endpoint
-- `userinfo_endpoint` (String) URL of the userinfo endpoint
-
-
 
 
 <a id="nestedatt--images"></a>
@@ -304,74 +295,6 @@ Read-Only:
 
 - `enabled` (Boolean) Disable browser-side scripts that track advanced usage metrics
 
-
-
-<a id="nestedatt--pages"></a>
-### Nested Schema for `pages`
-
-Read-Only:
-
-- `additional_properties` (String) Parsed as JSON.
-- `blocks` (Attributes Map) (see [below for nested schema](#nestedatt--pages--blocks))
-- `content` (Map of String) The content of the page
-- `design` (Map of String) The design of the page
-- `id` (String) The id of the page
-- `is_deleted` (Boolean) Send the flag as true to delete the page
-- `is_entry_route` (Boolean) Whether the page is the entry route
-- `is_public` (Boolean) Whether the page is public
-- `is_system` (Boolean) Whether the page is a system page
-- `last_modified_at` (String) Last modified timestamp of the Page
-- `order` (Number) The order of the block
-- `parent_id` (String) The id of the parent page
-- `path` (String) The path of the page
-- `schema` (List of String)
-- `slug` (String) The slug of the page
-- `visibility` (Map of String) The conditions that need to be met for the page to be shown
-
-<a id="nestedatt--pages--blocks"></a>
-### Nested Schema for `pages.blocks`
-
-Read-Only:
-
-- `additional_properties` (String) Parsed as JSON.
-- `id` (String) The id of the block
-- `order` (Number) The order of the block
-- `parent_id` (String) The id of the parent block
-- `props` (Attributes) (see [below for nested schema](#nestedatt--pages--blocks--props))
-- `type` (String) The type of the block. eg; tabs, tab, group, attribute
-
-<a id="nestedatt--pages--blocks--props"></a>
-### Nested Schema for `pages.blocks.props`
-
-Read-Only:
-
-- `additional_properties` (String) Parsed as JSON.
-- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--pages--blocks--props--content))
-- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--pages--blocks--props--design))
-- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--pages--blocks--props--visibility))
-
-<a id="nestedatt--pages--blocks--props--content"></a>
-### Nested Schema for `pages.blocks.props.content`
-
-
-<a id="nestedatt--pages--blocks--props--design"></a>
-### Nested Schema for `pages.blocks.props.design`
-
-
-<a id="nestedatt--pages--blocks--props--visibility"></a>
-### Nested Schema for `pages.blocks.props.visibility`
-
-
-
-
-
-<a id="nestedatt--registration_identifiers"></a>
-### Nested Schema for `registration_identifiers`
-
-Read-Only:
-
-- `name` (String) Name of the identifier/attribute
-- `schema` (String) URL-friendly identifier for the entity schema
 
 
 <a id="nestedatt--triggered_journeys"></a>

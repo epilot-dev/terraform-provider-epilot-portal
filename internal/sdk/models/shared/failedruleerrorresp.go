@@ -2,8 +2,23 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 // FailedRule - Failed validation rule
 type FailedRule struct {
+}
+
+func (f FailedRule) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FailedRule) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 type FailedRuleErrorResp struct {
@@ -11,6 +26,17 @@ type FailedRuleErrorResp struct {
 	FailedRule *FailedRule `json:"failed_rule,omitempty"`
 	// Error message
 	Message *string `json:"message,omitempty"`
+}
+
+func (f FailedRuleErrorResp) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FailedRuleErrorResp) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *FailedRuleErrorResp) GetFailedRule() *FailedRule {

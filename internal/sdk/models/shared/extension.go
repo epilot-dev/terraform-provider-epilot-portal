@@ -21,7 +21,7 @@ func (d Description) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Description) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil
@@ -48,6 +48,17 @@ type SchemasExtensionHookMeterReadingPlausibilityCheckCall struct {
 	Headers map[string]string `json:"headers"`
 	// URL to call. Supports variable interpolation.
 	URL string `json:"url"`
+}
+
+func (s SchemasExtensionHookMeterReadingPlausibilityCheckCall) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckCall) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"body", "headers", "url"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetBody() map[string]string {
@@ -79,6 +90,17 @@ type SchemasExtensionHookMeterReadingPlausibilityCheckResolved struct {
 	UpperLimit *string `json:"upper_limit,omitempty"`
 	// Indicate whether the meter reading is plausible
 	Valid *string `json:"valid,omitempty"`
+}
+
+func (s SchemasExtensionHookMeterReadingPlausibilityCheckResolved) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetLowerLimit() *string {
@@ -142,6 +164,17 @@ type ExtensionHookMeterReadingPlausibilityCheckSchemas struct {
 	Type     SchemasExtensionHookMeterReadingPlausibilityCheckType     `json:"type"`
 }
 
+func (e ExtensionHookMeterReadingPlausibilityCheckSchemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "resolved", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetAuth() *ExtensionAuthBlock {
 	if o == nil {
 		return nil
@@ -195,7 +228,7 @@ func (s SchemasExtensionHookCostDataRetrievalCall) MarshalJSON() ([]byte, error)
 }
 
 func (s *SchemasExtensionHookCostDataRetrievalCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"url"}); err != nil {
 		return err
 	}
 	return nil
@@ -241,6 +274,17 @@ type SchemasResolved struct {
 	DataPath *string `json:"dataPath,omitempty"`
 }
 
+func (s SchemasResolved) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasResolved) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SchemasResolved) GetDataPath() *string {
 	if o == nil {
 		return nil
@@ -281,6 +325,17 @@ type ExtensionHookCostDataRetrievalSchemas struct {
 	ID       *string                                   `json:"id,omitempty"`
 	Resolved *SchemasResolved                          `json:"resolved,omitempty"`
 	Type     SchemasExtensionHookCostDataRetrievalType `json:"type"`
+}
+
+func (e ExtensionHookCostDataRetrievalSchemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtensionHookCostDataRetrievalSchemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExtensionHookCostDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
@@ -336,7 +391,7 @@ func (c Call) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Call) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"url"}); err != nil {
 		return err
 	}
 	return nil
@@ -382,6 +437,17 @@ type Resolved struct {
 	DataPath *string `json:"dataPath,omitempty"`
 }
 
+func (r Resolved) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *Resolved) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *Resolved) GetDataPath() *string {
 	if o == nil {
 		return nil
@@ -389,72 +455,83 @@ func (o *Resolved) GetDataPath() *string {
 	return o.DataPath
 }
 
-type SchemasExtensionHookConsumptionDataRetrievalType string
+type Type string
 
 const (
-	SchemasExtensionHookConsumptionDataRetrievalTypeConsumptionDataRetrieval SchemasExtensionHookConsumptionDataRetrievalType = "consumptionDataRetrieval"
+	TypeConsumptionDataRetrieval Type = "consumptionDataRetrieval"
 )
 
-func (e SchemasExtensionHookConsumptionDataRetrievalType) ToPointer() *SchemasExtensionHookConsumptionDataRetrievalType {
+func (e Type) ToPointer() *Type {
 	return &e
 }
-func (e *SchemasExtensionHookConsumptionDataRetrievalType) UnmarshalJSON(data []byte) error {
+func (e *Type) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "consumptionDataRetrieval":
-		*e = SchemasExtensionHookConsumptionDataRetrievalType(v)
+		*e = Type(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SchemasExtensionHookConsumptionDataRetrievalType: %v", v)
+		return fmt.Errorf("invalid value for Type: %v", v)
 	}
 }
 
-// ExtensionHookConsumptionDataRetrievalSchemas - Hook that will allow using the specified source as data for consumption visualizations. This hook is triggered to fetch the data. Format of the request and response has to follow the following specification: TBD. The expected response to the call is:
+// Schemas - Hook that will allow using the specified source as data for consumption visualizations. This hook is triggered to fetch the data. Format of the request and response has to follow the following specification: TBD. The expected response to the call is:
 //
 //   - 200 with the time series data
-type ExtensionHookConsumptionDataRetrievalSchemas struct {
+type Schemas struct {
 	Auth *ExtensionAuthBlock `json:"auth,omitempty"`
 	Call Call                `json:"call"`
 	// Identifier of the hook. Should not change between updates.
-	ID       *string                                          `json:"id,omitempty"`
-	Resolved *Resolved                                        `json:"resolved,omitempty"`
-	Type     SchemasExtensionHookConsumptionDataRetrievalType `json:"type"`
+	ID       *string   `json:"id,omitempty"`
+	Resolved *Resolved `json:"resolved,omitempty"`
+	Type     Type      `json:"type"`
 }
 
-func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
+func (s Schemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Schemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"call", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Schemas) GetAuth() *ExtensionAuthBlock {
 	if o == nil {
 		return nil
 	}
 	return o.Auth
 }
 
-func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetCall() Call {
+func (o *Schemas) GetCall() Call {
 	if o == nil {
 		return Call{}
 	}
 	return o.Call
 }
 
-func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetID() *string {
+func (o *Schemas) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetResolved() *Resolved {
+func (o *Schemas) GetResolved() *Resolved {
 	if o == nil {
 		return nil
 	}
 	return o.Resolved
 }
 
-func (o *ExtensionHookConsumptionDataRetrievalSchemas) GetType() SchemasExtensionHookConsumptionDataRetrievalType {
+func (o *Schemas) GetType() Type {
 	if o == nil {
-		return SchemasExtensionHookConsumptionDataRetrievalType("")
+		return Type("")
 	}
 	return o.Type
 }
@@ -477,7 +554,7 @@ func (s SchemasExtensionHookPriceDataRetrievalCall) MarshalJSON() ([]byte, error
 }
 
 func (s *SchemasExtensionHookPriceDataRetrievalCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"url"}); err != nil {
 		return err
 	}
 	return nil
@@ -523,6 +600,17 @@ type SchemasExtensionHookPriceDataRetrievalResolved struct {
 	DataPath *string `json:"dataPath,omitempty"`
 }
 
+func (s SchemasExtensionHookPriceDataRetrievalResolved) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasExtensionHookPriceDataRetrievalResolved) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SchemasExtensionHookPriceDataRetrievalResolved) GetDataPath() *string {
 	if o == nil {
 		return nil
@@ -563,6 +651,17 @@ type ExtensionHookPriceDataRetrievalSchemas struct {
 	ID       *string                                         `json:"id,omitempty"`
 	Resolved *SchemasExtensionHookPriceDataRetrievalResolved `json:"resolved,omitempty"`
 	Type     SchemasExtensionHookPriceDataRetrievalType      `json:"type"`
+}
+
+func (e ExtensionHookPriceDataRetrievalSchemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtensionHookPriceDataRetrievalSchemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExtensionHookPriceDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
@@ -609,6 +708,17 @@ type SchemasCall struct {
 	URL string `json:"url"`
 }
 
+func (s SchemasCall) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasCall) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"headers", "url"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SchemasCall) GetHeaders() map[string]string {
 	if o == nil {
 		return map[string]string{}
@@ -642,7 +752,7 @@ func (e Explanation) MarshalJSON() ([]byte, error) {
 }
 
 func (e *Explanation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil
@@ -662,26 +772,26 @@ func (o *Explanation) GetEn() string {
 	return o.En
 }
 
-type SchemasExtensionHookContractIdentificationType string
+type SchemasType string
 
 const (
-	SchemasExtensionHookContractIdentificationTypeContractIdentification SchemasExtensionHookContractIdentificationType = "contractIdentification"
+	SchemasTypeContractIdentification SchemasType = "contractIdentification"
 )
 
-func (e SchemasExtensionHookContractIdentificationType) ToPointer() *SchemasExtensionHookContractIdentificationType {
+func (e SchemasType) ToPointer() *SchemasType {
 	return &e
 }
-func (e *SchemasExtensionHookContractIdentificationType) UnmarshalJSON(data []byte) error {
+func (e *SchemasType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "contractIdentification":
-		*e = SchemasExtensionHookContractIdentificationType(v)
+		*e = SchemasType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for SchemasExtensionHookContractIdentificationType: %v", v)
+		return fmt.Errorf("invalid value for SchemasType: %v", v)
 	}
 }
 
@@ -701,8 +811,19 @@ type ExtensionHookContractIdentificationSchemas struct {
 	// Explanation of the hook.
 	Explanation *Explanation `json:"explanation,omitempty"`
 	// Identifier of the hook. Should not change between updates.
-	ID   *string                                        `json:"id,omitempty"`
-	Type SchemasExtensionHookContractIdentificationType `json:"type"`
+	ID   *string     `json:"id,omitempty"`
+	Type SchemasType `json:"type"`
+}
+
+func (e ExtensionHookContractIdentificationSchemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtensionHookContractIdentificationSchemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *ExtensionHookContractIdentificationSchemas) GetAuth() *ExtensionAuthBlock {
@@ -740,9 +861,9 @@ func (o *ExtensionHookContractIdentificationSchemas) GetID() *string {
 	return o.ID
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetType() SchemasExtensionHookContractIdentificationType {
+func (o *ExtensionHookContractIdentificationSchemas) GetType() SchemasType {
 	if o == nil {
-		return SchemasExtensionHookContractIdentificationType("")
+		return SchemasType("")
 	}
 	return o.Type
 }
@@ -756,6 +877,17 @@ type SchemasExtensionHookRegistrationIdentifiersCheckCall struct {
 	Result string `json:"result"`
 	// URL to call. Supports variable interpolation.
 	URL string `json:"url"`
+}
+
+func (s SchemasExtensionHookRegistrationIdentifiersCheckCall) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"headers", "result", "url"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetHeaders() map[string]string {
@@ -821,6 +953,17 @@ type ExtensionHookRegistrationIdentifiersCheckSchemas struct {
 	Type SchemasExtensionHookRegistrationIdentifiersCheckType `json:"type"`
 }
 
+func (e ExtensionHookRegistrationIdentifiersCheckSchemas) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *ExtensionHookRegistrationIdentifiersCheckSchemas) GetAuth() *ExtensionAuthBlock {
 	if o == nil {
 		return nil
@@ -855,18 +998,18 @@ const (
 	HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas  HooksType = "ExtensionHookRegistrationIdentifiersCheck_Schemas"
 	HooksTypeExtensionHookContractIdentificationSchemas        HooksType = "ExtensionHookContractIdentification_Schemas"
 	HooksTypeExtensionHookPriceDataRetrievalSchemas            HooksType = "ExtensionHookPriceDataRetrieval_Schemas"
-	HooksTypeExtensionHookConsumptionDataRetrievalSchemas      HooksType = "ExtensionHookConsumptionDataRetrieval_Schemas"
+	HooksTypeSchemas                                           HooksType = "Schemas"
 	HooksTypeExtensionHookCostDataRetrievalSchemas             HooksType = "ExtensionHookCostDataRetrieval_Schemas"
 	HooksTypeExtensionHookMeterReadingPlausibilityCheckSchemas HooksType = "ExtensionHookMeterReadingPlausibilityCheck_Schemas"
 )
 
 type Hooks struct {
-	ExtensionHookRegistrationIdentifiersCheckSchemas  *ExtensionHookRegistrationIdentifiersCheckSchemas  `queryParam:"inline"`
-	ExtensionHookContractIdentificationSchemas        *ExtensionHookContractIdentificationSchemas        `queryParam:"inline"`
-	ExtensionHookPriceDataRetrievalSchemas            *ExtensionHookPriceDataRetrievalSchemas            `queryParam:"inline"`
-	ExtensionHookConsumptionDataRetrievalSchemas      *ExtensionHookConsumptionDataRetrievalSchemas      `queryParam:"inline"`
-	ExtensionHookCostDataRetrievalSchemas             *ExtensionHookCostDataRetrievalSchemas             `queryParam:"inline"`
-	ExtensionHookMeterReadingPlausibilityCheckSchemas *ExtensionHookMeterReadingPlausibilityCheckSchemas `queryParam:"inline"`
+	ExtensionHookRegistrationIdentifiersCheckSchemas  *ExtensionHookRegistrationIdentifiersCheckSchemas  `queryParam:"inline" name:"hooks"`
+	ExtensionHookContractIdentificationSchemas        *ExtensionHookContractIdentificationSchemas        `queryParam:"inline" name:"hooks"`
+	ExtensionHookPriceDataRetrievalSchemas            *ExtensionHookPriceDataRetrievalSchemas            `queryParam:"inline" name:"hooks"`
+	Schemas                                           *Schemas                                           `queryParam:"inline" name:"hooks"`
+	ExtensionHookCostDataRetrievalSchemas             *ExtensionHookCostDataRetrievalSchemas             `queryParam:"inline" name:"hooks"`
+	ExtensionHookMeterReadingPlausibilityCheckSchemas *ExtensionHookMeterReadingPlausibilityCheckSchemas `queryParam:"inline" name:"hooks"`
 
 	Type HooksType
 }
@@ -898,12 +1041,12 @@ func CreateHooksExtensionHookPriceDataRetrievalSchemas(extensionHookPriceDataRet
 	}
 }
 
-func CreateHooksExtensionHookConsumptionDataRetrievalSchemas(extensionHookConsumptionDataRetrievalSchemas ExtensionHookConsumptionDataRetrievalSchemas) Hooks {
-	typ := HooksTypeExtensionHookConsumptionDataRetrievalSchemas
+func CreateHooksSchemas(schemas Schemas) Hooks {
+	typ := HooksTypeSchemas
 
 	return Hooks{
-		ExtensionHookConsumptionDataRetrievalSchemas: &extensionHookConsumptionDataRetrievalSchemas,
-		Type: typ,
+		Schemas: &schemas,
+		Type:    typ,
 	}
 }
 
@@ -927,45 +1070,45 @@ func CreateHooksExtensionHookMeterReadingPlausibilityCheckSchemas(extensionHookM
 
 func (u *Hooks) UnmarshalJSON(data []byte) error {
 
-	var extensionHookRegistrationIdentifiersCheckSchemas ExtensionHookRegistrationIdentifiersCheckSchemas = ExtensionHookRegistrationIdentifiersCheckSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookRegistrationIdentifiersCheckSchemas, "", true, true); err == nil {
-		u.ExtensionHookRegistrationIdentifiersCheckSchemas = &extensionHookRegistrationIdentifiersCheckSchemas
-		u.Type = HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas
-		return nil
-	}
-
-	var extensionHookPriceDataRetrievalSchemas ExtensionHookPriceDataRetrievalSchemas = ExtensionHookPriceDataRetrievalSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookPriceDataRetrievalSchemas, "", true, true); err == nil {
-		u.ExtensionHookPriceDataRetrievalSchemas = &extensionHookPriceDataRetrievalSchemas
-		u.Type = HooksTypeExtensionHookPriceDataRetrievalSchemas
-		return nil
-	}
-
-	var extensionHookConsumptionDataRetrievalSchemas ExtensionHookConsumptionDataRetrievalSchemas = ExtensionHookConsumptionDataRetrievalSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookConsumptionDataRetrievalSchemas, "", true, true); err == nil {
-		u.ExtensionHookConsumptionDataRetrievalSchemas = &extensionHookConsumptionDataRetrievalSchemas
-		u.Type = HooksTypeExtensionHookConsumptionDataRetrievalSchemas
-		return nil
-	}
-
-	var extensionHookCostDataRetrievalSchemas ExtensionHookCostDataRetrievalSchemas = ExtensionHookCostDataRetrievalSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookCostDataRetrievalSchemas, "", true, true); err == nil {
-		u.ExtensionHookCostDataRetrievalSchemas = &extensionHookCostDataRetrievalSchemas
-		u.Type = HooksTypeExtensionHookCostDataRetrievalSchemas
-		return nil
-	}
-
 	var extensionHookMeterReadingPlausibilityCheckSchemas ExtensionHookMeterReadingPlausibilityCheckSchemas = ExtensionHookMeterReadingPlausibilityCheckSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookMeterReadingPlausibilityCheckSchemas, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &extensionHookMeterReadingPlausibilityCheckSchemas, "", true, nil); err == nil {
 		u.ExtensionHookMeterReadingPlausibilityCheckSchemas = &extensionHookMeterReadingPlausibilityCheckSchemas
 		u.Type = HooksTypeExtensionHookMeterReadingPlausibilityCheckSchemas
 		return nil
 	}
 
+	var extensionHookRegistrationIdentifiersCheckSchemas ExtensionHookRegistrationIdentifiersCheckSchemas = ExtensionHookRegistrationIdentifiersCheckSchemas{}
+	if err := utils.UnmarshalJSON(data, &extensionHookRegistrationIdentifiersCheckSchemas, "", true, nil); err == nil {
+		u.ExtensionHookRegistrationIdentifiersCheckSchemas = &extensionHookRegistrationIdentifiersCheckSchemas
+		u.Type = HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas
+		return nil
+	}
+
 	var extensionHookContractIdentificationSchemas ExtensionHookContractIdentificationSchemas = ExtensionHookContractIdentificationSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookContractIdentificationSchemas, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &extensionHookContractIdentificationSchemas, "", true, nil); err == nil {
 		u.ExtensionHookContractIdentificationSchemas = &extensionHookContractIdentificationSchemas
 		u.Type = HooksTypeExtensionHookContractIdentificationSchemas
+		return nil
+	}
+
+	var extensionHookPriceDataRetrievalSchemas ExtensionHookPriceDataRetrievalSchemas = ExtensionHookPriceDataRetrievalSchemas{}
+	if err := utils.UnmarshalJSON(data, &extensionHookPriceDataRetrievalSchemas, "", true, nil); err == nil {
+		u.ExtensionHookPriceDataRetrievalSchemas = &extensionHookPriceDataRetrievalSchemas
+		u.Type = HooksTypeExtensionHookPriceDataRetrievalSchemas
+		return nil
+	}
+
+	var schemas Schemas = Schemas{}
+	if err := utils.UnmarshalJSON(data, &schemas, "", true, nil); err == nil {
+		u.Schemas = &schemas
+		u.Type = HooksTypeSchemas
+		return nil
+	}
+
+	var extensionHookCostDataRetrievalSchemas ExtensionHookCostDataRetrievalSchemas = ExtensionHookCostDataRetrievalSchemas{}
+	if err := utils.UnmarshalJSON(data, &extensionHookCostDataRetrievalSchemas, "", true, nil); err == nil {
+		u.ExtensionHookCostDataRetrievalSchemas = &extensionHookCostDataRetrievalSchemas
+		u.Type = HooksTypeExtensionHookCostDataRetrievalSchemas
 		return nil
 	}
 
@@ -985,8 +1128,8 @@ func (u Hooks) MarshalJSON() ([]byte, error) {
 		return utils.MarshalJSON(u.ExtensionHookPriceDataRetrievalSchemas, "", true)
 	}
 
-	if u.ExtensionHookConsumptionDataRetrievalSchemas != nil {
-		return utils.MarshalJSON(u.ExtensionHookConsumptionDataRetrievalSchemas, "", true)
+	if u.Schemas != nil {
+		return utils.MarshalJSON(u.Schemas, "", true)
 	}
 
 	if u.ExtensionHookCostDataRetrievalSchemas != nil {
@@ -1012,7 +1155,7 @@ func (n Name) MarshalJSON() ([]byte, error) {
 }
 
 func (n *Name) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &n, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil
@@ -1044,7 +1187,7 @@ func (e ExtensionDescription) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionDescription) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil
@@ -1076,7 +1219,7 @@ func (e ExtensionName) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil
@@ -1143,7 +1286,7 @@ func (o OptionsObj) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OptionsObj) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"id", "name", "type"}); err != nil {
 		return err
 	}
 	return nil

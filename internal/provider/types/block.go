@@ -2,13 +2,16 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type Block struct {
-	AdditionalProperties types.String `tfsdk:"additional_properties"`
-	ID                   types.String `tfsdk:"id"`
-	Order                types.Number `tfsdk:"order"`
-	ParentID             types.String `tfsdk:"parent_id"`
-	Props                *BlockProps  `tfsdk:"props"`
-	Type                 types.String `tfsdk:"type"`
+	AdditionalProperties jsontypes.Normalized `tfsdk:"additional_properties"`
+	ID                   types.String         `tfsdk:"id"`
+	Order                types.Float64        `tfsdk:"order"`
+	ParentID             types.String         `tfsdk:"parent_id"`
+	Props                *BlockProps          `tfsdk:"props"`
+	Type                 types.String         `tfsdk:"type"`
 }

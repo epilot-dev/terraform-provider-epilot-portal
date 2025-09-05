@@ -16,6 +16,17 @@ type SchemasDollarRelation struct {
 	EntityID *string `json:"entity_id,omitempty"`
 }
 
+func (s SchemasDollarRelation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasDollarRelation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *SchemasDollarRelation) GetEntityID() *string {
 	if o == nil {
 		return nil
@@ -25,6 +36,17 @@ func (o *SchemasDollarRelation) GetEntityID() *string {
 
 type SchemasContract struct {
 	DollarRelation []SchemasDollarRelation `json:"$relation,omitempty"`
+}
+
+func (s SchemasContract) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasContract) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SchemasContract) GetDollarRelation() []SchemasDollarRelation {
@@ -95,7 +117,7 @@ func (r ReimbursementEventSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ReimbursementEventSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"_created_at", "_id", "_org", "_title", "_updated_at", "contract", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -211,6 +233,17 @@ type DollarRelation struct {
 	EntityID *string `json:"entity_id,omitempty"`
 }
 
+func (d DollarRelation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DollarRelation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *DollarRelation) GetEntityID() *string {
 	if o == nil {
 		return nil
@@ -220,6 +253,17 @@ func (o *DollarRelation) GetEntityID() *string {
 
 type SchemasInstallmentEventContract struct {
 	DollarRelation []DollarRelation `json:"$relation,omitempty"`
+}
+
+func (s SchemasInstallmentEventContract) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasInstallmentEventContract) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *SchemasInstallmentEventContract) GetDollarRelation() []DollarRelation {
@@ -290,7 +334,7 @@ func (i InstallmentEventSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (i *InstallmentEventSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, true); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"_created_at", "_id", "_org", "_title", "_updated_at", "contract", "due_date", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -410,8 +454,8 @@ const (
 
 // BillingEvent - An entity that describes a billing event such as a future installment or a reimbursement back to the customer.
 type BillingEvent struct {
-	InstallmentEventSchemas   *InstallmentEventSchemas   `queryParam:"inline"`
-	ReimbursementEventSchemas *ReimbursementEventSchemas `queryParam:"inline"`
+	InstallmentEventSchemas   *InstallmentEventSchemas   `queryParam:"inline" name:"BillingEvent"`
+	ReimbursementEventSchemas *ReimbursementEventSchemas `queryParam:"inline" name:"BillingEvent"`
 
 	Type BillingEventType
 }
@@ -437,14 +481,14 @@ func CreateBillingEventReimbursementEventSchemas(reimbursementEventSchemas Reimb
 func (u *BillingEvent) UnmarshalJSON(data []byte) error {
 
 	var installmentEventSchemas InstallmentEventSchemas = InstallmentEventSchemas{}
-	if err := utils.UnmarshalJSON(data, &installmentEventSchemas, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &installmentEventSchemas, "", true, nil); err == nil {
 		u.InstallmentEventSchemas = &installmentEventSchemas
 		u.Type = BillingEventTypeInstallmentEventSchemas
 		return nil
 	}
 
 	var reimbursementEventSchemas ReimbursementEventSchemas = ReimbursementEventSchemas{}
-	if err := utils.UnmarshalJSON(data, &reimbursementEventSchemas, "", true, true); err == nil {
+	if err := utils.UnmarshalJSON(data, &reimbursementEventSchemas, "", true, nil); err == nil {
 		u.ReimbursementEventSchemas = &reimbursementEventSchemas
 		u.Type = BillingEventTypeReimbursementEventSchemas
 		return nil

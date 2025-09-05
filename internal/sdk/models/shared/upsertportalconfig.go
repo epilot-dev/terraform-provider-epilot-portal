@@ -196,13 +196,13 @@ func (o *UpsertPortalConfigContractSelectorConfig) GetTitlePath() *string {
 	return o.TitlePath
 }
 
-// DefaultUserToNotify - Default 360 user to notify upon an internal notification
-type DefaultUserToNotify struct {
+// UpsertPortalConfigDefaultUserToNotify - Default 360 user to notify upon an internal notification
+type UpsertPortalConfigDefaultUserToNotify struct {
 	// Default admin users for pending user notification to notify
 	OnPendingUser []AdminUser `json:"onPendingUser,omitempty"`
 }
 
-func (o *DefaultUserToNotify) GetOnPendingUser() []AdminUser {
+func (o *UpsertPortalConfigDefaultUserToNotify) GetOnPendingUser() []AdminUser {
 	if o == nil {
 		return nil
 	}
@@ -228,7 +228,7 @@ func (o *UpsertPortalConfigActionLabel) GetEn() *string {
 	return o.En
 }
 
-type EntityActions struct {
+type UpsertPortalConfigEntityActions struct {
 	ActionLabel *UpsertPortalConfigActionLabel `json:"action_Label,omitempty"`
 	// Entity ID
 	JourneyID *string `json:"journey_id,omitempty"`
@@ -236,21 +236,21 @@ type EntityActions struct {
 	Slug *EntitySlug `json:"slug,omitempty"`
 }
 
-func (o *EntityActions) GetActionLabel() *UpsertPortalConfigActionLabel {
+func (o *UpsertPortalConfigEntityActions) GetActionLabel() *UpsertPortalConfigActionLabel {
 	if o == nil {
 		return nil
 	}
 	return o.ActionLabel
 }
 
-func (o *EntityActions) GetJourneyID() *string {
+func (o *UpsertPortalConfigEntityActions) GetJourneyID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.JourneyID
 }
 
-func (o *EntityActions) GetSlug() *EntitySlug {
+func (o *UpsertPortalConfigEntityActions) GetSlug() *EntitySlug {
 	if o == nil {
 		return nil
 	}
@@ -608,7 +608,7 @@ type UpsertPortalConfig struct {
 	// Configuration for contract selector in the portal
 	ContractSelectorConfig *UpsertPortalConfigContractSelectorConfig `json:"contract_selector_config,omitempty"`
 	// Default 360 user to notify upon an internal notification
-	DefaultUserToNotify *DefaultUserToNotify `json:"default_user_to_notify,omitempty"`
+	DefaultUserToNotify *UpsertPortalConfigDefaultUserToNotify `json:"default_user_to_notify,omitempty"`
 	// Entity ID
 	DesignID *string `json:"design_id,omitempty"`
 	// The URL on which the portal is accessible
@@ -618,7 +618,7 @@ type UpsertPortalConfig struct {
 	// Enable/Disable the portal access
 	Enabled *bool `json:"enabled,omitempty"`
 	// Journey actions allowed on an entity by a portal user
-	EntityActions []EntityActions `json:"entity_actions,omitempty"`
+	EntityActions []UpsertPortalConfigEntityActions `json:"entity_actions,omitempty"`
 	// Rules for editing an entity by a portal user
 	EntityEditRules []UpsertPortalConfigEntityEditRules `json:"entity_edit_rules,omitempty"`
 	// Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.
@@ -626,7 +626,7 @@ type UpsertPortalConfig struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *UpsertPortalConfigEntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]ExtensionHookConfig `json:"extension_hooks,omitempty"`
+	ExtensionHooks map[string]*ExtensionHookConfig `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature settings for the portal
@@ -723,7 +723,7 @@ func (o *UpsertPortalConfig) GetContractSelectorConfig() *UpsertPortalConfigCont
 	return o.ContractSelectorConfig
 }
 
-func (o *UpsertPortalConfig) GetDefaultUserToNotify() *DefaultUserToNotify {
+func (o *UpsertPortalConfig) GetDefaultUserToNotify() *UpsertPortalConfigDefaultUserToNotify {
 	if o == nil {
 		return nil
 	}
@@ -758,7 +758,7 @@ func (o *UpsertPortalConfig) GetEnabled() *bool {
 	return o.Enabled
 }
 
-func (o *UpsertPortalConfig) GetEntityActions() []EntityActions {
+func (o *UpsertPortalConfig) GetEntityActions() []UpsertPortalConfigEntityActions {
 	if o == nil {
 		return nil
 	}
@@ -779,7 +779,7 @@ func (o *UpsertPortalConfig) GetEntityIdentifiers() *UpsertPortalConfigEntityIde
 	return o.EntityIdentifiers
 }
 
-func (o *UpsertPortalConfig) GetExtensionHooks() map[string]ExtensionHookConfig {
+func (o *UpsertPortalConfig) GetExtensionHooks() map[string]*ExtensionHookConfig {
 	if o == nil {
 		return nil
 	}

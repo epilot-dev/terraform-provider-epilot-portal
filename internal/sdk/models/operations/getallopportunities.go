@@ -21,7 +21,7 @@ func (g GetAllOpportunitiesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllOpportunitiesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -88,7 +88,7 @@ func (g GetAllOpportunitiesData) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllOpportunitiesData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
 		return err
 	}
 	return nil

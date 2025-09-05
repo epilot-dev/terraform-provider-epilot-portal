@@ -2,12 +2,27 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 type Groups struct {
 	// Total number of entities in this group
 	Count *float64 `json:"count,omitempty"`
 	// Group title
 	Group   *string      `json:"group,omitempty"`
 	Results []EntityItem `json:"results,omitempty"`
+}
+
+func (g Groups) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *Groups) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Groups) GetCount() *float64 {
@@ -39,6 +54,17 @@ type GroupsPagination struct {
 	HasMore *bool `json:"has_more,omitempty"`
 }
 
+func (g GroupsPagination) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GroupsPagination) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *GroupsPagination) GetAfterKey() map[string]string {
 	if o == nil {
 		return nil
@@ -60,6 +86,17 @@ type EntityResponseGroupedWithHits struct {
 	GroupsPagination *GroupsPagination `json:"groups_pagination,omitempty"`
 	// Total number of groups for pagination
 	Hits *float64 `json:"hits,omitempty"`
+}
+
+func (e EntityResponseGroupedWithHits) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityResponseGroupedWithHits) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *EntityResponseGroupedWithHits) GetGroups() []Groups {

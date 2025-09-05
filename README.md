@@ -30,6 +30,7 @@ Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
 * [epilot-portal](#epilot-portal)
   * [🏗 **Welcome to your new Terraform Provider!** 🏗](#welcome-to-your-new-terraform-provider)
   * [Installation](#installation)
+  * [Authentication](#authentication)
   * [Available Resources and Data Sources](#available-resources-and-data-sources)
   * [Testing the provider locally](#testing-the-provider-locally)
 * [Development](#development)
@@ -47,7 +48,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.23.1"
+      version = "0.25.3"
     }
   }
 }
@@ -58,6 +59,20 @@ provider "epilot-portal" {
 ```
 <!-- End Installation [installation] -->
 
+<!-- Start Authentication [security] -->
+## Authentication
+
+This provider supports authentication configuration via provider configuration.
+
+Available configuration:
+
+| Provider Attribute | Description |
+|---|---|
+| `either_auth` | Portal or Epilot Bearer Token. |
+| `epilot_auth` | Epilot Bearer Token. |
+| `portal_auth` | Portal Cognito Token. |
+<!-- End Authentication [security] -->
+
 <!-- Start Available Resources and Data Sources [operations] -->
 ## Available Resources and Data Sources
 
@@ -65,7 +80,6 @@ provider "epilot-portal" {
 
 * [epilot-portal_portal_config](docs/resources/portal_config.md)
 * [epilot-portal_portal_page](docs/resources/portal_page.md)
-* [epilot-portal_portal_widget](docs/resources/portal_widget.md)
 ### Data Sources
 
 * [epilot-portal_portal_config](docs/data-sources/portal_config.md)

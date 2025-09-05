@@ -84,7 +84,7 @@ func (o OIDCProviderConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OIDCProviderConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"client_id", "oidc_issuer", "scope"}); err != nil {
 		return err
 	}
 	return nil

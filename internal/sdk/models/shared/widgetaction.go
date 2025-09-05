@@ -5,11 +5,23 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
 type Label struct {
 	De *string `json:"de,omitempty"`
 	En *string `json:"en,omitempty"`
+}
+
+func (l Label) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *Label) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *Label) GetDe() *string {
@@ -30,6 +42,17 @@ type WidgetActionRules struct {
 	Attribute      string `json:"attribute"`
 	AttributeValue string `json:"attribute_value"`
 	Entity         string `json:"entity"`
+}
+
+func (w WidgetActionRules) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WidgetActionRules) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"attribute", "attribute_value", "entity"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *WidgetActionRules) GetAttribute() string {
@@ -85,6 +108,17 @@ type WidgetAction struct {
 	Rules []WidgetActionRules `json:"rules,omitempty"`
 	Type  WidgetActionType    `json:"type"`
 	URL   string              `json:"url"`
+}
+
+func (w WidgetAction) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(w, "", false)
+}
+
+func (w *WidgetAction) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"_id", "label", "type", "url"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *WidgetAction) GetID() string {

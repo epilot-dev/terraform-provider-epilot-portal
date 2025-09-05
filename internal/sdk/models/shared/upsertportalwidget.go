@@ -3,12 +3,12 @@
 package shared
 
 type UpsertPortalWidget struct {
-	Widgets []PortalWidget `json:"widgets"`
+	Widgets []any `json:"widgets"`
 }
 
-func (o *UpsertPortalWidget) GetWidgets() []PortalWidget {
+func (o *UpsertPortalWidget) GetWidgets() []any {
 	if o == nil {
-		return []PortalWidget{}
+		return []any{}
 	}
 	return o.Widgets
 }

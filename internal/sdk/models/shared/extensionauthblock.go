@@ -46,7 +46,7 @@ func (e ExtensionAuthBlock) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionAuthBlock) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"url"}); err != nil {
 		return err
 	}
 	return nil

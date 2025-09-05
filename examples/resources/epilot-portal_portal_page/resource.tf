@@ -1,29 +1,31 @@
 resource "epilot-portal_portal_page" "my_portalpage" {
   additional_properties = "{ \"see\": \"documentation\" }"
   blocks = {
-    additional_properties = "{ \"see\": \"documentation\" }"
-    id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
-    order                 = 1
-    parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
-    props = {
+    key = {
       additional_properties = "{ \"see\": \"documentation\" }"
-      content = {
-        # ...
+      id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
+      order                 = 1
+      parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
+      props = {
+        additional_properties = "{ \"see\": \"documentation\" }"
+        content = {
+          # ...
+        }
+        design = {
+          # ...
+        }
+        visibility = {
+          # ...
+        }
       }
-      design = {
-        # ...
-      }
-      visibility = {
-        # ...
-      }
+      type = "tab"
     }
-    type = "tab"
   }
   content = {
-    key = jsonencode("value"),
+    key = jsonencode("value")
   }
   design = {
-    key = jsonencode("value"),
+    key = jsonencode("value")
   }
   domain         = "customer-portal.epilot.io"
   is_deleted     = false
@@ -38,6 +40,6 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   ]
   slug = "dashboard"
   visibility = {
-    key = jsonencode("value"),
+    key = jsonencode("value")
   }
 }

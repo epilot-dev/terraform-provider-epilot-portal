@@ -3,6 +3,6 @@
 package types
 
 type PortalConfigV3OrgSettings struct {
-	Canary     *UpsertPortalConfigV3AdvancedMfa `tfsdk:"canary"`
-	Notracking *UpsertPortalConfigV3AdvancedMfa `tfsdk:"notracking"`
+	Canary     *PortalConfigV3AdvancedMfa `tfsdk:"canary"`
+	Notracking *PortalConfigV3AdvancedMfa `tfsdk:"notracking"`
 }

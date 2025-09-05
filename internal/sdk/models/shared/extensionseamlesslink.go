@@ -20,7 +20,7 @@ func (e ExtensionSeamlessLinkDescription) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionSeamlessLinkDescription) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,7 +52,7 @@ func (e ExtensionSeamlessLinkName) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionSeamlessLinkName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
 		return err
 	}
 	return nil

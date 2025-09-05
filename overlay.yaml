@@ -53,6 +53,27 @@ actions:
   - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["approval_state_attributes"]
     update:
       x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["pages"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["contract_identifiers"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["entity_edit_rules"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["registration_identifiers"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["grants"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["feature_flags"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["identity_providers"]
+    update:
+      x-speakeasy-type-override: any
 
 
   # Portal Page
@@ -75,12 +96,3 @@ actions:
   - target: $["components"]["schemas"]["Page"]
     update:
       x-speakeasy-entity: PortalPage
-
-  # Portal Widget
-  - target: $["paths"]["/v2/portal/widgets"]["post"]
-    update:
-      x-speakeasy-entity-operation: PortalWidget#create
-
-  - target: $["components"]["schemas"]["PortalWidget"]
-    update:
-      x-speakeasy-entity: PortalWidget

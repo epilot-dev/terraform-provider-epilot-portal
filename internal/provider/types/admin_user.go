@@ -2,15 +2,18 @@
 
 package types
 
-import "github.com/hashicorp/terraform-plugin-framework/types"
+import (
+	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
+	"github.com/hashicorp/terraform-plugin-framework/types"
+)
 
 type AdminUser struct {
-	AdditionalProperties types.String `tfsdk:"additional_properties"`
-	DisplayName          types.String `tfsdk:"display_name"`
-	Email                types.String `tfsdk:"email"`
-	ImageURI             *ImageURI    `tfsdk:"image_uri"`
-	OrgID                types.String `tfsdk:"org_id"`
-	Phone                types.String `tfsdk:"phone"`
-	Type                 types.String `tfsdk:"type"`
-	UserID               types.String `tfsdk:"user_id"`
+	AdditionalProperties jsontypes.Normalized `tfsdk:"additional_properties"`
+	DisplayName          types.String         `tfsdk:"display_name"`
+	Email                types.String         `tfsdk:"email"`
+	ImageURI             *ImageURI            `tfsdk:"image_uri"`
+	OrgID                types.String         `tfsdk:"org_id"`
+	Phone                types.String         `tfsdk:"phone"`
+	Type                 types.String         `tfsdk:"type"`
+	UserID               types.String         `tfsdk:"user_id"`
 }
