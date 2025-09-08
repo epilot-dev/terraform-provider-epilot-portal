@@ -557,9 +557,11 @@ type PortalConfigV3 struct {
 	OrganizationID *string `json:"organization_id,omitempty"`
 	// Origin of the portal
 	Origin *Origin `json:"origin,omitempty"`
-	Pages  any     `json:"pages,omitempty"`
+	Pages  []Page  `json:"pages,omitempty"`
 	// ID of the portal
 	PortalID *string `json:"portal_id,omitempty"`
+	// Key of the portal config
+	PortalSkV3 *string `json:"portal_sk_v3,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
@@ -800,7 +802,7 @@ func (o *PortalConfigV3) GetOrigin() *Origin {
 	return o.Origin
 }
 
-func (o *PortalConfigV3) GetPages() any {
+func (o *PortalConfigV3) GetPages() []Page {
 	if o == nil {
 		return nil
 	}
@@ -812,6 +814,13 @@ func (o *PortalConfigV3) GetPortalID() *string {
 		return nil
 	}
 	return o.PortalID
+}
+
+func (o *PortalConfigV3) GetPortalSkV3() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalSkV3
 }
 
 func (o *PortalConfigV3) GetPreventSearchEngineIndexing() *bool {

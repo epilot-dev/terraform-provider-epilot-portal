@@ -9,6 +9,27 @@ import (
 	"net/http"
 )
 
+type EntityRefs struct {
+	// Entity ID
+	EntityID string `json:"entity_id"`
+	// Schema of the entity (e.g., contact, contract, opportunity, order, meter)
+	EntitySchema string `json:"entity_schema"`
+}
+
+func (o *EntityRefs) GetEntityID() string {
+	if o == nil {
+		return ""
+	}
+	return o.EntityID
+}
+
+func (o *EntityRefs) GetEntitySchema() string {
+	if o == nil {
+		return ""
+	}
+	return o.EntitySchema
+}
+
 // Status - The status to set for the campaign portal block
 type Status string
 
@@ -40,8 +61,17 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 }
 
 type UpdateCampaignPortalBlockStatusRequestBody struct {
+	// Array of entity references with their schemas
+	EntityRefs []EntityRefs `json:"entity_refs"`
 	// The status to set for the campaign portal block
 	Status Status `json:"status"`
+}
+
+func (o *UpdateCampaignPortalBlockStatusRequestBody) GetEntityRefs() []EntityRefs {
+	if o == nil {
+		return []EntityRefs{}
+	}
+	return o.EntityRefs
 }
 
 func (o *UpdateCampaignPortalBlockStatusRequestBody) GetStatus() Status {
@@ -55,8 +85,6 @@ type UpdateCampaignPortalBlockStatusRequest struct {
 	RequestBody UpdateCampaignPortalBlockStatusRequestBody `request:"mediaType=application/json"`
 	// ID of the campaign
 	CampaignID string `pathParam:"style=simple,explode=false,name=campaign_id"`
-	// ID of the recipient entity
-	EntityID string `pathParam:"style=simple,explode=false,name=entity_id"`
 }
 
 func (o *UpdateCampaignPortalBlockStatusRequest) GetRequestBody() UpdateCampaignPortalBlockStatusRequestBody {
@@ -73,15 +101,44 @@ func (o *UpdateCampaignPortalBlockStatusRequest) GetCampaignID() string {
 	return o.CampaignID
 }
 
-func (o *UpdateCampaignPortalBlockStatusRequest) GetEntityID() string {
-	if o == nil {
-		return ""
-	}
-	return o.EntityID
-}
-
 // UpdateCampaignPortalBlockStatusResponseBody - Campaign portal block status updated successfully.
 type UpdateCampaignPortalBlockStatusResponseBody struct {
+	// Number of entities that failed to update
+	Failed int64 `json:"failed"`
+	// Whether the operation completed successfully
+	Success bool `json:"success"`
+	// Total number of entities processed
+	Total int64 `json:"total"`
+	// Number of entities successfully updated
+	Updated int64 `json:"updated"`
+}
+
+func (o *UpdateCampaignPortalBlockStatusResponseBody) GetFailed() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Failed
+}
+
+func (o *UpdateCampaignPortalBlockStatusResponseBody) GetSuccess() bool {
+	if o == nil {
+		return false
+	}
+	return o.Success
+}
+
+func (o *UpdateCampaignPortalBlockStatusResponseBody) GetTotal() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Total
+}
+
+func (o *UpdateCampaignPortalBlockStatusResponseBody) GetUpdated() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Updated
 }
 
 type UpdateCampaignPortalBlockStatusResponse struct {

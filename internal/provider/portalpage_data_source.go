@@ -31,7 +31,7 @@ type PortalPageDataSource struct {
 // PortalPageDataSourceModel describes the data model.
 type PortalPageDataSourceModel struct {
 	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
-	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
+	Blocks               map[string]tfTypes.BlockRequest `tfsdk:"blocks"`
 	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
 	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
 	ID                   types.String                    `tfsdk:"id"`
@@ -72,10 +72,6 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 							CustomType:  jsontypes.NormalizedType{},
 							Computed:    true,
 							Description: `Parsed as JSON.`,
-						},
-						"id": schema.StringAttribute{
-							Computed:    true,
-							Description: `The id of the block`,
 						},
 						"order": schema.Float64Attribute{
 							Computed:    true,

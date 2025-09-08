@@ -7,9 +7,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-type Block struct {
+type BlockRequest struct {
 	AdditionalProperties jsontypes.Normalized `tfsdk:"additional_properties"`
-	ID                   types.String         `tfsdk:"id"`
 	Order                types.Float64        `tfsdk:"order"`
 	ParentID             types.String         `tfsdk:"parent_id"`
 	Props                *BlockProps          `tfsdk:"props"`

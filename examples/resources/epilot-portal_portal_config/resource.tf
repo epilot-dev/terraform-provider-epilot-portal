@@ -139,15 +139,12 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       status = "installed"
     }
   ]
-  feature_flags = "{ \"see\": \"documentation\" }"
   feature_settings = {
     billing         = true
     change_due_date = false
     new_design      = true
     start_page      = true
   }
-  grants             = "{ \"see\": \"documentation\" }"
-  identity_providers = "{ \"see\": \"documentation\" }"
   images = {
     order_left_teaser  = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg"
     order_right_teaser = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg"
@@ -158,18 +155,52 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   is_epilot_domain               = true
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
-  org_settings = {
-    canary = {
-      enabled = true
-    }
-    notracking = {
-      enabled = false
-    }
-  }
-  organization_id                = 12345
   origin                         = "INSTALLER_PORTAL"
-  pages                          = "{ \"see\": \"documentation\" }"
-  portal_id                      = "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+  pages = [
+    {
+      additional_properties = "{ \"see\": \"documentation\" }"
+      blocks = {
+        key = {
+          additional_properties = "{ \"see\": \"documentation\" }"
+          order                 = 1
+          parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
+          props = {
+            additional_properties = "{ \"see\": \"documentation\" }"
+            content = {
+              # ...
+            }
+            design = {
+              # ...
+            }
+            visibility = {
+              # ...
+            }
+          }
+          type = "tab"
+        }
+      }
+      content = {
+        key = jsonencode("value")
+      }
+      design = {
+        key = jsonencode("value")
+      }
+      is_deleted     = false
+      is_entry_route = false
+      is_public      = true
+      is_system      = false
+      order          = 1
+      parent_id      = "c495fef9-eeca-4019-a989-8390dcd9825b"
+      path           = "/dashboard"
+      schema = [
+        "contact"
+      ]
+      slug = "dashboard"
+      visibility = {
+        key = jsonencode("value")
+      }
+    }
+  ]
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
   self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"

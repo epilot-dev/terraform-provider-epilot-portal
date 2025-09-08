@@ -6,7 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-type PortalConfigV3Type struct {
-	Attributes []types.String `tfsdk:"attributes"`
-	IsEnabled  types.Bool     `tfsdk:"is_enabled"`
+type UpsertPortalConfigV3ContractSelectorConfig struct {
+	ShowInactive types.Bool   `tfsdk:"show_inactive"`
+	TitlePath    types.String `tfsdk:"title_path"`
 }

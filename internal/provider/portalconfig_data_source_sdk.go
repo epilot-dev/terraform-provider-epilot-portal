@@ -5,6 +5,7 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/typeconvert"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
@@ -21,7 +22,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.AdvancedMfa == nil {
 			r.AdvancedMfa = nil
 		} else {
-			r.AdvancedMfa = &tfTypes.PortalConfigV3AdvancedMfa{}
+			r.AdvancedMfa = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 			r.AdvancedMfa.Enabled = types.BoolPointerValue(resp.AdvancedMfa.Enabled)
 		}
 		if resp.AllowedFileExtensions == nil {
@@ -78,7 +79,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.AuthSettings == nil {
 			r.AuthSettings = nil
 		} else {
-			r.AuthSettings = &tfTypes.PortalConfigV3AuthSettings{}
+			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
 			if resp.AuthSettings.EntryPoint != nil {
 				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
 			} else {
@@ -87,7 +88,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			if resp.AuthSettings.PasswordlessLogin == nil {
 				r.AuthSettings.PasswordlessLogin = nil
 			} else {
-				r.AuthSettings.PasswordlessLogin = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
 			}
 			r.AuthSettings.PreferredSsoProviders = make([]types.String, 0, len(resp.AuthSettings.PreferredSsoProviders))
@@ -98,14 +99,14 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.CognitoDetails == nil {
 			r.CognitoDetails = nil
 		} else {
-			r.CognitoDetails = &tfTypes.PortalConfigV3CognitoDetails{}
+			r.CognitoDetails = &tfTypes.UpsertPortalConfigV3CognitoDetails{}
 			r.CognitoDetails.CognitoUserPoolArn = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolArn)
 			r.CognitoDetails.CognitoUserPoolClientID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolClientID)
 			r.CognitoDetails.CognitoUserPoolID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolID)
 			if resp.CognitoDetails.PasswordPolicy == nil {
 				r.CognitoDetails.PasswordPolicy = nil
 			} else {
-				r.CognitoDetails.PasswordPolicy = &tfTypes.PortalConfigV3PasswordPolicy{}
+				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigV3PasswordPolicy{}
 				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
 				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
 				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
@@ -127,14 +128,14 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.ContractSelectorConfig == nil {
 			r.ContractSelectorConfig = nil
 		} else {
-			r.ContractSelectorConfig = &tfTypes.PortalConfigV3ContractSelectorConfig{}
+			r.ContractSelectorConfig = &tfTypes.UpsertPortalConfigV3ContractSelectorConfig{}
 			r.ContractSelectorConfig.ShowInactive = types.BoolPointerValue(resp.ContractSelectorConfig.ShowInactive)
 			r.ContractSelectorConfig.TitlePath = types.StringPointerValue(resp.ContractSelectorConfig.TitlePath)
 		}
 		if resp.DefaultUserToNotify == nil {
 			r.DefaultUserToNotify = nil
 		} else {
-			r.DefaultUserToNotify = &tfTypes.DefaultUserToNotify{}
+			r.DefaultUserToNotify = &tfTypes.UpsertPortalConfigV3DefaultUserToNotify{}
 			r.DefaultUserToNotify.OnPendingUser = []tfTypes.AdminUser{}
 
 			for _, onPendingUserItem := range resp.DefaultUserToNotify.OnPendingUser {
@@ -195,7 +196,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			if entityActionsItem.ActionLabel == nil {
 				entityActions.ActionLabel = nil
 			} else {
-				entityActions.ActionLabel = &tfTypes.PortalConfigV3ActionLabel{}
+				entityActions.ActionLabel = &tfTypes.UpsertPortalConfigV3ActionLabel{}
 				entityActions.ActionLabel.De = types.StringPointerValue(entityActionsItem.ActionLabel.De)
 				entityActions.ActionLabel.En = types.StringPointerValue(entityActionsItem.ActionLabel.En)
 			}
@@ -217,11 +218,11 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.EntityIdentifiers == nil {
 			r.EntityIdentifiers = nil
 		} else {
-			r.EntityIdentifiers = &tfTypes.PortalConfigV3EntityIdentifiers{}
+			r.EntityIdentifiers = &tfTypes.UpsertPortalConfigV3EntityIdentifiers{}
 			if resp.EntityIdentifiers.Type == nil {
 				r.EntityIdentifiers.Type = nil
 			} else {
-				r.EntityIdentifiers.Type = &tfTypes.PortalConfigV3Type{}
+				r.EntityIdentifiers.Type = &tfTypes.UpsertPortalConfigV3Type{}
 				r.EntityIdentifiers.Type.Attributes = make([]types.String, 0, len(resp.EntityIdentifiers.Type.Attributes))
 				for _, v := range resp.EntityIdentifiers.Type.Attributes {
 					r.EntityIdentifiers.Type.Attributes = append(r.EntityIdentifiers.Type.Attributes, types.StringValue(v))
@@ -268,7 +269,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.FeatureSettings == nil {
 			r.FeatureSettings = nil
 		} else {
-			r.FeatureSettings = &tfTypes.PortalConfigV3FeatureSettings{}
+			r.FeatureSettings = &tfTypes.UpsertPortalConfigV3FeatureSettings{}
 			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
 			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
 			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
@@ -289,7 +290,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		if resp.Images == nil {
 			r.Images = nil
 		} else {
-			r.Images = &tfTypes.PortalConfigV3Images{}
+			r.Images = &tfTypes.UpsertPortalConfigV3Images{}
 			r.Images.OrderLeftTeaser = types.StringPointerValue(resp.Images.OrderLeftTeaser)
 			r.Images.OrderRightTeaser = types.StringPointerValue(resp.Images.OrderRightTeaser)
 			r.Images.WelcomeBanner = types.StringPointerValue(resp.Images.WelcomeBanner)
@@ -306,13 +307,13 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			if resp.OrgSettings.Canary == nil {
 				r.OrgSettings.Canary = nil
 			} else {
-				r.OrgSettings.Canary = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.OrgSettings.Canary = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.OrgSettings.Canary.Enabled = types.BoolPointerValue(resp.OrgSettings.Canary.Enabled)
 			}
 			if resp.OrgSettings.Notracking == nil {
 				r.OrgSettings.Notracking = nil
 			} else {
-				r.OrgSettings.Notracking = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.OrgSettings.Notracking = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.OrgSettings.Notracking.Enabled = types.BoolPointerValue(resp.OrgSettings.Notracking.Enabled)
 			}
 		}
@@ -322,13 +323,100 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		} else {
 			r.Origin = types.StringNull()
 		}
-		if resp.Pages == nil {
-			r.Pages = jsontypes.NewNormalizedNull()
-		} else {
-			pagesResult, _ := json.Marshal(resp.Pages)
-			r.Pages = jsontypes.NewNormalizedValue(string(pagesResult))
+		r.Pages = []tfTypes.Page{}
+
+		for _, pagesItem := range resp.Pages {
+			var pages tfTypes.Page
+
+			if pagesItem.AdditionalProperties == nil {
+				pages.AdditionalProperties = jsontypes.NewNormalizedNull()
+			} else {
+				additionalPropertiesResult1, _ := json.Marshal(pagesItem.AdditionalProperties)
+				pages.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
+			}
+			if len(pagesItem.Blocks) > 0 {
+				pages.Blocks = make(map[string]tfTypes.BlockRequest, len(pagesItem.Blocks))
+				for blockRequestKey, blockRequestValue := range pagesItem.Blocks {
+					var blockRequestResult tfTypes.BlockRequest
+					if blockRequestValue.AdditionalProperties == nil {
+						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedNull()
+					} else {
+						additionalPropertiesResult2, _ := json.Marshal(blockRequestValue.AdditionalProperties)
+						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
+					}
+					blockRequestResult.Order = types.Float64Value(blockRequestValue.Order)
+					blockRequestResult.ParentID = types.StringPointerValue(blockRequestValue.ParentID)
+					if blockRequestValue.Props == nil {
+						blockRequestResult.Props = nil
+					} else {
+						blockRequestResult.Props = &tfTypes.BlockProps{}
+						if blockRequestValue.Props.AdditionalProperties == nil {
+							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
+						} else {
+							additionalPropertiesResult3, _ := json.Marshal(blockRequestValue.Props.AdditionalProperties)
+							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult3))
+						}
+						if blockRequestValue.Props.Content == nil {
+							blockRequestResult.Props.Content = nil
+						} else {
+							blockRequestResult.Props.Content = &tfTypes.Content{}
+						}
+						if blockRequestValue.Props.Design == nil {
+							blockRequestResult.Props.Design = nil
+						} else {
+							blockRequestResult.Props.Design = &tfTypes.Content{}
+						}
+						if blockRequestValue.Props.Visibility == nil {
+							blockRequestResult.Props.Visibility = nil
+						} else {
+							blockRequestResult.Props.Visibility = &tfTypes.Content{}
+						}
+					}
+					blockRequestResult.Type = types.StringValue(blockRequestValue.Type)
+
+					pages.Blocks[blockRequestKey] = blockRequestResult
+				}
+			}
+			if len(pagesItem.Content) > 0 {
+				pages.Content = make(map[string]jsontypes.Normalized, len(pagesItem.Content))
+				for key1, value1 := range pagesItem.Content {
+					result, _ := json.Marshal(value1)
+					pages.Content[key1] = jsontypes.NewNormalizedValue(string(result))
+				}
+			}
+			if len(pagesItem.Design) > 0 {
+				pages.Design = make(map[string]jsontypes.Normalized, len(pagesItem.Design))
+				for key2, value2 := range pagesItem.Design {
+					result1, _ := json.Marshal(value2)
+					pages.Design[key2] = jsontypes.NewNormalizedValue(string(result1))
+				}
+			}
+			pages.ID = types.StringValue(pagesItem.ID)
+			pages.IsDeleted = types.BoolPointerValue(pagesItem.IsDeleted)
+			pages.IsEntryRoute = types.BoolPointerValue(pagesItem.IsEntryRoute)
+			pages.IsPublic = types.BoolPointerValue(pagesItem.IsPublic)
+			pages.IsSystem = types.BoolPointerValue(pagesItem.IsSystem)
+			pages.LastModifiedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(pagesItem.LastModifiedAt))
+			pages.Order = types.Float64Value(pagesItem.Order)
+			pages.ParentID = types.StringPointerValue(pagesItem.ParentID)
+			pages.Path = types.StringPointerValue(pagesItem.Path)
+			pages.Schema = make([]types.String, 0, len(pagesItem.Schema))
+			for _, v := range pagesItem.Schema {
+				pages.Schema = append(pages.Schema, types.StringValue(string(v)))
+			}
+			pages.Slug = types.StringValue(pagesItem.Slug)
+			if len(pagesItem.Visibility) > 0 {
+				pages.Visibility = make(map[string]jsontypes.Normalized, len(pagesItem.Visibility))
+				for key3, value3 := range pagesItem.Visibility {
+					result2, _ := json.Marshal(value3)
+					pages.Visibility[key3] = jsontypes.NewNormalizedValue(string(result2))
+				}
+			}
+
+			r.Pages = append(r.Pages, pages)
 		}
 		r.PortalID = types.StringPointerValue(resp.PortalID)
+		r.PortalSkV3 = types.StringPointerValue(resp.PortalSkV3)
 		r.PreventSearchEngineIndexing = types.BoolPointerValue(resp.PreventSearchEngineIndexing)
 		if resp.RegistrationIdentifiers == nil {
 			r.RegistrationIdentifiers = jsontypes.NewNormalizedNull()

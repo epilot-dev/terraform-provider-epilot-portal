@@ -5,12 +5,14 @@ package provider
 import (
 	"context"
 	"encoding/json"
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/typeconvert"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
+	"time"
 )
 
 func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.Context, resp *shared.PortalConfigV3) diag.Diagnostics {
@@ -21,7 +23,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.AdvancedMfa == nil {
 			r.AdvancedMfa = nil
 		} else {
-			r.AdvancedMfa = &tfTypes.PortalConfigV3AdvancedMfa{}
+			r.AdvancedMfa = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 			r.AdvancedMfa.Enabled = types.BoolPointerValue(resp.AdvancedMfa.Enabled)
 		}
 		if resp.AllowedFileExtensions == nil {
@@ -78,7 +80,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.AuthSettings == nil {
 			r.AuthSettings = nil
 		} else {
-			r.AuthSettings = &tfTypes.PortalConfigV3AuthSettings{}
+			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
 			if resp.AuthSettings.EntryPoint != nil {
 				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
 			} else {
@@ -87,7 +89,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			if resp.AuthSettings.PasswordlessLogin == nil {
 				r.AuthSettings.PasswordlessLogin = nil
 			} else {
-				r.AuthSettings.PasswordlessLogin = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
 			}
 			r.AuthSettings.PreferredSsoProviders = make([]types.String, 0, len(resp.AuthSettings.PreferredSsoProviders))
@@ -98,14 +100,14 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.CognitoDetails == nil {
 			r.CognitoDetails = nil
 		} else {
-			r.CognitoDetails = &tfTypes.PortalConfigV3CognitoDetails{}
+			r.CognitoDetails = &tfTypes.UpsertPortalConfigV3CognitoDetails{}
 			r.CognitoDetails.CognitoUserPoolArn = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolArn)
 			r.CognitoDetails.CognitoUserPoolClientID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolClientID)
 			r.CognitoDetails.CognitoUserPoolID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolID)
 			if resp.CognitoDetails.PasswordPolicy == nil {
 				r.CognitoDetails.PasswordPolicy = nil
 			} else {
-				r.CognitoDetails.PasswordPolicy = &tfTypes.PortalConfigV3PasswordPolicy{}
+				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigV3PasswordPolicy{}
 				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
 				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
 				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
@@ -127,14 +129,14 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.ContractSelectorConfig == nil {
 			r.ContractSelectorConfig = nil
 		} else {
-			r.ContractSelectorConfig = &tfTypes.PortalConfigV3ContractSelectorConfig{}
+			r.ContractSelectorConfig = &tfTypes.UpsertPortalConfigV3ContractSelectorConfig{}
 			r.ContractSelectorConfig.ShowInactive = types.BoolPointerValue(resp.ContractSelectorConfig.ShowInactive)
 			r.ContractSelectorConfig.TitlePath = types.StringPointerValue(resp.ContractSelectorConfig.TitlePath)
 		}
 		if resp.DefaultUserToNotify == nil {
 			r.DefaultUserToNotify = nil
 		} else {
-			r.DefaultUserToNotify = &tfTypes.DefaultUserToNotify{}
+			r.DefaultUserToNotify = &tfTypes.UpsertPortalConfigV3DefaultUserToNotify{}
 			r.DefaultUserToNotify.OnPendingUser = []tfTypes.AdminUser{}
 
 			for _, onPendingUserItem := range resp.DefaultUserToNotify.OnPendingUser {
@@ -195,7 +197,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			if entityActionsItem.ActionLabel == nil {
 				entityActions.ActionLabel = nil
 			} else {
-				entityActions.ActionLabel = &tfTypes.PortalConfigV3ActionLabel{}
+				entityActions.ActionLabel = &tfTypes.UpsertPortalConfigV3ActionLabel{}
 				entityActions.ActionLabel.De = types.StringPointerValue(entityActionsItem.ActionLabel.De)
 				entityActions.ActionLabel.En = types.StringPointerValue(entityActionsItem.ActionLabel.En)
 			}
@@ -217,11 +219,11 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.EntityIdentifiers == nil {
 			r.EntityIdentifiers = nil
 		} else {
-			r.EntityIdentifiers = &tfTypes.PortalConfigV3EntityIdentifiers{}
+			r.EntityIdentifiers = &tfTypes.UpsertPortalConfigV3EntityIdentifiers{}
 			if resp.EntityIdentifiers.Type == nil {
 				r.EntityIdentifiers.Type = nil
 			} else {
-				r.EntityIdentifiers.Type = &tfTypes.PortalConfigV3Type{}
+				r.EntityIdentifiers.Type = &tfTypes.UpsertPortalConfigV3Type{}
 				r.EntityIdentifiers.Type.Attributes = make([]types.String, 0, len(resp.EntityIdentifiers.Type.Attributes))
 				for _, v := range resp.EntityIdentifiers.Type.Attributes {
 					r.EntityIdentifiers.Type.Attributes = append(r.EntityIdentifiers.Type.Attributes, types.StringValue(v))
@@ -268,7 +270,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.FeatureSettings == nil {
 			r.FeatureSettings = nil
 		} else {
-			r.FeatureSettings = &tfTypes.PortalConfigV3FeatureSettings{}
+			r.FeatureSettings = &tfTypes.UpsertPortalConfigV3FeatureSettings{}
 			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
 			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
 			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
@@ -289,7 +291,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		if resp.Images == nil {
 			r.Images = nil
 		} else {
-			r.Images = &tfTypes.PortalConfigV3Images{}
+			r.Images = &tfTypes.UpsertPortalConfigV3Images{}
 			r.Images.OrderLeftTeaser = types.StringPointerValue(resp.Images.OrderLeftTeaser)
 			r.Images.OrderRightTeaser = types.StringPointerValue(resp.Images.OrderRightTeaser)
 			r.Images.WelcomeBanner = types.StringPointerValue(resp.Images.WelcomeBanner)
@@ -306,13 +308,13 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			if resp.OrgSettings.Canary == nil {
 				r.OrgSettings.Canary = nil
 			} else {
-				r.OrgSettings.Canary = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.OrgSettings.Canary = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.OrgSettings.Canary.Enabled = types.BoolPointerValue(resp.OrgSettings.Canary.Enabled)
 			}
 			if resp.OrgSettings.Notracking == nil {
 				r.OrgSettings.Notracking = nil
 			} else {
-				r.OrgSettings.Notracking = &tfTypes.PortalConfigV3AdvancedMfa{}
+				r.OrgSettings.Notracking = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
 				r.OrgSettings.Notracking.Enabled = types.BoolPointerValue(resp.OrgSettings.Notracking.Enabled)
 			}
 		}
@@ -322,13 +324,100 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		} else {
 			r.Origin = types.StringNull()
 		}
-		if resp.Pages == nil {
-			r.Pages = jsontypes.NewNormalizedNull()
-		} else {
-			pagesResult, _ := json.Marshal(resp.Pages)
-			r.Pages = jsontypes.NewNormalizedValue(string(pagesResult))
+		r.Pages = []tfTypes.Page{}
+
+		for _, pagesItem := range resp.Pages {
+			var pages tfTypes.Page
+
+			if pagesItem.AdditionalProperties == nil {
+				pages.AdditionalProperties = jsontypes.NewNormalizedNull()
+			} else {
+				additionalPropertiesResult1, _ := json.Marshal(pagesItem.AdditionalProperties)
+				pages.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
+			}
+			if len(pagesItem.Blocks) > 0 {
+				pages.Blocks = make(map[string]tfTypes.BlockRequest, len(pagesItem.Blocks))
+				for blockRequestKey, blockRequestValue := range pagesItem.Blocks {
+					var blockRequestResult tfTypes.BlockRequest
+					if blockRequestValue.AdditionalProperties == nil {
+						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedNull()
+					} else {
+						additionalPropertiesResult2, _ := json.Marshal(blockRequestValue.AdditionalProperties)
+						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
+					}
+					blockRequestResult.Order = types.Float64Value(blockRequestValue.Order)
+					blockRequestResult.ParentID = types.StringPointerValue(blockRequestValue.ParentID)
+					if blockRequestValue.Props == nil {
+						blockRequestResult.Props = nil
+					} else {
+						blockRequestResult.Props = &tfTypes.BlockProps{}
+						if blockRequestValue.Props.AdditionalProperties == nil {
+							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
+						} else {
+							additionalPropertiesResult3, _ := json.Marshal(blockRequestValue.Props.AdditionalProperties)
+							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult3))
+						}
+						if blockRequestValue.Props.Content == nil {
+							blockRequestResult.Props.Content = nil
+						} else {
+							blockRequestResult.Props.Content = &tfTypes.Content{}
+						}
+						if blockRequestValue.Props.Design == nil {
+							blockRequestResult.Props.Design = nil
+						} else {
+							blockRequestResult.Props.Design = &tfTypes.Content{}
+						}
+						if blockRequestValue.Props.Visibility == nil {
+							blockRequestResult.Props.Visibility = nil
+						} else {
+							blockRequestResult.Props.Visibility = &tfTypes.Content{}
+						}
+					}
+					blockRequestResult.Type = types.StringValue(blockRequestValue.Type)
+
+					pages.Blocks[blockRequestKey] = blockRequestResult
+				}
+			}
+			if len(pagesItem.Content) > 0 {
+				pages.Content = make(map[string]jsontypes.Normalized, len(pagesItem.Content))
+				for key1, value1 := range pagesItem.Content {
+					result, _ := json.Marshal(value1)
+					pages.Content[key1] = jsontypes.NewNormalizedValue(string(result))
+				}
+			}
+			if len(pagesItem.Design) > 0 {
+				pages.Design = make(map[string]jsontypes.Normalized, len(pagesItem.Design))
+				for key2, value2 := range pagesItem.Design {
+					result1, _ := json.Marshal(value2)
+					pages.Design[key2] = jsontypes.NewNormalizedValue(string(result1))
+				}
+			}
+			pages.ID = types.StringValue(pagesItem.ID)
+			pages.IsDeleted = types.BoolPointerValue(pagesItem.IsDeleted)
+			pages.IsEntryRoute = types.BoolPointerValue(pagesItem.IsEntryRoute)
+			pages.IsPublic = types.BoolPointerValue(pagesItem.IsPublic)
+			pages.IsSystem = types.BoolPointerValue(pagesItem.IsSystem)
+			pages.LastModifiedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(pagesItem.LastModifiedAt))
+			pages.Order = types.Float64Value(pagesItem.Order)
+			pages.ParentID = types.StringPointerValue(pagesItem.ParentID)
+			pages.Path = types.StringPointerValue(pagesItem.Path)
+			pages.Schema = make([]types.String, 0, len(pagesItem.Schema))
+			for _, v := range pagesItem.Schema {
+				pages.Schema = append(pages.Schema, types.StringValue(string(v)))
+			}
+			pages.Slug = types.StringValue(pagesItem.Slug)
+			if len(pagesItem.Visibility) > 0 {
+				pages.Visibility = make(map[string]jsontypes.Normalized, len(pagesItem.Visibility))
+				for key3, value3 := range pagesItem.Visibility {
+					result2, _ := json.Marshal(value3)
+					pages.Visibility[key3] = jsontypes.NewNormalizedValue(string(result2))
+				}
+			}
+
+			r.Pages = append(r.Pages, pages)
 		}
 		r.PortalID = types.StringPointerValue(resp.PortalID)
+		r.PortalSkV3 = types.StringPointerValue(resp.PortalSkV3)
 		r.PreventSearchEngineIndexing = types.BoolPointerValue(resp.PreventSearchEngineIndexing)
 		if resp.RegistrationIdentifiers == nil {
 			r.RegistrationIdentifiers = jsontypes.NewNormalizedNull()
@@ -1085,15 +1174,167 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	} else {
 		origin = nil
 	}
-	var pages interface{}
-	if !r.Pages.IsUnknown() && !r.Pages.IsNull() {
-		_ = json.Unmarshal([]byte(r.Pages.ValueString()), &pages)
+	pages := make([]shared.Page, 0, len(r.Pages))
+	for _, pagesItem := range r.Pages {
+		var additionalProperties1 interface{}
+		if !pagesItem.AdditionalProperties.IsUnknown() && !pagesItem.AdditionalProperties.IsNull() {
+			_ = json.Unmarshal([]byte(pagesItem.AdditionalProperties.ValueString()), &additionalProperties1)
+		}
+		blocks := make(map[string]shared.BlockRequest)
+		for blocksKey, blocksValue := range pagesItem.Blocks {
+			var additionalProperties2 interface{}
+			if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
+				_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties2)
+			}
+			var order float64
+			order = blocksValue.Order.ValueFloat64()
+
+			parentID := new(string)
+			if !blocksValue.ParentID.IsUnknown() && !blocksValue.ParentID.IsNull() {
+				*parentID = blocksValue.ParentID.ValueString()
+			} else {
+				parentID = nil
+			}
+			var props *shared.BlockProps
+			if blocksValue.Props != nil {
+				var additionalProperties3 interface{}
+				if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
+					_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties3)
+				}
+				var content *shared.Content
+				if blocksValue.Props.Content != nil {
+					content = &shared.Content{}
+				}
+				var design *shared.Design
+				if blocksValue.Props.Design != nil {
+					design = &shared.Design{}
+				}
+				var visibility *shared.Visibility
+				if blocksValue.Props.Visibility != nil {
+					visibility = &shared.Visibility{}
+				}
+				props = &shared.BlockProps{
+					AdditionalProperties: additionalProperties3,
+					Content:              content,
+					Design:               design,
+					Visibility:           visibility,
+				}
+			}
+			var typeVar2 string
+			typeVar2 = blocksValue.Type.ValueString()
+
+			blocksInst := shared.BlockRequest{
+				AdditionalProperties: additionalProperties2,
+				Order:                order,
+				ParentID:             parentID,
+				Props:                props,
+				Type:                 typeVar2,
+			}
+			blocks[blocksKey] = blocksInst
+		}
+		content1 := make(map[string]interface{})
+		for contentKey, contentValue := range pagesItem.Content {
+			var contentInst interface{}
+			_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
+			content1[contentKey] = contentInst
+		}
+		design1 := make(map[string]interface{})
+		for designKey, designValue := range pagesItem.Design {
+			var designInst interface{}
+			_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
+			design1[designKey] = designInst
+		}
+		var id1 string
+		id1 = pagesItem.ID.ValueString()
+
+		isDeleted := new(bool)
+		if !pagesItem.IsDeleted.IsUnknown() && !pagesItem.IsDeleted.IsNull() {
+			*isDeleted = pagesItem.IsDeleted.ValueBool()
+		} else {
+			isDeleted = nil
+		}
+		isEntryRoute := new(bool)
+		if !pagesItem.IsEntryRoute.IsUnknown() && !pagesItem.IsEntryRoute.IsNull() {
+			*isEntryRoute = pagesItem.IsEntryRoute.ValueBool()
+		} else {
+			isEntryRoute = nil
+		}
+		isPublic := new(bool)
+		if !pagesItem.IsPublic.IsUnknown() && !pagesItem.IsPublic.IsNull() {
+			*isPublic = pagesItem.IsPublic.ValueBool()
+		} else {
+			isPublic = nil
+		}
+		isSystem := new(bool)
+		if !pagesItem.IsSystem.IsUnknown() && !pagesItem.IsSystem.IsNull() {
+			*isSystem = pagesItem.IsSystem.ValueBool()
+		} else {
+			isSystem = nil
+		}
+		lastModifiedAt := new(time.Time)
+		if !pagesItem.LastModifiedAt.IsUnknown() && !pagesItem.LastModifiedAt.IsNull() {
+			*lastModifiedAt, _ = time.Parse(time.RFC3339Nano, pagesItem.LastModifiedAt.ValueString())
+		} else {
+			lastModifiedAt = nil
+		}
+		var order1 float64
+		order1 = pagesItem.Order.ValueFloat64()
+
+		parentId1 := new(string)
+		if !pagesItem.ParentID.IsUnknown() && !pagesItem.ParentID.IsNull() {
+			*parentId1 = pagesItem.ParentID.ValueString()
+		} else {
+			parentId1 = nil
+		}
+		path := new(string)
+		if !pagesItem.Path.IsUnknown() && !pagesItem.Path.IsNull() {
+			*path = pagesItem.Path.ValueString()
+		} else {
+			path = nil
+		}
+		schema := make([]shared.PageSchema, 0, len(pagesItem.Schema))
+		for _, schemaItem := range pagesItem.Schema {
+			schema = append(schema, shared.PageSchema(schemaItem.ValueString()))
+		}
+		var slug1 string
+		slug1 = pagesItem.Slug.ValueString()
+
+		visibility1 := make(map[string]interface{})
+		for visibilityKey, visibilityValue := range pagesItem.Visibility {
+			var visibilityInst interface{}
+			_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
+			visibility1[visibilityKey] = visibilityInst
+		}
+		pages = append(pages, shared.Page{
+			AdditionalProperties: additionalProperties1,
+			Blocks:               blocks,
+			Content:              content1,
+			Design:               design1,
+			ID:                   id1,
+			IsDeleted:            isDeleted,
+			IsEntryRoute:         isEntryRoute,
+			IsPublic:             isPublic,
+			IsSystem:             isSystem,
+			LastModifiedAt:       lastModifiedAt,
+			Order:                order1,
+			ParentID:             parentId1,
+			Path:                 path,
+			Schema:               schema,
+			Slug:                 slug1,
+			Visibility:           visibility1,
+		})
 	}
 	portalID := new(string)
 	if !r.PortalID.IsUnknown() && !r.PortalID.IsNull() {
 		*portalID = r.PortalID.ValueString()
 	} else {
 		portalID = nil
+	}
+	portalSkV3 := new(string)
+	if !r.PortalSkV3.IsUnknown() && !r.PortalSkV3.IsNull() {
+		*portalSkV3 = r.PortalSkV3.ValueString()
+	} else {
+		portalSkV3 = nil
 	}
 	preventSearchEngineIndexing := new(bool)
 	if !r.PreventSearchEngineIndexing.IsUnknown() && !r.PreventSearchEngineIndexing.IsNull() {
@@ -1166,6 +1407,849 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		Origin:                      origin,
 		Pages:                       pages,
 		PortalID:                    portalID,
+		PortalSkV3:                  portalSkV3,
+		PreventSearchEngineIndexing: preventSearchEngineIndexing,
+		RegistrationIdentifiers:     registrationIdentifiers,
+		SelfRegistrationSetting:     selfRegistrationSetting,
+		TriggeredJourneys:           triggeredJourneys,
+	}
+
+	return &out, diags
+}
+
+func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Context) (*shared.UpsertPortalConfigV3, diag.Diagnostics) {
+	var diags diag.Diagnostics
+
+	accessToken := new(string)
+	if !r.AccessToken.IsUnknown() && !r.AccessToken.IsNull() {
+		*accessToken = r.AccessToken.ValueString()
+	} else {
+		accessToken = nil
+	}
+	var advancedMfa *shared.UpsertPortalConfigV3AdvancedMfa
+	if r.AdvancedMfa != nil {
+		enabled := new(bool)
+		if !r.AdvancedMfa.Enabled.IsUnknown() && !r.AdvancedMfa.Enabled.IsNull() {
+			*enabled = r.AdvancedMfa.Enabled.ValueBool()
+		} else {
+			enabled = nil
+		}
+		advancedMfa = &shared.UpsertPortalConfigV3AdvancedMfa{
+			Enabled: enabled,
+		}
+	}
+	var allowedFileExtensions *shared.AllowedFileExtensions
+	if r.AllowedFileExtensions != nil {
+		archive := make([]string, 0, len(r.AllowedFileExtensions.Archive))
+		for _, archiveItem := range r.AllowedFileExtensions.Archive {
+			archive = append(archive, archiveItem.ValueString())
+		}
+		audioVideo := make([]string, 0, len(r.AllowedFileExtensions.AudioVideo))
+		for _, audioVideoItem := range r.AllowedFileExtensions.AudioVideo {
+			audioVideo = append(audioVideo, audioVideoItem.ValueString())
+		}
+		cad := make([]string, 0, len(r.AllowedFileExtensions.Cad))
+		for _, cadItem := range r.AllowedFileExtensions.Cad {
+			cad = append(cad, cadItem.ValueString())
+		}
+		calendar := make([]string, 0, len(r.AllowedFileExtensions.Calendar))
+		for _, calendarItem := range r.AllowedFileExtensions.Calendar {
+			calendar = append(calendar, calendarItem.ValueString())
+		}
+		document := make([]string, 0, len(r.AllowedFileExtensions.Document))
+		for _, documentItem := range r.AllowedFileExtensions.Document {
+			document = append(document, documentItem.ValueString())
+		}
+		email := make([]string, 0, len(r.AllowedFileExtensions.Email))
+		for _, emailItem := range r.AllowedFileExtensions.Email {
+			email = append(email, emailItem.ValueString())
+		}
+		image := make([]string, 0, len(r.AllowedFileExtensions.Image))
+		for _, imageItem := range r.AllowedFileExtensions.Image {
+			image = append(image, imageItem.ValueString())
+		}
+		other := make([]string, 0, len(r.AllowedFileExtensions.Other))
+		for _, otherItem := range r.AllowedFileExtensions.Other {
+			other = append(other, otherItem.ValueString())
+		}
+		presentation := make([]string, 0, len(r.AllowedFileExtensions.Presentation))
+		for _, presentationItem := range r.AllowedFileExtensions.Presentation {
+			presentation = append(presentation, presentationItem.ValueString())
+		}
+		spreadsheet := make([]string, 0, len(r.AllowedFileExtensions.Spreadsheet))
+		for _, spreadsheetItem := range r.AllowedFileExtensions.Spreadsheet {
+			spreadsheet = append(spreadsheet, spreadsheetItem.ValueString())
+		}
+		allowedFileExtensions = &shared.AllowedFileExtensions{
+			Archive:      archive,
+			AudioVideo:   audioVideo,
+			Cad:          cad,
+			Calendar:     calendar,
+			Document:     document,
+			Email:        email,
+			Image:        image,
+			Other:        other,
+			Presentation: presentation,
+			Spreadsheet:  spreadsheet,
+		}
+	}
+	var approvalStateAttributes interface{}
+	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
+		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
+	}
+	var authSettings *shared.UpsertPortalConfigV3AuthSettings
+	if r.AuthSettings != nil {
+		entryPoint := new(shared.UpsertPortalConfigV3EntryPoint)
+		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
+			*entryPoint = shared.UpsertPortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
+		} else {
+			entryPoint = nil
+		}
+		var passwordlessLogin *shared.UpsertPortalConfigV3PasswordlessLogin
+		if r.AuthSettings.PasswordlessLogin != nil {
+			enabled1 := new(bool)
+			if !r.AuthSettings.PasswordlessLogin.Enabled.IsUnknown() && !r.AuthSettings.PasswordlessLogin.Enabled.IsNull() {
+				*enabled1 = r.AuthSettings.PasswordlessLogin.Enabled.ValueBool()
+			} else {
+				enabled1 = nil
+			}
+			passwordlessLogin = &shared.UpsertPortalConfigV3PasswordlessLogin{
+				Enabled: enabled1,
+			}
+		}
+		preferredSsoProviders := make([]string, 0, len(r.AuthSettings.PreferredSsoProviders))
+		for _, preferredSsoProvidersItem := range r.AuthSettings.PreferredSsoProviders {
+			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
+		}
+		authSettings = &shared.UpsertPortalConfigV3AuthSettings{
+			EntryPoint:            entryPoint,
+			PasswordlessLogin:     passwordlessLogin,
+			PreferredSsoProviders: preferredSsoProviders,
+		}
+	}
+	var cognitoDetails *shared.UpsertPortalConfigV3CognitoDetails
+	if r.CognitoDetails != nil {
+		cognitoUserPoolArn := new(string)
+		if !r.CognitoDetails.CognitoUserPoolArn.IsUnknown() && !r.CognitoDetails.CognitoUserPoolArn.IsNull() {
+			*cognitoUserPoolArn = r.CognitoDetails.CognitoUserPoolArn.ValueString()
+		} else {
+			cognitoUserPoolArn = nil
+		}
+		cognitoUserPoolClientID := new(string)
+		if !r.CognitoDetails.CognitoUserPoolClientID.IsUnknown() && !r.CognitoDetails.CognitoUserPoolClientID.IsNull() {
+			*cognitoUserPoolClientID = r.CognitoDetails.CognitoUserPoolClientID.ValueString()
+		} else {
+			cognitoUserPoolClientID = nil
+		}
+		cognitoUserPoolID := new(string)
+		if !r.CognitoDetails.CognitoUserPoolID.IsUnknown() && !r.CognitoDetails.CognitoUserPoolID.IsNull() {
+			*cognitoUserPoolID = r.CognitoDetails.CognitoUserPoolID.ValueString()
+		} else {
+			cognitoUserPoolID = nil
+		}
+		var passwordPolicy *shared.UpsertPortalConfigV3PasswordPolicy
+		if r.CognitoDetails.PasswordPolicy != nil {
+			minimumLength := new(int64)
+			if !r.CognitoDetails.PasswordPolicy.MinimumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MinimumLength.IsNull() {
+				*minimumLength = r.CognitoDetails.PasswordPolicy.MinimumLength.ValueInt64()
+			} else {
+				minimumLength = nil
+			}
+			requireLowercase := new(bool)
+			if !r.CognitoDetails.PasswordPolicy.RequireLowercase.IsUnknown() && !r.CognitoDetails.PasswordPolicy.RequireLowercase.IsNull() {
+				*requireLowercase = r.CognitoDetails.PasswordPolicy.RequireLowercase.ValueBool()
+			} else {
+				requireLowercase = nil
+			}
+			requireNumbers := new(bool)
+			if !r.CognitoDetails.PasswordPolicy.RequireNumbers.IsUnknown() && !r.CognitoDetails.PasswordPolicy.RequireNumbers.IsNull() {
+				*requireNumbers = r.CognitoDetails.PasswordPolicy.RequireNumbers.ValueBool()
+			} else {
+				requireNumbers = nil
+			}
+			requireSymbols := new(bool)
+			if !r.CognitoDetails.PasswordPolicy.RequireSymbols.IsUnknown() && !r.CognitoDetails.PasswordPolicy.RequireSymbols.IsNull() {
+				*requireSymbols = r.CognitoDetails.PasswordPolicy.RequireSymbols.ValueBool()
+			} else {
+				requireSymbols = nil
+			}
+			requireUppercase := new(bool)
+			if !r.CognitoDetails.PasswordPolicy.RequireUppercase.IsUnknown() && !r.CognitoDetails.PasswordPolicy.RequireUppercase.IsNull() {
+				*requireUppercase = r.CognitoDetails.PasswordPolicy.RequireUppercase.ValueBool()
+			} else {
+				requireUppercase = nil
+			}
+			passwordPolicy = &shared.UpsertPortalConfigV3PasswordPolicy{
+				MinimumLength:    minimumLength,
+				RequireLowercase: requireLowercase,
+				RequireNumbers:   requireNumbers,
+				RequireSymbols:   requireSymbols,
+				RequireUppercase: requireUppercase,
+			}
+		}
+		cognitoDetails = &shared.UpsertPortalConfigV3CognitoDetails{
+			CognitoUserPoolArn:      cognitoUserPoolArn,
+			CognitoUserPoolClientID: cognitoUserPoolClientID,
+			CognitoUserPoolID:       cognitoUserPoolID,
+			PasswordPolicy:          passwordPolicy,
+		}
+	}
+	config := new(string)
+	if !r.Config.IsUnknown() && !r.Config.IsNull() {
+		*config = r.Config.ValueString()
+	} else {
+		config = nil
+	}
+	contactIdentifiers := make([]string, 0, len(r.ContactIdentifiers))
+	for _, contactIdentifiersItem := range r.ContactIdentifiers {
+		contactIdentifiers = append(contactIdentifiers, contactIdentifiersItem.ValueString())
+	}
+	var contractIdentifiers interface{}
+	if !r.ContractIdentifiers.IsUnknown() && !r.ContractIdentifiers.IsNull() {
+		_ = json.Unmarshal([]byte(r.ContractIdentifiers.ValueString()), &contractIdentifiers)
+	}
+	var contractSelectorConfig *shared.UpsertPortalConfigV3ContractSelectorConfig
+	if r.ContractSelectorConfig != nil {
+		showInactive := new(bool)
+		if !r.ContractSelectorConfig.ShowInactive.IsUnknown() && !r.ContractSelectorConfig.ShowInactive.IsNull() {
+			*showInactive = r.ContractSelectorConfig.ShowInactive.ValueBool()
+		} else {
+			showInactive = nil
+		}
+		titlePath := new(string)
+		if !r.ContractSelectorConfig.TitlePath.IsUnknown() && !r.ContractSelectorConfig.TitlePath.IsNull() {
+			*titlePath = r.ContractSelectorConfig.TitlePath.ValueString()
+		} else {
+			titlePath = nil
+		}
+		contractSelectorConfig = &shared.UpsertPortalConfigV3ContractSelectorConfig{
+			ShowInactive: showInactive,
+			TitlePath:    titlePath,
+		}
+	}
+	var defaultUserToNotify *shared.UpsertPortalConfigV3DefaultUserToNotify
+	if r.DefaultUserToNotify != nil {
+		onPendingUser := make([]shared.AdminUser, 0, len(r.DefaultUserToNotify.OnPendingUser))
+		for _, onPendingUserItem := range r.DefaultUserToNotify.OnPendingUser {
+			var additionalProperties interface{}
+			if !onPendingUserItem.AdditionalProperties.IsUnknown() && !onPendingUserItem.AdditionalProperties.IsNull() {
+				_ = json.Unmarshal([]byte(onPendingUserItem.AdditionalProperties.ValueString()), &additionalProperties)
+			}
+			displayName := new(string)
+			if !onPendingUserItem.DisplayName.IsUnknown() && !onPendingUserItem.DisplayName.IsNull() {
+				*displayName = onPendingUserItem.DisplayName.ValueString()
+			} else {
+				displayName = nil
+			}
+			email1 := new(string)
+			if !onPendingUserItem.Email.IsUnknown() && !onPendingUserItem.Email.IsNull() {
+				*email1 = onPendingUserItem.Email.ValueString()
+			} else {
+				email1 = nil
+			}
+			var imageURI *shared.ImageURI
+			if onPendingUserItem.ImageURI != nil {
+				key := new(string)
+				if !onPendingUserItem.ImageURI.Key.IsUnknown() && !onPendingUserItem.ImageURI.Key.IsNull() {
+					*key = onPendingUserItem.ImageURI.Key.ValueString()
+				} else {
+					key = nil
+				}
+				original := new(string)
+				if !onPendingUserItem.ImageURI.Original.IsUnknown() && !onPendingUserItem.ImageURI.Original.IsNull() {
+					*original = onPendingUserItem.ImageURI.Original.ValueString()
+				} else {
+					original = nil
+				}
+				thumbnail32 := new(string)
+				if !onPendingUserItem.ImageURI.Thumbnail32.IsUnknown() && !onPendingUserItem.ImageURI.Thumbnail32.IsNull() {
+					*thumbnail32 = onPendingUserItem.ImageURI.Thumbnail32.ValueString()
+				} else {
+					thumbnail32 = nil
+				}
+				thumbnail64 := new(string)
+				if !onPendingUserItem.ImageURI.Thumbnail64.IsUnknown() && !onPendingUserItem.ImageURI.Thumbnail64.IsNull() {
+					*thumbnail64 = onPendingUserItem.ImageURI.Thumbnail64.ValueString()
+				} else {
+					thumbnail64 = nil
+				}
+				imageURI = &shared.ImageURI{
+					Key:         key,
+					Original:    original,
+					Thumbnail32: thumbnail32,
+					Thumbnail64: thumbnail64,
+				}
+			}
+			orgID := new(string)
+			if !onPendingUserItem.OrgID.IsUnknown() && !onPendingUserItem.OrgID.IsNull() {
+				*orgID = onPendingUserItem.OrgID.ValueString()
+			} else {
+				orgID = nil
+			}
+			phone := new(string)
+			if !onPendingUserItem.Phone.IsUnknown() && !onPendingUserItem.Phone.IsNull() {
+				*phone = onPendingUserItem.Phone.ValueString()
+			} else {
+				phone = nil
+			}
+			typeVar := new(string)
+			if !onPendingUserItem.Type.IsUnknown() && !onPendingUserItem.Type.IsNull() {
+				*typeVar = onPendingUserItem.Type.ValueString()
+			} else {
+				typeVar = nil
+			}
+			userID := new(string)
+			if !onPendingUserItem.UserID.IsUnknown() && !onPendingUserItem.UserID.IsNull() {
+				*userID = onPendingUserItem.UserID.ValueString()
+			} else {
+				userID = nil
+			}
+			onPendingUser = append(onPendingUser, shared.AdminUser{
+				AdditionalProperties: additionalProperties,
+				DisplayName:          displayName,
+				Email:                email1,
+				ImageURI:             imageURI,
+				OrgID:                orgID,
+				Phone:                phone,
+				Type:                 typeVar,
+				UserID:               userID,
+			})
+		}
+		defaultUserToNotify = &shared.UpsertPortalConfigV3DefaultUserToNotify{
+			OnPendingUser: onPendingUser,
+		}
+	}
+	designID := new(string)
+	if !r.DesignID.IsUnknown() && !r.DesignID.IsNull() {
+		*designID = r.DesignID.ValueString()
+	} else {
+		designID = nil
+	}
+	domain := new(string)
+	if !r.Domain.IsUnknown() && !r.Domain.IsNull() {
+		*domain = r.Domain.ValueString()
+	} else {
+		domain = nil
+	}
+	var emailTemplates *shared.EmailTemplates
+	if r.EmailTemplates != nil {
+		advancedAuth := new(string)
+		if !r.EmailTemplates.AdvancedAuth.IsUnknown() && !r.EmailTemplates.AdvancedAuth.IsNull() {
+			*advancedAuth = r.EmailTemplates.AdvancedAuth.ValueString()
+		} else {
+			advancedAuth = nil
+		}
+		advancedMFA := new(string)
+		if !r.EmailTemplates.AdvancedMFA.IsUnknown() && !r.EmailTemplates.AdvancedMFA.IsNull() {
+			*advancedMFA = r.EmailTemplates.AdvancedMFA.ValueString()
+		} else {
+			advancedMFA = nil
+		}
+		confirmAccount := new(string)
+		if !r.EmailTemplates.ConfirmAccount.IsUnknown() && !r.EmailTemplates.ConfirmAccount.IsNull() {
+			*confirmAccount = r.EmailTemplates.ConfirmAccount.ValueString()
+		} else {
+			confirmAccount = nil
+		}
+		confirmEmailUpdate := new(string)
+		if !r.EmailTemplates.ConfirmEmailUpdate.IsUnknown() && !r.EmailTemplates.ConfirmEmailUpdate.IsNull() {
+			*confirmEmailUpdate = r.EmailTemplates.ConfirmEmailUpdate.ValueString()
+		} else {
+			confirmEmailUpdate = nil
+		}
+		forgotPassword := new(string)
+		if !r.EmailTemplates.ForgotPassword.IsUnknown() && !r.EmailTemplates.ForgotPassword.IsNull() {
+			*forgotPassword = r.EmailTemplates.ForgotPassword.ValueString()
+		} else {
+			forgotPassword = nil
+		}
+		invitation := new(string)
+		if !r.EmailTemplates.Invitation.IsUnknown() && !r.EmailTemplates.Invitation.IsNull() {
+			*invitation = r.EmailTemplates.Invitation.ValueString()
+		} else {
+			invitation = nil
+		}
+		journeyLoginOTP := new(string)
+		if !r.EmailTemplates.JourneyLoginOTP.IsUnknown() && !r.EmailTemplates.JourneyLoginOTP.IsNull() {
+			*journeyLoginOTP = r.EmailTemplates.JourneyLoginOTP.ValueString()
+		} else {
+			journeyLoginOTP = nil
+		}
+		journeySignInOneTimePassword := new(string)
+		if !r.EmailTemplates.JourneySignInOneTimePassword.IsUnknown() && !r.EmailTemplates.JourneySignInOneTimePassword.IsNull() {
+			*journeySignInOneTimePassword = r.EmailTemplates.JourneySignInOneTimePassword.ValueString()
+		} else {
+			journeySignInOneTimePassword = nil
+		}
+		journeySignUp := new(string)
+		if !r.EmailTemplates.JourneySignUp.IsUnknown() && !r.EmailTemplates.JourneySignUp.IsNull() {
+			*journeySignUp = r.EmailTemplates.JourneySignUp.ValueString()
+		} else {
+			journeySignUp = nil
+		}
+		onDocUpload := new(string)
+		if !r.EmailTemplates.OnDocUpload.IsUnknown() && !r.EmailTemplates.OnDocUpload.IsNull() {
+			*onDocUpload = r.EmailTemplates.OnDocUpload.ValueString()
+		} else {
+			onDocUpload = nil
+		}
+		onMapAPendingUser := new(string)
+		if !r.EmailTemplates.OnMapAPendingUser.IsUnknown() && !r.EmailTemplates.OnMapAPendingUser.IsNull() {
+			*onMapAPendingUser = r.EmailTemplates.OnMapAPendingUser.ValueString()
+		} else {
+			onMapAPendingUser = nil
+		}
+		onNewQuote := new(string)
+		if !r.EmailTemplates.OnNewQuote.IsUnknown() && !r.EmailTemplates.OnNewQuote.IsNull() {
+			*onNewQuote = r.EmailTemplates.OnNewQuote.ValueString()
+		} else {
+			onNewQuote = nil
+		}
+		onWorkflowStepAssigned := new(string)
+		if !r.EmailTemplates.OnWorkflowStepAssigned.IsUnknown() && !r.EmailTemplates.OnWorkflowStepAssigned.IsNull() {
+			*onWorkflowStepAssigned = r.EmailTemplates.OnWorkflowStepAssigned.ValueString()
+		} else {
+			onWorkflowStepAssigned = nil
+		}
+		verifyCodeToSetPassword := new(string)
+		if !r.EmailTemplates.VerifyCodeToSetPassword.IsUnknown() && !r.EmailTemplates.VerifyCodeToSetPassword.IsNull() {
+			*verifyCodeToSetPassword = r.EmailTemplates.VerifyCodeToSetPassword.ValueString()
+		} else {
+			verifyCodeToSetPassword = nil
+		}
+		emailTemplates = &shared.EmailTemplates{
+			AdvancedAuth:                 advancedAuth,
+			AdvancedMFA:                  advancedMFA,
+			ConfirmAccount:               confirmAccount,
+			ConfirmEmailUpdate:           confirmEmailUpdate,
+			ForgotPassword:               forgotPassword,
+			Invitation:                   invitation,
+			JourneyLoginOTP:              journeyLoginOTP,
+			JourneySignInOneTimePassword: journeySignInOneTimePassword,
+			JourneySignUp:                journeySignUp,
+			OnDocUpload:                  onDocUpload,
+			OnMapAPendingUser:            onMapAPendingUser,
+			OnNewQuote:                   onNewQuote,
+			OnWorkflowStepAssigned:       onWorkflowStepAssigned,
+			VerifyCodeToSetPassword:      verifyCodeToSetPassword,
+		}
+	}
+	enabled2 := new(bool)
+	if !r.Enabled.IsUnknown() && !r.Enabled.IsNull() {
+		*enabled2 = r.Enabled.ValueBool()
+	} else {
+		enabled2 = nil
+	}
+	entityActions := make([]shared.UpsertPortalConfigV3EntityActions, 0, len(r.EntityActions))
+	for _, entityActionsItem := range r.EntityActions {
+		var actionLabel *shared.UpsertPortalConfigV3ActionLabel
+		if entityActionsItem.ActionLabel != nil {
+			de := new(string)
+			if !entityActionsItem.ActionLabel.De.IsUnknown() && !entityActionsItem.ActionLabel.De.IsNull() {
+				*de = entityActionsItem.ActionLabel.De.ValueString()
+			} else {
+				de = nil
+			}
+			en := new(string)
+			if !entityActionsItem.ActionLabel.En.IsUnknown() && !entityActionsItem.ActionLabel.En.IsNull() {
+				*en = entityActionsItem.ActionLabel.En.ValueString()
+			} else {
+				en = nil
+			}
+			actionLabel = &shared.UpsertPortalConfigV3ActionLabel{
+				De: de,
+				En: en,
+			}
+		}
+		journeyID := new(string)
+		if !entityActionsItem.JourneyID.IsUnknown() && !entityActionsItem.JourneyID.IsNull() {
+			*journeyID = entityActionsItem.JourneyID.ValueString()
+		} else {
+			journeyID = nil
+		}
+		slug := new(shared.EntitySlug)
+		if !entityActionsItem.Slug.IsUnknown() && !entityActionsItem.Slug.IsNull() {
+			*slug = shared.EntitySlug(entityActionsItem.Slug.ValueString())
+		} else {
+			slug = nil
+		}
+		entityActions = append(entityActions, shared.UpsertPortalConfigV3EntityActions{
+			ActionLabel: actionLabel,
+			JourneyID:   journeyID,
+			Slug:        slug,
+		})
+	}
+	var entityEditRules interface{}
+	if !r.EntityEditRules.IsUnknown() && !r.EntityEditRules.IsNull() {
+		_ = json.Unmarshal([]byte(r.EntityEditRules.ValueString()), &entityEditRules)
+	}
+	var entityIdentifiers *shared.UpsertPortalConfigV3EntityIdentifiers
+	if r.EntityIdentifiers != nil {
+		var typeVar1 *shared.UpsertPortalConfigV3Type
+		if r.EntityIdentifiers.Type != nil {
+			attributes := make([]string, 0, len(r.EntityIdentifiers.Type.Attributes))
+			for _, attributesItem := range r.EntityIdentifiers.Type.Attributes {
+				attributes = append(attributes, attributesItem.ValueString())
+			}
+			isEnabled := new(bool)
+			if !r.EntityIdentifiers.Type.IsEnabled.IsUnknown() && !r.EntityIdentifiers.Type.IsEnabled.IsNull() {
+				*isEnabled = r.EntityIdentifiers.Type.IsEnabled.ValueBool()
+			} else {
+				isEnabled = nil
+			}
+			typeVar1 = &shared.UpsertPortalConfigV3Type{
+				Attributes: attributes,
+				IsEnabled:  isEnabled,
+			}
+		}
+		entityIdentifiers = &shared.UpsertPortalConfigV3EntityIdentifiers{
+			Type: typeVar1,
+		}
+	}
+	extensionHooks := make(map[string]*shared.ExtensionHookConfig)
+	for extensionHooksKey, extensionHooksValue := range r.ExtensionHooks {
+		var extensionHooksInst *shared.ExtensionHookConfig
+		appID := new(string)
+		if !extensionHooksValue.AppID.IsUnknown() && !extensionHooksValue.AppID.IsNull() {
+			*appID = extensionHooksValue.AppID.ValueString()
+		} else {
+			appID = nil
+		}
+		hookID := new(string)
+		if !extensionHooksValue.HookID.IsUnknown() && !extensionHooksValue.HookID.IsNull() {
+			*hookID = extensionHooksValue.HookID.ValueString()
+		} else {
+			hookID = nil
+		}
+		extensionHooksInst = &shared.ExtensionHookConfig{
+			AppID:  appID,
+			HookID: hookID,
+		}
+		extensionHooks[extensionHooksKey] = extensionHooksInst
+	}
+	extensions := make([]shared.ExtensionConfig, 0, len(r.Extensions))
+	for _, extensionsItem := range r.Extensions {
+		var id string
+		id = extensionsItem.ID.ValueString()
+
+		optionsVar := make(map[string]string)
+		for optionsKey, optionsValue := range extensionsItem.Options {
+			var optionsInst string
+			optionsInst = optionsValue.ValueString()
+
+			optionsVar[optionsKey] = optionsInst
+		}
+		status := new(shared.ExtensionConfigStatus)
+		if !extensionsItem.Status.IsUnknown() && !extensionsItem.Status.IsNull() {
+			*status = shared.ExtensionConfigStatus(extensionsItem.Status.ValueString())
+		} else {
+			status = nil
+		}
+		extensions = append(extensions, shared.ExtensionConfig{
+			ID:      id,
+			Options: optionsVar,
+			Status:  status,
+		})
+	}
+	var featureSettings *shared.UpsertPortalConfigV3FeatureSettings
+	if r.FeatureSettings != nil {
+		billing := new(bool)
+		if !r.FeatureSettings.Billing.IsUnknown() && !r.FeatureSettings.Billing.IsNull() {
+			*billing = r.FeatureSettings.Billing.ValueBool()
+		} else {
+			billing = nil
+		}
+		changeDueDate := new(bool)
+		if !r.FeatureSettings.ChangeDueDate.IsUnknown() && !r.FeatureSettings.ChangeDueDate.IsNull() {
+			*changeDueDate = r.FeatureSettings.ChangeDueDate.ValueBool()
+		} else {
+			changeDueDate = nil
+		}
+		newDesign := new(bool)
+		if !r.FeatureSettings.NewDesign.IsUnknown() && !r.FeatureSettings.NewDesign.IsNull() {
+			*newDesign = r.FeatureSettings.NewDesign.ValueBool()
+		} else {
+			newDesign = nil
+		}
+		startPage := new(bool)
+		if !r.FeatureSettings.StartPage.IsUnknown() && !r.FeatureSettings.StartPage.IsNull() {
+			*startPage = r.FeatureSettings.StartPage.ValueBool()
+		} else {
+			startPage = nil
+		}
+		featureSettings = &shared.UpsertPortalConfigV3FeatureSettings{
+			Billing:       billing,
+			ChangeDueDate: changeDueDate,
+			NewDesign:     newDesign,
+			StartPage:     startPage,
+		}
+	}
+	var images *shared.UpsertPortalConfigV3Images
+	if r.Images != nil {
+		orderLeftTeaser := new(string)
+		if !r.Images.OrderLeftTeaser.IsUnknown() && !r.Images.OrderLeftTeaser.IsNull() {
+			*orderLeftTeaser = r.Images.OrderLeftTeaser.ValueString()
+		} else {
+			orderLeftTeaser = nil
+		}
+		orderRightTeaser := new(string)
+		if !r.Images.OrderRightTeaser.IsUnknown() && !r.Images.OrderRightTeaser.IsNull() {
+			*orderRightTeaser = r.Images.OrderRightTeaser.ValueString()
+		} else {
+			orderRightTeaser = nil
+		}
+		welcomeBanner := new(string)
+		if !r.Images.WelcomeBanner.IsUnknown() && !r.Images.WelcomeBanner.IsNull() {
+			*welcomeBanner = r.Images.WelcomeBanner.ValueString()
+		} else {
+			welcomeBanner = nil
+		}
+		images = &shared.UpsertPortalConfigV3Images{
+			OrderLeftTeaser:  orderLeftTeaser,
+			OrderRightTeaser: orderRightTeaser,
+			WelcomeBanner:    welcomeBanner,
+		}
+	}
+	inactiveContractCutoffYears := new(float64)
+	if !r.InactiveContractCutoffYears.IsUnknown() && !r.InactiveContractCutoffYears.IsNull() {
+		*inactiveContractCutoffYears = r.InactiveContractCutoffYears.ValueFloat64()
+	} else {
+		inactiveContractCutoffYears = nil
+	}
+	isDummy := new(bool)
+	if !r.IsDummy.IsUnknown() && !r.IsDummy.IsNull() {
+		*isDummy = r.IsDummy.ValueBool()
+	} else {
+		isDummy = nil
+	}
+	isEpilotDomain := new(bool)
+	if !r.IsEpilotDomain.IsUnknown() && !r.IsEpilotDomain.IsNull() {
+		*isEpilotDomain = r.IsEpilotDomain.ValueBool()
+	} else {
+		isEpilotDomain = nil
+	}
+	meterReadingGracePeriod := new(float64)
+	if !r.MeterReadingGracePeriod.IsUnknown() && !r.MeterReadingGracePeriod.IsNull() {
+		*meterReadingGracePeriod = r.MeterReadingGracePeriod.ValueFloat64()
+	} else {
+		meterReadingGracePeriod = nil
+	}
+	name := new(string)
+	if !r.Name.IsUnknown() && !r.Name.IsNull() {
+		*name = r.Name.ValueString()
+	} else {
+		name = nil
+	}
+	origin := new(shared.Origin)
+	if !r.Origin.IsUnknown() && !r.Origin.IsNull() {
+		*origin = shared.Origin(r.Origin.ValueString())
+	} else {
+		origin = nil
+	}
+	pages := make([]shared.PageRequest, 0, len(r.Pages))
+	for _, pagesItem := range r.Pages {
+		var additionalProperties1 interface{}
+		if !pagesItem.AdditionalProperties.IsUnknown() && !pagesItem.AdditionalProperties.IsNull() {
+			_ = json.Unmarshal([]byte(pagesItem.AdditionalProperties.ValueString()), &additionalProperties1)
+		}
+		blocks := make(map[string]shared.BlockRequest)
+		for blocksKey, blocksValue := range pagesItem.Blocks {
+			var additionalProperties2 interface{}
+			if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
+				_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties2)
+			}
+			var order float64
+			order = blocksValue.Order.ValueFloat64()
+
+			parentID := new(string)
+			if !blocksValue.ParentID.IsUnknown() && !blocksValue.ParentID.IsNull() {
+				*parentID = blocksValue.ParentID.ValueString()
+			} else {
+				parentID = nil
+			}
+			var props *shared.BlockProps
+			if blocksValue.Props != nil {
+				var additionalProperties3 interface{}
+				if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
+					_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties3)
+				}
+				var content *shared.Content
+				if blocksValue.Props.Content != nil {
+					content = &shared.Content{}
+				}
+				var design *shared.Design
+				if blocksValue.Props.Design != nil {
+					design = &shared.Design{}
+				}
+				var visibility *shared.Visibility
+				if blocksValue.Props.Visibility != nil {
+					visibility = &shared.Visibility{}
+				}
+				props = &shared.BlockProps{
+					AdditionalProperties: additionalProperties3,
+					Content:              content,
+					Design:               design,
+					Visibility:           visibility,
+				}
+			}
+			var typeVar2 string
+			typeVar2 = blocksValue.Type.ValueString()
+
+			blocksInst := shared.BlockRequest{
+				AdditionalProperties: additionalProperties2,
+				Order:                order,
+				ParentID:             parentID,
+				Props:                props,
+				Type:                 typeVar2,
+			}
+			blocks[blocksKey] = blocksInst
+		}
+		content1 := make(map[string]interface{})
+		for contentKey, contentValue := range pagesItem.Content {
+			var contentInst interface{}
+			_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
+			content1[contentKey] = contentInst
+		}
+		design1 := make(map[string]interface{})
+		for designKey, designValue := range pagesItem.Design {
+			var designInst interface{}
+			_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
+			design1[designKey] = designInst
+		}
+		isDeleted := new(bool)
+		if !pagesItem.IsDeleted.IsUnknown() && !pagesItem.IsDeleted.IsNull() {
+			*isDeleted = pagesItem.IsDeleted.ValueBool()
+		} else {
+			isDeleted = nil
+		}
+		isEntryRoute := new(bool)
+		if !pagesItem.IsEntryRoute.IsUnknown() && !pagesItem.IsEntryRoute.IsNull() {
+			*isEntryRoute = pagesItem.IsEntryRoute.ValueBool()
+		} else {
+			isEntryRoute = nil
+		}
+		isPublic := new(bool)
+		if !pagesItem.IsPublic.IsUnknown() && !pagesItem.IsPublic.IsNull() {
+			*isPublic = pagesItem.IsPublic.ValueBool()
+		} else {
+			isPublic = nil
+		}
+		isSystem := new(bool)
+		if !pagesItem.IsSystem.IsUnknown() && !pagesItem.IsSystem.IsNull() {
+			*isSystem = pagesItem.IsSystem.ValueBool()
+		} else {
+			isSystem = nil
+		}
+		var order1 float64
+		order1 = pagesItem.Order.ValueFloat64()
+
+		parentId1 := new(string)
+		if !pagesItem.ParentID.IsUnknown() && !pagesItem.ParentID.IsNull() {
+			*parentId1 = pagesItem.ParentID.ValueString()
+		} else {
+			parentId1 = nil
+		}
+		path := new(string)
+		if !pagesItem.Path.IsUnknown() && !pagesItem.Path.IsNull() {
+			*path = pagesItem.Path.ValueString()
+		} else {
+			path = nil
+		}
+		schema := make([]shared.PageRequestSchema, 0, len(pagesItem.Schema))
+		for _, schemaItem := range pagesItem.Schema {
+			schema = append(schema, shared.PageRequestSchema(schemaItem.ValueString()))
+		}
+		var slug1 string
+		slug1 = pagesItem.Slug.ValueString()
+
+		visibility1 := make(map[string]interface{})
+		for visibilityKey, visibilityValue := range pagesItem.Visibility {
+			var visibilityInst interface{}
+			_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
+			visibility1[visibilityKey] = visibilityInst
+		}
+		pages = append(pages, shared.PageRequest{
+			AdditionalProperties: additionalProperties1,
+			Blocks:               blocks,
+			Content:              content1,
+			Design:               design1,
+			IsDeleted:            isDeleted,
+			IsEntryRoute:         isEntryRoute,
+			IsPublic:             isPublic,
+			IsSystem:             isSystem,
+			Order:                order1,
+			ParentID:             parentId1,
+			Path:                 path,
+			Schema:               schema,
+			Slug:                 slug1,
+			Visibility:           visibility1,
+		})
+	}
+	preventSearchEngineIndexing := new(bool)
+	if !r.PreventSearchEngineIndexing.IsUnknown() && !r.PreventSearchEngineIndexing.IsNull() {
+		*preventSearchEngineIndexing = r.PreventSearchEngineIndexing.ValueBool()
+	} else {
+		preventSearchEngineIndexing = nil
+	}
+	var registrationIdentifiers interface{}
+	if !r.RegistrationIdentifiers.IsUnknown() && !r.RegistrationIdentifiers.IsNull() {
+		_ = json.Unmarshal([]byte(r.RegistrationIdentifiers.ValueString()), &registrationIdentifiers)
+	}
+	selfRegistrationSetting := new(shared.UpsertPortalConfigV3SelfRegistrationSetting)
+	if !r.SelfRegistrationSetting.IsUnknown() && !r.SelfRegistrationSetting.IsNull() {
+		*selfRegistrationSetting = shared.UpsertPortalConfigV3SelfRegistrationSetting(r.SelfRegistrationSetting.ValueString())
+	} else {
+		selfRegistrationSetting = nil
+	}
+	triggeredJourneys := make([]shared.UpsertPortalConfigV3TriggeredJourneys, 0, len(r.TriggeredJourneys))
+	for _, triggeredJourneysItem := range r.TriggeredJourneys {
+		journeyId1 := new(string)
+		if !triggeredJourneysItem.JourneyID.IsUnknown() && !triggeredJourneysItem.JourneyID.IsNull() {
+			*journeyId1 = triggeredJourneysItem.JourneyID.ValueString()
+		} else {
+			journeyId1 = nil
+		}
+		triggerName := new(shared.UpsertPortalConfigV3TriggerName)
+		if !triggeredJourneysItem.TriggerName.IsUnknown() && !triggeredJourneysItem.TriggerName.IsNull() {
+			*triggerName = shared.UpsertPortalConfigV3TriggerName(triggeredJourneysItem.TriggerName.ValueString())
+		} else {
+			triggerName = nil
+		}
+		triggeredJourneys = append(triggeredJourneys, shared.UpsertPortalConfigV3TriggeredJourneys{
+			JourneyID:   journeyId1,
+			TriggerName: triggerName,
+		})
+	}
+	out := shared.UpsertPortalConfigV3{
+		AccessToken:                 accessToken,
+		AdvancedMfa:                 advancedMfa,
+		AllowedFileExtensions:       allowedFileExtensions,
+		ApprovalStateAttributes:     approvalStateAttributes,
+		AuthSettings:                authSettings,
+		CognitoDetails:              cognitoDetails,
+		Config:                      config,
+		ContactIdentifiers:          contactIdentifiers,
+		ContractIdentifiers:         contractIdentifiers,
+		ContractSelectorConfig:      contractSelectorConfig,
+		DefaultUserToNotify:         defaultUserToNotify,
+		DesignID:                    designID,
+		Domain:                      domain,
+		EmailTemplates:              emailTemplates,
+		Enabled:                     enabled2,
+		EntityActions:               entityActions,
+		EntityEditRules:             entityEditRules,
+		EntityIdentifiers:           entityIdentifiers,
+		ExtensionHooks:              extensionHooks,
+		Extensions:                  extensions,
+		FeatureSettings:             featureSettings,
+		Images:                      images,
+		InactiveContractCutoffYears: inactiveContractCutoffYears,
+		IsDummy:                     isDummy,
+		IsEpilotDomain:              isEpilotDomain,
+		MeterReadingGracePeriod:     meterReadingGracePeriod,
+		Name:                        name,
+		Origin:                      origin,
+		Pages:                       pages,
 		PreventSearchEngineIndexing: preventSearchEngineIndexing,
 		RegistrationIdentifiers:     registrationIdentifiers,
 		SelfRegistrationSetting:     selfRegistrationSetting,

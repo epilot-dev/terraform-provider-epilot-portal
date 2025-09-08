@@ -7,7 +7,7 @@ info:
 
 servers:
   - url: https://customer-portal-api.sls.epilot.io/
-    description: Production
+    description: Production environment
 
 tags:
   - name: ECP
@@ -700,7 +700,8 @@ paths:
     get:
       operationId: getResolvedExternalLink
       summary: getResolvedExternalLink
-      description: Retrieves a resolved portal external link.
+      deprecated: true
+      description: Retrieves a resolved portal external link. Use /v2/portal/resolve:seamless-link/{id} instead.
       tags:
         - ECP Admin
         - ECP
@@ -732,6 +733,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ExternalLink"
+        401:
+          $ref: "#/components/responses/Unauthorized"
+        403:
+          $ref: "#/components/responses/Forbidden"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+  "/v2/portal/resolve:seamless-link":
+    get:
+      operationId: getResolvedSeamlessLink
+      summary: getResolvedSeamlessLink
+      description: Retrieves a resolved seamless portal link.
+      tags:
+        - ECP
+      parameters:
+        - in: query
+          name: app_id
+          required: false
+          schema:
+            type: string
+          description: ID of the App if the Portal Extension was installed from an App
+        - in: query
+          name: extension_id
+          required: true
+          schema:
+            type: string
+          description: ID of the Portal Extension
+        - in: query
+          name: link_id
+          required: true
+          schema:
+            type: string
+          description: ID of the Seamless Link
+      security:
+        - PortalAuth: []
+      responses:
+        200:
+          description: Resolved portal seamless link retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  link:
+                    type: string
+                    description: Resolved link
         401:
           $ref: "#/components/responses/Unauthorized"
         403:
@@ -4201,11 +4247,11 @@ paths:
                     example: true
         500:
           $ref: "#/components/responses/InternalServerError"
-  "/v2/portal/campaign/{campaign_id}/entity/{entity_id}:status":
+  "/v2/portal/campaign/{campaign_id}/entity:status":
     put:
       operationId: updateCampaignPortalBlockStatus
       summary: Update Campaign Portal Block Status
-      description: Updates the status of a campaign portal block for a recipient.
+      description: Updates the status of a campaign portal block for multiple recipients.
       tags:
         - ECP
       security:
@@ -4217,12 +4263,6 @@ paths:
           schema:
             type: string
           description: ID of the campaign
-        - in: path
-          name: entity_id
-          required: true
-          schema:
-            $ref: "#/components/schemas/EntityId"
-          description: ID of the recipient entity
       requestBody:
         required: true
         content:
@@ -4231,6 +4271,7 @@ paths:
               type: object
               required:
                 - status
+                - entity_refs
               properties:
                 status:
                   type: string
@@ -4239,6 +4280,20 @@ paths:
                     - dismissed
                     - clicked
                   description: The status to set for the campaign portal block
+                entity_refs:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - entity_id
+                      - entity_schema
+                    properties:
+                      entity_id:
+                        $ref: "#/components/schemas/EntityId"
+                      entity_schema:
+                        type: string
+                        description: Schema of the entity (e.g., contact, contract, opportunity, order, meter)
+                  description: Array of entity references with their schemas
       responses:
         "200":
           description: Campaign portal block status updated successfully.
@@ -4246,6 +4301,28 @@ paths:
             application/json:
               schema:
                 type: object
+                required:
+                  - success
+                  - updated
+                  - failed
+                  - total
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the operation completed successfully
+                    example: true
+                  updated:
+                    type: integer
+                    description: Number of entities successfully updated
+                    example: 2
+                  failed:
+                    type: integer
+                    description: Number of entities that failed to update
+                    example: 0
+                  total:
+                    type: integer
+                    description: Total number of entities processed
+                    example: 2
         "400":
           $ref: "#/components/responses/InvalidRequest"
         "401":
@@ -4257,8 +4334,7 @@ paths:
         "500":
           $ref: "#/components/responses/InternalServerError"
 
-
-# Portal V3 APIs
+  # Portal V3 APIs
   "/v3/portal/config":
     post:
       operationId: createPortalConfig
@@ -4272,7 +4348,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/PortalConfigV3"
+              $ref: "#/components/schemas/UpsertPortalConfigV3"
       security:
         - EpilotAuth: []
       responses:
@@ -4394,6 +4470,34 @@ paths:
           $ref: "#/components/responses/Forbidden"
         404:
           $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/InternalServerError"
+
+  "/v3/portal/configs":
+    get:
+      operationId: listAllPortalConfigs
+      summary: listAllPortalConfigs
+      description: Retrieves all portal configurations.
+      tags:
+        - ECP Admin
+      security:
+        - EpilotAuth: []
+      responses:
+        200:
+          description: All portal configs retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/PortalConfigV3"
+        401:
+          $ref: "#/components/responses/Unauthorized"
+        403:
+          $ref: "#/components/responses/Forbidden"
         500:
           $ref: "#/components/responses/InternalServerError"
 
@@ -5129,6 +5233,10 @@ components:
               type: string
               example: 453ad7bf-86d5-46c8-8252-bcc868df5e3c
               description: ID of the portal
+            portal_sk_v3:
+              type: string
+              example: PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c
+              description: Key of the portal config
             origin:
               $ref: "#/components/schemas/Origin"
             org_settings:
@@ -5658,10 +5766,29 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/EntityItem"
+        pagination:
+          type: object
+          description: Pagination metadata
+          properties:
+            from:
+              type: number
+              description: Starting offset for the current page
+              example: 0
+            size:
+              type: number
+              description: Number of entities per page
+              example: 10
+            total:
+              type: number
+              description: Total number of entities available
+              example: 50
+            has_more:
+              type: boolean
+              description: Whether there are more entities available beyond the current page
         hits:
           type: number
-          description: Total number of entities for pagination
-          example: 50
+          description: Number of entities returned in this response
+          example: 10
     EntityResponseGroupedWithHits:
       type: object
       description: Response for entity search requests, but with groupings
@@ -5683,6 +5810,25 @@ components:
                 type: array
                 items:
                   $ref: "#/components/schemas/EntityItem"
+              pagination:
+                type: object
+                description: Pagination metadata for entities within this group
+                properties:
+                  from:
+                    type: number
+                    description: Starting offset for entities in this group
+                    example: 0
+                  size:
+                    type: number
+                    description: Number of entities returned for this group
+                    example: 5
+                  total:
+                    type: number
+                    description: Total number of entities available in this group
+                    example: 10
+                  has_more:
+                    type: boolean
+                    description: Whether there are more entities available in this group beyond the current page
         groups_pagination:
           type: object
           description: Group pagination metadata
@@ -5697,8 +5843,8 @@ components:
                 type: string
         hits:
           type: number
-          description: Total number of groups for pagination
-          example: 50
+          description: Number of groups returned in this response
+          example: 5
     PortalUser:
       description: The portal user entity
       allOf:
@@ -6492,7 +6638,9 @@ components:
           type: object
           description: Composite aggregation key for group pagination
           additionalProperties:
-            type: string
+            oneOf:
+              - type: string
+              - type: number
         sort:
           type: string
           example: "_created_at:desc"
@@ -6530,6 +6678,31 @@ components:
             - range:
                 _created_at:
                   gte: "2023-01-01"
+        filters_schema:
+          type: array
+          description: Schema-based filters for entity relations.
+          items:
+            type: string
+            enum: ["contact", "contract", "portal_user"]
+          example:
+            - "contact"
+            - "portal_user"
+        contracts:
+          type: array
+          description: List of contract IDs to filter by
+          items:
+            type: string
+            format: uuid
+          example:
+            - "3ec28ab5-8598-41ef-9486-b57fca1d5e2a"
+        targets:
+          type: array
+          description: Filters from these targets will be applied to the search query.
+          items:
+            type: string
+            format: uuid
+          example:
+            - "3ec28ab5-8598-41ef-9486-b57fca1d5e2a"
       required:
         - slug
     IdentifierAttribute:
@@ -7275,9 +7448,12 @@ components:
       type: string
       nullable: true
       example: Storing the feed-in record
-      description: The reason for recording the reading
+      description: |
+        The reason for recording the reading
+        If no reason is specified or left empty, the Epilot UI will show 'Regular' as the default display text
       enum:
         - ""
+        - "regular"
         - "irregular"
         - "last"
         - "first"
@@ -7340,11 +7516,7 @@ components:
           additionalProperties:
             type: string
           description: Additional metadata for the reading
-          example:
-            {
-              "registration_id": "1234567890",
-              "business_unit": "ABC"
-            }
+          example: { "registration_id": "1234567890", "business_unit": "ABC" }
     MeterReadingPhoto:
       type: object
       required:
@@ -7780,7 +7952,7 @@ components:
         blocks:
           type: object
           additionalProperties:
-            $ref: "#/components/schemas/Block"
+            $ref: "#/components/schemas/BlockRequest"
         order:
           type: number
           description: The order of the block
@@ -8097,11 +8269,19 @@ components:
         is_dummy:
           type: boolean
           description: Whether this is a dummy/test portal configuration
-        pages:
-          type: object
-          additionalProperties:
-            $ref: "#/components/schemas/Page"
-         
+
+    UpsertPortalConfigV3:
+      allOf:
+        - $ref: "#/components/schemas/UpdateOnlyPortalConfigAttributes"
+        - $ref: "#/components/schemas/CommonConfigAttributesV3"
+        - properties:
+            origin:
+              $ref: "#/components/schemas/Origin"
+            pages:
+              type: array
+              items:
+                $ref: "#/components/schemas/PageRequest"
+
     PortalConfigV3:
       allOf:
         - $ref: "#/components/schemas/UpdateOnlyPortalConfigAttributes"
@@ -8111,10 +8291,14 @@ components:
               type: string
               example: 453ad7bf-86d5-46c8-8252-bcc868df5e3c
               description: ID of the portal
+            portal_sk_v3:
+              type: string
+              example: PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c
+              description: Key of the portal config
             organization_id:
               type: string
               example: 12345
-              description: ID of the organization              
+              description: ID of the organization
             origin:
               $ref: "#/components/schemas/Origin"
             org_settings:
@@ -8149,3 +8333,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/ProviderPublicConfig"
+            pages:
+              type: array
+              items:
+                $ref: "#/components/schemas/Page"

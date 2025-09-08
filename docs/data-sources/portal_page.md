@@ -46,7 +46,6 @@ data "epilot-portal_portal_page" "my_portalpage" {
 Read-Only:
 
 - `additional_properties` (String) Parsed as JSON.
-- `id` (String) The id of the block
 - `order` (Number) The order of the block
 - `parent_id` (String) The id of the parent block
 - `props` (Attributes) (see [below for nested schema](#nestedatt--blocks--props))

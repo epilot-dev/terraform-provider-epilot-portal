@@ -6,7 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-type PortalConfigV3ActionLabel struct {
-	De types.String `tfsdk:"de"`
-	En types.String `tfsdk:"en"`
+type UpsertPortalConfigV3Type struct {
+	Attributes []types.String `tfsdk:"attributes"`
+	IsEnabled  types.Bool     `tfsdk:"is_enabled"`
 }

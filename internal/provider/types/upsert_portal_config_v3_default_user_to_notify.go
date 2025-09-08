@@ -2,6 +2,6 @@
 
 package types
 
-type DefaultUserToNotify struct {
+type UpsertPortalConfigV3DefaultUserToNotify struct {
 	OnPendingUser []AdminUser `tfsdk:"on_pending_user"`
 }

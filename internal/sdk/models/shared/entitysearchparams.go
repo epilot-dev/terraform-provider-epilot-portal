@@ -4,12 +4,105 @@ package shared
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
 // Filters - Elasticsearch filter object
 type Filters struct {
+}
+
+type FiltersSchema string
+
+const (
+	FiltersSchemaContact    FiltersSchema = "contact"
+	FiltersSchemaContract   FiltersSchema = "contract"
+	FiltersSchemaPortalUser FiltersSchema = "portal_user"
+)
+
+func (e FiltersSchema) ToPointer() *FiltersSchema {
+	return &e
+}
+func (e *FiltersSchema) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "contact":
+		fallthrough
+	case "contract":
+		fallthrough
+	case "portal_user":
+		*e = FiltersSchema(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for FiltersSchema: %v", v)
+	}
+}
+
+type GroupAfterKeyType string
+
+const (
+	GroupAfterKeyTypeStr    GroupAfterKeyType = "str"
+	GroupAfterKeyTypeNumber GroupAfterKeyType = "number"
+)
+
+type GroupAfterKey struct {
+	Str    *string  `queryParam:"inline" name:"group_after_key"`
+	Number *float64 `queryParam:"inline" name:"group_after_key"`
+
+	Type GroupAfterKeyType
+}
+
+func CreateGroupAfterKeyStr(str string) GroupAfterKey {
+	typ := GroupAfterKeyTypeStr
+
+	return GroupAfterKey{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateGroupAfterKeyNumber(number float64) GroupAfterKey {
+	typ := GroupAfterKeyTypeNumber
+
+	return GroupAfterKey{
+		Number: &number,
+		Type:   typ,
+	}
+}
+
+func (u *GroupAfterKey) UnmarshalJSON(data []byte) error {
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		u.Str = &str
+		u.Type = GroupAfterKeyTypeStr
+		return nil
+	}
+
+	var number float64 = float64(0)
+	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
+		u.Number = &number
+		u.Type = GroupAfterKeyTypeNumber
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for GroupAfterKey", string(data))
+}
+
+func (u GroupAfterKey) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.Number != nil {
+		return utils.MarshalJSON(u.Number, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type GroupAfterKey: all fields are null")
 }
 
 // GroupSort - Sort order for groups
@@ -40,15 +133,19 @@ func (e *GroupSort) UnmarshalJSON(data []byte) error {
 }
 
 type EntitySearchParams struct {
+	// List of contract IDs to filter by
+	Contracts []string `json:"contracts,omitempty"`
 	// List of entity fields to include in search results
 	Fields []string `json:"fields,omitempty"`
 	// Additional filters to apply to the search query
 	Filters []Filters `json:"filters,omitempty"`
-	From    *int64    `default:"0" json:"from"`
+	// Schema-based filters for entity relations.
+	FiltersSchema []FiltersSchema `json:"filters_schema,omitempty"`
+	From          *int64          `default:"0" json:"from"`
 	// Field to group results by
 	Group *string `json:"group,omitempty"`
 	// Composite aggregation key for group pagination
-	GroupAfterKey map[string]string `json:"group_after_key,omitempty"`
+	GroupAfterKey map[string]GroupAfterKey `json:"group_after_key,omitempty"`
 	// Number of groups to return
 	GroupSize *int64 `default:"100" json:"group_size"`
 	// Sort order for groups
@@ -64,6 +161,8 @@ type EntitySearchParams struct {
 	// URL-friendly identifier for the entity schema
 	Slug EntitySlug `json:"slug"`
 	Sort *string    `json:"sort,omitempty"`
+	// Filters from these targets will be applied to the search query.
+	Targets []string `json:"targets,omitempty"`
 }
 
 func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
@@ -75,6 +174,13 @@ func (e *EntitySearchParams) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *EntitySearchParams) GetContracts() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Contracts
 }
 
 func (o *EntitySearchParams) GetFields() []string {
@@ -91,6 +197,13 @@ func (o *EntitySearchParams) GetFilters() []Filters {
 	return o.Filters
 }
 
+func (o *EntitySearchParams) GetFiltersSchema() []FiltersSchema {
+	if o == nil {
+		return nil
+	}
+	return o.FiltersSchema
+}
+
 func (o *EntitySearchParams) GetFrom() *int64 {
 	if o == nil {
 		return nil
@@ -105,7 +218,7 @@ func (o *EntitySearchParams) GetGroup() *string {
 	return o.Group
 }
 
-func (o *EntitySearchParams) GetGroupAfterKey() map[string]string {
+func (o *EntitySearchParams) GetGroupAfterKey() map[string]GroupAfterKey {
 	if o == nil {
 		return nil
 	}
@@ -166,4 +279,11 @@ func (o *EntitySearchParams) GetSort() *string {
 		return nil
 	}
 	return o.Sort
+}
+
+func (o *EntitySearchParams) GetTargets() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Targets
 }

@@ -25,47 +25,46 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(ctx context.Context, r
 			r.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
 		}
 		if len(resp.Blocks) > 0 {
-			r.Blocks = make(map[string]tfTypes.Block, len(resp.Blocks))
-			for blockKey, blockValue := range resp.Blocks {
-				var blockResult tfTypes.Block
-				if blockValue.AdditionalProperties == nil {
-					blockResult.AdditionalProperties = jsontypes.NewNormalizedNull()
+			r.Blocks = make(map[string]tfTypes.BlockRequest, len(resp.Blocks))
+			for blockRequestKey, blockRequestValue := range resp.Blocks {
+				var blockRequestResult tfTypes.BlockRequest
+				if blockRequestValue.AdditionalProperties == nil {
+					blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedNull()
 				} else {
-					additionalPropertiesResult1, _ := json.Marshal(blockValue.AdditionalProperties)
-					blockResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
+					additionalPropertiesResult1, _ := json.Marshal(blockRequestValue.AdditionalProperties)
+					blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
 				}
-				blockResult.ID = types.StringValue(blockValue.ID)
-				blockResult.Order = types.Float64Value(blockValue.Order)
-				blockResult.ParentID = types.StringPointerValue(blockValue.ParentID)
-				if blockValue.Props == nil {
-					blockResult.Props = nil
+				blockRequestResult.Order = types.Float64Value(blockRequestValue.Order)
+				blockRequestResult.ParentID = types.StringPointerValue(blockRequestValue.ParentID)
+				if blockRequestValue.Props == nil {
+					blockRequestResult.Props = nil
 				} else {
-					blockResult.Props = &tfTypes.BlockProps{}
-					if blockValue.Props.AdditionalProperties == nil {
-						blockResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
+					blockRequestResult.Props = &tfTypes.BlockProps{}
+					if blockRequestValue.Props.AdditionalProperties == nil {
+						blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
 					} else {
-						additionalPropertiesResult2, _ := json.Marshal(blockValue.Props.AdditionalProperties)
-						blockResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
+						additionalPropertiesResult2, _ := json.Marshal(blockRequestValue.Props.AdditionalProperties)
+						blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
 					}
-					if blockValue.Props.Content == nil {
-						blockResult.Props.Content = nil
+					if blockRequestValue.Props.Content == nil {
+						blockRequestResult.Props.Content = nil
 					} else {
-						blockResult.Props.Content = &tfTypes.Content{}
+						blockRequestResult.Props.Content = &tfTypes.Content{}
 					}
-					if blockValue.Props.Design == nil {
-						blockResult.Props.Design = nil
+					if blockRequestValue.Props.Design == nil {
+						blockRequestResult.Props.Design = nil
 					} else {
-						blockResult.Props.Design = &tfTypes.Content{}
+						blockRequestResult.Props.Design = &tfTypes.Content{}
 					}
-					if blockValue.Props.Visibility == nil {
-						blockResult.Props.Visibility = nil
+					if blockRequestValue.Props.Visibility == nil {
+						blockRequestResult.Props.Visibility = nil
 					} else {
-						blockResult.Props.Visibility = &tfTypes.Content{}
+						blockRequestResult.Props.Visibility = &tfTypes.Content{}
 					}
 				}
-				blockResult.Type = types.StringValue(blockValue.Type)
+				blockRequestResult.Type = types.StringValue(blockRequestValue.Type)
 
-				r.Blocks[blockKey] = blockResult
+				r.Blocks[blockRequestKey] = blockRequestResult
 			}
 		}
 		if len(resp.Content) > 0 {

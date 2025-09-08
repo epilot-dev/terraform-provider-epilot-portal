@@ -6,12 +6,65 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
+// EntityResponseGroupedWithHitsPagination - Pagination metadata for entities within this group
+type EntityResponseGroupedWithHitsPagination struct {
+	// Starting offset for entities in this group
+	From *float64 `json:"from,omitempty"`
+	// Whether there are more entities available in this group beyond the current page
+	HasMore *bool `json:"has_more,omitempty"`
+	// Number of entities returned for this group
+	Size *float64 `json:"size,omitempty"`
+	// Total number of entities available in this group
+	Total *float64 `json:"total,omitempty"`
+}
+
+func (e EntityResponseGroupedWithHitsPagination) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *EntityResponseGroupedWithHitsPagination) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *EntityResponseGroupedWithHitsPagination) GetFrom() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.From
+}
+
+func (o *EntityResponseGroupedWithHitsPagination) GetHasMore() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasMore
+}
+
+func (o *EntityResponseGroupedWithHitsPagination) GetSize() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *EntityResponseGroupedWithHitsPagination) GetTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Total
+}
+
 type Groups struct {
 	// Total number of entities in this group
 	Count *float64 `json:"count,omitempty"`
 	// Group title
-	Group   *string      `json:"group,omitempty"`
-	Results []EntityItem `json:"results,omitempty"`
+	Group *string `json:"group,omitempty"`
+	// Pagination metadata for entities within this group
+	Pagination *EntityResponseGroupedWithHitsPagination `json:"pagination,omitempty"`
+	Results    []EntityItem                             `json:"results,omitempty"`
 }
 
 func (g Groups) MarshalJSON() ([]byte, error) {
@@ -37,6 +90,13 @@ func (o *Groups) GetGroup() *string {
 		return nil
 	}
 	return o.Group
+}
+
+func (o *Groups) GetPagination() *EntityResponseGroupedWithHitsPagination {
+	if o == nil {
+		return nil
+	}
+	return o.Pagination
 }
 
 func (o *Groups) GetResults() []EntityItem {
@@ -84,7 +144,7 @@ type EntityResponseGroupedWithHits struct {
 	Groups []Groups `json:"groups,omitempty"`
 	// Group pagination metadata
 	GroupsPagination *GroupsPagination `json:"groups_pagination,omitempty"`
-	// Total number of groups for pagination
+	// Number of groups returned in this response
 	Hits *float64 `json:"hits,omitempty"`
 }
 

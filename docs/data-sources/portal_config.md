@@ -60,7 +60,8 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `org_settings` (Attributes) Organization settings (see [below for nested schema](#nestedatt--org_settings))
 - `organization_id` (String) ID of the organization
 - `origin` (String) Origin of the portal
-- `pages` (String) Parsed as JSON.
+- `pages` (Attributes List) (see [below for nested schema](#nestedatt--pages))
+- `portal_sk_v3` (String) Key of the portal config
 - `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
 - `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
 - `self_registration_setting` (String)
@@ -294,6 +295,64 @@ Read-Only:
 Read-Only:
 
 - `enabled` (Boolean) Disable browser-side scripts that track advanced usage metrics
+
+
+
+<a id="nestedatt--pages"></a>
+### Nested Schema for `pages`
+
+Read-Only:
+
+- `additional_properties` (String) Parsed as JSON.
+- `blocks` (Attributes Map) (see [below for nested schema](#nestedatt--pages--blocks))
+- `content` (Map of String) The content of the page
+- `design` (Map of String) The design of the page
+- `id` (String) The id of the page
+- `is_deleted` (Boolean) Send the flag as true to delete the page
+- `is_entry_route` (Boolean) Whether the page is the entry route
+- `is_public` (Boolean) Whether the page is public
+- `is_system` (Boolean) Whether the page is a system page
+- `last_modified_at` (String) Last modified timestamp of the Page
+- `order` (Number) The order of the block
+- `parent_id` (String) The id of the parent page
+- `path` (String, Deprecated) The path of the page
+- `schema` (List of String)
+- `slug` (String) The slug of the page
+- `visibility` (Map of String) The conditions that need to be met for the page to be shown
+
+<a id="nestedatt--pages--blocks"></a>
+### Nested Schema for `pages.blocks`
+
+Read-Only:
+
+- `additional_properties` (String) Parsed as JSON.
+- `order` (Number) The order of the block
+- `parent_id` (String) The id of the parent block
+- `props` (Attributes) (see [below for nested schema](#nestedatt--pages--blocks--props))
+- `type` (String) The type of the block. eg; tabs, tab, group, attribute
+
+<a id="nestedatt--pages--blocks--props"></a>
+### Nested Schema for `pages.blocks.props`
+
+Read-Only:
+
+- `additional_properties` (String) Parsed as JSON.
+- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--pages--blocks--props--content))
+- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--pages--blocks--props--design))
+- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--pages--blocks--props--visibility))
+
+<a id="nestedatt--pages--blocks--props--content"></a>
+### Nested Schema for `pages.blocks.props.content`
+
+
+<a id="nestedatt--pages--blocks--props--design"></a>
+### Nested Schema for `pages.blocks.props.design`
+
+
+<a id="nestedatt--pages--blocks--props--visibility"></a>
+### Nested Schema for `pages.blocks.props.visibility`
+
+
 
 
 

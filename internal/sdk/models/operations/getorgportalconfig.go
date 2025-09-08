@@ -722,6 +722,8 @@ type GetOrgPortalConfigResponseBody struct {
 	Pages  map[string]shared.Page `json:"pages,omitempty"`
 	// ID of the portal
 	PortalID *string `json:"portal_id,omitempty"`
+	// Key of the portal config
+	PortalSkV3 *string `json:"portal_sk_v3,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
@@ -960,6 +962,13 @@ func (o *GetOrgPortalConfigResponseBody) GetPortalID() *string {
 		return nil
 	}
 	return o.PortalID
+}
+
+func (o *GetOrgPortalConfigResponseBody) GetPortalSkV3() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalSkV3
 }
 
 func (o *GetOrgPortalConfigResponseBody) GetPreventSearchEngineIndexing() *bool {

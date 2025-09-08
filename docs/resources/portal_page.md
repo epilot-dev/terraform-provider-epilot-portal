@@ -18,7 +18,6 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   blocks = {
     key = {
       additional_properties = "{ \"see\": \"documentation\" }"
-      id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
       order                 = 1
       parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
       props = {
@@ -95,7 +94,6 @@ resource "epilot-portal_portal_page" "my_portalpage" {
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
-- `id` (String) The id of the block. Not Null
 - `order` (Number) The order of the block. Not Null
 - `parent_id` (String) The id of the parent block
 - `props` (Attributes) (see [below for nested schema](#nestedatt--blocks--props))

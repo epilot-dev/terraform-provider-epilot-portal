@@ -48,8 +48,8 @@ func (e *PageRequestSchema) UnmarshalJSON(data []byte) error {
 }
 
 type PageRequest struct {
-	AdditionalProperties any              `additionalProperties:"true" json:"-"`
-	Blocks               map[string]Block `json:"blocks,omitempty"`
+	AdditionalProperties any                     `additionalProperties:"true" json:"-"`
+	Blocks               map[string]BlockRequest `json:"blocks,omitempty"`
 	// The content of the page
 	Content map[string]any `json:"content,omitempty"`
 	// The design of the page
@@ -95,7 +95,7 @@ func (o *PageRequest) GetAdditionalProperties() any {
 	return o.AdditionalProperties
 }
 
-func (o *PageRequest) GetBlocks() map[string]Block {
+func (o *PageRequest) GetBlocks() map[string]BlockRequest {
 	if o == nil {
 		return nil
 	}

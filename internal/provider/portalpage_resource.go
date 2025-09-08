@@ -40,7 +40,7 @@ type PortalPageResource struct {
 // PortalPageResourceModel describes the resource data model.
 type PortalPageResourceModel struct {
 	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
-	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
+	Blocks               map[string]tfTypes.BlockRequest `tfsdk:"blocks"`
 	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
 	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
 	Domain               types.String                    `queryParam:"style=form,explode=true,name=domain" tfsdk:"domain"`
@@ -85,14 +85,6 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 							Computed:    true,
 							Optional:    true,
 							Description: `Parsed as JSON.`,
-						},
-						"id": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `The id of the block. Not Null`,
-							Validators: []validator.String{
-								speakeasy_stringvalidators.NotNull(),
-							},
 						},
 						"order": schema.Float64Attribute{
 							Computed:    true,

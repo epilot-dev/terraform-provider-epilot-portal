@@ -154,15 +154,12 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       status = "installed"
     }
   ]
-  feature_flags = "{ \"see\": \"documentation\" }"
   feature_settings = {
     billing         = true
     change_due_date = false
     new_design      = true
     start_page      = true
   }
-  grants             = "{ \"see\": \"documentation\" }"
-  identity_providers = "{ \"see\": \"documentation\" }"
   images = {
     order_left_teaser  = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg"
     order_right_teaser = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg"
@@ -173,18 +170,52 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   is_epilot_domain               = true
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
-  org_settings = {
-    canary = {
-      enabled = true
-    }
-    notracking = {
-      enabled = false
-    }
-  }
-  organization_id                = 12345
   origin                         = "INSTALLER_PORTAL"
-  pages                          = "{ \"see\": \"documentation\" }"
-  portal_id                      = "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+  pages = [
+    {
+      additional_properties = "{ \"see\": \"documentation\" }"
+      blocks = {
+        key = {
+          additional_properties = "{ \"see\": \"documentation\" }"
+          order                 = 1
+          parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
+          props = {
+            additional_properties = "{ \"see\": \"documentation\" }"
+            content = {
+              # ...
+            }
+            design = {
+              # ...
+            }
+            visibility = {
+              # ...
+            }
+          }
+          type = "tab"
+        }
+      }
+      content = {
+        key = jsonencode("value")
+      }
+      design = {
+        key = jsonencode("value")
+      }
+      is_deleted     = false
+      is_entry_route = false
+      is_public      = true
+      is_system      = false
+      order          = 1
+      parent_id      = "c495fef9-eeca-4019-a989-8390dcd9825b"
+      path           = "/dashboard"
+      schema = [
+        "contact"
+      ]
+      slug = "dashboard"
+      visibility = {
+        key = jsonencode("value")
+      }
+    }
+  ]
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
   self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"
@@ -222,25 +253,29 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `entity_identifiers` (Attributes, Deprecated) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. (see [below for nested schema](#nestedatt--entity_identifiers))
 - `extension_hooks` (Attributes Map) Configured Portal extensions hooks (see [below for nested schema](#nestedatt--extension_hooks))
 - `extensions` (Attributes List) Configured Portal extensions (see [below for nested schema](#nestedatt--extensions))
-- `feature_flags` (String) Feature flags for the portal. Parsed as JSON.
 - `feature_settings` (Attributes) Feature settings for the portal (see [below for nested schema](#nestedatt--feature_settings))
-- `grants` (String) Permissions granted to a portal user while accessing entities. Parsed as JSON.
-- `identity_providers` (String) Parsed as JSON.
 - `images` (Attributes) Teaser & Banner Image web links (see [below for nested schema](#nestedatt--images))
 - `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal
 - `is_dummy` (Boolean) Whether this is a dummy/test portal configuration
 - `is_epilot_domain` (Boolean) Mark true if the domain is an Epilot domain
 - `meter_reading_grace_period` (Number) Grace period in days for meter readings
 - `name` (String) A short name to identify your portal
-- `org_settings` (Attributes) Organization settings (see [below for nested schema](#nestedatt--org_settings))
-- `organization_id` (String) ID of the organization
 - `origin` (String) Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]
-- `pages` (String) Parsed as JSON.
-- `portal_id` (String) ID of the portal
+- `pages` (Attributes List) (see [below for nested schema](#nestedatt--pages))
 - `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
 - `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
 - `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]
 - `triggered_journeys` (Attributes List) Journeys automatically opened on a portal user action (see [below for nested schema](#nestedatt--triggered_journeys))
+
+### Read-Only
+
+- `feature_flags` (String) Feature flags for the portal. Parsed as JSON.
+- `grants` (String) Permissions granted to a portal user while accessing entities. Parsed as JSON.
+- `identity_providers` (String) Parsed as JSON.
+- `org_settings` (Attributes) Organization settings (see [below for nested schema](#nestedatt--org_settings))
+- `organization_id` (String) ID of the organization
+- `portal_id` (String) ID of the portal
+- `portal_sk_v3` (String) Key of the portal config
 
 <a id="nestedatt--advanced_mfa"></a>
 ### Nested Schema for `advanced_mfa`
@@ -448,28 +483,64 @@ Optional:
 - `welcome_banner` (String) URL of the welcome banner image
 
 
-<a id="nestedatt--org_settings"></a>
-### Nested Schema for `org_settings`
+<a id="nestedatt--pages"></a>
+### Nested Schema for `pages`
 
 Optional:
 
-- `canary` (Attributes) Canary feature flag (see [below for nested schema](#nestedatt--org_settings--canary))
-- `notracking` (Attributes) Disable Advanced Usage Metrics (see [below for nested schema](#nestedatt--org_settings--notracking))
+- `additional_properties` (String) Parsed as JSON.
+- `blocks` (Attributes Map) (see [below for nested schema](#nestedatt--pages--blocks))
+- `content` (Map of String) The content of the page
+- `design` (Map of String) The design of the page
+- `is_deleted` (Boolean) Send the flag as true to delete the page
+- `is_entry_route` (Boolean) Whether the page is the entry route
+- `is_public` (Boolean) Whether the page is public
+- `is_system` (Boolean) Whether the page is a system page
+- `order` (Number) The order of the block. Not Null
+- `parent_id` (String) The id of the parent page
+- `path` (String, Deprecated) The path of the page
+- `schema` (List of String)
+- `slug` (String) The slug of the page. Not Null
+- `visibility` (Map of String) The conditions that need to be met for the page to be shown
 
-<a id="nestedatt--org_settings--canary"></a>
-### Nested Schema for `org_settings.canary`
+Read-Only:
+
+- `id` (String) The id of the page
+- `last_modified_at` (String) Last modified timestamp of the Page
+
+<a id="nestedatt--pages--blocks"></a>
+### Nested Schema for `pages.blocks`
 
 Optional:
 
-- `enabled` (Boolean) Enable/Disable the canary feature
+- `additional_properties` (String) Parsed as JSON.
+- `order` (Number) The order of the block. Not Null
+- `parent_id` (String) The id of the parent block
+- `props` (Attributes) (see [below for nested schema](#nestedatt--pages--blocks--props))
+- `type` (String) The type of the block. eg; tabs, tab, group, attribute. Not Null
 
-
-<a id="nestedatt--org_settings--notracking"></a>
-### Nested Schema for `org_settings.notracking`
+<a id="nestedatt--pages--blocks--props"></a>
+### Nested Schema for `pages.blocks.props`
 
 Optional:
 
-- `enabled` (Boolean) Disable browser-side scripts that track advanced usage metrics
+- `additional_properties` (String) Parsed as JSON.
+- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--pages--blocks--props--content))
+- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--pages--blocks--props--design))
+- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--pages--blocks--props--visibility))
+
+<a id="nestedatt--pages--blocks--props--content"></a>
+### Nested Schema for `pages.blocks.props.content`
+
+
+<a id="nestedatt--pages--blocks--props--design"></a>
+### Nested Schema for `pages.blocks.props.design`
+
+
+<a id="nestedatt--pages--blocks--props--visibility"></a>
+### Nested Schema for `pages.blocks.props.visibility`
+
+
 
 
 
@@ -480,6 +551,30 @@ Optional:
 
 - `journey_id` (String) Entity ID
 - `trigger_name` (String) must be one of ["FIRST_LOGIN", "ACCEPT_ORDER", "DECLINE_ORDER"]
+
+
+<a id="nestedatt--org_settings"></a>
+### Nested Schema for `org_settings`
+
+Read-Only:
+
+- `canary` (Attributes) Canary feature flag (see [below for nested schema](#nestedatt--org_settings--canary))
+- `notracking` (Attributes) Disable Advanced Usage Metrics (see [below for nested schema](#nestedatt--org_settings--notracking))
+
+<a id="nestedatt--org_settings--canary"></a>
+### Nested Schema for `org_settings.canary`
+
+Read-Only:
+
+- `enabled` (Boolean) Enable/Disable the canary feature
+
+
+<a id="nestedatt--org_settings--notracking"></a>
+### Nested Schema for `org_settings.notracking`
+
+Read-Only:
+
+- `enabled` (Boolean) Disable browser-side scripts that track advanced usage metrics
 
 ## Import
 

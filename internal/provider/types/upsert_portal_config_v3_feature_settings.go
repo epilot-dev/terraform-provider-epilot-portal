@@ -6,7 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 )
 
-type PortalConfigV3FeatureSettings struct {
+type UpsertPortalConfigV3FeatureSettings struct {
 	Billing       types.Bool `tfsdk:"billing"`
 	ChangeDueDate types.Bool `tfsdk:"change_due_date"`
 	NewDesign     types.Bool `tfsdk:"new_design"`

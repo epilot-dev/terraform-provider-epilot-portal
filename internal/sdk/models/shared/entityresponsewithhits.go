@@ -6,11 +6,64 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
+// Pagination metadata
+type Pagination struct {
+	// Starting offset for the current page
+	From *float64 `json:"from,omitempty"`
+	// Whether there are more entities available beyond the current page
+	HasMore *bool `json:"has_more,omitempty"`
+	// Number of entities per page
+	Size *float64 `json:"size,omitempty"`
+	// Total number of entities available
+	Total *float64 `json:"total,omitempty"`
+}
+
+func (p Pagination) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Pagination) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Pagination) GetFrom() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.From
+}
+
+func (o *Pagination) GetHasMore() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.HasMore
+}
+
+func (o *Pagination) GetSize() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *Pagination) GetTotal() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Total
+}
+
 // EntityResponseWithHits - Response for entity search requests
 type EntityResponseWithHits struct {
-	// Total number of entities for pagination
-	Hits    *float64     `json:"hits,omitempty"`
-	Results []EntityItem `json:"results,omitempty"`
+	// Number of entities returned in this response
+	Hits *float64 `json:"hits,omitempty"`
+	// Pagination metadata
+	Pagination *Pagination  `json:"pagination,omitempty"`
+	Results    []EntityItem `json:"results,omitempty"`
 }
 
 func (e EntityResponseWithHits) MarshalJSON() ([]byte, error) {
@@ -29,6 +82,13 @@ func (o *EntityResponseWithHits) GetHits() *float64 {
 		return nil
 	}
 	return o.Hits
+}
+
+func (o *EntityResponseWithHits) GetPagination() *Pagination {
+	if o == nil {
+		return nil
+	}
+	return o.Pagination
 }
 
 func (o *EntityResponseWithHits) GetResults() []EntityItem {

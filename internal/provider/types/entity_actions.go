@@ -7,7 +7,7 @@ import (
 )
 
 type EntityActions struct {
-	ActionLabel *PortalConfigV3ActionLabel `tfsdk:"action_label"`
-	JourneyID   types.String               `tfsdk:"journey_id"`
-	Slug        types.String               `tfsdk:"slug"`
+	ActionLabel *UpsertPortalConfigV3ActionLabel `tfsdk:"action_label"`
+	JourneyID   types.String                     `tfsdk:"journey_id"`
+	Slug        types.String                     `tfsdk:"slug"`
 }

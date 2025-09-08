@@ -30,45 +30,46 @@ type PortalConfigDataSource struct {
 
 // PortalConfigDataSourceModel describes the data model.
 type PortalConfigDataSourceModel struct {
-	AccessToken                 types.String                                  `tfsdk:"access_token"`
-	AdvancedMfa                 *tfTypes.PortalConfigV3AdvancedMfa            `tfsdk:"advanced_mfa"`
-	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                `tfsdk:"allowed_file_extensions"`
-	ApprovalStateAttributes     jsontypes.Normalized                          `tfsdk:"approval_state_attributes"`
-	AuthSettings                *tfTypes.PortalConfigV3AuthSettings           `tfsdk:"auth_settings"`
-	CognitoDetails              *tfTypes.PortalConfigV3CognitoDetails         `tfsdk:"cognito_details"`
-	Config                      types.String                                  `tfsdk:"config"`
-	ContactIdentifiers          []types.String                                `tfsdk:"contact_identifiers"`
-	ContractIdentifiers         jsontypes.Normalized                          `tfsdk:"contract_identifiers"`
-	ContractSelectorConfig      *tfTypes.PortalConfigV3ContractSelectorConfig `tfsdk:"contract_selector_config"`
-	DefaultUserToNotify         *tfTypes.DefaultUserToNotify                  `tfsdk:"default_user_to_notify"`
-	DesignID                    types.String                                  `tfsdk:"design_id"`
-	Domain                      types.String                                  `tfsdk:"domain"`
-	EmailTemplates              *tfTypes.EmailTemplates                       `tfsdk:"email_templates"`
-	Enabled                     types.Bool                                    `tfsdk:"enabled"`
-	EntityActions               []tfTypes.EntityActions                       `tfsdk:"entity_actions"`
-	EntityEditRules             jsontypes.Normalized                          `tfsdk:"entity_edit_rules"`
-	EntityIdentifiers           *tfTypes.PortalConfigV3EntityIdentifiers      `tfsdk:"entity_identifiers"`
-	ExtensionHooks              map[string]tfTypes.ExtensionHookConfig        `tfsdk:"extension_hooks"`
-	Extensions                  []tfTypes.ExtensionConfig                     `tfsdk:"extensions"`
-	FeatureFlags                jsontypes.Normalized                          `tfsdk:"feature_flags"`
-	FeatureSettings             *tfTypes.PortalConfigV3FeatureSettings        `tfsdk:"feature_settings"`
-	Grants                      jsontypes.Normalized                          `tfsdk:"grants"`
-	IdentityProviders           jsontypes.Normalized                          `tfsdk:"identity_providers"`
-	Images                      *tfTypes.PortalConfigV3Images                 `tfsdk:"images"`
-	InactiveContractCutoffYears types.Float64                                 `tfsdk:"inactive_contract_cutoff_years"`
-	IsDummy                     types.Bool                                    `tfsdk:"is_dummy"`
-	IsEpilotDomain              types.Bool                                    `tfsdk:"is_epilot_domain"`
-	MeterReadingGracePeriod     types.Float64                                 `tfsdk:"meter_reading_grace_period"`
-	Name                        types.String                                  `tfsdk:"name"`
-	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings            `tfsdk:"org_settings"`
-	OrganizationID              types.String                                  `tfsdk:"organization_id"`
-	Origin                      types.String                                  `tfsdk:"origin"`
-	Pages                       jsontypes.Normalized                          `tfsdk:"pages"`
-	PortalID                    types.String                                  `tfsdk:"portal_id"`
-	PreventSearchEngineIndexing types.Bool                                    `tfsdk:"prevent_search_engine_indexing"`
-	RegistrationIdentifiers     jsontypes.Normalized                          `tfsdk:"registration_identifiers"`
-	SelfRegistrationSetting     types.String                                  `tfsdk:"self_registration_setting"`
-	TriggeredJourneys           []tfTypes.PortalConfigV3TriggeredJourneys     `tfsdk:"triggered_journeys"`
+	AccessToken                 types.String                                        `tfsdk:"access_token"`
+	AdvancedMfa                 *tfTypes.UpsertPortalConfigV3AdvancedMfa            `tfsdk:"advanced_mfa"`
+	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                      `tfsdk:"allowed_file_extensions"`
+	ApprovalStateAttributes     jsontypes.Normalized                                `tfsdk:"approval_state_attributes"`
+	AuthSettings                *tfTypes.UpsertPortalConfigV3AuthSettings           `tfsdk:"auth_settings"`
+	CognitoDetails              *tfTypes.UpsertPortalConfigV3CognitoDetails         `tfsdk:"cognito_details"`
+	Config                      types.String                                        `tfsdk:"config"`
+	ContactIdentifiers          []types.String                                      `tfsdk:"contact_identifiers"`
+	ContractIdentifiers         jsontypes.Normalized                                `tfsdk:"contract_identifiers"`
+	ContractSelectorConfig      *tfTypes.UpsertPortalConfigV3ContractSelectorConfig `tfsdk:"contract_selector_config"`
+	DefaultUserToNotify         *tfTypes.UpsertPortalConfigV3DefaultUserToNotify    `tfsdk:"default_user_to_notify"`
+	DesignID                    types.String                                        `tfsdk:"design_id"`
+	Domain                      types.String                                        `tfsdk:"domain"`
+	EmailTemplates              *tfTypes.EmailTemplates                             `tfsdk:"email_templates"`
+	Enabled                     types.Bool                                          `tfsdk:"enabled"`
+	EntityActions               []tfTypes.EntityActions                             `tfsdk:"entity_actions"`
+	EntityEditRules             jsontypes.Normalized                                `tfsdk:"entity_edit_rules"`
+	EntityIdentifiers           *tfTypes.UpsertPortalConfigV3EntityIdentifiers      `tfsdk:"entity_identifiers"`
+	ExtensionHooks              map[string]tfTypes.ExtensionHookConfig              `tfsdk:"extension_hooks"`
+	Extensions                  []tfTypes.ExtensionConfig                           `tfsdk:"extensions"`
+	FeatureFlags                jsontypes.Normalized                                `tfsdk:"feature_flags"`
+	FeatureSettings             *tfTypes.UpsertPortalConfigV3FeatureSettings        `tfsdk:"feature_settings"`
+	Grants                      jsontypes.Normalized                                `tfsdk:"grants"`
+	IdentityProviders           jsontypes.Normalized                                `tfsdk:"identity_providers"`
+	Images                      *tfTypes.UpsertPortalConfigV3Images                 `tfsdk:"images"`
+	InactiveContractCutoffYears types.Float64                                       `tfsdk:"inactive_contract_cutoff_years"`
+	IsDummy                     types.Bool                                          `tfsdk:"is_dummy"`
+	IsEpilotDomain              types.Bool                                          `tfsdk:"is_epilot_domain"`
+	MeterReadingGracePeriod     types.Float64                                       `tfsdk:"meter_reading_grace_period"`
+	Name                        types.String                                        `tfsdk:"name"`
+	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings                  `tfsdk:"org_settings"`
+	OrganizationID              types.String                                        `tfsdk:"organization_id"`
+	Origin                      types.String                                        `tfsdk:"origin"`
+	Pages                       []tfTypes.Page                                      `tfsdk:"pages"`
+	PortalID                    types.String                                        `tfsdk:"portal_id"`
+	PortalSkV3                  types.String                                        `tfsdk:"portal_sk_v3"`
+	PreventSearchEngineIndexing types.Bool                                          `tfsdk:"prevent_search_engine_indexing"`
+	RegistrationIdentifiers     jsontypes.Normalized                                `tfsdk:"registration_identifiers"`
+	SelfRegistrationSetting     types.String                                        `tfsdk:"self_registration_setting"`
+	TriggeredJourneys           []tfTypes.PortalConfigV3TriggeredJourneys           `tfsdk:"triggered_journeys"`
 }
 
 // Metadata returns the data source type name.
@@ -568,14 +569,131 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 				Computed:    true,
 				Description: `Origin of the portal`,
 			},
-			"pages": schema.StringAttribute{
-				CustomType:  jsontypes.NormalizedType{},
-				Computed:    true,
-				Description: `Parsed as JSON.`,
+			"pages": schema.ListNestedAttribute{
+				Computed: true,
+				NestedObject: schema.NestedAttributeObject{
+					Attributes: map[string]schema.Attribute{
+						"additional_properties": schema.StringAttribute{
+							CustomType:  jsontypes.NormalizedType{},
+							Computed:    true,
+							Description: `Parsed as JSON.`,
+						},
+						"blocks": schema.MapNestedAttribute{
+							Computed: true,
+							NestedObject: schema.NestedAttributeObject{
+								Attributes: map[string]schema.Attribute{
+									"additional_properties": schema.StringAttribute{
+										CustomType:  jsontypes.NormalizedType{},
+										Computed:    true,
+										Description: `Parsed as JSON.`,
+									},
+									"order": schema.Float64Attribute{
+										Computed:    true,
+										Description: `The order of the block`,
+									},
+									"parent_id": schema.StringAttribute{
+										Computed:    true,
+										Description: `The id of the parent block`,
+									},
+									"props": schema.SingleNestedAttribute{
+										Computed: true,
+										Attributes: map[string]schema.Attribute{
+											"additional_properties": schema.StringAttribute{
+												CustomType:  jsontypes.NormalizedType{},
+												Computed:    true,
+												Description: `Parsed as JSON.`,
+											},
+											"content": schema.SingleNestedAttribute{
+												Computed:    true,
+												Description: `The content of the block`,
+											},
+											"design": schema.SingleNestedAttribute{
+												Computed:    true,
+												Description: `The design of the block`,
+											},
+											"visibility": schema.SingleNestedAttribute{
+												Computed:    true,
+												Description: `The conditions that need to be met for the block to be shown`,
+											},
+										},
+									},
+									"type": schema.StringAttribute{
+										Computed:    true,
+										Description: `The type of the block. eg; tabs, tab, group, attribute`,
+									},
+								},
+							},
+						},
+						"content": schema.MapAttribute{
+							Computed:    true,
+							ElementType: jsontypes.NormalizedType{},
+							Description: `The content of the page`,
+						},
+						"design": schema.MapAttribute{
+							Computed:    true,
+							ElementType: jsontypes.NormalizedType{},
+							Description: `The design of the page`,
+						},
+						"id": schema.StringAttribute{
+							Computed:    true,
+							Description: `The id of the page`,
+						},
+						"is_deleted": schema.BoolAttribute{
+							Computed:    true,
+							Description: `Send the flag as true to delete the page`,
+						},
+						"is_entry_route": schema.BoolAttribute{
+							Computed:    true,
+							Description: `Whether the page is the entry route`,
+						},
+						"is_public": schema.BoolAttribute{
+							Computed:    true,
+							Description: `Whether the page is public`,
+						},
+						"is_system": schema.BoolAttribute{
+							Computed:    true,
+							Description: `Whether the page is a system page`,
+						},
+						"last_modified_at": schema.StringAttribute{
+							Computed:    true,
+							Description: `Last modified timestamp of the Page`,
+						},
+						"order": schema.Float64Attribute{
+							Computed:    true,
+							Description: `The order of the block`,
+						},
+						"parent_id": schema.StringAttribute{
+							Computed:    true,
+							Description: `The id of the parent page`,
+						},
+						"path": schema.StringAttribute{
+							Computed:           true,
+							DeprecationMessage: `This will be removed in a future release, please migrate away from it as soon as possible`,
+							Description:        `The path of the page`,
+						},
+						"schema": schema.ListAttribute{
+							Computed:    true,
+							ElementType: types.StringType,
+						},
+						"slug": schema.StringAttribute{
+							Computed:    true,
+							Description: `The slug of the page`,
+						},
+						"visibility": schema.MapAttribute{
+							Computed:    true,
+							ElementType: jsontypes.NormalizedType{},
+							Description: `The conditions that need to be met for the page to be shown`,
+						},
+					},
+				},
 			},
 			"portal_id": schema.StringAttribute{
 				Required:    true,
 				Description: `Portal ID (readonly UUID generated on portal creation)`,
+			},
+			"portal_sk_v3": schema.StringAttribute{
+				Computed:    true,
+				Description: `Key of the portal config`,
 			},
 			"prevent_search_engine_indexing": schema.BoolAttribute{
 				Computed:    true,
