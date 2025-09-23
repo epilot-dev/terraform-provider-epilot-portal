@@ -2,7 +2,7 @@
 
 package sdk
 
-// Generated from OpenAPI doc version 1.0.0 and generator version 2.694.1
+// Generated from OpenAPI doc version 1.0.0 and generator version 2.709.0
 
 import (
 	"context"
@@ -18,8 +18,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	// Production environment
-	"https://customer-portal-api.sls.epilot.io/",
+	"https://permissions.sls.epilot.io",
 }
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
@@ -48,19 +47,13 @@ func Float64(f float64) *float64 { return &f }
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
 
-// SDK - Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
+// SDK - Permissions API: Flexible Role-based Access Control for epilot
 type SDK struct {
 	SDKVersion string
-	// APIs defined for a ECP Admin
-	ECPAdmin *ECPAdmin
-	// APIs defined for a portal user
-	Ecp      *Ecp
-	Balance  *Balance
-	Activity *Activity
-	Internal *Internal
-	// Public APIs
-	Public *Public
-	Login  *Login
+	// Assign roles to users
+	Assignments *Assignments
+	// Manage roles and grants
+	Roles *Roles
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -136,9 +129,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.25.9",
+		SDKVersion: "0.26.0",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/terraform 0.25.9 2.694.1 1.0.0 github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk",
+			UserAgent:  "speakeasy-sdk/terraform 0.26.0 2.709.0 1.0.0 github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -159,13 +152,8 @@ func New(opts ...SDKOption) *SDK {
 		sdk.sdkConfiguration.ServerURL = serverURL
 	}
 
-	sdk.ECPAdmin = newECPAdmin(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Ecp = newEcp(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Balance = newBalance(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Activity = newActivity(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Internal = newInternal(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Public = newPublic(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Login = newLogin(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Assignments = newAssignments(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Roles = newRoles(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk
 }
