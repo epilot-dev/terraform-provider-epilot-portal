@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -37,7 +36,7 @@ type SsoLoginRequest struct {
 	// epilot organization id
 	OrgID string `queryParam:"style=form,explode=true,name=org_id"`
 	// Origin of the Portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *SsoLoginRequest) GetRequestBody() *SsoLoginRequestBody {
@@ -61,9 +60,9 @@ func (o *SsoLoginRequest) GetOrgID() string {
 	return o.OrgID
 }
 
-func (o *SsoLoginRequest) GetOrigin() shared.Origin {
+func (o *SsoLoginRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

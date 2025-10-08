@@ -79,6 +79,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			r.AuthSettings = nil
 		} else {
 			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
+			r.AuthSettings.AutoRedirectToSso = types.BoolPointerValue(resp.AuthSettings.AutoRedirectToSso)
 			if resp.AuthSettings.EntryPoint != nil {
 				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
 			} else {
@@ -297,6 +298,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		r.InactiveContractCutoffYears = types.Float64PointerValue(resp.InactiveContractCutoffYears)
 		r.IsDummy = types.BoolPointerValue(resp.IsDummy)
 		r.IsEpilotDomain = types.BoolPointerValue(resp.IsEpilotDomain)
+		r.IsV3Item = types.BoolPointerValue(resp.IsV3Item)
 		r.MeterReadingGracePeriod = types.Float64PointerValue(resp.MeterReadingGracePeriod)
 		r.Name = types.StringPointerValue(resp.Name)
 		if resp.OrgSettings == nil {
@@ -317,11 +319,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			}
 		}
 		r.OrganizationID = types.StringPointerValue(resp.OrganizationID)
-		if resp.Origin != nil {
-			r.Origin = types.StringValue(string(*resp.Origin))
-		} else {
-			r.Origin = types.StringNull()
-		}
+		r.Origin = types.StringPointerValue(resp.Origin)
 		if resp.Pages == nil {
 			r.Pages = jsontypes.NewNormalizedNull()
 		} else {

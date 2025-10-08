@@ -7,8 +7,8 @@ import (
 )
 
 type BlockProps struct {
-	AdditionalProperties jsontypes.Normalized `tfsdk:"additional_properties"`
-	Content              *Content             `tfsdk:"content"`
-	Design               *Content             `tfsdk:"design"`
-	Visibility           *Content             `tfsdk:"visibility"`
+	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
+	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
+	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
+	Visibility           map[string]jsontypes.Normalized `tfsdk:"visibility"`
 }

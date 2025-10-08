@@ -13,7 +13,7 @@ type UpsertEmailTemplatesRequest struct {
 	// Email templates payload
 	EmailTemplates shared.EmailTemplates `request:"mediaType=application/json"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *UpsertEmailTemplatesRequest) GetEmailTemplates() shared.EmailTemplates {
@@ -23,9 +23,9 @@ func (o *UpsertEmailTemplatesRequest) GetEmailTemplates() shared.EmailTemplates 
 	return o.EmailTemplates
 }
 
-func (o *UpsertEmailTemplatesRequest) GetOrigin() shared.Origin {
+func (o *UpsertEmailTemplatesRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

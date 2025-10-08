@@ -7,6 +7,7 @@ import (
 )
 
 type UpsertPortalConfigV3AuthSettings struct {
+	AutoRedirectToSso     types.Bool                       `tfsdk:"auto_redirect_to_sso"`
 	EntryPoint            types.String                     `tfsdk:"entry_point"`
 	PasswordlessLogin     *UpsertPortalConfigV3AdvancedMfa `tfsdk:"passwordless_login"`
 	PreferredSsoProviders []types.String                   `tfsdk:"preferred_sso_providers"`

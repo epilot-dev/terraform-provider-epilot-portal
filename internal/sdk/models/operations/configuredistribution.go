@@ -8,13 +8,12 @@ import (
 )
 
 type ConfigureDistributionRequest struct {
-	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *ConfigureDistributionRequest) GetOrigin() shared.Origin {
+func (o *ConfigureDistributionRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

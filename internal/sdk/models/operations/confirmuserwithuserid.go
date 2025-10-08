@@ -11,9 +11,8 @@ type ConfirmUserWithUserIDRequest struct {
 	// The ID of portal user id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Organization ID
-	OrgID string `queryParam:"style=form,explode=true,name=org_id"`
-	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	OrgID  string `queryParam:"style=form,explode=true,name=org_id"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *ConfirmUserWithUserIDRequest) GetID() string {
@@ -30,9 +29,9 @@ func (o *ConfirmUserWithUserIDRequest) GetOrgID() string {
 	return o.OrgID
 }
 
-func (o *ConfirmUserWithUserIDRequest) GetOrigin() shared.Origin {
+func (o *ConfirmUserWithUserIDRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

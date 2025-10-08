@@ -11,7 +11,7 @@ type UserExistsRequest struct {
 	Email string `queryParam:"style=form,explode=true,name=email"`
 	OrgID string `queryParam:"style=form,explode=true,name=org_id"`
 	// Checkes if user exists in the given portal origin. If not provided, checks in all origins.
-	Origin *shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *UserExistsRequest) GetEmail() string {
@@ -28,7 +28,7 @@ func (o *UserExistsRequest) GetOrgID() string {
 	return o.OrgID
 }
 
-func (o *UserExistsRequest) GetOrigin() *shared.Origin {
+func (o *UserExistsRequest) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

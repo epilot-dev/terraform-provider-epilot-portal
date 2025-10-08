@@ -11,7 +11,7 @@ type UpsertPortalWidgetRequest struct {
 	// Portal widgets payload
 	UpsertPortalWidget shared.UpsertPortalWidget `request:"mediaType=application/json"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *UpsertPortalWidgetRequest) GetUpsertPortalWidget() shared.UpsertPortalWidget {
@@ -21,9 +21,9 @@ func (o *UpsertPortalWidgetRequest) GetUpsertPortalWidget() shared.UpsertPortalW
 	return o.UpsertPortalWidget
 }
 
-func (o *UpsertPortalWidgetRequest) GetOrigin() shared.Origin {
+func (o *UpsertPortalWidgetRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

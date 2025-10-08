@@ -11,7 +11,9 @@ type UpsertPortalRequest struct {
 	// Portal payload
 	UpsertPortalConfig shared.UpsertPortalConfig `request:"mediaType=application/json"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
+	// Portal ID
+	PortalID *string `queryParam:"style=form,explode=true,name=portal_id"`
 }
 
 func (o *UpsertPortalRequest) GetUpsertPortalConfig() shared.UpsertPortalConfig {
@@ -21,11 +23,18 @@ func (o *UpsertPortalRequest) GetUpsertPortalConfig() shared.UpsertPortalConfig 
 	return o.UpsertPortalConfig
 }
 
-func (o *UpsertPortalRequest) GetOrigin() shared.Origin {
+func (o *UpsertPortalRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
+}
+
+func (o *UpsertPortalRequest) GetPortalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalID
 }
 
 type UpsertPortalResponse struct {

@@ -7,23 +7,30 @@ import (
 	"net/http"
 )
 
-type GetEmailTemplatesRequest struct {
-	// Origin of the portal
-	Origin string `queryParam:"style=form,explode=true,name=origin"`
+type DeRegisterMLoginUserRequest struct {
+	// Client ID
+	ClientID string `pathParam:"style=simple,explode=false,name=client_id"`
+	// User ID
+	UserID string `pathParam:"style=simple,explode=false,name=user_id"`
 }
 
-func (o *GetEmailTemplatesRequest) GetOrigin() string {
+func (o *DeRegisterMLoginUserRequest) GetClientID() string {
 	if o == nil {
 		return ""
 	}
-	return o.Origin
+	return o.ClientID
 }
 
-type GetEmailTemplatesResponse struct {
+func (o *DeRegisterMLoginUserRequest) GetUserID() string {
+	if o == nil {
+		return ""
+	}
+	return o.UserID
+}
+
+type DeRegisterMLoginUserResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Retrieved the email templates successfully.
-	EmailTemplates *shared.EmailTemplates
 	// Could not authenticate the user
 	ErrorResp *shared.ErrorResp
 	// HTTP response status code for this operation
@@ -32,35 +39,28 @@ type GetEmailTemplatesResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetEmailTemplatesResponse) GetContentType() string {
+func (o *DeRegisterMLoginUserResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetEmailTemplatesResponse) GetEmailTemplates() *shared.EmailTemplates {
-	if o == nil {
-		return nil
-	}
-	return o.EmailTemplates
-}
-
-func (o *GetEmailTemplatesResponse) GetErrorResp() *shared.ErrorResp {
+func (o *DeRegisterMLoginUserResponse) GetErrorResp() *shared.ErrorResp {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorResp
 }
 
-func (o *GetEmailTemplatesResponse) GetStatusCode() int {
+func (o *DeRegisterMLoginUserResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetEmailTemplatesResponse) GetRawResponse() *http.Response {
+func (o *DeRegisterMLoginUserResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

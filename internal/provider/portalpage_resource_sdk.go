@@ -25,60 +25,67 @@ func (r *PortalPageResourceModel) RefreshFromSharedPage(ctx context.Context, res
 			r.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult))
 		}
 		if len(resp.Blocks) > 0 {
-			r.Blocks = make(map[string]tfTypes.BlockRequest, len(resp.Blocks))
-			for blockRequestKey, blockRequestValue := range resp.Blocks {
-				var blockRequestResult tfTypes.BlockRequest
-				if blockRequestValue.AdditionalProperties == nil {
-					blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedNull()
+			r.Blocks = make(map[string]tfTypes.Block, len(resp.Blocks))
+			for blockKey, blockValue := range resp.Blocks {
+				var blockResult tfTypes.Block
+				if blockValue.AdditionalProperties == nil {
+					blockResult.AdditionalProperties = jsontypes.NewNormalizedNull()
 				} else {
-					additionalPropertiesResult1, _ := json.Marshal(blockRequestValue.AdditionalProperties)
-					blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
+					additionalPropertiesResult1, _ := json.Marshal(blockValue.AdditionalProperties)
+					blockResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
 				}
-				blockRequestResult.Order = types.Float64Value(blockRequestValue.Order)
-				blockRequestResult.ParentID = types.StringPointerValue(blockRequestValue.ParentID)
-				if blockRequestValue.Props == nil {
-					blockRequestResult.Props = nil
+				blockResult.ID = types.StringPointerValue(blockValue.ID)
+				blockResult.Order = types.Float64Value(blockValue.Order)
+				blockResult.ParentID = types.StringPointerValue(blockValue.ParentID)
+				if blockValue.Props == nil {
+					blockResult.Props = nil
 				} else {
-					blockRequestResult.Props = &tfTypes.BlockProps{}
-					if blockRequestValue.Props.AdditionalProperties == nil {
-						blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
+					blockResult.Props = &tfTypes.BlockProps{}
+					if blockValue.Props.AdditionalProperties == nil {
+						blockResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
 					} else {
-						additionalPropertiesResult2, _ := json.Marshal(blockRequestValue.Props.AdditionalProperties)
-						blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
+						additionalPropertiesResult2, _ := json.Marshal(blockValue.Props.AdditionalProperties)
+						blockResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
 					}
-					if blockRequestValue.Props.Content == nil {
-						blockRequestResult.Props.Content = nil
-					} else {
-						blockRequestResult.Props.Content = &tfTypes.Content{}
+					if len(blockValue.Props.Content) > 0 {
+						blockResult.Props.Content = make(map[string]jsontypes.Normalized, len(blockValue.Props.Content))
+						for key, value := range blockValue.Props.Content {
+							result, _ := json.Marshal(value)
+							blockResult.Props.Content[key] = jsontypes.NewNormalizedValue(string(result))
+						}
 					}
-					if blockRequestValue.Props.Design == nil {
-						blockRequestResult.Props.Design = nil
-					} else {
-						blockRequestResult.Props.Design = &tfTypes.Content{}
+					if len(blockValue.Props.Design) > 0 {
+						blockResult.Props.Design = make(map[string]jsontypes.Normalized, len(blockValue.Props.Design))
+						for key1, value1 := range blockValue.Props.Design {
+							result1, _ := json.Marshal(value1)
+							blockResult.Props.Design[key1] = jsontypes.NewNormalizedValue(string(result1))
+						}
 					}
-					if blockRequestValue.Props.Visibility == nil {
-						blockRequestResult.Props.Visibility = nil
-					} else {
-						blockRequestResult.Props.Visibility = &tfTypes.Content{}
+					if len(blockValue.Props.Visibility) > 0 {
+						blockResult.Props.Visibility = make(map[string]jsontypes.Normalized, len(blockValue.Props.Visibility))
+						for key2, value2 := range blockValue.Props.Visibility {
+							result2, _ := json.Marshal(value2)
+							blockResult.Props.Visibility[key2] = jsontypes.NewNormalizedValue(string(result2))
+						}
 					}
 				}
-				blockRequestResult.Type = types.StringValue(blockRequestValue.Type)
+				blockResult.Type = types.StringValue(blockValue.Type)
 
-				r.Blocks[blockRequestKey] = blockRequestResult
+				r.Blocks[blockKey] = blockResult
 			}
 		}
 		if len(resp.Content) > 0 {
 			r.Content = make(map[string]jsontypes.Normalized, len(resp.Content))
-			for key, value := range resp.Content {
-				result, _ := json.Marshal(value)
-				r.Content[key] = jsontypes.NewNormalizedValue(string(result))
+			for key3, value3 := range resp.Content {
+				result3, _ := json.Marshal(value3)
+				r.Content[key3] = jsontypes.NewNormalizedValue(string(result3))
 			}
 		}
 		if len(resp.Design) > 0 {
 			r.Design = make(map[string]jsontypes.Normalized, len(resp.Design))
-			for key1, value1 := range resp.Design {
-				result1, _ := json.Marshal(value1)
-				r.Design[key1] = jsontypes.NewNormalizedValue(string(result1))
+			for key4, value4 := range resp.Design {
+				result4, _ := json.Marshal(value4)
+				r.Design[key4] = jsontypes.NewNormalizedValue(string(result4))
 			}
 		}
 		r.ID = types.StringPointerValue(resp.ID)
@@ -97,9 +104,9 @@ func (r *PortalPageResourceModel) RefreshFromSharedPage(ctx context.Context, res
 		r.Slug = types.StringValue(resp.Slug)
 		if len(resp.Visibility) > 0 {
 			r.Visibility = make(map[string]jsontypes.Normalized, len(resp.Visibility))
-			for key2, value2 := range resp.Visibility {
-				result2, _ := json.Marshal(value2)
-				r.Visibility[key2] = jsontypes.NewNormalizedValue(string(result2))
+			for key5, value5 := range resp.Visibility {
+				result5, _ := json.Marshal(value5)
+				r.Visibility[key5] = jsontypes.NewNormalizedValue(string(result5))
 			}
 		}
 	}
@@ -182,11 +189,17 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 	if !r.AdditionalProperties.IsUnknown() && !r.AdditionalProperties.IsNull() {
 		_ = json.Unmarshal([]byte(r.AdditionalProperties.ValueString()), &additionalProperties)
 	}
-	blocks := make(map[string]shared.BlockRequest)
+	blocks := make(map[string]shared.Block)
 	for blocksKey, blocksValue := range r.Blocks {
 		var additionalProperties1 interface{}
 		if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
 			_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties1)
+		}
+		id := new(string)
+		if !blocksValue.ID.IsUnknown() && !blocksValue.ID.IsNull() {
+			*id = blocksValue.ID.ValueString()
+		} else {
+			id = nil
 		}
 		var order float64
 		order = blocksValue.Order.ValueFloat64()
@@ -203,17 +216,23 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 			if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
 				_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties2)
 			}
-			var content *shared.Content
-			if blocksValue.Props.Content != nil {
-				content = &shared.Content{}
+			content := make(map[string]interface{})
+			for contentKey, contentValue := range blocksValue.Props.Content {
+				var contentInst interface{}
+				_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
+				content[contentKey] = contentInst
 			}
-			var design *shared.Design
-			if blocksValue.Props.Design != nil {
-				design = &shared.Design{}
+			design := make(map[string]interface{})
+			for designKey, designValue := range blocksValue.Props.Design {
+				var designInst interface{}
+				_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
+				design[designKey] = designInst
 			}
-			var visibility *shared.Visibility
-			if blocksValue.Props.Visibility != nil {
-				visibility = &shared.Visibility{}
+			visibility := make(map[string]interface{})
+			for visibilityKey, visibilityValue := range blocksValue.Props.Visibility {
+				var visibilityInst interface{}
+				_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
+				visibility[visibilityKey] = visibilityInst
 			}
 			props = &shared.BlockProps{
 				AdditionalProperties: additionalProperties2,
@@ -225,8 +244,9 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 		var typeVar string
 		typeVar = blocksValue.Type.ValueString()
 
-		blocksInst := shared.BlockRequest{
+		blocksInst := shared.Block{
 			AdditionalProperties: additionalProperties1,
+			ID:                   id,
 			Order:                order,
 			ParentID:             parentID,
 			Props:                props,
@@ -235,16 +255,16 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 		blocks[blocksKey] = blocksInst
 	}
 	content1 := make(map[string]interface{})
-	for contentKey, contentValue := range r.Content {
-		var contentInst interface{}
-		_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
-		content1[contentKey] = contentInst
+	for contentKey1, contentValue1 := range r.Content {
+		var contentInst1 interface{}
+		_ = json.Unmarshal([]byte(contentValue1.ValueString()), &contentInst1)
+		content1[contentKey1] = contentInst1
 	}
 	design1 := make(map[string]interface{})
-	for designKey, designValue := range r.Design {
-		var designInst interface{}
-		_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
-		design1[designKey] = designInst
+	for designKey1, designValue1 := range r.Design {
+		var designInst1 interface{}
+		_ = json.Unmarshal([]byte(designValue1.ValueString()), &designInst1)
+		design1[designKey1] = designInst1
 	}
 	isDeleted := new(bool)
 	if !r.IsDeleted.IsUnknown() && !r.IsDeleted.IsNull() {
@@ -293,10 +313,10 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 	slug = r.Slug.ValueString()
 
 	visibility1 := make(map[string]interface{})
-	for visibilityKey, visibilityValue := range r.Visibility {
-		var visibilityInst interface{}
-		_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
-		visibility1[visibilityKey] = visibilityInst
+	for visibilityKey1, visibilityValue1 := range r.Visibility {
+		var visibilityInst1 interface{}
+		_ = json.Unmarshal([]byte(visibilityValue1.ValueString()), &visibilityInst1)
+		visibility1[visibilityKey1] = visibilityInst1
 	}
 	out := shared.PageRequest{
 		AdditionalProperties: additionalProperties,

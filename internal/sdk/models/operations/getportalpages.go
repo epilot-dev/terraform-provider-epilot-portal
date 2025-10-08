@@ -7,30 +7,30 @@ import (
 	"net/http"
 )
 
-type ContextEntities struct {
+type QueryParamContextEntities struct {
 	// Entity id
-	EntityID *string `queryParam:"name=entity_id"`
+	EntityID string `queryParam:"name=entity_id"`
 	// Entity schema
-	EntitySchema *string `queryParam:"name=entity_schema"`
+	EntitySchema string `queryParam:"name=entity_schema"`
 }
 
-func (o *ContextEntities) GetEntityID() *string {
+func (o *QueryParamContextEntities) GetEntityID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.EntityID
 }
 
-func (o *ContextEntities) GetEntitySchema() *string {
+func (o *QueryParamContextEntities) GetEntitySchema() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.EntitySchema
 }
 
 type GetPortalPagesRequest struct {
 	// If the request is in a context of certain entities (i.e. the user in in a context of a specific contract), pages can be customized for that. Portal User and Contact entities are automatically part of the context.
-	ContextEntities []ContextEntities `queryParam:"style=form,explode=true,name=context_entities"`
+	ContextEntities []QueryParamContextEntities `queryParam:"style=form,explode=true,name=context_entities"`
 	// Contract context for blocks. Use context_entities instead.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -42,7 +42,7 @@ type GetPortalPagesRequest struct {
 	Filter *string `queryParam:"style=form,explode=true,name=filter"`
 }
 
-func (o *GetPortalPagesRequest) GetContextEntities() []ContextEntities {
+func (o *GetPortalPagesRequest) GetContextEntities() []QueryParamContextEntities {
 	if o == nil {
 		return nil
 	}

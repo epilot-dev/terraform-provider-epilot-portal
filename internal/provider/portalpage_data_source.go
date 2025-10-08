@@ -31,7 +31,7 @@ type PortalPageDataSource struct {
 // PortalPageDataSourceModel describes the data model.
 type PortalPageDataSourceModel struct {
 	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
-	Blocks               map[string]tfTypes.BlockRequest `tfsdk:"blocks"`
+	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
 	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
 	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
 	ID                   types.String                    `tfsdk:"id"`
@@ -73,6 +73,10 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 							Computed:    true,
 							Description: `Parsed as JSON.`,
 						},
+						"id": schema.StringAttribute{
+							Computed:    true,
+							Description: `The id of the block`,
+						},
 						"order": schema.Float64Attribute{
 							Computed:    true,
 							Description: `The order of the block`,
@@ -89,16 +93,19 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 									Computed:    true,
 									Description: `Parsed as JSON.`,
 								},
-								"content": schema.SingleNestedAttribute{
+								"content": schema.MapAttribute{
 									Computed:    true,
+									ElementType: jsontypes.NormalizedType{},
 									Description: `The content of the block`,
 								},
-								"design": schema.SingleNestedAttribute{
+								"design": schema.MapAttribute{
 									Computed:    true,
+									ElementType: jsontypes.NormalizedType{},
 									Description: `The design of the block`,
 								},
-								"visibility": schema.SingleNestedAttribute{
+								"visibility": schema.MapAttribute{
 									Computed:    true,
+									ElementType: jsontypes.NormalizedType{},
 									Description: `The conditions that need to be met for the block to be shown`,
 								},
 							},

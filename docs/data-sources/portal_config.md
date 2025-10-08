@@ -55,6 +55,7 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal
 - `is_dummy` (Boolean) Whether this is a dummy/test portal configuration
 - `is_epilot_domain` (Boolean) Mark true if the domain is an Epilot domain
+- `is_v3_item` (Boolean) Whether this is a v3 portal configuration
 - `meter_reading_grace_period` (Number) Grace period in days for meter readings
 - `name` (String) A short name to identify your portal
 - `org_settings` (Attributes) Organization settings (see [below for nested schema](#nestedatt--org_settings))
@@ -97,6 +98,7 @@ Read-Only:
 
 Read-Only:
 
+- `auto_redirect_to_sso` (Boolean) Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
 - `entry_point` (String)
 - `passwordless_login` (Attributes) (see [below for nested schema](#nestedatt--auth_settings--passwordless_login))
 - `preferred_sso_providers` (List of String)

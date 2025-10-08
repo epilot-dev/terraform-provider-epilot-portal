@@ -64,7 +64,7 @@ func (o *SavePortalFileFiles) GetS3ref() *SavePortalFileS3ref {
 type SavePortalFile struct {
 	Files []SavePortalFileFiles `json:"files"`
 	// Origin of the portal
-	Origin Origin `json:"origin"`
+	Origin string `json:"origin"`
 }
 
 func (o *SavePortalFile) GetFiles() []SavePortalFileFiles {
@@ -74,9 +74,9 @@ func (o *SavePortalFile) GetFiles() []SavePortalFileFiles {
 	return o.Files
 }
 
-func (o *SavePortalFile) GetOrigin() Origin {
+func (o *SavePortalFile) GetOrigin() string {
 	if o == nil {
-		return Origin("")
+		return ""
 	}
 	return o.Origin
 }

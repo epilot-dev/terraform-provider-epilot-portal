@@ -9,10 +9,10 @@ import (
 
 type GetPortalExtensionsRequest struct {
 	// Origin of the portal
-	Origin *shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetPortalExtensionsRequest) GetOrigin() *shared.Origin {
+func (o *GetPortalExtensionsRequest) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

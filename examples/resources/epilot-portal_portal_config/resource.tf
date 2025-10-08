@@ -37,7 +37,8 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   }
   approval_state_attributes = "{ \"see\": \"documentation\" }"
   auth_settings = {
-    entry_point = "SSO"
+    auto_redirect_to_sso = true
+    entry_point          = "SSO"
     passwordless_login = {
       enabled = true
     }
@@ -153,10 +154,13 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   inactive_contract_cutoff_years = 6.78
   is_dummy                       = true
   is_epilot_domain               = true
+  is_v3_item                     = true
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
-  origin                         = "INSTALLER_PORTAL"
+  origin                         = "...my_origin..."
   pages                          = "{ \"see\": \"documentation\" }"
+  portal_id                      = "5da0a718-c822-403d-9f5d-20d4584e0528"
+  portal_sk_v3                   = "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c"
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
   self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"

@@ -115,7 +115,7 @@ func (o *GetConsumptionRequest) GetTo() time.Time {
 type Consumptions struct {
 	// ISO 8601 timestamp of the consumption record.
 	Timestamp time.Time `json:"timestamp"`
-	// Optional type of the consumption, such as 'nt' (night time) or 'ht' (high time).
+	// Optional type of the consumption, such as 'nt' (night time) or 'ht' (high time). Can be any string.
 	Type *string `json:"type,omitempty"`
 	// The consumption value.
 	Value float64 `json:"value"`

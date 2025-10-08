@@ -10,7 +10,7 @@ import (
 type GetPublicPortalExtensionDetailsRequest struct {
 	OrgID string `queryParam:"style=form,explode=true,name=org_id"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *GetPublicPortalExtensionDetailsRequest) GetOrgID() string {
@@ -20,9 +20,9 @@ func (o *GetPublicPortalExtensionDetailsRequest) GetOrgID() string {
 	return o.OrgID
 }
 
-func (o *GetPublicPortalExtensionDetailsRequest) GetOrigin() shared.Origin {
+func (o *GetPublicPortalExtensionDetailsRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

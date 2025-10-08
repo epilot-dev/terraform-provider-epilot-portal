@@ -11,7 +11,7 @@ type GetPortalWidgetsRequest struct {
 	// Contract context for widgets
 	ContractID *string `queryParam:"style=form,explode=true,name=contract_id"`
 	// Origin of the portal
-	Origin *shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *GetPortalWidgetsRequest) GetContractID() *string {
@@ -21,7 +21,7 @@ func (o *GetPortalWidgetsRequest) GetContractID() *string {
 	return o.ContractID
 }
 
-func (o *GetPortalWidgetsRequest) GetOrigin() *shared.Origin {
+func (o *GetPortalWidgetsRequest) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

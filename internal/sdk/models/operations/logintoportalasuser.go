@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -12,7 +11,7 @@ type LoginToPortalAsUserRequestBody struct {
 	// The email address of the user to log in as
 	Email *string `json:"email,omitempty"`
 	// Origin of the portal
-	Origin *shared.Origin `json:"origin,omitempty"`
+	Origin *string `json:"origin,omitempty"`
 }
 
 func (o *LoginToPortalAsUserRequestBody) GetEmail() *string {
@@ -22,7 +21,7 @@ func (o *LoginToPortalAsUserRequestBody) GetEmail() *string {
 	return o.Email
 }
 
-func (o *LoginToPortalAsUserRequestBody) GetOrigin() *shared.Origin {
+func (o *LoginToPortalAsUserRequestBody) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

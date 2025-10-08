@@ -8,13 +8,12 @@ import (
 )
 
 type ValidateCaaRecordsRequest struct {
-	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *ValidateCaaRecordsRequest) GetOrigin() shared.Origin {
+func (o *ValidateCaaRecordsRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

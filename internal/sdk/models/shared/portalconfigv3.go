@@ -59,9 +59,18 @@ func (o *PortalConfigV3PasswordlessLogin) GetEnabled() *bool {
 
 // PortalConfigV3AuthSettings - Authentication settings for the portal
 type PortalConfigV3AuthSettings struct {
+	// Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
+	AutoRedirectToSso     *bool                            `json:"auto_redirect_to_sso,omitempty"`
 	EntryPoint            *PortalConfigV3EntryPoint        `json:"entry_point,omitempty"`
 	PasswordlessLogin     *PortalConfigV3PasswordlessLogin `json:"passwordless_login,omitempty"`
 	PreferredSsoProviders []string                         `json:"preferred_sso_providers,omitempty"`
+}
+
+func (o *PortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoRedirectToSso
 }
 
 func (o *PortalConfigV3AuthSettings) GetEntryPoint() *PortalConfigV3EntryPoint {
@@ -547,6 +556,8 @@ type PortalConfigV3 struct {
 	IsDummy *bool `json:"is_dummy,omitempty"`
 	// Mark true if the domain is an Epilot domain
 	IsEpilotDomain *bool `json:"is_epilot_domain,omitempty"`
+	// Whether this is a v3 portal configuration
+	IsV3Item *bool `json:"is_v3_item,omitempty"`
 	// Grace period in days for meter readings
 	MeterReadingGracePeriod *float64 `json:"meter_reading_grace_period,omitempty"`
 	// A short name to identify your portal
@@ -556,7 +567,7 @@ type PortalConfigV3 struct {
 	// ID of the organization
 	OrganizationID *string `json:"organization_id,omitempty"`
 	// Origin of the portal
-	Origin *Origin `json:"origin,omitempty"`
+	Origin *string `json:"origin,omitempty"`
 	Pages  any     `json:"pages,omitempty"`
 	// ID of the portal
 	PortalID *string `json:"portal_id,omitempty"`
@@ -767,6 +778,13 @@ func (o *PortalConfigV3) GetIsEpilotDomain() *bool {
 	return o.IsEpilotDomain
 }
 
+func (o *PortalConfigV3) GetIsV3Item() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsV3Item
+}
+
 func (o *PortalConfigV3) GetMeterReadingGracePeriod() *float64 {
 	if o == nil {
 		return nil
@@ -795,7 +813,7 @@ func (o *PortalConfigV3) GetOrganizationID() *string {
 	return o.OrganizationID
 }
 
-func (o *PortalConfigV3) GetOrigin() *Origin {
+func (o *PortalConfigV3) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

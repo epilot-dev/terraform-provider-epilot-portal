@@ -59,9 +59,18 @@ func (o *UpsertPortalConfigV3PasswordlessLogin) GetEnabled() *bool {
 
 // UpsertPortalConfigV3AuthSettings - Authentication settings for the portal
 type UpsertPortalConfigV3AuthSettings struct {
+	// Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
+	AutoRedirectToSso     *bool                                  `json:"auto_redirect_to_sso,omitempty"`
 	EntryPoint            *UpsertPortalConfigV3EntryPoint        `json:"entry_point,omitempty"`
 	PasswordlessLogin     *UpsertPortalConfigV3PasswordlessLogin `json:"passwordless_login,omitempty"`
 	PreferredSsoProviders []string                               `json:"preferred_sso_providers,omitempty"`
+}
+
+func (o *UpsertPortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoRedirectToSso
 }
 
 func (o *UpsertPortalConfigV3AuthSettings) GetEntryPoint() *UpsertPortalConfigV3EntryPoint {
@@ -494,13 +503,19 @@ type UpsertPortalConfigV3 struct {
 	IsDummy *bool `json:"is_dummy,omitempty"`
 	// Mark true if the domain is an Epilot domain
 	IsEpilotDomain *bool `json:"is_epilot_domain,omitempty"`
+	// Whether this is a v3 portal configuration
+	IsV3Item *bool `json:"is_v3_item,omitempty"`
 	// Grace period in days for meter readings
 	MeterReadingGracePeriod *float64 `json:"meter_reading_grace_period,omitempty"`
 	// A short name to identify your portal
 	Name *string `json:"name,omitempty"`
 	// Origin of the portal
-	Origin *Origin `json:"origin,omitempty"`
+	Origin *string `json:"origin,omitempty"`
 	Pages  any     `json:"pages,omitempty"`
+	// ID of the portal
+	PortalID *string `json:"portal_id,omitempty"`
+	// Key of the portal config
+	PortalSkV3 *string `json:"portal_sk_v3,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
@@ -685,6 +700,13 @@ func (o *UpsertPortalConfigV3) GetIsEpilotDomain() *bool {
 	return o.IsEpilotDomain
 }
 
+func (o *UpsertPortalConfigV3) GetIsV3Item() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsV3Item
+}
+
 func (o *UpsertPortalConfigV3) GetMeterReadingGracePeriod() *float64 {
 	if o == nil {
 		return nil
@@ -699,7 +721,7 @@ func (o *UpsertPortalConfigV3) GetName() *string {
 	return o.Name
 }
 
-func (o *UpsertPortalConfigV3) GetOrigin() *Origin {
+func (o *UpsertPortalConfigV3) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}
@@ -711,6 +733,20 @@ func (o *UpsertPortalConfigV3) GetPages() any {
 		return nil
 	}
 	return o.Pages
+}
+
+func (o *UpsertPortalConfigV3) GetPortalID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalID
+}
+
+func (o *UpsertPortalConfigV3) GetPortalSkV3() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PortalSkV3
 }
 
 func (o *UpsertPortalConfigV3) GetPreventSearchEngineIndexing() *bool {

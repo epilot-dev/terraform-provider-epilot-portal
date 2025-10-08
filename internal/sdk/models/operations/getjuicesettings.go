@@ -7,60 +7,59 @@ import (
 	"net/http"
 )
 
-type GetPortalConfigRequest struct {
-	// Origin of the portal
-	Origin *string `queryParam:"style=form,explode=true,name=origin"`
+type GetJuiceSettingsRequest struct {
+	Domain string `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *GetPortalConfigRequest) GetOrigin() *string {
+func (o *GetJuiceSettingsRequest) GetDomain() string {
 	if o == nil {
-		return nil
+		return ""
 	}
-	return o.Origin
+	return o.Domain
 }
 
-type GetPortalConfigResponse struct {
+type GetJuiceSettingsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Could not authenticate the user
+	// Internal Server Error
 	ErrorResp *shared.ErrorResp
-	// Portal config retrieved successfully.
-	PortalConfig *shared.PortalConfig
+	// Juice settings retrieved successfully.
+	JuiceSettings *shared.JuiceSettings
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
 
-func (o *GetPortalConfigResponse) GetContentType() string {
+func (o *GetJuiceSettingsResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *GetPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
+func (o *GetJuiceSettingsResponse) GetErrorResp() *shared.ErrorResp {
 	if o == nil {
 		return nil
 	}
 	return o.ErrorResp
 }
 
-func (o *GetPortalConfigResponse) GetPortalConfig() *shared.PortalConfig {
+func (o *GetJuiceSettingsResponse) GetJuiceSettings() *shared.JuiceSettings {
 	if o == nil {
 		return nil
 	}
-	return o.PortalConfig
+	return o.JuiceSettings
 }
 
-func (o *GetPortalConfigResponse) GetStatusCode() int {
+func (o *GetJuiceSettingsResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *GetPortalConfigResponse) GetRawResponse() *http.Response {
+func (o *GetJuiceSettingsResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

@@ -40,7 +40,7 @@ type PortalPageResource struct {
 // PortalPageResourceModel describes the resource data model.
 type PortalPageResourceModel struct {
 	AdditionalProperties jsontypes.Normalized            `tfsdk:"additional_properties"`
-	Blocks               map[string]tfTypes.BlockRequest `tfsdk:"blocks"`
+	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
 	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
 	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
 	Domain               types.String                    `queryParam:"style=form,explode=true,name=domain" tfsdk:"domain"`
@@ -86,6 +86,11 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 							Optional:    true,
 							Description: `Parsed as JSON.`,
 						},
+						"id": schema.StringAttribute{
+							Computed:    true,
+							Optional:    true,
+							Description: `The id of the block`,
+						},
 						"order": schema.Float64Attribute{
 							Computed:    true,
 							Optional:    true,
@@ -109,20 +114,32 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 									Optional:    true,
 									Description: `Parsed as JSON.`,
 								},
-								"content": schema.SingleNestedAttribute{
+								"content": schema.MapAttribute{
 									Computed:    true,
 									Optional:    true,
+									ElementType: jsontypes.NormalizedType{},
 									Description: `The content of the block`,
+									Validators: []validator.Map{
+										mapvalidator.ValueStringsAre(validators.IsValidJSON()),
+									},
 								},
-								"design": schema.SingleNestedAttribute{
+								"design": schema.MapAttribute{
 									Computed:    true,
 									Optional:    true,
+									ElementType: jsontypes.NormalizedType{},
 									Description: `The design of the block`,
+									Validators: []validator.Map{
+										mapvalidator.ValueStringsAre(validators.IsValidJSON()),
+									},
 								},
-								"visibility": schema.SingleNestedAttribute{
+								"visibility": schema.MapAttribute{
 									Computed:    true,
 									Optional:    true,
+									ElementType: jsontypes.NormalizedType{},
 									Description: `The conditions that need to be met for the block to be shown`,
+									Validators: []validator.Map{
+										mapvalidator.ValueStringsAre(validators.IsValidJSON()),
+									},
 								},
 							},
 						},

@@ -64,6 +64,7 @@ type PortalConfigResourceModel struct {
 	InactiveContractCutoffYears types.Float64                                       `tfsdk:"inactive_contract_cutoff_years"`
 	IsDummy                     types.Bool                                          `tfsdk:"is_dummy"`
 	IsEpilotDomain              types.Bool                                          `tfsdk:"is_epilot_domain"`
+	IsV3Item                    types.Bool                                          `tfsdk:"is_v3_item"`
 	MeterReadingGracePeriod     types.Float64                                       `tfsdk:"meter_reading_grace_period"`
 	Name                        types.String                                        `tfsdk:"name"`
 	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings                  `tfsdk:"org_settings"`
@@ -169,6 +170,11 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 				Computed: true,
 				Optional: true,
 				Attributes: map[string]schema.Attribute{
+					"auto_redirect_to_sso": schema.BoolAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.`,
+					},
 					"entry_point": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -670,6 +676,11 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 				Optional:    true,
 				Description: `Mark true if the domain is an Epilot domain`,
 			},
+			"is_v3_item": schema.BoolAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `Whether this is a v3 portal configuration`,
+			},
 			"meter_reading_grace_period": schema.Float64Attribute{
 				Computed:    true,
 				Optional:    true,
@@ -713,13 +724,7 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			"origin": schema.StringAttribute{
 				Computed:    true,
 				Optional:    true,
-				Description: `Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]`,
-				Validators: []validator.String{
-					stringvalidator.OneOf(
-						"END_CUSTOMER_PORTAL",
-						"INSTALLER_PORTAL",
-					),
-				},
+				Description: `Origin of the portal`,
 			},
 			"pages": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},
@@ -729,10 +734,12 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			},
 			"portal_id": schema.StringAttribute{
 				Computed:    true,
+				Optional:    true,
 				Description: `ID of the portal`,
 			},
 			"portal_sk_v3": schema.StringAttribute{
 				Computed:    true,
+				Optional:    true,
 				Description: `Key of the portal config`,
 			},
 			"prevent_search_engine_indexing": schema.BoolAttribute{

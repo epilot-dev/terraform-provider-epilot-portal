@@ -9,12 +9,12 @@ import (
 
 type DeletePortalRequest struct {
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *DeletePortalRequest) GetOrigin() shared.Origin {
+func (o *DeletePortalRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

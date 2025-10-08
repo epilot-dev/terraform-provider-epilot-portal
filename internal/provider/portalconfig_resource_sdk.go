@@ -79,6 +79,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			r.AuthSettings = nil
 		} else {
 			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
+			r.AuthSettings.AutoRedirectToSso = types.BoolPointerValue(resp.AuthSettings.AutoRedirectToSso)
 			if resp.AuthSettings.EntryPoint != nil {
 				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
 			} else {
@@ -297,6 +298,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		r.InactiveContractCutoffYears = types.Float64PointerValue(resp.InactiveContractCutoffYears)
 		r.IsDummy = types.BoolPointerValue(resp.IsDummy)
 		r.IsEpilotDomain = types.BoolPointerValue(resp.IsEpilotDomain)
+		r.IsV3Item = types.BoolPointerValue(resp.IsV3Item)
 		r.MeterReadingGracePeriod = types.Float64PointerValue(resp.MeterReadingGracePeriod)
 		r.Name = types.StringPointerValue(resp.Name)
 		if resp.OrgSettings == nil {
@@ -317,11 +319,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			}
 		}
 		r.OrganizationID = types.StringPointerValue(resp.OrganizationID)
-		if resp.Origin != nil {
-			r.Origin = types.StringValue(string(*resp.Origin))
-		} else {
-			r.Origin = types.StringNull()
-		}
+		r.Origin = types.StringPointerValue(resp.Origin)
 		if resp.Pages == nil {
 			r.Pages = jsontypes.NewNormalizedNull()
 		} else {
@@ -490,6 +488,12 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	}
 	var authSettings *shared.PortalConfigV3AuthSettings
 	if r.AuthSettings != nil {
+		autoRedirectToSso := new(bool)
+		if !r.AuthSettings.AutoRedirectToSso.IsUnknown() && !r.AuthSettings.AutoRedirectToSso.IsNull() {
+			*autoRedirectToSso = r.AuthSettings.AutoRedirectToSso.ValueBool()
+		} else {
+			autoRedirectToSso = nil
+		}
 		entryPoint := new(shared.PortalConfigV3EntryPoint)
 		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
 			*entryPoint = shared.PortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
@@ -513,6 +517,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
 		}
 		authSettings = &shared.PortalConfigV3AuthSettings{
+			AutoRedirectToSso:     autoRedirectToSso,
 			EntryPoint:            entryPoint,
 			PasswordlessLogin:     passwordlessLogin,
 			PreferredSsoProviders: preferredSsoProviders,
@@ -1031,6 +1036,12 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	} else {
 		isEpilotDomain = nil
 	}
+	isV3Item := new(bool)
+	if !r.IsV3Item.IsUnknown() && !r.IsV3Item.IsNull() {
+		*isV3Item = r.IsV3Item.ValueBool()
+	} else {
+		isV3Item = nil
+	}
 	meterReadingGracePeriod := new(float64)
 	if !r.MeterReadingGracePeriod.IsUnknown() && !r.MeterReadingGracePeriod.IsNull() {
 		*meterReadingGracePeriod = r.MeterReadingGracePeriod.ValueFloat64()
@@ -1080,9 +1091,9 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	} else {
 		organizationID = nil
 	}
-	origin := new(shared.Origin)
+	origin := new(string)
 	if !r.Origin.IsUnknown() && !r.Origin.IsNull() {
-		*origin = shared.Origin(r.Origin.ValueString())
+		*origin = r.Origin.ValueString()
 	} else {
 		origin = nil
 	}
@@ -1166,6 +1177,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		InactiveContractCutoffYears: inactiveContractCutoffYears,
 		IsDummy:                     isDummy,
 		IsEpilotDomain:              isEpilotDomain,
+		IsV3Item:                    isV3Item,
 		MeterReadingGracePeriod:     meterReadingGracePeriod,
 		Name:                        name,
 		OrgSettings:                 orgSettings,
@@ -1265,6 +1277,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	}
 	var authSettings *shared.UpsertPortalConfigV3AuthSettings
 	if r.AuthSettings != nil {
+		autoRedirectToSso := new(bool)
+		if !r.AuthSettings.AutoRedirectToSso.IsUnknown() && !r.AuthSettings.AutoRedirectToSso.IsNull() {
+			*autoRedirectToSso = r.AuthSettings.AutoRedirectToSso.ValueBool()
+		} else {
+			autoRedirectToSso = nil
+		}
 		entryPoint := new(shared.UpsertPortalConfigV3EntryPoint)
 		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
 			*entryPoint = shared.UpsertPortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
@@ -1288,6 +1306,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
 		}
 		authSettings = &shared.UpsertPortalConfigV3AuthSettings{
+			AutoRedirectToSso:     autoRedirectToSso,
 			EntryPoint:            entryPoint,
 			PasswordlessLogin:     passwordlessLogin,
 			PreferredSsoProviders: preferredSsoProviders,
@@ -1794,6 +1813,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	} else {
 		isEpilotDomain = nil
 	}
+	isV3Item := new(bool)
+	if !r.IsV3Item.IsUnknown() && !r.IsV3Item.IsNull() {
+		*isV3Item = r.IsV3Item.ValueBool()
+	} else {
+		isV3Item = nil
+	}
 	meterReadingGracePeriod := new(float64)
 	if !r.MeterReadingGracePeriod.IsUnknown() && !r.MeterReadingGracePeriod.IsNull() {
 		*meterReadingGracePeriod = r.MeterReadingGracePeriod.ValueFloat64()
@@ -1806,15 +1831,27 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	} else {
 		name = nil
 	}
-	origin := new(shared.Origin)
+	origin := new(string)
 	if !r.Origin.IsUnknown() && !r.Origin.IsNull() {
-		*origin = shared.Origin(r.Origin.ValueString())
+		*origin = r.Origin.ValueString()
 	} else {
 		origin = nil
 	}
 	var pages interface{}
 	if !r.Pages.IsUnknown() && !r.Pages.IsNull() {
 		_ = json.Unmarshal([]byte(r.Pages.ValueString()), &pages)
+	}
+	portalID := new(string)
+	if !r.PortalID.IsUnknown() && !r.PortalID.IsNull() {
+		*portalID = r.PortalID.ValueString()
+	} else {
+		portalID = nil
+	}
+	portalSkV3 := new(string)
+	if !r.PortalSkV3.IsUnknown() && !r.PortalSkV3.IsNull() {
+		*portalSkV3 = r.PortalSkV3.ValueString()
+	} else {
+		portalSkV3 = nil
 	}
 	preventSearchEngineIndexing := new(bool)
 	if !r.PreventSearchEngineIndexing.IsUnknown() && !r.PreventSearchEngineIndexing.IsNull() {
@@ -1877,10 +1914,13 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		InactiveContractCutoffYears: inactiveContractCutoffYears,
 		IsDummy:                     isDummy,
 		IsEpilotDomain:              isEpilotDomain,
+		IsV3Item:                    isV3Item,
 		MeterReadingGracePeriod:     meterReadingGracePeriod,
 		Name:                        name,
 		Origin:                      origin,
 		Pages:                       pages,
+		PortalID:                    portalID,
+		PortalSkV3:                  portalSkV3,
 		PreventSearchEngineIndexing: preventSearchEngineIndexing,
 		RegistrationIdentifiers:     registrationIdentifiers,
 		SelfRegistrationSetting:     selfRegistrationSetting,

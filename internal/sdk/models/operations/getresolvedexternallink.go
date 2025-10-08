@@ -13,7 +13,7 @@ type GetResolvedExternalLinkRequest struct {
 	// ID of the External Link
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Origin of the portal
-	Origin *shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *GetResolvedExternalLinkRequest) GetContactID() *string {
@@ -30,7 +30,7 @@ func (o *GetResolvedExternalLinkRequest) GetID() string {
 	return o.ID
 }
 
-func (o *GetResolvedExternalLinkRequest) GetOrigin() *shared.Origin {
+func (o *GetResolvedExternalLinkRequest) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

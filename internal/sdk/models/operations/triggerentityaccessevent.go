@@ -3,7 +3,6 @@
 package operations
 
 import (
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"net/http"
 )
 
@@ -11,7 +10,7 @@ type TriggerEntityAccessEventRequest struct {
 	// Entity ID
 	EntityID *string `queryParam:"style=form,explode=true,name=entity_id"`
 	// Portal origin
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 	// Entity schema
 	Schema string `pathParam:"style=simple,explode=false,name=schema"`
 }
@@ -23,9 +22,9 @@ func (o *TriggerEntityAccessEventRequest) GetEntityID() *string {
 	return o.EntityID
 }
 
-func (o *TriggerEntityAccessEventRequest) GetOrigin() shared.Origin {
+func (o *TriggerEntityAccessEventRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

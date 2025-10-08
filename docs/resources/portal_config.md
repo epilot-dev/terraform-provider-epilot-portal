@@ -52,7 +52,8 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   }
   approval_state_attributes = "{ \"see\": \"documentation\" }"
   auth_settings = {
-    entry_point = "SSO"
+    auto_redirect_to_sso = true
+    entry_point          = "SSO"
     passwordless_login = {
       enabled = true
     }
@@ -168,10 +169,13 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   inactive_contract_cutoff_years = 6.78
   is_dummy                       = true
   is_epilot_domain               = true
+  is_v3_item                     = true
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
-  origin                         = "INSTALLER_PORTAL"
+  origin                         = "...my_origin..."
   pages                          = "{ \"see\": \"documentation\" }"
+  portal_id                      = "5da0a718-c822-403d-9f5d-20d4584e0528"
+  portal_sk_v3                   = "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c"
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
   self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"
@@ -214,10 +218,13 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal
 - `is_dummy` (Boolean) Whether this is a dummy/test portal configuration
 - `is_epilot_domain` (Boolean) Mark true if the domain is an Epilot domain
+- `is_v3_item` (Boolean) Whether this is a v3 portal configuration
 - `meter_reading_grace_period` (Number) Grace period in days for meter readings
 - `name` (String) A short name to identify your portal
-- `origin` (String) Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]
+- `origin` (String) Origin of the portal
 - `pages` (String) Parsed as JSON.
+- `portal_id` (String) ID of the portal
+- `portal_sk_v3` (String) Key of the portal config
 - `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
 - `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
 - `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]
@@ -230,8 +237,6 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `identity_providers` (String) Parsed as JSON.
 - `org_settings` (Attributes) Organization settings (see [below for nested schema](#nestedatt--org_settings))
 - `organization_id` (String) ID of the organization
-- `portal_id` (String) ID of the portal
-- `portal_sk_v3` (String) Key of the portal config
 
 <a id="nestedatt--advanced_mfa"></a>
 ### Nested Schema for `advanced_mfa`
@@ -263,6 +268,7 @@ Optional:
 
 Optional:
 
+- `auto_redirect_to_sso` (Boolean) Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
 - `entry_point` (String) must be one of ["PASSWORD", "SSO"]
 - `passwordless_login` (Attributes) (see [below for nested schema](#nestedatt--auth_settings--passwordless_login))
 - `preferred_sso_providers` (List of String)

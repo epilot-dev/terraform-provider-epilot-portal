@@ -46,6 +46,7 @@ data "epilot-portal_portal_page" "my_portalpage" {
 Read-Only:
 
 - `additional_properties` (String) Parsed as JSON.
+- `id` (String) The id of the block
 - `order` (Number) The order of the block
 - `parent_id` (String) The id of the parent block
 - `props` (Attributes) (see [below for nested schema](#nestedatt--blocks--props))
@@ -57,17 +58,6 @@ Read-Only:
 Read-Only:
 
 - `additional_properties` (String) Parsed as JSON.
-- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--blocks--props--content))
-- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--blocks--props--design))
-- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--blocks--props--visibility))
-
-<a id="nestedatt--blocks--props--content"></a>
-### Nested Schema for `blocks.props.content`
-
-
-<a id="nestedatt--blocks--props--design"></a>
-### Nested Schema for `blocks.props.design`
-
-
-<a id="nestedatt--blocks--props--visibility"></a>
-### Nested Schema for `blocks.props.visibility`
+- `content` (Map of String) The content of the block
+- `design` (Map of String) The design of the block
+- `visibility` (Map of String) The conditions that need to be met for the block to be shown

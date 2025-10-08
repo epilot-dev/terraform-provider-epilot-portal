@@ -11,7 +11,10 @@ type CanTriggerPortalFlowRequest struct {
 	// Request of trigger portal flow
 	TriggerPortalFlow shared.TriggerPortalFlow `request:"mediaType=application/json"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	Origin   string `queryParam:"style=form,explode=true,name=origin"`
+	PortalID string `queryParam:"style=form,explode=true,name=portal_id"`
 }
 
 func (o *CanTriggerPortalFlowRequest) GetTriggerPortalFlow() shared.TriggerPortalFlow {
@@ -21,11 +24,18 @@ func (o *CanTriggerPortalFlowRequest) GetTriggerPortalFlow() shared.TriggerPorta
 	return o.TriggerPortalFlow
 }
 
-func (o *CanTriggerPortalFlowRequest) GetOrigin() shared.Origin {
+func (o *CanTriggerPortalFlowRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
+}
+
+func (o *CanTriggerPortalFlowRequest) GetPortalID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PortalID
 }
 
 // CanTriggerPortalFlowResponseBody - Can Trigger Portal Flow

@@ -4,6 +4,6 @@
 # }
 
 
-# resource "epilot-portal_portal_config" "portal_config_61352768ee944f8b8f9a84e740f790ea" {
+resource "epilot-portal_portal_config" "portal_config_61352768ee944f8b8f9a84e740f790ea" {
 
-# }
+}

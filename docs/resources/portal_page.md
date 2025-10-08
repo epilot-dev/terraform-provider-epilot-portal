@@ -18,18 +18,19 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   blocks = {
     key = {
       additional_properties = "{ \"see\": \"documentation\" }"
+      id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
       order                 = 1
       parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
       props = {
         additional_properties = "{ \"see\": \"documentation\" }"
         content = {
-          # ...
+          key = jsonencode("value")
         }
         design = {
-          # ...
+          key = jsonencode("value")
         }
         visibility = {
-          # ...
+          key = jsonencode("value")
         }
       }
       type = "tab"
@@ -94,6 +95,7 @@ resource "epilot-portal_portal_page" "my_portalpage" {
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
+- `id` (String) The id of the block
 - `order` (Number) The order of the block. Not Null
 - `parent_id` (String) The id of the parent block
 - `props` (Attributes) (see [below for nested schema](#nestedatt--blocks--props))
@@ -105,20 +107,9 @@ Optional:
 Optional:
 
 - `additional_properties` (String) Parsed as JSON.
-- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--blocks--props--content))
-- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--blocks--props--design))
-- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--blocks--props--visibility))
-
-<a id="nestedatt--blocks--props--content"></a>
-### Nested Schema for `blocks.props.content`
-
-
-<a id="nestedatt--blocks--props--design"></a>
-### Nested Schema for `blocks.props.design`
-
-
-<a id="nestedatt--blocks--props--visibility"></a>
-### Nested Schema for `blocks.props.visibility`
+- `content` (Map of String) The content of the block
+- `design` (Map of String) The design of the block
+- `visibility` (Map of String) The conditions that need to be met for the block to be shown
 
 ## Import
 

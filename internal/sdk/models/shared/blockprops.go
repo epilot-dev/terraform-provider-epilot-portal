@@ -6,26 +6,14 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
-// Content - The content of the block
-type Content struct {
-}
-
-// Design - The design of the block
-type Design struct {
-}
-
-// Visibility - The conditions that need to be met for the block to be shown
-type Visibility struct {
-}
-
 type BlockProps struct {
 	AdditionalProperties any `additionalProperties:"true" json:"-"`
 	// The content of the block
-	Content *Content `json:"content,omitempty"`
+	Content map[string]any `json:"content,omitempty"`
 	// The design of the block
-	Design *Design `json:"design,omitempty"`
+	Design map[string]any `json:"design,omitempty"`
 	// The conditions that need to be met for the block to be shown
-	Visibility *Visibility `json:"visibility,omitempty"`
+	Visibility map[string]any `json:"visibility,omitempty"`
 }
 
 func (b BlockProps) MarshalJSON() ([]byte, error) {
@@ -46,21 +34,21 @@ func (o *BlockProps) GetAdditionalProperties() any {
 	return o.AdditionalProperties
 }
 
-func (o *BlockProps) GetContent() *Content {
+func (o *BlockProps) GetContent() map[string]any {
 	if o == nil {
 		return nil
 	}
 	return o.Content
 }
 
-func (o *BlockProps) GetDesign() *Design {
+func (o *BlockProps) GetDesign() map[string]any {
 	if o == nil {
 		return nil
 	}
 	return o.Design
 }
 
-func (o *BlockProps) GetVisibility() *Visibility {
+func (o *BlockProps) GetVisibility() map[string]any {
 	if o == nil {
 		return nil
 	}

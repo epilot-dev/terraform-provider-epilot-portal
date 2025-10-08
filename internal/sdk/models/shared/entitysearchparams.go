@@ -132,6 +132,70 @@ func (e *GroupSort) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type SlugType string
+
+const (
+	SlugTypeEntitySlug        SlugType = "EntitySlug"
+	SlugTypeArrayOfEntitySlug SlugType = "arrayOfEntitySlug"
+)
+
+// Slug - Single entity schema slug or array of slugs
+type Slug struct {
+	EntitySlug        *EntitySlug  `queryParam:"inline" name:"slug"`
+	ArrayOfEntitySlug []EntitySlug `queryParam:"inline" name:"slug"`
+
+	Type SlugType
+}
+
+func CreateSlugEntitySlug(entitySlug EntitySlug) Slug {
+	typ := SlugTypeEntitySlug
+
+	return Slug{
+		EntitySlug: &entitySlug,
+		Type:       typ,
+	}
+}
+
+func CreateSlugArrayOfEntitySlug(arrayOfEntitySlug []EntitySlug) Slug {
+	typ := SlugTypeArrayOfEntitySlug
+
+	return Slug{
+		ArrayOfEntitySlug: arrayOfEntitySlug,
+		Type:              typ,
+	}
+}
+
+func (u *Slug) UnmarshalJSON(data []byte) error {
+
+	var entitySlug EntitySlug = EntitySlug("")
+	if err := utils.UnmarshalJSON(data, &entitySlug, "", true, nil); err == nil {
+		u.EntitySlug = &entitySlug
+		u.Type = SlugTypeEntitySlug
+		return nil
+	}
+
+	var arrayOfEntitySlug []EntitySlug = []EntitySlug{}
+	if err := utils.UnmarshalJSON(data, &arrayOfEntitySlug, "", true, nil); err == nil {
+		u.ArrayOfEntitySlug = arrayOfEntitySlug
+		u.Type = SlugTypeArrayOfEntitySlug
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Slug", string(data))
+}
+
+func (u Slug) MarshalJSON() ([]byte, error) {
+	if u.EntitySlug != nil {
+		return utils.MarshalJSON(u.EntitySlug, "", true)
+	}
+
+	if u.ArrayOfEntitySlug != nil {
+		return utils.MarshalJSON(u.ArrayOfEntitySlug, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type Slug: all fields are null")
+}
+
 type EntitySearchParams struct {
 	// List of contract IDs to filter by
 	Contracts []string `json:"contracts,omitempty"`
@@ -158,9 +222,9 @@ type EntitySearchParams struct {
 	QFields []string `json:"q_fields,omitempty"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"100" json:"size"`
-	// URL-friendly identifier for the entity schema
-	Slug EntitySlug `json:"slug"`
-	Sort *string    `json:"sort,omitempty"`
+	// Single entity schema slug or array of slugs
+	Slug Slug    `json:"slug"`
+	Sort *string `json:"sort,omitempty"`
 	// Filters from these targets will be applied to the search query.
 	Targets []string `json:"targets,omitempty"`
 }
@@ -267,9 +331,9 @@ func (o *EntitySearchParams) GetSize() *int64 {
 	return o.Size
 }
 
-func (o *EntitySearchParams) GetSlug() EntitySlug {
+func (o *EntitySearchParams) GetSlug() Slug {
 	if o == nil {
-		return EntitySlug("")
+		return Slug{}
 	}
 	return o.Slug
 }

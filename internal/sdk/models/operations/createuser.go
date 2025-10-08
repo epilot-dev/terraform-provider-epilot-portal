@@ -13,7 +13,7 @@ type CreateUserRequest struct {
 	// Portal user payload
 	CreateUserRequest shared.CreateUserRequest `request:"mediaType=application/json"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *CreateUserRequest) GetCreateUserRequest() shared.CreateUserRequest {
@@ -23,9 +23,9 @@ func (o *CreateUserRequest) GetCreateUserRequest() shared.CreateUserRequest {
 	return o.CreateUserRequest
 }
 
-func (o *CreateUserRequest) GetOrigin() shared.Origin {
+func (o *CreateUserRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

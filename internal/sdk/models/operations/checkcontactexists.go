@@ -11,7 +11,7 @@ type CheckContactExistsRequest struct {
 	// Request payload
 	ContactExistsRequest shared.ContactExistsRequest `request:"mediaType=application/json"`
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *CheckContactExistsRequest) GetContactExistsRequest() shared.ContactExistsRequest {
@@ -21,9 +21,9 @@ func (o *CheckContactExistsRequest) GetContactExistsRequest() shared.ContactExis
 	return o.ContactExistsRequest
 }
 
-func (o *CheckContactExistsRequest) GetOrigin() shared.Origin {
+func (o *CheckContactExistsRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }

@@ -11,7 +11,7 @@ type GetExternalLinksRequest struct {
 	// Contact ID of the user
 	ContactID *string `queryParam:"style=form,explode=true,name=contactId"`
 	// Origin of the portal
-	Origin *shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
 func (o *GetExternalLinksRequest) GetContactID() *string {
@@ -21,7 +21,7 @@ func (o *GetExternalLinksRequest) GetContactID() *string {
 	return o.ContactID
 }
 
-func (o *GetExternalLinksRequest) GetOrigin() *shared.Origin {
+func (o *GetExternalLinksRequest) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

@@ -11,12 +11,12 @@ import (
 
 type GetOrgPortalConfigRequest struct {
 	// Origin of the portal
-	Origin shared.Origin `queryParam:"style=form,explode=true,name=origin"`
+	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetOrgPortalConfigRequest) GetOrigin() shared.Origin {
+func (o *GetOrgPortalConfigRequest) GetOrigin() string {
 	if o == nil {
-		return shared.Origin("")
+		return ""
 	}
 	return o.Origin
 }
@@ -73,9 +73,18 @@ func (o *PasswordlessLogin) GetEnabled() *bool {
 
 // AuthSettings - Authentication settings for the portal
 type AuthSettings struct {
+	// Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
+	AutoRedirectToSso     *bool                         `json:"auto_redirect_to_sso,omitempty"`
 	EntryPoint            *GetOrgPortalConfigEntryPoint `json:"entry_point,omitempty"`
 	PasswordlessLogin     *PasswordlessLogin            `json:"passwordless_login,omitempty"`
 	PreferredSsoProviders []string                      `json:"preferred_sso_providers,omitempty"`
+}
+
+func (o *AuthSettings) GetAutoRedirectToSso() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AutoRedirectToSso
 }
 
 func (o *AuthSettings) GetEntryPoint() *GetOrgPortalConfigEntryPoint {
@@ -709,6 +718,8 @@ type GetOrgPortalConfigResponseBody struct {
 	IsDummy *bool `json:"is_dummy,omitempty"`
 	// Mark true if the domain is an Epilot domain
 	IsEpilotDomain *bool `json:"is_epilot_domain,omitempty"`
+	// Whether this is a v3 portal configuration
+	IsV3Item *bool `json:"is_v3_item,omitempty"`
 	// Grace period in days for meter readings
 	MeterReadingGracePeriod *float64 `json:"meter_reading_grace_period,omitempty"`
 	// A short name to identify your portal
@@ -718,7 +729,7 @@ type GetOrgPortalConfigResponseBody struct {
 	// ID of the organization
 	OrganizationID *string `json:"organization_id,omitempty"`
 	// Origin of the portal
-	Origin *shared.Origin         `json:"origin,omitempty"`
+	Origin *string                `json:"origin,omitempty"`
 	Pages  map[string]shared.Page `json:"pages,omitempty"`
 	// ID of the portal
 	PortalID *string `json:"portal_id,omitempty"`
@@ -915,6 +926,13 @@ func (o *GetOrgPortalConfigResponseBody) GetIsEpilotDomain() *bool {
 	return o.IsEpilotDomain
 }
 
+func (o *GetOrgPortalConfigResponseBody) GetIsV3Item() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsV3Item
+}
+
 func (o *GetOrgPortalConfigResponseBody) GetMeterReadingGracePeriod() *float64 {
 	if o == nil {
 		return nil
@@ -943,7 +961,7 @@ func (o *GetOrgPortalConfigResponseBody) GetOrganizationID() *string {
 	return o.OrganizationID
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetOrigin() *shared.Origin {
+func (o *GetOrgPortalConfigResponseBody) GetOrigin() *string {
 	if o == nil {
 		return nil
 	}

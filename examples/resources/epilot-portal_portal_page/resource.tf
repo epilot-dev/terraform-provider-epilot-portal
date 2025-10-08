@@ -3,18 +3,19 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   blocks = {
     key = {
       additional_properties = "{ \"see\": \"documentation\" }"
+      id                    = "c495fef9-eeca-4019-a989-8390dcd9825b"
       order                 = 1
       parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
       props = {
         additional_properties = "{ \"see\": \"documentation\" }"
         content = {
-          # ...
+          key = jsonencode("value")
         }
         design = {
-          # ...
+          key = jsonencode("value")
         }
         visibility = {
-          # ...
+          key = jsonencode("value")
         }
       }
       type = "tab"

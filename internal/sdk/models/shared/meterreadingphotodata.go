@@ -25,10 +25,6 @@ func (o *S3ref) GetKey() string {
 
 type MeterReadingPhotoData struct {
 	Filename string `json:"filename"`
-	// Recognized meter number. Deprecated: Use `meter_numbers` instead as we can recognize several potential meter numbers.
-	//
-	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	MeterNumber *string `json:"meter_number,omitempty"`
 	// Recognized list of (potential) meter numbers.
 	MeterNumbers []string `json:"meter_numbers,omitempty"`
 	// Recognized meter reading.
@@ -43,13 +39,6 @@ func (o *MeterReadingPhotoData) GetFilename() string {
 		return ""
 	}
 	return o.Filename
-}
-
-func (o *MeterReadingPhotoData) GetMeterNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.MeterNumber
 }
 
 func (o *MeterReadingPhotoData) GetMeterNumbers() []string {
