@@ -7,12 +7,9 @@ import (
 	"fmt"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators"
-	speakeasy_float64validators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/float64validators"
 	speakeasy_objectvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/objectvalidators"
 	speakeasy_stringvalidators "github.com/epilot-dev/terraform-provider-epilot-portal/internal/validators/stringvalidators"
 	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
-	"github.com/hashicorp/terraform-plugin-framework-validators/mapvalidator"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -72,7 +69,7 @@ type PortalConfigResourceModel struct {
 	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings                  `tfsdk:"org_settings"`
 	OrganizationID              types.String                                        `tfsdk:"organization_id"`
 	Origin                      types.String                                        `tfsdk:"origin"`
-	Pages                       []tfTypes.Page                                      `tfsdk:"pages"`
+	Pages                       jsontypes.Normalized                                `tfsdk:"pages"`
 	PortalID                    types.String                                        `tfsdk:"portal_id"`
 	PortalSkV3                  types.String                                        `tfsdk:"portal_sk_v3"`
 	PreventSearchEngineIndexing types.Bool                                          `tfsdk:"prevent_search_engine_indexing"`
@@ -724,177 +721,11 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 					),
 				},
 			},
-			"pages": schema.ListNestedAttribute{
-				Computed: true,
-				Optional: true,
-				NestedObject: schema.NestedAttributeObject{
-					Validators: []validator.Object{
-						speakeasy_objectvalidators.NotNull(),
-					},
-					Attributes: map[string]schema.Attribute{
-						"additional_properties": schema.StringAttribute{
-							CustomType:  jsontypes.NormalizedType{},
-							Computed:    true,
-							Optional:    true,
-							Description: `Parsed as JSON.`,
-						},
-						"blocks": schema.MapNestedAttribute{
-							Computed: true,
-							Optional: true,
-							NestedObject: schema.NestedAttributeObject{
-								Validators: []validator.Object{
-									speakeasy_objectvalidators.NotNull(),
-								},
-								Attributes: map[string]schema.Attribute{
-									"additional_properties": schema.StringAttribute{
-										CustomType:  jsontypes.NormalizedType{},
-										Computed:    true,
-										Optional:    true,
-										Description: `Parsed as JSON.`,
-									},
-									"order": schema.Float64Attribute{
-										Computed:    true,
-										Optional:    true,
-										Description: `The order of the block. Not Null`,
-										Validators: []validator.Float64{
-											speakeasy_float64validators.NotNull(),
-										},
-									},
-									"parent_id": schema.StringAttribute{
-										Computed:    true,
-										Optional:    true,
-										Description: `The id of the parent block`,
-									},
-									"props": schema.SingleNestedAttribute{
-										Computed: true,
-										Optional: true,
-										Attributes: map[string]schema.Attribute{
-											"additional_properties": schema.StringAttribute{
-												CustomType:  jsontypes.NormalizedType{},
-												Computed:    true,
-												Optional:    true,
-												Description: `Parsed as JSON.`,
-											},
-											"content": schema.SingleNestedAttribute{
-												Computed:    true,
-												Optional:    true,
-												Description: `The content of the block`,
-											},
-											"design": schema.SingleNestedAttribute{
-												Computed:    true,
-												Optional:    true,
-												Description: `The design of the block`,
-											},
-											"visibility": schema.SingleNestedAttribute{
-												Computed:    true,
-												Optional:    true,
-												Description: `The conditions that need to be met for the block to be shown`,
-											},
-										},
-									},
-									"type": schema.StringAttribute{
-										Computed:    true,
-										Optional:    true,
-										Description: `The type of the block. eg; tabs, tab, group, attribute. Not Null`,
-										Validators: []validator.String{
-											speakeasy_stringvalidators.NotNull(),
-										},
-									},
-								},
-							},
-						},
-						"content": schema.MapAttribute{
-							Computed:    true,
-							Optional:    true,
-							ElementType: jsontypes.NormalizedType{},
-							Description: `The content of the page`,
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
-						},
-						"design": schema.MapAttribute{
-							Computed:    true,
-							Optional:    true,
-							ElementType: jsontypes.NormalizedType{},
-							Description: `The design of the page`,
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
-						},
-						"id": schema.StringAttribute{
-							Computed:    true,
-							Description: `The id of the page`,
-						},
-						"is_deleted": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `Send the flag as true to delete the page`,
-						},
-						"is_entry_route": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `Whether the page is the entry route`,
-						},
-						"is_public": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `Whether the page is public`,
-						},
-						"is_system": schema.BoolAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `Whether the page is a system page`,
-						},
-						"last_modified_at": schema.StringAttribute{
-							Computed:    true,
-							Description: `Last modified timestamp of the Page`,
-							Validators: []validator.String{
-								validators.IsRFC3339(),
-							},
-						},
-						"order": schema.Float64Attribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `The order of the block. Not Null`,
-							Validators: []validator.Float64{
-								speakeasy_float64validators.NotNull(),
-							},
-						},
-						"parent_id": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `The id of the parent page`,
-						},
-						"path": schema.StringAttribute{
-							Computed:           true,
-							Optional:           true,
-							DeprecationMessage: `This will be removed in a future release, please migrate away from it as soon as possible`,
-							Description:        `The path of the page`,
-						},
-						"schema": schema.ListAttribute{
-							Computed:    true,
-							Optional:    true,
-							ElementType: types.StringType,
-						},
-						"slug": schema.StringAttribute{
-							Computed:    true,
-							Optional:    true,
-							Description: `The slug of the page. Not Null`,
-							Validators: []validator.String{
-								speakeasy_stringvalidators.NotNull(),
-							},
-						},
-						"visibility": schema.MapAttribute{
-							Computed:    true,
-							Optional:    true,
-							ElementType: jsontypes.NormalizedType{},
-							Description: `The conditions that need to be met for the page to be shown`,
-							Validators: []validator.Map{
-								mapvalidator.ValueStringsAre(validators.IsValidJSON()),
-							},
-						},
-					},
-				},
+			"pages": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Optional:    true,
+				Description: `Parsed as JSON.`,
 			},
 			"portal_id": schema.StringAttribute{
 				Computed:    true,

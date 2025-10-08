@@ -171,51 +171,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
   origin                         = "INSTALLER_PORTAL"
-  pages = [
-    {
-      additional_properties = "{ \"see\": \"documentation\" }"
-      blocks = {
-        key = {
-          additional_properties = "{ \"see\": \"documentation\" }"
-          order                 = 1
-          parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
-          props = {
-            additional_properties = "{ \"see\": \"documentation\" }"
-            content = {
-              # ...
-            }
-            design = {
-              # ...
-            }
-            visibility = {
-              # ...
-            }
-          }
-          type = "tab"
-        }
-      }
-      content = {
-        key = jsonencode("value")
-      }
-      design = {
-        key = jsonencode("value")
-      }
-      is_deleted     = false
-      is_entry_route = false
-      is_public      = true
-      is_system      = false
-      order          = 1
-      parent_id      = "c495fef9-eeca-4019-a989-8390dcd9825b"
-      path           = "/dashboard"
-      schema = [
-        "contact"
-      ]
-      slug = "dashboard"
-      visibility = {
-        key = jsonencode("value")
-      }
-    }
-  ]
+  pages                          = "{ \"see\": \"documentation\" }"
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
   self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"
@@ -261,7 +217,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `meter_reading_grace_period` (Number) Grace period in days for meter readings
 - `name` (String) A short name to identify your portal
 - `origin` (String) Origin of the portal. must be one of ["END_CUSTOMER_PORTAL", "INSTALLER_PORTAL"]
-- `pages` (Attributes List) (see [below for nested schema](#nestedatt--pages))
+- `pages` (String) Parsed as JSON.
 - `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
 - `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
 - `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]
@@ -481,67 +437,6 @@ Optional:
 - `order_left_teaser` (String) URL of the order left teaser image
 - `order_right_teaser` (String) URL of the order right teaser image
 - `welcome_banner` (String) URL of the welcome banner image
-
-
-<a id="nestedatt--pages"></a>
-### Nested Schema for `pages`
-
-Optional:
-
-- `additional_properties` (String) Parsed as JSON.
-- `blocks` (Attributes Map) (see [below for nested schema](#nestedatt--pages--blocks))
-- `content` (Map of String) The content of the page
-- `design` (Map of String) The design of the page
-- `is_deleted` (Boolean) Send the flag as true to delete the page
-- `is_entry_route` (Boolean) Whether the page is the entry route
-- `is_public` (Boolean) Whether the page is public
-- `is_system` (Boolean) Whether the page is a system page
-- `order` (Number) The order of the block. Not Null
-- `parent_id` (String) The id of the parent page
-- `path` (String, Deprecated) The path of the page
-- `schema` (List of String)
-- `slug` (String) The slug of the page. Not Null
-- `visibility` (Map of String) The conditions that need to be met for the page to be shown
-
-Read-Only:
-
-- `id` (String) The id of the page
-- `last_modified_at` (String) Last modified timestamp of the Page
-
-<a id="nestedatt--pages--blocks"></a>
-### Nested Schema for `pages.blocks`
-
-Optional:
-
-- `additional_properties` (String) Parsed as JSON.
-- `order` (Number) The order of the block. Not Null
-- `parent_id` (String) The id of the parent block
-- `props` (Attributes) (see [below for nested schema](#nestedatt--pages--blocks--props))
-- `type` (String) The type of the block. eg; tabs, tab, group, attribute. Not Null
-
-<a id="nestedatt--pages--blocks--props"></a>
-### Nested Schema for `pages.blocks.props`
-
-Optional:
-
-- `additional_properties` (String) Parsed as JSON.
-- `content` (Attributes) The content of the block (see [below for nested schema](#nestedatt--pages--blocks--props--content))
-- `design` (Attributes) The design of the block (see [below for nested schema](#nestedatt--pages--blocks--props--design))
-- `visibility` (Attributes) The conditions that need to be met for the block to be shown (see [below for nested schema](#nestedatt--pages--blocks--props--visibility))
-
-<a id="nestedatt--pages--blocks--props--content"></a>
-### Nested Schema for `pages.blocks.props.content`
-
-
-<a id="nestedatt--pages--blocks--props--design"></a>
-### Nested Schema for `pages.blocks.props.design`
-
-
-<a id="nestedatt--pages--blocks--props--visibility"></a>
-### Nested Schema for `pages.blocks.props.visibility`
-
-
-
 
 
 <a id="nestedatt--triggered_journeys"></a>

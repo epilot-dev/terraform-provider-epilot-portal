@@ -56,7 +56,7 @@ type Page struct {
 	// The design of the page
 	Design map[string]any `json:"design,omitempty"`
 	// The id of the page
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// Send the flag as true to delete the page
 	IsDeleted *bool `json:"is_deleted,omitempty"`
 	// Whether the page is the entry route
@@ -87,7 +87,7 @@ func (p Page) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Page) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "order", "slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"order", "slug"}); err != nil {
 		return err
 	}
 	return nil
@@ -121,9 +121,9 @@ func (o *Page) GetDesign() map[string]any {
 	return o.Design
 }
 
-func (o *Page) GetID() string {
+func (o *Page) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

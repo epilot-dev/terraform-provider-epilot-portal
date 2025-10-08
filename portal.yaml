@@ -7897,8 +7897,6 @@ components:
       example: "c495fef9-eeca-4019-a989-8390dcd9825b"
     Block:
       type: object
-      required:
-        - id
       allOf:
         - $ref: "#/components/schemas/BlockRequest"
         - type: object
@@ -7980,8 +7978,6 @@ components:
 
     Page:
       type: object
-      required:
-        - id
       allOf:
         - $ref: "#/components/schemas/PageRequest"
         - type: object

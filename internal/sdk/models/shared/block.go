@@ -9,7 +9,7 @@ import (
 type Block struct {
 	AdditionalProperties any `additionalProperties:"true" json:"-"`
 	// The id of the block
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// The order of the block
 	Order float64 `json:"order"`
 	// The id of the parent block
@@ -24,7 +24,7 @@ func (b Block) MarshalJSON() ([]byte, error) {
 }
 
 func (b *Block) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"id", "order", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"order", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -37,9 +37,9 @@ func (o *Block) GetAdditionalProperties() any {
 	return o.AdditionalProperties
 }
 
-func (o *Block) GetID() string {
+func (o *Block) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

@@ -557,7 +557,7 @@ type PortalConfigV3 struct {
 	OrganizationID *string `json:"organization_id,omitempty"`
 	// Origin of the portal
 	Origin *Origin `json:"origin,omitempty"`
-	Pages  []Page  `json:"pages,omitempty"`
+	Pages  any     `json:"pages,omitempty"`
 	// ID of the portal
 	PortalID *string `json:"portal_id,omitempty"`
 	// Key of the portal config
@@ -802,7 +802,7 @@ func (o *PortalConfigV3) GetOrigin() *Origin {
 	return o.Origin
 }
 
-func (o *PortalConfigV3) GetPages() []Page {
+func (o *PortalConfigV3) GetPages() any {
 	if o == nil {
 		return nil
 	}

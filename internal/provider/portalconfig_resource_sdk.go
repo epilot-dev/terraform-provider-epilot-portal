@@ -5,14 +5,12 @@ package provider
 import (
 	"context"
 	"encoding/json"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/typeconvert"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
 	"github.com/hashicorp/terraform-plugin-framework-jsontypes/jsontypes"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types"
-	"time"
 )
 
 func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.Context, resp *shared.PortalConfigV3) diag.Diagnostics {
@@ -324,97 +322,11 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 		} else {
 			r.Origin = types.StringNull()
 		}
-		r.Pages = []tfTypes.Page{}
-
-		for _, pagesItem := range resp.Pages {
-			var pages tfTypes.Page
-
-			if pagesItem.AdditionalProperties == nil {
-				pages.AdditionalProperties = jsontypes.NewNormalizedNull()
-			} else {
-				additionalPropertiesResult1, _ := json.Marshal(pagesItem.AdditionalProperties)
-				pages.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
-			}
-			if len(pagesItem.Blocks) > 0 {
-				pages.Blocks = make(map[string]tfTypes.BlockRequest, len(pagesItem.Blocks))
-				for blockRequestKey, blockRequestValue := range pagesItem.Blocks {
-					var blockRequestResult tfTypes.BlockRequest
-					if blockRequestValue.AdditionalProperties == nil {
-						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedNull()
-					} else {
-						additionalPropertiesResult2, _ := json.Marshal(blockRequestValue.AdditionalProperties)
-						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
-					}
-					blockRequestResult.Order = types.Float64Value(blockRequestValue.Order)
-					blockRequestResult.ParentID = types.StringPointerValue(blockRequestValue.ParentID)
-					if blockRequestValue.Props == nil {
-						blockRequestResult.Props = nil
-					} else {
-						blockRequestResult.Props = &tfTypes.BlockProps{}
-						if blockRequestValue.Props.AdditionalProperties == nil {
-							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
-						} else {
-							additionalPropertiesResult3, _ := json.Marshal(blockRequestValue.Props.AdditionalProperties)
-							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult3))
-						}
-						if blockRequestValue.Props.Content == nil {
-							blockRequestResult.Props.Content = nil
-						} else {
-							blockRequestResult.Props.Content = &tfTypes.Content{}
-						}
-						if blockRequestValue.Props.Design == nil {
-							blockRequestResult.Props.Design = nil
-						} else {
-							blockRequestResult.Props.Design = &tfTypes.Content{}
-						}
-						if blockRequestValue.Props.Visibility == nil {
-							blockRequestResult.Props.Visibility = nil
-						} else {
-							blockRequestResult.Props.Visibility = &tfTypes.Content{}
-						}
-					}
-					blockRequestResult.Type = types.StringValue(blockRequestValue.Type)
-
-					pages.Blocks[blockRequestKey] = blockRequestResult
-				}
-			}
-			if len(pagesItem.Content) > 0 {
-				pages.Content = make(map[string]jsontypes.Normalized, len(pagesItem.Content))
-				for key1, value1 := range pagesItem.Content {
-					result, _ := json.Marshal(value1)
-					pages.Content[key1] = jsontypes.NewNormalizedValue(string(result))
-				}
-			}
-			if len(pagesItem.Design) > 0 {
-				pages.Design = make(map[string]jsontypes.Normalized, len(pagesItem.Design))
-				for key2, value2 := range pagesItem.Design {
-					result1, _ := json.Marshal(value2)
-					pages.Design[key2] = jsontypes.NewNormalizedValue(string(result1))
-				}
-			}
-			pages.ID = types.StringValue(pagesItem.ID)
-			pages.IsDeleted = types.BoolPointerValue(pagesItem.IsDeleted)
-			pages.IsEntryRoute = types.BoolPointerValue(pagesItem.IsEntryRoute)
-			pages.IsPublic = types.BoolPointerValue(pagesItem.IsPublic)
-			pages.IsSystem = types.BoolPointerValue(pagesItem.IsSystem)
-			pages.LastModifiedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(pagesItem.LastModifiedAt))
-			pages.Order = types.Float64Value(pagesItem.Order)
-			pages.ParentID = types.StringPointerValue(pagesItem.ParentID)
-			pages.Path = types.StringPointerValue(pagesItem.Path)
-			pages.Schema = make([]types.String, 0, len(pagesItem.Schema))
-			for _, v := range pagesItem.Schema {
-				pages.Schema = append(pages.Schema, types.StringValue(string(v)))
-			}
-			pages.Slug = types.StringValue(pagesItem.Slug)
-			if len(pagesItem.Visibility) > 0 {
-				pages.Visibility = make(map[string]jsontypes.Normalized, len(pagesItem.Visibility))
-				for key3, value3 := range pagesItem.Visibility {
-					result2, _ := json.Marshal(value3)
-					pages.Visibility[key3] = jsontypes.NewNormalizedValue(string(result2))
-				}
-			}
-
-			r.Pages = append(r.Pages, pages)
+		if resp.Pages == nil {
+			r.Pages = jsontypes.NewNormalizedNull()
+		} else {
+			pagesResult, _ := json.Marshal(resp.Pages)
+			r.Pages = jsontypes.NewNormalizedValue(string(pagesResult))
 		}
 		r.PortalID = types.StringPointerValue(resp.PortalID)
 		r.PortalSkV3 = types.StringPointerValue(resp.PortalSkV3)
@@ -1174,155 +1086,9 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	} else {
 		origin = nil
 	}
-	pages := make([]shared.Page, 0, len(r.Pages))
-	for _, pagesItem := range r.Pages {
-		var additionalProperties1 interface{}
-		if !pagesItem.AdditionalProperties.IsUnknown() && !pagesItem.AdditionalProperties.IsNull() {
-			_ = json.Unmarshal([]byte(pagesItem.AdditionalProperties.ValueString()), &additionalProperties1)
-		}
-		blocks := make(map[string]shared.BlockRequest)
-		for blocksKey, blocksValue := range pagesItem.Blocks {
-			var additionalProperties2 interface{}
-			if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
-				_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties2)
-			}
-			var order float64
-			order = blocksValue.Order.ValueFloat64()
-
-			parentID := new(string)
-			if !blocksValue.ParentID.IsUnknown() && !blocksValue.ParentID.IsNull() {
-				*parentID = blocksValue.ParentID.ValueString()
-			} else {
-				parentID = nil
-			}
-			var props *shared.BlockProps
-			if blocksValue.Props != nil {
-				var additionalProperties3 interface{}
-				if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
-					_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties3)
-				}
-				var content *shared.Content
-				if blocksValue.Props.Content != nil {
-					content = &shared.Content{}
-				}
-				var design *shared.Design
-				if blocksValue.Props.Design != nil {
-					design = &shared.Design{}
-				}
-				var visibility *shared.Visibility
-				if blocksValue.Props.Visibility != nil {
-					visibility = &shared.Visibility{}
-				}
-				props = &shared.BlockProps{
-					AdditionalProperties: additionalProperties3,
-					Content:              content,
-					Design:               design,
-					Visibility:           visibility,
-				}
-			}
-			var typeVar2 string
-			typeVar2 = blocksValue.Type.ValueString()
-
-			blocksInst := shared.BlockRequest{
-				AdditionalProperties: additionalProperties2,
-				Order:                order,
-				ParentID:             parentID,
-				Props:                props,
-				Type:                 typeVar2,
-			}
-			blocks[blocksKey] = blocksInst
-		}
-		content1 := make(map[string]interface{})
-		for contentKey, contentValue := range pagesItem.Content {
-			var contentInst interface{}
-			_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
-			content1[contentKey] = contentInst
-		}
-		design1 := make(map[string]interface{})
-		for designKey, designValue := range pagesItem.Design {
-			var designInst interface{}
-			_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
-			design1[designKey] = designInst
-		}
-		var id1 string
-		id1 = pagesItem.ID.ValueString()
-
-		isDeleted := new(bool)
-		if !pagesItem.IsDeleted.IsUnknown() && !pagesItem.IsDeleted.IsNull() {
-			*isDeleted = pagesItem.IsDeleted.ValueBool()
-		} else {
-			isDeleted = nil
-		}
-		isEntryRoute := new(bool)
-		if !pagesItem.IsEntryRoute.IsUnknown() && !pagesItem.IsEntryRoute.IsNull() {
-			*isEntryRoute = pagesItem.IsEntryRoute.ValueBool()
-		} else {
-			isEntryRoute = nil
-		}
-		isPublic := new(bool)
-		if !pagesItem.IsPublic.IsUnknown() && !pagesItem.IsPublic.IsNull() {
-			*isPublic = pagesItem.IsPublic.ValueBool()
-		} else {
-			isPublic = nil
-		}
-		isSystem := new(bool)
-		if !pagesItem.IsSystem.IsUnknown() && !pagesItem.IsSystem.IsNull() {
-			*isSystem = pagesItem.IsSystem.ValueBool()
-		} else {
-			isSystem = nil
-		}
-		lastModifiedAt := new(time.Time)
-		if !pagesItem.LastModifiedAt.IsUnknown() && !pagesItem.LastModifiedAt.IsNull() {
-			*lastModifiedAt, _ = time.Parse(time.RFC3339Nano, pagesItem.LastModifiedAt.ValueString())
-		} else {
-			lastModifiedAt = nil
-		}
-		var order1 float64
-		order1 = pagesItem.Order.ValueFloat64()
-
-		parentId1 := new(string)
-		if !pagesItem.ParentID.IsUnknown() && !pagesItem.ParentID.IsNull() {
-			*parentId1 = pagesItem.ParentID.ValueString()
-		} else {
-			parentId1 = nil
-		}
-		path := new(string)
-		if !pagesItem.Path.IsUnknown() && !pagesItem.Path.IsNull() {
-			*path = pagesItem.Path.ValueString()
-		} else {
-			path = nil
-		}
-		schema := make([]shared.PageSchema, 0, len(pagesItem.Schema))
-		for _, schemaItem := range pagesItem.Schema {
-			schema = append(schema, shared.PageSchema(schemaItem.ValueString()))
-		}
-		var slug1 string
-		slug1 = pagesItem.Slug.ValueString()
-
-		visibility1 := make(map[string]interface{})
-		for visibilityKey, visibilityValue := range pagesItem.Visibility {
-			var visibilityInst interface{}
-			_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
-			visibility1[visibilityKey] = visibilityInst
-		}
-		pages = append(pages, shared.Page{
-			AdditionalProperties: additionalProperties1,
-			Blocks:               blocks,
-			Content:              content1,
-			Design:               design1,
-			ID:                   id1,
-			IsDeleted:            isDeleted,
-			IsEntryRoute:         isEntryRoute,
-			IsPublic:             isPublic,
-			IsSystem:             isSystem,
-			LastModifiedAt:       lastModifiedAt,
-			Order:                order1,
-			ParentID:             parentId1,
-			Path:                 path,
-			Schema:               schema,
-			Slug:                 slug1,
-			Visibility:           visibility1,
-		})
+	var pages interface{}
+	if !r.Pages.IsUnknown() && !r.Pages.IsNull() {
+		_ = json.Unmarshal([]byte(r.Pages.ValueString()), &pages)
 	}
 	portalID := new(string)
 	if !r.PortalID.IsUnknown() && !r.PortalID.IsNull() {
@@ -2046,144 +1812,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	} else {
 		origin = nil
 	}
-	pages := make([]shared.PageRequest, 0, len(r.Pages))
-	for _, pagesItem := range r.Pages {
-		var additionalProperties1 interface{}
-		if !pagesItem.AdditionalProperties.IsUnknown() && !pagesItem.AdditionalProperties.IsNull() {
-			_ = json.Unmarshal([]byte(pagesItem.AdditionalProperties.ValueString()), &additionalProperties1)
-		}
-		blocks := make(map[string]shared.BlockRequest)
-		for blocksKey, blocksValue := range pagesItem.Blocks {
-			var additionalProperties2 interface{}
-			if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
-				_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties2)
-			}
-			var order float64
-			order = blocksValue.Order.ValueFloat64()
-
-			parentID := new(string)
-			if !blocksValue.ParentID.IsUnknown() && !blocksValue.ParentID.IsNull() {
-				*parentID = blocksValue.ParentID.ValueString()
-			} else {
-				parentID = nil
-			}
-			var props *shared.BlockProps
-			if blocksValue.Props != nil {
-				var additionalProperties3 interface{}
-				if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
-					_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties3)
-				}
-				var content *shared.Content
-				if blocksValue.Props.Content != nil {
-					content = &shared.Content{}
-				}
-				var design *shared.Design
-				if blocksValue.Props.Design != nil {
-					design = &shared.Design{}
-				}
-				var visibility *shared.Visibility
-				if blocksValue.Props.Visibility != nil {
-					visibility = &shared.Visibility{}
-				}
-				props = &shared.BlockProps{
-					AdditionalProperties: additionalProperties3,
-					Content:              content,
-					Design:               design,
-					Visibility:           visibility,
-				}
-			}
-			var typeVar2 string
-			typeVar2 = blocksValue.Type.ValueString()
-
-			blocksInst := shared.BlockRequest{
-				AdditionalProperties: additionalProperties2,
-				Order:                order,
-				ParentID:             parentID,
-				Props:                props,
-				Type:                 typeVar2,
-			}
-			blocks[blocksKey] = blocksInst
-		}
-		content1 := make(map[string]interface{})
-		for contentKey, contentValue := range pagesItem.Content {
-			var contentInst interface{}
-			_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
-			content1[contentKey] = contentInst
-		}
-		design1 := make(map[string]interface{})
-		for designKey, designValue := range pagesItem.Design {
-			var designInst interface{}
-			_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
-			design1[designKey] = designInst
-		}
-		isDeleted := new(bool)
-		if !pagesItem.IsDeleted.IsUnknown() && !pagesItem.IsDeleted.IsNull() {
-			*isDeleted = pagesItem.IsDeleted.ValueBool()
-		} else {
-			isDeleted = nil
-		}
-		isEntryRoute := new(bool)
-		if !pagesItem.IsEntryRoute.IsUnknown() && !pagesItem.IsEntryRoute.IsNull() {
-			*isEntryRoute = pagesItem.IsEntryRoute.ValueBool()
-		} else {
-			isEntryRoute = nil
-		}
-		isPublic := new(bool)
-		if !pagesItem.IsPublic.IsUnknown() && !pagesItem.IsPublic.IsNull() {
-			*isPublic = pagesItem.IsPublic.ValueBool()
-		} else {
-			isPublic = nil
-		}
-		isSystem := new(bool)
-		if !pagesItem.IsSystem.IsUnknown() && !pagesItem.IsSystem.IsNull() {
-			*isSystem = pagesItem.IsSystem.ValueBool()
-		} else {
-			isSystem = nil
-		}
-		var order1 float64
-		order1 = pagesItem.Order.ValueFloat64()
-
-		parentId1 := new(string)
-		if !pagesItem.ParentID.IsUnknown() && !pagesItem.ParentID.IsNull() {
-			*parentId1 = pagesItem.ParentID.ValueString()
-		} else {
-			parentId1 = nil
-		}
-		path := new(string)
-		if !pagesItem.Path.IsUnknown() && !pagesItem.Path.IsNull() {
-			*path = pagesItem.Path.ValueString()
-		} else {
-			path = nil
-		}
-		schema := make([]shared.PageRequestSchema, 0, len(pagesItem.Schema))
-		for _, schemaItem := range pagesItem.Schema {
-			schema = append(schema, shared.PageRequestSchema(schemaItem.ValueString()))
-		}
-		var slug1 string
-		slug1 = pagesItem.Slug.ValueString()
-
-		visibility1 := make(map[string]interface{})
-		for visibilityKey, visibilityValue := range pagesItem.Visibility {
-			var visibilityInst interface{}
-			_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
-			visibility1[visibilityKey] = visibilityInst
-		}
-		pages = append(pages, shared.PageRequest{
-			AdditionalProperties: additionalProperties1,
-			Blocks:               blocks,
-			Content:              content1,
-			Design:               design1,
-			IsDeleted:            isDeleted,
-			IsEntryRoute:         isEntryRoute,
-			IsPublic:             isPublic,
-			IsSystem:             isSystem,
-			Order:                order1,
-			ParentID:             parentId1,
-			Path:                 path,
-			Schema:               schema,
-			Slug:                 slug1,
-			Visibility:           visibility1,
-		})
+	var pages interface{}
+	if !r.Pages.IsUnknown() && !r.Pages.IsNull() {
+		_ = json.Unmarshal([]byte(r.Pages.ValueString()), &pages)
 	}
 	preventSearchEngineIndexing := new(bool)
 	if !r.PreventSearchEngineIndexing.IsUnknown() && !r.PreventSearchEngineIndexing.IsNull() {

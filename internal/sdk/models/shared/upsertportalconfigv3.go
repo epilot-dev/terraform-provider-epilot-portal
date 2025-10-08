@@ -499,8 +499,8 @@ type UpsertPortalConfigV3 struct {
 	// A short name to identify your portal
 	Name *string `json:"name,omitempty"`
 	// Origin of the portal
-	Origin *Origin       `json:"origin,omitempty"`
-	Pages  []PageRequest `json:"pages,omitempty"`
+	Origin *Origin `json:"origin,omitempty"`
+	Pages  any     `json:"pages,omitempty"`
 	// Prevent indexing by search engines
 	PreventSearchEngineIndexing *bool `json:"prevent_search_engine_indexing,omitempty"`
 	// Identifiers to identify a contact of a portal user during the registration.
@@ -706,7 +706,7 @@ func (o *UpsertPortalConfigV3) GetOrigin() *Origin {
 	return o.Origin
 }
 
-func (o *UpsertPortalConfigV3) GetPages() []PageRequest {
+func (o *UpsertPortalConfigV3) GetPages() any {
 	if o == nil {
 		return nil
 	}

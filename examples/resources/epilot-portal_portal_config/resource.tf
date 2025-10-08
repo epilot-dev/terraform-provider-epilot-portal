@@ -156,51 +156,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   meter_reading_grace_period     = 9.12
   name                           = "Installer Portal"
   origin                         = "INSTALLER_PORTAL"
-  pages = [
-    {
-      additional_properties = "{ \"see\": \"documentation\" }"
-      blocks = {
-        key = {
-          additional_properties = "{ \"see\": \"documentation\" }"
-          order                 = 1
-          parent_id             = "c495fef9-eeca-4019-a989-8390dcd9825b"
-          props = {
-            additional_properties = "{ \"see\": \"documentation\" }"
-            content = {
-              # ...
-            }
-            design = {
-              # ...
-            }
-            visibility = {
-              # ...
-            }
-          }
-          type = "tab"
-        }
-      }
-      content = {
-        key = jsonencode("value")
-      }
-      design = {
-        key = jsonencode("value")
-      }
-      is_deleted     = false
-      is_entry_route = false
-      is_public      = true
-      is_system      = false
-      order          = 1
-      parent_id      = "c495fef9-eeca-4019-a989-8390dcd9825b"
-      path           = "/dashboard"
-      schema = [
-        "contact"
-      ]
-      slug = "dashboard"
-      visibility = {
-        key = jsonencode("value")
-      }
-    }
-  ]
+  pages                          = "{ \"see\": \"documentation\" }"
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
   self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"

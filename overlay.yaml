@@ -56,6 +56,12 @@ actions:
   - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["pages"]
     update:
       x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["pages"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["UpsertPortalConfigV3"]["allOf"][2]["properties"]["pages"]
+    update:
+      x-speakeasy-type-override: any
   - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["contract_identifiers"]
     update:
       x-speakeasy-type-override: any

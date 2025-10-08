@@ -81,7 +81,7 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(ctx context.Context, r
 				r.Design[key1] = jsontypes.NewNormalizedValue(string(result1))
 			}
 		}
-		r.ID = types.StringValue(resp.ID)
+		r.ID = types.StringPointerValue(resp.ID)
 		r.IsDeleted = types.BoolPointerValue(resp.IsDeleted)
 		r.IsEntryRoute = types.BoolPointerValue(resp.IsEntryRoute)
 		r.IsPublic = types.BoolPointerValue(resp.IsPublic)

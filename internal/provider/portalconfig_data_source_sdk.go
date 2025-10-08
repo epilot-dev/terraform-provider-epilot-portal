@@ -5,7 +5,6 @@ package provider
 import (
 	"context"
 	"encoding/json"
-	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/typeconvert"
 	tfTypes "github.com/epilot-dev/terraform-provider-epilot-portal/internal/provider/types"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/operations"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/models/shared"
@@ -323,97 +322,11 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 		} else {
 			r.Origin = types.StringNull()
 		}
-		r.Pages = []tfTypes.Page{}
-
-		for _, pagesItem := range resp.Pages {
-			var pages tfTypes.Page
-
-			if pagesItem.AdditionalProperties == nil {
-				pages.AdditionalProperties = jsontypes.NewNormalizedNull()
-			} else {
-				additionalPropertiesResult1, _ := json.Marshal(pagesItem.AdditionalProperties)
-				pages.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult1))
-			}
-			if len(pagesItem.Blocks) > 0 {
-				pages.Blocks = make(map[string]tfTypes.BlockRequest, len(pagesItem.Blocks))
-				for blockRequestKey, blockRequestValue := range pagesItem.Blocks {
-					var blockRequestResult tfTypes.BlockRequest
-					if blockRequestValue.AdditionalProperties == nil {
-						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedNull()
-					} else {
-						additionalPropertiesResult2, _ := json.Marshal(blockRequestValue.AdditionalProperties)
-						blockRequestResult.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult2))
-					}
-					blockRequestResult.Order = types.Float64Value(blockRequestValue.Order)
-					blockRequestResult.ParentID = types.StringPointerValue(blockRequestValue.ParentID)
-					if blockRequestValue.Props == nil {
-						blockRequestResult.Props = nil
-					} else {
-						blockRequestResult.Props = &tfTypes.BlockProps{}
-						if blockRequestValue.Props.AdditionalProperties == nil {
-							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedNull()
-						} else {
-							additionalPropertiesResult3, _ := json.Marshal(blockRequestValue.Props.AdditionalProperties)
-							blockRequestResult.Props.AdditionalProperties = jsontypes.NewNormalizedValue(string(additionalPropertiesResult3))
-						}
-						if blockRequestValue.Props.Content == nil {
-							blockRequestResult.Props.Content = nil
-						} else {
-							blockRequestResult.Props.Content = &tfTypes.Content{}
-						}
-						if blockRequestValue.Props.Design == nil {
-							blockRequestResult.Props.Design = nil
-						} else {
-							blockRequestResult.Props.Design = &tfTypes.Content{}
-						}
-						if blockRequestValue.Props.Visibility == nil {
-							blockRequestResult.Props.Visibility = nil
-						} else {
-							blockRequestResult.Props.Visibility = &tfTypes.Content{}
-						}
-					}
-					blockRequestResult.Type = types.StringValue(blockRequestValue.Type)
-
-					pages.Blocks[blockRequestKey] = blockRequestResult
-				}
-			}
-			if len(pagesItem.Content) > 0 {
-				pages.Content = make(map[string]jsontypes.Normalized, len(pagesItem.Content))
-				for key1, value1 := range pagesItem.Content {
-					result, _ := json.Marshal(value1)
-					pages.Content[key1] = jsontypes.NewNormalizedValue(string(result))
-				}
-			}
-			if len(pagesItem.Design) > 0 {
-				pages.Design = make(map[string]jsontypes.Normalized, len(pagesItem.Design))
-				for key2, value2 := range pagesItem.Design {
-					result1, _ := json.Marshal(value2)
-					pages.Design[key2] = jsontypes.NewNormalizedValue(string(result1))
-				}
-			}
-			pages.ID = types.StringValue(pagesItem.ID)
-			pages.IsDeleted = types.BoolPointerValue(pagesItem.IsDeleted)
-			pages.IsEntryRoute = types.BoolPointerValue(pagesItem.IsEntryRoute)
-			pages.IsPublic = types.BoolPointerValue(pagesItem.IsPublic)
-			pages.IsSystem = types.BoolPointerValue(pagesItem.IsSystem)
-			pages.LastModifiedAt = types.StringPointerValue(typeconvert.TimePointerToStringPointer(pagesItem.LastModifiedAt))
-			pages.Order = types.Float64Value(pagesItem.Order)
-			pages.ParentID = types.StringPointerValue(pagesItem.ParentID)
-			pages.Path = types.StringPointerValue(pagesItem.Path)
-			pages.Schema = make([]types.String, 0, len(pagesItem.Schema))
-			for _, v := range pagesItem.Schema {
-				pages.Schema = append(pages.Schema, types.StringValue(string(v)))
-			}
-			pages.Slug = types.StringValue(pagesItem.Slug)
-			if len(pagesItem.Visibility) > 0 {
-				pages.Visibility = make(map[string]jsontypes.Normalized, len(pagesItem.Visibility))
-				for key3, value3 := range pagesItem.Visibility {
-					result2, _ := json.Marshal(value3)
-					pages.Visibility[key3] = jsontypes.NewNormalizedValue(string(result2))
-				}
-			}
-
-			r.Pages = append(r.Pages, pages)
+		if resp.Pages == nil {
+			r.Pages = jsontypes.NewNormalizedNull()
+		} else {
+			pagesResult, _ := json.Marshal(resp.Pages)
+			r.Pages = jsontypes.NewNormalizedValue(string(pagesResult))
 		}
 		r.PortalID = types.StringPointerValue(resp.PortalID)
 		r.PortalSkV3 = types.StringPointerValue(resp.PortalSkV3)
