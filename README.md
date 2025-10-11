@@ -21,7 +21,7 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 <!-- Start Summary [summary] -->
 ## Summary
 
-Portal API: Backend for epilot portals - End Customer Portal & Installer Portal
+Permissions API: Flexible Role-based Access Control for epilot
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -48,7 +48,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.25.16"
+      version = "0.26.0"
     }
   }
 }
@@ -68,9 +68,8 @@ Available configuration:
 
 | Provider Attribute | Description |
 |---|---|
-| `either_auth` | Portal or Epilot Bearer Token. |
-| `epilot_auth` | Epilot Bearer Token. |
-| `portal_auth` | Portal Cognito Token. |
+| `epilot_auth` | Authorization header with epilot OAuth2 bearer token. |
+| `epilot_org` | Overrides the target organization to allow shared tenantaccess. |
 <!-- End Authentication [security] -->
 
 <!-- Start Available Resources and Data Sources [operations] -->
@@ -78,12 +77,7 @@ Available configuration:
 
 ### Resources
 
-* [epilot-portal_portal_config](docs/resources/portal_config.md)
-* [epilot-portal_portal_page](docs/resources/portal_page.md)
 ### Data Sources
-
-* [epilot-portal_portal_config](docs/data-sources/portal_config.md)
-* [epilot-portal_portal_page](docs/data-sources/portal_page.md)
 <!-- End Available Resources and Data Sources [operations] -->
 
 <!-- Start Testing the provider locally [usage] -->
