@@ -1,13 +1,13 @@
 lockVersion: 2.0.0
 id: 5a857039-7f4b-42d5-86fd-449767242ed2
 management:
-  docChecksum: e4bc94f22669b9c9d0ff0b0ae1d8332b
+  docChecksum: 5d2693c2df40639274e0cf23ad533308
   docVersion: 1.0.0
-  speakeasyVersion: 1.611.0
-  generationVersion: 2.694.1
-  releaseVersion: 0.25.16
-  configChecksum: 0326eb73b22ea6e1407f82c11218b82e
-  repoURL: https://github.com/epilot-dev/terraform-provider-epilot-product.git
+  speakeasyVersion: 1.636.3
+  generationVersion: 2.723.11
+  releaseVersion: 0.26.0
+  configChecksum: 2d7bc235c6cdb5bd24756a301405d608
+  repoURL: https://github.com/epilot-dev/terraform-provider-epilot-portal.git
   repoSubDirectory: .
   published: true
 features:
@@ -21,31 +21,16 @@ features:
     unions: 2.85.0
   terraform:
     additionalDependencies: 0.1.0
-    additionalProperties: 0.1.2
-    constsAndDefaults: 0.2.1
-    core: 3.44.1
-    deepObjectParams: 0.1.0
-    deprecations: 2.82.0
-    globalSecurity: 2.82.0
+    constsAndDefaults: 0.3.0
+    core: 3.45.3
+    globalSecurity: 2.82.1
     globalServerURLs: 2.83.0
-    methodSecurity: 2.82.2
-    nullables: 0.0.0
     retries: 2.81.4
-    typeOverrides: 2.81.1
-    unions: 2.81.17
+    unions: 2.81.18
 generatedFiles:
   - .gitattributes
   - USAGE.md
-  - examples/README.md
-  - examples/data-sources/epilot-portal_portal_config/data-source.tf
-  - examples/data-sources/epilot-portal_portal_page/data-source.tf
   - examples/provider/provider.tf
-  - examples/resources/epilot-portal_portal_config/import-by-string-id.tf
-  - examples/resources/epilot-portal_portal_config/import.sh
-  - examples/resources/epilot-portal_portal_config/resource.tf
-  - examples/resources/epilot-portal_portal_page/import-by-string-id.tf
-  - examples/resources/epilot-portal_portal_page/import.sh
-  - examples/resources/epilot-portal_portal_page/resource.tf
   - go.mod
   - go.sum
   - internal/planmodifiers/boolplanmodifier/suppress_diff.go
@@ -60,14 +45,6 @@ generatedFiles:
   - internal/planmodifiers/setplanmodifier/suppress_diff.go
   - internal/planmodifiers/stringplanmodifier/suppress_diff.go
   - internal/planmodifiers/utils/state_check.go
-  - internal/provider/portalconfig_data_source.go
-  - internal/provider/portalconfig_data_source_sdk.go
-  - internal/provider/portalconfig_resource.go
-  - internal/provider/portalconfig_resource_sdk.go
-  - internal/provider/portalpage_data_source.go
-  - internal/provider/portalpage_data_source_sdk.go
-  - internal/provider/portalpage_resource.go
-  - internal/provider/portalpage_resource_sdk.go
   - internal/provider/provider.go
   - internal/provider/reflect/diags.go
   - internal/provider/reflect/doc.go
@@ -86,36 +63,10 @@ generatedFiles:
   - internal/provider/typeconvert/date.go
   - internal/provider/typeconvert/datetime.go
   - internal/provider/typeconvert/int.go
-  - internal/provider/types/admin_user.go
-  - internal/provider/types/allowed_file_extensions.go
-  - internal/provider/types/block.go
-  - internal/provider/types/block_props.go
-  - internal/provider/types/email_templates.go
-  - internal/provider/types/entity_actions.go
-  - internal/provider/types/extension_config.go
-  - internal/provider/types/extension_hook_config.go
-  - internal/provider/types/image_uri.go
-  - internal/provider/types/portal_config_v3_org_settings.go
-  - internal/provider/types/portal_config_v3_triggered_journeys.go
-  - internal/provider/types/upsert_portal_config_v3_action_label.go
-  - internal/provider/types/upsert_portal_config_v3_advanced_mfa.go
-  - internal/provider/types/upsert_portal_config_v3_auth_settings.go
-  - internal/provider/types/upsert_portal_config_v3_cognito_details.go
-  - internal/provider/types/upsert_portal_config_v3_contract_selector_config.go
-  - internal/provider/types/upsert_portal_config_v3_default_user_to_notify.go
-  - internal/provider/types/upsert_portal_config_v3_entity_identifiers.go
-  - internal/provider/types/upsert_portal_config_v3_feature_settings.go
-  - internal/provider/types/upsert_portal_config_v3_images.go
-  - internal/provider/types/upsert_portal_config_v3_password_policy.go
-  - internal/provider/types/upsert_portal_config_v3_type.go
   - internal/provider/utils.go
   - internal/sdk/.gitattributes
-  - internal/sdk/activity.go
-  - internal/sdk/balance.go
+  - internal/sdk/assignments.go
   - internal/sdk/docs/models/operations/option.md
-  - internal/sdk/ecp.go
-  - internal/sdk/ecpadmin.go
-  - internal/sdk/internal.go
   - internal/sdk/internal/config/sdkconfiguration.go
   - internal/sdk/internal/hooks/hooks.go
   - internal/sdk/internal/utils/contenttype.go
@@ -129,207 +80,44 @@ generatedFiles:
   - internal/sdk/internal/utils/retries.go
   - internal/sdk/internal/utils/security.go
   - internal/sdk/internal/utils/utils.go
-  - internal/sdk/login.go
   - internal/sdk/models/errors/sdkerror.go
-  - internal/sdk/models/operations/addcontractbyidentifiers.go
-  - internal/sdk/models/operations/cantriggerportalflow.go
-  - internal/sdk/models/operations/checkcontactexists.go
-  - internal/sdk/models/operations/configuredistribution.go
-  - internal/sdk/models/operations/confirmuser.go
-  - internal/sdk/models/operations/confirmuserwithuserid.go
-  - internal/sdk/models/operations/createcustomentityactivity.go
-  - internal/sdk/models/operations/createportalconfig.go
-  - internal/sdk/models/operations/createportalpage.go
-  - internal/sdk/models/operations/createportalpageblock.go
-  - internal/sdk/models/operations/createuser.go
-  - internal/sdk/models/operations/deleteentityfile.go
-  - internal/sdk/models/operations/deleteportal.go
-  - internal/sdk/models/operations/deleteportalconfig.go
-  - internal/sdk/models/operations/deleteportalpage.go
-  - internal/sdk/models/operations/deleteportalpageblock.go
-  - internal/sdk/models/operations/deleteportaluser.go
-  - internal/sdk/models/operations/deregistermloginuser.go
-  - internal/sdk/models/operations/extrapermissionattributes.go
-  - internal/sdk/models/operations/fetchportalusersbyrelatedentity.go
-  - internal/sdk/models/operations/getallcontracts.go
-  - internal/sdk/models/operations/getallfiles.go
-  - internal/sdk/models/operations/getallopportunities.go
-  - internal/sdk/models/operations/getallorders.go
-  - internal/sdk/models/operations/getallportalconfigs.go
-  - internal/sdk/models/operations/getallrequests.go
-  - internal/sdk/models/operations/getautomationcontext.go
-  - internal/sdk/models/operations/getbillingevents.go
-  - internal/sdk/models/operations/getconsumption.go
-  - internal/sdk/models/operations/getcontact.go
-  - internal/sdk/models/operations/getcontract.go
-  - internal/sdk/models/operations/getcosts.go
-  - internal/sdk/models/operations/getcustomerbalance.go
-  - internal/sdk/models/operations/getdefaultpages.go
-  - internal/sdk/models/operations/getecpcontact.go
-  - internal/sdk/models/operations/getemailtemplates.go
-  - internal/sdk/models/operations/getentityactivityfeed.go
-  - internal/sdk/models/operations/getentityidentifiers.go
-  - internal/sdk/models/operations/getexternallinks.go
-  - internal/sdk/models/operations/getfilebyid.go
-  - internal/sdk/models/operations/getfilescountbyentity.go
-  - internal/sdk/models/operations/getjuicesettings.go
-  - internal/sdk/models/operations/getopportunity.go
-  - internal/sdk/models/operations/getorder.go
-  - internal/sdk/models/operations/getorganizationsettings.go
-  - internal/sdk/models/operations/getorganizationsettingsbydomain.go
-  - internal/sdk/models/operations/getorgportalconfig.go
-  - internal/sdk/models/operations/getportalconfig.go
-  - internal/sdk/models/operations/getportalconfigbydomain.go
-  - internal/sdk/models/operations/getportalconfigv3.go
-  - internal/sdk/models/operations/getportalextensions.go
-  - internal/sdk/models/operations/getportalpage.go
-  - internal/sdk/models/operations/getportalpageblock.go
-  - internal/sdk/models/operations/getportalpageblocks.go
-  - internal/sdk/models/operations/getportalpages.go
-  - internal/sdk/models/operations/getportaluser.go
-  - internal/sdk/models/operations/getportalwidgets.go
-  - internal/sdk/models/operations/getprices.go
-  - internal/sdk/models/operations/getpublicpages.go
-  - internal/sdk/models/operations/getpublicportalconfig.go
-  - internal/sdk/models/operations/getpublicportalextensiondetails.go
-  - internal/sdk/models/operations/getpublicportalwidgets.go
-  - internal/sdk/models/operations/getrecipientstonotifyonautomation.go
-  - internal/sdk/models/operations/getregistrationidentifiers.go
-  - internal/sdk/models/operations/getresolvedexternallink.go
-  - internal/sdk/models/operations/getresolvedseamlesslink.go
-  - internal/sdk/models/operations/getschemas.go
-  - internal/sdk/models/operations/getschemasbydomain.go
-  - internal/sdk/models/operations/getsearchableattributesforopportunities.go
-  - internal/sdk/models/operations/getsearchresultsforopportunities.go
-  - internal/sdk/models/operations/getuserentrypoint.go
-  - internal/sdk/models/operations/getvalidsecondaryattributes.go
-  - internal/sdk/models/operations/listallportalconfigs.go
-  - internal/sdk/models/operations/listportalsinternal.go
-  - internal/sdk/models/operations/logintoportalasuser.go
-  - internal/sdk/models/operations/notifymlogininterestchange.go
+  - internal/sdk/models/operations/addassignment.go
+  - internal/sdk/models/operations/assignroles.go
+  - internal/sdk/models/operations/createrole.go
+  - internal/sdk/models/operations/deleterole.go
+  - internal/sdk/models/operations/getassignedrolesforuser.go
+  - internal/sdk/models/operations/getrole.go
+  - internal/sdk/models/operations/listallassignments.go
+  - internal/sdk/models/operations/listallroles.go
+  - internal/sdk/models/operations/listcurrentroles.go
   - internal/sdk/models/operations/options.go
-  - internal/sdk/models/operations/postorderacceptance.go
-  - internal/sdk/models/operations/putportalconfig.go
-  - internal/sdk/models/operations/replaceecptemplatevariables.go
-  - internal/sdk/models/operations/resendconfirmationemail.go
-  - internal/sdk/models/operations/revoketoken.go
-  - internal/sdk/models/operations/saveentityfile.go
-  - internal/sdk/models/operations/saveportalfiles.go
-  - internal/sdk/models/operations/searchpaymentrelationsinentities.go
-  - internal/sdk/models/operations/searchportaluserentities.go
-  - internal/sdk/models/operations/ssocallback.go
-  - internal/sdk/models/operations/ssologin.go
-  - internal/sdk/models/operations/ssoredirect.go
-  - internal/sdk/models/operations/swapportalconfig.go
-  - internal/sdk/models/operations/trackfiledownloaded.go
-  - internal/sdk/models/operations/triggerentityaccessevent.go
-  - internal/sdk/models/operations/updatecampaignportalblockstatus.go
-  - internal/sdk/models/operations/updatecontact.go
-  - internal/sdk/models/operations/updatecontract.go
-  - internal/sdk/models/operations/updateopportunity.go
-  - internal/sdk/models/operations/updateorder.go
-  - internal/sdk/models/operations/updateportalpage.go
-  - internal/sdk/models/operations/updateportalpageblock.go
-  - internal/sdk/models/operations/updateportaluser.go
-  - internal/sdk/models/operations/updateportaluseremail.go
-  - internal/sdk/models/operations/updateworkflowstepasdone.go
-  - internal/sdk/models/operations/uploadmeterreadingphoto.go
-  - internal/sdk/models/operations/upsertemailtemplates.go
-  - internal/sdk/models/operations/upsertportal.go
-  - internal/sdk/models/operations/upsertportalwidget.go
-  - internal/sdk/models/operations/userexists.go
-  - internal/sdk/models/operations/validatecaarecords.go
-  - internal/sdk/models/operations/validatecadenceentityeditrules.go
-  - internal/sdk/models/operations/validatetoken.go
-  - internal/sdk/models/shared/acceptancedecision.go
-  - internal/sdk/models/shared/actionlabel.go
-  - internal/sdk/models/shared/actionwidget.go
-  - internal/sdk/models/shared/activitycallercontext.go
-  - internal/sdk/models/shared/activityitem.go
-  - internal/sdk/models/shared/adminuser.go
-  - internal/sdk/models/shared/allowedfileextensions.go
-  - internal/sdk/models/shared/balance.go
-  - internal/sdk/models/shared/billingevent.go
-  - internal/sdk/models/shared/block.go
-  - internal/sdk/models/shared/blockprops.go
-  - internal/sdk/models/shared/blockrequest.go
-  - internal/sdk/models/shared/campaignwidget.go
-  - internal/sdk/models/shared/contact.go
-  - internal/sdk/models/shared/contactexistsrequest.go
-  - internal/sdk/models/shared/contentwidget.go
-  - internal/sdk/models/shared/contract.go
-  - internal/sdk/models/shared/contractidentifier.go
-  - internal/sdk/models/shared/createuserrequest.go
-  - internal/sdk/models/shared/dataretrievalitem.go
-  - internal/sdk/models/shared/deleteentityfile.go
-  - internal/sdk/models/shared/emailtemplates.go
-  - internal/sdk/models/shared/entityeditrule.go
-  - internal/sdk/models/shared/entityfilecount.go
-  - internal/sdk/models/shared/entityitem.go
-  - internal/sdk/models/shared/entityresponsegroupedwithhits.go
-  - internal/sdk/models/shared/entityresponsewithhits.go
-  - internal/sdk/models/shared/entitysearchparams.go
-  - internal/sdk/models/shared/entityslug.go
-  - internal/sdk/models/shared/entitywidget.go
-  - internal/sdk/models/shared/errorresp.go
-  - internal/sdk/models/shared/extension.go
-  - internal/sdk/models/shared/extensionauthblock.go
-  - internal/sdk/models/shared/extensionconfig.go
-  - internal/sdk/models/shared/extensionhookconfig.go
-  - internal/sdk/models/shared/extensionseamlesslink.go
-  - internal/sdk/models/shared/externallink.go
-  - internal/sdk/models/shared/extraschemaattributes.go
-  - internal/sdk/models/shared/failedruleerrorresp.go
-  - internal/sdk/models/shared/file.go
-  - internal/sdk/models/shared/fileitem.go
+  - internal/sdk/models/operations/putrole.go
+  - internal/sdk/models/operations/refreshpermissions.go
+  - internal/sdk/models/operations/removeassignment.go
+  - internal/sdk/models/operations/searchroles.go
+  - internal/sdk/models/shared/assignment.go
+  - internal/sdk/models/shared/createrolepayload.go
+  - internal/sdk/models/shared/equalscondition.go
   - internal/sdk/models/shared/grant.go
-  - internal/sdk/models/shared/identifierattribute.go
-  - internal/sdk/models/shared/journeyactions.go
-  - internal/sdk/models/shared/juicesettings.go
-  - internal/sdk/models/shared/meter.go
-  - internal/sdk/models/shared/meterchartwidget.go
-  - internal/sdk/models/shared/meterreadingphoto.go
-  - internal/sdk/models/shared/meterreadingphotodata.go
-  - internal/sdk/models/shared/meterreadingwidget.go
-  - internal/sdk/models/shared/moblieoidcconfig.go
-  - internal/sdk/models/shared/oidcproviderconfig.go
-  - internal/sdk/models/shared/oidcprovidermetadata.go
-  - internal/sdk/models/shared/opportunity.go
-  - internal/sdk/models/shared/order.go
-  - internal/sdk/models/shared/organizationsettings.go
-  - internal/sdk/models/shared/page.go
-  - internal/sdk/models/shared/pagerequest.go
-  - internal/sdk/models/shared/portalconfig.go
-  - internal/sdk/models/shared/portalconfigv3.go
-  - internal/sdk/models/shared/portaluser.go
-  - internal/sdk/models/shared/product.go
-  - internal/sdk/models/shared/providerpublicconfig.go
-  - internal/sdk/models/shared/publiccontractidentificationdetails.go
-  - internal/sdk/models/shared/publicdataretrievalhookdetails.go
-  - internal/sdk/models/shared/publicextensioncapabilities.go
-  - internal/sdk/models/shared/publicextensiondetails.go
-  - internal/sdk/models/shared/rule.go
-  - internal/sdk/models/shared/saveentityfile.go
-  - internal/sdk/models/shared/saveportalfile.go
-  - internal/sdk/models/shared/schema.go
+  - internal/sdk/models/shared/grantcondition.go
+  - internal/sdk/models/shared/grantwithdependencies.go
+  - internal/sdk/models/shared/orgrole.go
+  - internal/sdk/models/shared/partnerrole.go
+  - internal/sdk/models/shared/portalrole.go
+  - internal/sdk/models/shared/role.go
+  - internal/sdk/models/shared/rolepayload.go
+  - internal/sdk/models/shared/rolesearchinput.go
   - internal/sdk/models/shared/security.go
-  - internal/sdk/models/shared/ssocallbackrequest.go
-  - internal/sdk/models/shared/ssocallbackresponse.go
-  - internal/sdk/models/shared/swappableconfig.go
-  - internal/sdk/models/shared/teaserwidget.go
-  - internal/sdk/models/shared/triggerportalflow.go
-  - internal/sdk/models/shared/upsertportalconfig.go
-  - internal/sdk/models/shared/upsertportalconfigv3.go
-  - internal/sdk/models/shared/upsertportalwidget.go
-  - internal/sdk/models/shared/widgetaction.go
-  - internal/sdk/models/shared/widgetbase.go
-  - internal/sdk/public.go
+  - internal/sdk/models/shared/sharerole.go
+  - internal/sdk/models/shared/userrole.go
+  - internal/sdk/optionalnullable/optionalnullable.go
+  - internal/sdk/optionalnullable/optionalnullable_test.go
   - internal/sdk/retry/config.go
+  - internal/sdk/roles.go
   - internal/sdk/sdk.go
   - internal/sdk/types/bigint.go
   - internal/sdk/types/date.go
   - internal/sdk/types/datetime.go
-  - internal/sdk/types/decimal.go
   - internal/sdk/types/pointers.go
   - internal/validators/DateValidator.go
   - internal/validators/ExactlyOneChild.go
@@ -1617,5 +1405,97 @@ examples:
           application/json: {}
         "500":
           application/json: {}
+  addAssignment:
+    speakeasy-default-add-assignment:
+      parameters:
+        path:
+          userId: "1"
+          roleId: "123:owner"
+      responses:
+        "201":
+          application/json: {"roles": ["123:owner"], "user_id": "1"}
+  assignRoles:
+    speakeasy-default-assign-roles:
+      parameters:
+        path:
+          userId: "1"
+      requestBody:
+        application/json: ["123:owner"]
+      responses:
+        "200":
+          application/json: ["123:owner"]
+  getAssignedRolesForUser:
+    speakeasy-default-get-assigned-roles-for-user:
+      parameters:
+        path:
+          userId: "1"
+      responses:
+        "200":
+          application/json: ["123:owner"]
+  listAllAssignments:
+    speakeasy-default-list-all-assignments:
+      responses:
+        "200":
+          application/json: {"assignments": [{"roles": ["123:owner"], "user_id": "1"}]}
+  removeAssignment:
+    speakeasy-default-remove-assignment:
+      parameters:
+        path:
+          userId: "1"
+          roleId: "123:owner"
+      responses:
+        "200":
+          application/json: {"roles": ["123:owner"], "user_id": "1"}
+  createRole:
+    speakeasy-default-create-role:
+      requestBody:
+        application/json: {"expires_at": "2028-07-21T17:32:28Z", "grants": [{"action": "entity-read", "conditions": [{"attribute": "workflows.primary.task_name", "operation": "equals", "values": ["Qualification"]}], "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "id": "123:owner", "name": "Owner", "organization_id": "123", "pricing_tier": "Professional", "slug": "owner", "type": "<value>"}
+      responses:
+        "200":
+          application/json: {"expires_at": "2028-07-21T17:32:28Z", "grants": [], "id": "123:owner", "name": "Owner", "organization_id": "123", "slug": "owner", "type": "share_role"}
+  deleteRole:
+    speakeasy-default-delete-role:
+      parameters:
+        path:
+          roleId: "123:owner"
+      responses:
+        "200":
+          application/json: {"expires_at": "2028-07-21T17:32:28Z", "grants": [], "id": "123:owner", "name": "Owner", "organization_id": "123", "partner_org_id": "123", "slug": "owner", "type": "partner_role"}
+  getRole:
+    speakeasy-default-get-role:
+      parameters:
+        path:
+          roleId: "123:owner"
+      responses:
+        "200":
+          application/json: {"expires_at": "2028-07-21T17:32:28Z", "grants": [{"action": "entity-read", "conditions": [{"attribute": "workflows.primary.task_name", "operation": "equals", "values": ["Qualification"]}], "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "id": "123:owner", "name": "Owner", "organization_id": "123", "slug": "owner", "type": "share_role"}
+  listAllRoles:
+    speakeasy-default-list-all-roles:
+      responses:
+        "200":
+          application/json: {"roles": [{"expires_at": "2028-07-21T17:32:28Z", "grants": [{"action": "entity-read", "conditions": [{"attribute": "workflows.primary.task_name", "operation": "equals", "values": ["Qualification"]}], "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "id": "123:owner", "name": "Owner", "organization_id": "123", "pricing_tier": "Professional", "slug": "owner", "type": "org_role"}]}
+  listCurrentRoles:
+    speakeasy-default-list-current-roles:
+      responses:
+        "200":
+          application/json: {"roles": [{"expires_at": "2028-07-21T17:32:28Z", "grants": [], "id": "123:owner", "name": "Owner", "organization_id": "123", "slug": "owner", "type": "share_role"}]}
+  putRole:
+    speakeasy-default-put-role:
+      parameters:
+        path:
+          roleId: "123:owner"
+      requestBody:
+        application/json: {"expires_at": "2028-07-21T17:32:28Z", "grants": [{"action": "entity-read", "conditions": [{"attribute": "workflows.primary.task_name", "operation": "equals", "values": ["Qualification"]}], "dependencies": [{"action": "entity-read", "conditions": [{"attribute": "workflows.primary.task_name", "operation": "equals", "values": ["Qualification"]}], "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "id": "123:owner", "name": "Owner", "organization_id": "123", "slug": "owner", "type": "share_role"}
+      responses:
+        "200":
+          application/json: {"expires_at": "2028-07-21T17:32:28Z", "grants": [{"action": "entity-read", "conditions": [{"attribute": "workflows.primary.task_name", "operation": "equals", "values": ["Qualification"]}], "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "id": "123:owner", "name": "Owner", "organization_id": "123", "slug": "owner", "type": "share_role"}
+  refreshPermissions: {}
+  searchRoles:
+    speakeasy-default-search-roles:
+      requestBody:
+        application/json: {"limit": 1, "offset": 1, "org_ids": ["123", "456"], "query": "Administrator", "role_ids": ["123:manager", "456:owner"], "slugs": ["manager", "owner"]}
+      responses:
+        "200":
+          application/json: {"results": [{"expires_at": "2028-07-21T17:32:28Z", "grants": [], "id": "123:owner", "name": "Owner", "organization_id": "123", "partner_org_id": "123", "slug": "owner", "type": "partner_role"}]}
 examplesVersion: 1.0.2
 generatedTests: {}

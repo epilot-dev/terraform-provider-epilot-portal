@@ -27,9 +27,8 @@ type EpilotPortalProvider struct {
 
 // EpilotPortalProviderModel describes the provider data model.
 type EpilotPortalProviderModel struct {
-	EitherAuth types.String `tfsdk:"either_auth"`
 	EpilotAuth types.String `tfsdk:"epilot_auth"`
-	PortalAuth types.String `tfsdk:"portal_auth"`
+	EpilotOrg  types.String `tfsdk:"epilot_org"`
 	ServerURL  types.String `tfsdk:"server_url"`
 }
 
@@ -41,27 +40,22 @@ func (p *EpilotPortalProvider) Metadata(ctx context.Context, req provider.Metada
 func (p *EpilotPortalProvider) Schema(ctx context.Context, req provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
-			"either_auth": schema.StringAttribute{
-				MarkdownDescription: `Portal or Epilot Bearer Token.`,
-				Optional:            true,
-				Sensitive:           true,
-			},
 			"epilot_auth": schema.StringAttribute{
-				MarkdownDescription: `Epilot Bearer Token.`,
+				MarkdownDescription: `Authorization header with epilot OAuth2 bearer token.`,
 				Optional:            true,
 				Sensitive:           true,
 			},
-			"portal_auth": schema.StringAttribute{
-				MarkdownDescription: `Portal Cognito Token.`,
+			"epilot_org": schema.StringAttribute{
+				MarkdownDescription: `Overrides the target organization to allow shared tenantaccess.`,
 				Optional:            true,
 				Sensitive:           true,
 			},
 			"server_url": schema.StringAttribute{
-				Description: `Server URL (defaults to https://customer-portal-api.sls.epilot.io/)`,
+				Description: `Server URL (defaults to https://permissions.sls.epilot.io)`,
 				Optional:    true,
 			},
 		},
-		MarkdownDescription: `Portal API: Backend for epilot portals - End Customer Portal & Installer Portal`,
+		MarkdownDescription: `Permissions API: Flexible Role-based Access Control for epilot`,
 	}
 }
 
@@ -77,21 +71,17 @@ func (p *EpilotPortalProvider) Configure(ctx context.Context, req provider.Confi
 	serverUrl := data.ServerURL.ValueString()
 
 	if serverUrl == "" {
-		serverUrl = "https://customer-portal-api.sls.epilot.io/"
+		serverUrl = "https://permissions.sls.epilot.io"
 	}
 
 	security := shared.Security{}
-
-	if !data.EitherAuth.IsUnknown() {
-		security.EitherAuth = data.EitherAuth.ValueStringPointer()
-	}
 
 	if !data.EpilotAuth.IsUnknown() {
 		security.EpilotAuth = data.EpilotAuth.ValueStringPointer()
 	}
 
-	if !data.PortalAuth.IsUnknown() {
-		security.PortalAuth = data.PortalAuth.ValueStringPointer()
+	if !data.EpilotOrg.IsUnknown() {
+		security.EpilotOrg = data.EpilotOrg.ValueStringPointer()
 	}
 
 	providerHTTPTransportOpts := ProviderHTTPTransportOpts{
@@ -115,17 +105,11 @@ func (p *EpilotPortalProvider) Configure(ctx context.Context, req provider.Confi
 }
 
 func (p *EpilotPortalProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return []func() resource.Resource{
-		NewPortalConfigResource,
-		NewPortalPageResource,
-	}
+	return []func() resource.Resource{}
 }
 
 func (p *EpilotPortalProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
-	return []func() datasource.DataSource{
-		NewPortalConfigDataSource,
-		NewPortalPageDataSource,
-	}
+	return []func() datasource.DataSource{}
 }
 
 func (p *EpilotPortalProvider) EphemeralResources(ctx context.Context) []func() ephemeral.EphemeralResource {

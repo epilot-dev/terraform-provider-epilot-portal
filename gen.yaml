@@ -13,6 +13,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
   tests:
     generateTests: true
     generateNewTests: false
@@ -35,7 +36,7 @@ go:
   outputModelSuffix: output
   packageName: openapi
 terraform:
-  version: 0.25.16
+  version: 0.26.0
   additionalDataSources: []
   additionalDependencies: {}
   additionalEphemeralResources: []
