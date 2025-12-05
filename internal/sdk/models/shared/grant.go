@@ -8,7 +8,6 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
-// Effect of the permission
 type Effect string
 
 const (
@@ -36,12 +35,10 @@ func (e *Effect) UnmarshalJSON(data []byte) error {
 }
 
 type Grant struct {
-	// Action for granting permission
-	Action string `json:"action"`
-	// Effect of the permission
-	Effect *Effect `default:"allow" json:"effect"`
-	// Resource for granting permission
-	Resource *string `json:"resource,omitempty"`
+	Action     string           `json:"action"`
+	Conditions []GrantCondition `json:"conditions,omitempty"`
+	Effect     *Effect          `default:"allow" json:"effect"`
+	Resource   *string          `json:"resource,omitempty"`
 }
 
 func (g Grant) MarshalJSON() ([]byte, error) {
@@ -55,23 +52,30 @@ func (g *Grant) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Grant) GetAction() string {
-	if o == nil {
+func (g *Grant) GetAction() string {
+	if g == nil {
 		return ""
 	}
-	return o.Action
+	return g.Action
 }
 
-func (o *Grant) GetEffect() *Effect {
-	if o == nil {
+func (g *Grant) GetConditions() []GrantCondition {
+	if g == nil {
 		return nil
 	}
-	return o.Effect
+	return g.Conditions
 }
 
-func (o *Grant) GetResource() *string {
-	if o == nil {
+func (g *Grant) GetEffect() *Effect {
+	if g == nil {
 		return nil
 	}
-	return o.Resource
+	return g.Effect
+}
+
+func (g *Grant) GetResource() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Resource
 }
