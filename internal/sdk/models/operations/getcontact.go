@@ -16,32 +16,32 @@ type GetContactResponseBody struct {
 	Relations      []shared.EntityItem     `json:"relations,omitempty"`
 }
 
-func (o *GetContactResponseBody) GetEntity() *shared.Contact {
-	if o == nil {
+func (g *GetContactResponseBody) GetEntity() *shared.Contact {
+	if g == nil {
 		return nil
 	}
-	return o.Entity
+	return g.Entity
 }
 
-func (o *GetContactResponseBody) GetFiles() []shared.File {
-	if o == nil {
+func (g *GetContactResponseBody) GetFiles() []shared.File {
+	if g == nil {
 		return nil
 	}
-	return o.Files
+	return g.Files
 }
 
-func (o *GetContactResponseBody) GetJourneyActions() []shared.JourneyActions {
-	if o == nil {
+func (g *GetContactResponseBody) GetJourneyActions() []shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
-func (o *GetContactResponseBody) GetRelations() []shared.EntityItem {
-	if o == nil {
+func (g *GetContactResponseBody) GetRelations() []shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Relations
+	return g.Relations
 }
 
 type GetContactResponse struct {
@@ -57,37 +57,37 @@ type GetContactResponse struct {
 	Object *GetContactResponseBody
 }
 
-func (o *GetContactResponse) GetContentType() string {
-	if o == nil {
+func (g *GetContactResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetContactResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetContactResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetContactResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetContactResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetContactResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetContactResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetContactResponse) GetObject() *GetContactResponseBody {
-	if o == nil {
+func (g *GetContactResponse) GetObject() *GetContactResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -44,18 +44,18 @@ type AddContractByIdentifiersECPResponseBody struct {
 	Reason Reason `json:"reason"`
 }
 
-func (o *AddContractByIdentifiersECPResponseBody) GetMessage() *string {
-	if o == nil {
+func (a *AddContractByIdentifiersECPResponseBody) GetMessage() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Message
+	return a.Message
 }
 
-func (o *AddContractByIdentifiersECPResponseBody) GetReason() Reason {
-	if o == nil {
+func (a *AddContractByIdentifiersECPResponseBody) GetReason() Reason {
+	if a == nil {
 		return Reason("")
 	}
-	return o.Reason
+	return a.Reason
 }
 
 // AddContractByIdentifiersResponseBody - Contract(s) assigned successfully.
@@ -64,18 +64,18 @@ type AddContractByIdentifiersResponseBody struct {
 	Hits float64             `json:"hits"`
 }
 
-func (o *AddContractByIdentifiersResponseBody) GetData() []shared.EntityItem {
-	if o == nil {
+func (a *AddContractByIdentifiersResponseBody) GetData() []shared.EntityItem {
+	if a == nil {
 		return nil
 	}
-	return o.Data
+	return a.Data
 }
 
-func (o *AddContractByIdentifiersResponseBody) GetHits() float64 {
-	if o == nil {
+func (a *AddContractByIdentifiersResponseBody) GetHits() float64 {
+	if a == nil {
 		return 0.0
 	}
-	return o.Hits
+	return a.Hits
 }
 
 type AddContractByIdentifiersResponse struct {
@@ -93,44 +93,44 @@ type AddContractByIdentifiersResponse struct {
 	Object1 *AddContractByIdentifiersECPResponseBody
 }
 
-func (o *AddContractByIdentifiersResponse) GetContentType() string {
-	if o == nil {
+func (a *AddContractByIdentifiersResponse) GetContentType() string {
+	if a == nil {
 		return ""
 	}
-	return o.ContentType
+	return a.ContentType
 }
 
-func (o *AddContractByIdentifiersResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (a *AddContractByIdentifiersResponse) GetErrorResp() *shared.ErrorResp {
+	if a == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return a.ErrorResp
 }
 
-func (o *AddContractByIdentifiersResponse) GetStatusCode() int {
-	if o == nil {
+func (a *AddContractByIdentifiersResponse) GetStatusCode() int {
+	if a == nil {
 		return 0
 	}
-	return o.StatusCode
+	return a.StatusCode
 }
 
-func (o *AddContractByIdentifiersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (a *AddContractByIdentifiersResponse) GetRawResponse() *http.Response {
+	if a == nil {
 		return nil
 	}
-	return o.RawResponse
+	return a.RawResponse
 }
 
-func (o *AddContractByIdentifiersResponse) GetObject() *AddContractByIdentifiersResponseBody {
-	if o == nil {
+func (a *AddContractByIdentifiersResponse) GetObject() *AddContractByIdentifiersResponseBody {
+	if a == nil {
 		return nil
 	}
-	return o.Object
+	return a.Object
 }
 
-func (o *AddContractByIdentifiersResponse) GetObject1() *AddContractByIdentifiersECPResponseBody {
-	if o == nil {
+func (a *AddContractByIdentifiersResponse) GetObject1() *AddContractByIdentifiersECPResponseBody {
+	if a == nil {
 		return nil
 	}
-	return o.Object1
+	return a.Object1
 }

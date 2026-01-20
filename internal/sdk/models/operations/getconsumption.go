@@ -64,52 +64,52 @@ func (g GetConsumptionRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetConsumptionRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"extensionId", "from", "hookId", "interval", "meter_id", "to"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetConsumptionRequest) GetExtensionID() string {
-	if o == nil {
+func (g *GetConsumptionRequest) GetExtensionID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ExtensionID
+	return g.ExtensionID
 }
 
-func (o *GetConsumptionRequest) GetFrom() time.Time {
-	if o == nil {
+func (g *GetConsumptionRequest) GetFrom() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetConsumptionRequest) GetHookID() string {
-	if o == nil {
+func (g *GetConsumptionRequest) GetHookID() string {
+	if g == nil {
 		return ""
 	}
-	return o.HookID
+	return g.HookID
 }
 
-func (o *GetConsumptionRequest) GetInterval() Interval {
-	if o == nil {
+func (g *GetConsumptionRequest) GetInterval() Interval {
+	if g == nil {
 		return Interval("")
 	}
-	return o.Interval
+	return g.Interval
 }
 
-func (o *GetConsumptionRequest) GetMeterID() string {
-	if o == nil {
+func (g *GetConsumptionRequest) GetMeterID() string {
+	if g == nil {
 		return ""
 	}
-	return o.MeterID
+	return g.MeterID
 }
 
-func (o *GetConsumptionRequest) GetTo() time.Time {
-	if o == nil {
+func (g *GetConsumptionRequest) GetTo() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.To
+	return g.To
 }
 
 type Consumptions struct {
@@ -126,31 +126,31 @@ func (c Consumptions) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Consumptions) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"timestamp", "value"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Consumptions) GetTimestamp() time.Time {
-	if o == nil {
+func (c *Consumptions) GetTimestamp() time.Time {
+	if c == nil {
 		return time.Time{}
 	}
-	return o.Timestamp
+	return c.Timestamp
 }
 
-func (o *Consumptions) GetType() *string {
-	if o == nil {
+func (c *Consumptions) GetType() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Type
+	return c.Type
 }
 
-func (o *Consumptions) GetValue() float64 {
-	if o == nil {
+func (c *Consumptions) GetValue() float64 {
+	if c == nil {
 		return 0.0
 	}
-	return o.Value
+	return c.Value
 }
 
 // GetConsumptionResponseBody - Consumption data returned successfully.
@@ -158,11 +158,11 @@ type GetConsumptionResponseBody struct {
 	Consumptions []Consumptions `json:"consumptions,omitempty"`
 }
 
-func (o *GetConsumptionResponseBody) GetConsumptions() []Consumptions {
-	if o == nil {
+func (g *GetConsumptionResponseBody) GetConsumptions() []Consumptions {
+	if g == nil {
 		return nil
 	}
-	return o.Consumptions
+	return g.Consumptions
 }
 
 type GetConsumptionResponse struct {
@@ -178,37 +178,37 @@ type GetConsumptionResponse struct {
 	Object *GetConsumptionResponseBody
 }
 
-func (o *GetConsumptionResponse) GetContentType() string {
-	if o == nil {
+func (g *GetConsumptionResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetConsumptionResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetConsumptionResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetConsumptionResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetConsumptionResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetConsumptionResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetConsumptionResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetConsumptionResponse) GetObject() *GetConsumptionResponseBody {
-	if o == nil {
+func (g *GetConsumptionResponse) GetObject() *GetConsumptionResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -24,18 +24,18 @@ func (m *MeterReadingWidgetHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MeterReadingWidgetHeadline) GetDe() *string {
-	if o == nil {
+func (m *MeterReadingWidgetHeadline) GetDe() *string {
+	if m == nil {
 		return nil
 	}
-	return o.De
+	return m.De
 }
 
-func (o *MeterReadingWidgetHeadline) GetEn() *string {
-	if o == nil {
+func (m *MeterReadingWidgetHeadline) GetEn() *string {
+	if m == nil {
 		return nil
 	}
-	return o.En
+	return m.En
 }
 
 type MeterReadingWidgetSubHeadline struct {
@@ -54,18 +54,18 @@ func (m *MeterReadingWidgetSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MeterReadingWidgetSubHeadline) GetDe() *string {
-	if o == nil {
+func (m *MeterReadingWidgetSubHeadline) GetDe() *string {
+	if m == nil {
 		return nil
 	}
-	return o.De
+	return m.De
 }
 
-func (o *MeterReadingWidgetSubHeadline) GetEn() *string {
-	if o == nil {
+func (m *MeterReadingWidgetSubHeadline) GetEn() *string {
+	if m == nil {
 		return nil
 	}
-	return o.En
+	return m.En
 }
 
 type MeterReadingWidgetType string
@@ -130,50 +130,50 @@ func (m MeterReadingWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MeterReadingWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MeterReadingWidget) GetHeadline() *MeterReadingWidgetHeadline {
-	if o == nil {
+func (m *MeterReadingWidget) GetHeadline() *MeterReadingWidgetHeadline {
+	if m == nil {
 		return nil
 	}
-	return o.Headline
+	return m.Headline
 }
 
-func (o *MeterReadingWidget) GetID() string {
-	if o == nil {
+func (m *MeterReadingWidget) GetID() string {
+	if m == nil {
 		return ""
 	}
-	return o.ID
+	return m.ID
 }
 
-func (o *MeterReadingWidget) GetListIndex() int64 {
-	if o == nil {
+func (m *MeterReadingWidget) GetListIndex() int64 {
+	if m == nil {
 		return 0
 	}
-	return o.ListIndex
+	return m.ListIndex
 }
 
-func (o *MeterReadingWidget) GetSchema() *string {
-	if o == nil {
+func (m *MeterReadingWidget) GetSchema() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Schema
+	return m.Schema
 }
 
-func (o *MeterReadingWidget) GetSubHeadline() *MeterReadingWidgetSubHeadline {
-	if o == nil {
+func (m *MeterReadingWidget) GetSubHeadline() *MeterReadingWidgetSubHeadline {
+	if m == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return m.SubHeadline
 }
 
-func (o *MeterReadingWidget) GetType() MeterReadingWidgetType {
-	if o == nil {
+func (m *MeterReadingWidget) GetType() MeterReadingWidgetType {
+	if m == nil {
 		return MeterReadingWidgetType("")
 	}
-	return o.Type
+	return m.Type
 }

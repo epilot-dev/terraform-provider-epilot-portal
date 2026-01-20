@@ -13,18 +13,18 @@ type Cache struct {
 	TTL string `json:"ttl"`
 }
 
-func (o *Cache) GetKey() string {
-	if o == nil {
+func (c *Cache) GetKey() string {
+	if c == nil {
 		return ""
 	}
-	return o.Key
+	return c.Key
 }
 
-func (o *Cache) GetTTL() string {
-	if o == nil {
+func (c *Cache) GetTTL() string {
+	if c == nil {
 		return ""
 	}
-	return o.TTL
+	return c.TTL
 }
 
 type ExtensionAuthBlock struct {
@@ -46,50 +46,50 @@ func (e ExtensionAuthBlock) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionAuthBlock) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionAuthBlock) GetBody() map[string]string {
-	if o == nil {
+func (e *ExtensionAuthBlock) GetBody() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.Body
+	return e.Body
 }
 
-func (o *ExtensionAuthBlock) GetCache() *Cache {
-	if o == nil {
+func (e *ExtensionAuthBlock) GetCache() *Cache {
+	if e == nil {
 		return nil
 	}
-	return o.Cache
+	return e.Cache
 }
 
-func (o *ExtensionAuthBlock) GetHeaders() map[string]string {
-	if o == nil {
+func (e *ExtensionAuthBlock) GetHeaders() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.Headers
+	return e.Headers
 }
 
-func (o *ExtensionAuthBlock) GetMethod() *string {
-	if o == nil {
+func (e *ExtensionAuthBlock) GetMethod() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Method
+	return e.Method
 }
 
-func (o *ExtensionAuthBlock) GetParams() map[string]string {
-	if o == nil {
+func (e *ExtensionAuthBlock) GetParams() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.Params
+	return e.Params
 }
 
-func (o *ExtensionAuthBlock) GetURL() string {
-	if o == nil {
+func (e *ExtensionAuthBlock) GetURL() string {
+	if e == nil {
 		return ""
 	}
-	return o.URL
+	return e.URL
 }

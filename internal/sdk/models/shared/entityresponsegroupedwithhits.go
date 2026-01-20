@@ -29,32 +29,32 @@ func (e *EntityResponseGroupedWithHitsPagination) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-func (o *EntityResponseGroupedWithHitsPagination) GetFrom() *float64 {
-	if o == nil {
+func (e *EntityResponseGroupedWithHitsPagination) GetFrom() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.From
+	return e.From
 }
 
-func (o *EntityResponseGroupedWithHitsPagination) GetHasMore() *bool {
-	if o == nil {
+func (e *EntityResponseGroupedWithHitsPagination) GetHasMore() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.HasMore
+	return e.HasMore
 }
 
-func (o *EntityResponseGroupedWithHitsPagination) GetSize() *float64 {
-	if o == nil {
+func (e *EntityResponseGroupedWithHitsPagination) GetSize() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.Size
+	return e.Size
 }
 
-func (o *EntityResponseGroupedWithHitsPagination) GetTotal() *float64 {
-	if o == nil {
+func (e *EntityResponseGroupedWithHitsPagination) GetTotal() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.Total
+	return e.Total
 }
 
 type Groups struct {
@@ -78,32 +78,32 @@ func (g *Groups) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Groups) GetCount() *float64 {
-	if o == nil {
+func (g *Groups) GetCount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Count
+	return g.Count
 }
 
-func (o *Groups) GetGroup() *string {
-	if o == nil {
+func (g *Groups) GetGroup() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Group
+	return g.Group
 }
 
-func (o *Groups) GetPagination() *EntityResponseGroupedWithHitsPagination {
-	if o == nil {
+func (g *Groups) GetPagination() *EntityResponseGroupedWithHitsPagination {
+	if g == nil {
 		return nil
 	}
-	return o.Pagination
+	return g.Pagination
 }
 
-func (o *Groups) GetResults() []EntityItem {
-	if o == nil {
+func (g *Groups) GetResults() []EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Results
+	return g.Results
 }
 
 // GroupsPagination - Group pagination metadata
@@ -125,18 +125,18 @@ func (g *GroupsPagination) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GroupsPagination) GetAfterKey() map[string]string {
-	if o == nil {
+func (g *GroupsPagination) GetAfterKey() map[string]string {
+	if g == nil {
 		return nil
 	}
-	return o.AfterKey
+	return g.AfterKey
 }
 
-func (o *GroupsPagination) GetHasMore() *bool {
-	if o == nil {
+func (g *GroupsPagination) GetHasMore() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.HasMore
+	return g.HasMore
 }
 
 // EntityResponseGroupedWithHits - Response for entity search requests, but with groupings
@@ -159,23 +159,23 @@ func (e *EntityResponseGroupedWithHits) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityResponseGroupedWithHits) GetGroups() []Groups {
-	if o == nil {
+func (e *EntityResponseGroupedWithHits) GetGroups() []Groups {
+	if e == nil {
 		return nil
 	}
-	return o.Groups
+	return e.Groups
 }
 
-func (o *EntityResponseGroupedWithHits) GetGroupsPagination() *GroupsPagination {
-	if o == nil {
+func (e *EntityResponseGroupedWithHits) GetGroupsPagination() *GroupsPagination {
+	if e == nil {
 		return nil
 	}
-	return o.GroupsPagination
+	return e.GroupsPagination
 }
 
-func (o *EntityResponseGroupedWithHits) GetHits() *float64 {
-	if o == nil {
+func (e *EntityResponseGroupedWithHits) GetHits() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.Hits
+	return e.Hits
 }

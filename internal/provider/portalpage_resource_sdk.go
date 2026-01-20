@@ -185,53 +185,53 @@ func (r *PortalPageResourceModel) ToOperationsUpdatePortalPageRequest(ctx contex
 func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*shared.PageRequest, diag.Diagnostics) {
 	var diags diag.Diagnostics
 
-	var additionalProperties interface{}
+	var additionalProperties map[string]any
 	if !r.AdditionalProperties.IsUnknown() && !r.AdditionalProperties.IsNull() {
 		_ = json.Unmarshal([]byte(r.AdditionalProperties.ValueString()), &additionalProperties)
 	}
 	blocks := make(map[string]shared.Block)
-	for blocksKey, blocksValue := range r.Blocks {
-		var additionalProperties1 interface{}
-		if !blocksValue.AdditionalProperties.IsUnknown() && !blocksValue.AdditionalProperties.IsNull() {
-			_ = json.Unmarshal([]byte(blocksValue.AdditionalProperties.ValueString()), &additionalProperties1)
+	for blocksKey := range r.Blocks {
+		var additionalProperties1 map[string]any
+		if !r.Blocks[blocksKey].AdditionalProperties.IsUnknown() && !r.Blocks[blocksKey].AdditionalProperties.IsNull() {
+			_ = json.Unmarshal([]byte(r.Blocks[blocksKey].AdditionalProperties.ValueString()), &additionalProperties1)
 		}
 		id := new(string)
-		if !blocksValue.ID.IsUnknown() && !blocksValue.ID.IsNull() {
-			*id = blocksValue.ID.ValueString()
+		if !r.Blocks[blocksKey].ID.IsUnknown() && !r.Blocks[blocksKey].ID.IsNull() {
+			*id = r.Blocks[blocksKey].ID.ValueString()
 		} else {
 			id = nil
 		}
 		var order float64
-		order = blocksValue.Order.ValueFloat64()
+		order = r.Blocks[blocksKey].Order.ValueFloat64()
 
 		parentID := new(string)
-		if !blocksValue.ParentID.IsUnknown() && !blocksValue.ParentID.IsNull() {
-			*parentID = blocksValue.ParentID.ValueString()
+		if !r.Blocks[blocksKey].ParentID.IsUnknown() && !r.Blocks[blocksKey].ParentID.IsNull() {
+			*parentID = r.Blocks[blocksKey].ParentID.ValueString()
 		} else {
 			parentID = nil
 		}
 		var props *shared.BlockProps
-		if blocksValue.Props != nil {
-			var additionalProperties2 interface{}
-			if !blocksValue.Props.AdditionalProperties.IsUnknown() && !blocksValue.Props.AdditionalProperties.IsNull() {
-				_ = json.Unmarshal([]byte(blocksValue.Props.AdditionalProperties.ValueString()), &additionalProperties2)
+		if r.Blocks[blocksKey].Props != nil {
+			var additionalProperties2 map[string]any
+			if !r.Blocks[blocksKey].Props.AdditionalProperties.IsUnknown() && !r.Blocks[blocksKey].Props.AdditionalProperties.IsNull() {
+				_ = json.Unmarshal([]byte(r.Blocks[blocksKey].Props.AdditionalProperties.ValueString()), &additionalProperties2)
 			}
 			content := make(map[string]interface{})
-			for contentKey, contentValue := range blocksValue.Props.Content {
+			for contentKey := range r.Blocks[blocksKey].Props.Content {
 				var contentInst interface{}
-				_ = json.Unmarshal([]byte(contentValue.ValueString()), &contentInst)
+				_ = json.Unmarshal([]byte(r.Blocks[blocksKey].Props.Content[contentKey].ValueString()), &contentInst)
 				content[contentKey] = contentInst
 			}
 			design := make(map[string]interface{})
-			for designKey, designValue := range blocksValue.Props.Design {
+			for designKey := range r.Blocks[blocksKey].Props.Design {
 				var designInst interface{}
-				_ = json.Unmarshal([]byte(designValue.ValueString()), &designInst)
+				_ = json.Unmarshal([]byte(r.Blocks[blocksKey].Props.Design[designKey].ValueString()), &designInst)
 				design[designKey] = designInst
 			}
 			visibility := make(map[string]interface{})
-			for visibilityKey, visibilityValue := range blocksValue.Props.Visibility {
+			for visibilityKey := range r.Blocks[blocksKey].Props.Visibility {
 				var visibilityInst interface{}
-				_ = json.Unmarshal([]byte(visibilityValue.ValueString()), &visibilityInst)
+				_ = json.Unmarshal([]byte(r.Blocks[blocksKey].Props.Visibility[visibilityKey].ValueString()), &visibilityInst)
 				visibility[visibilityKey] = visibilityInst
 			}
 			props = &shared.BlockProps{
@@ -242,7 +242,7 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 			}
 		}
 		var typeVar string
-		typeVar = blocksValue.Type.ValueString()
+		typeVar = r.Blocks[blocksKey].Type.ValueString()
 
 		blocksInst := shared.Block{
 			AdditionalProperties: additionalProperties1,
@@ -255,15 +255,15 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 		blocks[blocksKey] = blocksInst
 	}
 	content1 := make(map[string]interface{})
-	for contentKey1, contentValue1 := range r.Content {
+	for contentKey1 := range r.Content {
 		var contentInst1 interface{}
-		_ = json.Unmarshal([]byte(contentValue1.ValueString()), &contentInst1)
+		_ = json.Unmarshal([]byte(r.Content[contentKey1].ValueString()), &contentInst1)
 		content1[contentKey1] = contentInst1
 	}
 	design1 := make(map[string]interface{})
-	for designKey1, designValue1 := range r.Design {
+	for designKey1 := range r.Design {
 		var designInst1 interface{}
-		_ = json.Unmarshal([]byte(designValue1.ValueString()), &designInst1)
+		_ = json.Unmarshal([]byte(r.Design[designKey1].ValueString()), &designInst1)
 		design1[designKey1] = designInst1
 	}
 	isDeleted := new(bool)
@@ -313,9 +313,9 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 	slug = r.Slug.ValueString()
 
 	visibility1 := make(map[string]interface{})
-	for visibilityKey1, visibilityValue1 := range r.Visibility {
+	for visibilityKey1 := range r.Visibility {
 		var visibilityInst1 interface{}
-		_ = json.Unmarshal([]byte(visibilityValue1.ValueString()), &visibilityInst1)
+		_ = json.Unmarshal([]byte(r.Visibility[visibilityKey1].ValueString()), &visibilityInst1)
 		visibility1[visibilityKey1] = visibilityInst1
 	}
 	out := shared.PageRequest{

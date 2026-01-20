@@ -9,16 +9,16 @@ type ExtensionHookConfig struct {
 	HookID *string `json:"hook_id,omitempty"`
 }
 
-func (o *ExtensionHookConfig) GetAppID() *string {
-	if o == nil {
+func (e *ExtensionHookConfig) GetAppID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AppID
+	return e.AppID
 }
 
-func (o *ExtensionHookConfig) GetHookID() *string {
-	if o == nil {
+func (e *ExtensionHookConfig) GetHookID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.HookID
+	return e.HookID
 }

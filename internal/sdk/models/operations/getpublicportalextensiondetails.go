@@ -13,18 +13,18 @@ type GetPublicPortalExtensionDetailsRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetPublicPortalExtensionDetailsRequest) GetOrgID() string {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsRequest) GetOrgID() string {
+	if g == nil {
 		return ""
 	}
-	return o.OrgID
+	return g.OrgID
 }
 
-func (o *GetPublicPortalExtensionDetailsRequest) GetOrigin() string {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsRequest) GetOrigin() string {
+	if g == nil {
 		return ""
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type GetPublicPortalExtensionDetailsResponse struct {
@@ -40,37 +40,37 @@ type GetPublicPortalExtensionDetailsResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetPublicPortalExtensionDetailsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPublicPortalExtensionDetailsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPublicPortalExtensionDetailsResponse) GetPublicExtensionCapabilities() *shared.PublicExtensionCapabilities {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsResponse) GetPublicExtensionCapabilities() *shared.PublicExtensionCapabilities {
+	if g == nil {
 		return nil
 	}
-	return o.PublicExtensionCapabilities
+	return g.PublicExtensionCapabilities
 }
 
-func (o *GetPublicPortalExtensionDetailsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPublicPortalExtensionDetailsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPublicPortalExtensionDetailsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

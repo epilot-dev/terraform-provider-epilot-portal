@@ -12,18 +12,18 @@ type SsoCallbackRequest struct {
 	Domain             *string                   `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *SsoCallbackRequest) GetSSOCallbackRequest() shared.SSOCallbackRequest {
-	if o == nil {
+func (s *SsoCallbackRequest) GetSSOCallbackRequest() shared.SSOCallbackRequest {
+	if s == nil {
 		return shared.SSOCallbackRequest{}
 	}
-	return o.SSOCallbackRequest
+	return s.SSOCallbackRequest
 }
 
-func (o *SsoCallbackRequest) GetDomain() *string {
-	if o == nil {
+func (s *SsoCallbackRequest) GetDomain() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Domain
+	return s.Domain
 }
 
 type SsoCallbackResponse struct {
@@ -39,37 +39,37 @@ type SsoCallbackResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *SsoCallbackResponse) GetContentType() string {
-	if o == nil {
+func (s *SsoCallbackResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SsoCallbackResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (s *SsoCallbackResponse) GetErrorResp() *shared.ErrorResp {
+	if s == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return s.ErrorResp
 }
 
-func (o *SsoCallbackResponse) GetSSOCallbackResponse() *shared.SSOCallbackResponse {
-	if o == nil {
+func (s *SsoCallbackResponse) GetSSOCallbackResponse() *shared.SSOCallbackResponse {
+	if s == nil {
 		return nil
 	}
-	return o.SSOCallbackResponse
+	return s.SSOCallbackResponse
 }
 
-func (o *SsoCallbackResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SsoCallbackResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SsoCallbackResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SsoCallbackResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

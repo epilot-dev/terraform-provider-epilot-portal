@@ -55,64 +55,64 @@ func (m Meter) MarshalJSON() ([]byte, error) {
 }
 
 func (m *Meter) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Meter) GetAdditionalProperties() any {
-	if o == nil {
+func (m *Meter) GetAdditionalProperties() any {
+	if m == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return m.AdditionalProperties
 }
 
-func (o *Meter) GetCreatedAt() time.Time {
-	if o == nil {
+func (m *Meter) GetCreatedAt() time.Time {
+	if m == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return m.CreatedAt
 }
 
-func (o *Meter) GetID() string {
-	if o == nil {
+func (m *Meter) GetID() string {
+	if m == nil {
 		return ""
 	}
-	return o.ID
+	return m.ID
 }
 
-func (o *Meter) GetOrg() string {
-	if o == nil {
+func (m *Meter) GetOrg() string {
+	if m == nil {
 		return ""
 	}
-	return o.Org
+	return m.Org
 }
 
-func (o *Meter) GetSchema() MeterSchema {
-	if o == nil {
+func (m *Meter) GetSchema() MeterSchema {
+	if m == nil {
 		return MeterSchema("")
 	}
-	return o.Schema
+	return m.Schema
 }
 
-func (o *Meter) GetTags() []string {
-	if o == nil {
+func (m *Meter) GetTags() []string {
+	if m == nil {
 		return nil
 	}
-	return o.Tags
+	return m.Tags
 }
 
-func (o *Meter) GetTitle() string {
-	if o == nil {
+func (m *Meter) GetTitle() string {
+	if m == nil {
 		return ""
 	}
-	return o.Title
+	return m.Title
 }
 
-func (o *Meter) GetUpdatedAt() time.Time {
-	if o == nil {
+func (m *Meter) GetUpdatedAt() time.Time {
+	if m == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return m.UpdatedAt
 }

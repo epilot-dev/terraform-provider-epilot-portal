@@ -64,7 +64,7 @@ func (s *ECPAdmin) CanTriggerPortalFlow(ctx context.Context, request operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "canTriggerPortalFlow",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "TriggerPortalFlow", "json", `request:"mediaType=application/json"`)
@@ -93,7 +93,7 @@ func (s *ECPAdmin) CanTriggerPortalFlow(ctx context.Context, request operations.
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -274,7 +274,7 @@ func (s *ECPAdmin) ConfigureDistribution(ctx context.Context, request operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "configureDistribution",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -296,7 +296,7 @@ func (s *ECPAdmin) ConfigureDistribution(ctx context.Context, request operations
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -521,7 +521,7 @@ func (s *ECPAdmin) CreatePortalConfig(ctx context.Context, request shared.Upsert
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createPortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -775,7 +775,7 @@ func (s *ECPAdmin) CreatePortalPage(ctx context.Context, request operations.Crea
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createPortalPage",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "PageRequest", "json", `request:"mediaType=application/json"`)
@@ -804,7 +804,7 @@ func (s *ECPAdmin) CreatePortalPage(ctx context.Context, request operations.Crea
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1031,7 +1031,7 @@ func (s *ECPAdmin) CreatePortalPageBlock(ctx context.Context, request operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createPortalPageBlock",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "BlockRequest", "json", `request:"mediaType=application/json"`)
@@ -1283,7 +1283,7 @@ func (s *ECPAdmin) DeletePortal(ctx context.Context, request operations.DeletePo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deletePortal",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1305,7 +1305,7 @@ func (s *ECPAdmin) DeletePortal(ctx context.Context, request operations.DeletePo
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1510,7 +1510,7 @@ func (s *ECPAdmin) DeletePortalConfig(ctx context.Context, request operations.De
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deletePortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1735,7 +1735,7 @@ func (s *ECPAdmin) DeletePortalPage(ctx context.Context, request operations.Dele
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deletePortalPage",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -1960,7 +1960,7 @@ func (s *ECPAdmin) DeletePortalPageBlock(ctx context.Context, request operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deletePortalPageBlock",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2185,7 +2185,7 @@ func (s *ECPAdmin) ExtraPermissionAttributes(ctx context.Context, opts ...operat
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "extraPermissionAttributes",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2405,7 +2405,7 @@ func (s *ECPAdmin) FetchPortalUsersByRelatedEntity(ctx context.Context, request 
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "fetchPortalUsersByRelatedEntity",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2427,7 +2427,7 @@ func (s *ECPAdmin) FetchPortalUsersByRelatedEntity(ctx context.Context, request 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -2652,7 +2652,7 @@ func (s *ECPAdmin) GetAllPortalConfigs(ctx context.Context, opts ...operations.O
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getAllPortalConfigs",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -2895,7 +2895,7 @@ func (s *ECPAdmin) GetDefaultPages(ctx context.Context, opts ...operations.Optio
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getDefaultPages",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3138,7 +3138,7 @@ func (s *ECPAdmin) GetECPContact(ctx context.Context, request operations.GetECPC
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getECPContact",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3160,7 +3160,7 @@ func (s *ECPAdmin) GetECPContact(ctx context.Context, request operations.GetECPC
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -3387,7 +3387,7 @@ func (s *ECPAdmin) GetEmailTemplates(ctx context.Context, request operations.Get
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getEmailTemplates",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3409,7 +3409,7 @@ func (s *ECPAdmin) GetEmailTemplates(ctx context.Context, request operations.Get
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -3634,7 +3634,7 @@ func (s *ECPAdmin) GetEntityIdentifiers(ctx context.Context, request operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getEntityIdentifiers",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3877,7 +3877,7 @@ func (s *ECPAdmin) GetExternalLinks(ctx context.Context, request operations.GetE
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getExternalLinks",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -3899,7 +3899,7 @@ func (s *ECPAdmin) GetExternalLinks(ctx context.Context, request operations.GetE
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -4124,7 +4124,7 @@ func (s *ECPAdmin) GetOrgPortalConfig(ctx context.Context, request operations.Ge
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getOrgPortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -4146,7 +4146,7 @@ func (s *ECPAdmin) GetOrgPortalConfig(ctx context.Context, request operations.Ge
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -4371,7 +4371,7 @@ func (s *ECPAdmin) GetPortalConfig(ctx context.Context, request operations.GetPo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -4393,7 +4393,7 @@ func (s *ECPAdmin) GetPortalConfig(ctx context.Context, request operations.GetPo
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -4618,7 +4618,7 @@ func (s *ECPAdmin) GetPortalConfigV3(ctx context.Context, request operations.Get
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalConfigV3",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -4863,7 +4863,7 @@ func (s *ECPAdmin) GetPortalExtensions(ctx context.Context, request operations.G
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalExtensions",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -4885,7 +4885,7 @@ func (s *ECPAdmin) GetPortalExtensions(ctx context.Context, request operations.G
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -5110,7 +5110,7 @@ func (s *ECPAdmin) GetPortalPage(ctx context.Context, request operations.GetPort
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalPage",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -5355,7 +5355,7 @@ func (s *ECPAdmin) GetPortalPageBlock(ctx context.Context, request operations.Ge
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalPageBlock",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -5600,7 +5600,7 @@ func (s *ECPAdmin) GetPortalPageBlocks(ctx context.Context, request operations.G
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalPageBlocks",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -5845,7 +5845,7 @@ func (s *ECPAdmin) GetPortalPages(ctx context.Context, request operations.GetPor
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalPages",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -5867,7 +5867,7 @@ func (s *ECPAdmin) GetPortalPages(ctx context.Context, request operations.GetPor
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -6092,7 +6092,7 @@ func (s *ECPAdmin) GetPortalWidgets(ctx context.Context, request operations.GetP
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalWidgets",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -6114,7 +6114,7 @@ func (s *ECPAdmin) GetPortalWidgets(ctx context.Context, request operations.GetP
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -6339,7 +6339,7 @@ func (s *ECPAdmin) GetRecipientsToNotifyOnAutomation(ctx context.Context, reques
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getRecipientsToNotifyOnAutomation",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -6566,7 +6566,7 @@ func (s *ECPAdmin) GetRegistrationIdentifiers(ctx context.Context, opts ...opera
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getRegistrationIdentifiers",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -6811,7 +6811,7 @@ func (s *ECPAdmin) GetResolvedExternalLink(ctx context.Context, request operatio
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getResolvedExternalLink",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -6833,7 +6833,7 @@ func (s *ECPAdmin) GetResolvedExternalLink(ctx context.Context, request operatio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -7058,7 +7058,7 @@ func (s *ECPAdmin) GetValidSecondaryAttributes(ctx context.Context, opts ...oper
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getValidSecondaryAttributes",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -7301,7 +7301,7 @@ func (s *ECPAdmin) ListAllPortalConfigs(ctx context.Context, opts ...operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "listAllPortalConfigs",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -7546,7 +7546,7 @@ func (s *ECPAdmin) LoginToPortalAsUser(ctx context.Context, request operations.L
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "loginToPortalAsUser",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -7752,7 +7752,7 @@ func (s *ECPAdmin) PutPortalConfig(ctx context.Context, request operations.PutPo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "putPortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "PortalConfigV3", "json", `request:"mediaType=application/json"`)
@@ -8006,7 +8006,7 @@ func (s *ECPAdmin) ReplaceECPTemplateVariables(ctx context.Context, request map[
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "replaceECPTemplateVariables",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Request", "json", `request:"mediaType=application/json"`)
@@ -8254,7 +8254,7 @@ func (s *ECPAdmin) ResendConfirmationEmail(ctx context.Context, request operatio
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "resendConfirmationEmail",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -8499,7 +8499,7 @@ func (s *ECPAdmin) SavePortalFiles(ctx context.Context, request shared.SavePorta
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "savePortalFiles",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -8753,7 +8753,7 @@ func (s *ECPAdmin) SwapPortalConfig(ctx context.Context, request operations.Swap
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "swapPortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
@@ -9007,7 +9007,7 @@ func (s *ECPAdmin) UpdatePortalPage(ctx context.Context, request operations.Upda
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updatePortalPage",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "PageRequest", "json", `request:"mediaType=application/json"`)
@@ -9259,7 +9259,7 @@ func (s *ECPAdmin) UpdatePortalPageBlock(ctx context.Context, request operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "updatePortalPageBlock",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "BlockRequest", "json", `request:"mediaType=application/json"`)
@@ -9511,7 +9511,7 @@ func (s *ECPAdmin) UpsertEmailTemplates(ctx context.Context, request operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "upsertEmailTemplates",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "EmailTemplates", "json", `request:"mediaType=application/json"`)
@@ -9540,7 +9540,7 @@ func (s *ECPAdmin) UpsertEmailTemplates(ctx context.Context, request operations.
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -9765,7 +9765,7 @@ func (s *ECPAdmin) UpsertPortal(ctx context.Context, request operations.UpsertPo
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "upsertPortal",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpsertPortalConfig", "json", `request:"mediaType=application/json"`)
@@ -9794,7 +9794,7 @@ func (s *ECPAdmin) UpsertPortal(ctx context.Context, request operations.UpsertPo
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -10023,7 +10023,7 @@ func (s *ECPAdmin) UpsertPortalWidget(ctx context.Context, request operations.Up
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "upsertPortalWidget",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "UpsertPortalWidget", "json", `request:"mediaType=application/json"`)
@@ -10052,7 +10052,7 @@ func (s *ECPAdmin) UpsertPortalWidget(ctx context.Context, request operations.Up
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -10279,7 +10279,7 @@ func (s *ECPAdmin) ValidateCaaRecords(ctx context.Context, request operations.Va
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "validateCaaRecords",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
@@ -10301,7 +10301,7 @@ func (s *ECPAdmin) ValidateCaaRecords(ctx context.Context, request operations.Va
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

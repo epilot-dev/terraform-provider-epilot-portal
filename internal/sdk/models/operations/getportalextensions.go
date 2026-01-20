@@ -12,11 +12,11 @@ type GetPortalExtensionsRequest struct {
 	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetPortalExtensionsRequest) GetOrigin() *string {
-	if o == nil {
+func (g *GetPortalExtensionsRequest) GetOrigin() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type GetPortalExtensionsResponse struct {
@@ -32,37 +32,37 @@ type GetPortalExtensionsResponse struct {
 	Classes []shared.Extension
 }
 
-func (o *GetPortalExtensionsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPortalExtensionsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPortalExtensionsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPortalExtensionsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPortalExtensionsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPortalExtensionsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPortalExtensionsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPortalExtensionsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPortalExtensionsResponse) GetClasses() []shared.Extension {
-	if o == nil {
+func (g *GetPortalExtensionsResponse) GetClasses() []shared.Extension {
+	if g == nil {
 		return nil
 	}
-	return o.Classes
+	return g.Classes
 }

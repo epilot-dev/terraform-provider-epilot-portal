@@ -15,25 +15,25 @@ type ConfirmUserWithUserIDRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *ConfirmUserWithUserIDRequest) GetID() string {
-	if o == nil {
+func (c *ConfirmUserWithUserIDRequest) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *ConfirmUserWithUserIDRequest) GetOrgID() string {
-	if o == nil {
+func (c *ConfirmUserWithUserIDRequest) GetOrgID() string {
+	if c == nil {
 		return ""
 	}
-	return o.OrgID
+	return c.OrgID
 }
 
-func (o *ConfirmUserWithUserIDRequest) GetOrigin() string {
-	if o == nil {
+func (c *ConfirmUserWithUserIDRequest) GetOrigin() string {
+	if c == nil {
 		return ""
 	}
-	return o.Origin
+	return c.Origin
 }
 
 type ConfirmUserWithUserIDResponse struct {
@@ -47,30 +47,30 @@ type ConfirmUserWithUserIDResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *ConfirmUserWithUserIDResponse) GetContentType() string {
-	if o == nil {
+func (c *ConfirmUserWithUserIDResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *ConfirmUserWithUserIDResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *ConfirmUserWithUserIDResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *ConfirmUserWithUserIDResponse) GetStatusCode() int {
-	if o == nil {
+func (c *ConfirmUserWithUserIDResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *ConfirmUserWithUserIDResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *ConfirmUserWithUserIDResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }

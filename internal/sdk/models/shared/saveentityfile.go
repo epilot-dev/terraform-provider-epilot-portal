@@ -44,18 +44,18 @@ type SaveEntityFileS3ref struct {
 	Key string `json:"key"`
 }
 
-func (o *SaveEntityFileS3ref) GetBucket() string {
-	if o == nil {
+func (s *SaveEntityFileS3ref) GetBucket() string {
+	if s == nil {
 		return ""
 	}
-	return o.Bucket
+	return s.Bucket
 }
 
-func (o *SaveEntityFileS3ref) GetKey() string {
-	if o == nil {
+func (s *SaveEntityFileS3ref) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.Key
+	return s.Key
 }
 
 type Files struct {
@@ -73,31 +73,31 @@ func (f Files) MarshalJSON() ([]byte, error) {
 }
 
 func (f *Files) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"filename", "s3ref"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Files) GetAccessControl() *SaveEntityFileAccessControl {
-	if o == nil {
+func (f *Files) GetAccessControl() *SaveEntityFileAccessControl {
+	if f == nil {
 		return nil
 	}
-	return o.AccessControl
+	return f.AccessControl
 }
 
-func (o *Files) GetFilename() string {
-	if o == nil {
+func (f *Files) GetFilename() string {
+	if f == nil {
 		return ""
 	}
-	return o.Filename
+	return f.Filename
 }
 
-func (o *Files) GetS3ref() SaveEntityFileS3ref {
-	if o == nil {
+func (f *Files) GetS3ref() SaveEntityFileS3ref {
+	if f == nil {
 		return SaveEntityFileS3ref{}
 	}
-	return o.S3ref
+	return f.S3ref
 }
 
 type SaveEntityFile struct {
@@ -108,23 +108,23 @@ type SaveEntityFile struct {
 	Files      []Files `json:"files"`
 }
 
-func (o *SaveEntityFile) GetEntityID() string {
-	if o == nil {
+func (s *SaveEntityFile) GetEntityID() string {
+	if s == nil {
 		return ""
 	}
-	return o.EntityID
+	return s.EntityID
 }
 
-func (o *SaveEntityFile) GetEntityType() string {
-	if o == nil {
+func (s *SaveEntityFile) GetEntityType() string {
+	if s == nil {
 		return ""
 	}
-	return o.EntityType
+	return s.EntityType
 }
 
-func (o *SaveEntityFile) GetFiles() []Files {
-	if o == nil {
+func (s *SaveEntityFile) GetFiles() []Files {
+	if s == nil {
 		return []Files{}
 	}
-	return o.Files
+	return s.Files
 }

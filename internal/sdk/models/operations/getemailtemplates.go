@@ -12,11 +12,11 @@ type GetEmailTemplatesRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetEmailTemplatesRequest) GetOrigin() string {
-	if o == nil {
+func (g *GetEmailTemplatesRequest) GetOrigin() string {
+	if g == nil {
 		return ""
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type GetEmailTemplatesResponse struct {
@@ -32,37 +32,37 @@ type GetEmailTemplatesResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetEmailTemplatesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetEmailTemplatesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetEmailTemplatesResponse) GetEmailTemplates() *shared.EmailTemplates {
-	if o == nil {
+func (g *GetEmailTemplatesResponse) GetEmailTemplates() *shared.EmailTemplates {
+	if g == nil {
 		return nil
 	}
-	return o.EmailTemplates
+	return g.EmailTemplates
 }
 
-func (o *GetEmailTemplatesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetEmailTemplatesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetEmailTemplatesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetEmailTemplatesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetEmailTemplatesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetEmailTemplatesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

@@ -16,18 +16,18 @@ type EntityRefs struct {
 	EntitySchema string `json:"entity_schema"`
 }
 
-func (o *EntityRefs) GetEntityID() string {
-	if o == nil {
+func (e *EntityRefs) GetEntityID() string {
+	if e == nil {
 		return ""
 	}
-	return o.EntityID
+	return e.EntityID
 }
 
-func (o *EntityRefs) GetEntitySchema() string {
-	if o == nil {
+func (e *EntityRefs) GetEntitySchema() string {
+	if e == nil {
 		return ""
 	}
-	return o.EntitySchema
+	return e.EntitySchema
 }
 
 // Status - The status to set for the campaign portal block
@@ -67,18 +67,18 @@ type UpdateCampaignPortalBlockStatusRequestBody struct {
 	Status Status `json:"status"`
 }
 
-func (o *UpdateCampaignPortalBlockStatusRequestBody) GetEntityRefs() []EntityRefs {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusRequestBody) GetEntityRefs() []EntityRefs {
+	if u == nil {
 		return []EntityRefs{}
 	}
-	return o.EntityRefs
+	return u.EntityRefs
 }
 
-func (o *UpdateCampaignPortalBlockStatusRequestBody) GetStatus() Status {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusRequestBody) GetStatus() Status {
+	if u == nil {
 		return Status("")
 	}
-	return o.Status
+	return u.Status
 }
 
 type UpdateCampaignPortalBlockStatusRequest struct {
@@ -87,18 +87,18 @@ type UpdateCampaignPortalBlockStatusRequest struct {
 	CampaignID string `pathParam:"style=simple,explode=false,name=campaign_id"`
 }
 
-func (o *UpdateCampaignPortalBlockStatusRequest) GetRequestBody() UpdateCampaignPortalBlockStatusRequestBody {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusRequest) GetRequestBody() UpdateCampaignPortalBlockStatusRequestBody {
+	if u == nil {
 		return UpdateCampaignPortalBlockStatusRequestBody{}
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
-func (o *UpdateCampaignPortalBlockStatusRequest) GetCampaignID() string {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusRequest) GetCampaignID() string {
+	if u == nil {
 		return ""
 	}
-	return o.CampaignID
+	return u.CampaignID
 }
 
 // UpdateCampaignPortalBlockStatusResponseBody - Campaign portal block status updated successfully.
@@ -113,32 +113,32 @@ type UpdateCampaignPortalBlockStatusResponseBody struct {
 	Updated int64 `json:"updated"`
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponseBody) GetFailed() int64 {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponseBody) GetFailed() int64 {
+	if u == nil {
 		return 0
 	}
-	return o.Failed
+	return u.Failed
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponseBody) GetSuccess() bool {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponseBody) GetSuccess() bool {
+	if u == nil {
 		return false
 	}
-	return o.Success
+	return u.Success
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponseBody) GetTotal() int64 {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponseBody) GetTotal() int64 {
+	if u == nil {
 		return 0
 	}
-	return o.Total
+	return u.Total
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponseBody) GetUpdated() int64 {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponseBody) GetUpdated() int64 {
+	if u == nil {
 		return 0
 	}
-	return o.Updated
+	return u.Updated
 }
 
 type UpdateCampaignPortalBlockStatusResponse struct {
@@ -154,37 +154,37 @@ type UpdateCampaignPortalBlockStatusResponse struct {
 	Object *UpdateCampaignPortalBlockStatusResponseBody
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateCampaignPortalBlockStatusResponse) GetObject() *UpdateCampaignPortalBlockStatusResponseBody {
-	if o == nil {
+func (u *UpdateCampaignPortalBlockStatusResponse) GetObject() *UpdateCampaignPortalBlockStatusResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

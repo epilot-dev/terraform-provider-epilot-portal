@@ -12,11 +12,11 @@ type TrackFileDownloadedRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *TrackFileDownloadedRequest) GetID() string {
-	if o == nil {
+func (t *TrackFileDownloadedRequest) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ID
+	return t.ID
 }
 
 // TrackFileDownloadedResponseBody - File download tracked successfully.
@@ -24,11 +24,11 @@ type TrackFileDownloadedResponseBody struct {
 	File *shared.FileItem `json:"file,omitempty"`
 }
 
-func (o *TrackFileDownloadedResponseBody) GetFile() *shared.FileItem {
-	if o == nil {
+func (t *TrackFileDownloadedResponseBody) GetFile() *shared.FileItem {
+	if t == nil {
 		return nil
 	}
-	return o.File
+	return t.File
 }
 
 type TrackFileDownloadedResponse struct {
@@ -44,37 +44,37 @@ type TrackFileDownloadedResponse struct {
 	Object *TrackFileDownloadedResponseBody
 }
 
-func (o *TrackFileDownloadedResponse) GetContentType() string {
-	if o == nil {
+func (t *TrackFileDownloadedResponse) GetContentType() string {
+	if t == nil {
 		return ""
 	}
-	return o.ContentType
+	return t.ContentType
 }
 
-func (o *TrackFileDownloadedResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (t *TrackFileDownloadedResponse) GetErrorResp() *shared.ErrorResp {
+	if t == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return t.ErrorResp
 }
 
-func (o *TrackFileDownloadedResponse) GetStatusCode() int {
-	if o == nil {
+func (t *TrackFileDownloadedResponse) GetStatusCode() int {
+	if t == nil {
 		return 0
 	}
-	return o.StatusCode
+	return t.StatusCode
 }
 
-func (o *TrackFileDownloadedResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (t *TrackFileDownloadedResponse) GetRawResponse() *http.Response {
+	if t == nil {
 		return nil
 	}
-	return o.RawResponse
+	return t.RawResponse
 }
 
-func (o *TrackFileDownloadedResponse) GetObject() *TrackFileDownloadedResponseBody {
-	if o == nil {
+func (t *TrackFileDownloadedResponse) GetObject() *TrackFileDownloadedResponseBody {
+	if t == nil {
 		return nil
 	}
-	return o.Object
+	return t.Object
 }

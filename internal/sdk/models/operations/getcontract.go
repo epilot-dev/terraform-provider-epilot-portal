@@ -12,11 +12,11 @@ type GetContractRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetContractRequest) GetID() string {
-	if o == nil {
+func (g *GetContractRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetContractResponseBody - The requested contract returned successfully.
@@ -35,53 +35,53 @@ type GetContractResponseBody struct {
 	Workflow  []map[string]any    `json:"workflow,omitempty"`
 }
 
-func (o *GetContractResponseBody) GetEntity() *shared.Contract {
-	if o == nil {
+func (g *GetContractResponseBody) GetEntity() *shared.Contract {
+	if g == nil {
 		return nil
 	}
-	return o.Entity
+	return g.Entity
 }
 
-func (o *GetContractResponseBody) GetFiles() []shared.File {
-	if o == nil {
+func (g *GetContractResponseBody) GetFiles() []shared.File {
+	if g == nil {
 		return nil
 	}
-	return o.Files
+	return g.Files
 }
 
-func (o *GetContractResponseBody) GetJourneyActions() []shared.JourneyActions {
-	if o == nil {
+func (g *GetContractResponseBody) GetJourneyActions() []shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
-func (o *GetContractResponseBody) GetMeters() []shared.Meter {
-	if o == nil {
+func (g *GetContractResponseBody) GetMeters() []shared.Meter {
+	if g == nil {
 		return nil
 	}
-	return o.Meters
+	return g.Meters
 }
 
-func (o *GetContractResponseBody) GetOrders() []shared.Order {
-	if o == nil {
+func (g *GetContractResponseBody) GetOrders() []shared.Order {
+	if g == nil {
 		return nil
 	}
-	return o.Orders
+	return g.Orders
 }
 
-func (o *GetContractResponseBody) GetRelations() []shared.EntityItem {
-	if o == nil {
+func (g *GetContractResponseBody) GetRelations() []shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Relations
+	return g.Relations
 }
 
-func (o *GetContractResponseBody) GetWorkflow() []map[string]any {
-	if o == nil {
+func (g *GetContractResponseBody) GetWorkflow() []map[string]any {
+	if g == nil {
 		return nil
 	}
-	return o.Workflow
+	return g.Workflow
 }
 
 type GetContractResponse struct {
@@ -97,37 +97,37 @@ type GetContractResponse struct {
 	Object *GetContractResponseBody
 }
 
-func (o *GetContractResponse) GetContentType() string {
-	if o == nil {
+func (g *GetContractResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetContractResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetContractResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetContractResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetContractResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetContractResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetContractResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetContractResponse) GetObject() *GetContractResponseBody {
-	if o == nil {
+func (g *GetContractResponse) GetObject() *GetContractResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

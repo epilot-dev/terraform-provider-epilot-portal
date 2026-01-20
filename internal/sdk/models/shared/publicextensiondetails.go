@@ -17,24 +17,24 @@ func (p PublicExtensionDetailsName) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PublicExtensionDetailsName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PublicExtensionDetailsName) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (p *PublicExtensionDetailsName) GetAdditionalProperties() map[string]string {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *PublicExtensionDetailsName) GetEn() string {
-	if o == nil {
+func (p *PublicExtensionDetailsName) GetEn() string {
+	if p == nil {
 		return ""
 	}
-	return o.En
+	return p.En
 }
 
 type PublicExtensionDetails struct {
@@ -43,16 +43,16 @@ type PublicExtensionDetails struct {
 	Name *PublicExtensionDetailsName `json:"name,omitempty"`
 }
 
-func (o *PublicExtensionDetails) GetID() *string {
-	if o == nil {
+func (p *PublicExtensionDetails) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PublicExtensionDetails) GetName() *PublicExtensionDetailsName {
-	if o == nil {
+func (p *PublicExtensionDetails) GetName() *PublicExtensionDetailsName {
+	if p == nil {
 		return nil
 	}
-	return o.Name
+	return p.Name
 }

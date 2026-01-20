@@ -9,16 +9,16 @@ type ContractIdentifier struct {
 	Schema *EntitySlug `json:"schema,omitempty"`
 }
 
-func (o *ContractIdentifier) GetName() *string {
-	if o == nil {
+func (c *ContractIdentifier) GetName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Name
+	return c.Name
 }
 
-func (o *ContractIdentifier) GetSchema() *EntitySlug {
-	if o == nil {
+func (c *ContractIdentifier) GetSchema() *EntitySlug {
+	if c == nil {
 		return nil
 	}
-	return o.Schema
+	return c.Schema
 }

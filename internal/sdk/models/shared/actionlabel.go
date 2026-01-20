@@ -22,16 +22,16 @@ func (a *ActionLabel) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ActionLabel) GetDe() *string {
-	if o == nil {
+func (a *ActionLabel) GetDe() *string {
+	if a == nil {
 		return nil
 	}
-	return o.De
+	return a.De
 }
 
-func (o *ActionLabel) GetEn() *string {
-	if o == nil {
+func (a *ActionLabel) GetEn() *string {
+	if a == nil {
 		return nil
 	}
-	return o.En
+	return a.En
 }

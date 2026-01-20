@@ -12,11 +12,11 @@ type SaveEntityFileResponseBody struct {
 	CreatedFiles []shared.File `json:"createdFiles,omitempty"`
 }
 
-func (o *SaveEntityFileResponseBody) GetCreatedFiles() []shared.File {
-	if o == nil {
+func (s *SaveEntityFileResponseBody) GetCreatedFiles() []shared.File {
+	if s == nil {
 		return nil
 	}
-	return o.CreatedFiles
+	return s.CreatedFiles
 }
 
 type SaveEntityFileResponse struct {
@@ -32,37 +32,37 @@ type SaveEntityFileResponse struct {
 	Object *SaveEntityFileResponseBody
 }
 
-func (o *SaveEntityFileResponse) GetContentType() string {
-	if o == nil {
+func (s *SaveEntityFileResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SaveEntityFileResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (s *SaveEntityFileResponse) GetErrorResp() *shared.ErrorResp {
+	if s == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return s.ErrorResp
 }
 
-func (o *SaveEntityFileResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SaveEntityFileResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SaveEntityFileResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SaveEntityFileResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SaveEntityFileResponse) GetObject() *SaveEntityFileResponseBody {
-	if o == nil {
+func (s *SaveEntityFileResponse) GetObject() *SaveEntityFileResponseBody {
+	if s == nil {
 		return nil
 	}
-	return o.Object
+	return s.Object
 }

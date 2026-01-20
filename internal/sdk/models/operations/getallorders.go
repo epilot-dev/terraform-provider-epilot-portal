@@ -27,18 +27,18 @@ func (g *GetAllOrdersRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetAllOrdersRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetAllOrdersRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetAllOrdersRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetAllOrdersRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 type GetAllOrdersSchema string
@@ -88,73 +88,73 @@ func (g GetAllOrdersData) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllOrdersData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetAllOrdersData) GetAdditionalProperties() any {
-	if o == nil {
+func (g *GetAllOrdersData) GetAdditionalProperties() any {
+	if g == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return g.AdditionalProperties
 }
 
-func (o *GetAllOrdersData) GetCreatedAt() time.Time {
-	if o == nil {
+func (g *GetAllOrdersData) GetCreatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetAllOrdersData) GetID() string {
-	if o == nil {
+func (g *GetAllOrdersData) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetAllOrdersData) GetOrg() string {
-	if o == nil {
+func (g *GetAllOrdersData) GetOrg() string {
+	if g == nil {
 		return ""
 	}
-	return o.Org
+	return g.Org
 }
 
-func (o *GetAllOrdersData) GetSchema() GetAllOrdersSchema {
-	if o == nil {
+func (g *GetAllOrdersData) GetSchema() GetAllOrdersSchema {
+	if g == nil {
 		return GetAllOrdersSchema("")
 	}
-	return o.Schema
+	return g.Schema
 }
 
-func (o *GetAllOrdersData) GetTags() []string {
-	if o == nil {
+func (g *GetAllOrdersData) GetTags() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Tags
+	return g.Tags
 }
 
-func (o *GetAllOrdersData) GetTitle() string {
-	if o == nil {
+func (g *GetAllOrdersData) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetAllOrdersData) GetUpdatedAt() time.Time {
-	if o == nil {
+func (g *GetAllOrdersData) GetUpdatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetAllOrdersData) GetJourneyActions() *shared.JourneyActions {
-	if o == nil {
+func (g *GetAllOrdersData) GetJourneyActions() *shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
 // GetAllOrdersResponseBody - The orders for the portal user returned successfully.
@@ -162,11 +162,11 @@ type GetAllOrdersResponseBody struct {
 	Data []GetAllOrdersData `json:"data,omitempty"`
 }
 
-func (o *GetAllOrdersResponseBody) GetData() []GetAllOrdersData {
-	if o == nil {
+func (g *GetAllOrdersResponseBody) GetData() []GetAllOrdersData {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetAllOrdersResponse struct {
@@ -182,37 +182,37 @@ type GetAllOrdersResponse struct {
 	Object *GetAllOrdersResponseBody
 }
 
-func (o *GetAllOrdersResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAllOrdersResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAllOrdersResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetAllOrdersResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetAllOrdersResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAllOrdersResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAllOrdersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAllOrdersResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAllOrdersResponse) GetObject() *GetAllOrdersResponseBody {
-	if o == nil {
+func (g *GetAllOrdersResponse) GetObject() *GetAllOrdersResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

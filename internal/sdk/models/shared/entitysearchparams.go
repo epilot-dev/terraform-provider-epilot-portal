@@ -50,8 +50,8 @@ const (
 )
 
 type GroupAfterKey struct {
-	Str    *string  `queryParam:"inline" name:"group_after_key"`
-	Number *float64 `queryParam:"inline" name:"group_after_key"`
+	Str    *string  `queryParam:"inline" union:"member"`
+	Number *float64 `queryParam:"inline" union:"member"`
 
 	Type GroupAfterKeyType
 }
@@ -76,17 +76,43 @@ func CreateGroupAfterKeyNumber(number float64) GroupAfterKey {
 
 func (u *GroupAfterKey) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var str string = ""
 	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
-		u.Str = &str
-		u.Type = GroupAfterKeyTypeStr
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  GroupAfterKeyTypeStr,
+			Value: &str,
+		})
 	}
 
 	var number float64 = float64(0)
 	if err := utils.UnmarshalJSON(data, &number, "", true, nil); err == nil {
-		u.Number = &number
-		u.Type = GroupAfterKeyTypeNumber
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  GroupAfterKeyTypeNumber,
+			Value: &number,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for GroupAfterKey", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for GroupAfterKey", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(GroupAfterKeyType)
+	switch best.Type {
+	case GroupAfterKeyTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case GroupAfterKeyTypeNumber:
+		u.Number = best.Value.(*float64)
 		return nil
 	}
 
@@ -141,8 +167,8 @@ const (
 
 // Slug - Single entity schema slug or array of slugs
 type Slug struct {
-	EntitySlug        *EntitySlug  `queryParam:"inline" name:"slug"`
-	ArrayOfEntitySlug []EntitySlug `queryParam:"inline" name:"slug"`
+	EntitySlug        *EntitySlug  `queryParam:"inline" union:"member"`
+	ArrayOfEntitySlug []EntitySlug `queryParam:"inline" union:"member"`
 
 	Type SlugType
 }
@@ -167,17 +193,43 @@ func CreateSlugArrayOfEntitySlug(arrayOfEntitySlug []EntitySlug) Slug {
 
 func (u *Slug) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var entitySlug EntitySlug = EntitySlug("")
 	if err := utils.UnmarshalJSON(data, &entitySlug, "", true, nil); err == nil {
-		u.EntitySlug = &entitySlug
-		u.Type = SlugTypeEntitySlug
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SlugTypeEntitySlug,
+			Value: &entitySlug,
+		})
 	}
 
 	var arrayOfEntitySlug []EntitySlug = []EntitySlug{}
 	if err := utils.UnmarshalJSON(data, &arrayOfEntitySlug, "", true, nil); err == nil {
-		u.ArrayOfEntitySlug = arrayOfEntitySlug
-		u.Type = SlugTypeArrayOfEntitySlug
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SlugTypeArrayOfEntitySlug,
+			Value: arrayOfEntitySlug,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Slug", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Slug", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(SlugType)
+	switch best.Type {
+	case SlugTypeEntitySlug:
+		u.EntitySlug = best.Value.(*EntitySlug)
+		return nil
+	case SlugTypeArrayOfEntitySlug:
+		u.ArrayOfEntitySlug = best.Value.([]EntitySlug)
 		return nil
 	}
 
@@ -234,120 +286,120 @@ func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntitySearchParams) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntitySearchParams) GetContracts() []string {
-	if o == nil {
+func (e *EntitySearchParams) GetContracts() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Contracts
+	return e.Contracts
 }
 
-func (o *EntitySearchParams) GetFields() []string {
-	if o == nil {
+func (e *EntitySearchParams) GetFields() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Fields
+	return e.Fields
 }
 
-func (o *EntitySearchParams) GetFilters() []Filters {
-	if o == nil {
+func (e *EntitySearchParams) GetFilters() []Filters {
+	if e == nil {
 		return nil
 	}
-	return o.Filters
+	return e.Filters
 }
 
-func (o *EntitySearchParams) GetFiltersSchema() []FiltersSchema {
-	if o == nil {
+func (e *EntitySearchParams) GetFiltersSchema() []FiltersSchema {
+	if e == nil {
 		return nil
 	}
-	return o.FiltersSchema
+	return e.FiltersSchema
 }
 
-func (o *EntitySearchParams) GetFrom() *int64 {
-	if o == nil {
+func (e *EntitySearchParams) GetFrom() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.From
+	return e.From
 }
 
-func (o *EntitySearchParams) GetGroup() *string {
-	if o == nil {
+func (e *EntitySearchParams) GetGroup() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Group
+	return e.Group
 }
 
-func (o *EntitySearchParams) GetGroupAfterKey() map[string]GroupAfterKey {
-	if o == nil {
+func (e *EntitySearchParams) GetGroupAfterKey() map[string]GroupAfterKey {
+	if e == nil {
 		return nil
 	}
-	return o.GroupAfterKey
+	return e.GroupAfterKey
 }
 
-func (o *EntitySearchParams) GetGroupSize() *int64 {
-	if o == nil {
+func (e *EntitySearchParams) GetGroupSize() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.GroupSize
+	return e.GroupSize
 }
 
-func (o *EntitySearchParams) GetGroupSort() *GroupSort {
-	if o == nil {
+func (e *EntitySearchParams) GetGroupSort() *GroupSort {
+	if e == nil {
 		return nil
 	}
-	return o.GroupSort
+	return e.GroupSort
 }
 
-func (o *EntitySearchParams) GetHydrate() *bool {
-	if o == nil {
+func (e *EntitySearchParams) GetHydrate() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Hydrate
+	return e.Hydrate
 }
 
-func (o *EntitySearchParams) GetQ() *string {
-	if o == nil {
+func (e *EntitySearchParams) GetQ() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Q
+	return e.Q
 }
 
-func (o *EntitySearchParams) GetQFields() []string {
-	if o == nil {
+func (e *EntitySearchParams) GetQFields() []string {
+	if e == nil {
 		return nil
 	}
-	return o.QFields
+	return e.QFields
 }
 
-func (o *EntitySearchParams) GetSize() *int64 {
-	if o == nil {
+func (e *EntitySearchParams) GetSize() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.Size
+	return e.Size
 }
 
-func (o *EntitySearchParams) GetSlug() Slug {
-	if o == nil {
+func (e *EntitySearchParams) GetSlug() Slug {
+	if e == nil {
 		return Slug{}
 	}
-	return o.Slug
+	return e.Slug
 }
 
-func (o *EntitySearchParams) GetSort() *string {
-	if o == nil {
+func (e *EntitySearchParams) GetSort() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Sort
+	return e.Sort
 }
 
-func (o *EntitySearchParams) GetTargets() []string {
-	if o == nil {
+func (e *EntitySearchParams) GetTargets() []string {
+	if e == nil {
 		return nil
 	}
-	return o.Targets
+	return e.Targets
 }

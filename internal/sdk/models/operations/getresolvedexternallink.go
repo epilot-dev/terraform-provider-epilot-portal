@@ -16,25 +16,25 @@ type GetResolvedExternalLinkRequest struct {
 	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetResolvedExternalLinkRequest) GetContactID() *string {
-	if o == nil {
+func (g *GetResolvedExternalLinkRequest) GetContactID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContactID
+	return g.ContactID
 }
 
-func (o *GetResolvedExternalLinkRequest) GetID() string {
-	if o == nil {
+func (g *GetResolvedExternalLinkRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetResolvedExternalLinkRequest) GetOrigin() *string {
-	if o == nil {
+func (g *GetResolvedExternalLinkRequest) GetOrigin() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type GetResolvedExternalLinkResponse struct {
@@ -50,37 +50,37 @@ type GetResolvedExternalLinkResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetResolvedExternalLinkResponse) GetContentType() string {
-	if o == nil {
+func (g *GetResolvedExternalLinkResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetResolvedExternalLinkResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetResolvedExternalLinkResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetResolvedExternalLinkResponse) GetExternalLink() *shared.ExternalLink {
-	if o == nil {
+func (g *GetResolvedExternalLinkResponse) GetExternalLink() *shared.ExternalLink {
+	if g == nil {
 		return nil
 	}
-	return o.ExternalLink
+	return g.ExternalLink
 }
 
-func (o *GetResolvedExternalLinkResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetResolvedExternalLinkResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetResolvedExternalLinkResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetResolvedExternalLinkResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

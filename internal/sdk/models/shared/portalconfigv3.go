@@ -12,11 +12,11 @@ type PortalConfigV3AdvancedMfa struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *PortalConfigV3AdvancedMfa) GetEnabled() *bool {
-	if o == nil {
+func (p *PortalConfigV3AdvancedMfa) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 type PortalConfigV3EntryPoint string
@@ -50,11 +50,11 @@ type PortalConfigV3PasswordlessLogin struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *PortalConfigV3PasswordlessLogin) GetEnabled() *bool {
-	if o == nil {
+func (p *PortalConfigV3PasswordlessLogin) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 // PortalConfigV3AuthSettings - Authentication settings for the portal
@@ -66,32 +66,32 @@ type PortalConfigV3AuthSettings struct {
 	PreferredSsoProviders []string                         `json:"preferred_sso_providers,omitempty"`
 }
 
-func (o *PortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
-	if o == nil {
+func (p *PortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.AutoRedirectToSso
+	return p.AutoRedirectToSso
 }
 
-func (o *PortalConfigV3AuthSettings) GetEntryPoint() *PortalConfigV3EntryPoint {
-	if o == nil {
+func (p *PortalConfigV3AuthSettings) GetEntryPoint() *PortalConfigV3EntryPoint {
+	if p == nil {
 		return nil
 	}
-	return o.EntryPoint
+	return p.EntryPoint
 }
 
-func (o *PortalConfigV3AuthSettings) GetPasswordlessLogin() *PortalConfigV3PasswordlessLogin {
-	if o == nil {
+func (p *PortalConfigV3AuthSettings) GetPasswordlessLogin() *PortalConfigV3PasswordlessLogin {
+	if p == nil {
 		return nil
 	}
-	return o.PasswordlessLogin
+	return p.PasswordlessLogin
 }
 
-func (o *PortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
-	if o == nil {
+func (p *PortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
+	if p == nil {
 		return nil
 	}
-	return o.PreferredSsoProviders
+	return p.PreferredSsoProviders
 }
 
 // PortalConfigV3PasswordPolicy - Password policy for the portal
@@ -108,39 +108,39 @@ type PortalConfigV3PasswordPolicy struct {
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
 }
 
-func (o *PortalConfigV3PasswordPolicy) GetMinimumLength() *int64 {
-	if o == nil {
+func (p *PortalConfigV3PasswordPolicy) GetMinimumLength() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.MinimumLength
+	return p.MinimumLength
 }
 
-func (o *PortalConfigV3PasswordPolicy) GetRequireLowercase() *bool {
-	if o == nil {
+func (p *PortalConfigV3PasswordPolicy) GetRequireLowercase() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireLowercase
+	return p.RequireLowercase
 }
 
-func (o *PortalConfigV3PasswordPolicy) GetRequireNumbers() *bool {
-	if o == nil {
+func (p *PortalConfigV3PasswordPolicy) GetRequireNumbers() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireNumbers
+	return p.RequireNumbers
 }
 
-func (o *PortalConfigV3PasswordPolicy) GetRequireSymbols() *bool {
-	if o == nil {
+func (p *PortalConfigV3PasswordPolicy) GetRequireSymbols() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireSymbols
+	return p.RequireSymbols
 }
 
-func (o *PortalConfigV3PasswordPolicy) GetRequireUppercase() *bool {
-	if o == nil {
+func (p *PortalConfigV3PasswordPolicy) GetRequireUppercase() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireUppercase
+	return p.RequireUppercase
 }
 
 // PortalConfigV3CognitoDetails - AWS Cognito Pool details for the portal
@@ -155,32 +155,32 @@ type PortalConfigV3CognitoDetails struct {
 	PasswordPolicy *PortalConfigV3PasswordPolicy `json:"password_policy,omitempty"`
 }
 
-func (o *PortalConfigV3CognitoDetails) GetCognitoUserPoolArn() *string {
-	if o == nil {
+func (p *PortalConfigV3CognitoDetails) GetCognitoUserPoolArn() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CognitoUserPoolArn
+	return p.CognitoUserPoolArn
 }
 
-func (o *PortalConfigV3CognitoDetails) GetCognitoUserPoolClientID() *string {
-	if o == nil {
+func (p *PortalConfigV3CognitoDetails) GetCognitoUserPoolClientID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CognitoUserPoolClientID
+	return p.CognitoUserPoolClientID
 }
 
-func (o *PortalConfigV3CognitoDetails) GetCognitoUserPoolID() *string {
-	if o == nil {
+func (p *PortalConfigV3CognitoDetails) GetCognitoUserPoolID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.CognitoUserPoolID
+	return p.CognitoUserPoolID
 }
 
-func (o *PortalConfigV3CognitoDetails) GetPasswordPolicy() *PortalConfigV3PasswordPolicy {
-	if o == nil {
+func (p *PortalConfigV3CognitoDetails) GetPasswordPolicy() *PortalConfigV3PasswordPolicy {
+	if p == nil {
 		return nil
 	}
-	return o.PasswordPolicy
+	return p.PasswordPolicy
 }
 
 // PortalConfigV3ContractSelectorConfig - Configuration for contract selector in the portal
@@ -191,18 +191,18 @@ type PortalConfigV3ContractSelectorConfig struct {
 	TitlePath *string `json:"title_path,omitempty"`
 }
 
-func (o *PortalConfigV3ContractSelectorConfig) GetShowInactive() *bool {
-	if o == nil {
+func (p *PortalConfigV3ContractSelectorConfig) GetShowInactive() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ShowInactive
+	return p.ShowInactive
 }
 
-func (o *PortalConfigV3ContractSelectorConfig) GetTitlePath() *string {
-	if o == nil {
+func (p *PortalConfigV3ContractSelectorConfig) GetTitlePath() *string {
+	if p == nil {
 		return nil
 	}
-	return o.TitlePath
+	return p.TitlePath
 }
 
 // DefaultUserToNotify - Default 360 user to notify upon an internal notification
@@ -211,11 +211,11 @@ type DefaultUserToNotify struct {
 	OnPendingUser []AdminUser `json:"onPendingUser,omitempty"`
 }
 
-func (o *DefaultUserToNotify) GetOnPendingUser() []AdminUser {
-	if o == nil {
+func (d *DefaultUserToNotify) GetOnPendingUser() []AdminUser {
+	if d == nil {
 		return nil
 	}
-	return o.OnPendingUser
+	return d.OnPendingUser
 }
 
 type PortalConfigV3ActionLabel struct {
@@ -223,18 +223,18 @@ type PortalConfigV3ActionLabel struct {
 	En *string `json:"en,omitempty"`
 }
 
-func (o *PortalConfigV3ActionLabel) GetDe() *string {
-	if o == nil {
+func (p *PortalConfigV3ActionLabel) GetDe() *string {
+	if p == nil {
 		return nil
 	}
-	return o.De
+	return p.De
 }
 
-func (o *PortalConfigV3ActionLabel) GetEn() *string {
-	if o == nil {
+func (p *PortalConfigV3ActionLabel) GetEn() *string {
+	if p == nil {
 		return nil
 	}
-	return o.En
+	return p.En
 }
 
 type EntityActions struct {
@@ -245,25 +245,25 @@ type EntityActions struct {
 	Slug *EntitySlug `json:"slug,omitempty"`
 }
 
-func (o *EntityActions) GetActionLabel() *PortalConfigV3ActionLabel {
-	if o == nil {
+func (e *EntityActions) GetActionLabel() *PortalConfigV3ActionLabel {
+	if e == nil {
 		return nil
 	}
-	return o.ActionLabel
+	return e.ActionLabel
 }
 
-func (o *EntityActions) GetJourneyID() *string {
-	if o == nil {
+func (e *EntityActions) GetJourneyID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.JourneyID
+	return e.JourneyID
 }
 
-func (o *EntityActions) GetSlug() *EntitySlug {
-	if o == nil {
+func (e *EntityActions) GetSlug() *EntitySlug {
+	if e == nil {
 		return nil
 	}
-	return o.Slug
+	return e.Slug
 }
 
 type PortalConfigV3Type struct {
@@ -273,18 +273,18 @@ type PortalConfigV3Type struct {
 	IsEnabled *bool `json:"isEnabled,omitempty"`
 }
 
-func (o *PortalConfigV3Type) GetAttributes() []string {
-	if o == nil {
+func (p *PortalConfigV3Type) GetAttributes() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Attributes
+	return p.Attributes
 }
 
-func (o *PortalConfigV3Type) GetIsEnabled() *bool {
-	if o == nil {
+func (p *PortalConfigV3Type) GetIsEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsEnabled
+	return p.IsEnabled
 }
 
 // PortalConfigV3EntityIdentifiers - Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.
@@ -294,11 +294,11 @@ type PortalConfigV3EntityIdentifiers struct {
 	Type *PortalConfigV3Type `json:"type,omitempty"`
 }
 
-func (o *PortalConfigV3EntityIdentifiers) GetType() *PortalConfigV3Type {
-	if o == nil {
+func (p *PortalConfigV3EntityIdentifiers) GetType() *PortalConfigV3Type {
+	if p == nil {
 		return nil
 	}
-	return o.Type
+	return p.Type
 }
 
 // PortalConfigV3FeatureSettings - Feature settings for the portal
@@ -313,32 +313,32 @@ type PortalConfigV3FeatureSettings struct {
 	StartPage *bool `json:"start_page,omitempty"`
 }
 
-func (o *PortalConfigV3FeatureSettings) GetBilling() *bool {
-	if o == nil {
+func (p *PortalConfigV3FeatureSettings) GetBilling() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Billing
+	return p.Billing
 }
 
-func (o *PortalConfigV3FeatureSettings) GetChangeDueDate() *bool {
-	if o == nil {
+func (p *PortalConfigV3FeatureSettings) GetChangeDueDate() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.ChangeDueDate
+	return p.ChangeDueDate
 }
 
-func (o *PortalConfigV3FeatureSettings) GetNewDesign() *bool {
-	if o == nil {
+func (p *PortalConfigV3FeatureSettings) GetNewDesign() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.NewDesign
+	return p.NewDesign
 }
 
-func (o *PortalConfigV3FeatureSettings) GetStartPage() *bool {
-	if o == nil {
+func (p *PortalConfigV3FeatureSettings) GetStartPage() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.StartPage
+	return p.StartPage
 }
 
 // PortalConfigV3Images - Teaser & Banner Image web links
@@ -351,25 +351,25 @@ type PortalConfigV3Images struct {
 	WelcomeBanner *string `json:"welcomeBanner,omitempty"`
 }
 
-func (o *PortalConfigV3Images) GetOrderLeftTeaser() *string {
-	if o == nil {
+func (p *PortalConfigV3Images) GetOrderLeftTeaser() *string {
+	if p == nil {
 		return nil
 	}
-	return o.OrderLeftTeaser
+	return p.OrderLeftTeaser
 }
 
-func (o *PortalConfigV3Images) GetOrderRightTeaser() *string {
-	if o == nil {
+func (p *PortalConfigV3Images) GetOrderRightTeaser() *string {
+	if p == nil {
 		return nil
 	}
-	return o.OrderRightTeaser
+	return p.OrderRightTeaser
 }
 
-func (o *PortalConfigV3Images) GetWelcomeBanner() *string {
-	if o == nil {
+func (p *PortalConfigV3Images) GetWelcomeBanner() *string {
+	if p == nil {
 		return nil
 	}
-	return o.WelcomeBanner
+	return p.WelcomeBanner
 }
 
 // PortalConfigV3Canary - Canary feature flag
@@ -378,11 +378,11 @@ type PortalConfigV3Canary struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *PortalConfigV3Canary) GetEnabled() *bool {
-	if o == nil {
+func (p *PortalConfigV3Canary) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 // PortalConfigV3Notracking - Disable Advanced Usage Metrics
@@ -391,11 +391,11 @@ type PortalConfigV3Notracking struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *PortalConfigV3Notracking) GetEnabled() *bool {
-	if o == nil {
+func (p *PortalConfigV3Notracking) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 // PortalConfigV3OrgSettings - Organization settings
@@ -406,18 +406,18 @@ type PortalConfigV3OrgSettings struct {
 	Notracking *PortalConfigV3Notracking `json:"notracking,omitempty"`
 }
 
-func (o *PortalConfigV3OrgSettings) GetCanary() *PortalConfigV3Canary {
-	if o == nil {
+func (p *PortalConfigV3OrgSettings) GetCanary() *PortalConfigV3Canary {
+	if p == nil {
 		return nil
 	}
-	return o.Canary
+	return p.Canary
 }
 
-func (o *PortalConfigV3OrgSettings) GetNotracking() *PortalConfigV3Notracking {
-	if o == nil {
+func (p *PortalConfigV3OrgSettings) GetNotracking() *PortalConfigV3Notracking {
+	if p == nil {
 		return nil
 	}
-	return o.Notracking
+	return p.Notracking
 }
 
 type PortalConfigV3SelfRegistrationSetting string
@@ -484,18 +484,18 @@ type PortalConfigV3TriggeredJourneys struct {
 	TriggerName *PortalConfigV3TriggerName `json:"trigger_name,omitempty"`
 }
 
-func (o *PortalConfigV3TriggeredJourneys) GetJourneyID() *string {
-	if o == nil {
+func (p *PortalConfigV3TriggeredJourneys) GetJourneyID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.JourneyID
+	return p.JourneyID
 }
 
-func (o *PortalConfigV3TriggeredJourneys) GetTriggerName() *PortalConfigV3TriggerName {
-	if o == nil {
+func (p *PortalConfigV3TriggeredJourneys) GetTriggerName() *PortalConfigV3TriggerName {
+	if p == nil {
 		return nil
 	}
-	return o.TriggerName
+	return p.TriggerName
 }
 
 type PortalConfigV3 struct {
@@ -582,289 +582,289 @@ type PortalConfigV3 struct {
 	TriggeredJourneys []PortalConfigV3TriggeredJourneys `json:"triggered_journeys,omitempty"`
 }
 
-func (o *PortalConfigV3) GetAccessToken() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetAccessToken() *string {
+	if p == nil {
 		return nil
 	}
-	return o.AccessToken
+	return p.AccessToken
 }
 
-func (o *PortalConfigV3) GetAdvancedMfa() *PortalConfigV3AdvancedMfa {
-	if o == nil {
+func (p *PortalConfigV3) GetAdvancedMfa() *PortalConfigV3AdvancedMfa {
+	if p == nil {
 		return nil
 	}
-	return o.AdvancedMfa
+	return p.AdvancedMfa
 }
 
-func (o *PortalConfigV3) GetAllowedFileExtensions() *AllowedFileExtensions {
-	if o == nil {
+func (p *PortalConfigV3) GetAllowedFileExtensions() *AllowedFileExtensions {
+	if p == nil {
 		return nil
 	}
-	return o.AllowedFileExtensions
+	return p.AllowedFileExtensions
 }
 
-func (o *PortalConfigV3) GetApprovalStateAttributes() any {
-	if o == nil {
+func (p *PortalConfigV3) GetApprovalStateAttributes() any {
+	if p == nil {
 		return nil
 	}
-	return o.ApprovalStateAttributes
+	return p.ApprovalStateAttributes
 }
 
-func (o *PortalConfigV3) GetAuthSettings() *PortalConfigV3AuthSettings {
-	if o == nil {
+func (p *PortalConfigV3) GetAuthSettings() *PortalConfigV3AuthSettings {
+	if p == nil {
 		return nil
 	}
-	return o.AuthSettings
+	return p.AuthSettings
 }
 
-func (o *PortalConfigV3) GetCognitoDetails() *PortalConfigV3CognitoDetails {
-	if o == nil {
+func (p *PortalConfigV3) GetCognitoDetails() *PortalConfigV3CognitoDetails {
+	if p == nil {
 		return nil
 	}
-	return o.CognitoDetails
+	return p.CognitoDetails
 }
 
-func (o *PortalConfigV3) GetConfig() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetConfig() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Config
+	return p.Config
 }
 
-func (o *PortalConfigV3) GetContactIdentifiers() []string {
-	if o == nil {
+func (p *PortalConfigV3) GetContactIdentifiers() []string {
+	if p == nil {
 		return nil
 	}
-	return o.ContactIdentifiers
+	return p.ContactIdentifiers
 }
 
-func (o *PortalConfigV3) GetContractIdentifiers() any {
-	if o == nil {
+func (p *PortalConfigV3) GetContractIdentifiers() any {
+	if p == nil {
 		return nil
 	}
-	return o.ContractIdentifiers
+	return p.ContractIdentifiers
 }
 
-func (o *PortalConfigV3) GetContractSelectorConfig() *PortalConfigV3ContractSelectorConfig {
-	if o == nil {
+func (p *PortalConfigV3) GetContractSelectorConfig() *PortalConfigV3ContractSelectorConfig {
+	if p == nil {
 		return nil
 	}
-	return o.ContractSelectorConfig
+	return p.ContractSelectorConfig
 }
 
-func (o *PortalConfigV3) GetDefaultUserToNotify() *DefaultUserToNotify {
-	if o == nil {
+func (p *PortalConfigV3) GetDefaultUserToNotify() *DefaultUserToNotify {
+	if p == nil {
 		return nil
 	}
-	return o.DefaultUserToNotify
+	return p.DefaultUserToNotify
 }
 
-func (o *PortalConfigV3) GetDesignID() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetDesignID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.DesignID
+	return p.DesignID
 }
 
-func (o *PortalConfigV3) GetDomain() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetDomain() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Domain
+	return p.Domain
 }
 
-func (o *PortalConfigV3) GetEmailTemplates() *EmailTemplates {
-	if o == nil {
+func (p *PortalConfigV3) GetEmailTemplates() *EmailTemplates {
+	if p == nil {
 		return nil
 	}
-	return o.EmailTemplates
+	return p.EmailTemplates
 }
 
-func (o *PortalConfigV3) GetEnabled() *bool {
-	if o == nil {
+func (p *PortalConfigV3) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
-func (o *PortalConfigV3) GetEntityActions() []EntityActions {
-	if o == nil {
+func (p *PortalConfigV3) GetEntityActions() []EntityActions {
+	if p == nil {
 		return nil
 	}
-	return o.EntityActions
+	return p.EntityActions
 }
 
-func (o *PortalConfigV3) GetEntityEditRules() any {
-	if o == nil {
+func (p *PortalConfigV3) GetEntityEditRules() any {
+	if p == nil {
 		return nil
 	}
-	return o.EntityEditRules
+	return p.EntityEditRules
 }
 
-func (o *PortalConfigV3) GetEntityIdentifiers() *PortalConfigV3EntityIdentifiers {
-	if o == nil {
+func (p *PortalConfigV3) GetEntityIdentifiers() *PortalConfigV3EntityIdentifiers {
+	if p == nil {
 		return nil
 	}
-	return o.EntityIdentifiers
+	return p.EntityIdentifiers
 }
 
-func (o *PortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
-	if o == nil {
+func (p *PortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
+	if p == nil {
 		return nil
 	}
-	return o.ExtensionHooks
+	return p.ExtensionHooks
 }
 
-func (o *PortalConfigV3) GetExtensions() []ExtensionConfig {
-	if o == nil {
+func (p *PortalConfigV3) GetExtensions() []ExtensionConfig {
+	if p == nil {
 		return nil
 	}
-	return o.Extensions
+	return p.Extensions
 }
 
-func (o *PortalConfigV3) GetFeatureFlags() any {
-	if o == nil {
+func (p *PortalConfigV3) GetFeatureFlags() any {
+	if p == nil {
 		return nil
 	}
-	return o.FeatureFlags
+	return p.FeatureFlags
 }
 
-func (o *PortalConfigV3) GetFeatureSettings() *PortalConfigV3FeatureSettings {
-	if o == nil {
+func (p *PortalConfigV3) GetFeatureSettings() *PortalConfigV3FeatureSettings {
+	if p == nil {
 		return nil
 	}
-	return o.FeatureSettings
+	return p.FeatureSettings
 }
 
-func (o *PortalConfigV3) GetGrants() any {
-	if o == nil {
+func (p *PortalConfigV3) GetGrants() any {
+	if p == nil {
 		return nil
 	}
-	return o.Grants
+	return p.Grants
 }
 
-func (o *PortalConfigV3) GetIdentityProviders() any {
-	if o == nil {
+func (p *PortalConfigV3) GetIdentityProviders() any {
+	if p == nil {
 		return nil
 	}
-	return o.IdentityProviders
+	return p.IdentityProviders
 }
 
-func (o *PortalConfigV3) GetImages() *PortalConfigV3Images {
-	if o == nil {
+func (p *PortalConfigV3) GetImages() *PortalConfigV3Images {
+	if p == nil {
 		return nil
 	}
-	return o.Images
+	return p.Images
 }
 
-func (o *PortalConfigV3) GetInactiveContractCutoffYears() *float64 {
-	if o == nil {
+func (p *PortalConfigV3) GetInactiveContractCutoffYears() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.InactiveContractCutoffYears
+	return p.InactiveContractCutoffYears
 }
 
-func (o *PortalConfigV3) GetIsDummy() *bool {
-	if o == nil {
+func (p *PortalConfigV3) GetIsDummy() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsDummy
+	return p.IsDummy
 }
 
-func (o *PortalConfigV3) GetIsEpilotDomain() *bool {
-	if o == nil {
+func (p *PortalConfigV3) GetIsEpilotDomain() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsEpilotDomain
+	return p.IsEpilotDomain
 }
 
-func (o *PortalConfigV3) GetIsV3Item() *bool {
-	if o == nil {
+func (p *PortalConfigV3) GetIsV3Item() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsV3Item
+	return p.IsV3Item
 }
 
-func (o *PortalConfigV3) GetMeterReadingGracePeriod() *float64 {
-	if o == nil {
+func (p *PortalConfigV3) GetMeterReadingGracePeriod() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.MeterReadingGracePeriod
+	return p.MeterReadingGracePeriod
 }
 
-func (o *PortalConfigV3) GetName() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetName() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Name
+	return p.Name
 }
 
-func (o *PortalConfigV3) GetOrgSettings() *PortalConfigV3OrgSettings {
-	if o == nil {
+func (p *PortalConfigV3) GetOrgSettings() *PortalConfigV3OrgSettings {
+	if p == nil {
 		return nil
 	}
-	return o.OrgSettings
+	return p.OrgSettings
 }
 
-func (o *PortalConfigV3) GetOrganizationID() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetOrganizationID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.OrganizationID
+	return p.OrganizationID
 }
 
-func (o *PortalConfigV3) GetOrigin() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetOrigin() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Origin
+	return p.Origin
 }
 
-func (o *PortalConfigV3) GetPages() any {
-	if o == nil {
+func (p *PortalConfigV3) GetPages() any {
+	if p == nil {
 		return nil
 	}
-	return o.Pages
+	return p.Pages
 }
 
-func (o *PortalConfigV3) GetPortalID() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetPortalID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PortalID
+	return p.PortalID
 }
 
-func (o *PortalConfigV3) GetPortalSkV3() *string {
-	if o == nil {
+func (p *PortalConfigV3) GetPortalSkV3() *string {
+	if p == nil {
 		return nil
 	}
-	return o.PortalSkV3
+	return p.PortalSkV3
 }
 
-func (o *PortalConfigV3) GetPreventSearchEngineIndexing() *bool {
-	if o == nil {
+func (p *PortalConfigV3) GetPreventSearchEngineIndexing() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.PreventSearchEngineIndexing
+	return p.PreventSearchEngineIndexing
 }
 
-func (o *PortalConfigV3) GetRegistrationIdentifiers() any {
-	if o == nil {
+func (p *PortalConfigV3) GetRegistrationIdentifiers() any {
+	if p == nil {
 		return nil
 	}
-	return o.RegistrationIdentifiers
+	return p.RegistrationIdentifiers
 }
 
-func (o *PortalConfigV3) GetSelfRegistrationSetting() *PortalConfigV3SelfRegistrationSetting {
-	if o == nil {
+func (p *PortalConfigV3) GetSelfRegistrationSetting() *PortalConfigV3SelfRegistrationSetting {
+	if p == nil {
 		return nil
 	}
-	return o.SelfRegistrationSetting
+	return p.SelfRegistrationSetting
 }
 
-func (o *PortalConfigV3) GetTriggeredJourneys() []PortalConfigV3TriggeredJourneys {
-	if o == nil {
+func (p *PortalConfigV3) GetTriggeredJourneys() []PortalConfigV3TriggeredJourneys {
+	if p == nil {
 		return nil
 	}
-	return o.TriggeredJourneys
+	return p.TriggeredJourneys
 }

@@ -63,7 +63,7 @@ func (s *Balance) GetCustomerBalance(ctx context.Context, opts ...operations.Opt
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getCustomerBalance",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
 

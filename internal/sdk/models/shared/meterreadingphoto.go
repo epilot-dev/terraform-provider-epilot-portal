@@ -11,30 +11,30 @@ type MeterReadingPhoto struct {
 	MimeType string `json:"mime_type"`
 }
 
-func (o *MeterReadingPhoto) GetContents() string {
-	if o == nil {
+func (m *MeterReadingPhoto) GetContents() string {
+	if m == nil {
 		return ""
 	}
-	return o.Contents
+	return m.Contents
 }
 
-func (o *MeterReadingPhoto) GetFilename() string {
-	if o == nil {
+func (m *MeterReadingPhoto) GetFilename() string {
+	if m == nil {
 		return ""
 	}
-	return o.Filename
+	return m.Filename
 }
 
-func (o *MeterReadingPhoto) GetMeterID() string {
-	if o == nil {
+func (m *MeterReadingPhoto) GetMeterID() string {
+	if m == nil {
 		return ""
 	}
-	return o.MeterID
+	return m.MeterID
 }
 
-func (o *MeterReadingPhoto) GetMimeType() string {
-	if o == nil {
+func (m *MeterReadingPhoto) GetMimeType() string {
+	if m == nil {
 		return ""
 	}
-	return o.MimeType
+	return m.MimeType
 }

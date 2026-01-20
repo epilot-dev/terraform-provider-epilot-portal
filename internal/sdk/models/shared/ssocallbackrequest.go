@@ -19,51 +19,51 @@ type SSOCallbackRequest struct {
 	TokenEndpoint string `json:"token_endpoint"`
 }
 
-func (o *SSOCallbackRequest) GetClientID() string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetClientID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ClientID
+	return s.ClientID
 }
 
-func (o *SSOCallbackRequest) GetCode() string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetCode() string {
+	if s == nil {
 		return ""
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *SSOCallbackRequest) GetCodeVerifier() string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetCodeVerifier() string {
+	if s == nil {
 		return ""
 	}
-	return o.CodeVerifier
+	return s.CodeVerifier
 }
 
-func (o *SSOCallbackRequest) GetGrantType() string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetGrantType() string {
+	if s == nil {
 		return ""
 	}
-	return o.GrantType
+	return s.GrantType
 }
 
-func (o *SSOCallbackRequest) GetProviderSlug() *string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetProviderSlug() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ProviderSlug
+	return s.ProviderSlug
 }
 
-func (o *SSOCallbackRequest) GetRedirectURI() string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetRedirectURI() string {
+	if s == nil {
 		return ""
 	}
-	return o.RedirectURI
+	return s.RedirectURI
 }
 
-func (o *SSOCallbackRequest) GetTokenEndpoint() string {
-	if o == nil {
+func (s *SSOCallbackRequest) GetTokenEndpoint() string {
+	if s == nil {
 		return ""
 	}
-	return o.TokenEndpoint
+	return s.TokenEndpoint
 }

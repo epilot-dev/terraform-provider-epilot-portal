@@ -20,24 +20,24 @@ func (e ExtensionSeamlessLinkDescription) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionSeamlessLinkDescription) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionSeamlessLinkDescription) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (e *ExtensionSeamlessLinkDescription) GetAdditionalProperties() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
-func (o *ExtensionSeamlessLinkDescription) GetEn() string {
-	if o == nil {
+func (e *ExtensionSeamlessLinkDescription) GetEn() string {
+	if e == nil {
 		return ""
 	}
-	return o.En
+	return e.En
 }
 
 // ExtensionSeamlessLinkName - Name of the extension.
@@ -52,24 +52,24 @@ func (e ExtensionSeamlessLinkName) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionSeamlessLinkName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionSeamlessLinkName) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (e *ExtensionSeamlessLinkName) GetAdditionalProperties() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
-func (o *ExtensionSeamlessLinkName) GetEn() string {
-	if o == nil {
+func (e *ExtensionSeamlessLinkName) GetEn() string {
+	if e == nil {
 		return ""
 	}
-	return o.En
+	return e.En
 }
 
 type Redirect struct {
@@ -79,18 +79,18 @@ type Redirect struct {
 	URL *string `json:"url,omitempty"`
 }
 
-func (o *Redirect) GetParams() map[string]string {
-	if o == nil {
+func (r *Redirect) GetParams() map[string]string {
+	if r == nil {
 		return nil
 	}
-	return o.Params
+	return r.Params
 }
 
-func (o *Redirect) GetURL() *string {
-	if o == nil {
+func (r *Redirect) GetURL() *string {
+	if r == nil {
 		return nil
 	}
-	return o.URL
+	return r.URL
 }
 
 type ExtensionSeamlessLinkType string
@@ -130,51 +130,51 @@ type ExtensionSeamlessLink struct {
 	Type     ExtensionSeamlessLinkType `json:"type"`
 }
 
-func (o *ExtensionSeamlessLink) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetAuth() *ExtensionAuthBlock {
+	if e == nil {
 		return nil
 	}
-	return o.Auth
+	return e.Auth
 }
 
-func (o *ExtensionSeamlessLink) GetCondition() *string {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetCondition() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Condition
+	return e.Condition
 }
 
-func (o *ExtensionSeamlessLink) GetDescription() *ExtensionSeamlessLinkDescription {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetDescription() *ExtensionSeamlessLinkDescription {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *ExtensionSeamlessLink) GetID() string {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionSeamlessLink) GetName() ExtensionSeamlessLinkName {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetName() ExtensionSeamlessLinkName {
+	if e == nil {
 		return ExtensionSeamlessLinkName{}
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *ExtensionSeamlessLink) GetRedirect() Redirect {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetRedirect() Redirect {
+	if e == nil {
 		return Redirect{}
 	}
-	return o.Redirect
+	return e.Redirect
 }
 
-func (o *ExtensionSeamlessLink) GetType() ExtensionSeamlessLinkType {
-	if o == nil {
+func (e *ExtensionSeamlessLink) GetType() ExtensionSeamlessLinkType {
+	if e == nil {
 		return ExtensionSeamlessLinkType("")
 	}
-	return o.Type
+	return e.Type
 }

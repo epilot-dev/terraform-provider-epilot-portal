@@ -9,16 +9,16 @@ type MoblieOIDCConfig struct {
 	ClientSecret *string `json:"client_secret,omitempty"`
 }
 
-func (o *MoblieOIDCConfig) GetClientID() *string {
-	if o == nil {
+func (m *MoblieOIDCConfig) GetClientID() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ClientID
+	return m.ClientID
 }
 
-func (o *MoblieOIDCConfig) GetClientSecret() *string {
-	if o == nil {
+func (m *MoblieOIDCConfig) GetClientSecret() *string {
+	if m == nil {
 		return nil
 	}
-	return o.ClientSecret
+	return m.ClientSecret
 }

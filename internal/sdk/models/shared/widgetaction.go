@@ -24,18 +24,18 @@ func (l *Label) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Label) GetDe() *string {
-	if o == nil {
+func (l *Label) GetDe() *string {
+	if l == nil {
 		return nil
 	}
-	return o.De
+	return l.De
 }
 
-func (o *Label) GetEn() *string {
-	if o == nil {
+func (l *Label) GetEn() *string {
+	if l == nil {
 		return nil
 	}
-	return o.En
+	return l.En
 }
 
 type WidgetActionRules struct {
@@ -49,31 +49,31 @@ func (w WidgetActionRules) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WidgetActionRules) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"attribute", "attribute_value", "entity"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *WidgetActionRules) GetAttribute() string {
-	if o == nil {
+func (w *WidgetActionRules) GetAttribute() string {
+	if w == nil {
 		return ""
 	}
-	return o.Attribute
+	return w.Attribute
 }
 
-func (o *WidgetActionRules) GetAttributeValue() string {
-	if o == nil {
+func (w *WidgetActionRules) GetAttributeValue() string {
+	if w == nil {
 		return ""
 	}
-	return o.AttributeValue
+	return w.AttributeValue
 }
 
-func (o *WidgetActionRules) GetEntity() string {
-	if o == nil {
+func (w *WidgetActionRules) GetEntity() string {
+	if w == nil {
 		return ""
 	}
-	return o.Entity
+	return w.Entity
 }
 
 type WidgetActionType string
@@ -115,43 +115,43 @@ func (w WidgetAction) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WidgetAction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"_id", "label", "type", "url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *WidgetAction) GetID() string {
-	if o == nil {
+func (w *WidgetAction) GetID() string {
+	if w == nil {
 		return ""
 	}
-	return o.ID
+	return w.ID
 }
 
-func (o *WidgetAction) GetLabel() Label {
-	if o == nil {
+func (w *WidgetAction) GetLabel() Label {
+	if w == nil {
 		return Label{}
 	}
-	return o.Label
+	return w.Label
 }
 
-func (o *WidgetAction) GetRules() []WidgetActionRules {
-	if o == nil {
+func (w *WidgetAction) GetRules() []WidgetActionRules {
+	if w == nil {
 		return nil
 	}
-	return o.Rules
+	return w.Rules
 }
 
-func (o *WidgetAction) GetType() WidgetActionType {
-	if o == nil {
+func (w *WidgetAction) GetType() WidgetActionType {
+	if w == nil {
 		return WidgetActionType("")
 	}
-	return o.Type
+	return w.Type
 }
 
-func (o *WidgetAction) GetURL() string {
-	if o == nil {
+func (w *WidgetAction) GetURL() string {
+	if w == nil {
 		return ""
 	}
-	return o.URL
+	return w.URL
 }

@@ -12,11 +12,11 @@ type GetSchemasResponseBody struct {
 	Schemas []shared.Schema `json:"schemas,omitempty"`
 }
 
-func (o *GetSchemasResponseBody) GetSchemas() []shared.Schema {
-	if o == nil {
+func (g *GetSchemasResponseBody) GetSchemas() []shared.Schema {
+	if g == nil {
 		return nil
 	}
-	return o.Schemas
+	return g.Schemas
 }
 
 type GetSchemasResponse struct {
@@ -32,37 +32,37 @@ type GetSchemasResponse struct {
 	Object *GetSchemasResponseBody
 }
 
-func (o *GetSchemasResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemasResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemasResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetSchemasResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetSchemasResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemasResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemasResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemasResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemasResponse) GetObject() *GetSchemasResponseBody {
-	if o == nil {
+func (g *GetSchemasResponse) GetObject() *GetSchemasResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

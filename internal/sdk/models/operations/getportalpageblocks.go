@@ -11,11 +11,11 @@ type GetPortalPageBlocksRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetPortalPageBlocksRequest) GetID() string {
-	if o == nil {
+func (g *GetPortalPageBlocksRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetPortalPageBlocksResponse struct {
@@ -31,37 +31,37 @@ type GetPortalPageBlocksResponse struct {
 	Classes []shared.Block
 }
 
-func (o *GetPortalPageBlocksResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPortalPageBlocksResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPortalPageBlocksResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPortalPageBlocksResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPortalPageBlocksResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPortalPageBlocksResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPortalPageBlocksResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPortalPageBlocksResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPortalPageBlocksResponse) GetClasses() []shared.Block {
-	if o == nil {
+func (g *GetPortalPageBlocksResponse) GetClasses() []shared.Block {
+	if g == nil {
 		return nil
 	}
-	return o.Classes
+	return g.Classes
 }

@@ -12,11 +12,11 @@ type SearchPaymentRelationsInEntitiesRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *SearchPaymentRelationsInEntitiesRequest) GetID() string {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesRequest) GetID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ID
+	return s.ID
 }
 
 // SearchPaymentRelationsInEntitiesResponseBody - Entities that have the payment relation.
@@ -26,18 +26,18 @@ type SearchPaymentRelationsInEntitiesResponseBody struct {
 	Results []shared.EntityItem `json:"results,omitempty"`
 }
 
-func (o *SearchPaymentRelationsInEntitiesResponseBody) GetHits() *float64 {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesResponseBody) GetHits() *float64 {
+	if s == nil {
 		return nil
 	}
-	return o.Hits
+	return s.Hits
 }
 
-func (o *SearchPaymentRelationsInEntitiesResponseBody) GetResults() []shared.EntityItem {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesResponseBody) GetResults() []shared.EntityItem {
+	if s == nil {
 		return nil
 	}
-	return o.Results
+	return s.Results
 }
 
 type SearchPaymentRelationsInEntitiesResponse struct {
@@ -51,30 +51,30 @@ type SearchPaymentRelationsInEntitiesResponse struct {
 	Object *SearchPaymentRelationsInEntitiesResponseBody
 }
 
-func (o *SearchPaymentRelationsInEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SearchPaymentRelationsInEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SearchPaymentRelationsInEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SearchPaymentRelationsInEntitiesResponse) GetObject() *SearchPaymentRelationsInEntitiesResponseBody {
-	if o == nil {
+func (s *SearchPaymentRelationsInEntitiesResponse) GetObject() *SearchPaymentRelationsInEntitiesResponseBody {
+	if s == nil {
 		return nil
 	}
-	return o.Object
+	return s.Object
 }

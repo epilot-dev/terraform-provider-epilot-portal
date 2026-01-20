@@ -39,18 +39,18 @@ type DeletePortalUserResponseBody struct {
 	Message *DeletePortalUserMessage `json:"message,omitempty"`
 }
 
-func (o *DeletePortalUserResponseBody) GetData() *string {
-	if o == nil {
+func (d *DeletePortalUserResponseBody) GetData() *string {
+	if d == nil {
 		return nil
 	}
-	return o.Data
+	return d.Data
 }
 
-func (o *DeletePortalUserResponseBody) GetMessage() *DeletePortalUserMessage {
-	if o == nil {
+func (d *DeletePortalUserResponseBody) GetMessage() *DeletePortalUserMessage {
+	if d == nil {
 		return nil
 	}
-	return o.Message
+	return d.Message
 }
 
 type DeletePortalUserResponse struct {
@@ -66,37 +66,37 @@ type DeletePortalUserResponse struct {
 	Object *DeletePortalUserResponseBody
 }
 
-func (o *DeletePortalUserResponse) GetContentType() string {
-	if o == nil {
+func (d *DeletePortalUserResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeletePortalUserResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeletePortalUserResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeletePortalUserResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeletePortalUserResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeletePortalUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeletePortalUserResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeletePortalUserResponse) GetObject() *DeletePortalUserResponseBody {
-	if o == nil {
+func (d *DeletePortalUserResponse) GetObject() *DeletePortalUserResponseBody {
+	if d == nil {
 		return nil
 	}
-	return o.Object
+	return d.Object
 }

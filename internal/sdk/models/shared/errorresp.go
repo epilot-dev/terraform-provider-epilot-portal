@@ -23,9 +23,9 @@ func (e *ErrorResp) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ErrorResp) GetMessage() *string {
-	if o == nil {
+func (e *ErrorResp) GetMessage() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Message
+	return e.Message
 }

@@ -49,29 +49,29 @@ func (g Grant) MarshalJSON() ([]byte, error) {
 }
 
 func (g *Grant) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"action"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Grant) GetAction() string {
-	if o == nil {
+func (g *Grant) GetAction() string {
+	if g == nil {
 		return ""
 	}
-	return o.Action
+	return g.Action
 }
 
-func (o *Grant) GetEffect() *Effect {
-	if o == nil {
+func (g *Grant) GetEffect() *Effect {
+	if g == nil {
 		return nil
 	}
-	return o.Effect
+	return g.Effect
 }
 
-func (o *Grant) GetResource() *string {
-	if o == nil {
+func (g *Grant) GetResource() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Resource
+	return g.Resource
 }

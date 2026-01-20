@@ -13,11 +13,11 @@ type UpdatePortalUserResponseBody struct {
 	Data *shared.PortalUser `json:"data,omitempty"`
 }
 
-func (o *UpdatePortalUserResponseBody) GetData() *shared.PortalUser {
-	if o == nil {
+func (u *UpdatePortalUserResponseBody) GetData() *shared.PortalUser {
+	if u == nil {
 		return nil
 	}
-	return o.Data
+	return u.Data
 }
 
 type UpdatePortalUserResponse struct {
@@ -33,37 +33,37 @@ type UpdatePortalUserResponse struct {
 	Object *UpdatePortalUserResponseBody
 }
 
-func (o *UpdatePortalUserResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdatePortalUserResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdatePortalUserResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdatePortalUserResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdatePortalUserResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdatePortalUserResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdatePortalUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdatePortalUserResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdatePortalUserResponse) GetObject() *UpdatePortalUserResponseBody {
-	if o == nil {
+func (u *UpdatePortalUserResponse) GetObject() *UpdatePortalUserResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

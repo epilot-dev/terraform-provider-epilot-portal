@@ -14,18 +14,18 @@ type GetUserEntryPointRequest struct {
 	Email  string `queryParam:"style=form,explode=true,name=email"`
 }
 
-func (o *GetUserEntryPointRequest) GetDomain() string {
-	if o == nil {
+func (g *GetUserEntryPointRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetUserEntryPointRequest) GetEmail() string {
-	if o == nil {
+func (g *GetUserEntryPointRequest) GetEmail() string {
+	if g == nil {
 		return ""
 	}
-	return o.Email
+	return g.Email
 }
 
 // EntryPoint - The entry point for the user
@@ -67,32 +67,32 @@ type GetUserEntryPointResponseBody struct {
 	UserExists bool `json:"user_exists"`
 }
 
-func (o *GetUserEntryPointResponseBody) GetEntryPoint() EntryPoint {
-	if o == nil {
+func (g *GetUserEntryPointResponseBody) GetEntryPoint() EntryPoint {
+	if g == nil {
 		return EntryPoint("")
 	}
-	return o.EntryPoint
+	return g.EntryPoint
 }
 
-func (o *GetUserEntryPointResponseBody) GetIsSoftDeleted() *bool {
-	if o == nil {
+func (g *GetUserEntryPointResponseBody) GetIsSoftDeleted() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IsSoftDeleted
+	return g.IsSoftDeleted
 }
 
-func (o *GetUserEntryPointResponseBody) GetPreferredSsoProviders() []string {
-	if o == nil {
+func (g *GetUserEntryPointResponseBody) GetPreferredSsoProviders() []string {
+	if g == nil {
 		return nil
 	}
-	return o.PreferredSsoProviders
+	return g.PreferredSsoProviders
 }
 
-func (o *GetUserEntryPointResponseBody) GetUserExists() bool {
-	if o == nil {
+func (g *GetUserEntryPointResponseBody) GetUserExists() bool {
+	if g == nil {
 		return false
 	}
-	return o.UserExists
+	return g.UserExists
 }
 
 type GetUserEntryPointResponse struct {
@@ -108,37 +108,37 @@ type GetUserEntryPointResponse struct {
 	Object *GetUserEntryPointResponseBody
 }
 
-func (o *GetUserEntryPointResponse) GetContentType() string {
-	if o == nil {
+func (g *GetUserEntryPointResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetUserEntryPointResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetUserEntryPointResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetUserEntryPointResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetUserEntryPointResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetUserEntryPointResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetUserEntryPointResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetUserEntryPointResponse) GetObject() *GetUserEntryPointResponseBody {
-	if o == nil {
+func (g *GetUserEntryPointResponse) GetObject() *GetUserEntryPointResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

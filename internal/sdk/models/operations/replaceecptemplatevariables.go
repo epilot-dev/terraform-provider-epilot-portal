@@ -13,18 +13,18 @@ type RequestBody struct {
 	IsMainEntity *bool   `json:"is_main_entity,omitempty"`
 }
 
-func (o *RequestBody) GetID() *string {
-	if o == nil {
+func (r *RequestBody) GetID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *RequestBody) GetIsMainEntity() *bool {
-	if o == nil {
+func (r *RequestBody) GetIsMainEntity() *bool {
+	if r == nil {
 		return nil
 	}
-	return o.IsMainEntity
+	return r.IsMainEntity
 }
 
 type CustomerPortal struct {
@@ -34,32 +34,32 @@ type CustomerPortal struct {
 	UserEmailsOnEntity []string `json:"userEmailsOnEntity,omitempty"`
 }
 
-func (o *CustomerPortal) GetEntityLink() *string {
-	if o == nil {
+func (c *CustomerPortal) GetEntityLink() *string {
+	if c == nil {
 		return nil
 	}
-	return o.EntityLink
+	return c.EntityLink
 }
 
-func (o *CustomerPortal) GetInvitationLink() *string {
-	if o == nil {
+func (c *CustomerPortal) GetInvitationLink() *string {
+	if c == nil {
 		return nil
 	}
-	return o.InvitationLink
+	return c.InvitationLink
 }
 
-func (o *CustomerPortal) GetNewDocumentLink() *string {
-	if o == nil {
+func (c *CustomerPortal) GetNewDocumentLink() *string {
+	if c == nil {
 		return nil
 	}
-	return o.NewDocumentLink
+	return c.NewDocumentLink
 }
 
-func (o *CustomerPortal) GetUserEmailsOnEntity() []string {
-	if o == nil {
+func (c *CustomerPortal) GetUserEmailsOnEntity() []string {
+	if c == nil {
 		return nil
 	}
-	return o.UserEmailsOnEntity
+	return c.UserEmailsOnEntity
 }
 
 type InstallerPortal struct {
@@ -69,32 +69,32 @@ type InstallerPortal struct {
 	UserEmailsOnEntity []string `json:"userEmailsOnEntity,omitempty"`
 }
 
-func (o *InstallerPortal) GetEntityLink() *string {
-	if o == nil {
+func (i *InstallerPortal) GetEntityLink() *string {
+	if i == nil {
 		return nil
 	}
-	return o.EntityLink
+	return i.EntityLink
 }
 
-func (o *InstallerPortal) GetInvitationLink() *string {
-	if o == nil {
+func (i *InstallerPortal) GetInvitationLink() *string {
+	if i == nil {
 		return nil
 	}
-	return o.InvitationLink
+	return i.InvitationLink
 }
 
-func (o *InstallerPortal) GetNewDocumentLink() *string {
-	if o == nil {
+func (i *InstallerPortal) GetNewDocumentLink() *string {
+	if i == nil {
 		return nil
 	}
-	return o.NewDocumentLink
+	return i.NewDocumentLink
 }
 
-func (o *InstallerPortal) GetUserEmailsOnEntity() []string {
-	if o == nil {
+func (i *InstallerPortal) GetUserEmailsOnEntity() []string {
+	if i == nil {
 		return nil
 	}
-	return o.UserEmailsOnEntity
+	return i.UserEmailsOnEntity
 }
 
 // ReplaceECPTemplateVariablesResponseBody - Replaced portal template variables successfully.
@@ -103,18 +103,18 @@ type ReplaceECPTemplateVariablesResponseBody struct {
 	InstallerPortal *InstallerPortal `json:"installerPortal,omitempty"`
 }
 
-func (o *ReplaceECPTemplateVariablesResponseBody) GetCustomerPortal() *CustomerPortal {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponseBody) GetCustomerPortal() *CustomerPortal {
+	if r == nil {
 		return nil
 	}
-	return o.CustomerPortal
+	return r.CustomerPortal
 }
 
-func (o *ReplaceECPTemplateVariablesResponseBody) GetInstallerPortal() *InstallerPortal {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponseBody) GetInstallerPortal() *InstallerPortal {
+	if r == nil {
 		return nil
 	}
-	return o.InstallerPortal
+	return r.InstallerPortal
 }
 
 type ReplaceECPTemplateVariablesResponse struct {
@@ -130,37 +130,37 @@ type ReplaceECPTemplateVariablesResponse struct {
 	Object *ReplaceECPTemplateVariablesResponseBody
 }
 
-func (o *ReplaceECPTemplateVariablesResponse) GetContentType() string {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponse) GetContentType() string {
+	if r == nil {
 		return ""
 	}
-	return o.ContentType
+	return r.ContentType
 }
 
-func (o *ReplaceECPTemplateVariablesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponse) GetErrorResp() *shared.ErrorResp {
+	if r == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return r.ErrorResp
 }
 
-func (o *ReplaceECPTemplateVariablesResponse) GetStatusCode() int {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponse) GetStatusCode() int {
+	if r == nil {
 		return 0
 	}
-	return o.StatusCode
+	return r.StatusCode
 }
 
-func (o *ReplaceECPTemplateVariablesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponse) GetRawResponse() *http.Response {
+	if r == nil {
 		return nil
 	}
-	return o.RawResponse
+	return r.RawResponse
 }
 
-func (o *ReplaceECPTemplateVariablesResponse) GetObject() *ReplaceECPTemplateVariablesResponseBody {
-	if o == nil {
+func (r *ReplaceECPTemplateVariablesResponse) GetObject() *ReplaceECPTemplateVariablesResponseBody {
+	if r == nil {
 		return nil
 	}
-	return o.Object
+	return r.Object
 }

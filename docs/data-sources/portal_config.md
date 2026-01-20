@@ -23,7 +23,7 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 
 ### Required
 
-- `portal_id` (String) Portal ID (readonly UUID generated on portal creation)
+- `portal_id` (String) ID of the portal
 
 ### Read-Only
 

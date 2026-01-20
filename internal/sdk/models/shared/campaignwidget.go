@@ -24,18 +24,18 @@ func (c *CampaignWidgetLabel) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CampaignWidgetLabel) GetDe() *string {
-	if o == nil {
+func (c *CampaignWidgetLabel) GetDe() *string {
+	if c == nil {
 		return nil
 	}
-	return o.De
+	return c.De
 }
 
-func (o *CampaignWidgetLabel) GetEn() *string {
-	if o == nil {
+func (c *CampaignWidgetLabel) GetEn() *string {
+	if c == nil {
 		return nil
 	}
-	return o.En
+	return c.En
 }
 
 type Button struct {
@@ -54,18 +54,18 @@ func (b *Button) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Button) GetLabel() *CampaignWidgetLabel {
-	if o == nil {
+func (b *Button) GetLabel() *CampaignWidgetLabel {
+	if b == nil {
 		return nil
 	}
-	return o.Label
+	return b.Label
 }
 
-func (o *Button) GetURL() *string {
-	if o == nil {
+func (b *Button) GetURL() *string {
+	if b == nil {
 		return nil
 	}
-	return o.URL
+	return b.URL
 }
 
 type CampaignWidgetHeadline struct {
@@ -84,18 +84,18 @@ func (c *CampaignWidgetHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CampaignWidgetHeadline) GetDe() *string {
-	if o == nil {
+func (c *CampaignWidgetHeadline) GetDe() *string {
+	if c == nil {
 		return nil
 	}
-	return o.De
+	return c.De
 }
 
-func (o *CampaignWidgetHeadline) GetEn() *string {
-	if o == nil {
+func (c *CampaignWidgetHeadline) GetEn() *string {
+	if c == nil {
 		return nil
 	}
-	return o.En
+	return c.En
 }
 
 type CampaignWidgetSubHeadline struct {
@@ -114,18 +114,18 @@ func (c *CampaignWidgetSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *CampaignWidgetSubHeadline) GetDe() *string {
-	if o == nil {
+func (c *CampaignWidgetSubHeadline) GetDe() *string {
+	if c == nil {
 		return nil
 	}
-	return o.De
+	return c.De
 }
 
-func (o *CampaignWidgetSubHeadline) GetEn() *string {
-	if o == nil {
+func (c *CampaignWidgetSubHeadline) GetEn() *string {
+	if c == nil {
 		return nil
 	}
-	return o.En
+	return c.En
 }
 
 type CampaignWidgetType string
@@ -193,64 +193,64 @@ func (c CampaignWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CampaignWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *CampaignWidget) GetButton() *Button {
-	if o == nil {
+func (c *CampaignWidget) GetButton() *Button {
+	if c == nil {
 		return nil
 	}
-	return o.Button
+	return c.Button
 }
 
-func (o *CampaignWidget) GetCampaignID() *string {
-	if o == nil {
+func (c *CampaignWidget) GetCampaignID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CampaignID
+	return c.CampaignID
 }
 
-func (o *CampaignWidget) GetHeadline() *CampaignWidgetHeadline {
-	if o == nil {
+func (c *CampaignWidget) GetHeadline() *CampaignWidgetHeadline {
+	if c == nil {
 		return nil
 	}
-	return o.Headline
+	return c.Headline
 }
 
-func (o *CampaignWidget) GetID() string {
-	if o == nil {
+func (c *CampaignWidget) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *CampaignWidget) GetImageURL() *string {
-	if o == nil {
+func (c *CampaignWidget) GetImageURL() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ImageURL
+	return c.ImageURL
 }
 
-func (o *CampaignWidget) GetListIndex() int64 {
-	if o == nil {
+func (c *CampaignWidget) GetListIndex() int64 {
+	if c == nil {
 		return 0
 	}
-	return o.ListIndex
+	return c.ListIndex
 }
 
-func (o *CampaignWidget) GetSubHeadline() *CampaignWidgetSubHeadline {
-	if o == nil {
+func (c *CampaignWidget) GetSubHeadline() *CampaignWidgetSubHeadline {
+	if c == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return c.SubHeadline
 }
 
-func (o *CampaignWidget) GetType() CampaignWidgetType {
-	if o == nil {
+func (c *CampaignWidget) GetType() CampaignWidgetType {
+	if c == nil {
 		return CampaignWidgetType("")
 	}
-	return o.Type
+	return c.Type
 }

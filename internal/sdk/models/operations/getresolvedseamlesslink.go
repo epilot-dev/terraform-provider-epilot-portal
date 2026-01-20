@@ -14,18 +14,18 @@ type ContextEntities struct {
 	EntitySchema string `queryParam:"name=entity_schema"`
 }
 
-func (o *ContextEntities) GetEntityID() string {
-	if o == nil {
+func (c *ContextEntities) GetEntityID() string {
+	if c == nil {
 		return ""
 	}
-	return o.EntityID
+	return c.EntityID
 }
 
-func (o *ContextEntities) GetEntitySchema() string {
-	if o == nil {
+func (c *ContextEntities) GetEntitySchema() string {
+	if c == nil {
 		return ""
 	}
-	return o.EntitySchema
+	return c.EntitySchema
 }
 
 type GetResolvedSeamlessLinkRequest struct {
@@ -39,32 +39,32 @@ type GetResolvedSeamlessLinkRequest struct {
 	LinkID string `queryParam:"style=form,explode=true,name=link_id"`
 }
 
-func (o *GetResolvedSeamlessLinkRequest) GetAppID() *string {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkRequest) GetAppID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AppID
+	return g.AppID
 }
 
-func (o *GetResolvedSeamlessLinkRequest) GetContextEntities() []ContextEntities {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkRequest) GetContextEntities() []ContextEntities {
+	if g == nil {
 		return nil
 	}
-	return o.ContextEntities
+	return g.ContextEntities
 }
 
-func (o *GetResolvedSeamlessLinkRequest) GetExtensionID() string {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkRequest) GetExtensionID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ExtensionID
+	return g.ExtensionID
 }
 
-func (o *GetResolvedSeamlessLinkRequest) GetLinkID() string {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkRequest) GetLinkID() string {
+	if g == nil {
 		return ""
 	}
-	return o.LinkID
+	return g.LinkID
 }
 
 // GetResolvedSeamlessLinkResponseBody - Resolved portal seamless link retrieved successfully.
@@ -73,11 +73,11 @@ type GetResolvedSeamlessLinkResponseBody struct {
 	Link *string `json:"link,omitempty"`
 }
 
-func (o *GetResolvedSeamlessLinkResponseBody) GetLink() *string {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkResponseBody) GetLink() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Link
+	return g.Link
 }
 
 type GetResolvedSeamlessLinkResponse struct {
@@ -93,37 +93,37 @@ type GetResolvedSeamlessLinkResponse struct {
 	Object *GetResolvedSeamlessLinkResponseBody
 }
 
-func (o *GetResolvedSeamlessLinkResponse) GetContentType() string {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetResolvedSeamlessLinkResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetResolvedSeamlessLinkResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetResolvedSeamlessLinkResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetResolvedSeamlessLinkResponse) GetObject() *GetResolvedSeamlessLinkResponseBody {
-	if o == nil {
+func (g *GetResolvedSeamlessLinkResponse) GetObject() *GetResolvedSeamlessLinkResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -23,16 +23,16 @@ func (s *Schema) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Schema) GetAdditionalProperties() any {
-	if o == nil {
+func (s *Schema) GetAdditionalProperties() any {
+	if s == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return s.AdditionalProperties
 }
 
-func (o *Schema) GetSlug() *string {
-	if o == nil {
+func (s *Schema) GetSlug() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Slug
+	return s.Slug
 }

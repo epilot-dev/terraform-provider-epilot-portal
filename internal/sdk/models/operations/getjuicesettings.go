@@ -11,11 +11,11 @@ type GetJuiceSettingsRequest struct {
 	Domain string `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *GetJuiceSettingsRequest) GetDomain() string {
-	if o == nil {
+func (g *GetJuiceSettingsRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
 type GetJuiceSettingsResponse struct {
@@ -31,37 +31,37 @@ type GetJuiceSettingsResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetJuiceSettingsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetJuiceSettingsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetJuiceSettingsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetJuiceSettingsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetJuiceSettingsResponse) GetJuiceSettings() *shared.JuiceSettings {
-	if o == nil {
+func (g *GetJuiceSettingsResponse) GetJuiceSettings() *shared.JuiceSettings {
+	if g == nil {
 		return nil
 	}
-	return o.JuiceSettings
+	return g.JuiceSettings
 }
 
-func (o *GetJuiceSettingsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetJuiceSettingsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetJuiceSettingsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetJuiceSettingsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

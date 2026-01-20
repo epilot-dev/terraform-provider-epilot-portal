@@ -40,18 +40,18 @@ type GetAutomationContextRequest struct {
 	Type QueryParamType `queryParam:"style=form,explode=true,name=type"`
 }
 
-func (o *GetAutomationContextRequest) GetActivityID() string {
-	if o == nil {
+func (g *GetAutomationContextRequest) GetActivityID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ActivityID
+	return g.ActivityID
 }
 
-func (o *GetAutomationContextRequest) GetType() QueryParamType {
-	if o == nil {
+func (g *GetAutomationContextRequest) GetType() QueryParamType {
+	if g == nil {
 		return QueryParamType("")
 	}
-	return o.Type
+	return g.Type
 }
 
 type GetAutomationContextResponse struct {
@@ -67,37 +67,37 @@ type GetAutomationContextResponse struct {
 	Object map[string]map[string]any
 }
 
-func (o *GetAutomationContextResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAutomationContextResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAutomationContextResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetAutomationContextResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetAutomationContextResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAutomationContextResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAutomationContextResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAutomationContextResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAutomationContextResponse) GetObject() map[string]map[string]any {
-	if o == nil {
+func (g *GetAutomationContextResponse) GetObject() map[string]map[string]any {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

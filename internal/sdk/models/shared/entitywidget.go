@@ -24,18 +24,18 @@ func (e *EntityWidgetHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityWidgetHeadline) GetDe() *string {
-	if o == nil {
+func (e *EntityWidgetHeadline) GetDe() *string {
+	if e == nil {
 		return nil
 	}
-	return o.De
+	return e.De
 }
 
-func (o *EntityWidgetHeadline) GetEn() *string {
-	if o == nil {
+func (e *EntityWidgetHeadline) GetEn() *string {
+	if e == nil {
 		return nil
 	}
-	return o.En
+	return e.En
 }
 
 type EntityWidgetSubHeadline struct {
@@ -54,18 +54,18 @@ func (e *EntityWidgetSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityWidgetSubHeadline) GetDe() *string {
-	if o == nil {
+func (e *EntityWidgetSubHeadline) GetDe() *string {
+	if e == nil {
 		return nil
 	}
-	return o.De
+	return e.De
 }
 
-func (o *EntityWidgetSubHeadline) GetEn() *string {
-	if o == nil {
+func (e *EntityWidgetSubHeadline) GetEn() *string {
+	if e == nil {
 		return nil
 	}
-	return o.En
+	return e.En
 }
 
 type EntityWidgetType string
@@ -130,50 +130,50 @@ func (e EntityWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (e *EntityWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *EntityWidget) GetHeadline() *EntityWidgetHeadline {
-	if o == nil {
+func (e *EntityWidget) GetHeadline() *EntityWidgetHeadline {
+	if e == nil {
 		return nil
 	}
-	return o.Headline
+	return e.Headline
 }
 
-func (o *EntityWidget) GetID() string {
-	if o == nil {
+func (e *EntityWidget) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *EntityWidget) GetListIndex() int64 {
-	if o == nil {
+func (e *EntityWidget) GetListIndex() int64 {
+	if e == nil {
 		return 0
 	}
-	return o.ListIndex
+	return e.ListIndex
 }
 
-func (o *EntityWidget) GetSchema() *string {
-	if o == nil {
+func (e *EntityWidget) GetSchema() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.Schema
 }
 
-func (o *EntityWidget) GetSubHeadline() *EntityWidgetSubHeadline {
-	if o == nil {
+func (e *EntityWidget) GetSubHeadline() *EntityWidgetSubHeadline {
+	if e == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return e.SubHeadline
 }
 
-func (o *EntityWidget) GetType() EntityWidgetType {
-	if o == nil {
+func (e *EntityWidget) GetType() EntityWidgetType {
+	if e == nil {
 		return EntityWidgetType("")
 	}
-	return o.Type
+	return e.Type
 }

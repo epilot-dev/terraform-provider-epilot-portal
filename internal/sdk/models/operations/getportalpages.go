@@ -14,18 +14,18 @@ type QueryParamContextEntities struct {
 	EntitySchema string `queryParam:"name=entity_schema"`
 }
 
-func (o *QueryParamContextEntities) GetEntityID() string {
-	if o == nil {
+func (q *QueryParamContextEntities) GetEntityID() string {
+	if q == nil {
 		return ""
 	}
-	return o.EntityID
+	return q.EntityID
 }
 
-func (o *QueryParamContextEntities) GetEntitySchema() string {
-	if o == nil {
+func (q *QueryParamContextEntities) GetEntitySchema() string {
+	if q == nil {
 		return ""
 	}
-	return o.EntitySchema
+	return q.EntitySchema
 }
 
 type GetPortalPagesRequest struct {
@@ -42,39 +42,39 @@ type GetPortalPagesRequest struct {
 	Filter *string `queryParam:"style=form,explode=true,name=filter"`
 }
 
-func (o *GetPortalPagesRequest) GetContextEntities() []QueryParamContextEntities {
-	if o == nil {
+func (g *GetPortalPagesRequest) GetContextEntities() []QueryParamContextEntities {
+	if g == nil {
 		return nil
 	}
-	return o.ContextEntities
+	return g.ContextEntities
 }
 
-func (o *GetPortalPagesRequest) GetContractID() *string {
-	if o == nil {
+func (g *GetPortalPagesRequest) GetContractID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContractID
+	return g.ContractID
 }
 
-func (o *GetPortalPagesRequest) GetDomain() string {
-	if o == nil {
+func (g *GetPortalPagesRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetPortalPagesRequest) GetFields() *string {
-	if o == nil {
+func (g *GetPortalPagesRequest) GetFields() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Fields
+	return g.Fields
 }
 
-func (o *GetPortalPagesRequest) GetFilter() *string {
-	if o == nil {
+func (g *GetPortalPagesRequest) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
 type GetPortalPagesResponse struct {
@@ -90,37 +90,37 @@ type GetPortalPagesResponse struct {
 	Classes []shared.Page
 }
 
-func (o *GetPortalPagesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPortalPagesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPortalPagesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPortalPagesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPortalPagesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPortalPagesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPortalPagesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPortalPagesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPortalPagesResponse) GetClasses() []shared.Page {
-	if o == nil {
+func (g *GetPortalPagesResponse) GetClasses() []shared.Page {
+	if g == nil {
 		return nil
 	}
-	return o.Classes
+	return g.Classes
 }

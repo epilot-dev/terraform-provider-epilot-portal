@@ -12,11 +12,11 @@ type DeletePortalConfigRequest struct {
 	PortalID string `pathParam:"style=simple,explode=false,name=portal_id"`
 }
 
-func (o *DeletePortalConfigRequest) GetPortalID() string {
-	if o == nil {
+func (d *DeletePortalConfigRequest) GetPortalID() string {
+	if d == nil {
 		return ""
 	}
-	return o.PortalID
+	return d.PortalID
 }
 
 type DeletePortalConfigResponse struct {
@@ -30,30 +30,30 @@ type DeletePortalConfigResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeletePortalConfigResponse) GetContentType() string {
-	if o == nil {
+func (d *DeletePortalConfigResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeletePortalConfigResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeletePortalConfigResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeletePortalConfigResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeletePortalConfigResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeletePortalConfigResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeletePortalConfigResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

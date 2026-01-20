@@ -13,18 +13,18 @@ type UpdatePortalPageRequest struct {
 	ID          string             `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *UpdatePortalPageRequest) GetPageRequest() shared.PageRequest {
-	if o == nil {
+func (u *UpdatePortalPageRequest) GetPageRequest() shared.PageRequest {
+	if u == nil {
 		return shared.PageRequest{}
 	}
-	return o.PageRequest
+	return u.PageRequest
 }
 
-func (o *UpdatePortalPageRequest) GetID() string {
-	if o == nil {
+func (u *UpdatePortalPageRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
 type UpdatePortalPageResponse struct {
@@ -40,37 +40,37 @@ type UpdatePortalPageResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UpdatePortalPageResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdatePortalPageResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdatePortalPageResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdatePortalPageResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdatePortalPageResponse) GetPage() *shared.Page {
-	if o == nil {
+func (u *UpdatePortalPageResponse) GetPage() *shared.Page {
+	if u == nil {
 		return nil
 	}
-	return o.Page
+	return u.Page
 }
 
-func (o *UpdatePortalPageResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdatePortalPageResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdatePortalPageResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdatePortalPageResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }

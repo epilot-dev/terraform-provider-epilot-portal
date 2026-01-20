@@ -14,18 +14,18 @@ type GetValidSecondaryAttributesData struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *GetValidSecondaryAttributesData) GetName() *string {
-	if o == nil {
+func (g *GetValidSecondaryAttributesData) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetValidSecondaryAttributesData) GetType() *string {
-	if o == nil {
+func (g *GetValidSecondaryAttributesData) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
 // GetValidSecondaryAttributesResponseBody - Valid secondary attributes for the contact entity are returned successfully.
@@ -33,11 +33,11 @@ type GetValidSecondaryAttributesResponseBody struct {
 	Data []GetValidSecondaryAttributesData `json:"data,omitempty"`
 }
 
-func (o *GetValidSecondaryAttributesResponseBody) GetData() []GetValidSecondaryAttributesData {
-	if o == nil {
+func (g *GetValidSecondaryAttributesResponseBody) GetData() []GetValidSecondaryAttributesData {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetValidSecondaryAttributesResponse struct {
@@ -53,37 +53,37 @@ type GetValidSecondaryAttributesResponse struct {
 	Object *GetValidSecondaryAttributesResponseBody
 }
 
-func (o *GetValidSecondaryAttributesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetValidSecondaryAttributesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetValidSecondaryAttributesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetValidSecondaryAttributesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetValidSecondaryAttributesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetValidSecondaryAttributesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetValidSecondaryAttributesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetValidSecondaryAttributesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetValidSecondaryAttributesResponse) GetObject() *GetValidSecondaryAttributesResponseBody {
-	if o == nil {
+func (g *GetValidSecondaryAttributesResponse) GetObject() *GetValidSecondaryAttributesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

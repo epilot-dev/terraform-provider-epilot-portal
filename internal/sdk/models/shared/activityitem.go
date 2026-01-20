@@ -13,18 +13,18 @@ type Entity struct {
 	Schema *string `json:"schema,omitempty"`
 }
 
-func (o *Entity) GetID() *string {
-	if o == nil {
+func (e *Entity) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *Entity) GetSchema() *string {
-	if o == nil {
+func (e *Entity) GetSchema() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Schema
+	return e.Schema
 }
 
 type Payload struct {
@@ -32,18 +32,18 @@ type Payload struct {
 	Entity *Entity                `json:"entity,omitempty"`
 }
 
-func (o *Payload) GetCaller() *ActivityCallerContext {
-	if o == nil {
+func (p *Payload) GetCaller() *ActivityCallerContext {
+	if p == nil {
 		return nil
 	}
-	return o.Caller
+	return p.Caller
 }
 
-func (o *Payload) GetEntity() *Entity {
-	if o == nil {
+func (p *Payload) GetEntity() *Entity {
+	if p == nil {
 		return nil
 	}
-	return o.Entity
+	return p.Entity
 }
 
 type ActivityItem struct {
@@ -63,50 +63,50 @@ func (a ActivityItem) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ActivityItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"message", "title", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ActivityItem) GetID() *string {
-	if o == nil {
+func (a *ActivityItem) GetID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *ActivityItem) GetMessage() string {
-	if o == nil {
+func (a *ActivityItem) GetMessage() string {
+	if a == nil {
 		return ""
 	}
-	return o.Message
+	return a.Message
 }
 
-func (o *ActivityItem) GetPayload() *Payload {
-	if o == nil {
+func (a *ActivityItem) GetPayload() *Payload {
+	if a == nil {
 		return nil
 	}
-	return o.Payload
+	return a.Payload
 }
 
-func (o *ActivityItem) GetTimestamp() *time.Time {
-	if o == nil {
+func (a *ActivityItem) GetTimestamp() *time.Time {
+	if a == nil {
 		return nil
 	}
-	return o.Timestamp
+	return a.Timestamp
 }
 
-func (o *ActivityItem) GetTitle() string {
-	if o == nil {
+func (a *ActivityItem) GetTitle() string {
+	if a == nil {
 		return ""
 	}
-	return o.Title
+	return a.Title
 }
 
-func (o *ActivityItem) GetType() string {
-	if o == nil {
+func (a *ActivityItem) GetType() string {
+	if a == nil {
 		return ""
 	}
-	return o.Type
+	return a.Type
 }

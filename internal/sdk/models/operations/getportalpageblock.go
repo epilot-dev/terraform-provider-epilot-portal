@@ -12,18 +12,18 @@ type GetPortalPageBlockRequest struct {
 	ID      string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetPortalPageBlockRequest) GetBlockID() string {
-	if o == nil {
+func (g *GetPortalPageBlockRequest) GetBlockID() string {
+	if g == nil {
 		return ""
 	}
-	return o.BlockID
+	return g.BlockID
 }
 
-func (o *GetPortalPageBlockRequest) GetID() string {
-	if o == nil {
+func (g *GetPortalPageBlockRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 type GetPortalPageBlockResponse struct {
@@ -39,37 +39,37 @@ type GetPortalPageBlockResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetPortalPageBlockResponse) GetBlock() *shared.Block {
-	if o == nil {
+func (g *GetPortalPageBlockResponse) GetBlock() *shared.Block {
+	if g == nil {
 		return nil
 	}
-	return o.Block
+	return g.Block
 }
 
-func (o *GetPortalPageBlockResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPortalPageBlockResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPortalPageBlockResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPortalPageBlockResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPortalPageBlockResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPortalPageBlockResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPortalPageBlockResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPortalPageBlockResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

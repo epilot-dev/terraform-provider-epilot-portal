@@ -206,9 +206,6 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 			"last_modified_at": schema.StringAttribute{
 				Computed:    true,
 				Description: `Last modified timestamp of the Page`,
-				Validators: []validator.String{
-					validators.IsRFC3339(),
-				},
 			},
 			"order": schema.Float64Attribute{
 				Required:    true,
@@ -328,7 +325,7 @@ func (r *PortalPageResource) Create(ctx context.Context, req resource.CreateRequ
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	res1, err := r.client.ECPAdmin.GetPortalPage(ctx, *request1)
+	res1, err := r.client.Ecp.GetPortalPage(ctx, *request1)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res1 != nil && res1.RawResponse != nil {
@@ -388,7 +385,7 @@ func (r *PortalPageResource) Read(ctx context.Context, req resource.ReadRequest,
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	res, err := r.client.ECPAdmin.GetPortalPage(ctx, *request)
+	res, err := r.client.Ecp.GetPortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -514,7 +511,10 @@ func (r *PortalPageResource) Delete(ctx context.Context, req resource.DeleteRequ
 		resp.Diagnostics.AddError("unexpected response from API", fmt.Sprintf("%v", res))
 		return
 	}
-	if res.StatusCode != 204 {
+	switch res.StatusCode {
+	case 204, 404:
+		break
+	default:
 		resp.Diagnostics.AddError(fmt.Sprintf("unexpected response from API. Got an unexpected response code %v", res.StatusCode), debugResponse(res.RawResponse))
 		return
 	}

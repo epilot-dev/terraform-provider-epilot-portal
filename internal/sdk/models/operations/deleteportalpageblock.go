@@ -12,18 +12,18 @@ type DeletePortalPageBlockRequest struct {
 	ID      string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *DeletePortalPageBlockRequest) GetBlockID() string {
-	if o == nil {
+func (d *DeletePortalPageBlockRequest) GetBlockID() string {
+	if d == nil {
 		return ""
 	}
-	return o.BlockID
+	return d.BlockID
 }
 
-func (o *DeletePortalPageBlockRequest) GetID() string {
-	if o == nil {
+func (d *DeletePortalPageBlockRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
 type DeletePortalPageBlockResponse struct {
@@ -37,30 +37,30 @@ type DeletePortalPageBlockResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeletePortalPageBlockResponse) GetContentType() string {
-	if o == nil {
+func (d *DeletePortalPageBlockResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeletePortalPageBlockResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeletePortalPageBlockResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeletePortalPageBlockResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeletePortalPageBlockResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeletePortalPageBlockResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeletePortalPageBlockResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

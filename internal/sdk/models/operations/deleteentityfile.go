@@ -12,11 +12,11 @@ type DeleteEntityFileResponseBody struct {
 	DeletedFiles []string `json:"deletedFiles,omitempty"`
 }
 
-func (o *DeleteEntityFileResponseBody) GetDeletedFiles() []string {
-	if o == nil {
+func (d *DeleteEntityFileResponseBody) GetDeletedFiles() []string {
+	if d == nil {
 		return nil
 	}
-	return o.DeletedFiles
+	return d.DeletedFiles
 }
 
 type DeleteEntityFileResponse struct {
@@ -32,37 +32,37 @@ type DeleteEntityFileResponse struct {
 	Object *DeleteEntityFileResponseBody
 }
 
-func (o *DeleteEntityFileResponse) GetContentType() string {
-	if o == nil {
+func (d *DeleteEntityFileResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeleteEntityFileResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeleteEntityFileResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeleteEntityFileResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeleteEntityFileResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeleteEntityFileResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeleteEntityFileResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }
 
-func (o *DeleteEntityFileResponse) GetObject() *DeleteEntityFileResponseBody {
-	if o == nil {
+func (d *DeleteEntityFileResponse) GetObject() *DeleteEntityFileResponseBody {
+	if d == nil {
 		return nil
 	}
-	return o.Object
+	return d.Object
 }

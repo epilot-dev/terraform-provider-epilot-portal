@@ -15,25 +15,25 @@ type GetPublicPagesRequest struct {
 	Filter *string `queryParam:"style=form,explode=true,name=filter"`
 }
 
-func (o *GetPublicPagesRequest) GetDomain() string {
-	if o == nil {
+func (g *GetPublicPagesRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetPublicPagesRequest) GetFields() *string {
-	if o == nil {
+func (g *GetPublicPagesRequest) GetFields() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Fields
+	return g.Fields
 }
 
-func (o *GetPublicPagesRequest) GetFilter() *string {
-	if o == nil {
+func (g *GetPublicPagesRequest) GetFilter() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Filter
+	return g.Filter
 }
 
 type GetPublicPagesResponse struct {
@@ -49,37 +49,37 @@ type GetPublicPagesResponse struct {
 	Classes []shared.Page
 }
 
-func (o *GetPublicPagesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPublicPagesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPublicPagesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPublicPagesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPublicPagesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPublicPagesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPublicPagesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPublicPagesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPublicPagesResponse) GetClasses() []shared.Page {
-	if o == nil {
+func (g *GetPublicPagesResponse) GetClasses() []shared.Page {
+	if g == nil {
 		return nil
 	}
-	return o.Classes
+	return g.Classes
 }

@@ -39,16 +39,16 @@ func (f *FailedRuleErrorResp) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *FailedRuleErrorResp) GetFailedRule() *FailedRule {
-	if o == nil {
+func (f *FailedRuleErrorResp) GetFailedRule() *FailedRule {
+	if f == nil {
 		return nil
 	}
-	return o.FailedRule
+	return f.FailedRule
 }
 
-func (o *FailedRuleErrorResp) GetMessage() *string {
-	if o == nil {
+func (f *FailedRuleErrorResp) GetMessage() *string {
+	if f == nil {
 		return nil
 	}
-	return o.Message
+	return f.Message
 }

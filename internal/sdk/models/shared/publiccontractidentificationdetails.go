@@ -18,24 +18,24 @@ func (p PublicContractIdentificationDetailsExplanation) MarshalJSON() ([]byte, e
 }
 
 func (p *PublicContractIdentificationDetailsExplanation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PublicContractIdentificationDetailsExplanation) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (p *PublicContractIdentificationDetailsExplanation) GetAdditionalProperties() map[string]string {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *PublicContractIdentificationDetailsExplanation) GetEn() string {
-	if o == nil {
+func (p *PublicContractIdentificationDetailsExplanation) GetEn() string {
+	if p == nil {
 		return ""
 	}
-	return o.En
+	return p.En
 }
 
 type PublicContractIdentificationDetails struct {
@@ -43,9 +43,9 @@ type PublicContractIdentificationDetails struct {
 	Explanation *PublicContractIdentificationDetailsExplanation `json:"explanation,omitempty"`
 }
 
-func (o *PublicContractIdentificationDetails) GetExplanation() *PublicContractIdentificationDetailsExplanation {
-	if o == nil {
+func (p *PublicContractIdentificationDetails) GetExplanation() *PublicContractIdentificationDetailsExplanation {
+	if p == nil {
 		return nil
 	}
-	return o.Explanation
+	return p.Explanation
 }

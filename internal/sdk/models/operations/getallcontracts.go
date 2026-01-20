@@ -27,18 +27,18 @@ func (g *GetAllContractsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetAllContractsRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetAllContractsRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetAllContractsRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetAllContractsRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 // BillingPeriod - The billing period associated with the contract.
@@ -285,220 +285,220 @@ func (g GetAllContractsData) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllContractsData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"_created_at", "_id", "_org", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetAllContractsData) GetAdditionalProperties() any {
-	if o == nil {
+func (g *GetAllContractsData) GetAdditionalProperties() any {
+	if g == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return g.AdditionalProperties
 }
 
-func (o *GetAllContractsData) GetCreatedAt() time.Time {
-	if o == nil {
+func (g *GetAllContractsData) GetCreatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetAllContractsData) GetID() string {
-	if o == nil {
+func (g *GetAllContractsData) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetAllContractsData) GetOrg() string {
-	if o == nil {
+func (g *GetAllContractsData) GetOrg() string {
+	if g == nil {
 		return ""
 	}
-	return o.Org
+	return g.Org
 }
 
-func (o *GetAllContractsData) GetTags() []string {
-	if o == nil {
+func (g *GetAllContractsData) GetTags() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Tags
+	return g.Tags
 }
 
-func (o *GetAllContractsData) GetTitle() string {
-	if o == nil {
+func (g *GetAllContractsData) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetAllContractsData) GetUpdatedAt() time.Time {
-	if o == nil {
+func (g *GetAllContractsData) GetUpdatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetAllContractsData) GetAccountNumber() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetAccountNumber() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AccountNumber
+	return g.AccountNumber
 }
 
-func (o *GetAllContractsData) GetAdditionalAddresses() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetAdditionalAddresses() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AdditionalAddresses
+	return g.AdditionalAddresses
 }
 
-func (o *GetAllContractsData) GetBalance() *int64 {
-	if o == nil {
+func (g *GetAllContractsData) GetBalance() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.Balance
+	return g.Balance
 }
 
-func (o *GetAllContractsData) GetBalanceCurrency() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetBalanceCurrency() *string {
+	if g == nil {
 		return nil
 	}
-	return o.BalanceCurrency
+	return g.BalanceCurrency
 }
 
-func (o *GetAllContractsData) GetBillingAddress() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetBillingAddress() *string {
+	if g == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return g.BillingAddress
 }
 
-func (o *GetAllContractsData) GetBillingDueDay() *int64 {
-	if o == nil {
+func (g *GetAllContractsData) GetBillingDueDay() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.BillingDueDay
+	return g.BillingDueDay
 }
 
-func (o *GetAllContractsData) GetBillingDurationAmount() *float64 {
-	if o == nil {
+func (g *GetAllContractsData) GetBillingDurationAmount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.BillingDurationAmount
+	return g.BillingDurationAmount
 }
 
-func (o *GetAllContractsData) GetBillingPeriod() *BillingPeriod {
-	if o == nil {
+func (g *GetAllContractsData) GetBillingPeriod() *BillingPeriod {
+	if g == nil {
 		return nil
 	}
-	return o.BillingPeriod
+	return g.BillingPeriod
 }
 
-func (o *GetAllContractsData) GetBranch() *Branch {
-	if o == nil {
+func (g *GetAllContractsData) GetBranch() *Branch {
+	if g == nil {
 		return nil
 	}
-	return o.Branch
+	return g.Branch
 }
 
-func (o *GetAllContractsData) GetContractName() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetContractName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContractName
+	return g.ContractName
 }
 
-func (o *GetAllContractsData) GetContractNumber() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetContractNumber() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContractNumber
+	return g.ContractNumber
 }
 
-func (o *GetAllContractsData) GetDeliveryAddress() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetDeliveryAddress() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DeliveryAddress
+	return g.DeliveryAddress
 }
 
-func (o *GetAllContractsData) GetDescription() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetDescription() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Description
+	return g.Description
 }
 
-func (o *GetAllContractsData) GetInstallmentAmount() *int64 {
-	if o == nil {
+func (g *GetAllContractsData) GetInstallmentAmount() *int64 {
+	if g == nil {
 		return nil
 	}
-	return o.InstallmentAmount
+	return g.InstallmentAmount
 }
 
-func (o *GetAllContractsData) GetJourneyActions() *shared.JourneyActions {
-	if o == nil {
+func (g *GetAllContractsData) GetJourneyActions() *shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
-func (o *GetAllContractsData) GetNoticeTimeAmount() *float64 {
-	if o == nil {
+func (g *GetAllContractsData) GetNoticeTimeAmount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.NoticeTimeAmount
+	return g.NoticeTimeAmount
 }
 
-func (o *GetAllContractsData) GetNoticeTimeUnit() *NoticeTimeUnit {
-	if o == nil {
+func (g *GetAllContractsData) GetNoticeTimeUnit() *NoticeTimeUnit {
+	if g == nil {
 		return nil
 	}
-	return o.NoticeTimeUnit
+	return g.NoticeTimeUnit
 }
 
-func (o *GetAllContractsData) GetRenewalDurationAmount() *float64 {
-	if o == nil {
+func (g *GetAllContractsData) GetRenewalDurationAmount() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.RenewalDurationAmount
+	return g.RenewalDurationAmount
 }
 
-func (o *GetAllContractsData) GetRenewalDurationUnit() *RenewalDurationUnit {
-	if o == nil {
+func (g *GetAllContractsData) GetRenewalDurationUnit() *RenewalDurationUnit {
+	if g == nil {
 		return nil
 	}
-	return o.RenewalDurationUnit
+	return g.RenewalDurationUnit
 }
 
-func (o *GetAllContractsData) GetStartDate() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetStartDate() *string {
+	if g == nil {
 		return nil
 	}
-	return o.StartDate
+	return g.StartDate
 }
 
-func (o *GetAllContractsData) GetStatus() *GetAllContractsStatus {
-	if o == nil {
+func (g *GetAllContractsData) GetStatus() *GetAllContractsStatus {
+	if g == nil {
 		return nil
 	}
-	return o.Status
+	return g.Status
 }
 
-func (o *GetAllContractsData) GetTerminationDate() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetTerminationDate() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TerminationDate
+	return g.TerminationDate
 }
 
-func (o *GetAllContractsData) GetTerminationReason() *string {
-	if o == nil {
+func (g *GetAllContractsData) GetTerminationReason() *string {
+	if g == nil {
 		return nil
 	}
-	return o.TerminationReason
+	return g.TerminationReason
 }
 
 // GetAllContractsResponseBody - Contracts have been retrieved successfully.
@@ -506,11 +506,11 @@ type GetAllContractsResponseBody struct {
 	Data []GetAllContractsData `json:"data,omitempty"`
 }
 
-func (o *GetAllContractsResponseBody) GetData() []GetAllContractsData {
-	if o == nil {
+func (g *GetAllContractsResponseBody) GetData() []GetAllContractsData {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetAllContractsResponse struct {
@@ -526,37 +526,37 @@ type GetAllContractsResponse struct {
 	Object *GetAllContractsResponseBody
 }
 
-func (o *GetAllContractsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAllContractsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAllContractsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetAllContractsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetAllContractsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAllContractsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAllContractsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAllContractsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAllContractsResponse) GetObject() *GetAllContractsResponseBody {
-	if o == nil {
+func (g *GetAllContractsResponse) GetObject() *GetAllContractsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

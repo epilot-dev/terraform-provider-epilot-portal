@@ -16,18 +16,18 @@ type CreateUserRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *CreateUserRequest) GetCreateUserRequest() shared.CreateUserRequest {
-	if o == nil {
+func (c *CreateUserRequest) GetCreateUserRequest() shared.CreateUserRequest {
+	if c == nil {
 		return shared.CreateUserRequest{}
 	}
-	return o.CreateUserRequest
+	return c.CreateUserRequest
 }
 
-func (o *CreateUserRequest) GetOrigin() string {
-	if o == nil {
+func (c *CreateUserRequest) GetOrigin() string {
+	if c == nil {
 		return ""
 	}
-	return o.Origin
+	return c.Origin
 }
 
 type CreateUserMessage string
@@ -58,11 +58,11 @@ type CreateUserResponseBody struct {
 	Message CreateUserMessage `json:"message"`
 }
 
-func (o *CreateUserResponseBody) GetMessage() CreateUserMessage {
-	if o == nil {
+func (c *CreateUserResponseBody) GetMessage() CreateUserMessage {
+	if c == nil {
 		return CreateUserMessage("")
 	}
-	return o.Message
+	return c.Message
 }
 
 type CreateUserResponse struct {
@@ -78,37 +78,37 @@ type CreateUserResponse struct {
 	Object *CreateUserResponseBody
 }
 
-func (o *CreateUserResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateUserResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateUserResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *CreateUserResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *CreateUserResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateUserResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateUserResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CreateUserResponse) GetObject() *CreateUserResponseBody {
-	if o == nil {
+func (c *CreateUserResponse) GetObject() *CreateUserResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object
+	return c.Object
 }

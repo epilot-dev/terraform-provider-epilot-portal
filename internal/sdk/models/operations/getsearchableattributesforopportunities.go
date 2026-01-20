@@ -24,18 +24,18 @@ func (g *GetSearchableAttributesForOpportunitiesRequest) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *GetSearchableAttributesForOpportunitiesRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetSearchableAttributesForOpportunitiesRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 // GetSearchableAttributesForOpportunitiesResponseBody - The opportunities is retrieved successfully for the portal user.
@@ -43,11 +43,11 @@ type GetSearchableAttributesForOpportunitiesResponseBody struct {
 	Data []shared.Opportunity `json:"data,omitempty"`
 }
 
-func (o *GetSearchableAttributesForOpportunitiesResponseBody) GetData() []shared.Opportunity {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesResponseBody) GetData() []shared.Opportunity {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetSearchableAttributesForOpportunitiesResponse struct {
@@ -63,37 +63,37 @@ type GetSearchableAttributesForOpportunitiesResponse struct {
 	Object *GetSearchableAttributesForOpportunitiesResponseBody
 }
 
-func (o *GetSearchableAttributesForOpportunitiesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSearchableAttributesForOpportunitiesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetSearchableAttributesForOpportunitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSearchableAttributesForOpportunitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSearchableAttributesForOpportunitiesResponse) GetObject() *GetSearchableAttributesForOpportunitiesResponseBody {
-	if o == nil {
+func (g *GetSearchableAttributesForOpportunitiesResponse) GetObject() *GetSearchableAttributesForOpportunitiesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

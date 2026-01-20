@@ -11,30 +11,30 @@ type ProviderPublicConfig struct {
 	Slug string `json:"slug"`
 }
 
-func (o *ProviderPublicConfig) GetDisplayName() string {
-	if o == nil {
+func (p *ProviderPublicConfig) GetDisplayName() string {
+	if p == nil {
 		return ""
 	}
-	return o.DisplayName
+	return p.DisplayName
 }
 
-func (o *ProviderPublicConfig) GetMobileOidcConfig() *MoblieOIDCConfig {
-	if o == nil {
+func (p *ProviderPublicConfig) GetMobileOidcConfig() *MoblieOIDCConfig {
+	if p == nil {
 		return nil
 	}
-	return o.MobileOidcConfig
+	return p.MobileOidcConfig
 }
 
-func (o *ProviderPublicConfig) GetOidcConfig() *OIDCProviderConfig {
-	if o == nil {
+func (p *ProviderPublicConfig) GetOidcConfig() *OIDCProviderConfig {
+	if p == nil {
 		return nil
 	}
-	return o.OidcConfig
+	return p.OidcConfig
 }
 
-func (o *ProviderPublicConfig) GetSlug() string {
-	if o == nil {
+func (p *ProviderPublicConfig) GetSlug() string {
+	if p == nil {
 		return ""
 	}
-	return o.Slug
+	return p.Slug
 }

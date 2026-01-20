@@ -11,11 +11,11 @@ type ValidateCaaRecordsRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *ValidateCaaRecordsRequest) GetOrigin() string {
-	if o == nil {
+func (v *ValidateCaaRecordsRequest) GetOrigin() string {
+	if v == nil {
 		return ""
 	}
-	return o.Origin
+	return v.Origin
 }
 
 // ValidateCaaRecordsResponseBody - Validated CAA records successfully.
@@ -28,25 +28,25 @@ type ValidateCaaRecordsResponseBody struct {
 	Retry *bool `json:"retry,omitempty"`
 }
 
-func (o *ValidateCaaRecordsResponseBody) GetIsDNSConfigured() *bool {
-	if o == nil {
+func (v *ValidateCaaRecordsResponseBody) GetIsDNSConfigured() *bool {
+	if v == nil {
 		return nil
 	}
-	return o.IsDNSConfigured
+	return v.IsDNSConfigured
 }
 
-func (o *ValidateCaaRecordsResponseBody) GetMessage() *string {
-	if o == nil {
+func (v *ValidateCaaRecordsResponseBody) GetMessage() *string {
+	if v == nil {
 		return nil
 	}
-	return o.Message
+	return v.Message
 }
 
-func (o *ValidateCaaRecordsResponseBody) GetRetry() *bool {
-	if o == nil {
+func (v *ValidateCaaRecordsResponseBody) GetRetry() *bool {
+	if v == nil {
 		return nil
 	}
-	return o.Retry
+	return v.Retry
 }
 
 type ValidateCaaRecordsResponse struct {
@@ -62,37 +62,37 @@ type ValidateCaaRecordsResponse struct {
 	Object *ValidateCaaRecordsResponseBody
 }
 
-func (o *ValidateCaaRecordsResponse) GetContentType() string {
-	if o == nil {
+func (v *ValidateCaaRecordsResponse) GetContentType() string {
+	if v == nil {
 		return ""
 	}
-	return o.ContentType
+	return v.ContentType
 }
 
-func (o *ValidateCaaRecordsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (v *ValidateCaaRecordsResponse) GetErrorResp() *shared.ErrorResp {
+	if v == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return v.ErrorResp
 }
 
-func (o *ValidateCaaRecordsResponse) GetStatusCode() int {
-	if o == nil {
+func (v *ValidateCaaRecordsResponse) GetStatusCode() int {
+	if v == nil {
 		return 0
 	}
-	return o.StatusCode
+	return v.StatusCode
 }
 
-func (o *ValidateCaaRecordsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (v *ValidateCaaRecordsResponse) GetRawResponse() *http.Response {
+	if v == nil {
 		return nil
 	}
-	return o.RawResponse
+	return v.RawResponse
 }
 
-func (o *ValidateCaaRecordsResponse) GetObject() *ValidateCaaRecordsResponseBody {
-	if o == nil {
+func (v *ValidateCaaRecordsResponse) GetObject() *ValidateCaaRecordsResponseBody {
+	if v == nil {
 		return nil
 	}
-	return o.Object
+	return v.Object
 }

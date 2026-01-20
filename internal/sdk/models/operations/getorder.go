@@ -12,11 +12,11 @@ type GetOrderRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetOrderRequest) GetID() string {
-	if o == nil {
+func (g *GetOrderRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetOrderResponseBody - The requested order has been retrieved successfully.
@@ -36,53 +36,53 @@ type GetOrderResponseBody struct {
 	Workflow []map[string]any `json:"workflow,omitempty"`
 }
 
-func (o *GetOrderResponseBody) GetCrossSellableProducts() []shared.Product {
-	if o == nil {
+func (g *GetOrderResponseBody) GetCrossSellableProducts() []shared.Product {
+	if g == nil {
 		return nil
 	}
-	return o.CrossSellableProducts
+	return g.CrossSellableProducts
 }
 
-func (o *GetOrderResponseBody) GetEntity() *shared.Order {
-	if o == nil {
+func (g *GetOrderResponseBody) GetEntity() *shared.Order {
+	if g == nil {
 		return nil
 	}
-	return o.Entity
+	return g.Entity
 }
 
-func (o *GetOrderResponseBody) GetFiles() []shared.File {
-	if o == nil {
+func (g *GetOrderResponseBody) GetFiles() []shared.File {
+	if g == nil {
 		return nil
 	}
-	return o.Files
+	return g.Files
 }
 
-func (o *GetOrderResponseBody) GetJourneyActions() []shared.JourneyActions {
-	if o == nil {
+func (g *GetOrderResponseBody) GetJourneyActions() []shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
-func (o *GetOrderResponseBody) GetProducts() []shared.Product {
-	if o == nil {
+func (g *GetOrderResponseBody) GetProducts() []shared.Product {
+	if g == nil {
 		return nil
 	}
-	return o.Products
+	return g.Products
 }
 
-func (o *GetOrderResponseBody) GetRelations() []shared.EntityItem {
-	if o == nil {
+func (g *GetOrderResponseBody) GetRelations() []shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Relations
+	return g.Relations
 }
 
-func (o *GetOrderResponseBody) GetWorkflow() []map[string]any {
-	if o == nil {
+func (g *GetOrderResponseBody) GetWorkflow() []map[string]any {
+	if g == nil {
 		return nil
 	}
-	return o.Workflow
+	return g.Workflow
 }
 
 type GetOrderResponse struct {
@@ -98,37 +98,37 @@ type GetOrderResponse struct {
 	Object *GetOrderResponseBody
 }
 
-func (o *GetOrderResponse) GetContentType() string {
-	if o == nil {
+func (g *GetOrderResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetOrderResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetOrderResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetOrderResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetOrderResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetOrderResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetOrderResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetOrderResponse) GetObject() *GetOrderResponseBody {
-	if o == nil {
+func (g *GetOrderResponse) GetObject() *GetOrderResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

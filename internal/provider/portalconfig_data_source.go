@@ -61,8 +61,8 @@ type PortalConfigDataSourceModel struct {
 	IsV3Item                    types.Bool                                          `tfsdk:"is_v3_item"`
 	MeterReadingGracePeriod     types.Float64                                       `tfsdk:"meter_reading_grace_period"`
 	Name                        types.String                                        `tfsdk:"name"`
-	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings                  `tfsdk:"org_settings"`
 	OrganizationID              types.String                                        `tfsdk:"organization_id"`
+	OrgSettings                 *tfTypes.PortalConfigV3OrgSettings                  `tfsdk:"org_settings"`
 	Origin                      types.String                                        `tfsdk:"origin"`
 	Pages                       jsontypes.Normalized                                `tfsdk:"pages"`
 	PortalID                    types.String                                        `tfsdk:"portal_id"`
@@ -585,7 +585,7 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 			},
 			"portal_id": schema.StringAttribute{
 				Required:    true,
-				Description: `Portal ID (readonly UUID generated on portal creation)`,
+				Description: `ID of the portal`,
 			},
 			"portal_sk_v3": schema.StringAttribute{
 				Computed:    true,
@@ -666,7 +666,7 @@ func (r *PortalConfigDataSource) Read(ctx context.Context, req datasource.ReadRe
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	res, err := r.client.ECPAdmin.GetPortalConfigV3(ctx, *request)
+	res, err := r.client.Ecp.GetPortalConfigV3(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

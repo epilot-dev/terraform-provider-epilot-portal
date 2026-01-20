@@ -22,43 +22,43 @@ func (b BlockRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (b *BlockRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &b, "", false, []string{"order", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *BlockRequest) GetAdditionalProperties() any {
-	if o == nil {
+func (b *BlockRequest) GetAdditionalProperties() any {
+	if b == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return b.AdditionalProperties
 }
 
-func (o *BlockRequest) GetOrder() float64 {
-	if o == nil {
+func (b *BlockRequest) GetOrder() float64 {
+	if b == nil {
 		return 0.0
 	}
-	return o.Order
+	return b.Order
 }
 
-func (o *BlockRequest) GetParentID() *string {
-	if o == nil {
+func (b *BlockRequest) GetParentID() *string {
+	if b == nil {
 		return nil
 	}
-	return o.ParentID
+	return b.ParentID
 }
 
-func (o *BlockRequest) GetProps() *BlockProps {
-	if o == nil {
+func (b *BlockRequest) GetProps() *BlockProps {
+	if b == nil {
 		return nil
 	}
-	return o.Props
+	return b.Props
 }
 
-func (o *BlockRequest) GetType() string {
-	if o == nil {
+func (b *BlockRequest) GetType() string {
+	if b == nil {
 		return ""
 	}
-	return o.Type
+	return b.Type
 }

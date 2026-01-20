@@ -14,11 +14,11 @@ type ResendConfirmationEmailRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *ResendConfirmationEmailRequest) GetID() string {
-	if o == nil {
+func (r *ResendConfirmationEmailRequest) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
 type Message string
@@ -49,11 +49,11 @@ type ResendConfirmationEmailResponseBody struct {
 	Message *Message `json:"message,omitempty"`
 }
 
-func (o *ResendConfirmationEmailResponseBody) GetMessage() *Message {
-	if o == nil {
+func (r *ResendConfirmationEmailResponseBody) GetMessage() *Message {
+	if r == nil {
 		return nil
 	}
-	return o.Message
+	return r.Message
 }
 
 type ResendConfirmationEmailResponse struct {
@@ -69,37 +69,37 @@ type ResendConfirmationEmailResponse struct {
 	Object *ResendConfirmationEmailResponseBody
 }
 
-func (o *ResendConfirmationEmailResponse) GetContentType() string {
-	if o == nil {
+func (r *ResendConfirmationEmailResponse) GetContentType() string {
+	if r == nil {
 		return ""
 	}
-	return o.ContentType
+	return r.ContentType
 }
 
-func (o *ResendConfirmationEmailResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (r *ResendConfirmationEmailResponse) GetErrorResp() *shared.ErrorResp {
+	if r == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return r.ErrorResp
 }
 
-func (o *ResendConfirmationEmailResponse) GetStatusCode() int {
-	if o == nil {
+func (r *ResendConfirmationEmailResponse) GetStatusCode() int {
+	if r == nil {
 		return 0
 	}
-	return o.StatusCode
+	return r.StatusCode
 }
 
-func (o *ResendConfirmationEmailResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (r *ResendConfirmationEmailResponse) GetRawResponse() *http.Response {
+	if r == nil {
 		return nil
 	}
-	return o.RawResponse
+	return r.RawResponse
 }
 
-func (o *ResendConfirmationEmailResponse) GetObject() *ResendConfirmationEmailResponseBody {
-	if o == nil {
+func (r *ResendConfirmationEmailResponse) GetObject() *ResendConfirmationEmailResponseBody {
+	if r == nil {
 		return nil
 	}
-	return o.Object
+	return r.Object
 }

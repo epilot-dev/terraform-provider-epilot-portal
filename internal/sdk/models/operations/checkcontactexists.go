@@ -14,18 +14,18 @@ type CheckContactExistsRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *CheckContactExistsRequest) GetContactExistsRequest() shared.ContactExistsRequest {
-	if o == nil {
+func (c *CheckContactExistsRequest) GetContactExistsRequest() shared.ContactExistsRequest {
+	if c == nil {
 		return shared.ContactExistsRequest{}
 	}
-	return o.ContactExistsRequest
+	return c.ContactExistsRequest
 }
 
-func (o *CheckContactExistsRequest) GetOrigin() string {
-	if o == nil {
+func (c *CheckContactExistsRequest) GetOrigin() string {
+	if c == nil {
 		return ""
 	}
-	return o.Origin
+	return c.Origin
 }
 
 // CheckContactExistsResponseBody - Return result true|false if the contact with given identifiers exists.
@@ -36,18 +36,18 @@ type CheckContactExistsResponseBody struct {
 	Exists *bool `json:"exists,omitempty"`
 }
 
-func (o *CheckContactExistsResponseBody) GetContactID() *string {
-	if o == nil {
+func (c *CheckContactExistsResponseBody) GetContactID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ContactID
+	return c.ContactID
 }
 
-func (o *CheckContactExistsResponseBody) GetExists() *bool {
-	if o == nil {
+func (c *CheckContactExistsResponseBody) GetExists() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Exists
+	return c.Exists
 }
 
 type CheckContactExistsResponse struct {
@@ -63,37 +63,37 @@ type CheckContactExistsResponse struct {
 	Object *CheckContactExistsResponseBody
 }
 
-func (o *CheckContactExistsResponse) GetContentType() string {
-	if o == nil {
+func (c *CheckContactExistsResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CheckContactExistsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *CheckContactExistsResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *CheckContactExistsResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CheckContactExistsResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CheckContactExistsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CheckContactExistsResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CheckContactExistsResponse) GetObject() *CheckContactExistsResponseBody {
-	if o == nil {
+func (c *CheckContactExistsResponse) GetObject() *CheckContactExistsResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object
+	return c.Object
 }

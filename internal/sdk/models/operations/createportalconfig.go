@@ -20,37 +20,37 @@ type CreatePortalConfigResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *CreatePortalConfigResponse) GetContentType() string {
-	if o == nil {
+func (c *CreatePortalConfigResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreatePortalConfigResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *CreatePortalConfigResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *CreatePortalConfigResponse) GetPortalConfigV3() *shared.PortalConfigV3 {
-	if o == nil {
+func (c *CreatePortalConfigResponse) GetPortalConfigV3() *shared.PortalConfigV3 {
+	if c == nil {
 		return nil
 	}
-	return o.PortalConfigV3
+	return c.PortalConfigV3
 }
 
-func (o *CreatePortalConfigResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreatePortalConfigResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreatePortalConfigResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreatePortalConfigResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }

@@ -64,52 +64,52 @@ func (g GetPricesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetPricesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"extensionId", "from", "hookId", "interval", "meter_id", "to"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetPricesRequest) GetExtensionID() string {
-	if o == nil {
+func (g *GetPricesRequest) GetExtensionID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ExtensionID
+	return g.ExtensionID
 }
 
-func (o *GetPricesRequest) GetFrom() time.Time {
-	if o == nil {
+func (g *GetPricesRequest) GetFrom() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetPricesRequest) GetHookID() string {
-	if o == nil {
+func (g *GetPricesRequest) GetHookID() string {
+	if g == nil {
 		return ""
 	}
-	return o.HookID
+	return g.HookID
 }
 
-func (o *GetPricesRequest) GetInterval() GetPricesQueryParamInterval {
-	if o == nil {
+func (g *GetPricesRequest) GetInterval() GetPricesQueryParamInterval {
+	if g == nil {
 		return GetPricesQueryParamInterval("")
 	}
-	return o.Interval
+	return g.Interval
 }
 
-func (o *GetPricesRequest) GetMeterID() string {
-	if o == nil {
+func (g *GetPricesRequest) GetMeterID() string {
+	if g == nil {
 		return ""
 	}
-	return o.MeterID
+	return g.MeterID
 }
 
-func (o *GetPricesRequest) GetTo() time.Time {
-	if o == nil {
+func (g *GetPricesRequest) GetTo() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.To
+	return g.To
 }
 
 // Components - Optional price components.
@@ -136,74 +136,74 @@ type Components struct {
 	TaxesLeviesAmountDecimal *string `json:"taxes_levies_amount_decimal,omitempty"`
 }
 
-func (o *Components) GetAuctionPriceAmount() *int64 {
-	if o == nil {
+func (c *Components) GetAuctionPriceAmount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.AuctionPriceAmount
+	return c.AuctionPriceAmount
 }
 
-func (o *Components) GetAuctionPriceAmountDecimal() *string {
-	if o == nil {
+func (c *Components) GetAuctionPriceAmountDecimal() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AuctionPriceAmountDecimal
+	return c.AuctionPriceAmountDecimal
 }
 
-func (o *Components) GetGridFeeAmount() *int64 {
-	if o == nil {
+func (c *Components) GetGridFeeAmount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.GridFeeAmount
+	return c.GridFeeAmount
 }
 
-func (o *Components) GetGridFeeAmountDecimal() *string {
-	if o == nil {
+func (c *Components) GetGridFeeAmountDecimal() *string {
+	if c == nil {
 		return nil
 	}
-	return o.GridFeeAmountDecimal
+	return c.GridFeeAmountDecimal
 }
 
-func (o *Components) GetMarginAmount() *int64 {
-	if o == nil {
+func (c *Components) GetMarginAmount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.MarginAmount
+	return c.MarginAmount
 }
 
-func (o *Components) GetMarginAmountDecimal() *string {
-	if o == nil {
+func (c *Components) GetMarginAmountDecimal() *string {
+	if c == nil {
 		return nil
 	}
-	return o.MarginAmountDecimal
+	return c.MarginAmountDecimal
 }
 
-func (o *Components) GetSourceFeeAmount() *int64 {
-	if o == nil {
+func (c *Components) GetSourceFeeAmount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.SourceFeeAmount
+	return c.SourceFeeAmount
 }
 
-func (o *Components) GetSourceFeeAmountDecimal() *string {
-	if o == nil {
+func (c *Components) GetSourceFeeAmountDecimal() *string {
+	if c == nil {
 		return nil
 	}
-	return o.SourceFeeAmountDecimal
+	return c.SourceFeeAmountDecimal
 }
 
-func (o *Components) GetTaxesLeviesAmount() *int64 {
-	if o == nil {
+func (c *Components) GetTaxesLeviesAmount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.TaxesLeviesAmount
+	return c.TaxesLeviesAmount
 }
 
-func (o *Components) GetTaxesLeviesAmountDecimal() *string {
-	if o == nil {
+func (c *Components) GetTaxesLeviesAmountDecimal() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TaxesLeviesAmountDecimal
+	return c.TaxesLeviesAmountDecimal
 }
 
 // GetPricesTaxBehavior - Is the tax (typically Value Added Tax) included in the amounts. Typically should NOT be included - exclusive of tax.
@@ -255,59 +255,59 @@ func (p Prices) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Prices) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"tax_behavior", "tax_rate", "timestamp", "unit_amount", "unit_amount_currency", "unit_amount_decimal"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Prices) GetComponents() *Components {
-	if o == nil {
+func (p *Prices) GetComponents() *Components {
+	if p == nil {
 		return nil
 	}
-	return o.Components
+	return p.Components
 }
 
-func (o *Prices) GetTaxBehavior() GetPricesTaxBehavior {
-	if o == nil {
+func (p *Prices) GetTaxBehavior() GetPricesTaxBehavior {
+	if p == nil {
 		return GetPricesTaxBehavior("")
 	}
-	return o.TaxBehavior
+	return p.TaxBehavior
 }
 
-func (o *Prices) GetTaxRate() int64 {
-	if o == nil {
+func (p *Prices) GetTaxRate() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.TaxRate
+	return p.TaxRate
 }
 
-func (o *Prices) GetTimestamp() time.Time {
-	if o == nil {
+func (p *Prices) GetTimestamp() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.Timestamp
+	return p.Timestamp
 }
 
-func (o *Prices) GetUnitAmount() int64 {
-	if o == nil {
+func (p *Prices) GetUnitAmount() int64 {
+	if p == nil {
 		return 0
 	}
-	return o.UnitAmount
+	return p.UnitAmount
 }
 
-func (o *Prices) GetUnitAmountCurrency() string {
-	if o == nil {
+func (p *Prices) GetUnitAmountCurrency() string {
+	if p == nil {
 		return ""
 	}
-	return o.UnitAmountCurrency
+	return p.UnitAmountCurrency
 }
 
-func (o *Prices) GetUnitAmountDecimal() string {
-	if o == nil {
+func (p *Prices) GetUnitAmountDecimal() string {
+	if p == nil {
 		return ""
 	}
-	return o.UnitAmountDecimal
+	return p.UnitAmountDecimal
 }
 
 // GetPricesResponseBody - Price data returned successfully.
@@ -315,11 +315,11 @@ type GetPricesResponseBody struct {
 	Prices []Prices `json:"prices,omitempty"`
 }
 
-func (o *GetPricesResponseBody) GetPrices() []Prices {
-	if o == nil {
+func (g *GetPricesResponseBody) GetPrices() []Prices {
+	if g == nil {
 		return nil
 	}
-	return o.Prices
+	return g.Prices
 }
 
 type GetPricesResponse struct {
@@ -335,37 +335,37 @@ type GetPricesResponse struct {
 	Object *GetPricesResponseBody
 }
 
-func (o *GetPricesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPricesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPricesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPricesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPricesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPricesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPricesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPricesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPricesResponse) GetObject() *GetPricesResponseBody {
-	if o == nil {
+func (g *GetPricesResponse) GetObject() *GetPricesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -12,11 +12,11 @@ type GetEntityIdentifiersRequest struct {
 	Slug shared.EntitySlug `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (o *GetEntityIdentifiersRequest) GetSlug() shared.EntitySlug {
-	if o == nil {
+func (g *GetEntityIdentifiersRequest) GetSlug() shared.EntitySlug {
+	if g == nil {
 		return shared.EntitySlug("")
 	}
-	return o.Slug
+	return g.Slug
 }
 
 type GetEntityIdentifiersData struct {
@@ -26,18 +26,18 @@ type GetEntityIdentifiersData struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *GetEntityIdentifiersData) GetName() *string {
-	if o == nil {
+func (g *GetEntityIdentifiersData) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetEntityIdentifiersData) GetType() *string {
-	if o == nil {
+func (g *GetEntityIdentifiersData) GetType() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Type
+	return g.Type
 }
 
 // GetEntityIdentifiersResponseBody - The identifiers of the requested entity returned successfully.
@@ -45,11 +45,11 @@ type GetEntityIdentifiersResponseBody struct {
 	Data []GetEntityIdentifiersData `json:"data,omitempty"`
 }
 
-func (o *GetEntityIdentifiersResponseBody) GetData() []GetEntityIdentifiersData {
-	if o == nil {
+func (g *GetEntityIdentifiersResponseBody) GetData() []GetEntityIdentifiersData {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetEntityIdentifiersResponse struct {
@@ -65,37 +65,37 @@ type GetEntityIdentifiersResponse struct {
 	Object *GetEntityIdentifiersResponseBody
 }
 
-func (o *GetEntityIdentifiersResponse) GetContentType() string {
-	if o == nil {
+func (g *GetEntityIdentifiersResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetEntityIdentifiersResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetEntityIdentifiersResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetEntityIdentifiersResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetEntityIdentifiersResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetEntityIdentifiersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetEntityIdentifiersResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetEntityIdentifiersResponse) GetObject() *GetEntityIdentifiersResponseBody {
-	if o == nil {
+func (g *GetEntityIdentifiersResponse) GetObject() *GetEntityIdentifiersResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

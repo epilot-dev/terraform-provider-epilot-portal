@@ -87,120 +87,120 @@ func (p Page) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Page) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"order", "slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Page) GetAdditionalProperties() any {
-	if o == nil {
+func (p *Page) GetAdditionalProperties() any {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *Page) GetBlocks() map[string]Block {
-	if o == nil {
+func (p *Page) GetBlocks() map[string]Block {
+	if p == nil {
 		return nil
 	}
-	return o.Blocks
+	return p.Blocks
 }
 
-func (o *Page) GetContent() map[string]any {
-	if o == nil {
+func (p *Page) GetContent() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.Content
+	return p.Content
 }
 
-func (o *Page) GetDesign() map[string]any {
-	if o == nil {
+func (p *Page) GetDesign() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.Design
+	return p.Design
 }
 
-func (o *Page) GetID() *string {
-	if o == nil {
+func (p *Page) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Page) GetIsDeleted() *bool {
-	if o == nil {
+func (p *Page) GetIsDeleted() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsDeleted
+	return p.IsDeleted
 }
 
-func (o *Page) GetIsEntryRoute() *bool {
-	if o == nil {
+func (p *Page) GetIsEntryRoute() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsEntryRoute
+	return p.IsEntryRoute
 }
 
-func (o *Page) GetIsPublic() *bool {
-	if o == nil {
+func (p *Page) GetIsPublic() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsPublic
+	return p.IsPublic
 }
 
-func (o *Page) GetIsSystem() *bool {
-	if o == nil {
+func (p *Page) GetIsSystem() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsSystem
+	return p.IsSystem
 }
 
-func (o *Page) GetLastModifiedAt() *time.Time {
-	if o == nil {
+func (p *Page) GetLastModifiedAt() *time.Time {
+	if p == nil {
 		return nil
 	}
-	return o.LastModifiedAt
+	return p.LastModifiedAt
 }
 
-func (o *Page) GetOrder() float64 {
-	if o == nil {
+func (p *Page) GetOrder() float64 {
+	if p == nil {
 		return 0.0
 	}
-	return o.Order
+	return p.Order
 }
 
-func (o *Page) GetParentID() *string {
-	if o == nil {
+func (p *Page) GetParentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ParentID
+	return p.ParentID
 }
 
-func (o *Page) GetPath() *string {
-	if o == nil {
+func (p *Page) GetPath() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Path
+	return p.Path
 }
 
-func (o *Page) GetSchema() []PageSchema {
-	if o == nil {
+func (p *Page) GetSchema() []PageSchema {
+	if p == nil {
 		return nil
 	}
-	return o.Schema
+	return p.Schema
 }
 
-func (o *Page) GetSlug() string {
-	if o == nil {
+func (p *Page) GetSlug() string {
+	if p == nil {
 		return ""
 	}
-	return o.Slug
+	return p.Slug
 }
 
-func (o *Page) GetVisibility() map[string]any {
-	if o == nil {
+func (p *Page) GetVisibility() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.Visibility
+	return p.Visibility
 }

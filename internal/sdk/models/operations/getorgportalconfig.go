@@ -14,11 +14,11 @@ type GetOrgPortalConfigRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetOrgPortalConfigRequest) GetOrigin() string {
-	if o == nil {
+func (g *GetOrgPortalConfigRequest) GetOrigin() string {
+	if g == nil {
 		return ""
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type AdvancedMfa struct {
@@ -26,11 +26,11 @@ type AdvancedMfa struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *AdvancedMfa) GetEnabled() *bool {
-	if o == nil {
+func (a *AdvancedMfa) GetEnabled() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Enabled
+	return a.Enabled
 }
 
 type GetOrgPortalConfigEntryPoint string
@@ -64,11 +64,11 @@ type PasswordlessLogin struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *PasswordlessLogin) GetEnabled() *bool {
-	if o == nil {
+func (p *PasswordlessLogin) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 // AuthSettings - Authentication settings for the portal
@@ -80,32 +80,32 @@ type AuthSettings struct {
 	PreferredSsoProviders []string                      `json:"preferred_sso_providers,omitempty"`
 }
 
-func (o *AuthSettings) GetAutoRedirectToSso() *bool {
-	if o == nil {
+func (a *AuthSettings) GetAutoRedirectToSso() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.AutoRedirectToSso
+	return a.AutoRedirectToSso
 }
 
-func (o *AuthSettings) GetEntryPoint() *GetOrgPortalConfigEntryPoint {
-	if o == nil {
+func (a *AuthSettings) GetEntryPoint() *GetOrgPortalConfigEntryPoint {
+	if a == nil {
 		return nil
 	}
-	return o.EntryPoint
+	return a.EntryPoint
 }
 
-func (o *AuthSettings) GetPasswordlessLogin() *PasswordlessLogin {
-	if o == nil {
+func (a *AuthSettings) GetPasswordlessLogin() *PasswordlessLogin {
+	if a == nil {
 		return nil
 	}
-	return o.PasswordlessLogin
+	return a.PasswordlessLogin
 }
 
-func (o *AuthSettings) GetPreferredSsoProviders() []string {
-	if o == nil {
+func (a *AuthSettings) GetPreferredSsoProviders() []string {
+	if a == nil {
 		return nil
 	}
-	return o.PreferredSsoProviders
+	return a.PreferredSsoProviders
 }
 
 // GetOrgPortalConfigStatus - Status of the certificate
@@ -160,18 +160,18 @@ type CertificateDetails struct {
 	Status *GetOrgPortalConfigStatus `json:"status,omitempty"`
 }
 
-func (o *CertificateDetails) GetFailedReason() *string {
-	if o == nil {
+func (c *CertificateDetails) GetFailedReason() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FailedReason
+	return c.FailedReason
 }
 
-func (o *CertificateDetails) GetStatus() *GetOrgPortalConfigStatus {
-	if o == nil {
+func (c *CertificateDetails) GetStatus() *GetOrgPortalConfigStatus {
+	if c == nil {
 		return nil
 	}
-	return o.Status
+	return c.Status
 }
 
 // PasswordPolicy - Password policy for the portal
@@ -188,39 +188,39 @@ type PasswordPolicy struct {
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
 }
 
-func (o *PasswordPolicy) GetMinimumLength() *int64 {
-	if o == nil {
+func (p *PasswordPolicy) GetMinimumLength() *int64 {
+	if p == nil {
 		return nil
 	}
-	return o.MinimumLength
+	return p.MinimumLength
 }
 
-func (o *PasswordPolicy) GetRequireLowercase() *bool {
-	if o == nil {
+func (p *PasswordPolicy) GetRequireLowercase() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireLowercase
+	return p.RequireLowercase
 }
 
-func (o *PasswordPolicy) GetRequireNumbers() *bool {
-	if o == nil {
+func (p *PasswordPolicy) GetRequireNumbers() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireNumbers
+	return p.RequireNumbers
 }
 
-func (o *PasswordPolicy) GetRequireSymbols() *bool {
-	if o == nil {
+func (p *PasswordPolicy) GetRequireSymbols() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireSymbols
+	return p.RequireSymbols
 }
 
-func (o *PasswordPolicy) GetRequireUppercase() *bool {
-	if o == nil {
+func (p *PasswordPolicy) GetRequireUppercase() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.RequireUppercase
+	return p.RequireUppercase
 }
 
 // CognitoDetails - AWS Cognito Pool details for the portal
@@ -235,32 +235,32 @@ type CognitoDetails struct {
 	PasswordPolicy *PasswordPolicy `json:"password_policy,omitempty"`
 }
 
-func (o *CognitoDetails) GetCognitoUserPoolArn() *string {
-	if o == nil {
+func (c *CognitoDetails) GetCognitoUserPoolArn() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CognitoUserPoolArn
+	return c.CognitoUserPoolArn
 }
 
-func (o *CognitoDetails) GetCognitoUserPoolClientID() *string {
-	if o == nil {
+func (c *CognitoDetails) GetCognitoUserPoolClientID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CognitoUserPoolClientID
+	return c.CognitoUserPoolClientID
 }
 
-func (o *CognitoDetails) GetCognitoUserPoolID() *string {
-	if o == nil {
+func (c *CognitoDetails) GetCognitoUserPoolID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.CognitoUserPoolID
+	return c.CognitoUserPoolID
 }
 
-func (o *CognitoDetails) GetPasswordPolicy() *PasswordPolicy {
-	if o == nil {
+func (c *CognitoDetails) GetPasswordPolicy() *PasswordPolicy {
+	if c == nil {
 		return nil
 	}
-	return o.PasswordPolicy
+	return c.PasswordPolicy
 }
 
 // ContractSelectorConfig - Configuration for contract selector in the portal
@@ -271,18 +271,18 @@ type ContractSelectorConfig struct {
 	TitlePath *string `json:"title_path,omitempty"`
 }
 
-func (o *ContractSelectorConfig) GetShowInactive() *bool {
-	if o == nil {
+func (c *ContractSelectorConfig) GetShowInactive() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.ShowInactive
+	return c.ShowInactive
 }
 
-func (o *ContractSelectorConfig) GetTitlePath() *string {
-	if o == nil {
+func (c *ContractSelectorConfig) GetTitlePath() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TitlePath
+	return c.TitlePath
 }
 
 type CadencePeriodType string
@@ -360,74 +360,74 @@ type EntityEditRules struct {
 	Slug *shared.EntitySlug `json:"slug,omitempty"`
 }
 
-func (o *EntityEditRules) GetAllowedDecrement() *string {
-	if o == nil {
+func (e *EntityEditRules) GetAllowedDecrement() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AllowedDecrement
+	return e.AllowedDecrement
 }
 
-func (o *EntityEditRules) GetAllowedIncrement() *string {
-	if o == nil {
+func (e *EntityEditRules) GetAllowedIncrement() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AllowedIncrement
+	return e.AllowedIncrement
 }
 
-func (o *EntityEditRules) GetAttribute() *string {
-	if o == nil {
+func (e *EntityEditRules) GetAttribute() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Attribute
+	return e.Attribute
 }
 
-func (o *EntityEditRules) GetCadencePeriod() *float64 {
-	if o == nil {
+func (e *EntityEditRules) GetCadencePeriod() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.CadencePeriod
+	return e.CadencePeriod
 }
 
-func (o *EntityEditRules) GetCadencePeriodType() *CadencePeriodType {
-	if o == nil {
+func (e *EntityEditRules) GetCadencePeriodType() *CadencePeriodType {
+	if e == nil {
 		return nil
 	}
-	return o.CadencePeriodType
+	return e.CadencePeriodType
 }
 
-func (o *EntityEditRules) GetChangesAllowed() *int64 {
-	if o == nil {
+func (e *EntityEditRules) GetChangesAllowed() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.ChangesAllowed
+	return e.ChangesAllowed
 }
 
-func (o *EntityEditRules) GetGracePeriod() *int64 {
-	if o == nil {
+func (e *EntityEditRules) GetGracePeriod() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.GracePeriod
+	return e.GracePeriod
 }
 
-func (o *EntityEditRules) GetNumberOfDaysBeforeRestriction() *int64 {
-	if o == nil {
+func (e *EntityEditRules) GetNumberOfDaysBeforeRestriction() *int64 {
+	if e == nil {
 		return nil
 	}
-	return o.NumberOfDaysBeforeRestriction
+	return e.NumberOfDaysBeforeRestriction
 }
 
-func (o *EntityEditRules) GetRuleType() *RuleType {
-	if o == nil {
+func (e *EntityEditRules) GetRuleType() *RuleType {
+	if e == nil {
 		return nil
 	}
-	return o.RuleType
+	return e.RuleType
 }
 
-func (o *EntityEditRules) GetSlug() *shared.EntitySlug {
-	if o == nil {
+func (e *EntityEditRules) GetSlug() *shared.EntitySlug {
+	if e == nil {
 		return nil
 	}
-	return o.Slug
+	return e.Slug
 }
 
 type GetOrgPortalConfigType struct {
@@ -437,18 +437,18 @@ type GetOrgPortalConfigType struct {
 	IsEnabled *bool `json:"isEnabled,omitempty"`
 }
 
-func (o *GetOrgPortalConfigType) GetAttributes() []string {
-	if o == nil {
+func (g *GetOrgPortalConfigType) GetAttributes() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Attributes
+	return g.Attributes
 }
 
-func (o *GetOrgPortalConfigType) GetIsEnabled() *bool {
-	if o == nil {
+func (g *GetOrgPortalConfigType) GetIsEnabled() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IsEnabled
+	return g.IsEnabled
 }
 
 // EntityIdentifiers - Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.
@@ -458,11 +458,11 @@ type EntityIdentifiers struct {
 	Type *GetOrgPortalConfigType `json:"type,omitempty"`
 }
 
-func (o *EntityIdentifiers) GetType() *GetOrgPortalConfigType {
-	if o == nil {
+func (e *EntityIdentifiers) GetType() *GetOrgPortalConfigType {
+	if e == nil {
 		return nil
 	}
-	return o.Type
+	return e.Type
 }
 
 // FeatureSettings - Feature settings for the portal
@@ -477,32 +477,32 @@ type FeatureSettings struct {
 	StartPage *bool `json:"start_page,omitempty"`
 }
 
-func (o *FeatureSettings) GetBilling() *bool {
-	if o == nil {
+func (f *FeatureSettings) GetBilling() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.Billing
+	return f.Billing
 }
 
-func (o *FeatureSettings) GetChangeDueDate() *bool {
-	if o == nil {
+func (f *FeatureSettings) GetChangeDueDate() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.ChangeDueDate
+	return f.ChangeDueDate
 }
 
-func (o *FeatureSettings) GetNewDesign() *bool {
-	if o == nil {
+func (f *FeatureSettings) GetNewDesign() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.NewDesign
+	return f.NewDesign
 }
 
-func (o *FeatureSettings) GetStartPage() *bool {
-	if o == nil {
+func (f *FeatureSettings) GetStartPage() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.StartPage
+	return f.StartPage
 }
 
 // Images - Teaser & Banner Image web links
@@ -515,25 +515,25 @@ type Images struct {
 	WelcomeBanner *string `json:"welcomeBanner,omitempty"`
 }
 
-func (o *Images) GetOrderLeftTeaser() *string {
-	if o == nil {
+func (i *Images) GetOrderLeftTeaser() *string {
+	if i == nil {
 		return nil
 	}
-	return o.OrderLeftTeaser
+	return i.OrderLeftTeaser
 }
 
-func (o *Images) GetOrderRightTeaser() *string {
-	if o == nil {
+func (i *Images) GetOrderRightTeaser() *string {
+	if i == nil {
 		return nil
 	}
-	return o.OrderRightTeaser
+	return i.OrderRightTeaser
 }
 
-func (o *Images) GetWelcomeBanner() *string {
-	if o == nil {
+func (i *Images) GetWelcomeBanner() *string {
+	if i == nil {
 		return nil
 	}
-	return o.WelcomeBanner
+	return i.WelcomeBanner
 }
 
 // Canary feature flag
@@ -542,11 +542,11 @@ type Canary struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *Canary) GetEnabled() *bool {
-	if o == nil {
+func (c *Canary) GetEnabled() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Enabled
+	return c.Enabled
 }
 
 // Notracking - Disable Advanced Usage Metrics
@@ -555,11 +555,11 @@ type Notracking struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *Notracking) GetEnabled() *bool {
-	if o == nil {
+func (n *Notracking) GetEnabled() *bool {
+	if n == nil {
 		return nil
 	}
-	return o.Enabled
+	return n.Enabled
 }
 
 // OrgSettings - Organization settings
@@ -648,18 +648,18 @@ type TriggeredJourneys struct {
 	TriggerName *TriggerName `json:"trigger_name,omitempty"`
 }
 
-func (o *TriggeredJourneys) GetJourneyID() *string {
-	if o == nil {
+func (t *TriggeredJourneys) GetJourneyID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.JourneyID
+	return t.JourneyID
 }
 
-func (o *TriggeredJourneys) GetTriggerName() *TriggerName {
-	if o == nil {
+func (t *TriggeredJourneys) GetTriggerName() *TriggerName {
+	if t == nil {
 		return nil
 	}
-	return o.TriggerName
+	return t.TriggerName
 }
 
 // GetOrgPortalConfigResponseBody - Portal config retrieved successfully.
@@ -744,277 +744,277 @@ type GetOrgPortalConfigResponseBody struct {
 	TriggeredJourneys []TriggeredJourneys `json:"triggered_journeys,omitempty"`
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetAccessToken() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetAccessToken() *string {
+	if g == nil {
 		return nil
 	}
-	return o.AccessToken
+	return g.AccessToken
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetAdvancedMfa() *AdvancedMfa {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetAdvancedMfa() *AdvancedMfa {
+	if g == nil {
 		return nil
 	}
-	return o.AdvancedMfa
+	return g.AdvancedMfa
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetAllowedFileExtensions() *shared.AllowedFileExtensions {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetAllowedFileExtensions() *shared.AllowedFileExtensions {
+	if g == nil {
 		return nil
 	}
-	return o.AllowedFileExtensions
+	return g.AllowedFileExtensions
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetApprovalStateAttributes() map[string][]string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetApprovalStateAttributes() map[string][]string {
+	if g == nil {
 		return nil
 	}
-	return o.ApprovalStateAttributes
+	return g.ApprovalStateAttributes
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetAuthSettings() *AuthSettings {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetAuthSettings() *AuthSettings {
+	if g == nil {
 		return nil
 	}
-	return o.AuthSettings
+	return g.AuthSettings
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetCertificateDetails() *CertificateDetails {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetCertificateDetails() *CertificateDetails {
+	if g == nil {
 		return nil
 	}
-	return o.CertificateDetails
+	return g.CertificateDetails
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetCognitoDetails() *CognitoDetails {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetCognitoDetails() *CognitoDetails {
+	if g == nil {
 		return nil
 	}
-	return o.CognitoDetails
+	return g.CognitoDetails
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetConfig() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetConfig() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Config
+	return g.Config
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetContactIdentifiers() []string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetContactIdentifiers() []string {
+	if g == nil {
 		return nil
 	}
-	return o.ContactIdentifiers
+	return g.ContactIdentifiers
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetContractIdentifiers() []shared.ContractIdentifier {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetContractIdentifiers() []shared.ContractIdentifier {
+	if g == nil {
 		return nil
 	}
-	return o.ContractIdentifiers
+	return g.ContractIdentifiers
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetContractSelectorConfig() *ContractSelectorConfig {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetContractSelectorConfig() *ContractSelectorConfig {
+	if g == nil {
 		return nil
 	}
-	return o.ContractSelectorConfig
+	return g.ContractSelectorConfig
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetDesignID() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetDesignID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.DesignID
+	return g.DesignID
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetDomain() string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetEmailTemplates() *shared.EmailTemplates {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetEmailTemplates() *shared.EmailTemplates {
+	if g == nil {
 		return nil
 	}
-	return o.EmailTemplates
+	return g.EmailTemplates
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetEnabled() *bool {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetEnabled() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Enabled
+	return g.Enabled
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetEntityEditRules() []EntityEditRules {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetEntityEditRules() []EntityEditRules {
+	if g == nil {
 		return nil
 	}
-	return o.EntityEditRules
+	return g.EntityEditRules
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetEntityIdentifiers() *EntityIdentifiers {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetEntityIdentifiers() *EntityIdentifiers {
+	if g == nil {
 		return nil
 	}
-	return o.EntityIdentifiers
+	return g.EntityIdentifiers
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetFeatureFlags() map[string]bool {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetFeatureFlags() map[string]bool {
+	if g == nil {
 		return nil
 	}
-	return o.FeatureFlags
+	return g.FeatureFlags
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetFeatureSettings() *FeatureSettings {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetFeatureSettings() *FeatureSettings {
+	if g == nil {
 		return nil
 	}
-	return o.FeatureSettings
+	return g.FeatureSettings
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetGrants() []shared.Grant {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetGrants() []shared.Grant {
+	if g == nil {
 		return nil
 	}
-	return o.Grants
+	return g.Grants
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetID() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetIdentityProviders() []shared.ProviderPublicConfig {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetIdentityProviders() []shared.ProviderPublicConfig {
+	if g == nil {
 		return nil
 	}
-	return o.IdentityProviders
+	return g.IdentityProviders
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetImages() *Images {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetImages() *Images {
+	if g == nil {
 		return nil
 	}
-	return o.Images
+	return g.Images
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetInactiveContractCutoffYears() *float64 {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetInactiveContractCutoffYears() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.InactiveContractCutoffYears
+	return g.InactiveContractCutoffYears
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetIsDummy() *bool {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetIsDummy() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IsDummy
+	return g.IsDummy
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetIsEpilotDomain() *bool {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetIsEpilotDomain() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IsEpilotDomain
+	return g.IsEpilotDomain
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetIsV3Item() *bool {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetIsV3Item() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.IsV3Item
+	return g.IsV3Item
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetMeterReadingGracePeriod() *float64 {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetMeterReadingGracePeriod() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.MeterReadingGracePeriod
+	return g.MeterReadingGracePeriod
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetName() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetName() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Name
+	return g.Name
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetOrgSettings() *OrgSettings {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetOrgSettings() *OrgSettings {
+	if g == nil {
 		return nil
 	}
-	return o.OrgSettings
+	return g.OrgSettings
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetOrganizationID() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetOrganizationID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.OrganizationID
+	return g.OrganizationID
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetOrigin() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetOrigin() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Origin
+	return g.Origin
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetPages() map[string]shared.Page {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetPages() map[string]shared.Page {
+	if g == nil {
 		return nil
 	}
-	return o.Pages
+	return g.Pages
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetPortalID() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetPortalID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PortalID
+	return g.PortalID
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetPortalSkV3() *string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetPortalSkV3() *string {
+	if g == nil {
 		return nil
 	}
-	return o.PortalSkV3
+	return g.PortalSkV3
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetPreventSearchEngineIndexing() *bool {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetPreventSearchEngineIndexing() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.PreventSearchEngineIndexing
+	return g.PreventSearchEngineIndexing
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetRegistrationIdentifiers() []shared.ContractIdentifier {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetRegistrationIdentifiers() []shared.ContractIdentifier {
+	if g == nil {
 		return nil
 	}
-	return o.RegistrationIdentifiers
+	return g.RegistrationIdentifiers
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetSelfRegistrationSetting() *SelfRegistrationSetting {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetSelfRegistrationSetting() *SelfRegistrationSetting {
+	if g == nil {
 		return nil
 	}
-	return o.SelfRegistrationSetting
+	return g.SelfRegistrationSetting
 }
 
-func (o *GetOrgPortalConfigResponseBody) GetTriggeredJourneys() []TriggeredJourneys {
-	if o == nil {
+func (g *GetOrgPortalConfigResponseBody) GetTriggeredJourneys() []TriggeredJourneys {
+	if g == nil {
 		return nil
 	}
-	return o.TriggeredJourneys
+	return g.TriggeredJourneys
 }
 
 type GetOrgPortalConfigResponse struct {
@@ -1030,37 +1030,37 @@ type GetOrgPortalConfigResponse struct {
 	Object *GetOrgPortalConfigResponseBody
 }
 
-func (o *GetOrgPortalConfigResponse) GetContentType() string {
-	if o == nil {
+func (g *GetOrgPortalConfigResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetOrgPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetOrgPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetOrgPortalConfigResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetOrgPortalConfigResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetOrgPortalConfigResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetOrgPortalConfigResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetOrgPortalConfigResponse) GetObject() *GetOrgPortalConfigResponseBody {
-	if o == nil {
+func (g *GetOrgPortalConfigResponse) GetObject() *GetOrgPortalConfigResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -12,11 +12,11 @@ type GetOrganizationSettingsResponseBody struct {
 	Data *shared.OrganizationSettings `json:"data,omitempty"`
 }
 
-func (o *GetOrganizationSettingsResponseBody) GetData() *shared.OrganizationSettings {
-	if o == nil {
+func (g *GetOrganizationSettingsResponseBody) GetData() *shared.OrganizationSettings {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetOrganizationSettingsResponse struct {
@@ -32,37 +32,37 @@ type GetOrganizationSettingsResponse struct {
 	Object *GetOrganizationSettingsResponseBody
 }
 
-func (o *GetOrganizationSettingsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetOrganizationSettingsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetOrganizationSettingsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetOrganizationSettingsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetOrganizationSettingsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetOrganizationSettingsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetOrganizationSettingsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetOrganizationSettingsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetOrganizationSettingsResponse) GetObject() *GetOrganizationSettingsResponseBody {
-	if o == nil {
+func (g *GetOrganizationSettingsResponse) GetObject() *GetOrganizationSettingsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

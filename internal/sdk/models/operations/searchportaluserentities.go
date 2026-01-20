@@ -19,8 +19,8 @@ const (
 
 // SearchPortalUserEntitiesResponseBody - The entities have been retrieved successfully for the portal user.
 type SearchPortalUserEntitiesResponseBody struct {
-	EntityResponseWithHits        *shared.EntityResponseWithHits        `queryParam:"inline" name:"responseBody"`
-	EntityResponseGroupedWithHits *shared.EntityResponseGroupedWithHits `queryParam:"inline" name:"responseBody"`
+	EntityResponseWithHits        *shared.EntityResponseWithHits        `queryParam:"inline" union:"member"`
+	EntityResponseGroupedWithHits *shared.EntityResponseGroupedWithHits `queryParam:"inline" union:"member"`
 
 	Type SearchPortalUserEntitiesResponseBodyType
 }
@@ -45,17 +45,43 @@ func CreateSearchPortalUserEntitiesResponseBodyEntityResponseGroupedWithHits(ent
 
 func (u *SearchPortalUserEntitiesResponseBody) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var entityResponseWithHits shared.EntityResponseWithHits = shared.EntityResponseWithHits{}
 	if err := utils.UnmarshalJSON(data, &entityResponseWithHits, "", true, nil); err == nil {
-		u.EntityResponseWithHits = &entityResponseWithHits
-		u.Type = SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits,
+			Value: &entityResponseWithHits,
+		})
 	}
 
 	var entityResponseGroupedWithHits shared.EntityResponseGroupedWithHits = shared.EntityResponseGroupedWithHits{}
 	if err := utils.UnmarshalJSON(data, &entityResponseGroupedWithHits, "", true, nil); err == nil {
-		u.EntityResponseGroupedWithHits = &entityResponseGroupedWithHits
-		u.Type = SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits,
+			Value: &entityResponseGroupedWithHits,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchPortalUserEntitiesResponseBody", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for SearchPortalUserEntitiesResponseBody", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(SearchPortalUserEntitiesResponseBodyType)
+	switch best.Type {
+	case SearchPortalUserEntitiesResponseBodyTypeEntityResponseWithHits:
+		u.EntityResponseWithHits = best.Value.(*shared.EntityResponseWithHits)
+		return nil
+	case SearchPortalUserEntitiesResponseBodyTypeEntityResponseGroupedWithHits:
+		u.EntityResponseGroupedWithHits = best.Value.(*shared.EntityResponseGroupedWithHits)
 		return nil
 	}
 
@@ -87,37 +113,37 @@ type SearchPortalUserEntitiesResponse struct {
 	OneOf *SearchPortalUserEntitiesResponseBody
 }
 
-func (o *SearchPortalUserEntitiesResponse) GetContentType() string {
-	if o == nil {
+func (s *SearchPortalUserEntitiesResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SearchPortalUserEntitiesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (s *SearchPortalUserEntitiesResponse) GetErrorResp() *shared.ErrorResp {
+	if s == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return s.ErrorResp
 }
 
-func (o *SearchPortalUserEntitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SearchPortalUserEntitiesResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SearchPortalUserEntitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SearchPortalUserEntitiesResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SearchPortalUserEntitiesResponse) GetOneOf() *SearchPortalUserEntitiesResponseBody {
-	if o == nil {
+func (s *SearchPortalUserEntitiesResponse) GetOneOf() *SearchPortalUserEntitiesResponseBody {
+	if s == nil {
 		return nil
 	}
-	return o.OneOf
+	return s.OneOf
 }

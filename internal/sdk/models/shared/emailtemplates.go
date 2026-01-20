@@ -34,100 +34,100 @@ type EmailTemplates struct {
 	VerifyCodeToSetPassword *string `json:"verifyCodeToSetPassword,omitempty"`
 }
 
-func (o *EmailTemplates) GetAdvancedAuth() *string {
-	if o == nil {
+func (e *EmailTemplates) GetAdvancedAuth() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AdvancedAuth
+	return e.AdvancedAuth
 }
 
-func (o *EmailTemplates) GetAdvancedMFA() *string {
-	if o == nil {
+func (e *EmailTemplates) GetAdvancedMFA() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AdvancedMFA
+	return e.AdvancedMFA
 }
 
-func (o *EmailTemplates) GetConfirmAccount() *string {
-	if o == nil {
+func (e *EmailTemplates) GetConfirmAccount() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ConfirmAccount
+	return e.ConfirmAccount
 }
 
-func (o *EmailTemplates) GetConfirmEmailUpdate() *string {
-	if o == nil {
+func (e *EmailTemplates) GetConfirmEmailUpdate() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ConfirmEmailUpdate
+	return e.ConfirmEmailUpdate
 }
 
-func (o *EmailTemplates) GetForgotPassword() *string {
-	if o == nil {
+func (e *EmailTemplates) GetForgotPassword() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ForgotPassword
+	return e.ForgotPassword
 }
 
-func (o *EmailTemplates) GetInvitation() *string {
-	if o == nil {
+func (e *EmailTemplates) GetInvitation() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Invitation
+	return e.Invitation
 }
 
-func (o *EmailTemplates) GetJourneyLoginOTP() *string {
-	if o == nil {
+func (e *EmailTemplates) GetJourneyLoginOTP() *string {
+	if e == nil {
 		return nil
 	}
-	return o.JourneyLoginOTP
+	return e.JourneyLoginOTP
 }
 
-func (o *EmailTemplates) GetJourneySignInOneTimePassword() *string {
-	if o == nil {
+func (e *EmailTemplates) GetJourneySignInOneTimePassword() *string {
+	if e == nil {
 		return nil
 	}
-	return o.JourneySignInOneTimePassword
+	return e.JourneySignInOneTimePassword
 }
 
-func (o *EmailTemplates) GetJourneySignUp() *string {
-	if o == nil {
+func (e *EmailTemplates) GetJourneySignUp() *string {
+	if e == nil {
 		return nil
 	}
-	return o.JourneySignUp
+	return e.JourneySignUp
 }
 
-func (o *EmailTemplates) GetOnDocUpload() *string {
-	if o == nil {
+func (e *EmailTemplates) GetOnDocUpload() *string {
+	if e == nil {
 		return nil
 	}
-	return o.OnDocUpload
+	return e.OnDocUpload
 }
 
-func (o *EmailTemplates) GetOnMapAPendingUser() *string {
-	if o == nil {
+func (e *EmailTemplates) GetOnMapAPendingUser() *string {
+	if e == nil {
 		return nil
 	}
-	return o.OnMapAPendingUser
+	return e.OnMapAPendingUser
 }
 
-func (o *EmailTemplates) GetOnNewQuote() *string {
-	if o == nil {
+func (e *EmailTemplates) GetOnNewQuote() *string {
+	if e == nil {
 		return nil
 	}
-	return o.OnNewQuote
+	return e.OnNewQuote
 }
 
-func (o *EmailTemplates) GetOnWorkflowStepAssigned() *string {
-	if o == nil {
+func (e *EmailTemplates) GetOnWorkflowStepAssigned() *string {
+	if e == nil {
 		return nil
 	}
-	return o.OnWorkflowStepAssigned
+	return e.OnWorkflowStepAssigned
 }
 
-func (o *EmailTemplates) GetVerifyCodeToSetPassword() *string {
-	if o == nil {
+func (e *EmailTemplates) GetVerifyCodeToSetPassword() *string {
+	if e == nil {
 		return nil
 	}
-	return o.VerifyCodeToSetPassword
+	return e.VerifyCodeToSetPassword
 }

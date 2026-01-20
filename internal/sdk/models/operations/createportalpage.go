@@ -13,18 +13,18 @@ type CreatePortalPageRequest struct {
 	Domain      string             `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *CreatePortalPageRequest) GetPageRequest() shared.PageRequest {
-	if o == nil {
+func (c *CreatePortalPageRequest) GetPageRequest() shared.PageRequest {
+	if c == nil {
 		return shared.PageRequest{}
 	}
-	return o.PageRequest
+	return c.PageRequest
 }
 
-func (o *CreatePortalPageRequest) GetDomain() string {
-	if o == nil {
+func (c *CreatePortalPageRequest) GetDomain() string {
+	if c == nil {
 		return ""
 	}
-	return o.Domain
+	return c.Domain
 }
 
 type CreatePortalPageResponse struct {
@@ -40,37 +40,37 @@ type CreatePortalPageResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *CreatePortalPageResponse) GetContentType() string {
-	if o == nil {
+func (c *CreatePortalPageResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreatePortalPageResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *CreatePortalPageResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *CreatePortalPageResponse) GetPage() *shared.Page {
-	if o == nil {
+func (c *CreatePortalPageResponse) GetPage() *shared.Page {
+	if c == nil {
 		return nil
 	}
-	return o.Page
+	return c.Page
 }
 
-func (o *CreatePortalPageResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreatePortalPageResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreatePortalPageResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreatePortalPageResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }

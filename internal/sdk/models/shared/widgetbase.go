@@ -24,18 +24,18 @@ func (w *WidgetBaseHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *WidgetBaseHeadline) GetDe() *string {
-	if o == nil {
+func (w *WidgetBaseHeadline) GetDe() *string {
+	if w == nil {
 		return nil
 	}
-	return o.De
+	return w.De
 }
 
-func (o *WidgetBaseHeadline) GetEn() *string {
-	if o == nil {
+func (w *WidgetBaseHeadline) GetEn() *string {
+	if w == nil {
 		return nil
 	}
-	return o.En
+	return w.En
 }
 
 type WidgetBaseSubHeadline struct {
@@ -54,18 +54,18 @@ func (w *WidgetBaseSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *WidgetBaseSubHeadline) GetDe() *string {
-	if o == nil {
+func (w *WidgetBaseSubHeadline) GetDe() *string {
+	if w == nil {
 		return nil
 	}
-	return o.De
+	return w.De
 }
 
-func (o *WidgetBaseSubHeadline) GetEn() *string {
-	if o == nil {
+func (w *WidgetBaseSubHeadline) GetEn() *string {
+	if w == nil {
 		return nil
 	}
-	return o.En
+	return w.En
 }
 
 type WidgetBaseType string
@@ -129,43 +129,43 @@ func (w WidgetBase) MarshalJSON() ([]byte, error) {
 }
 
 func (w *WidgetBase) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &w, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *WidgetBase) GetHeadline() *WidgetBaseHeadline {
-	if o == nil {
+func (w *WidgetBase) GetHeadline() *WidgetBaseHeadline {
+	if w == nil {
 		return nil
 	}
-	return o.Headline
+	return w.Headline
 }
 
-func (o *WidgetBase) GetID() string {
-	if o == nil {
+func (w *WidgetBase) GetID() string {
+	if w == nil {
 		return ""
 	}
-	return o.ID
+	return w.ID
 }
 
-func (o *WidgetBase) GetListIndex() int64 {
-	if o == nil {
+func (w *WidgetBase) GetListIndex() int64 {
+	if w == nil {
 		return 0
 	}
-	return o.ListIndex
+	return w.ListIndex
 }
 
-func (o *WidgetBase) GetSubHeadline() *WidgetBaseSubHeadline {
-	if o == nil {
+func (w *WidgetBase) GetSubHeadline() *WidgetBaseSubHeadline {
+	if w == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return w.SubHeadline
 }
 
-func (o *WidgetBase) GetType() WidgetBaseType {
-	if o == nil {
+func (w *WidgetBase) GetType() WidgetBaseType {
+	if w == nil {
 		return WidgetBaseType("")
 	}
-	return o.Type
+	return w.Type
 }

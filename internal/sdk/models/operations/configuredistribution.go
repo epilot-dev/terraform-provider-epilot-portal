@@ -11,11 +11,11 @@ type ConfigureDistributionRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *ConfigureDistributionRequest) GetOrigin() string {
-	if o == nil {
+func (c *ConfigureDistributionRequest) GetOrigin() string {
+	if c == nil {
 		return ""
 	}
-	return o.Origin
+	return c.Origin
 }
 
 // ConfigureDistributionResponseBody - The cloudfront distribution has been configure successfully for the custom domain.
@@ -24,11 +24,11 @@ type ConfigureDistributionResponseBody struct {
 	DomainName *string `json:"domainName,omitempty"`
 }
 
-func (o *ConfigureDistributionResponseBody) GetDomainName() *string {
-	if o == nil {
+func (c *ConfigureDistributionResponseBody) GetDomainName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.DomainName
+	return c.DomainName
 }
 
 type ConfigureDistributionResponse struct {
@@ -44,37 +44,37 @@ type ConfigureDistributionResponse struct {
 	Object *ConfigureDistributionResponseBody
 }
 
-func (o *ConfigureDistributionResponse) GetContentType() string {
-	if o == nil {
+func (c *ConfigureDistributionResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *ConfigureDistributionResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *ConfigureDistributionResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *ConfigureDistributionResponse) GetStatusCode() int {
-	if o == nil {
+func (c *ConfigureDistributionResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *ConfigureDistributionResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *ConfigureDistributionResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *ConfigureDistributionResponse) GetObject() *ConfigureDistributionResponseBody {
-	if o == nil {
+func (c *ConfigureDistributionResponse) GetObject() *ConfigureDistributionResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object
+	return c.Object
 }

@@ -27,18 +27,18 @@ func (g *GetAllOpportunitiesRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetAllOpportunitiesRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetAllOpportunitiesRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetAllOpportunitiesRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetAllOpportunitiesRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 type GetAllOpportunitiesSchema string
@@ -88,73 +88,73 @@ func (g GetAllOpportunitiesData) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAllOpportunitiesData) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetAllOpportunitiesData) GetAdditionalProperties() any {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetAdditionalProperties() any {
+	if g == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return g.AdditionalProperties
 }
 
-func (o *GetAllOpportunitiesData) GetCreatedAt() time.Time {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetCreatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return g.CreatedAt
 }
 
-func (o *GetAllOpportunitiesData) GetID() string {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
-func (o *GetAllOpportunitiesData) GetOrg() string {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetOrg() string {
+	if g == nil {
 		return ""
 	}
-	return o.Org
+	return g.Org
 }
 
-func (o *GetAllOpportunitiesData) GetSchema() GetAllOpportunitiesSchema {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetSchema() GetAllOpportunitiesSchema {
+	if g == nil {
 		return GetAllOpportunitiesSchema("")
 	}
-	return o.Schema
+	return g.Schema
 }
 
-func (o *GetAllOpportunitiesData) GetTags() []string {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetTags() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Tags
+	return g.Tags
 }
 
-func (o *GetAllOpportunitiesData) GetTitle() string {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetTitle() string {
+	if g == nil {
 		return ""
 	}
-	return o.Title
+	return g.Title
 }
 
-func (o *GetAllOpportunitiesData) GetUpdatedAt() time.Time {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetUpdatedAt() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return g.UpdatedAt
 }
 
-func (o *GetAllOpportunitiesData) GetJourneyActions() *shared.JourneyActions {
-	if o == nil {
+func (g *GetAllOpportunitiesData) GetJourneyActions() *shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
 // GetAllOpportunitiesResponseBody - The opportunities is retrieved successfully for the portal user.
@@ -162,11 +162,11 @@ type GetAllOpportunitiesResponseBody struct {
 	Data []GetAllOpportunitiesData `json:"data,omitempty"`
 }
 
-func (o *GetAllOpportunitiesResponseBody) GetData() []GetAllOpportunitiesData {
-	if o == nil {
+func (g *GetAllOpportunitiesResponseBody) GetData() []GetAllOpportunitiesData {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetAllOpportunitiesResponse struct {
@@ -182,37 +182,37 @@ type GetAllOpportunitiesResponse struct {
 	Object *GetAllOpportunitiesResponseBody
 }
 
-func (o *GetAllOpportunitiesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAllOpportunitiesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAllOpportunitiesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetAllOpportunitiesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetAllOpportunitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAllOpportunitiesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAllOpportunitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAllOpportunitiesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAllOpportunitiesResponse) GetObject() *GetAllOpportunitiesResponseBody {
-	if o == nil {
+func (g *GetAllOpportunitiesResponse) GetObject() *GetAllOpportunitiesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

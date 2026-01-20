@@ -62,60 +62,60 @@ func (g *GetBillingEventsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetBillingEventsRequest) GetDateAfter() *time.Time {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetDateAfter() *time.Time {
+	if g == nil {
 		return nil
 	}
-	return o.DateAfter
+	return g.DateAfter
 }
 
-func (o *GetBillingEventsRequest) GetDateBefore() *time.Time {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetDateBefore() *time.Time {
+	if g == nil {
 		return nil
 	}
-	return o.DateBefore
+	return g.DateBefore
 }
 
-func (o *GetBillingEventsRequest) GetEntityID() []string {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetEntityID() []string {
+	if g == nil {
 		return nil
 	}
-	return o.EntityID
+	return g.EntityID
 }
 
-func (o *GetBillingEventsRequest) GetEventType() *EventType {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetEventType() *EventType {
+	if g == nil {
 		return nil
 	}
-	return o.EventType
+	return g.EventType
 }
 
-func (o *GetBillingEventsRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetBillingEventsRequest) GetPaid() *bool {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetPaid() *bool {
+	if g == nil {
 		return nil
 	}
-	return o.Paid
+	return g.Paid
 }
 
-func (o *GetBillingEventsRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
-func (o *GetBillingEventsRequest) GetSort() *string {
-	if o == nil {
+func (g *GetBillingEventsRequest) GetSort() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Sort
+	return g.Sort
 }
 
 // GetBillingEventsResponseBody - List billing events for all contracts/orders of specific customer
@@ -125,18 +125,18 @@ type GetBillingEventsResponseBody struct {
 	Results []shared.BillingEvent `json:"results,omitempty"`
 }
 
-func (o *GetBillingEventsResponseBody) GetHits() *float64 {
-	if o == nil {
+func (g *GetBillingEventsResponseBody) GetHits() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Hits
+	return g.Hits
 }
 
-func (o *GetBillingEventsResponseBody) GetResults() []shared.BillingEvent {
-	if o == nil {
+func (g *GetBillingEventsResponseBody) GetResults() []shared.BillingEvent {
+	if g == nil {
 		return nil
 	}
-	return o.Results
+	return g.Results
 }
 
 type GetBillingEventsResponse struct {
@@ -150,30 +150,30 @@ type GetBillingEventsResponse struct {
 	Object *GetBillingEventsResponseBody
 }
 
-func (o *GetBillingEventsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetBillingEventsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetBillingEventsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetBillingEventsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetBillingEventsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetBillingEventsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetBillingEventsResponse) GetObject() *GetBillingEventsResponseBody {
-	if o == nil {
+func (g *GetBillingEventsResponse) GetObject() *GetBillingEventsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

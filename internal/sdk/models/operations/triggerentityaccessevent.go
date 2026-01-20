@@ -15,25 +15,25 @@ type TriggerEntityAccessEventRequest struct {
 	Schema string `pathParam:"style=simple,explode=false,name=schema"`
 }
 
-func (o *TriggerEntityAccessEventRequest) GetEntityID() *string {
-	if o == nil {
+func (t *TriggerEntityAccessEventRequest) GetEntityID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.EntityID
+	return t.EntityID
 }
 
-func (o *TriggerEntityAccessEventRequest) GetOrigin() string {
-	if o == nil {
+func (t *TriggerEntityAccessEventRequest) GetOrigin() string {
+	if t == nil {
 		return ""
 	}
-	return o.Origin
+	return t.Origin
 }
 
-func (o *TriggerEntityAccessEventRequest) GetSchema() string {
-	if o == nil {
+func (t *TriggerEntityAccessEventRequest) GetSchema() string {
+	if t == nil {
 		return ""
 	}
-	return o.Schema
+	return t.Schema
 }
 
 // TriggerEntityAccessEventResponseBody - The event has been triggered successfully.
@@ -42,11 +42,11 @@ type TriggerEntityAccessEventResponseBody struct {
 	EventID *string `json:"eventId,omitempty"`
 }
 
-func (o *TriggerEntityAccessEventResponseBody) GetEventID() *string {
-	if o == nil {
+func (t *TriggerEntityAccessEventResponseBody) GetEventID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.EventID
+	return t.EventID
 }
 
 type TriggerEntityAccessEventResponse struct {
@@ -60,30 +60,30 @@ type TriggerEntityAccessEventResponse struct {
 	Object *TriggerEntityAccessEventResponseBody
 }
 
-func (o *TriggerEntityAccessEventResponse) GetContentType() string {
-	if o == nil {
+func (t *TriggerEntityAccessEventResponse) GetContentType() string {
+	if t == nil {
 		return ""
 	}
-	return o.ContentType
+	return t.ContentType
 }
 
-func (o *TriggerEntityAccessEventResponse) GetStatusCode() int {
-	if o == nil {
+func (t *TriggerEntityAccessEventResponse) GetStatusCode() int {
+	if t == nil {
 		return 0
 	}
-	return o.StatusCode
+	return t.StatusCode
 }
 
-func (o *TriggerEntityAccessEventResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (t *TriggerEntityAccessEventResponse) GetRawResponse() *http.Response {
+	if t == nil {
 		return nil
 	}
-	return o.RawResponse
+	return t.RawResponse
 }
 
-func (o *TriggerEntityAccessEventResponse) GetObject() *TriggerEntityAccessEventResponseBody {
-	if o == nil {
+func (t *TriggerEntityAccessEventResponse) GetObject() *TriggerEntityAccessEventResponseBody {
+	if t == nil {
 		return nil
 	}
-	return o.Object
+	return t.Object
 }

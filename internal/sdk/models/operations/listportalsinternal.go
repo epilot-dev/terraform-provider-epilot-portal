@@ -25,25 +25,25 @@ func (l *ListPortalsInternalRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ListPortalsInternalRequest) GetFields() []string {
-	if o == nil {
+func (l *ListPortalsInternalRequest) GetFields() []string {
+	if l == nil {
 		return nil
 	}
-	return o.Fields
+	return l.Fields
 }
 
-func (o *ListPortalsInternalRequest) GetFrom() *float64 {
-	if o == nil {
+func (l *ListPortalsInternalRequest) GetFrom() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.From
+	return l.From
 }
 
-func (o *ListPortalsInternalRequest) GetSize() *float64 {
-	if o == nil {
+func (l *ListPortalsInternalRequest) GetSize() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Size
+	return l.Size
 }
 
 // ListPortalsInternalResponseBody - List of portals
@@ -53,18 +53,18 @@ type ListPortalsInternalResponseBody struct {
 	Results []shared.PortalConfig `json:"results,omitempty"`
 }
 
-func (o *ListPortalsInternalResponseBody) GetHits() *float64 {
-	if o == nil {
+func (l *ListPortalsInternalResponseBody) GetHits() *float64 {
+	if l == nil {
 		return nil
 	}
-	return o.Hits
+	return l.Hits
 }
 
-func (o *ListPortalsInternalResponseBody) GetResults() []shared.PortalConfig {
-	if o == nil {
+func (l *ListPortalsInternalResponseBody) GetResults() []shared.PortalConfig {
+	if l == nil {
 		return nil
 	}
-	return o.Results
+	return l.Results
 }
 
 type ListPortalsInternalResponse struct {
@@ -78,30 +78,30 @@ type ListPortalsInternalResponse struct {
 	Object *ListPortalsInternalResponseBody
 }
 
-func (o *ListPortalsInternalResponse) GetContentType() string {
-	if o == nil {
+func (l *ListPortalsInternalResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListPortalsInternalResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListPortalsInternalResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListPortalsInternalResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListPortalsInternalResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListPortalsInternalResponse) GetObject() *ListPortalsInternalResponseBody {
-	if o == nil {
+func (l *ListPortalsInternalResponse) GetObject() *ListPortalsInternalResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

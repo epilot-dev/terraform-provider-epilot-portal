@@ -24,18 +24,18 @@ func (c *ContentWidgetHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ContentWidgetHeadline) GetDe() *string {
-	if o == nil {
+func (c *ContentWidgetHeadline) GetDe() *string {
+	if c == nil {
 		return nil
 	}
-	return o.De
+	return c.De
 }
 
-func (o *ContentWidgetHeadline) GetEn() *string {
-	if o == nil {
+func (c *ContentWidgetHeadline) GetEn() *string {
+	if c == nil {
 		return nil
 	}
-	return o.En
+	return c.En
 }
 
 type ContentWidgetSubHeadline struct {
@@ -54,18 +54,18 @@ func (c *ContentWidgetSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ContentWidgetSubHeadline) GetDe() *string {
-	if o == nil {
+func (c *ContentWidgetSubHeadline) GetDe() *string {
+	if c == nil {
 		return nil
 	}
-	return o.De
+	return c.De
 }
 
-func (o *ContentWidgetSubHeadline) GetEn() *string {
-	if o == nil {
+func (c *ContentWidgetSubHeadline) GetEn() *string {
+	if c == nil {
 		return nil
 	}
-	return o.En
+	return c.En
 }
 
 type ContentWidgetType string
@@ -130,50 +130,50 @@ func (c ContentWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ContentWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ContentWidget) GetContent() *string {
-	if o == nil {
+func (c *ContentWidget) GetContent() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Content
+	return c.Content
 }
 
-func (o *ContentWidget) GetHeadline() *ContentWidgetHeadline {
-	if o == nil {
+func (c *ContentWidget) GetHeadline() *ContentWidgetHeadline {
+	if c == nil {
 		return nil
 	}
-	return o.Headline
+	return c.Headline
 }
 
-func (o *ContentWidget) GetID() string {
-	if o == nil {
+func (c *ContentWidget) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *ContentWidget) GetListIndex() int64 {
-	if o == nil {
+func (c *ContentWidget) GetListIndex() int64 {
+	if c == nil {
 		return 0
 	}
-	return o.ListIndex
+	return c.ListIndex
 }
 
-func (o *ContentWidget) GetSubHeadline() *ContentWidgetSubHeadline {
-	if o == nil {
+func (c *ContentWidget) GetSubHeadline() *ContentWidgetSubHeadline {
+	if c == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return c.SubHeadline
 }
 
-func (o *ContentWidget) GetType() ContentWidgetType {
-	if o == nil {
+func (c *ContentWidget) GetType() ContentWidgetType {
+	if c == nil {
 		return ContentWidgetType("")
 	}
-	return o.Type
+	return c.Type
 }

@@ -13,18 +13,18 @@ type PostOrderAcceptanceRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *PostOrderAcceptanceRequest) GetAcceptanceDecision() *shared.AcceptanceDecision {
-	if o == nil {
+func (p *PostOrderAcceptanceRequest) GetAcceptanceDecision() *shared.AcceptanceDecision {
+	if p == nil {
 		return nil
 	}
-	return o.AcceptanceDecision
+	return p.AcceptanceDecision
 }
 
-func (o *PostOrderAcceptanceRequest) GetID() string {
-	if o == nil {
+func (p *PostOrderAcceptanceRequest) GetID() string {
+	if p == nil {
 		return ""
 	}
-	return o.ID
+	return p.ID
 }
 
 // PostOrderAcceptanceResponseBody - Order was accepted/declined successfully.
@@ -33,11 +33,11 @@ type PostOrderAcceptanceResponseBody struct {
 	Data *shared.Order `json:"data,omitempty"`
 }
 
-func (o *PostOrderAcceptanceResponseBody) GetData() *shared.Order {
-	if o == nil {
+func (p *PostOrderAcceptanceResponseBody) GetData() *shared.Order {
+	if p == nil {
 		return nil
 	}
-	return o.Data
+	return p.Data
 }
 
 type PostOrderAcceptanceResponse struct {
@@ -53,37 +53,37 @@ type PostOrderAcceptanceResponse struct {
 	Object *PostOrderAcceptanceResponseBody
 }
 
-func (o *PostOrderAcceptanceResponse) GetContentType() string {
-	if o == nil {
+func (p *PostOrderAcceptanceResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PostOrderAcceptanceResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (p *PostOrderAcceptanceResponse) GetErrorResp() *shared.ErrorResp {
+	if p == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return p.ErrorResp
 }
 
-func (o *PostOrderAcceptanceResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PostOrderAcceptanceResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PostOrderAcceptanceResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PostOrderAcceptanceResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }
 
-func (o *PostOrderAcceptanceResponse) GetObject() *PostOrderAcceptanceResponseBody {
-	if o == nil {
+func (p *PostOrderAcceptanceResponse) GetObject() *PostOrderAcceptanceResponseBody {
+	if p == nil {
 		return nil
 	}
-	return o.Object
+	return p.Object
 }

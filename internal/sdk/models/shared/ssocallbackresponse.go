@@ -17,44 +17,44 @@ type SSOCallbackResponse struct {
 	TokenType string `json:"token_type"`
 }
 
-func (o *SSOCallbackResponse) GetAccessToken() string {
-	if o == nil {
+func (s *SSOCallbackResponse) GetAccessToken() string {
+	if s == nil {
 		return ""
 	}
-	return o.AccessToken
+	return s.AccessToken
 }
 
-func (o *SSOCallbackResponse) GetExpiresIn() float64 {
-	if o == nil {
+func (s *SSOCallbackResponse) GetExpiresIn() float64 {
+	if s == nil {
 		return 0.0
 	}
-	return o.ExpiresIn
+	return s.ExpiresIn
 }
 
-func (o *SSOCallbackResponse) GetIDToken() *string {
-	if o == nil {
+func (s *SSOCallbackResponse) GetIDToken() *string {
+	if s == nil {
 		return nil
 	}
-	return o.IDToken
+	return s.IDToken
 }
 
-func (o *SSOCallbackResponse) GetRefreshToken() string {
-	if o == nil {
+func (s *SSOCallbackResponse) GetRefreshToken() string {
+	if s == nil {
 		return ""
 	}
-	return o.RefreshToken
+	return s.RefreshToken
 }
 
-func (o *SSOCallbackResponse) GetScope() *string {
-	if o == nil {
+func (s *SSOCallbackResponse) GetScope() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Scope
+	return s.Scope
 }
 
-func (o *SSOCallbackResponse) GetTokenType() string {
-	if o == nil {
+func (s *SSOCallbackResponse) GetTokenType() string {
+	if s == nil {
 		return ""
 	}
-	return o.TokenType
+	return s.TokenType
 }

@@ -7,18 +7,18 @@ type ContractIdentification struct {
 	Hook      *PublicContractIdentificationDetails `json:"hook,omitempty"`
 }
 
-func (o *ContractIdentification) GetExtension() *PublicExtensionDetails {
-	if o == nil {
+func (c *ContractIdentification) GetExtension() *PublicExtensionDetails {
+	if c == nil {
 		return nil
 	}
-	return o.Extension
+	return c.Extension
 }
 
-func (o *ContractIdentification) GetHook() *PublicContractIdentificationDetails {
-	if o == nil {
+func (c *ContractIdentification) GetHook() *PublicContractIdentificationDetails {
+	if c == nil {
 		return nil
 	}
-	return o.Hook
+	return c.Hook
 }
 
 type PublicExtensionCapabilities struct {
@@ -28,30 +28,30 @@ type PublicExtensionCapabilities struct {
 	PriceDataRetrieval       []DataRetrievalItem     `json:"priceDataRetrieval,omitempty"`
 }
 
-func (o *PublicExtensionCapabilities) GetConsumptionDataRetrieval() []DataRetrievalItem {
-	if o == nil {
+func (p *PublicExtensionCapabilities) GetConsumptionDataRetrieval() []DataRetrievalItem {
+	if p == nil {
 		return nil
 	}
-	return o.ConsumptionDataRetrieval
+	return p.ConsumptionDataRetrieval
 }
 
-func (o *PublicExtensionCapabilities) GetContractIdentification() *ContractIdentification {
-	if o == nil {
+func (p *PublicExtensionCapabilities) GetContractIdentification() *ContractIdentification {
+	if p == nil {
 		return nil
 	}
-	return o.ContractIdentification
+	return p.ContractIdentification
 }
 
-func (o *PublicExtensionCapabilities) GetCostDataRetrieval() []DataRetrievalItem {
-	if o == nil {
+func (p *PublicExtensionCapabilities) GetCostDataRetrieval() []DataRetrievalItem {
+	if p == nil {
 		return nil
 	}
-	return o.CostDataRetrieval
+	return p.CostDataRetrieval
 }
 
-func (o *PublicExtensionCapabilities) GetPriceDataRetrieval() []DataRetrievalItem {
-	if o == nil {
+func (p *PublicExtensionCapabilities) GetPriceDataRetrieval() []DataRetrievalItem {
+	if p == nil {
 		return nil
 	}
-	return o.PriceDataRetrieval
+	return p.PriceDataRetrieval
 }

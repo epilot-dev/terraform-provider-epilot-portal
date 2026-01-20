@@ -16,50 +16,50 @@ type Token struct {
 	Sub                *string `json:"sub,omitempty"`
 }
 
-func (o *Token) GetCognitoUsername() *string {
-	if o == nil {
+func (t *Token) GetCognitoUsername() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CognitoUsername
+	return t.CognitoUsername
 }
 
-func (o *Token) GetCustomContactEntityID() *string {
-	if o == nil {
+func (t *Token) GetCustomContactEntityID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomContactEntityID
+	return t.CustomContactEntityID
 }
 
-func (o *Token) GetCustomPortalUserID() *string {
-	if o == nil {
+func (t *Token) GetCustomPortalUserID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.CustomPortalUserID
+	return t.CustomPortalUserID
 }
 
-func (o *Token) GetEmail() *string {
-	if o == nil {
+func (t *Token) GetEmail() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Email
+	return t.Email
 }
 
-func (o *Token) GetSub() *string {
-	if o == nil {
+func (t *Token) GetSub() *string {
+	if t == nil {
 		return nil
 	}
-	return o.Sub
+	return t.Sub
 }
 
 type PortalAuth struct {
 	Token *Token `json:"token,omitempty"`
 }
 
-func (o *PortalAuth) GetToken() *Token {
-	if o == nil {
+func (p *PortalAuth) GetToken() *Token {
+	if p == nil {
 		return nil
 	}
-	return o.Token
+	return p.Token
 }
 
 type ActivityCallerContext struct {
@@ -78,16 +78,16 @@ func (a *ActivityCallerContext) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *ActivityCallerContext) GetAdditionalProperties() any {
-	if o == nil {
+func (a *ActivityCallerContext) GetAdditionalProperties() any {
+	if a == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return a.AdditionalProperties
 }
 
-func (o *ActivityCallerContext) GetPortalAuth() *PortalAuth {
-	if o == nil {
+func (a *ActivityCallerContext) GetPortalAuth() *PortalAuth {
+	if a == nil {
 		return nil
 	}
-	return o.PortalAuth
+	return a.PortalAuth
 }

@@ -24,18 +24,18 @@ func (m *MeterChartWidgetHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MeterChartWidgetHeadline) GetDe() *string {
-	if o == nil {
+func (m *MeterChartWidgetHeadline) GetDe() *string {
+	if m == nil {
 		return nil
 	}
-	return o.De
+	return m.De
 }
 
-func (o *MeterChartWidgetHeadline) GetEn() *string {
-	if o == nil {
+func (m *MeterChartWidgetHeadline) GetEn() *string {
+	if m == nil {
 		return nil
 	}
-	return o.En
+	return m.En
 }
 
 type MeterChartWidgetSubHeadline struct {
@@ -54,18 +54,18 @@ func (m *MeterChartWidgetSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *MeterChartWidgetSubHeadline) GetDe() *string {
-	if o == nil {
+func (m *MeterChartWidgetSubHeadline) GetDe() *string {
+	if m == nil {
 		return nil
 	}
-	return o.De
+	return m.De
 }
 
-func (o *MeterChartWidgetSubHeadline) GetEn() *string {
-	if o == nil {
+func (m *MeterChartWidgetSubHeadline) GetEn() *string {
+	if m == nil {
 		return nil
 	}
-	return o.En
+	return m.En
 }
 
 type MeterChartWidgetType string
@@ -130,50 +130,50 @@ func (m MeterChartWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (m *MeterChartWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &m, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *MeterChartWidget) GetHeadline() *MeterChartWidgetHeadline {
-	if o == nil {
+func (m *MeterChartWidget) GetHeadline() *MeterChartWidgetHeadline {
+	if m == nil {
 		return nil
 	}
-	return o.Headline
+	return m.Headline
 }
 
-func (o *MeterChartWidget) GetID() string {
-	if o == nil {
+func (m *MeterChartWidget) GetID() string {
+	if m == nil {
 		return ""
 	}
-	return o.ID
+	return m.ID
 }
 
-func (o *MeterChartWidget) GetListIndex() int64 {
-	if o == nil {
+func (m *MeterChartWidget) GetListIndex() int64 {
+	if m == nil {
 		return 0
 	}
-	return o.ListIndex
+	return m.ListIndex
 }
 
-func (o *MeterChartWidget) GetSchema() *string {
-	if o == nil {
+func (m *MeterChartWidget) GetSchema() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Schema
+	return m.Schema
 }
 
-func (o *MeterChartWidget) GetSubHeadline() *MeterChartWidgetSubHeadline {
-	if o == nil {
+func (m *MeterChartWidget) GetSubHeadline() *MeterChartWidgetSubHeadline {
+	if m == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return m.SubHeadline
 }
 
-func (o *MeterChartWidget) GetType() MeterChartWidgetType {
-	if o == nil {
+func (m *MeterChartWidget) GetType() MeterChartWidgetType {
+	if m == nil {
 		return MeterChartWidgetType("")
 	}
-	return o.Type
+	return m.Type
 }

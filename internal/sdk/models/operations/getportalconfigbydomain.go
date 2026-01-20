@@ -11,11 +11,11 @@ type GetPortalConfigByDomainRequest struct {
 	Domain string `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *GetPortalConfigByDomainRequest) GetDomain() string {
-	if o == nil {
+func (g *GetPortalConfigByDomainRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
 type GetPortalConfigByDomainResponse struct {
@@ -31,37 +31,37 @@ type GetPortalConfigByDomainResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *GetPortalConfigByDomainResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPortalConfigByDomainResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPortalConfigByDomainResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPortalConfigByDomainResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPortalConfigByDomainResponse) GetPortalConfig() *shared.PortalConfig {
-	if o == nil {
+func (g *GetPortalConfigByDomainResponse) GetPortalConfig() *shared.PortalConfig {
+	if g == nil {
 		return nil
 	}
-	return o.PortalConfig
+	return g.PortalConfig
 }
 
-func (o *GetPortalConfigByDomainResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPortalConfigByDomainResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPortalConfigByDomainResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPortalConfigByDomainResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }

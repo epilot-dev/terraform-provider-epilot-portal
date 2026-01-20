@@ -55,64 +55,64 @@ func (p PortalUser) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PortalUser) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PortalUser) GetAdditionalProperties() any {
-	if o == nil {
+func (p *PortalUser) GetAdditionalProperties() any {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *PortalUser) GetCreatedAt() time.Time {
-	if o == nil {
+func (p *PortalUser) GetCreatedAt() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return p.CreatedAt
 }
 
-func (o *PortalUser) GetID() string {
-	if o == nil {
+func (p *PortalUser) GetID() string {
+	if p == nil {
 		return ""
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PortalUser) GetOrg() string {
-	if o == nil {
+func (p *PortalUser) GetOrg() string {
+	if p == nil {
 		return ""
 	}
-	return o.Org
+	return p.Org
 }
 
-func (o *PortalUser) GetSchema() PortalUserSchema {
-	if o == nil {
+func (p *PortalUser) GetSchema() PortalUserSchema {
+	if p == nil {
 		return PortalUserSchema("")
 	}
-	return o.Schema
+	return p.Schema
 }
 
-func (o *PortalUser) GetTags() []string {
-	if o == nil {
+func (p *PortalUser) GetTags() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Tags
+	return p.Tags
 }
 
-func (o *PortalUser) GetTitle() string {
-	if o == nil {
+func (p *PortalUser) GetTitle() string {
+	if p == nil {
 		return ""
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *PortalUser) GetUpdatedAt() time.Time {
-	if o == nil {
+func (p *PortalUser) GetUpdatedAt() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return p.UpdatedAt
 }

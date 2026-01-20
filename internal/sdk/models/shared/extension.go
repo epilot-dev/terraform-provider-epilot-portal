@@ -21,24 +21,24 @@ func (d Description) MarshalJSON() ([]byte, error) {
 }
 
 func (d *Description) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Description) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (d *Description) GetAdditionalProperties() map[string]string {
+	if d == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return d.AdditionalProperties
 }
 
-func (o *Description) GetEn() string {
-	if o == nil {
+func (d *Description) GetEn() string {
+	if d == nil {
 		return ""
 	}
-	return o.En
+	return d.En
 }
 
 type SchemasExtensionHookMeterReadingPlausibilityCheckCall struct {
@@ -55,31 +55,31 @@ func (s SchemasExtensionHookMeterReadingPlausibilityCheckCall) MarshalJSON() ([]
 }
 
 func (s *SchemasExtensionHookMeterReadingPlausibilityCheckCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"body", "headers", "url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetBody() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetBody() map[string]string {
+	if s == nil {
 		return map[string]string{}
 	}
-	return o.Body
+	return s.Body
 }
 
-func (o *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetHeaders() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetHeaders() map[string]string {
+	if s == nil {
 		return map[string]string{}
 	}
-	return o.Headers
+	return s.Headers
 }
 
-func (o *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetURL() string {
-	if o == nil {
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
 // SchemasExtensionHookMeterReadingPlausibilityCheckResolved - Response to the call
@@ -103,25 +103,25 @@ func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) UnmarshalJSO
 	return nil
 }
 
-func (o *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetLowerLimit() *string {
-	if o == nil {
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetLowerLimit() *string {
+	if s == nil {
 		return nil
 	}
-	return o.LowerLimit
+	return s.LowerLimit
 }
 
-func (o *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetUpperLimit() *string {
-	if o == nil {
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetUpperLimit() *string {
+	if s == nil {
 		return nil
 	}
-	return o.UpperLimit
+	return s.UpperLimit
 }
 
-func (o *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetValid() *string {
-	if o == nil {
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetValid() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Valid
+	return s.Valid
 }
 
 type SchemasExtensionHookMeterReadingPlausibilityCheckType string
@@ -169,45 +169,45 @@ func (e ExtensionHookMeterReadingPlausibilityCheckSchemas) MarshalJSON() ([]byte
 }
 
 func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "resolved", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetAuth() *ExtensionAuthBlock {
+	if e == nil {
 		return nil
 	}
-	return o.Auth
+	return e.Auth
 }
 
-func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetCall() SchemasExtensionHookMeterReadingPlausibilityCheckCall {
-	if o == nil {
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetCall() SchemasExtensionHookMeterReadingPlausibilityCheckCall {
+	if e == nil {
 		return SchemasExtensionHookMeterReadingPlausibilityCheckCall{}
 	}
-	return o.Call
+	return e.Call
 }
 
-func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetID() *string {
-	if o == nil {
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetResolved() SchemasExtensionHookMeterReadingPlausibilityCheckResolved {
-	if o == nil {
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetResolved() SchemasExtensionHookMeterReadingPlausibilityCheckResolved {
+	if e == nil {
 		return SchemasExtensionHookMeterReadingPlausibilityCheckResolved{}
 	}
-	return o.Resolved
+	return e.Resolved
 }
 
-func (o *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetType() SchemasExtensionHookMeterReadingPlausibilityCheckType {
-	if o == nil {
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetType() SchemasExtensionHookMeterReadingPlausibilityCheckType {
+	if e == nil {
 		return SchemasExtensionHookMeterReadingPlausibilityCheckType("")
 	}
-	return o.Type
+	return e.Type
 }
 
 type SchemasExtensionHookCostDataRetrievalCall struct {
@@ -228,45 +228,45 @@ func (s SchemasExtensionHookCostDataRetrievalCall) MarshalJSON() ([]byte, error)
 }
 
 func (s *SchemasExtensionHookCostDataRetrievalCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SchemasExtensionHookCostDataRetrievalCall) GetBody() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookCostDataRetrievalCall) GetBody() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Body
+	return s.Body
 }
 
-func (o *SchemasExtensionHookCostDataRetrievalCall) GetHeaders() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookCostDataRetrievalCall) GetHeaders() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Headers
+	return s.Headers
 }
 
-func (o *SchemasExtensionHookCostDataRetrievalCall) GetMethod() *string {
-	if o == nil {
+func (s *SchemasExtensionHookCostDataRetrievalCall) GetMethod() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Method
+	return s.Method
 }
 
-func (o *SchemasExtensionHookCostDataRetrievalCall) GetParams() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookCostDataRetrievalCall) GetParams() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Params
+	return s.Params
 }
 
-func (o *SchemasExtensionHookCostDataRetrievalCall) GetURL() string {
-	if o == nil {
+func (s *SchemasExtensionHookCostDataRetrievalCall) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
 type SchemasResolved struct {
@@ -285,11 +285,11 @@ func (s *SchemasResolved) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SchemasResolved) GetDataPath() *string {
-	if o == nil {
+func (s *SchemasResolved) GetDataPath() *string {
+	if s == nil {
 		return nil
 	}
-	return o.DataPath
+	return s.DataPath
 }
 
 type SchemasExtensionHookCostDataRetrievalType string
@@ -332,45 +332,45 @@ func (e ExtensionHookCostDataRetrievalSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionHookCostDataRetrievalSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionHookCostDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (e *ExtensionHookCostDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
+	if e == nil {
 		return nil
 	}
-	return o.Auth
+	return e.Auth
 }
 
-func (o *ExtensionHookCostDataRetrievalSchemas) GetCall() SchemasExtensionHookCostDataRetrievalCall {
-	if o == nil {
+func (e *ExtensionHookCostDataRetrievalSchemas) GetCall() SchemasExtensionHookCostDataRetrievalCall {
+	if e == nil {
 		return SchemasExtensionHookCostDataRetrievalCall{}
 	}
-	return o.Call
+	return e.Call
 }
 
-func (o *ExtensionHookCostDataRetrievalSchemas) GetID() *string {
-	if o == nil {
+func (e *ExtensionHookCostDataRetrievalSchemas) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionHookCostDataRetrievalSchemas) GetResolved() *SchemasResolved {
-	if o == nil {
+func (e *ExtensionHookCostDataRetrievalSchemas) GetResolved() *SchemasResolved {
+	if e == nil {
 		return nil
 	}
-	return o.Resolved
+	return e.Resolved
 }
 
-func (o *ExtensionHookCostDataRetrievalSchemas) GetType() SchemasExtensionHookCostDataRetrievalType {
-	if o == nil {
+func (e *ExtensionHookCostDataRetrievalSchemas) GetType() SchemasExtensionHookCostDataRetrievalType {
+	if e == nil {
 		return SchemasExtensionHookCostDataRetrievalType("")
 	}
-	return o.Type
+	return e.Type
 }
 
 type Call struct {
@@ -391,45 +391,45 @@ func (c Call) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Call) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Call) GetBody() map[string]string {
-	if o == nil {
+func (c *Call) GetBody() map[string]string {
+	if c == nil {
 		return nil
 	}
-	return o.Body
+	return c.Body
 }
 
-func (o *Call) GetHeaders() map[string]string {
-	if o == nil {
+func (c *Call) GetHeaders() map[string]string {
+	if c == nil {
 		return nil
 	}
-	return o.Headers
+	return c.Headers
 }
 
-func (o *Call) GetMethod() *string {
-	if o == nil {
+func (c *Call) GetMethod() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Method
+	return c.Method
 }
 
-func (o *Call) GetParams() map[string]string {
-	if o == nil {
+func (c *Call) GetParams() map[string]string {
+	if c == nil {
 		return nil
 	}
-	return o.Params
+	return c.Params
 }
 
-func (o *Call) GetURL() string {
-	if o == nil {
+func (c *Call) GetURL() string {
+	if c == nil {
 		return ""
 	}
-	return o.URL
+	return c.URL
 }
 
 type Resolved struct {
@@ -448,11 +448,11 @@ func (r *Resolved) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Resolved) GetDataPath() *string {
-	if o == nil {
+func (r *Resolved) GetDataPath() *string {
+	if r == nil {
 		return nil
 	}
-	return o.DataPath
+	return r.DataPath
 }
 
 type Type string
@@ -495,45 +495,45 @@ func (s Schemas) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Schemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"call", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Schemas) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (s *Schemas) GetAuth() *ExtensionAuthBlock {
+	if s == nil {
 		return nil
 	}
-	return o.Auth
+	return s.Auth
 }
 
-func (o *Schemas) GetCall() Call {
-	if o == nil {
+func (s *Schemas) GetCall() Call {
+	if s == nil {
 		return Call{}
 	}
-	return o.Call
+	return s.Call
 }
 
-func (o *Schemas) GetID() *string {
-	if o == nil {
+func (s *Schemas) GetID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *Schemas) GetResolved() *Resolved {
-	if o == nil {
+func (s *Schemas) GetResolved() *Resolved {
+	if s == nil {
 		return nil
 	}
-	return o.Resolved
+	return s.Resolved
 }
 
-func (o *Schemas) GetType() Type {
-	if o == nil {
+func (s *Schemas) GetType() Type {
+	if s == nil {
 		return Type("")
 	}
-	return o.Type
+	return s.Type
 }
 
 type SchemasExtensionHookPriceDataRetrievalCall struct {
@@ -554,45 +554,45 @@ func (s SchemasExtensionHookPriceDataRetrievalCall) MarshalJSON() ([]byte, error
 }
 
 func (s *SchemasExtensionHookPriceDataRetrievalCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SchemasExtensionHookPriceDataRetrievalCall) GetBody() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookPriceDataRetrievalCall) GetBody() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Body
+	return s.Body
 }
 
-func (o *SchemasExtensionHookPriceDataRetrievalCall) GetHeaders() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookPriceDataRetrievalCall) GetHeaders() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Headers
+	return s.Headers
 }
 
-func (o *SchemasExtensionHookPriceDataRetrievalCall) GetMethod() *string {
-	if o == nil {
+func (s *SchemasExtensionHookPriceDataRetrievalCall) GetMethod() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Method
+	return s.Method
 }
 
-func (o *SchemasExtensionHookPriceDataRetrievalCall) GetParams() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookPriceDataRetrievalCall) GetParams() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Params
+	return s.Params
 }
 
-func (o *SchemasExtensionHookPriceDataRetrievalCall) GetURL() string {
-	if o == nil {
+func (s *SchemasExtensionHookPriceDataRetrievalCall) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
 type SchemasExtensionHookPriceDataRetrievalResolved struct {
@@ -611,11 +611,11 @@ func (s *SchemasExtensionHookPriceDataRetrievalResolved) UnmarshalJSON(data []by
 	return nil
 }
 
-func (o *SchemasExtensionHookPriceDataRetrievalResolved) GetDataPath() *string {
-	if o == nil {
+func (s *SchemasExtensionHookPriceDataRetrievalResolved) GetDataPath() *string {
+	if s == nil {
 		return nil
 	}
-	return o.DataPath
+	return s.DataPath
 }
 
 type SchemasExtensionHookPriceDataRetrievalType string
@@ -658,45 +658,45 @@ func (e ExtensionHookPriceDataRetrievalSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionHookPriceDataRetrievalSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionHookPriceDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (e *ExtensionHookPriceDataRetrievalSchemas) GetAuth() *ExtensionAuthBlock {
+	if e == nil {
 		return nil
 	}
-	return o.Auth
+	return e.Auth
 }
 
-func (o *ExtensionHookPriceDataRetrievalSchemas) GetCall() SchemasExtensionHookPriceDataRetrievalCall {
-	if o == nil {
+func (e *ExtensionHookPriceDataRetrievalSchemas) GetCall() SchemasExtensionHookPriceDataRetrievalCall {
+	if e == nil {
 		return SchemasExtensionHookPriceDataRetrievalCall{}
 	}
-	return o.Call
+	return e.Call
 }
 
-func (o *ExtensionHookPriceDataRetrievalSchemas) GetID() *string {
-	if o == nil {
+func (e *ExtensionHookPriceDataRetrievalSchemas) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionHookPriceDataRetrievalSchemas) GetResolved() *SchemasExtensionHookPriceDataRetrievalResolved {
-	if o == nil {
+func (e *ExtensionHookPriceDataRetrievalSchemas) GetResolved() *SchemasExtensionHookPriceDataRetrievalResolved {
+	if e == nil {
 		return nil
 	}
-	return o.Resolved
+	return e.Resolved
 }
 
-func (o *ExtensionHookPriceDataRetrievalSchemas) GetType() SchemasExtensionHookPriceDataRetrievalType {
-	if o == nil {
+func (e *ExtensionHookPriceDataRetrievalSchemas) GetType() SchemasExtensionHookPriceDataRetrievalType {
+	if e == nil {
 		return SchemasExtensionHookPriceDataRetrievalType("")
 	}
-	return o.Type
+	return e.Type
 }
 
 type SchemasCall struct {
@@ -713,31 +713,31 @@ func (s SchemasCall) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SchemasCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"headers", "url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SchemasCall) GetHeaders() map[string]string {
-	if o == nil {
+func (s *SchemasCall) GetHeaders() map[string]string {
+	if s == nil {
 		return map[string]string{}
 	}
-	return o.Headers
+	return s.Headers
 }
 
-func (o *SchemasCall) GetParams() map[string]string {
-	if o == nil {
+func (s *SchemasCall) GetParams() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Params
+	return s.Params
 }
 
-func (o *SchemasCall) GetURL() string {
-	if o == nil {
+func (s *SchemasCall) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
 // Explanation of the hook.
@@ -752,24 +752,24 @@ func (e Explanation) MarshalJSON() ([]byte, error) {
 }
 
 func (e *Explanation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Explanation) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (e *Explanation) GetAdditionalProperties() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
-func (o *Explanation) GetEn() string {
-	if o == nil {
+func (e *Explanation) GetEn() string {
+	if e == nil {
 		return ""
 	}
-	return o.En
+	return e.En
 }
 
 type SchemasType string
@@ -820,52 +820,52 @@ func (e ExtensionHookContractIdentificationSchemas) MarshalJSON() ([]byte, error
 }
 
 func (e *ExtensionHookContractIdentificationSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (e *ExtensionHookContractIdentificationSchemas) GetAuth() *ExtensionAuthBlock {
+	if e == nil {
 		return nil
 	}
-	return o.Auth
+	return e.Auth
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetCall() SchemasCall {
-	if o == nil {
+func (e *ExtensionHookContractIdentificationSchemas) GetCall() SchemasCall {
+	if e == nil {
 		return SchemasCall{}
 	}
-	return o.Call
+	return e.Call
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetContactRelationAttribute() *string {
-	if o == nil {
+func (e *ExtensionHookContractIdentificationSchemas) GetContactRelationAttribute() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ContactRelationAttribute
+	return e.ContactRelationAttribute
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetExplanation() *Explanation {
-	if o == nil {
+func (e *ExtensionHookContractIdentificationSchemas) GetExplanation() *Explanation {
+	if e == nil {
 		return nil
 	}
-	return o.Explanation
+	return e.Explanation
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetID() *string {
-	if o == nil {
+func (e *ExtensionHookContractIdentificationSchemas) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionHookContractIdentificationSchemas) GetType() SchemasType {
-	if o == nil {
+func (e *ExtensionHookContractIdentificationSchemas) GetType() SchemasType {
+	if e == nil {
 		return SchemasType("")
 	}
-	return o.Type
+	return e.Type
 }
 
 type SchemasExtensionHookRegistrationIdentifiersCheckCall struct {
@@ -873,7 +873,7 @@ type SchemasExtensionHookRegistrationIdentifiersCheckCall struct {
 	Headers map[string]string `json:"headers"`
 	// Parameters to append to the URL. Supports variable interpolation.
 	Params map[string]string `json:"params,omitempty"`
-	// Contact ID usually retrieved from the response body, e.g. `{{"{{"}}CallResponse.data.contact_id}}`. Supports variable interpolation.
+	// Contact ID usually retrieved from the response body, e.g. `{{CallResponse.data.contact_id}}`. Supports variable interpolation.
 	Result string `json:"result"`
 	// URL to call. Supports variable interpolation.
 	URL string `json:"url"`
@@ -884,38 +884,38 @@ func (s SchemasExtensionHookRegistrationIdentifiersCheckCall) MarshalJSON() ([]b
 }
 
 func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"headers", "result", "url"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetHeaders() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetHeaders() map[string]string {
+	if s == nil {
 		return map[string]string{}
 	}
-	return o.Headers
+	return s.Headers
 }
 
-func (o *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetParams() map[string]string {
-	if o == nil {
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetParams() map[string]string {
+	if s == nil {
 		return nil
 	}
-	return o.Params
+	return s.Params
 }
 
-func (o *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetResult() string {
-	if o == nil {
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetResult() string {
+	if s == nil {
 		return ""
 	}
-	return o.Result
+	return s.Result
 }
 
-func (o *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetURL() string {
-	if o == nil {
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetURL() string {
+	if s == nil {
 		return ""
 	}
-	return o.URL
+	return s.URL
 }
 
 type SchemasExtensionHookRegistrationIdentifiersCheckType string
@@ -958,38 +958,38 @@ func (e ExtensionHookRegistrationIdentifiersCheckSchemas) MarshalJSON() ([]byte,
 }
 
 func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"call", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionHookRegistrationIdentifiersCheckSchemas) GetAuth() *ExtensionAuthBlock {
-	if o == nil {
+func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) GetAuth() *ExtensionAuthBlock {
+	if e == nil {
 		return nil
 	}
-	return o.Auth
+	return e.Auth
 }
 
-func (o *ExtensionHookRegistrationIdentifiersCheckSchemas) GetCall() SchemasExtensionHookRegistrationIdentifiersCheckCall {
-	if o == nil {
+func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) GetCall() SchemasExtensionHookRegistrationIdentifiersCheckCall {
+	if e == nil {
 		return SchemasExtensionHookRegistrationIdentifiersCheckCall{}
 	}
-	return o.Call
+	return e.Call
 }
 
-func (o *ExtensionHookRegistrationIdentifiersCheckSchemas) GetID() *string {
-	if o == nil {
+func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionHookRegistrationIdentifiersCheckSchemas) GetType() SchemasExtensionHookRegistrationIdentifiersCheckType {
-	if o == nil {
+func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) GetType() SchemasExtensionHookRegistrationIdentifiersCheckType {
+	if e == nil {
 		return SchemasExtensionHookRegistrationIdentifiersCheckType("")
 	}
-	return o.Type
+	return e.Type
 }
 
 type HooksType string
@@ -1004,12 +1004,12 @@ const (
 )
 
 type Hooks struct {
-	ExtensionHookRegistrationIdentifiersCheckSchemas  *ExtensionHookRegistrationIdentifiersCheckSchemas  `queryParam:"inline" name:"hooks"`
-	ExtensionHookContractIdentificationSchemas        *ExtensionHookContractIdentificationSchemas        `queryParam:"inline" name:"hooks"`
-	ExtensionHookPriceDataRetrievalSchemas            *ExtensionHookPriceDataRetrievalSchemas            `queryParam:"inline" name:"hooks"`
-	Schemas                                           *Schemas                                           `queryParam:"inline" name:"hooks"`
-	ExtensionHookCostDataRetrievalSchemas             *ExtensionHookCostDataRetrievalSchemas             `queryParam:"inline" name:"hooks"`
-	ExtensionHookMeterReadingPlausibilityCheckSchemas *ExtensionHookMeterReadingPlausibilityCheckSchemas `queryParam:"inline" name:"hooks"`
+	ExtensionHookRegistrationIdentifiersCheckSchemas  *ExtensionHookRegistrationIdentifiersCheckSchemas  `queryParam:"inline" union:"member"`
+	ExtensionHookContractIdentificationSchemas        *ExtensionHookContractIdentificationSchemas        `queryParam:"inline" union:"member"`
+	ExtensionHookPriceDataRetrievalSchemas            *ExtensionHookPriceDataRetrievalSchemas            `queryParam:"inline" union:"member"`
+	Schemas                                           *Schemas                                           `queryParam:"inline" union:"member"`
+	ExtensionHookCostDataRetrievalSchemas             *ExtensionHookCostDataRetrievalSchemas             `queryParam:"inline" union:"member"`
+	ExtensionHookMeterReadingPlausibilityCheckSchemas *ExtensionHookMeterReadingPlausibilityCheckSchemas `queryParam:"inline" union:"member"`
 
 	Type HooksType
 }
@@ -1070,45 +1070,87 @@ func CreateHooksExtensionHookMeterReadingPlausibilityCheckSchemas(extensionHookM
 
 func (u *Hooks) UnmarshalJSON(data []byte) error {
 
-	var extensionHookMeterReadingPlausibilityCheckSchemas ExtensionHookMeterReadingPlausibilityCheckSchemas = ExtensionHookMeterReadingPlausibilityCheckSchemas{}
-	if err := utils.UnmarshalJSON(data, &extensionHookMeterReadingPlausibilityCheckSchemas, "", true, nil); err == nil {
-		u.ExtensionHookMeterReadingPlausibilityCheckSchemas = &extensionHookMeterReadingPlausibilityCheckSchemas
-		u.Type = HooksTypeExtensionHookMeterReadingPlausibilityCheckSchemas
-		return nil
-	}
+	var candidates []utils.UnionCandidate
 
+	// Collect all valid candidates
 	var extensionHookRegistrationIdentifiersCheckSchemas ExtensionHookRegistrationIdentifiersCheckSchemas = ExtensionHookRegistrationIdentifiersCheckSchemas{}
 	if err := utils.UnmarshalJSON(data, &extensionHookRegistrationIdentifiersCheckSchemas, "", true, nil); err == nil {
-		u.ExtensionHookRegistrationIdentifiersCheckSchemas = &extensionHookRegistrationIdentifiersCheckSchemas
-		u.Type = HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas,
+			Value: &extensionHookRegistrationIdentifiersCheckSchemas,
+		})
 	}
 
 	var extensionHookContractIdentificationSchemas ExtensionHookContractIdentificationSchemas = ExtensionHookContractIdentificationSchemas{}
 	if err := utils.UnmarshalJSON(data, &extensionHookContractIdentificationSchemas, "", true, nil); err == nil {
-		u.ExtensionHookContractIdentificationSchemas = &extensionHookContractIdentificationSchemas
-		u.Type = HooksTypeExtensionHookContractIdentificationSchemas
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  HooksTypeExtensionHookContractIdentificationSchemas,
+			Value: &extensionHookContractIdentificationSchemas,
+		})
 	}
 
 	var extensionHookPriceDataRetrievalSchemas ExtensionHookPriceDataRetrievalSchemas = ExtensionHookPriceDataRetrievalSchemas{}
 	if err := utils.UnmarshalJSON(data, &extensionHookPriceDataRetrievalSchemas, "", true, nil); err == nil {
-		u.ExtensionHookPriceDataRetrievalSchemas = &extensionHookPriceDataRetrievalSchemas
-		u.Type = HooksTypeExtensionHookPriceDataRetrievalSchemas
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  HooksTypeExtensionHookPriceDataRetrievalSchemas,
+			Value: &extensionHookPriceDataRetrievalSchemas,
+		})
 	}
 
 	var schemas Schemas = Schemas{}
 	if err := utils.UnmarshalJSON(data, &schemas, "", true, nil); err == nil {
-		u.Schemas = &schemas
-		u.Type = HooksTypeSchemas
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  HooksTypeSchemas,
+			Value: &schemas,
+		})
 	}
 
 	var extensionHookCostDataRetrievalSchemas ExtensionHookCostDataRetrievalSchemas = ExtensionHookCostDataRetrievalSchemas{}
 	if err := utils.UnmarshalJSON(data, &extensionHookCostDataRetrievalSchemas, "", true, nil); err == nil {
-		u.ExtensionHookCostDataRetrievalSchemas = &extensionHookCostDataRetrievalSchemas
-		u.Type = HooksTypeExtensionHookCostDataRetrievalSchemas
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  HooksTypeExtensionHookCostDataRetrievalSchemas,
+			Value: &extensionHookCostDataRetrievalSchemas,
+		})
+	}
+
+	var extensionHookMeterReadingPlausibilityCheckSchemas ExtensionHookMeterReadingPlausibilityCheckSchemas = ExtensionHookMeterReadingPlausibilityCheckSchemas{}
+	if err := utils.UnmarshalJSON(data, &extensionHookMeterReadingPlausibilityCheckSchemas, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  HooksTypeExtensionHookMeterReadingPlausibilityCheckSchemas,
+			Value: &extensionHookMeterReadingPlausibilityCheckSchemas,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Hooks", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Hooks", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(HooksType)
+	switch best.Type {
+	case HooksTypeExtensionHookRegistrationIdentifiersCheckSchemas:
+		u.ExtensionHookRegistrationIdentifiersCheckSchemas = best.Value.(*ExtensionHookRegistrationIdentifiersCheckSchemas)
+		return nil
+	case HooksTypeExtensionHookContractIdentificationSchemas:
+		u.ExtensionHookContractIdentificationSchemas = best.Value.(*ExtensionHookContractIdentificationSchemas)
+		return nil
+	case HooksTypeExtensionHookPriceDataRetrievalSchemas:
+		u.ExtensionHookPriceDataRetrievalSchemas = best.Value.(*ExtensionHookPriceDataRetrievalSchemas)
+		return nil
+	case HooksTypeSchemas:
+		u.Schemas = best.Value.(*Schemas)
+		return nil
+	case HooksTypeExtensionHookCostDataRetrievalSchemas:
+		u.ExtensionHookCostDataRetrievalSchemas = best.Value.(*ExtensionHookCostDataRetrievalSchemas)
+		return nil
+	case HooksTypeExtensionHookMeterReadingPlausibilityCheckSchemas:
+		u.ExtensionHookMeterReadingPlausibilityCheckSchemas = best.Value.(*ExtensionHookMeterReadingPlausibilityCheckSchemas)
 		return nil
 	}
 
@@ -1155,24 +1197,24 @@ func (n Name) MarshalJSON() ([]byte, error) {
 }
 
 func (n *Name) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &n, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &n, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Name) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (n *Name) GetAdditionalProperties() map[string]string {
+	if n == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return n.AdditionalProperties
 }
 
-func (o *Name) GetEn() string {
-	if o == nil {
+func (n *Name) GetEn() string {
+	if n == nil {
 		return ""
 	}
-	return o.En
+	return n.En
 }
 
 // ExtensionDescription - Description of the option.
@@ -1187,24 +1229,24 @@ func (e ExtensionDescription) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionDescription) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionDescription) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (e *ExtensionDescription) GetAdditionalProperties() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
-func (o *ExtensionDescription) GetEn() string {
-	if o == nil {
+func (e *ExtensionDescription) GetEn() string {
+	if e == nil {
 		return ""
 	}
-	return o.En
+	return e.En
 }
 
 // ExtensionName - Name of the option.
@@ -1219,24 +1261,24 @@ func (e ExtensionName) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionName) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (e *ExtensionName) GetAdditionalProperties() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return e.AdditionalProperties
 }
 
-func (o *ExtensionName) GetEn() string {
-	if o == nil {
+func (e *ExtensionName) GetEn() string {
+	if e == nil {
 		return ""
 	}
-	return o.En
+	return e.En
 }
 
 // ExtensionType - Type of the option.
@@ -1286,7 +1328,7 @@ func (o OptionsObj) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OptionsObj) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"id", "name", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -1353,58 +1395,58 @@ type Extension struct {
 	Version *string `json:"version,omitempty"`
 }
 
-func (o *Extension) GetAppID() *string {
-	if o == nil {
+func (e *Extension) GetAppID() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AppID
+	return e.AppID
 }
 
-func (o *Extension) GetDescription() *Description {
-	if o == nil {
+func (e *Extension) GetDescription() *Description {
+	if e == nil {
 		return nil
 	}
-	return o.Description
+	return e.Description
 }
 
-func (o *Extension) GetHooks() []Hooks {
-	if o == nil {
+func (e *Extension) GetHooks() []Hooks {
+	if e == nil {
 		return nil
 	}
-	return o.Hooks
+	return e.Hooks
 }
 
-func (o *Extension) GetID() string {
-	if o == nil {
+func (e *Extension) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *Extension) GetLinks() []ExtensionSeamlessLink {
-	if o == nil {
+func (e *Extension) GetLinks() []ExtensionSeamlessLink {
+	if e == nil {
 		return nil
 	}
-	return o.Links
+	return e.Links
 }
 
-func (o *Extension) GetName() Name {
-	if o == nil {
+func (e *Extension) GetName() Name {
+	if e == nil {
 		return Name{}
 	}
-	return o.Name
+	return e.Name
 }
 
-func (o *Extension) GetOptions() []OptionsObj {
-	if o == nil {
+func (e *Extension) GetOptions() []OptionsObj {
+	if e == nil {
 		return nil
 	}
-	return o.Options
+	return e.Options
 }
 
-func (o *Extension) GetVersion() *string {
-	if o == nil {
+func (e *Extension) GetVersion() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Version
+	return e.Version
 }

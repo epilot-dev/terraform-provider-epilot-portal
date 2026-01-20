@@ -10,11 +10,11 @@ type SsoLoginSecurity struct {
 	ExternalOIDCAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-func (o *SsoLoginSecurity) GetExternalOIDCAuth() string {
-	if o == nil {
+func (s *SsoLoginSecurity) GetExternalOIDCAuth() string {
+	if s == nil {
 		return ""
 	}
-	return o.ExternalOIDCAuth
+	return s.ExternalOIDCAuth
 }
 
 type SsoLoginRequestBody struct {
@@ -22,11 +22,11 @@ type SsoLoginRequestBody struct {
 	ProviderSlug *string `json:"provider_slug,omitempty"`
 }
 
-func (o *SsoLoginRequestBody) GetProviderSlug() *string {
-	if o == nil {
+func (s *SsoLoginRequestBody) GetProviderSlug() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ProviderSlug
+	return s.ProviderSlug
 }
 
 type SsoLoginRequest struct {
@@ -39,32 +39,32 @@ type SsoLoginRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *SsoLoginRequest) GetRequestBody() *SsoLoginRequestBody {
-	if o == nil {
+func (s *SsoLoginRequest) GetRequestBody() *SsoLoginRequestBody {
+	if s == nil {
 		return nil
 	}
-	return o.RequestBody
+	return s.RequestBody
 }
 
-func (o *SsoLoginRequest) GetContactID() *string {
-	if o == nil {
+func (s *SsoLoginRequest) GetContactID() *string {
+	if s == nil {
 		return nil
 	}
-	return o.ContactID
+	return s.ContactID
 }
 
-func (o *SsoLoginRequest) GetOrgID() string {
-	if o == nil {
+func (s *SsoLoginRequest) GetOrgID() string {
+	if s == nil {
 		return ""
 	}
-	return o.OrgID
+	return s.OrgID
 }
 
-func (o *SsoLoginRequest) GetOrigin() string {
-	if o == nil {
+func (s *SsoLoginRequest) GetOrigin() string {
+	if s == nil {
 		return ""
 	}
-	return o.Origin
+	return s.Origin
 }
 
 // SsoLoginResponseBody - Cognito login parameters to use with the CUSTOM_AUTH_FLOW
@@ -74,18 +74,18 @@ type SsoLoginResponseBody struct {
 	Token *string `json:"token,omitempty"`
 }
 
-func (o *SsoLoginResponseBody) GetEmail() *string {
-	if o == nil {
+func (s *SsoLoginResponseBody) GetEmail() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Email
+	return s.Email
 }
 
-func (o *SsoLoginResponseBody) GetToken() *string {
-	if o == nil {
+func (s *SsoLoginResponseBody) GetToken() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Token
+	return s.Token
 }
 
 type SsoLoginResponse struct {
@@ -99,30 +99,30 @@ type SsoLoginResponse struct {
 	Object *SsoLoginResponseBody
 }
 
-func (o *SsoLoginResponse) GetContentType() string {
-	if o == nil {
+func (s *SsoLoginResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SsoLoginResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SsoLoginResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SsoLoginResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SsoLoginResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SsoLoginResponse) GetObject() *SsoLoginResponseBody {
-	if o == nil {
+func (s *SsoLoginResponse) GetObject() *SsoLoginResponseBody {
+	if s == nil {
 		return nil
 	}
-	return o.Object
+	return s.Object
 }

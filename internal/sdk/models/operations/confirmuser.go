@@ -20,24 +20,24 @@ func (c ConfirmUserRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *ConfirmUserRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"confirmation_link_token"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ConfirmUserRequest) GetConfirmationLinkToken() string {
-	if o == nil {
+func (c *ConfirmUserRequest) GetConfirmationLinkToken() string {
+	if c == nil {
 		return ""
 	}
-	return o.ConfirmationLinkToken
+	return c.ConfirmationLinkToken
 }
 
-func (o *ConfirmUserRequest) GetUseRedirect() *bool {
-	if o == nil {
+func (c *ConfirmUserRequest) GetUseRedirect() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.UseRedirect
+	return c.UseRedirect
 }
 
 type ConfirmUserReason string
@@ -70,18 +70,18 @@ type ConfirmUserPublicResponseBody struct {
 	Reason  ConfirmUserReason `json:"reason"`
 }
 
-func (o *ConfirmUserPublicResponseBody) GetMessage() *string {
-	if o == nil {
+func (c *ConfirmUserPublicResponseBody) GetMessage() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Message
+	return c.Message
 }
 
-func (o *ConfirmUserPublicResponseBody) GetReason() ConfirmUserReason {
-	if o == nil {
+func (c *ConfirmUserPublicResponseBody) GetReason() ConfirmUserReason {
+	if c == nil {
 		return ConfirmUserReason("")
 	}
-	return o.Reason
+	return c.Reason
 }
 
 // ConfirmUserResponseBody - Returned in case of successful user confirmation
@@ -92,18 +92,18 @@ type ConfirmUserResponseBody struct {
 	UserAlreadyConfirmed *bool `json:"user_already_confirmed,omitempty"`
 }
 
-func (o *ConfirmUserResponseBody) GetConfirmed() *bool {
-	if o == nil {
+func (c *ConfirmUserResponseBody) GetConfirmed() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Confirmed
+	return c.Confirmed
 }
 
-func (o *ConfirmUserResponseBody) GetUserAlreadyConfirmed() *bool {
-	if o == nil {
+func (c *ConfirmUserResponseBody) GetUserAlreadyConfirmed() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.UserAlreadyConfirmed
+	return c.UserAlreadyConfirmed
 }
 
 type ConfirmUserResponse struct {
@@ -121,44 +121,44 @@ type ConfirmUserResponse struct {
 	Object1 *ConfirmUserPublicResponseBody
 }
 
-func (o *ConfirmUserResponse) GetContentType() string {
-	if o == nil {
+func (c *ConfirmUserResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *ConfirmUserResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *ConfirmUserResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *ConfirmUserResponse) GetStatusCode() int {
-	if o == nil {
+func (c *ConfirmUserResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *ConfirmUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *ConfirmUserResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *ConfirmUserResponse) GetObject() *ConfirmUserResponseBody {
-	if o == nil {
+func (c *ConfirmUserResponse) GetObject() *ConfirmUserResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object
+	return c.Object
 }
 
-func (o *ConfirmUserResponse) GetObject1() *ConfirmUserPublicResponseBody {
-	if o == nil {
+func (c *ConfirmUserResponse) GetObject1() *ConfirmUserPublicResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object1
+	return c.Object1
 }

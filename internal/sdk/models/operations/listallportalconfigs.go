@@ -12,11 +12,11 @@ type ListAllPortalConfigsResponseBody struct {
 	Data []shared.PortalConfigV3 `json:"data,omitempty"`
 }
 
-func (o *ListAllPortalConfigsResponseBody) GetData() []shared.PortalConfigV3 {
-	if o == nil {
+func (l *ListAllPortalConfigsResponseBody) GetData() []shared.PortalConfigV3 {
+	if l == nil {
 		return nil
 	}
-	return o.Data
+	return l.Data
 }
 
 type ListAllPortalConfigsResponse struct {
@@ -32,37 +32,37 @@ type ListAllPortalConfigsResponse struct {
 	Object *ListAllPortalConfigsResponseBody
 }
 
-func (o *ListAllPortalConfigsResponse) GetContentType() string {
-	if o == nil {
+func (l *ListAllPortalConfigsResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *ListAllPortalConfigsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (l *ListAllPortalConfigsResponse) GetErrorResp() *shared.ErrorResp {
+	if l == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return l.ErrorResp
 }
 
-func (o *ListAllPortalConfigsResponse) GetStatusCode() int {
-	if o == nil {
+func (l *ListAllPortalConfigsResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *ListAllPortalConfigsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *ListAllPortalConfigsResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *ListAllPortalConfigsResponse) GetObject() *ListAllPortalConfigsResponseBody {
-	if o == nil {
+func (l *ListAllPortalConfigsResponse) GetObject() *ListAllPortalConfigsResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

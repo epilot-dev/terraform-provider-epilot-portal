@@ -16,18 +16,18 @@ type UpsertEmailTemplatesRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *UpsertEmailTemplatesRequest) GetEmailTemplates() shared.EmailTemplates {
-	if o == nil {
+func (u *UpsertEmailTemplatesRequest) GetEmailTemplates() shared.EmailTemplates {
+	if u == nil {
 		return shared.EmailTemplates{}
 	}
-	return o.EmailTemplates
+	return u.EmailTemplates
 }
 
-func (o *UpsertEmailTemplatesRequest) GetOrigin() string {
-	if o == nil {
+func (u *UpsertEmailTemplatesRequest) GetOrigin() string {
+	if u == nil {
 		return ""
 	}
-	return o.Origin
+	return u.Origin
 }
 
 type UpsertEmailTemplatesMessage string
@@ -60,18 +60,18 @@ type UpsertEmailTemplatesResponseBody struct {
 	Message        UpsertEmailTemplatesMessage `json:"message"`
 }
 
-func (o *UpsertEmailTemplatesResponseBody) GetEmailTemplates() shared.EmailTemplates {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponseBody) GetEmailTemplates() shared.EmailTemplates {
+	if u == nil {
 		return shared.EmailTemplates{}
 	}
-	return o.EmailTemplates
+	return u.EmailTemplates
 }
 
-func (o *UpsertEmailTemplatesResponseBody) GetMessage() UpsertEmailTemplatesMessage {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponseBody) GetMessage() UpsertEmailTemplatesMessage {
+	if u == nil {
 		return UpsertEmailTemplatesMessage("")
 	}
-	return o.Message
+	return u.Message
 }
 
 type UpsertEmailTemplatesResponse struct {
@@ -87,37 +87,37 @@ type UpsertEmailTemplatesResponse struct {
 	Object *UpsertEmailTemplatesResponseBody
 }
 
-func (o *UpsertEmailTemplatesResponse) GetContentType() string {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpsertEmailTemplatesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpsertEmailTemplatesResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpsertEmailTemplatesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpsertEmailTemplatesResponse) GetObject() *UpsertEmailTemplatesResponseBody {
-	if o == nil {
+func (u *UpsertEmailTemplatesResponse) GetObject() *UpsertEmailTemplatesResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

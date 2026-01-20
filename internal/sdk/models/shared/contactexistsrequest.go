@@ -9,16 +9,16 @@ type ContactExistsRequest struct {
 	RegistrationIdentifiers map[string]map[string]string `json:"registration_identifiers"`
 }
 
-func (o *ContactExistsRequest) GetOrgID() string {
-	if o == nil {
+func (c *ContactExistsRequest) GetOrgID() string {
+	if c == nil {
 		return ""
 	}
-	return o.OrgID
+	return c.OrgID
 }
 
-func (o *ContactExistsRequest) GetRegistrationIdentifiers() map[string]map[string]string {
-	if o == nil {
+func (c *ContactExistsRequest) GetRegistrationIdentifiers() map[string]map[string]string {
+	if c == nil {
 		return map[string]map[string]string{}
 	}
-	return o.RegistrationIdentifiers
+	return c.RegistrationIdentifiers
 }

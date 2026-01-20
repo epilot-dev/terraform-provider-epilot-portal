@@ -48,13 +48,13 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.25.16"
+      version = "0.26.1"
     }
   }
 }
 
 provider "epilot-portal" {
-  # Configuration options
+  server_url = "..." # Optional
 }
 ```
 <!-- End Installation [installation] -->

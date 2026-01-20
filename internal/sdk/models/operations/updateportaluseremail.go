@@ -17,18 +17,18 @@ type UpdatePortalUserEmailRequestBody struct {
 	Password string `json:"password"`
 }
 
-func (o *UpdatePortalUserEmailRequestBody) GetEmail() string {
-	if o == nil {
+func (u *UpdatePortalUserEmailRequestBody) GetEmail() string {
+	if u == nil {
 		return ""
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UpdatePortalUserEmailRequestBody) GetPassword() string {
-	if o == nil {
+func (u *UpdatePortalUserEmailRequestBody) GetPassword() string {
+	if u == nil {
 		return ""
 	}
-	return o.Password
+	return u.Password
 }
 
 type UpdatePortalUserEmailMessage string
@@ -59,11 +59,11 @@ type UpdatePortalUserEmailResponseBody struct {
 	Message *UpdatePortalUserEmailMessage `json:"message,omitempty"`
 }
 
-func (o *UpdatePortalUserEmailResponseBody) GetMessage() *UpdatePortalUserEmailMessage {
-	if o == nil {
+func (u *UpdatePortalUserEmailResponseBody) GetMessage() *UpdatePortalUserEmailMessage {
+	if u == nil {
 		return nil
 	}
-	return o.Message
+	return u.Message
 }
 
 type UpdatePortalUserEmailResponse struct {
@@ -79,37 +79,37 @@ type UpdatePortalUserEmailResponse struct {
 	Object *UpdatePortalUserEmailResponseBody
 }
 
-func (o *UpdatePortalUserEmailResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdatePortalUserEmailResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdatePortalUserEmailResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdatePortalUserEmailResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdatePortalUserEmailResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdatePortalUserEmailResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdatePortalUserEmailResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdatePortalUserEmailResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdatePortalUserEmailResponse) GetObject() *UpdatePortalUserEmailResponseBody {
-	if o == nil {
+func (u *UpdatePortalUserEmailResponse) GetObject() *UpdatePortalUserEmailResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

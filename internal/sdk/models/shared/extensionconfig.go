@@ -49,29 +49,29 @@ func (e ExtensionConfig) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExtensionConfig) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ExtensionConfig) GetID() string {
-	if o == nil {
+func (e *ExtensionConfig) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExtensionConfig) GetOptions() map[string]string {
-	if o == nil {
+func (e *ExtensionConfig) GetOptions() map[string]string {
+	if e == nil {
 		return nil
 	}
-	return o.Options
+	return e.Options
 }
 
-func (o *ExtensionConfig) GetStatus() *ExtensionConfigStatus {
-	if o == nil {
+func (e *ExtensionConfig) GetStatus() *ExtensionConfigStatus {
+	if e == nil {
 		return nil
 	}
-	return o.Status
+	return e.Status
 }

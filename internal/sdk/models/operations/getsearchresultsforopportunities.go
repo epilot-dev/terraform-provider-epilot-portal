@@ -13,18 +13,18 @@ type Workflows struct {
 	Name       *string `json:"name,omitempty"`
 }
 
-func (o *Workflows) GetDefitionID() *string {
-	if o == nil {
+func (w *Workflows) GetDefitionID() *string {
+	if w == nil {
 		return nil
 	}
-	return o.DefitionID
+	return w.DefitionID
 }
 
-func (o *Workflows) GetName() *string {
-	if o == nil {
+func (w *Workflows) GetName() *string {
+	if w == nil {
 		return nil
 	}
-	return o.Name
+	return w.Name
 }
 
 type GetSearchResultsForOpportunitiesRequestBody struct {
@@ -34,32 +34,32 @@ type GetSearchResultsForOpportunitiesRequestBody struct {
 	Workflows [][]Workflows `json:"workflows,omitempty"`
 }
 
-func (o *GetSearchResultsForOpportunitiesRequestBody) GetAddresses() []string {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequestBody) GetAddresses() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Addresses
+	return g.Addresses
 }
 
-func (o *GetSearchResultsForOpportunitiesRequestBody) GetCustomers() []string {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequestBody) GetCustomers() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Customers
+	return g.Customers
 }
 
-func (o *GetSearchResultsForOpportunitiesRequestBody) GetPurposes() []string {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequestBody) GetPurposes() []string {
+	if g == nil {
 		return nil
 	}
-	return o.Purposes
+	return g.Purposes
 }
 
-func (o *GetSearchResultsForOpportunitiesRequestBody) GetWorkflows() [][]Workflows {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequestBody) GetWorkflows() [][]Workflows {
+	if g == nil {
 		return nil
 	}
-	return o.Workflows
+	return g.Workflows
 }
 
 type GetSearchResultsForOpportunitiesRequest struct {
@@ -73,31 +73,31 @@ func (g GetSearchResultsForOpportunitiesRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSearchResultsForOpportunitiesRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"RequestBody"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetSearchResultsForOpportunitiesRequest) GetRequestBody() GetSearchResultsForOpportunitiesRequestBody {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequest) GetRequestBody() GetSearchResultsForOpportunitiesRequestBody {
+	if g == nil {
 		return GetSearchResultsForOpportunitiesRequestBody{}
 	}
-	return o.RequestBody
+	return g.RequestBody
 }
 
-func (o *GetSearchResultsForOpportunitiesRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetSearchResultsForOpportunitiesRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 // GetSearchResultsForOpportunitiesResponseBody - The opportunities is retrieved successfully for the portal user.
@@ -105,11 +105,11 @@ type GetSearchResultsForOpportunitiesResponseBody struct {
 	Data []shared.Opportunity `json:"data,omitempty"`
 }
 
-func (o *GetSearchResultsForOpportunitiesResponseBody) GetData() []shared.Opportunity {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesResponseBody) GetData() []shared.Opportunity {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetSearchResultsForOpportunitiesResponse struct {
@@ -125,37 +125,37 @@ type GetSearchResultsForOpportunitiesResponse struct {
 	Object *GetSearchResultsForOpportunitiesResponseBody
 }
 
-func (o *GetSearchResultsForOpportunitiesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSearchResultsForOpportunitiesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetSearchResultsForOpportunitiesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSearchResultsForOpportunitiesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSearchResultsForOpportunitiesResponse) GetObject() *GetSearchResultsForOpportunitiesResponseBody {
-	if o == nil {
+func (g *GetSearchResultsForOpportunitiesResponse) GetObject() *GetSearchResultsForOpportunitiesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

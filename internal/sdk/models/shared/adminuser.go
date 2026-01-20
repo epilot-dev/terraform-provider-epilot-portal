@@ -13,32 +13,32 @@ type ImageURI struct {
 	Thumbnail64 *string `json:"thumbnail_64,omitempty"`
 }
 
-func (o *ImageURI) GetKey() *string {
-	if o == nil {
+func (i *ImageURI) GetKey() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Key
+	return i.Key
 }
 
-func (o *ImageURI) GetOriginal() *string {
-	if o == nil {
+func (i *ImageURI) GetOriginal() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Original
+	return i.Original
 }
 
-func (o *ImageURI) GetThumbnail32() *string {
-	if o == nil {
+func (i *ImageURI) GetThumbnail32() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Thumbnail32
+	return i.Thumbnail32
 }
 
-func (o *ImageURI) GetThumbnail64() *string {
-	if o == nil {
+func (i *ImageURI) GetThumbnail64() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Thumbnail64
+	return i.Thumbnail64
 }
 
 type AdminUser struct {
@@ -63,58 +63,58 @@ func (a *AdminUser) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *AdminUser) GetAdditionalProperties() any {
-	if o == nil {
+func (a *AdminUser) GetAdditionalProperties() any {
+	if a == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return a.AdditionalProperties
 }
 
-func (o *AdminUser) GetDisplayName() *string {
-	if o == nil {
+func (a *AdminUser) GetDisplayName() *string {
+	if a == nil {
 		return nil
 	}
-	return o.DisplayName
+	return a.DisplayName
 }
 
-func (o *AdminUser) GetEmail() *string {
-	if o == nil {
+func (a *AdminUser) GetEmail() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Email
+	return a.Email
 }
 
-func (o *AdminUser) GetImageURI() *ImageURI {
-	if o == nil {
+func (a *AdminUser) GetImageURI() *ImageURI {
+	if a == nil {
 		return nil
 	}
-	return o.ImageURI
+	return a.ImageURI
 }
 
-func (o *AdminUser) GetOrgID() *string {
-	if o == nil {
+func (a *AdminUser) GetOrgID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.OrgID
+	return a.OrgID
 }
 
-func (o *AdminUser) GetPhone() *string {
-	if o == nil {
+func (a *AdminUser) GetPhone() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Phone
+	return a.Phone
 }
 
-func (o *AdminUser) GetType() *string {
-	if o == nil {
+func (a *AdminUser) GetType() *string {
+	if a == nil {
 		return nil
 	}
-	return o.Type
+	return a.Type
 }
 
-func (o *AdminUser) GetUserID() *string {
-	if o == nil {
+func (a *AdminUser) GetUserID() *string {
+	if a == nil {
 		return nil
 	}
-	return o.UserID
+	return a.UserID
 }

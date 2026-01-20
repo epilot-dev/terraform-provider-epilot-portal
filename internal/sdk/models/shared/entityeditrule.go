@@ -16,72 +16,72 @@ type EntityEditRule struct {
 	Slug *EntitySlug `json:"slug,omitempty"`
 }
 
-func (o *EntityEditRule) GetAllowedDecrement() *string {
-	if o == nil {
+func (e *EntityEditRule) GetAllowedDecrement() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AllowedDecrement
+	return e.AllowedDecrement
 }
 
-func (o *EntityEditRule) GetAllowedIncrement() *string {
-	if o == nil {
+func (e *EntityEditRule) GetAllowedIncrement() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AllowedIncrement
+	return e.AllowedIncrement
 }
 
-func (o *EntityEditRule) GetAttribute() *string {
-	if o == nil {
+func (e *EntityEditRule) GetAttribute() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Attribute
+	return e.Attribute
 }
 
-func (o *EntityEditRule) GetCadencePeriod() *float64 {
-	if o == nil {
+func (e *EntityEditRule) GetCadencePeriod() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.CadencePeriod
+	return e.CadencePeriod
 }
 
-func (o *EntityEditRule) GetCadencePeriodType() *string {
-	if o == nil {
+func (e *EntityEditRule) GetCadencePeriodType() *string {
+	if e == nil {
 		return nil
 	}
-	return o.CadencePeriodType
+	return e.CadencePeriodType
 }
 
-func (o *EntityEditRule) GetChangesAllowed() *float64 {
-	if o == nil {
+func (e *EntityEditRule) GetChangesAllowed() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.ChangesAllowed
+	return e.ChangesAllowed
 }
 
-func (o *EntityEditRule) GetGracePeriod() *float64 {
-	if o == nil {
+func (e *EntityEditRule) GetGracePeriod() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.GracePeriod
+	return e.GracePeriod
 }
 
-func (o *EntityEditRule) GetNumberOfDaysBeforeRestriction() *float64 {
-	if o == nil {
+func (e *EntityEditRule) GetNumberOfDaysBeforeRestriction() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.NumberOfDaysBeforeRestriction
+	return e.NumberOfDaysBeforeRestriction
 }
 
-func (o *EntityEditRule) GetRuleType() *string {
-	if o == nil {
+func (e *EntityEditRule) GetRuleType() *string {
+	if e == nil {
 		return nil
 	}
-	return o.RuleType
+	return e.RuleType
 }
 
-func (o *EntityEditRule) GetSlug() *EntitySlug {
-	if o == nil {
+func (e *EntityEditRule) GetSlug() *EntitySlug {
+	if e == nil {
 		return nil
 	}
-	return o.Slug
+	return e.Slug
 }

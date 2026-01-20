@@ -27,30 +27,30 @@ func (b *BlockProps) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *BlockProps) GetAdditionalProperties() any {
-	if o == nil {
+func (b *BlockProps) GetAdditionalProperties() any {
+	if b == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return b.AdditionalProperties
 }
 
-func (o *BlockProps) GetContent() map[string]any {
-	if o == nil {
+func (b *BlockProps) GetContent() map[string]any {
+	if b == nil {
 		return nil
 	}
-	return o.Content
+	return b.Content
 }
 
-func (o *BlockProps) GetDesign() map[string]any {
-	if o == nil {
+func (b *BlockProps) GetDesign() map[string]any {
+	if b == nil {
 		return nil
 	}
-	return o.Design
+	return b.Design
 }
 
-func (o *BlockProps) GetVisibility() map[string]any {
-	if o == nil {
+func (b *BlockProps) GetVisibility() map[string]any {
+	if b == nil {
 		return nil
 	}
-	return o.Visibility
+	return b.Visibility
 }

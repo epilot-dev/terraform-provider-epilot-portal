@@ -12,11 +12,11 @@ type UpsertPortalConfigV3AdvancedMfa struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3AdvancedMfa) GetEnabled() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3AdvancedMfa) GetEnabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Enabled
+	return u.Enabled
 }
 
 type UpsertPortalConfigV3EntryPoint string
@@ -50,11 +50,11 @@ type UpsertPortalConfigV3PasswordlessLogin struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3PasswordlessLogin) GetEnabled() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3PasswordlessLogin) GetEnabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Enabled
+	return u.Enabled
 }
 
 // UpsertPortalConfigV3AuthSettings - Authentication settings for the portal
@@ -66,32 +66,32 @@ type UpsertPortalConfigV3AuthSettings struct {
 	PreferredSsoProviders []string                               `json:"preferred_sso_providers,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.AutoRedirectToSso
+	return u.AutoRedirectToSso
 }
 
-func (o *UpsertPortalConfigV3AuthSettings) GetEntryPoint() *UpsertPortalConfigV3EntryPoint {
-	if o == nil {
+func (u *UpsertPortalConfigV3AuthSettings) GetEntryPoint() *UpsertPortalConfigV3EntryPoint {
+	if u == nil {
 		return nil
 	}
-	return o.EntryPoint
+	return u.EntryPoint
 }
 
-func (o *UpsertPortalConfigV3AuthSettings) GetPasswordlessLogin() *UpsertPortalConfigV3PasswordlessLogin {
-	if o == nil {
+func (u *UpsertPortalConfigV3AuthSettings) GetPasswordlessLogin() *UpsertPortalConfigV3PasswordlessLogin {
+	if u == nil {
 		return nil
 	}
-	return o.PasswordlessLogin
+	return u.PasswordlessLogin
 }
 
-func (o *UpsertPortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
-	if o == nil {
+func (u *UpsertPortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
+	if u == nil {
 		return nil
 	}
-	return o.PreferredSsoProviders
+	return u.PreferredSsoProviders
 }
 
 // UpsertPortalConfigV3PasswordPolicy - Password policy for the portal
@@ -108,39 +108,39 @@ type UpsertPortalConfigV3PasswordPolicy struct {
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3PasswordPolicy) GetMinimumLength() *int64 {
-	if o == nil {
+func (u *UpsertPortalConfigV3PasswordPolicy) GetMinimumLength() *int64 {
+	if u == nil {
 		return nil
 	}
-	return o.MinimumLength
+	return u.MinimumLength
 }
 
-func (o *UpsertPortalConfigV3PasswordPolicy) GetRequireLowercase() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3PasswordPolicy) GetRequireLowercase() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.RequireLowercase
+	return u.RequireLowercase
 }
 
-func (o *UpsertPortalConfigV3PasswordPolicy) GetRequireNumbers() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3PasswordPolicy) GetRequireNumbers() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.RequireNumbers
+	return u.RequireNumbers
 }
 
-func (o *UpsertPortalConfigV3PasswordPolicy) GetRequireSymbols() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3PasswordPolicy) GetRequireSymbols() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.RequireSymbols
+	return u.RequireSymbols
 }
 
-func (o *UpsertPortalConfigV3PasswordPolicy) GetRequireUppercase() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3PasswordPolicy) GetRequireUppercase() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.RequireUppercase
+	return u.RequireUppercase
 }
 
 // UpsertPortalConfigV3CognitoDetails - AWS Cognito Pool details for the portal
@@ -155,32 +155,32 @@ type UpsertPortalConfigV3CognitoDetails struct {
 	PasswordPolicy *UpsertPortalConfigV3PasswordPolicy `json:"password_policy,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3CognitoDetails) GetCognitoUserPoolArn() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3CognitoDetails) GetCognitoUserPoolArn() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CognitoUserPoolArn
+	return u.CognitoUserPoolArn
 }
 
-func (o *UpsertPortalConfigV3CognitoDetails) GetCognitoUserPoolClientID() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3CognitoDetails) GetCognitoUserPoolClientID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CognitoUserPoolClientID
+	return u.CognitoUserPoolClientID
 }
 
-func (o *UpsertPortalConfigV3CognitoDetails) GetCognitoUserPoolID() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3CognitoDetails) GetCognitoUserPoolID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.CognitoUserPoolID
+	return u.CognitoUserPoolID
 }
 
-func (o *UpsertPortalConfigV3CognitoDetails) GetPasswordPolicy() *UpsertPortalConfigV3PasswordPolicy {
-	if o == nil {
+func (u *UpsertPortalConfigV3CognitoDetails) GetPasswordPolicy() *UpsertPortalConfigV3PasswordPolicy {
+	if u == nil {
 		return nil
 	}
-	return o.PasswordPolicy
+	return u.PasswordPolicy
 }
 
 // UpsertPortalConfigV3ContractSelectorConfig - Configuration for contract selector in the portal
@@ -191,18 +191,18 @@ type UpsertPortalConfigV3ContractSelectorConfig struct {
 	TitlePath *string `json:"title_path,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3ContractSelectorConfig) GetShowInactive() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3ContractSelectorConfig) GetShowInactive() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.ShowInactive
+	return u.ShowInactive
 }
 
-func (o *UpsertPortalConfigV3ContractSelectorConfig) GetTitlePath() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3ContractSelectorConfig) GetTitlePath() *string {
+	if u == nil {
 		return nil
 	}
-	return o.TitlePath
+	return u.TitlePath
 }
 
 // UpsertPortalConfigV3DefaultUserToNotify - Default 360 user to notify upon an internal notification
@@ -211,11 +211,11 @@ type UpsertPortalConfigV3DefaultUserToNotify struct {
 	OnPendingUser []AdminUser `json:"onPendingUser,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3DefaultUserToNotify) GetOnPendingUser() []AdminUser {
-	if o == nil {
+func (u *UpsertPortalConfigV3DefaultUserToNotify) GetOnPendingUser() []AdminUser {
+	if u == nil {
 		return nil
 	}
-	return o.OnPendingUser
+	return u.OnPendingUser
 }
 
 type UpsertPortalConfigV3ActionLabel struct {
@@ -223,18 +223,18 @@ type UpsertPortalConfigV3ActionLabel struct {
 	En *string `json:"en,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3ActionLabel) GetDe() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3ActionLabel) GetDe() *string {
+	if u == nil {
 		return nil
 	}
-	return o.De
+	return u.De
 }
 
-func (o *UpsertPortalConfigV3ActionLabel) GetEn() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3ActionLabel) GetEn() *string {
+	if u == nil {
 		return nil
 	}
-	return o.En
+	return u.En
 }
 
 type UpsertPortalConfigV3EntityActions struct {
@@ -245,25 +245,25 @@ type UpsertPortalConfigV3EntityActions struct {
 	Slug *EntitySlug `json:"slug,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3EntityActions) GetActionLabel() *UpsertPortalConfigV3ActionLabel {
-	if o == nil {
+func (u *UpsertPortalConfigV3EntityActions) GetActionLabel() *UpsertPortalConfigV3ActionLabel {
+	if u == nil {
 		return nil
 	}
-	return o.ActionLabel
+	return u.ActionLabel
 }
 
-func (o *UpsertPortalConfigV3EntityActions) GetJourneyID() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3EntityActions) GetJourneyID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.JourneyID
+	return u.JourneyID
 }
 
-func (o *UpsertPortalConfigV3EntityActions) GetSlug() *EntitySlug {
-	if o == nil {
+func (u *UpsertPortalConfigV3EntityActions) GetSlug() *EntitySlug {
+	if u == nil {
 		return nil
 	}
-	return o.Slug
+	return u.Slug
 }
 
 type UpsertPortalConfigV3Type struct {
@@ -273,18 +273,18 @@ type UpsertPortalConfigV3Type struct {
 	IsEnabled *bool `json:"isEnabled,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3Type) GetAttributes() []string {
-	if o == nil {
+func (u *UpsertPortalConfigV3Type) GetAttributes() []string {
+	if u == nil {
 		return nil
 	}
-	return o.Attributes
+	return u.Attributes
 }
 
-func (o *UpsertPortalConfigV3Type) GetIsEnabled() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3Type) GetIsEnabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.IsEnabled
+	return u.IsEnabled
 }
 
 // UpsertPortalConfigV3EntityIdentifiers - Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.
@@ -294,11 +294,11 @@ type UpsertPortalConfigV3EntityIdentifiers struct {
 	Type *UpsertPortalConfigV3Type `json:"type,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3EntityIdentifiers) GetType() *UpsertPortalConfigV3Type {
-	if o == nil {
+func (u *UpsertPortalConfigV3EntityIdentifiers) GetType() *UpsertPortalConfigV3Type {
+	if u == nil {
 		return nil
 	}
-	return o.Type
+	return u.Type
 }
 
 // UpsertPortalConfigV3FeatureSettings - Feature settings for the portal
@@ -313,32 +313,32 @@ type UpsertPortalConfigV3FeatureSettings struct {
 	StartPage *bool `json:"start_page,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3FeatureSettings) GetBilling() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3FeatureSettings) GetBilling() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Billing
+	return u.Billing
 }
 
-func (o *UpsertPortalConfigV3FeatureSettings) GetChangeDueDate() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3FeatureSettings) GetChangeDueDate() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.ChangeDueDate
+	return u.ChangeDueDate
 }
 
-func (o *UpsertPortalConfigV3FeatureSettings) GetNewDesign() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3FeatureSettings) GetNewDesign() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.NewDesign
+	return u.NewDesign
 }
 
-func (o *UpsertPortalConfigV3FeatureSettings) GetStartPage() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3FeatureSettings) GetStartPage() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.StartPage
+	return u.StartPage
 }
 
 // UpsertPortalConfigV3Images - Teaser & Banner Image web links
@@ -351,25 +351,25 @@ type UpsertPortalConfigV3Images struct {
 	WelcomeBanner *string `json:"welcomeBanner,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3Images) GetOrderLeftTeaser() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3Images) GetOrderLeftTeaser() *string {
+	if u == nil {
 		return nil
 	}
-	return o.OrderLeftTeaser
+	return u.OrderLeftTeaser
 }
 
-func (o *UpsertPortalConfigV3Images) GetOrderRightTeaser() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3Images) GetOrderRightTeaser() *string {
+	if u == nil {
 		return nil
 	}
-	return o.OrderRightTeaser
+	return u.OrderRightTeaser
 }
 
-func (o *UpsertPortalConfigV3Images) GetWelcomeBanner() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3Images) GetWelcomeBanner() *string {
+	if u == nil {
 		return nil
 	}
-	return o.WelcomeBanner
+	return u.WelcomeBanner
 }
 
 type UpsertPortalConfigV3SelfRegistrationSetting string
@@ -436,18 +436,18 @@ type UpsertPortalConfigV3TriggeredJourneys struct {
 	TriggerName *UpsertPortalConfigV3TriggerName `json:"trigger_name,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3TriggeredJourneys) GetJourneyID() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3TriggeredJourneys) GetJourneyID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.JourneyID
+	return u.JourneyID
 }
 
-func (o *UpsertPortalConfigV3TriggeredJourneys) GetTriggerName() *UpsertPortalConfigV3TriggerName {
-	if o == nil {
+func (u *UpsertPortalConfigV3TriggeredJourneys) GetTriggerName() *UpsertPortalConfigV3TriggerName {
+	if u == nil {
 		return nil
 	}
-	return o.TriggerName
+	return u.TriggerName
 }
 
 type UpsertPortalConfigV3 struct {
@@ -525,254 +525,254 @@ type UpsertPortalConfigV3 struct {
 	TriggeredJourneys []UpsertPortalConfigV3TriggeredJourneys `json:"triggered_journeys,omitempty"`
 }
 
-func (o *UpsertPortalConfigV3) GetAccessToken() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetAccessToken() *string {
+	if u == nil {
 		return nil
 	}
-	return o.AccessToken
+	return u.AccessToken
 }
 
-func (o *UpsertPortalConfigV3) GetAdvancedMfa() *UpsertPortalConfigV3AdvancedMfa {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetAdvancedMfa() *UpsertPortalConfigV3AdvancedMfa {
+	if u == nil {
 		return nil
 	}
-	return o.AdvancedMfa
+	return u.AdvancedMfa
 }
 
-func (o *UpsertPortalConfigV3) GetAllowedFileExtensions() *AllowedFileExtensions {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetAllowedFileExtensions() *AllowedFileExtensions {
+	if u == nil {
 		return nil
 	}
-	return o.AllowedFileExtensions
+	return u.AllowedFileExtensions
 }
 
-func (o *UpsertPortalConfigV3) GetApprovalStateAttributes() any {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetApprovalStateAttributes() any {
+	if u == nil {
 		return nil
 	}
-	return o.ApprovalStateAttributes
+	return u.ApprovalStateAttributes
 }
 
-func (o *UpsertPortalConfigV3) GetAuthSettings() *UpsertPortalConfigV3AuthSettings {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetAuthSettings() *UpsertPortalConfigV3AuthSettings {
+	if u == nil {
 		return nil
 	}
-	return o.AuthSettings
+	return u.AuthSettings
 }
 
-func (o *UpsertPortalConfigV3) GetCognitoDetails() *UpsertPortalConfigV3CognitoDetails {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetCognitoDetails() *UpsertPortalConfigV3CognitoDetails {
+	if u == nil {
 		return nil
 	}
-	return o.CognitoDetails
+	return u.CognitoDetails
 }
 
-func (o *UpsertPortalConfigV3) GetConfig() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetConfig() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Config
+	return u.Config
 }
 
-func (o *UpsertPortalConfigV3) GetContactIdentifiers() []string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetContactIdentifiers() []string {
+	if u == nil {
 		return nil
 	}
-	return o.ContactIdentifiers
+	return u.ContactIdentifiers
 }
 
-func (o *UpsertPortalConfigV3) GetContractIdentifiers() any {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetContractIdentifiers() any {
+	if u == nil {
 		return nil
 	}
-	return o.ContractIdentifiers
+	return u.ContractIdentifiers
 }
 
-func (o *UpsertPortalConfigV3) GetContractSelectorConfig() *UpsertPortalConfigV3ContractSelectorConfig {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetContractSelectorConfig() *UpsertPortalConfigV3ContractSelectorConfig {
+	if u == nil {
 		return nil
 	}
-	return o.ContractSelectorConfig
+	return u.ContractSelectorConfig
 }
 
-func (o *UpsertPortalConfigV3) GetDefaultUserToNotify() *UpsertPortalConfigV3DefaultUserToNotify {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetDefaultUserToNotify() *UpsertPortalConfigV3DefaultUserToNotify {
+	if u == nil {
 		return nil
 	}
-	return o.DefaultUserToNotify
+	return u.DefaultUserToNotify
 }
 
-func (o *UpsertPortalConfigV3) GetDesignID() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetDesignID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.DesignID
+	return u.DesignID
 }
 
-func (o *UpsertPortalConfigV3) GetDomain() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetDomain() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Domain
+	return u.Domain
 }
 
-func (o *UpsertPortalConfigV3) GetEmailTemplates() *EmailTemplates {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetEmailTemplates() *EmailTemplates {
+	if u == nil {
 		return nil
 	}
-	return o.EmailTemplates
+	return u.EmailTemplates
 }
 
-func (o *UpsertPortalConfigV3) GetEnabled() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetEnabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Enabled
+	return u.Enabled
 }
 
-func (o *UpsertPortalConfigV3) GetEntityActions() []UpsertPortalConfigV3EntityActions {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetEntityActions() []UpsertPortalConfigV3EntityActions {
+	if u == nil {
 		return nil
 	}
-	return o.EntityActions
+	return u.EntityActions
 }
 
-func (o *UpsertPortalConfigV3) GetEntityEditRules() any {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetEntityEditRules() any {
+	if u == nil {
 		return nil
 	}
-	return o.EntityEditRules
+	return u.EntityEditRules
 }
 
-func (o *UpsertPortalConfigV3) GetEntityIdentifiers() *UpsertPortalConfigV3EntityIdentifiers {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetEntityIdentifiers() *UpsertPortalConfigV3EntityIdentifiers {
+	if u == nil {
 		return nil
 	}
-	return o.EntityIdentifiers
+	return u.EntityIdentifiers
 }
 
-func (o *UpsertPortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
+	if u == nil {
 		return nil
 	}
-	return o.ExtensionHooks
+	return u.ExtensionHooks
 }
 
-func (o *UpsertPortalConfigV3) GetExtensions() []ExtensionConfig {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetExtensions() []ExtensionConfig {
+	if u == nil {
 		return nil
 	}
-	return o.Extensions
+	return u.Extensions
 }
 
-func (o *UpsertPortalConfigV3) GetFeatureSettings() *UpsertPortalConfigV3FeatureSettings {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetFeatureSettings() *UpsertPortalConfigV3FeatureSettings {
+	if u == nil {
 		return nil
 	}
-	return o.FeatureSettings
+	return u.FeatureSettings
 }
 
-func (o *UpsertPortalConfigV3) GetImages() *UpsertPortalConfigV3Images {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetImages() *UpsertPortalConfigV3Images {
+	if u == nil {
 		return nil
 	}
-	return o.Images
+	return u.Images
 }
 
-func (o *UpsertPortalConfigV3) GetInactiveContractCutoffYears() *float64 {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetInactiveContractCutoffYears() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.InactiveContractCutoffYears
+	return u.InactiveContractCutoffYears
 }
 
-func (o *UpsertPortalConfigV3) GetIsDummy() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetIsDummy() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.IsDummy
+	return u.IsDummy
 }
 
-func (o *UpsertPortalConfigV3) GetIsEpilotDomain() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetIsEpilotDomain() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.IsEpilotDomain
+	return u.IsEpilotDomain
 }
 
-func (o *UpsertPortalConfigV3) GetIsV3Item() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetIsV3Item() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.IsV3Item
+	return u.IsV3Item
 }
 
-func (o *UpsertPortalConfigV3) GetMeterReadingGracePeriod() *float64 {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetMeterReadingGracePeriod() *float64 {
+	if u == nil {
 		return nil
 	}
-	return o.MeterReadingGracePeriod
+	return u.MeterReadingGracePeriod
 }
 
-func (o *UpsertPortalConfigV3) GetName() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetName() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Name
+	return u.Name
 }
 
-func (o *UpsertPortalConfigV3) GetOrigin() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetOrigin() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Origin
+	return u.Origin
 }
 
-func (o *UpsertPortalConfigV3) GetPages() any {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetPages() any {
+	if u == nil {
 		return nil
 	}
-	return o.Pages
+	return u.Pages
 }
 
-func (o *UpsertPortalConfigV3) GetPortalID() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetPortalID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PortalID
+	return u.PortalID
 }
 
-func (o *UpsertPortalConfigV3) GetPortalSkV3() *string {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetPortalSkV3() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PortalSkV3
+	return u.PortalSkV3
 }
 
-func (o *UpsertPortalConfigV3) GetPreventSearchEngineIndexing() *bool {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetPreventSearchEngineIndexing() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.PreventSearchEngineIndexing
+	return u.PreventSearchEngineIndexing
 }
 
-func (o *UpsertPortalConfigV3) GetRegistrationIdentifiers() any {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetRegistrationIdentifiers() any {
+	if u == nil {
 		return nil
 	}
-	return o.RegistrationIdentifiers
+	return u.RegistrationIdentifiers
 }
 
-func (o *UpsertPortalConfigV3) GetSelfRegistrationSetting() *UpsertPortalConfigV3SelfRegistrationSetting {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetSelfRegistrationSetting() *UpsertPortalConfigV3SelfRegistrationSetting {
+	if u == nil {
 		return nil
 	}
-	return o.SelfRegistrationSetting
+	return u.SelfRegistrationSetting
 }
 
-func (o *UpsertPortalConfigV3) GetTriggeredJourneys() []UpsertPortalConfigV3TriggeredJourneys {
-	if o == nil {
+func (u *UpsertPortalConfigV3) GetTriggeredJourneys() []UpsertPortalConfigV3TriggeredJourneys {
+	if u == nil {
 		return nil
 	}
-	return o.TriggeredJourneys
+	return u.TriggeredJourneys
 }

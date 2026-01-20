@@ -64,52 +64,52 @@ func (g GetCostsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCostsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"extensionId", "from", "hookId", "interval", "meter_id", "to"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *GetCostsRequest) GetExtensionID() string {
-	if o == nil {
+func (g *GetCostsRequest) GetExtensionID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ExtensionID
+	return g.ExtensionID
 }
 
-func (o *GetCostsRequest) GetFrom() time.Time {
-	if o == nil {
+func (g *GetCostsRequest) GetFrom() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetCostsRequest) GetHookID() string {
-	if o == nil {
+func (g *GetCostsRequest) GetHookID() string {
+	if g == nil {
 		return ""
 	}
-	return o.HookID
+	return g.HookID
 }
 
-func (o *GetCostsRequest) GetInterval() QueryParamInterval {
-	if o == nil {
+func (g *GetCostsRequest) GetInterval() QueryParamInterval {
+	if g == nil {
 		return QueryParamInterval("")
 	}
-	return o.Interval
+	return g.Interval
 }
 
-func (o *GetCostsRequest) GetMeterID() string {
-	if o == nil {
+func (g *GetCostsRequest) GetMeterID() string {
+	if g == nil {
 		return ""
 	}
-	return o.MeterID
+	return g.MeterID
 }
 
-func (o *GetCostsRequest) GetTo() time.Time {
-	if o == nil {
+func (g *GetCostsRequest) GetTo() time.Time {
+	if g == nil {
 		return time.Time{}
 	}
-	return o.To
+	return g.To
 }
 
 // TaxBehavior - Is the tax (typically Value Added Tax) included in the amounts. Typically should NOT be included - exclusive of tax.
@@ -159,52 +159,52 @@ func (c Costs) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Costs) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"tax_behavior", "tax_rate", "timestamp", "unit_amount", "unit_amount_currency", "unit_amount_decimal"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Costs) GetTaxBehavior() TaxBehavior {
-	if o == nil {
+func (c *Costs) GetTaxBehavior() TaxBehavior {
+	if c == nil {
 		return TaxBehavior("")
 	}
-	return o.TaxBehavior
+	return c.TaxBehavior
 }
 
-func (o *Costs) GetTaxRate() int64 {
-	if o == nil {
+func (c *Costs) GetTaxRate() int64 {
+	if c == nil {
 		return 0
 	}
-	return o.TaxRate
+	return c.TaxRate
 }
 
-func (o *Costs) GetTimestamp() time.Time {
-	if o == nil {
+func (c *Costs) GetTimestamp() time.Time {
+	if c == nil {
 		return time.Time{}
 	}
-	return o.Timestamp
+	return c.Timestamp
 }
 
-func (o *Costs) GetUnitAmount() int64 {
-	if o == nil {
+func (c *Costs) GetUnitAmount() int64 {
+	if c == nil {
 		return 0
 	}
-	return o.UnitAmount
+	return c.UnitAmount
 }
 
-func (o *Costs) GetUnitAmountCurrency() string {
-	if o == nil {
+func (c *Costs) GetUnitAmountCurrency() string {
+	if c == nil {
 		return ""
 	}
-	return o.UnitAmountCurrency
+	return c.UnitAmountCurrency
 }
 
-func (o *Costs) GetUnitAmountDecimal() string {
-	if o == nil {
+func (c *Costs) GetUnitAmountDecimal() string {
+	if c == nil {
 		return ""
 	}
-	return o.UnitAmountDecimal
+	return c.UnitAmountDecimal
 }
 
 // GetCostsResponseBody - Cost data returned successfully.
@@ -212,11 +212,11 @@ type GetCostsResponseBody struct {
 	Costs []Costs `json:"costs,omitempty"`
 }
 
-func (o *GetCostsResponseBody) GetCosts() []Costs {
-	if o == nil {
+func (g *GetCostsResponseBody) GetCosts() []Costs {
+	if g == nil {
 		return nil
 	}
-	return o.Costs
+	return g.Costs
 }
 
 type GetCostsResponse struct {
@@ -232,37 +232,37 @@ type GetCostsResponse struct {
 	Object *GetCostsResponseBody
 }
 
-func (o *GetCostsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetCostsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetCostsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetCostsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetCostsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetCostsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetCostsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetCostsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetCostsResponse) GetObject() *GetCostsResponseBody {
-	if o == nil {
+func (g *GetCostsResponse) GetObject() *GetCostsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

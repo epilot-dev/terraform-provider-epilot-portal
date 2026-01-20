@@ -14,18 +14,18 @@ type SsoRedirectRequestBody struct {
 	State *string `multipartForm:"name=state"`
 }
 
-func (o *SsoRedirectRequestBody) GetCode() *string {
-	if o == nil {
+func (s *SsoRedirectRequestBody) GetCode() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Code
+	return s.Code
 }
 
-func (o *SsoRedirectRequestBody) GetState() *string {
-	if o == nil {
+func (s *SsoRedirectRequestBody) GetState() *string {
+	if s == nil {
 		return nil
 	}
-	return o.State
+	return s.State
 }
 
 type SsoRedirectRequest struct {
@@ -34,18 +34,18 @@ type SsoRedirectRequest struct {
 	WebURI string `queryParam:"style=form,explode=true,name=web_uri"`
 }
 
-func (o *SsoRedirectRequest) GetRequestBody() SsoRedirectRequestBody {
-	if o == nil {
+func (s *SsoRedirectRequest) GetRequestBody() SsoRedirectRequestBody {
+	if s == nil {
 		return SsoRedirectRequestBody{}
 	}
-	return o.RequestBody
+	return s.RequestBody
 }
 
-func (o *SsoRedirectRequest) GetWebURI() string {
-	if o == nil {
+func (s *SsoRedirectRequest) GetWebURI() string {
+	if s == nil {
 		return ""
 	}
-	return o.WebURI
+	return s.WebURI
 }
 
 type SsoRedirectResponse struct {
@@ -60,37 +60,37 @@ type SsoRedirectResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *SsoRedirectResponse) GetContentType() string {
-	if o == nil {
+func (s *SsoRedirectResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SsoRedirectResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (s *SsoRedirectResponse) GetErrorResp() *shared.ErrorResp {
+	if s == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return s.ErrorResp
 }
 
-func (o *SsoRedirectResponse) GetHeaders() map[string][]string {
-	if o == nil {
+func (s *SsoRedirectResponse) GetHeaders() map[string][]string {
+	if s == nil {
 		return map[string][]string{}
 	}
-	return o.Headers
+	return s.Headers
 }
 
-func (o *SsoRedirectResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SsoRedirectResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SsoRedirectResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SsoRedirectResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }

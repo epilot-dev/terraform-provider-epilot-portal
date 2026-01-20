@@ -11,31 +11,31 @@ import (
 	"time"
 )
 
-type SchemasDollarRelation struct {
+type DollarRelation struct {
 	// Entity ID for the related contract.
 	EntityID *string `json:"entity_id,omitempty"`
 }
 
-func (s SchemasDollarRelation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
+func (d DollarRelation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
 }
 
-func (s *SchemasDollarRelation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+func (d *DollarRelation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *SchemasDollarRelation) GetEntityID() *string {
-	if o == nil {
+func (d *DollarRelation) GetEntityID() *string {
+	if d == nil {
 		return nil
 	}
-	return o.EntityID
+	return d.EntityID
 }
 
 type SchemasContract struct {
-	DollarRelation []SchemasDollarRelation `json:"$relation,omitempty"`
+	DollarRelation []DollarRelation `json:"$relation,omitempty"`
 }
 
 func (s SchemasContract) MarshalJSON() ([]byte, error) {
@@ -49,11 +49,11 @@ func (s *SchemasContract) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SchemasContract) GetDollarRelation() []SchemasDollarRelation {
-	if o == nil {
+func (s *SchemasContract) GetDollarRelation() []DollarRelation {
+	if s == nil {
 		return nil
 	}
-	return o.DollarRelation
+	return s.DollarRelation
 }
 
 // SchemasReimbursementEventType - Type of the billing event.
@@ -117,355 +117,138 @@ func (r ReimbursementEventSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ReimbursementEventSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"_created_at", "_id", "_org", "_title", "_updated_at", "contract", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ReimbursementEventSchemas) GetAdditionalProperties() any {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetAdditionalProperties() any {
+	if r == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return r.AdditionalProperties
 }
 
-func (o *ReimbursementEventSchemas) GetCreatedAt() time.Time {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetCreatedAt() time.Time {
+	if r == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return r.CreatedAt
 }
 
-func (o *ReimbursementEventSchemas) GetID() string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetID() string {
+	if r == nil {
 		return ""
 	}
-	return o.ID
+	return r.ID
 }
 
-func (o *ReimbursementEventSchemas) GetOrg() string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetOrg() string {
+	if r == nil {
 		return ""
 	}
-	return o.Org
+	return r.Org
 }
 
-func (o *ReimbursementEventSchemas) GetTags() []string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetTags() []string {
+	if r == nil {
 		return nil
 	}
-	return o.Tags
+	return r.Tags
 }
 
-func (o *ReimbursementEventSchemas) GetTitle() string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetTitle() string {
+	if r == nil {
 		return ""
 	}
-	return o.Title
+	return r.Title
 }
 
-func (o *ReimbursementEventSchemas) GetUpdatedAt() time.Time {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetUpdatedAt() time.Time {
+	if r == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return r.UpdatedAt
 }
 
-func (o *ReimbursementEventSchemas) GetBillingAmount() *int64 {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetBillingAmount() *int64 {
+	if r == nil {
 		return nil
 	}
-	return o.BillingAmount
+	return r.BillingAmount
 }
 
-func (o *ReimbursementEventSchemas) GetBillingAmountDecimal() *string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetBillingAmountDecimal() *string {
+	if r == nil {
 		return nil
 	}
-	return o.BillingAmountDecimal
+	return r.BillingAmountDecimal
 }
 
-func (o *ReimbursementEventSchemas) GetBillingCurrency() *string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetBillingCurrency() *string {
+	if r == nil {
 		return nil
 	}
-	return o.BillingCurrency
+	return r.BillingCurrency
 }
 
-func (o *ReimbursementEventSchemas) GetContract() SchemasContract {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetContract() SchemasContract {
+	if r == nil {
 		return SchemasContract{}
 	}
-	return o.Contract
+	return r.Contract
 }
 
-func (o *ReimbursementEventSchemas) GetDueDate() *types.Date {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetDueDate() *types.Date {
+	if r == nil {
 		return nil
 	}
-	return o.DueDate
+	return r.DueDate
 }
 
-func (o *ReimbursementEventSchemas) GetExternalID() *string {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetExternalID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ExternalID
+	return r.ExternalID
 }
 
-func (o *ReimbursementEventSchemas) GetPaidDate() *types.Date {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetPaidDate() *types.Date {
+	if r == nil {
 		return nil
 	}
-	return o.PaidDate
+	return r.PaidDate
 }
 
-func (o *ReimbursementEventSchemas) GetType() SchemasReimbursementEventType {
-	if o == nil {
+func (r *ReimbursementEventSchemas) GetType() SchemasReimbursementEventType {
+	if r == nil {
 		return SchemasReimbursementEventType("")
 	}
-	return o.Type
-}
-
-type DollarRelation struct {
-	// Entity ID for the related contract.
-	EntityID *string `json:"entity_id,omitempty"`
-}
-
-func (d DollarRelation) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
-
-func (d *DollarRelation) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *DollarRelation) GetEntityID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.EntityID
-}
-
-type SchemasInstallmentEventContract struct {
-	DollarRelation []DollarRelation `json:"$relation,omitempty"`
-}
-
-func (s SchemasInstallmentEventContract) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(s, "", false)
-}
-
-func (s *SchemasInstallmentEventContract) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *SchemasInstallmentEventContract) GetDollarRelation() []DollarRelation {
-	if o == nil {
-		return nil
-	}
-	return o.DollarRelation
-}
-
-// SchemasInstallmentEventType - Type of the billing event.
-type SchemasInstallmentEventType string
-
-const (
-	SchemasInstallmentEventTypeInstallment SchemasInstallmentEventType = "installment"
-)
-
-func (e SchemasInstallmentEventType) ToPointer() *SchemasInstallmentEventType {
-	return &e
-}
-func (e *SchemasInstallmentEventType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "installment":
-		*e = SchemasInstallmentEventType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for SchemasInstallmentEventType: %v", v)
-	}
-}
-
-// InstallmentEventSchemas - An entity that describes an installment billing event.
-type InstallmentEventSchemas struct {
-	AdditionalProperties any `additionalProperties:"true" json:"-"`
-	// Creation timestamp of the entity
-	CreatedAt time.Time `json:"_created_at"`
-	// Entity ID
-	ID string `json:"_id"`
-	// Organization ID the entity belongs to
-	Org string `json:"_org"`
-	// Array of entity tags
-	Tags []string `json:"_tags,omitempty"`
-	// Title of the entity
-	Title string `json:"_title"`
-	// Last update timestamp of the entity
-	UpdatedAt time.Time `json:"_updated_at"`
-	// Amount to be paid in cents i.e. precision 2
-	BillingAmount *int64 `json:"billing_amount,omitempty"`
-	// Amount to be paid in cents in decimal string representation
-	BillingAmountDecimal *string `json:"billing_amount_decimal,omitempty"`
-	// Currency code in ISO 4217 format
-	BillingCurrency *string                         `json:"billing_currency,omitempty"`
-	Contract        SchemasInstallmentEventContract `json:"contract"`
-	// Date on which the installment is due.
-	DueDate types.Date `json:"due_date"`
-	// Unique identifier for event, used to reference the event to a 3rd party resource such as a SAP Installment.
-	ExternalID *string `json:"external_id,omitempty"`
-	// Date on which the installment is paid by the customer.
-	PaidDate *types.Date `json:"paid_date,omitempty"`
-	// Type of the billing event.
-	Type SchemasInstallmentEventType `json:"type"`
-}
-
-func (i InstallmentEventSchemas) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(i, "", false)
-}
-
-func (i *InstallmentEventSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"_created_at", "_id", "_org", "_title", "_updated_at", "contract", "due_date", "type"}); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (o *InstallmentEventSchemas) GetAdditionalProperties() any {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
-}
-
-func (o *InstallmentEventSchemas) GetCreatedAt() time.Time {
-	if o == nil {
-		return time.Time{}
-	}
-	return o.CreatedAt
-}
-
-func (o *InstallmentEventSchemas) GetID() string {
-	if o == nil {
-		return ""
-	}
-	return o.ID
-}
-
-func (o *InstallmentEventSchemas) GetOrg() string {
-	if o == nil {
-		return ""
-	}
-	return o.Org
-}
-
-func (o *InstallmentEventSchemas) GetTags() []string {
-	if o == nil {
-		return nil
-	}
-	return o.Tags
-}
-
-func (o *InstallmentEventSchemas) GetTitle() string {
-	if o == nil {
-		return ""
-	}
-	return o.Title
-}
-
-func (o *InstallmentEventSchemas) GetUpdatedAt() time.Time {
-	if o == nil {
-		return time.Time{}
-	}
-	return o.UpdatedAt
-}
-
-func (o *InstallmentEventSchemas) GetBillingAmount() *int64 {
-	if o == nil {
-		return nil
-	}
-	return o.BillingAmount
-}
-
-func (o *InstallmentEventSchemas) GetBillingAmountDecimal() *string {
-	if o == nil {
-		return nil
-	}
-	return o.BillingAmountDecimal
-}
-
-func (o *InstallmentEventSchemas) GetBillingCurrency() *string {
-	if o == nil {
-		return nil
-	}
-	return o.BillingCurrency
-}
-
-func (o *InstallmentEventSchemas) GetContract() SchemasInstallmentEventContract {
-	if o == nil {
-		return SchemasInstallmentEventContract{}
-	}
-	return o.Contract
-}
-
-func (o *InstallmentEventSchemas) GetDueDate() types.Date {
-	if o == nil {
-		return types.Date{}
-	}
-	return o.DueDate
-}
-
-func (o *InstallmentEventSchemas) GetExternalID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ExternalID
-}
-
-func (o *InstallmentEventSchemas) GetPaidDate() *types.Date {
-	if o == nil {
-		return nil
-	}
-	return o.PaidDate
-}
-
-func (o *InstallmentEventSchemas) GetType() SchemasInstallmentEventType {
-	if o == nil {
-		return SchemasInstallmentEventType("")
-	}
-	return o.Type
+	return r.Type
 }
 
 type BillingEventType string
 
 const (
-	BillingEventTypeInstallmentEventSchemas   BillingEventType = "InstallmentEvent_Schemas"
+	BillingEventTypeInstallmentEvent          BillingEventType = "InstallmentEvent"
 	BillingEventTypeReimbursementEventSchemas BillingEventType = "ReimbursementEvent_Schemas"
 )
 
 // BillingEvent - An entity that describes a billing event such as a future installment or a reimbursement back to the customer.
 type BillingEvent struct {
-	InstallmentEventSchemas   *InstallmentEventSchemas   `queryParam:"inline" name:"BillingEvent"`
-	ReimbursementEventSchemas *ReimbursementEventSchemas `queryParam:"inline" name:"BillingEvent"`
+	InstallmentEvent          *InstallmentEvent          `queryParam:"inline" union:"member"`
+	ReimbursementEventSchemas *ReimbursementEventSchemas `queryParam:"inline" union:"member"`
 
 	Type BillingEventType
 }
 
-func CreateBillingEventInstallmentEventSchemas(installmentEventSchemas InstallmentEventSchemas) BillingEvent {
-	typ := BillingEventTypeInstallmentEventSchemas
+func CreateBillingEventInstallmentEvent(installmentEvent InstallmentEvent) BillingEvent {
+	typ := BillingEventTypeInstallmentEvent
 
 	return BillingEvent{
-		InstallmentEventSchemas: &installmentEventSchemas,
-		Type:                    typ,
+		InstallmentEvent: &installmentEvent,
+		Type:             typ,
 	}
 }
 
@@ -480,17 +263,43 @@ func CreateBillingEventReimbursementEventSchemas(reimbursementEventSchemas Reimb
 
 func (u *BillingEvent) UnmarshalJSON(data []byte) error {
 
-	var installmentEventSchemas InstallmentEventSchemas = InstallmentEventSchemas{}
-	if err := utils.UnmarshalJSON(data, &installmentEventSchemas, "", true, nil); err == nil {
-		u.InstallmentEventSchemas = &installmentEventSchemas
-		u.Type = BillingEventTypeInstallmentEventSchemas
-		return nil
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
+	var installmentEvent InstallmentEvent = InstallmentEvent{}
+	if err := utils.UnmarshalJSON(data, &installmentEvent, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  BillingEventTypeInstallmentEvent,
+			Value: &installmentEvent,
+		})
 	}
 
 	var reimbursementEventSchemas ReimbursementEventSchemas = ReimbursementEventSchemas{}
 	if err := utils.UnmarshalJSON(data, &reimbursementEventSchemas, "", true, nil); err == nil {
-		u.ReimbursementEventSchemas = &reimbursementEventSchemas
-		u.Type = BillingEventTypeReimbursementEventSchemas
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  BillingEventTypeReimbursementEventSchemas,
+			Value: &reimbursementEventSchemas,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for BillingEvent", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for BillingEvent", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(BillingEventType)
+	switch best.Type {
+	case BillingEventTypeInstallmentEvent:
+		u.InstallmentEvent = best.Value.(*InstallmentEvent)
+		return nil
+	case BillingEventTypeReimbursementEventSchemas:
+		u.ReimbursementEventSchemas = best.Value.(*ReimbursementEventSchemas)
 		return nil
 	}
 
@@ -498,8 +307,8 @@ func (u *BillingEvent) UnmarshalJSON(data []byte) error {
 }
 
 func (u BillingEvent) MarshalJSON() ([]byte, error) {
-	if u.InstallmentEventSchemas != nil {
-		return utils.MarshalJSON(u.InstallmentEventSchemas, "", true)
+	if u.InstallmentEvent != nil {
+		return utils.MarshalJSON(u.InstallmentEvent, "", true)
 	}
 
 	if u.ReimbursementEventSchemas != nil {

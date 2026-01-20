@@ -9,18 +9,18 @@ type SavePortalFileS3ref struct {
 	Key string `json:"key"`
 }
 
-func (o *SavePortalFileS3ref) GetBucket() string {
-	if o == nil {
+func (s *SavePortalFileS3ref) GetBucket() string {
+	if s == nil {
 		return ""
 	}
-	return o.Bucket
+	return s.Bucket
 }
 
-func (o *SavePortalFileS3ref) GetKey() string {
-	if o == nil {
+func (s *SavePortalFileS3ref) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.Key
+	return s.Key
 }
 
 type SavePortalFileFiles struct {
@@ -33,32 +33,32 @@ type SavePortalFileFiles struct {
 	S3ref    *SavePortalFileS3ref `json:"s3ref,omitempty"`
 }
 
-func (o *SavePortalFileFiles) GetTags() []string {
-	if o == nil {
+func (s *SavePortalFileFiles) GetTags() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Tags
+	return s.Tags
 }
 
-func (o *SavePortalFileFiles) GetFileType() string {
-	if o == nil {
+func (s *SavePortalFileFiles) GetFileType() string {
+	if s == nil {
 		return ""
 	}
-	return o.FileType
+	return s.FileType
 }
 
-func (o *SavePortalFileFiles) GetFilename() *string {
-	if o == nil {
+func (s *SavePortalFileFiles) GetFilename() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Filename
+	return s.Filename
 }
 
-func (o *SavePortalFileFiles) GetS3ref() *SavePortalFileS3ref {
-	if o == nil {
+func (s *SavePortalFileFiles) GetS3ref() *SavePortalFileS3ref {
+	if s == nil {
 		return nil
 	}
-	return o.S3ref
+	return s.S3ref
 }
 
 type SavePortalFile struct {
@@ -67,16 +67,16 @@ type SavePortalFile struct {
 	Origin string `json:"origin"`
 }
 
-func (o *SavePortalFile) GetFiles() []SavePortalFileFiles {
-	if o == nil {
+func (s *SavePortalFile) GetFiles() []SavePortalFileFiles {
+	if s == nil {
 		return []SavePortalFileFiles{}
 	}
-	return o.Files
+	return s.Files
 }
 
-func (o *SavePortalFile) GetOrigin() string {
-	if o == nil {
+func (s *SavePortalFile) GetOrigin() string {
+	if s == nil {
 		return ""
 	}
-	return o.Origin
+	return s.Origin
 }

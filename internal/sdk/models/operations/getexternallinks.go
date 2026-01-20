@@ -14,18 +14,18 @@ type GetExternalLinksRequest struct {
 	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetExternalLinksRequest) GetContactID() *string {
-	if o == nil {
+func (g *GetExternalLinksRequest) GetContactID() *string {
+	if g == nil {
 		return nil
 	}
-	return o.ContactID
+	return g.ContactID
 }
 
-func (o *GetExternalLinksRequest) GetOrigin() *string {
-	if o == nil {
+func (g *GetExternalLinksRequest) GetOrigin() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type GetExternalLinksResponse struct {
@@ -41,37 +41,37 @@ type GetExternalLinksResponse struct {
 	Classes []shared.ExternalLink
 }
 
-func (o *GetExternalLinksResponse) GetContentType() string {
-	if o == nil {
+func (g *GetExternalLinksResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetExternalLinksResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetExternalLinksResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetExternalLinksResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetExternalLinksResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetExternalLinksResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetExternalLinksResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetExternalLinksResponse) GetClasses() []shared.ExternalLink {
-	if o == nil {
+func (g *GetExternalLinksResponse) GetClasses() []shared.ExternalLink {
+	if g == nil {
 		return nil
 	}
-	return o.Classes
+	return g.Classes
 }

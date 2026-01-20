@@ -14,18 +14,18 @@ type UpdateOpportunityRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *UpdateOpportunityRequest) GetRequestBody() map[string]any {
-	if o == nil {
+func (u *UpdateOpportunityRequest) GetRequestBody() map[string]any {
+	if u == nil {
 		return map[string]any{}
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
-func (o *UpdateOpportunityRequest) GetID() string {
-	if o == nil {
+func (u *UpdateOpportunityRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
 // UpdateOpportunityResponseBody - Updated the opportunity successfully.
@@ -34,11 +34,11 @@ type UpdateOpportunityResponseBody struct {
 	Data *shared.Opportunity `json:"data,omitempty"`
 }
 
-func (o *UpdateOpportunityResponseBody) GetData() *shared.Opportunity {
-	if o == nil {
+func (u *UpdateOpportunityResponseBody) GetData() *shared.Opportunity {
+	if u == nil {
 		return nil
 	}
-	return o.Data
+	return u.Data
 }
 
 type UpdateOpportunityResponse struct {
@@ -54,37 +54,37 @@ type UpdateOpportunityResponse struct {
 	Object *UpdateOpportunityResponseBody
 }
 
-func (o *UpdateOpportunityResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateOpportunityResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateOpportunityResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdateOpportunityResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdateOpportunityResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateOpportunityResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateOpportunityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateOpportunityResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateOpportunityResponse) GetObject() *UpdateOpportunityResponseBody {
-	if o == nil {
+func (u *UpdateOpportunityResponse) GetObject() *UpdateOpportunityResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

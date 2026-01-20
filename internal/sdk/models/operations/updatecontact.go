@@ -19,8 +19,8 @@ const (
 
 // UpdateContactECPResponseBody - The user is not allowed to access this resource
 type UpdateContactECPResponseBody struct {
-	ErrorResp           *shared.ErrorResp           `queryParam:"inline" name:"responseBody"`
-	FailedRuleErrorResp *shared.FailedRuleErrorResp `queryParam:"inline" name:"responseBody"`
+	ErrorResp           *shared.ErrorResp           `queryParam:"inline" union:"member"`
+	FailedRuleErrorResp *shared.FailedRuleErrorResp `queryParam:"inline" union:"member"`
 
 	Type UpdateContactECPResponseBodyType
 }
@@ -45,17 +45,43 @@ func CreateUpdateContactECPResponseBodyFailedRuleErrorResp(failedRuleErrorResp s
 
 func (u *UpdateContactECPResponseBody) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var errorResp shared.ErrorResp = shared.ErrorResp{}
 	if err := utils.UnmarshalJSON(data, &errorResp, "", true, nil); err == nil {
-		u.ErrorResp = &errorResp
-		u.Type = UpdateContactECPResponseBodyTypeErrorResp
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  UpdateContactECPResponseBodyTypeErrorResp,
+			Value: &errorResp,
+		})
 	}
 
 	var failedRuleErrorResp shared.FailedRuleErrorResp = shared.FailedRuleErrorResp{}
 	if err := utils.UnmarshalJSON(data, &failedRuleErrorResp, "", true, nil); err == nil {
-		u.FailedRuleErrorResp = &failedRuleErrorResp
-		u.Type = UpdateContactECPResponseBodyTypeFailedRuleErrorResp
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  UpdateContactECPResponseBodyTypeFailedRuleErrorResp,
+			Value: &failedRuleErrorResp,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateContactECPResponseBody", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateContactECPResponseBody", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(UpdateContactECPResponseBodyType)
+	switch best.Type {
+	case UpdateContactECPResponseBodyTypeErrorResp:
+		u.ErrorResp = best.Value.(*shared.ErrorResp)
+		return nil
+	case UpdateContactECPResponseBodyTypeFailedRuleErrorResp:
+		u.FailedRuleErrorResp = best.Value.(*shared.FailedRuleErrorResp)
 		return nil
 	}
 
@@ -80,11 +106,11 @@ type UpdateContactResponseBody struct {
 	Data *shared.Contact `json:"data,omitempty"`
 }
 
-func (o *UpdateContactResponseBody) GetData() *shared.Contact {
-	if o == nil {
+func (u *UpdateContactResponseBody) GetData() *shared.Contact {
+	if u == nil {
 		return nil
 	}
-	return o.Data
+	return u.Data
 }
 
 type UpdateContactResponse struct {
@@ -102,44 +128,44 @@ type UpdateContactResponse struct {
 	OneOf *UpdateContactECPResponseBody
 }
 
-func (o *UpdateContactResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateContactResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateContactResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdateContactResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdateContactResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateContactResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateContactResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateContactResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateContactResponse) GetObject() *UpdateContactResponseBody {
-	if o == nil {
+func (u *UpdateContactResponse) GetObject() *UpdateContactResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }
 
-func (o *UpdateContactResponse) GetOneOf() *UpdateContactECPResponseBody {
-	if o == nil {
+func (u *UpdateContactResponse) GetOneOf() *UpdateContactECPResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.OneOf
+	return u.OneOf
 }

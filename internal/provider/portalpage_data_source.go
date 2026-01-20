@@ -128,7 +128,8 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 				Description: `The design of the page`,
 			},
 			"id": schema.StringAttribute{
-				Required: true,
+				Required:    true,
+				Description: `The id of the page`,
 			},
 			"is_deleted": schema.BoolAttribute{
 				Computed:    true,
@@ -224,7 +225,7 @@ func (r *PortalPageDataSource) Read(ctx context.Context, req datasource.ReadRequ
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	res, err := r.client.ECPAdmin.GetPortalPage(ctx, *request)
+	res, err := r.client.Ecp.GetPortalPage(ctx, *request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

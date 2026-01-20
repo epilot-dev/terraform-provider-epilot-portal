@@ -55,64 +55,64 @@ func (c Contact) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Contact) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Contact) GetAdditionalProperties() any {
-	if o == nil {
+func (c *Contact) GetAdditionalProperties() any {
+	if c == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return c.AdditionalProperties
 }
 
-func (o *Contact) GetCreatedAt() time.Time {
-	if o == nil {
+func (c *Contact) GetCreatedAt() time.Time {
+	if c == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *Contact) GetID() string {
-	if o == nil {
+func (c *Contact) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *Contact) GetOrg() string {
-	if o == nil {
+func (c *Contact) GetOrg() string {
+	if c == nil {
 		return ""
 	}
-	return o.Org
+	return c.Org
 }
 
-func (o *Contact) GetSchema() ContactSchema {
-	if o == nil {
+func (c *Contact) GetSchema() ContactSchema {
+	if c == nil {
 		return ContactSchema("")
 	}
-	return o.Schema
+	return c.Schema
 }
 
-func (o *Contact) GetTags() []string {
-	if o == nil {
+func (c *Contact) GetTags() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Tags
+	return c.Tags
 }
 
-func (o *Contact) GetTitle() string {
-	if o == nil {
+func (c *Contact) GetTitle() string {
+	if c == nil {
 		return ""
 	}
-	return o.Title
+	return c.Title
 }
 
-func (o *Contact) GetUpdatedAt() time.Time {
-	if o == nil {
+func (c *Contact) GetUpdatedAt() time.Time {
+	if c == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return c.UpdatedAt
 }

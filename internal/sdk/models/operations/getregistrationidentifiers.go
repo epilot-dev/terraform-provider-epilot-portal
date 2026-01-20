@@ -12,11 +12,11 @@ type GetRegistrationIdentifiersResponseBody struct {
 	Data map[string][]shared.IdentifierAttribute `json:"data,omitempty"`
 }
 
-func (o *GetRegistrationIdentifiersResponseBody) GetData() map[string][]shared.IdentifierAttribute {
-	if o == nil {
+func (g *GetRegistrationIdentifiersResponseBody) GetData() map[string][]shared.IdentifierAttribute {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetRegistrationIdentifiersResponse struct {
@@ -32,37 +32,37 @@ type GetRegistrationIdentifiersResponse struct {
 	Object *GetRegistrationIdentifiersResponseBody
 }
 
-func (o *GetRegistrationIdentifiersResponse) GetContentType() string {
-	if o == nil {
+func (g *GetRegistrationIdentifiersResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetRegistrationIdentifiersResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetRegistrationIdentifiersResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetRegistrationIdentifiersResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetRegistrationIdentifiersResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetRegistrationIdentifiersResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetRegistrationIdentifiersResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetRegistrationIdentifiersResponse) GetObject() *GetRegistrationIdentifiersResponseBody {
-	if o == nil {
+func (g *GetRegistrationIdentifiersResponse) GetObject() *GetRegistrationIdentifiersResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -18,25 +18,25 @@ type Relations struct {
 	EntityID *string `json:"entity_id,omitempty"`
 }
 
-func (o *Relations) GetSchema() *EntitySlug {
-	if o == nil {
+func (r *Relations) GetSchema() *EntitySlug {
+	if r == nil {
 		return nil
 	}
-	return o.Schema
+	return r.Schema
 }
 
-func (o *Relations) GetTitle() *string {
-	if o == nil {
+func (r *Relations) GetTitle() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Title
+	return r.Title
 }
 
-func (o *Relations) GetEntityID() *string {
-	if o == nil {
+func (r *Relations) GetEntityID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.EntityID
+	return r.EntityID
 }
 
 type FileItemSchema string
@@ -181,120 +181,120 @@ func (f FileItem) MarshalJSON() ([]byte, error) {
 }
 
 func (f *FileItem) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *FileItem) GetAdditionalProperties() any {
-	if o == nil {
+func (f *FileItem) GetAdditionalProperties() any {
+	if f == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return f.AdditionalProperties
 }
 
-func (o *FileItem) GetCreatedAt() time.Time {
-	if o == nil {
+func (f *FileItem) GetCreatedAt() time.Time {
+	if f == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return f.CreatedAt
 }
 
-func (o *FileItem) GetID() string {
-	if o == nil {
+func (f *FileItem) GetID() string {
+	if f == nil {
 		return ""
 	}
-	return o.ID
+	return f.ID
 }
 
-func (o *FileItem) GetOrg() string {
-	if o == nil {
+func (f *FileItem) GetOrg() string {
+	if f == nil {
 		return ""
 	}
-	return o.Org
+	return f.Org
 }
 
-func (o *FileItem) GetRelations() []Relations {
-	if o == nil {
+func (f *FileItem) GetRelations() []Relations {
+	if f == nil {
 		return nil
 	}
-	return o.Relations
+	return f.Relations
 }
 
-func (o *FileItem) GetSchema() FileItemSchema {
-	if o == nil {
+func (f *FileItem) GetSchema() FileItemSchema {
+	if f == nil {
 		return FileItemSchema("")
 	}
-	return o.Schema
+	return f.Schema
 }
 
-func (o *FileItem) GetTags() []string {
-	if o == nil {
+func (f *FileItem) GetTags() []string {
+	if f == nil {
 		return nil
 	}
-	return o.Tags
+	return f.Tags
 }
 
-func (o *FileItem) GetTitle() string {
-	if o == nil {
+func (f *FileItem) GetTitle() string {
+	if f == nil {
 		return ""
 	}
-	return o.Title
+	return f.Title
 }
 
-func (o *FileItem) GetUpdatedAt() time.Time {
-	if o == nil {
+func (f *FileItem) GetUpdatedAt() time.Time {
+	if f == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return f.UpdatedAt
 }
 
-func (o *FileItem) GetAccessControl() *AccessControl {
-	if o == nil {
+func (f *FileItem) GetAccessControl() *AccessControl {
+	if f == nil {
 		return nil
 	}
-	return o.AccessControl
+	return f.AccessControl
 }
 
-func (o *FileItem) GetFileDate() *time.Time {
-	if o == nil {
+func (f *FileItem) GetFileDate() *time.Time {
+	if f == nil {
 		return nil
 	}
-	return o.FileDate
+	return f.FileDate
 }
 
-func (o *FileItem) GetFilename() *string {
-	if o == nil {
+func (f *FileItem) GetFilename() *string {
+	if f == nil {
 		return nil
 	}
-	return o.Filename
+	return f.Filename
 }
 
-func (o *FileItem) GetIsNew() *bool {
-	if o == nil {
+func (f *FileItem) GetIsNew() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.IsNew
+	return f.IsNew
 }
 
-func (o *FileItem) GetMimeType() *string {
-	if o == nil {
+func (f *FileItem) GetMimeType() *string {
+	if f == nil {
 		return nil
 	}
-	return o.MimeType
+	return f.MimeType
 }
 
-func (o *FileItem) GetPublicURL() *string {
-	if o == nil {
+func (f *FileItem) GetPublicURL() *string {
+	if f == nil {
 		return nil
 	}
-	return o.PublicURL
+	return f.PublicURL
 }
 
-func (o *FileItem) GetType() *FileItemType {
-	if o == nil {
+func (f *FileItem) GetType() *FileItemType {
+	if f == nil {
 		return nil
 	}
-	return o.Type
+	return f.Type
 }

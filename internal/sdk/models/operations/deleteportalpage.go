@@ -11,11 +11,11 @@ type DeletePortalPageRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *DeletePortalPageRequest) GetID() string {
-	if o == nil {
+func (d *DeletePortalPageRequest) GetID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ID
+	return d.ID
 }
 
 type DeletePortalPageResponse struct {
@@ -29,30 +29,30 @@ type DeletePortalPageResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeletePortalPageResponse) GetContentType() string {
-	if o == nil {
+func (d *DeletePortalPageResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeletePortalPageResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeletePortalPageResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeletePortalPageResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeletePortalPageResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeletePortalPageResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeletePortalPageResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

@@ -8,23 +8,23 @@ type Security struct {
 	PortalAuth *string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 }
 
-func (o *Security) GetEitherAuth() *string {
-	if o == nil {
+func (s *Security) GetEitherAuth() *string {
+	if s == nil {
 		return nil
 	}
-	return o.EitherAuth
+	return s.EitherAuth
 }
 
-func (o *Security) GetEpilotAuth() *string {
-	if o == nil {
+func (s *Security) GetEpilotAuth() *string {
+	if s == nil {
 		return nil
 	}
-	return o.EpilotAuth
+	return s.EpilotAuth
 }
 
-func (o *Security) GetPortalAuth() *string {
-	if o == nil {
+func (s *Security) GetPortalAuth() *string {
+	if s == nil {
 		return nil
 	}
-	return o.PortalAuth
+	return s.PortalAuth
 }

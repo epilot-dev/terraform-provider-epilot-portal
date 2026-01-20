@@ -11,23 +11,23 @@ type DeleteEntityFile struct {
 	FileEntityIds []string `json:"file_entity_ids"`
 }
 
-func (o *DeleteEntityFile) GetEntityID() string {
-	if o == nil {
+func (d *DeleteEntityFile) GetEntityID() string {
+	if d == nil {
 		return ""
 	}
-	return o.EntityID
+	return d.EntityID
 }
 
-func (o *DeleteEntityFile) GetEntityType() string {
-	if o == nil {
+func (d *DeleteEntityFile) GetEntityType() string {
+	if d == nil {
 		return ""
 	}
-	return o.EntityType
+	return d.EntityType
 }
 
-func (o *DeleteEntityFile) GetFileEntityIds() []string {
-	if o == nil {
+func (d *DeleteEntityFile) GetFileEntityIds() []string {
+	if d == nil {
 		return []string{}
 	}
-	return o.FileEntityIds
+	return d.FileEntityIds
 }

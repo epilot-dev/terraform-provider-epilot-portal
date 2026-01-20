@@ -16,25 +16,25 @@ type GetRecipientsToNotifyOnAutomationRequestBody struct {
 	TemplateID string `json:"template_id"`
 }
 
-func (o *GetRecipientsToNotifyOnAutomationRequestBody) GetContextID() string {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationRequestBody) GetContextID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContextID
+	return g.ContextID
 }
 
-func (o *GetRecipientsToNotifyOnAutomationRequestBody) GetEmails() []string {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationRequestBody) GetEmails() []string {
+	if g == nil {
 		return []string{}
 	}
-	return o.Emails
+	return g.Emails
 }
 
-func (o *GetRecipientsToNotifyOnAutomationRequestBody) GetTemplateID() string {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationRequestBody) GetTemplateID() string {
+	if g == nil {
 		return ""
 	}
-	return o.TemplateID
+	return g.TemplateID
 }
 
 type Recipients struct {
@@ -44,18 +44,18 @@ type Recipients struct {
 	RecipientID string `json:"recipient_id"`
 }
 
-func (o *Recipients) GetEmail() string {
-	if o == nil {
+func (r *Recipients) GetEmail() string {
+	if r == nil {
 		return ""
 	}
-	return o.Email
+	return r.Email
 }
 
-func (o *Recipients) GetRecipientID() string {
-	if o == nil {
+func (r *Recipients) GetRecipientID() string {
+	if r == nil {
 		return ""
 	}
-	return o.RecipientID
+	return r.RecipientID
 }
 
 // GetRecipientsToNotifyOnAutomationResponseBody - Returns the valid recipients to notify successfully.
@@ -66,18 +66,18 @@ type GetRecipientsToNotifyOnAutomationResponseBody struct {
 	Recipients []Recipients `json:"recipients,omitempty"`
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponseBody) GetMessage() *string {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponseBody) GetMessage() *string {
+	if g == nil {
 		return nil
 	}
-	return o.Message
+	return g.Message
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponseBody) GetRecipients() []Recipients {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponseBody) GetRecipients() []Recipients {
+	if g == nil {
 		return nil
 	}
-	return o.Recipients
+	return g.Recipients
 }
 
 type GetRecipientsToNotifyOnAutomationResponse struct {
@@ -93,37 +93,37 @@ type GetRecipientsToNotifyOnAutomationResponse struct {
 	Object *GetRecipientsToNotifyOnAutomationResponseBody
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponse) GetContentType() string {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetRecipientsToNotifyOnAutomationResponse) GetObject() *GetRecipientsToNotifyOnAutomationResponseBody {
-	if o == nil {
+func (g *GetRecipientsToNotifyOnAutomationResponse) GetObject() *GetRecipientsToNotifyOnAutomationResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

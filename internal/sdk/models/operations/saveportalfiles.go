@@ -12,11 +12,11 @@ type SavePortalFilesResponseBody struct {
 	CreatedFiles []shared.File `json:"createdFiles,omitempty"`
 }
 
-func (o *SavePortalFilesResponseBody) GetCreatedFiles() []shared.File {
-	if o == nil {
+func (s *SavePortalFilesResponseBody) GetCreatedFiles() []shared.File {
+	if s == nil {
 		return nil
 	}
-	return o.CreatedFiles
+	return s.CreatedFiles
 }
 
 type SavePortalFilesResponse struct {
@@ -32,37 +32,37 @@ type SavePortalFilesResponse struct {
 	Object *SavePortalFilesResponseBody
 }
 
-func (o *SavePortalFilesResponse) GetContentType() string {
-	if o == nil {
+func (s *SavePortalFilesResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SavePortalFilesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (s *SavePortalFilesResponse) GetErrorResp() *shared.ErrorResp {
+	if s == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return s.ErrorResp
 }
 
-func (o *SavePortalFilesResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SavePortalFilesResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SavePortalFilesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SavePortalFilesResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SavePortalFilesResponse) GetObject() *SavePortalFilesResponseBody {
-	if o == nil {
+func (s *SavePortalFilesResponse) GetObject() *SavePortalFilesResponseBody {
+	if s == nil {
 		return nil
 	}
-	return o.Object
+	return s.Object
 }

@@ -7,11 +7,11 @@ type AutomationEntityMapping struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *AutomationEntityMapping) GetEnabled() *bool {
-	if o == nil {
+func (a *AutomationEntityMapping) GetEnabled() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Enabled
+	return a.Enabled
 }
 
 type AutomationPreview struct {
@@ -19,11 +19,11 @@ type AutomationPreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *AutomationPreview) GetEnabled() *bool {
-	if o == nil {
+func (a *AutomationPreview) GetEnabled() *bool {
+	if a == nil {
 		return nil
 	}
-	return o.Enabled
+	return a.Enabled
 }
 
 type CentralInboxPreviewSetting struct {
@@ -31,11 +31,11 @@ type CentralInboxPreviewSetting struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *CentralInboxPreviewSetting) GetEnabled() *bool {
-	if o == nil {
+func (c *CentralInboxPreviewSetting) GetEnabled() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Enabled
+	return c.Enabled
 }
 
 type ContractsPreviewSetting struct {
@@ -43,11 +43,11 @@ type ContractsPreviewSetting struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *ContractsPreviewSetting) GetEnabled() *bool {
-	if o == nil {
+func (c *ContractsPreviewSetting) GetEnabled() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.Enabled
+	return c.Enabled
 }
 
 type DisableIvy struct {
@@ -55,11 +55,11 @@ type DisableIvy struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *DisableIvy) GetEnabled() *bool {
-	if o == nil {
+func (d *DisableIvy) GetEnabled() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Enabled
+	return d.Enabled
 }
 
 type DoubleOptIn struct {
@@ -67,11 +67,11 @@ type DoubleOptIn struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *DoubleOptIn) GetEnabled() *bool {
-	if o == nil {
+func (d *DoubleOptIn) GetEnabled() *bool {
+	if d == nil {
 		return nil
 	}
-	return o.Enabled
+	return d.Enabled
 }
 
 type EcommerceCatalogPreview struct {
@@ -79,11 +79,11 @@ type EcommerceCatalogPreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *EcommerceCatalogPreview) GetEnabled() *bool {
-	if o == nil {
+func (e *EcommerceCatalogPreview) GetEnabled() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Enabled
+	return e.Enabled
 }
 
 type EcommerceOpportunitiesPreview struct {
@@ -91,11 +91,11 @@ type EcommerceOpportunitiesPreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *EcommerceOpportunitiesPreview) GetEnabled() *bool {
-	if o == nil {
+func (e *EcommerceOpportunitiesPreview) GetEnabled() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Enabled
+	return e.Enabled
 }
 
 type EcommercePreview struct {
@@ -103,11 +103,11 @@ type EcommercePreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *EcommercePreview) GetEnabled() *bool {
-	if o == nil {
+func (e *EcommercePreview) GetEnabled() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Enabled
+	return e.Enabled
 }
 
 type EndCustomerPortal struct {
@@ -115,11 +115,11 @@ type EndCustomerPortal struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *EndCustomerPortal) GetEnabled() *bool {
-	if o == nil {
+func (e *EndCustomerPortal) GetEnabled() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Enabled
+	return e.Enabled
 }
 
 type EntitySchemaBuilder struct {
@@ -127,11 +127,11 @@ type EntitySchemaBuilder struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *EntitySchemaBuilder) GetEnabled() *bool {
-	if o == nil {
+func (e *EntitySchemaBuilder) GetEnabled() *bool {
+	if e == nil {
 		return nil
 	}
-	return o.Enabled
+	return e.Enabled
 }
 
 type InstallerPortal struct {
@@ -139,11 +139,11 @@ type InstallerPortal struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *InstallerPortal) GetEnabled() *bool {
-	if o == nil {
+func (i *InstallerPortal) GetEnabled() *bool {
+	if i == nil {
 		return nil
 	}
-	return o.Enabled
+	return i.Enabled
 }
 
 type LogicEditorPreview struct {
@@ -151,11 +151,11 @@ type LogicEditorPreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *LogicEditorPreview) GetEnabled() *bool {
-	if o == nil {
+func (l *LogicEditorPreview) GetEnabled() *bool {
+	if l == nil {
 		return nil
 	}
-	return o.Enabled
+	return l.Enabled
 }
 
 type NewNavigation struct {
@@ -163,11 +163,11 @@ type NewNavigation struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *NewNavigation) GetEnabled() *bool {
-	if o == nil {
+func (n *NewNavigation) GetEnabled() *bool {
+	if n == nil {
 		return nil
 	}
-	return o.Enabled
+	return n.Enabled
 }
 
 type Partnering struct {
@@ -175,11 +175,11 @@ type Partnering struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *Partnering) GetEnabled() *bool {
-	if o == nil {
+func (p *Partnering) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 type ProductAvailability struct {
@@ -187,11 +187,11 @@ type ProductAvailability struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *ProductAvailability) GetEnabled() *bool {
-	if o == nil {
+func (p *ProductAvailability) GetEnabled() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.Enabled
+	return p.Enabled
 }
 
 type Sso struct {
@@ -199,11 +199,11 @@ type Sso struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *Sso) GetEnabled() *bool {
-	if o == nil {
+func (s *Sso) GetEnabled() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Enabled
+	return s.Enabled
 }
 
 type SubmissionPreview struct {
@@ -211,11 +211,11 @@ type SubmissionPreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *SubmissionPreview) GetEnabled() *bool {
-	if o == nil {
+func (s *SubmissionPreview) GetEnabled() *bool {
+	if s == nil {
 		return nil
 	}
-	return o.Enabled
+	return s.Enabled
 }
 
 type UserRolesPreview struct {
@@ -223,11 +223,11 @@ type UserRolesPreview struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
-func (o *UserRolesPreview) GetEnabled() *bool {
-	if o == nil {
+func (u *UserRolesPreview) GetEnabled() *bool {
+	if u == nil {
 		return nil
 	}
-	return o.Enabled
+	return u.Enabled
 }
 
 type OrganizationSettings struct {

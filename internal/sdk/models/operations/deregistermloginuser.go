@@ -14,18 +14,18 @@ type DeRegisterMLoginUserRequest struct {
 	UserID string `pathParam:"style=simple,explode=false,name=user_id"`
 }
 
-func (o *DeRegisterMLoginUserRequest) GetClientID() string {
-	if o == nil {
+func (d *DeRegisterMLoginUserRequest) GetClientID() string {
+	if d == nil {
 		return ""
 	}
-	return o.ClientID
+	return d.ClientID
 }
 
-func (o *DeRegisterMLoginUserRequest) GetUserID() string {
-	if o == nil {
+func (d *DeRegisterMLoginUserRequest) GetUserID() string {
+	if d == nil {
 		return ""
 	}
-	return o.UserID
+	return d.UserID
 }
 
 type DeRegisterMLoginUserResponse struct {
@@ -39,30 +39,30 @@ type DeRegisterMLoginUserResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeRegisterMLoginUserResponse) GetContentType() string {
-	if o == nil {
+func (d *DeRegisterMLoginUserResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeRegisterMLoginUserResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeRegisterMLoginUserResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeRegisterMLoginUserResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeRegisterMLoginUserResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeRegisterMLoginUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeRegisterMLoginUserResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

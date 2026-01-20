@@ -6,9 +6,9 @@ type UpsertPortalWidget struct {
 	Widgets []any `json:"widgets"`
 }
 
-func (o *UpsertPortalWidget) GetWidgets() []any {
-	if o == nil {
+func (u *UpsertPortalWidget) GetWidgets() []any {
+	if u == nil {
 		return []any{}
 	}
-	return o.Widgets
+	return u.Widgets
 }

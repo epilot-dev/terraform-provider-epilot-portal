@@ -24,18 +24,18 @@ func (t *TeaserWidgetLabel) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TeaserWidgetLabel) GetDe() *string {
-	if o == nil {
+func (t *TeaserWidgetLabel) GetDe() *string {
+	if t == nil {
 		return nil
 	}
-	return o.De
+	return t.De
 }
 
-func (o *TeaserWidgetLabel) GetEn() *string {
-	if o == nil {
+func (t *TeaserWidgetLabel) GetEn() *string {
+	if t == nil {
 		return nil
 	}
-	return o.En
+	return t.En
 }
 
 type TeaserWidgetButton struct {
@@ -54,18 +54,18 @@ func (t *TeaserWidgetButton) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TeaserWidgetButton) GetLabel() *TeaserWidgetLabel {
-	if o == nil {
+func (t *TeaserWidgetButton) GetLabel() *TeaserWidgetLabel {
+	if t == nil {
 		return nil
 	}
-	return o.Label
+	return t.Label
 }
 
-func (o *TeaserWidgetButton) GetURL() *string {
-	if o == nil {
+func (t *TeaserWidgetButton) GetURL() *string {
+	if t == nil {
 		return nil
 	}
-	return o.URL
+	return t.URL
 }
 
 type TeaserWidgetHeadline struct {
@@ -84,18 +84,18 @@ func (t *TeaserWidgetHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TeaserWidgetHeadline) GetDe() *string {
-	if o == nil {
+func (t *TeaserWidgetHeadline) GetDe() *string {
+	if t == nil {
 		return nil
 	}
-	return o.De
+	return t.De
 }
 
-func (o *TeaserWidgetHeadline) GetEn() *string {
-	if o == nil {
+func (t *TeaserWidgetHeadline) GetEn() *string {
+	if t == nil {
 		return nil
 	}
-	return o.En
+	return t.En
 }
 
 type TeaserWidgetSubHeadline struct {
@@ -114,18 +114,18 @@ func (t *TeaserWidgetSubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TeaserWidgetSubHeadline) GetDe() *string {
-	if o == nil {
+func (t *TeaserWidgetSubHeadline) GetDe() *string {
+	if t == nil {
 		return nil
 	}
-	return o.De
+	return t.De
 }
 
-func (o *TeaserWidgetSubHeadline) GetEn() *string {
-	if o == nil {
+func (t *TeaserWidgetSubHeadline) GetEn() *string {
+	if t == nil {
 		return nil
 	}
-	return o.En
+	return t.En
 }
 
 type TeaserWidgetType string
@@ -191,57 +191,57 @@ func (t TeaserWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TeaserWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *TeaserWidget) GetButton() *TeaserWidgetButton {
-	if o == nil {
+func (t *TeaserWidget) GetButton() *TeaserWidgetButton {
+	if t == nil {
 		return nil
 	}
-	return o.Button
+	return t.Button
 }
 
-func (o *TeaserWidget) GetHeadline() *TeaserWidgetHeadline {
-	if o == nil {
+func (t *TeaserWidget) GetHeadline() *TeaserWidgetHeadline {
+	if t == nil {
 		return nil
 	}
-	return o.Headline
+	return t.Headline
 }
 
-func (o *TeaserWidget) GetID() string {
-	if o == nil {
+func (t *TeaserWidget) GetID() string {
+	if t == nil {
 		return ""
 	}
-	return o.ID
+	return t.ID
 }
 
-func (o *TeaserWidget) GetImageURL() *string {
-	if o == nil {
+func (t *TeaserWidget) GetImageURL() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ImageURL
+	return t.ImageURL
 }
 
-func (o *TeaserWidget) GetListIndex() int64 {
-	if o == nil {
+func (t *TeaserWidget) GetListIndex() int64 {
+	if t == nil {
 		return 0
 	}
-	return o.ListIndex
+	return t.ListIndex
 }
 
-func (o *TeaserWidget) GetSubHeadline() *TeaserWidgetSubHeadline {
-	if o == nil {
+func (t *TeaserWidget) GetSubHeadline() *TeaserWidgetSubHeadline {
+	if t == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return t.SubHeadline
 }
 
-func (o *TeaserWidget) GetType() TeaserWidgetType {
-	if o == nil {
+func (t *TeaserWidget) GetType() TeaserWidgetType {
+	if t == nil {
 		return TeaserWidgetType("")
 	}
-	return o.Type
+	return t.Type
 }

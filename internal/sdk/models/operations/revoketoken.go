@@ -15,11 +15,11 @@ type RevokeTokenRequestBody struct {
 	RefreshToken string `json:"refresh_token"`
 }
 
-func (o *RevokeTokenRequestBody) GetRefreshToken() string {
-	if o == nil {
+func (r *RevokeTokenRequestBody) GetRefreshToken() string {
+	if r == nil {
 		return ""
 	}
-	return o.RefreshToken
+	return r.RefreshToken
 }
 
 type RevokeTokenMessage string
@@ -50,11 +50,11 @@ type RevokeTokenResponseBody struct {
 	Message *RevokeTokenMessage `json:"message,omitempty"`
 }
 
-func (o *RevokeTokenResponseBody) GetMessage() *RevokeTokenMessage {
-	if o == nil {
+func (r *RevokeTokenResponseBody) GetMessage() *RevokeTokenMessage {
+	if r == nil {
 		return nil
 	}
-	return o.Message
+	return r.Message
 }
 
 type RevokeTokenResponse struct {
@@ -70,37 +70,37 @@ type RevokeTokenResponse struct {
 	Object *RevokeTokenResponseBody
 }
 
-func (o *RevokeTokenResponse) GetContentType() string {
-	if o == nil {
+func (r *RevokeTokenResponse) GetContentType() string {
+	if r == nil {
 		return ""
 	}
-	return o.ContentType
+	return r.ContentType
 }
 
-func (o *RevokeTokenResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (r *RevokeTokenResponse) GetErrorResp() *shared.ErrorResp {
+	if r == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return r.ErrorResp
 }
 
-func (o *RevokeTokenResponse) GetStatusCode() int {
-	if o == nil {
+func (r *RevokeTokenResponse) GetStatusCode() int {
+	if r == nil {
 		return 0
 	}
-	return o.StatusCode
+	return r.StatusCode
 }
 
-func (o *RevokeTokenResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (r *RevokeTokenResponse) GetRawResponse() *http.Response {
+	if r == nil {
 		return nil
 	}
-	return o.RawResponse
+	return r.RawResponse
 }
 
-func (o *RevokeTokenResponse) GetObject() *RevokeTokenResponseBody {
-	if o == nil {
+func (r *RevokeTokenResponse) GetObject() *RevokeTokenResponseBody {
+	if r == nil {
 		return nil
 	}
-	return o.Object
+	return r.Object
 }

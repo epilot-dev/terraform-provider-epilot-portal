@@ -16,46 +16,46 @@ type Data struct {
 	Order        []shared.ExtraSchemaAttributes `json:"order,omitempty"`
 }
 
-func (o *Data) GetContact() []shared.ExtraSchemaAttributes {
-	if o == nil {
+func (d *Data) GetContact() []shared.ExtraSchemaAttributes {
+	if d == nil {
 		return nil
 	}
-	return o.Contact
+	return d.Contact
 }
 
-func (o *Data) GetContract() []shared.ExtraSchemaAttributes {
-	if o == nil {
+func (d *Data) GetContract() []shared.ExtraSchemaAttributes {
+	if d == nil {
 		return nil
 	}
-	return o.Contract
+	return d.Contract
 }
 
-func (o *Data) GetMeter() []shared.ExtraSchemaAttributes {
-	if o == nil {
+func (d *Data) GetMeter() []shared.ExtraSchemaAttributes {
+	if d == nil {
 		return nil
 	}
-	return o.Meter
+	return d.Meter
 }
 
-func (o *Data) GetMeterCounter() []shared.ExtraSchemaAttributes {
-	if o == nil {
+func (d *Data) GetMeterCounter() []shared.ExtraSchemaAttributes {
+	if d == nil {
 		return nil
 	}
-	return o.MeterCounter
+	return d.MeterCounter
 }
 
-func (o *Data) GetOpportunity() []shared.ExtraSchemaAttributes {
-	if o == nil {
+func (d *Data) GetOpportunity() []shared.ExtraSchemaAttributes {
+	if d == nil {
 		return nil
 	}
-	return o.Opportunity
+	return d.Opportunity
 }
 
-func (o *Data) GetOrder() []shared.ExtraSchemaAttributes {
-	if o == nil {
+func (d *Data) GetOrder() []shared.ExtraSchemaAttributes {
+	if d == nil {
 		return nil
 	}
-	return o.Order
+	return d.Order
 }
 
 // ExtraPermissionAttributesResponseBody - Retrieved extra permission attributes successfully.
@@ -63,11 +63,11 @@ type ExtraPermissionAttributesResponseBody struct {
 	Data *Data `json:"data,omitempty"`
 }
 
-func (o *ExtraPermissionAttributesResponseBody) GetData() *Data {
-	if o == nil {
+func (e *ExtraPermissionAttributesResponseBody) GetData() *Data {
+	if e == nil {
 		return nil
 	}
-	return o.Data
+	return e.Data
 }
 
 type ExtraPermissionAttributesResponse struct {
@@ -83,37 +83,37 @@ type ExtraPermissionAttributesResponse struct {
 	Object *ExtraPermissionAttributesResponseBody
 }
 
-func (o *ExtraPermissionAttributesResponse) GetContentType() string {
-	if o == nil {
+func (e *ExtraPermissionAttributesResponse) GetContentType() string {
+	if e == nil {
 		return ""
 	}
-	return o.ContentType
+	return e.ContentType
 }
 
-func (o *ExtraPermissionAttributesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (e *ExtraPermissionAttributesResponse) GetErrorResp() *shared.ErrorResp {
+	if e == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return e.ErrorResp
 }
 
-func (o *ExtraPermissionAttributesResponse) GetStatusCode() int {
-	if o == nil {
+func (e *ExtraPermissionAttributesResponse) GetStatusCode() int {
+	if e == nil {
 		return 0
 	}
-	return o.StatusCode
+	return e.StatusCode
 }
 
-func (o *ExtraPermissionAttributesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (e *ExtraPermissionAttributesResponse) GetRawResponse() *http.Response {
+	if e == nil {
 		return nil
 	}
-	return o.RawResponse
+	return e.RawResponse
 }
 
-func (o *ExtraPermissionAttributesResponse) GetObject() *ExtraPermissionAttributesResponseBody {
-	if o == nil {
+func (e *ExtraPermissionAttributesResponse) GetObject() *ExtraPermissionAttributesResponseBody {
+	if e == nil {
 		return nil
 	}
-	return o.Object
+	return e.Object
 }

@@ -9,18 +9,18 @@ type S3ref struct {
 	Key string `json:"key"`
 }
 
-func (o *S3ref) GetBucket() string {
-	if o == nil {
+func (s *S3ref) GetBucket() string {
+	if s == nil {
 		return ""
 	}
-	return o.Bucket
+	return s.Bucket
 }
 
-func (o *S3ref) GetKey() string {
-	if o == nil {
+func (s *S3ref) GetKey() string {
+	if s == nil {
 		return ""
 	}
-	return o.Key
+	return s.Key
 }
 
 type MeterReadingPhotoData struct {
@@ -34,37 +34,37 @@ type MeterReadingPhotoData struct {
 	Sector *string `json:"sector,omitempty"`
 }
 
-func (o *MeterReadingPhotoData) GetFilename() string {
-	if o == nil {
+func (m *MeterReadingPhotoData) GetFilename() string {
+	if m == nil {
 		return ""
 	}
-	return o.Filename
+	return m.Filename
 }
 
-func (o *MeterReadingPhotoData) GetMeterNumbers() []string {
-	if o == nil {
+func (m *MeterReadingPhotoData) GetMeterNumbers() []string {
+	if m == nil {
 		return nil
 	}
-	return o.MeterNumbers
+	return m.MeterNumbers
 }
 
-func (o *MeterReadingPhotoData) GetReading() *string {
-	if o == nil {
+func (m *MeterReadingPhotoData) GetReading() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Reading
+	return m.Reading
 }
 
-func (o *MeterReadingPhotoData) GetS3ref() S3ref {
-	if o == nil {
+func (m *MeterReadingPhotoData) GetS3ref() S3ref {
+	if m == nil {
 		return S3ref{}
 	}
-	return o.S3ref
+	return m.S3ref
 }
 
-func (o *MeterReadingPhotoData) GetSector() *string {
-	if o == nil {
+func (m *MeterReadingPhotoData) GetSector() *string {
+	if m == nil {
 		return nil
 	}
-	return o.Sector
+	return m.Sector
 }

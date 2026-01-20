@@ -28,18 +28,18 @@ func (g *GetAllRequestsRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *GetAllRequestsRequest) GetFrom() *float64 {
-	if o == nil {
+func (g *GetAllRequestsRequest) GetFrom() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetAllRequestsRequest) GetSize() *float64 {
-	if o == nil {
+func (g *GetAllRequestsRequest) GetSize() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Size
+	return g.Size
 }
 
 type OrderSchema string
@@ -89,7 +89,7 @@ func (o OrderSchemas) MarshalJSON() ([]byte, error) {
 }
 
 func (o *OrderSchemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &o, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -205,73 +205,73 @@ func (s Schemas) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Schemas) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Schemas) GetAdditionalProperties() any {
-	if o == nil {
+func (s *Schemas) GetAdditionalProperties() any {
+	if s == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return s.AdditionalProperties
 }
 
-func (o *Schemas) GetCreatedAt() time.Time {
-	if o == nil {
+func (s *Schemas) GetCreatedAt() time.Time {
+	if s == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return s.CreatedAt
 }
 
-func (o *Schemas) GetID() string {
-	if o == nil {
+func (s *Schemas) GetID() string {
+	if s == nil {
 		return ""
 	}
-	return o.ID
+	return s.ID
 }
 
-func (o *Schemas) GetOrg() string {
-	if o == nil {
+func (s *Schemas) GetOrg() string {
+	if s == nil {
 		return ""
 	}
-	return o.Org
+	return s.Org
 }
 
-func (o *Schemas) GetSchema() Schema {
-	if o == nil {
+func (s *Schemas) GetSchema() Schema {
+	if s == nil {
 		return Schema("")
 	}
-	return o.Schema
+	return s.Schema
 }
 
-func (o *Schemas) GetTags() []string {
-	if o == nil {
+func (s *Schemas) GetTags() []string {
+	if s == nil {
 		return nil
 	}
-	return o.Tags
+	return s.Tags
 }
 
-func (o *Schemas) GetTitle() string {
-	if o == nil {
+func (s *Schemas) GetTitle() string {
+	if s == nil {
 		return ""
 	}
-	return o.Title
+	return s.Title
 }
 
-func (o *Schemas) GetUpdatedAt() time.Time {
-	if o == nil {
+func (s *Schemas) GetUpdatedAt() time.Time {
+	if s == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return s.UpdatedAt
 }
 
-func (o *Schemas) GetJourneyActions() *shared.JourneyActions {
-	if o == nil {
+func (s *Schemas) GetJourneyActions() *shared.JourneyActions {
+	if s == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return s.JourneyActions
 }
 
 type ResultsType string
@@ -282,8 +282,8 @@ const (
 )
 
 type Results struct {
-	Schemas      *Schemas      `queryParam:"inline" name:"results"`
-	OrderSchemas *OrderSchemas `queryParam:"inline" name:"results"`
+	Schemas      *Schemas      `queryParam:"inline" union:"member"`
+	OrderSchemas *OrderSchemas `queryParam:"inline" union:"member"`
 
 	Type ResultsType
 }
@@ -308,17 +308,43 @@ func CreateResultsOrderSchemas(orderSchemas OrderSchemas) Results {
 
 func (u *Results) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var schemas Schemas = Schemas{}
 	if err := utils.UnmarshalJSON(data, &schemas, "", true, nil); err == nil {
-		u.Schemas = &schemas
-		u.Type = ResultsTypeSchemas
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ResultsTypeSchemas,
+			Value: &schemas,
+		})
 	}
 
 	var orderSchemas OrderSchemas = OrderSchemas{}
 	if err := utils.UnmarshalJSON(data, &orderSchemas, "", true, nil); err == nil {
-		u.OrderSchemas = &orderSchemas
-		u.Type = ResultsTypeOrderSchemas
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  ResultsTypeOrderSchemas,
+			Value: &orderSchemas,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Results", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Results", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(ResultsType)
+	switch best.Type {
+	case ResultsTypeSchemas:
+		u.Schemas = best.Value.(*Schemas)
+		return nil
+	case ResultsTypeOrderSchemas:
+		u.OrderSchemas = best.Value.(*OrderSchemas)
 		return nil
 	}
 
@@ -344,18 +370,18 @@ type GetAllRequestsResponseBody struct {
 	Results []Results `json:"results,omitempty"`
 }
 
-func (o *GetAllRequestsResponseBody) GetHits() *float64 {
-	if o == nil {
+func (g *GetAllRequestsResponseBody) GetHits() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Hits
+	return g.Hits
 }
 
-func (o *GetAllRequestsResponseBody) GetResults() []Results {
-	if o == nil {
+func (g *GetAllRequestsResponseBody) GetResults() []Results {
+	if g == nil {
 		return nil
 	}
-	return o.Results
+	return g.Results
 }
 
 type GetAllRequestsResponse struct {
@@ -371,37 +397,37 @@ type GetAllRequestsResponse struct {
 	Object *GetAllRequestsResponseBody
 }
 
-func (o *GetAllRequestsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAllRequestsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAllRequestsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetAllRequestsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetAllRequestsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAllRequestsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAllRequestsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAllRequestsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAllRequestsResponse) GetObject() *GetAllRequestsResponseBody {
-	if o == nil {
+func (g *GetAllRequestsResponse) GetObject() *GetAllRequestsResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

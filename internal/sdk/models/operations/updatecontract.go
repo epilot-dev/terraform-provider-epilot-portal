@@ -17,18 +17,18 @@ type UpdateContractRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *UpdateContractRequest) GetRequestBody() map[string]any {
-	if o == nil {
+func (u *UpdateContractRequest) GetRequestBody() map[string]any {
+	if u == nil {
 		return map[string]any{}
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
-func (o *UpdateContractRequest) GetID() string {
-	if o == nil {
+func (u *UpdateContractRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
 type UpdateContractECPResponseBodyType string
@@ -40,8 +40,8 @@ const (
 
 // UpdateContractECPResponseBody - The user is not allowed to access this resource
 type UpdateContractECPResponseBody struct {
-	ErrorResp           *shared.ErrorResp           `queryParam:"inline" name:"responseBody"`
-	FailedRuleErrorResp *shared.FailedRuleErrorResp `queryParam:"inline" name:"responseBody"`
+	ErrorResp           *shared.ErrorResp           `queryParam:"inline" union:"member"`
+	FailedRuleErrorResp *shared.FailedRuleErrorResp `queryParam:"inline" union:"member"`
 
 	Type UpdateContractECPResponseBodyType
 }
@@ -66,17 +66,43 @@ func CreateUpdateContractECPResponseBodyFailedRuleErrorResp(failedRuleErrorResp 
 
 func (u *UpdateContractECPResponseBody) UnmarshalJSON(data []byte) error {
 
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
 	var errorResp shared.ErrorResp = shared.ErrorResp{}
 	if err := utils.UnmarshalJSON(data, &errorResp, "", true, nil); err == nil {
-		u.ErrorResp = &errorResp
-		u.Type = UpdateContractECPResponseBodyTypeErrorResp
-		return nil
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  UpdateContractECPResponseBodyTypeErrorResp,
+			Value: &errorResp,
+		})
 	}
 
 	var failedRuleErrorResp shared.FailedRuleErrorResp = shared.FailedRuleErrorResp{}
 	if err := utils.UnmarshalJSON(data, &failedRuleErrorResp, "", true, nil); err == nil {
-		u.FailedRuleErrorResp = &failedRuleErrorResp
-		u.Type = UpdateContractECPResponseBodyTypeFailedRuleErrorResp
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  UpdateContractECPResponseBodyTypeFailedRuleErrorResp,
+			Value: &failedRuleErrorResp,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateContractECPResponseBody", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for UpdateContractECPResponseBody", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(UpdateContractECPResponseBodyType)
+	switch best.Type {
+	case UpdateContractECPResponseBodyTypeErrorResp:
+		u.ErrorResp = best.Value.(*shared.ErrorResp)
+		return nil
+	case UpdateContractECPResponseBodyTypeFailedRuleErrorResp:
+		u.FailedRuleErrorResp = best.Value.(*shared.FailedRuleErrorResp)
 		return nil
 	}
 
@@ -101,11 +127,11 @@ type UpdateContractResponseBody struct {
 	Data *shared.Contract `json:"data,omitempty"`
 }
 
-func (o *UpdateContractResponseBody) GetData() *shared.Contract {
-	if o == nil {
+func (u *UpdateContractResponseBody) GetData() *shared.Contract {
+	if u == nil {
 		return nil
 	}
-	return o.Data
+	return u.Data
 }
 
 type UpdateContractResponse struct {
@@ -123,44 +149,44 @@ type UpdateContractResponse struct {
 	OneOf *UpdateContractECPResponseBody
 }
 
-func (o *UpdateContractResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateContractResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateContractResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdateContractResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdateContractResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateContractResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateContractResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateContractResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateContractResponse) GetObject() *UpdateContractResponseBody {
-	if o == nil {
+func (u *UpdateContractResponse) GetObject() *UpdateContractResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }
 
-func (o *UpdateContractResponse) GetOneOf() *UpdateContractECPResponseBody {
-	if o == nil {
+func (u *UpdateContractResponse) GetOneOf() *UpdateContractECPResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.OneOf
+	return u.OneOf
 }

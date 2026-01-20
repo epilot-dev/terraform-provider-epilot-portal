@@ -18,30 +18,30 @@ type ValidateTokenResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *ValidateTokenResponse) GetContentType() string {
-	if o == nil {
+func (v *ValidateTokenResponse) GetContentType() string {
+	if v == nil {
 		return ""
 	}
-	return o.ContentType
+	return v.ContentType
 }
 
-func (o *ValidateTokenResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (v *ValidateTokenResponse) GetErrorResp() *shared.ErrorResp {
+	if v == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return v.ErrorResp
 }
 
-func (o *ValidateTokenResponse) GetStatusCode() int {
-	if o == nil {
+func (v *ValidateTokenResponse) GetStatusCode() int {
+	if v == nil {
 		return 0
 	}
-	return o.StatusCode
+	return v.StatusCode
 }
 
-func (o *ValidateTokenResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (v *ValidateTokenResponse) GetRawResponse() *http.Response {
+	if v == nil {
 		return nil
 	}
-	return o.RawResponse
+	return v.RawResponse
 }

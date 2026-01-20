@@ -12,11 +12,11 @@ type UploadMeterReadingPhotoResponseBody struct {
 	Data *shared.MeterReadingPhotoData `json:"data,omitempty"`
 }
 
-func (o *UploadMeterReadingPhotoResponseBody) GetData() *shared.MeterReadingPhotoData {
-	if o == nil {
+func (u *UploadMeterReadingPhotoResponseBody) GetData() *shared.MeterReadingPhotoData {
+	if u == nil {
 		return nil
 	}
-	return o.Data
+	return u.Data
 }
 
 type UploadMeterReadingPhotoResponse struct {
@@ -32,37 +32,37 @@ type UploadMeterReadingPhotoResponse struct {
 	Object *UploadMeterReadingPhotoResponseBody
 }
 
-func (o *UploadMeterReadingPhotoResponse) GetContentType() string {
-	if o == nil {
+func (u *UploadMeterReadingPhotoResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UploadMeterReadingPhotoResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UploadMeterReadingPhotoResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UploadMeterReadingPhotoResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UploadMeterReadingPhotoResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UploadMeterReadingPhotoResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UploadMeterReadingPhotoResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UploadMeterReadingPhotoResponse) GetObject() *UploadMeterReadingPhotoResponseBody {
-	if o == nil {
+func (u *UploadMeterReadingPhotoResponse) GetObject() *UploadMeterReadingPhotoResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

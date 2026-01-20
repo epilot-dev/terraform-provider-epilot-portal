@@ -14,18 +14,18 @@ type PutPortalConfigRequest struct {
 	PortalID string `pathParam:"style=simple,explode=false,name=portal_id"`
 }
 
-func (o *PutPortalConfigRequest) GetPortalConfigV3() shared.PortalConfigV3 {
-	if o == nil {
+func (p *PutPortalConfigRequest) GetPortalConfigV3() shared.PortalConfigV3 {
+	if p == nil {
 		return shared.PortalConfigV3{}
 	}
-	return o.PortalConfigV3
+	return p.PortalConfigV3
 }
 
-func (o *PutPortalConfigRequest) GetPortalID() string {
-	if o == nil {
+func (p *PutPortalConfigRequest) GetPortalID() string {
+	if p == nil {
 		return ""
 	}
-	return o.PortalID
+	return p.PortalID
 }
 
 type PutPortalConfigResponse struct {
@@ -41,37 +41,37 @@ type PutPortalConfigResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *PutPortalConfigResponse) GetContentType() string {
-	if o == nil {
+func (p *PutPortalConfigResponse) GetContentType() string {
+	if p == nil {
 		return ""
 	}
-	return o.ContentType
+	return p.ContentType
 }
 
-func (o *PutPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (p *PutPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
+	if p == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return p.ErrorResp
 }
 
-func (o *PutPortalConfigResponse) GetPortalConfigV3() *shared.PortalConfigV3 {
-	if o == nil {
+func (p *PutPortalConfigResponse) GetPortalConfigV3() *shared.PortalConfigV3 {
+	if p == nil {
 		return nil
 	}
-	return o.PortalConfigV3
+	return p.PortalConfigV3
 }
 
-func (o *PutPortalConfigResponse) GetStatusCode() int {
-	if o == nil {
+func (p *PutPortalConfigResponse) GetStatusCode() int {
+	if p == nil {
 		return 0
 	}
-	return o.StatusCode
+	return p.StatusCode
 }
 
-func (o *PutPortalConfigResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (p *PutPortalConfigResponse) GetRawResponse() *http.Response {
+	if p == nil {
 		return nil
 	}
-	return o.RawResponse
+	return p.RawResponse
 }

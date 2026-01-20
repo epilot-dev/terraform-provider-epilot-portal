@@ -11,18 +11,18 @@ type UpdateWorkflowStepAsDoneRequest struct {
 	WorkflowID string `pathParam:"style=simple,explode=false,name=workflow_id"`
 }
 
-func (o *UpdateWorkflowStepAsDoneRequest) GetStepID() string {
-	if o == nil {
+func (u *UpdateWorkflowStepAsDoneRequest) GetStepID() string {
+	if u == nil {
 		return ""
 	}
-	return o.StepID
+	return u.StepID
 }
 
-func (o *UpdateWorkflowStepAsDoneRequest) GetWorkflowID() string {
-	if o == nil {
+func (u *UpdateWorkflowStepAsDoneRequest) GetWorkflowID() string {
+	if u == nil {
 		return ""
 	}
-	return o.WorkflowID
+	return u.WorkflowID
 }
 
 type UpdateWorkflowStepAsDoneResponse struct {
@@ -36,30 +36,30 @@ type UpdateWorkflowStepAsDoneResponse struct {
 	WorkflowStep map[string]any
 }
 
-func (o *UpdateWorkflowStepAsDoneResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateWorkflowStepAsDoneResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateWorkflowStepAsDoneResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateWorkflowStepAsDoneResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateWorkflowStepAsDoneResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateWorkflowStepAsDoneResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateWorkflowStepAsDoneResponse) GetWorkflowStep() map[string]any {
-	if o == nil {
+func (u *UpdateWorkflowStepAsDoneResponse) GetWorkflowStep() map[string]any {
+	if u == nil {
 		return nil
 	}
-	return o.WorkflowStep
+	return u.WorkflowStep
 }

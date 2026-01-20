@@ -23,23 +23,23 @@ func (r *Rule) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Rule) GetAttribute() *string {
-	if o == nil {
+func (r *Rule) GetAttribute() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Attribute
+	return r.Attribute
 }
 
-func (o *Rule) GetAttributeValue() *string {
-	if o == nil {
+func (r *Rule) GetAttributeValue() *string {
+	if r == nil {
 		return nil
 	}
-	return o.AttributeValue
+	return r.AttributeValue
 }
 
-func (o *Rule) GetEntity() *string {
-	if o == nil {
+func (r *Rule) GetEntity() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Entity
+	return r.Entity
 }

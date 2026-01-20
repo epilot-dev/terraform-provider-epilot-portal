@@ -14,25 +14,25 @@ type UpdatePortalPageBlockRequest struct {
 	ID           string              `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *UpdatePortalPageBlockRequest) GetBlockRequest() shared.BlockRequest {
-	if o == nil {
+func (u *UpdatePortalPageBlockRequest) GetBlockRequest() shared.BlockRequest {
+	if u == nil {
 		return shared.BlockRequest{}
 	}
-	return o.BlockRequest
+	return u.BlockRequest
 }
 
-func (o *UpdatePortalPageBlockRequest) GetBlockID() string {
-	if o == nil {
+func (u *UpdatePortalPageBlockRequest) GetBlockID() string {
+	if u == nil {
 		return ""
 	}
-	return o.BlockID
+	return u.BlockID
 }
 
-func (o *UpdatePortalPageBlockRequest) GetID() string {
-	if o == nil {
+func (u *UpdatePortalPageBlockRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
 type UpdatePortalPageBlockResponse struct {
@@ -48,37 +48,37 @@ type UpdatePortalPageBlockResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UpdatePortalPageBlockResponse) GetBlock() *shared.Block {
-	if o == nil {
+func (u *UpdatePortalPageBlockResponse) GetBlock() *shared.Block {
+	if u == nil {
 		return nil
 	}
-	return o.Block
+	return u.Block
 }
 
-func (o *UpdatePortalPageBlockResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdatePortalPageBlockResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdatePortalPageBlockResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdatePortalPageBlockResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdatePortalPageBlockResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdatePortalPageBlockResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdatePortalPageBlockResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdatePortalPageBlockResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }

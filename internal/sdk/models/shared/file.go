@@ -55,64 +55,64 @@ func (f File) MarshalJSON() ([]byte, error) {
 }
 
 func (f *File) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *File) GetAdditionalProperties() any {
-	if o == nil {
+func (f *File) GetAdditionalProperties() any {
+	if f == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return f.AdditionalProperties
 }
 
-func (o *File) GetCreatedAt() time.Time {
-	if o == nil {
+func (f *File) GetCreatedAt() time.Time {
+	if f == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return f.CreatedAt
 }
 
-func (o *File) GetID() string {
-	if o == nil {
+func (f *File) GetID() string {
+	if f == nil {
 		return ""
 	}
-	return o.ID
+	return f.ID
 }
 
-func (o *File) GetOrg() string {
-	if o == nil {
+func (f *File) GetOrg() string {
+	if f == nil {
 		return ""
 	}
-	return o.Org
+	return f.Org
 }
 
-func (o *File) GetSchema() FileSchema {
-	if o == nil {
+func (f *File) GetSchema() FileSchema {
+	if f == nil {
 		return FileSchema("")
 	}
-	return o.Schema
+	return f.Schema
 }
 
-func (o *File) GetTags() []string {
-	if o == nil {
+func (f *File) GetTags() []string {
+	if f == nil {
 		return nil
 	}
-	return o.Tags
+	return f.Tags
 }
 
-func (o *File) GetTitle() string {
-	if o == nil {
+func (f *File) GetTitle() string {
+	if f == nil {
 		return ""
 	}
-	return o.Title
+	return f.Title
 }
 
-func (o *File) GetUpdatedAt() time.Time {
-	if o == nil {
+func (f *File) GetUpdatedAt() time.Time {
+	if f == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return f.UpdatedAt
 }

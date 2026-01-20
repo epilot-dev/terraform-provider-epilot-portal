@@ -252,211 +252,211 @@ func (c Contract) MarshalJSON() ([]byte, error) {
 }
 
 func (c *Contract) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"_created_at", "_id", "_org", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Contract) GetAdditionalProperties() any {
-	if o == nil {
+func (c *Contract) GetAdditionalProperties() any {
+	if c == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return c.AdditionalProperties
 }
 
-func (o *Contract) GetCreatedAt() time.Time {
-	if o == nil {
+func (c *Contract) GetCreatedAt() time.Time {
+	if c == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return c.CreatedAt
 }
 
-func (o *Contract) GetID() string {
-	if o == nil {
+func (c *Contract) GetID() string {
+	if c == nil {
 		return ""
 	}
-	return o.ID
+	return c.ID
 }
 
-func (o *Contract) GetOrg() string {
-	if o == nil {
+func (c *Contract) GetOrg() string {
+	if c == nil {
 		return ""
 	}
-	return o.Org
+	return c.Org
 }
 
-func (o *Contract) GetTags() []string {
-	if o == nil {
+func (c *Contract) GetTags() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Tags
+	return c.Tags
 }
 
-func (o *Contract) GetTitle() string {
-	if o == nil {
+func (c *Contract) GetTitle() string {
+	if c == nil {
 		return ""
 	}
-	return o.Title
+	return c.Title
 }
 
-func (o *Contract) GetUpdatedAt() time.Time {
-	if o == nil {
+func (c *Contract) GetUpdatedAt() time.Time {
+	if c == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return c.UpdatedAt
 }
 
-func (o *Contract) GetAccountNumber() *string {
-	if o == nil {
+func (c *Contract) GetAccountNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AccountNumber
+	return c.AccountNumber
 }
 
-func (o *Contract) GetAdditionalAddresses() *string {
-	if o == nil {
+func (c *Contract) GetAdditionalAddresses() *string {
+	if c == nil {
 		return nil
 	}
-	return o.AdditionalAddresses
+	return c.AdditionalAddresses
 }
 
-func (o *Contract) GetBalance() *int64 {
-	if o == nil {
+func (c *Contract) GetBalance() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.Balance
+	return c.Balance
 }
 
-func (o *Contract) GetBalanceCurrency() *string {
-	if o == nil {
+func (c *Contract) GetBalanceCurrency() *string {
+	if c == nil {
 		return nil
 	}
-	return o.BalanceCurrency
+	return c.BalanceCurrency
 }
 
-func (o *Contract) GetBillingAddress() *string {
-	if o == nil {
+func (c *Contract) GetBillingAddress() *string {
+	if c == nil {
 		return nil
 	}
-	return o.BillingAddress
+	return c.BillingAddress
 }
 
-func (o *Contract) GetBillingDueDay() *int64 {
-	if o == nil {
+func (c *Contract) GetBillingDueDay() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.BillingDueDay
+	return c.BillingDueDay
 }
 
-func (o *Contract) GetBillingDurationAmount() *float64 {
-	if o == nil {
+func (c *Contract) GetBillingDurationAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.BillingDurationAmount
+	return c.BillingDurationAmount
 }
 
-func (o *Contract) GetBillingPeriod() *BillingPeriod {
-	if o == nil {
+func (c *Contract) GetBillingPeriod() *BillingPeriod {
+	if c == nil {
 		return nil
 	}
-	return o.BillingPeriod
+	return c.BillingPeriod
 }
 
-func (o *Contract) GetBranch() *Branch {
-	if o == nil {
+func (c *Contract) GetBranch() *Branch {
+	if c == nil {
 		return nil
 	}
-	return o.Branch
+	return c.Branch
 }
 
-func (o *Contract) GetContractName() *string {
-	if o == nil {
+func (c *Contract) GetContractName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ContractName
+	return c.ContractName
 }
 
-func (o *Contract) GetContractNumber() *string {
-	if o == nil {
+func (c *Contract) GetContractNumber() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ContractNumber
+	return c.ContractNumber
 }
 
-func (o *Contract) GetDeliveryAddress() *string {
-	if o == nil {
+func (c *Contract) GetDeliveryAddress() *string {
+	if c == nil {
 		return nil
 	}
-	return o.DeliveryAddress
+	return c.DeliveryAddress
 }
 
-func (o *Contract) GetDescription() *string {
-	if o == nil {
+func (c *Contract) GetDescription() *string {
+	if c == nil {
 		return nil
 	}
-	return o.Description
+	return c.Description
 }
 
-func (o *Contract) GetInstallmentAmount() *int64 {
-	if o == nil {
+func (c *Contract) GetInstallmentAmount() *int64 {
+	if c == nil {
 		return nil
 	}
-	return o.InstallmentAmount
+	return c.InstallmentAmount
 }
 
-func (o *Contract) GetNoticeTimeAmount() *float64 {
-	if o == nil {
+func (c *Contract) GetNoticeTimeAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.NoticeTimeAmount
+	return c.NoticeTimeAmount
 }
 
-func (o *Contract) GetNoticeTimeUnit() *NoticeTimeUnit {
-	if o == nil {
+func (c *Contract) GetNoticeTimeUnit() *NoticeTimeUnit {
+	if c == nil {
 		return nil
 	}
-	return o.NoticeTimeUnit
+	return c.NoticeTimeUnit
 }
 
-func (o *Contract) GetRenewalDurationAmount() *float64 {
-	if o == nil {
+func (c *Contract) GetRenewalDurationAmount() *float64 {
+	if c == nil {
 		return nil
 	}
-	return o.RenewalDurationAmount
+	return c.RenewalDurationAmount
 }
 
-func (o *Contract) GetRenewalDurationUnit() *RenewalDurationUnit {
-	if o == nil {
+func (c *Contract) GetRenewalDurationUnit() *RenewalDurationUnit {
+	if c == nil {
 		return nil
 	}
-	return o.RenewalDurationUnit
+	return c.RenewalDurationUnit
 }
 
-func (o *Contract) GetStartDate() *string {
-	if o == nil {
+func (c *Contract) GetStartDate() *string {
+	if c == nil {
 		return nil
 	}
-	return o.StartDate
+	return c.StartDate
 }
 
-func (o *Contract) GetStatus() *Status {
-	if o == nil {
+func (c *Contract) GetStatus() *Status {
+	if c == nil {
 		return nil
 	}
-	return o.Status
+	return c.Status
 }
 
-func (o *Contract) GetTerminationDate() *string {
-	if o == nil {
+func (c *Contract) GetTerminationDate() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TerminationDate
+	return c.TerminationDate
 }
 
-func (o *Contract) GetTerminationReason() *string {
-	if o == nil {
+func (c *Contract) GetTerminationReason() *string {
+	if c == nil {
 		return nil
 	}
-	return o.TerminationReason
+	return c.TerminationReason
 }

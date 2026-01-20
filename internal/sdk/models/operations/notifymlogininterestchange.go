@@ -31,39 +31,39 @@ func (r *Resource) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Resource) GetAdditionalProperties() any {
-	if o == nil {
+func (r *Resource) GetAdditionalProperties() any {
+	if r == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return r.AdditionalProperties
 }
 
-func (o *Resource) GetContact() *string {
-	if o == nil {
+func (r *Resource) GetContact() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Contact
+	return r.Contact
 }
 
-func (o *Resource) GetDescription() *string {
-	if o == nil {
+func (r *Resource) GetDescription() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Description
+	return r.Description
 }
 
-func (o *Resource) GetKind() *string {
-	if o == nil {
+func (r *Resource) GetKind() *string {
+	if r == nil {
 		return nil
 	}
-	return o.Kind
+	return r.Kind
 }
 
-func (o *Resource) GetResourceID() *string {
-	if o == nil {
+func (r *Resource) GetResourceID() *string {
+	if r == nil {
 		return nil
 	}
-	return o.ResourceID
+	return r.ResourceID
 }
 
 type NotifyMLoginInterestChangeRequestBody struct {
@@ -90,46 +90,46 @@ func (n *NotifyMLoginInterestChangeRequestBody) UnmarshalJSON(data []byte) error
 	return nil
 }
 
-func (o *NotifyMLoginInterestChangeRequestBody) GetAdditionalProperties() any {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequestBody) GetAdditionalProperties() any {
+	if n == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return n.AdditionalProperties
 }
 
-func (o *NotifyMLoginInterestChangeRequestBody) GetAction() *string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequestBody) GetAction() *string {
+	if n == nil {
 		return nil
 	}
-	return o.Action
+	return n.Action
 }
 
-func (o *NotifyMLoginInterestChangeRequestBody) GetInterestTag() *string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequestBody) GetInterestTag() *string {
+	if n == nil {
 		return nil
 	}
-	return o.InterestTag
+	return n.InterestTag
 }
 
-func (o *NotifyMLoginInterestChangeRequestBody) GetResource() *Resource {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequestBody) GetResource() *Resource {
+	if n == nil {
 		return nil
 	}
-	return o.Resource
+	return n.Resource
 }
 
-func (o *NotifyMLoginInterestChangeRequestBody) GetResourceID() *string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequestBody) GetResourceID() *string {
+	if n == nil {
 		return nil
 	}
-	return o.ResourceID
+	return n.ResourceID
 }
 
-func (o *NotifyMLoginInterestChangeRequestBody) GetUserID() *string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequestBody) GetUserID() *string {
+	if n == nil {
 		return nil
 	}
-	return o.UserID
+	return n.UserID
 }
 
 type NotifyMLoginInterestChangeRequest struct {
@@ -140,25 +140,25 @@ type NotifyMLoginInterestChangeRequest struct {
 	UserID string `pathParam:"style=simple,explode=false,name=user_id"`
 }
 
-func (o *NotifyMLoginInterestChangeRequest) GetRequestBody() NotifyMLoginInterestChangeRequestBody {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequest) GetRequestBody() NotifyMLoginInterestChangeRequestBody {
+	if n == nil {
 		return NotifyMLoginInterestChangeRequestBody{}
 	}
-	return o.RequestBody
+	return n.RequestBody
 }
 
-func (o *NotifyMLoginInterestChangeRequest) GetClientID() string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequest) GetClientID() string {
+	if n == nil {
 		return ""
 	}
-	return o.ClientID
+	return n.ClientID
 }
 
-func (o *NotifyMLoginInterestChangeRequest) GetUserID() string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeRequest) GetUserID() string {
+	if n == nil {
 		return ""
 	}
-	return o.UserID
+	return n.UserID
 }
 
 type NotifyMLoginInterestChangeResponse struct {
@@ -172,30 +172,30 @@ type NotifyMLoginInterestChangeResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *NotifyMLoginInterestChangeResponse) GetContentType() string {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeResponse) GetContentType() string {
+	if n == nil {
 		return ""
 	}
-	return o.ContentType
+	return n.ContentType
 }
 
-func (o *NotifyMLoginInterestChangeResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeResponse) GetErrorResp() *shared.ErrorResp {
+	if n == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return n.ErrorResp
 }
 
-func (o *NotifyMLoginInterestChangeResponse) GetStatusCode() int {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeResponse) GetStatusCode() int {
+	if n == nil {
 		return 0
 	}
-	return o.StatusCode
+	return n.StatusCode
 }
 
-func (o *NotifyMLoginInterestChangeResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (n *NotifyMLoginInterestChangeResponse) GetRawResponse() *http.Response {
+	if n == nil {
 		return nil
 	}
-	return o.RawResponse
+	return n.RawResponse
 }

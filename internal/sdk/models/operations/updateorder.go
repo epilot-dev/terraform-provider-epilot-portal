@@ -13,18 +13,18 @@ type UpdateOrderRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *UpdateOrderRequest) GetRequestBody() map[string]any {
-	if o == nil {
+func (u *UpdateOrderRequest) GetRequestBody() map[string]any {
+	if u == nil {
 		return nil
 	}
-	return o.RequestBody
+	return u.RequestBody
 }
 
-func (o *UpdateOrderRequest) GetID() string {
-	if o == nil {
+func (u *UpdateOrderRequest) GetID() string {
+	if u == nil {
 		return ""
 	}
-	return o.ID
+	return u.ID
 }
 
 // UpdateOrderResponseBody - Updated the order details successfully.
@@ -33,11 +33,11 @@ type UpdateOrderResponseBody struct {
 	Data *shared.Order `json:"data,omitempty"`
 }
 
-func (o *UpdateOrderResponseBody) GetData() *shared.Order {
-	if o == nil {
+func (u *UpdateOrderResponseBody) GetData() *shared.Order {
+	if u == nil {
 		return nil
 	}
-	return o.Data
+	return u.Data
 }
 
 type UpdateOrderResponse struct {
@@ -53,37 +53,37 @@ type UpdateOrderResponse struct {
 	Object *UpdateOrderResponseBody
 }
 
-func (o *UpdateOrderResponse) GetContentType() string {
-	if o == nil {
+func (u *UpdateOrderResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpdateOrderResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpdateOrderResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpdateOrderResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpdateOrderResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpdateOrderResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpdateOrderResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UpdateOrderResponse) GetObject() *UpdateOrderResponseBody {
-	if o == nil {
+func (u *UpdateOrderResponse) GetObject() *UpdateOrderResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

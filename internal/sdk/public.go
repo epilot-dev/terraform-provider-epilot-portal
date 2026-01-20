@@ -64,7 +64,7 @@ func (s *Public) CheckContactExists(ctx context.Context, request operations.Chec
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "checkContactExists",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "ContactExistsRequest", "json", `request:"mediaType=application/json"`)
@@ -93,7 +93,7 @@ func (s *Public) CheckContactExists(ctx context.Context, request operations.Chec
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -314,7 +314,7 @@ func (s *Public) ConfirmUser(ctx context.Context, request operations.ConfirmUser
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "confirmUser",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -336,7 +336,7 @@ func (s *Public) ConfirmUser(ctx context.Context, request operations.ConfirmUser
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -556,7 +556,7 @@ func (s *Public) ConfirmUserWithUserID(ctx context.Context, request operations.C
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "confirmUserWithUserId",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -578,7 +578,7 @@ func (s *Public) ConfirmUserWithUserID(ctx context.Context, request operations.C
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -756,7 +756,7 @@ func (s *Public) CreateUser(ctx context.Context, request operations.CreateUserRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "createUser",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "CreateUserRequest", "json", `request:"mediaType=application/json"`)
@@ -785,7 +785,7 @@ func (s *Public) CreateUser(ctx context.Context, request operations.CreateUserRe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1004,7 +1004,7 @@ func (s *Public) DeRegisterMLoginUser(ctx context.Context, request operations.De
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "deRegisterMLoginUser",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -1221,7 +1221,7 @@ func (s *Public) GetOrganizationSettingsByDomain(ctx context.Context, request op
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getOrganizationSettingsByDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -1243,7 +1243,7 @@ func (s *Public) GetOrganizationSettingsByDomain(ctx context.Context, request op
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1441,7 +1441,7 @@ func (s *Public) GetPortalConfigByDomain(ctx context.Context, request operations
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPortalConfigByDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -1463,7 +1463,7 @@ func (s *Public) GetPortalConfigByDomain(ctx context.Context, request operations
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1661,7 +1661,7 @@ func (s *Public) GetPublicPages(ctx context.Context, request operations.GetPubli
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPublicPages",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -1683,7 +1683,7 @@ func (s *Public) GetPublicPages(ctx context.Context, request operations.GetPubli
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -1904,7 +1904,7 @@ func (s *Public) GetPublicPortalConfig(ctx context.Context, request operations.G
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPublicPortalConfig",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -1926,7 +1926,7 @@ func (s *Public) GetPublicPortalConfig(ctx context.Context, request operations.G
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -2124,7 +2124,7 @@ func (s *Public) GetPublicPortalExtensionDetails(ctx context.Context, request op
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPublicPortalExtensionDetails",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -2146,7 +2146,7 @@ func (s *Public) GetPublicPortalExtensionDetails(ctx context.Context, request op
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -2367,7 +2367,7 @@ func (s *Public) GetPublicPortalWidgets(ctx context.Context, request operations.
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getPublicPortalWidgets",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -2389,7 +2389,7 @@ func (s *Public) GetPublicPortalWidgets(ctx context.Context, request operations.
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -2610,7 +2610,7 @@ func (s *Public) GetSchemasByDomain(ctx context.Context, request operations.GetS
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getSchemasByDomain",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -2632,7 +2632,7 @@ func (s *Public) GetSchemasByDomain(ctx context.Context, request operations.GetS
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -2830,7 +2830,7 @@ func (s *Public) GetUserEntryPoint(ctx context.Context, request operations.GetUs
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "getUserEntryPoint",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -2852,7 +2852,7 @@ func (s *Public) GetUserEntryPoint(ctx context.Context, request operations.GetUs
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -3050,7 +3050,7 @@ func (s *Public) NotifyMLoginInterestChange(ctx context.Context, request operati
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "notifyMLoginInterestChange",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "RequestBody", "json", `request:"mediaType=application/json"`)
@@ -3275,7 +3275,7 @@ func (s *Public) SsoCallback(ctx context.Context, request operations.SsoCallback
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "ssoCallback",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "SSOCallbackRequest", "json", `request:"mediaType=application/json"`)
@@ -3304,7 +3304,7 @@ func (s *Public) SsoCallback(ctx context.Context, request operations.SsoCallback
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -3503,7 +3503,7 @@ func (s *Public) SsoRedirect(ctx context.Context, request operations.SsoRedirect
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "ssoRedirect",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "RequestBody", "multipart", `request:"mediaType=multipart/form-data"`)
@@ -3532,7 +3532,7 @@ func (s *Public) SsoRedirect(ctx context.Context, request operations.SsoRedirect
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -3733,7 +3733,7 @@ func (s *Public) UserExists(ctx context.Context, request operations.UserExistsRe
 		BaseURL:          baseURL,
 		Context:          ctx,
 		OperationID:      "userExists",
-		OAuth2Scopes:     []string{},
+		OAuth2Scopes:     nil,
 		SecuritySource:   nil,
 	}
 
@@ -3755,7 +3755,7 @@ func (s *Public) UserExists(ctx context.Context, request operations.UserExistsRe
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 

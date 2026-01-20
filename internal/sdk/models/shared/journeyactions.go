@@ -24,30 +24,30 @@ func (j *JourneyActions) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *JourneyActions) GetActionLabel() *ActionLabel {
-	if o == nil {
+func (j *JourneyActions) GetActionLabel() *ActionLabel {
+	if j == nil {
 		return nil
 	}
-	return o.ActionLabel
+	return j.ActionLabel
 }
 
-func (o *JourneyActions) GetJourneyID() *string {
-	if o == nil {
+func (j *JourneyActions) GetJourneyID() *string {
+	if j == nil {
 		return nil
 	}
-	return o.JourneyID
+	return j.JourneyID
 }
 
-func (o *JourneyActions) GetRules() []Rule {
-	if o == nil {
+func (j *JourneyActions) GetRules() []Rule {
+	if j == nil {
 		return nil
 	}
-	return o.Rules
+	return j.Rules
 }
 
-func (o *JourneyActions) GetSlug() *string {
-	if o == nil {
+func (j *JourneyActions) GetSlug() *string {
+	if j == nil {
 		return nil
 	}
-	return o.Slug
+	return j.Slug
 }

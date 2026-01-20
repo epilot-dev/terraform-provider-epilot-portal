@@ -55,64 +55,64 @@ func (p Product) MarshalJSON() ([]byte, error) {
 }
 
 func (p *Product) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"_created_at", "_id", "_org", "_schema", "_title", "_updated_at"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Product) GetAdditionalProperties() any {
-	if o == nil {
+func (p *Product) GetAdditionalProperties() any {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *Product) GetCreatedAt() time.Time {
-	if o == nil {
+func (p *Product) GetCreatedAt() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.CreatedAt
+	return p.CreatedAt
 }
 
-func (o *Product) GetID() string {
-	if o == nil {
+func (p *Product) GetID() string {
+	if p == nil {
 		return ""
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *Product) GetOrg() string {
-	if o == nil {
+func (p *Product) GetOrg() string {
+	if p == nil {
 		return ""
 	}
-	return o.Org
+	return p.Org
 }
 
-func (o *Product) GetSchema() ProductSchema {
-	if o == nil {
+func (p *Product) GetSchema() ProductSchema {
+	if p == nil {
 		return ProductSchema("")
 	}
-	return o.Schema
+	return p.Schema
 }
 
-func (o *Product) GetTags() []string {
-	if o == nil {
+func (p *Product) GetTags() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Tags
+	return p.Tags
 }
 
-func (o *Product) GetTitle() string {
-	if o == nil {
+func (p *Product) GetTitle() string {
+	if p == nil {
 		return ""
 	}
-	return o.Title
+	return p.Title
 }
 
-func (o *Product) GetUpdatedAt() time.Time {
-	if o == nil {
+func (p *Product) GetUpdatedAt() time.Time {
+	if p == nil {
 		return time.Time{}
 	}
-	return o.UpdatedAt
+	return p.UpdatedAt
 }

@@ -24,18 +24,18 @@ func (h *Headline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Headline) GetDe() *string {
-	if o == nil {
+func (h *Headline) GetDe() *string {
+	if h == nil {
 		return nil
 	}
-	return o.De
+	return h.De
 }
 
-func (o *Headline) GetEn() *string {
-	if o == nil {
+func (h *Headline) GetEn() *string {
+	if h == nil {
 		return nil
 	}
-	return o.En
+	return h.En
 }
 
 type SubHeadline struct {
@@ -54,18 +54,18 @@ func (s *SubHeadline) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *SubHeadline) GetDe() *string {
-	if o == nil {
+func (s *SubHeadline) GetDe() *string {
+	if s == nil {
 		return nil
 	}
-	return o.De
+	return s.De
 }
 
-func (o *SubHeadline) GetEn() *string {
-	if o == nil {
+func (s *SubHeadline) GetEn() *string {
+	if s == nil {
 		return nil
 	}
-	return o.En
+	return s.En
 }
 
 type ActionWidgetType string
@@ -130,50 +130,50 @@ func (a ActionWidget) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ActionWidget) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "listIndex", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *ActionWidget) GetActions() []WidgetAction {
-	if o == nil {
+func (a *ActionWidget) GetActions() []WidgetAction {
+	if a == nil {
 		return nil
 	}
-	return o.Actions
+	return a.Actions
 }
 
-func (o *ActionWidget) GetHeadline() *Headline {
-	if o == nil {
+func (a *ActionWidget) GetHeadline() *Headline {
+	if a == nil {
 		return nil
 	}
-	return o.Headline
+	return a.Headline
 }
 
-func (o *ActionWidget) GetID() string {
-	if o == nil {
+func (a *ActionWidget) GetID() string {
+	if a == nil {
 		return ""
 	}
-	return o.ID
+	return a.ID
 }
 
-func (o *ActionWidget) GetListIndex() int64 {
-	if o == nil {
+func (a *ActionWidget) GetListIndex() int64 {
+	if a == nil {
 		return 0
 	}
-	return o.ListIndex
+	return a.ListIndex
 }
 
-func (o *ActionWidget) GetSubHeadline() *SubHeadline {
-	if o == nil {
+func (a *ActionWidget) GetSubHeadline() *SubHeadline {
+	if a == nil {
 		return nil
 	}
-	return o.SubHeadline
+	return a.SubHeadline
 }
 
-func (o *ActionWidget) GetType() ActionWidgetType {
-	if o == nil {
+func (a *ActionWidget) GetType() ActionWidgetType {
+	if a == nil {
 		return ActionWidgetType("")
 	}
-	return o.Type
+	return a.Type
 }

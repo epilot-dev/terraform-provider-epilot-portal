@@ -17,25 +17,25 @@ type Icon struct {
 	Size *int64 `json:"size,omitempty"`
 }
 
-func (o *Icon) GetColor() *string {
-	if o == nil {
+func (i *Icon) GetColor() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Color
+	return i.Color
 }
 
-func (o *Icon) GetName() *string {
-	if o == nil {
+func (i *Icon) GetName() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Name
+	return i.Name
 }
 
-func (o *Icon) GetSize() *int64 {
-	if o == nil {
+func (i *Icon) GetSize() *int64 {
+	if i == nil {
 		return nil
 	}
-	return o.Size
+	return i.Size
 }
 
 type Rules struct {
@@ -90,72 +90,72 @@ type ExternalLink struct {
 	Type  ExternalLinkType `json:"type"`
 }
 
-func (o *ExternalLink) GetAttribute() *string {
-	if o == nil {
+func (e *ExternalLink) GetAttribute() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Attribute
+	return e.Attribute
 }
 
-func (o *ExternalLink) GetAttributeValue() *string {
-	if o == nil {
+func (e *ExternalLink) GetAttributeValue() *string {
+	if e == nil {
 		return nil
 	}
-	return o.AttributeValue
+	return e.AttributeValue
 }
 
-func (o *ExternalLink) GetEntity() *string {
-	if o == nil {
+func (e *ExternalLink) GetEntity() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Entity
+	return e.Entity
 }
 
-func (o *ExternalLink) GetExtensionLinkID() []string {
-	if o == nil {
+func (e *ExternalLink) GetExtensionLinkID() []string {
+	if e == nil {
 		return nil
 	}
-	return o.ExtensionLinkID
+	return e.ExtensionLinkID
 }
 
-func (o *ExternalLink) GetIcon() *Icon {
-	if o == nil {
+func (e *ExternalLink) GetIcon() *Icon {
+	if e == nil {
 		return nil
 	}
-	return o.Icon
+	return e.Icon
 }
 
-func (o *ExternalLink) GetID() string {
-	if o == nil {
+func (e *ExternalLink) GetID() string {
+	if e == nil {
 		return ""
 	}
-	return o.ID
+	return e.ID
 }
 
-func (o *ExternalLink) GetLabel() map[string]string {
-	if o == nil {
+func (e *ExternalLink) GetLabel() map[string]string {
+	if e == nil {
 		return map[string]string{}
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *ExternalLink) GetLink() string {
-	if o == nil {
+func (e *ExternalLink) GetLink() string {
+	if e == nil {
 		return ""
 	}
-	return o.Link
+	return e.Link
 }
 
-func (o *ExternalLink) GetRules() []Rules {
-	if o == nil {
+func (e *ExternalLink) GetRules() []Rules {
+	if e == nil {
 		return nil
 	}
-	return o.Rules
+	return e.Rules
 }
 
-func (o *ExternalLink) GetType() ExternalLinkType {
-	if o == nil {
+func (e *ExternalLink) GetType() ExternalLinkType {
+	if e == nil {
 		return ExternalLinkType("")
 	}
-	return o.Type
+	return e.Type
 }

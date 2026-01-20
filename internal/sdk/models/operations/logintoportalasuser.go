@@ -14,18 +14,18 @@ type LoginToPortalAsUserRequestBody struct {
 	Origin *string `json:"origin,omitempty"`
 }
 
-func (o *LoginToPortalAsUserRequestBody) GetEmail() *string {
-	if o == nil {
+func (l *LoginToPortalAsUserRequestBody) GetEmail() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Email
+	return l.Email
 }
 
-func (o *LoginToPortalAsUserRequestBody) GetOrigin() *string {
-	if o == nil {
+func (l *LoginToPortalAsUserRequestBody) GetOrigin() *string {
+	if l == nil {
 		return nil
 	}
-	return o.Origin
+	return l.Origin
 }
 
 // LoginToPortalAsUserResponseBody - The token has been generated successfully.
@@ -34,11 +34,11 @@ type LoginToPortalAsUserResponseBody struct {
 	LoginAsToken *string `json:"login_as_token,omitempty"`
 }
 
-func (o *LoginToPortalAsUserResponseBody) GetLoginAsToken() *string {
-	if o == nil {
+func (l *LoginToPortalAsUserResponseBody) GetLoginAsToken() *string {
+	if l == nil {
 		return nil
 	}
-	return o.LoginAsToken
+	return l.LoginAsToken
 }
 
 type LoginToPortalAsUserResponse struct {
@@ -52,30 +52,30 @@ type LoginToPortalAsUserResponse struct {
 	Object *LoginToPortalAsUserResponseBody
 }
 
-func (o *LoginToPortalAsUserResponse) GetContentType() string {
-	if o == nil {
+func (l *LoginToPortalAsUserResponse) GetContentType() string {
+	if l == nil {
 		return ""
 	}
-	return o.ContentType
+	return l.ContentType
 }
 
-func (o *LoginToPortalAsUserResponse) GetStatusCode() int {
-	if o == nil {
+func (l *LoginToPortalAsUserResponse) GetStatusCode() int {
+	if l == nil {
 		return 0
 	}
-	return o.StatusCode
+	return l.StatusCode
 }
 
-func (o *LoginToPortalAsUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (l *LoginToPortalAsUserResponse) GetRawResponse() *http.Response {
+	if l == nil {
 		return nil
 	}
-	return o.RawResponse
+	return l.RawResponse
 }
 
-func (o *LoginToPortalAsUserResponse) GetObject() *LoginToPortalAsUserResponseBody {
-	if o == nil {
+func (l *LoginToPortalAsUserResponse) GetObject() *LoginToPortalAsUserResponseBody {
+	if l == nil {
 		return nil
 	}
-	return o.Object
+	return l.Object
 }

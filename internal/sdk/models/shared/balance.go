@@ -11,23 +11,23 @@ type Balance struct {
 	BalanceDecimal *float64 `json:"balance_decimal,omitempty"`
 }
 
-func (o *Balance) GetBalance() *int64 {
-	if o == nil {
+func (b *Balance) GetBalance() *int64 {
+	if b == nil {
 		return nil
 	}
-	return o.Balance
+	return b.Balance
 }
 
-func (o *Balance) GetBalanceCurrency() *string {
-	if o == nil {
+func (b *Balance) GetBalanceCurrency() *string {
+	if b == nil {
 		return nil
 	}
-	return o.BalanceCurrency
+	return b.BalanceCurrency
 }
 
-func (o *Balance) GetBalanceDecimal() *float64 {
-	if o == nil {
+func (b *Balance) GetBalanceDecimal() *float64 {
+	if b == nil {
 		return nil
 	}
-	return o.BalanceDecimal
+	return b.BalanceDecimal
 }

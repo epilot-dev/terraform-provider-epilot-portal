@@ -13,11 +13,11 @@ type GetPortalUserResponseBody struct {
 	Data *shared.PortalUser `json:"data,omitempty"`
 }
 
-func (o *GetPortalUserResponseBody) GetData() *shared.PortalUser {
-	if o == nil {
+func (g *GetPortalUserResponseBody) GetData() *shared.PortalUser {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetPortalUserResponse struct {
@@ -33,37 +33,37 @@ type GetPortalUserResponse struct {
 	Object *GetPortalUserResponseBody
 }
 
-func (o *GetPortalUserResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPortalUserResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPortalUserResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPortalUserResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPortalUserResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPortalUserResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPortalUserResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPortalUserResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPortalUserResponse) GetObject() *GetPortalUserResponseBody {
-	if o == nil {
+func (g *GetPortalUserResponse) GetObject() *GetPortalUserResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

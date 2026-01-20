@@ -17,25 +17,25 @@ type CanTriggerPortalFlowRequest struct {
 	PortalID string `queryParam:"style=form,explode=true,name=portal_id"`
 }
 
-func (o *CanTriggerPortalFlowRequest) GetTriggerPortalFlow() shared.TriggerPortalFlow {
-	if o == nil {
+func (c *CanTriggerPortalFlowRequest) GetTriggerPortalFlow() shared.TriggerPortalFlow {
+	if c == nil {
 		return shared.TriggerPortalFlow{}
 	}
-	return o.TriggerPortalFlow
+	return c.TriggerPortalFlow
 }
 
-func (o *CanTriggerPortalFlowRequest) GetOrigin() string {
-	if o == nil {
+func (c *CanTriggerPortalFlowRequest) GetOrigin() string {
+	if c == nil {
 		return ""
 	}
-	return o.Origin
+	return c.Origin
 }
 
-func (o *CanTriggerPortalFlowRequest) GetPortalID() string {
-	if o == nil {
+func (c *CanTriggerPortalFlowRequest) GetPortalID() string {
+	if c == nil {
 		return ""
 	}
-	return o.PortalID
+	return c.PortalID
 }
 
 // CanTriggerPortalFlowResponseBody - Can Trigger Portal Flow
@@ -44,11 +44,11 @@ type CanTriggerPortalFlowResponseBody struct {
 	CanTrigger *bool `json:"can_trigger,omitempty"`
 }
 
-func (o *CanTriggerPortalFlowResponseBody) GetCanTrigger() *bool {
-	if o == nil {
+func (c *CanTriggerPortalFlowResponseBody) GetCanTrigger() *bool {
+	if c == nil {
 		return nil
 	}
-	return o.CanTrigger
+	return c.CanTrigger
 }
 
 type CanTriggerPortalFlowResponse struct {
@@ -62,30 +62,30 @@ type CanTriggerPortalFlowResponse struct {
 	Object *CanTriggerPortalFlowResponseBody
 }
 
-func (o *CanTriggerPortalFlowResponse) GetContentType() string {
-	if o == nil {
+func (c *CanTriggerPortalFlowResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CanTriggerPortalFlowResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CanTriggerPortalFlowResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CanTriggerPortalFlowResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CanTriggerPortalFlowResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }
 
-func (o *CanTriggerPortalFlowResponse) GetObject() *CanTriggerPortalFlowResponseBody {
-	if o == nil {
+func (c *CanTriggerPortalFlowResponse) GetObject() *CanTriggerPortalFlowResponseBody {
+	if c == nil {
 		return nil
 	}
-	return o.Object
+	return c.Object
 }

@@ -16,25 +16,25 @@ type ValidateCadenceEntityEditRulesRequest struct {
 	Slug shared.EntitySlug `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (o *ValidateCadenceEntityEditRulesRequest) GetAttribute() *string {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesRequest) GetAttribute() *string {
+	if v == nil {
 		return nil
 	}
-	return o.Attribute
+	return v.Attribute
 }
 
-func (o *ValidateCadenceEntityEditRulesRequest) GetID() string {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesRequest) GetID() string {
+	if v == nil {
 		return ""
 	}
-	return o.ID
+	return v.ID
 }
 
-func (o *ValidateCadenceEntityEditRulesRequest) GetSlug() shared.EntitySlug {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesRequest) GetSlug() shared.EntitySlug {
+	if v == nil {
 		return shared.EntitySlug("")
 	}
-	return o.Slug
+	return v.Slug
 }
 
 // ValidateCadenceEntityEditRulesResponseBody - Success
@@ -43,18 +43,18 @@ type ValidateCadenceEntityEditRulesResponseBody struct {
 	IsBlockedByRules *bool                  `json:"isBlockedByRules,omitempty"`
 }
 
-func (o *ValidateCadenceEntityEditRulesResponseBody) GetFailedRule() *shared.EntityEditRule {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesResponseBody) GetFailedRule() *shared.EntityEditRule {
+	if v == nil {
 		return nil
 	}
-	return o.FailedRule
+	return v.FailedRule
 }
 
-func (o *ValidateCadenceEntityEditRulesResponseBody) GetIsBlockedByRules() *bool {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesResponseBody) GetIsBlockedByRules() *bool {
+	if v == nil {
 		return nil
 	}
-	return o.IsBlockedByRules
+	return v.IsBlockedByRules
 }
 
 type ValidateCadenceEntityEditRulesResponse struct {
@@ -68,30 +68,30 @@ type ValidateCadenceEntityEditRulesResponse struct {
 	Object *ValidateCadenceEntityEditRulesResponseBody
 }
 
-func (o *ValidateCadenceEntityEditRulesResponse) GetContentType() string {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesResponse) GetContentType() string {
+	if v == nil {
 		return ""
 	}
-	return o.ContentType
+	return v.ContentType
 }
 
-func (o *ValidateCadenceEntityEditRulesResponse) GetStatusCode() int {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesResponse) GetStatusCode() int {
+	if v == nil {
 		return 0
 	}
-	return o.StatusCode
+	return v.StatusCode
 }
 
-func (o *ValidateCadenceEntityEditRulesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesResponse) GetRawResponse() *http.Response {
+	if v == nil {
 		return nil
 	}
-	return o.RawResponse
+	return v.RawResponse
 }
 
-func (o *ValidateCadenceEntityEditRulesResponse) GetObject() *ValidateCadenceEntityEditRulesResponseBody {
-	if o == nil {
+func (v *ValidateCadenceEntityEditRulesResponse) GetObject() *ValidateCadenceEntityEditRulesResponseBody {
+	if v == nil {
 		return nil
 	}
-	return o.Object
+	return v.Object
 }

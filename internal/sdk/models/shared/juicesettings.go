@@ -9,16 +9,16 @@ type JuiceSettings struct {
 	IsDummy *bool `json:"is_dummy,omitempty"`
 }
 
-func (o *JuiceSettings) GetIsCanary() *bool {
-	if o == nil {
+func (j *JuiceSettings) GetIsCanary() *bool {
+	if j == nil {
 		return nil
 	}
-	return o.IsCanary
+	return j.IsCanary
 }
 
-func (o *JuiceSettings) GetIsDummy() *bool {
-	if o == nil {
+func (j *JuiceSettings) GetIsDummy() *bool {
+	if j == nil {
 		return nil
 	}
-	return o.IsDummy
+	return j.IsDummy
 }

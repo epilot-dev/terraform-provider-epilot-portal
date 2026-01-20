@@ -14,25 +14,25 @@ type UserExistsRequest struct {
 	Origin *string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *UserExistsRequest) GetEmail() string {
-	if o == nil {
+func (u *UserExistsRequest) GetEmail() string {
+	if u == nil {
 		return ""
 	}
-	return o.Email
+	return u.Email
 }
 
-func (o *UserExistsRequest) GetOrgID() string {
-	if o == nil {
+func (u *UserExistsRequest) GetOrgID() string {
+	if u == nil {
 		return ""
 	}
-	return o.OrgID
+	return u.OrgID
 }
 
-func (o *UserExistsRequest) GetOrigin() *string {
-	if o == nil {
+func (u *UserExistsRequest) GetOrigin() *string {
+	if u == nil {
 		return nil
 	}
-	return o.Origin
+	return u.Origin
 }
 
 // UserExistsResponseBody - Returned whether the user exists in the portal or not successfully.
@@ -41,11 +41,11 @@ type UserExistsResponseBody struct {
 	Exists bool `json:"exists"`
 }
 
-func (o *UserExistsResponseBody) GetExists() bool {
-	if o == nil {
+func (u *UserExistsResponseBody) GetExists() bool {
+	if u == nil {
 		return false
 	}
-	return o.Exists
+	return u.Exists
 }
 
 type UserExistsResponse struct {
@@ -61,37 +61,37 @@ type UserExistsResponse struct {
 	Object *UserExistsResponseBody
 }
 
-func (o *UserExistsResponse) GetContentType() string {
-	if o == nil {
+func (u *UserExistsResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UserExistsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UserExistsResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UserExistsResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UserExistsResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UserExistsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UserExistsResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }
 
-func (o *UserExistsResponse) GetObject() *UserExistsResponseBody {
-	if o == nil {
+func (u *UserExistsResponse) GetObject() *UserExistsResponseBody {
+	if u == nil {
 		return nil
 	}
-	return o.Object
+	return u.Object
 }

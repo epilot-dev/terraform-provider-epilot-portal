@@ -16,72 +16,72 @@ type AllowedFileExtensions struct {
 	Spreadsheet  []string `json:"spreadsheet,omitempty"`
 }
 
-func (o *AllowedFileExtensions) GetArchive() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetArchive() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Archive
+	return a.Archive
 }
 
-func (o *AllowedFileExtensions) GetAudioVideo() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetAudioVideo() []string {
+	if a == nil {
 		return nil
 	}
-	return o.AudioVideo
+	return a.AudioVideo
 }
 
-func (o *AllowedFileExtensions) GetCad() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetCad() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Cad
+	return a.Cad
 }
 
-func (o *AllowedFileExtensions) GetCalendar() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetCalendar() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Calendar
+	return a.Calendar
 }
 
-func (o *AllowedFileExtensions) GetDocument() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetDocument() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Document
+	return a.Document
 }
 
-func (o *AllowedFileExtensions) GetEmail() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetEmail() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Email
+	return a.Email
 }
 
-func (o *AllowedFileExtensions) GetImage() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetImage() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Image
+	return a.Image
 }
 
-func (o *AllowedFileExtensions) GetOther() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetOther() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Other
+	return a.Other
 }
 
-func (o *AllowedFileExtensions) GetPresentation() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetPresentation() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Presentation
+	return a.Presentation
 }
 
-func (o *AllowedFileExtensions) GetSpreadsheet() []string {
-	if o == nil {
+func (a *AllowedFileExtensions) GetSpreadsheet() []string {
+	if a == nil {
 		return nil
 	}
-	return o.Spreadsheet
+	return a.Spreadsheet
 }

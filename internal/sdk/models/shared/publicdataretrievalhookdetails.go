@@ -17,24 +17,24 @@ func (p PublicDataRetrievalHookDetailsName) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PublicDataRetrievalHookDetailsName) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"en"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PublicDataRetrievalHookDetailsName) GetAdditionalProperties() map[string]string {
-	if o == nil {
+func (p *PublicDataRetrievalHookDetailsName) GetAdditionalProperties() map[string]string {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *PublicDataRetrievalHookDetailsName) GetEn() string {
-	if o == nil {
+func (p *PublicDataRetrievalHookDetailsName) GetEn() string {
+	if p == nil {
 		return ""
 	}
-	return o.En
+	return p.En
 }
 
 type PublicDataRetrievalHookDetails struct {
@@ -45,23 +45,23 @@ type PublicDataRetrievalHookDetails struct {
 	Name      *PublicDataRetrievalHookDetailsName `json:"name,omitempty"`
 }
 
-func (o *PublicDataRetrievalHookDetails) GetID() *string {
-	if o == nil {
+func (p *PublicDataRetrievalHookDetails) GetID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ID
+	return p.ID
 }
 
-func (o *PublicDataRetrievalHookDetails) GetIntervals() []string {
-	if o == nil {
+func (p *PublicDataRetrievalHookDetails) GetIntervals() []string {
+	if p == nil {
 		return nil
 	}
-	return o.Intervals
+	return p.Intervals
 }
 
-func (o *PublicDataRetrievalHookDetails) GetName() *PublicDataRetrievalHookDetailsName {
-	if o == nil {
+func (p *PublicDataRetrievalHookDetails) GetName() *PublicDataRetrievalHookDetailsName {
+	if p == nil {
 		return nil
 	}
-	return o.Name
+	return p.Name
 }

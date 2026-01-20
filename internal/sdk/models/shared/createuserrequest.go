@@ -23,58 +23,58 @@ type CreateUserRequest struct {
 	RegistrationIdentifiers map[string]map[string]string `json:"registration_identifiers,omitempty"`
 }
 
-func (o *CreateUserRequest) GetContactID() *string {
-	if o == nil {
+func (c *CreateUserRequest) GetContactID() *string {
+	if c == nil {
 		return nil
 	}
-	return o.ContactID
+	return c.ContactID
 }
 
-func (o *CreateUserRequest) GetContactIdentifiers() map[string]string {
-	if o == nil {
+func (c *CreateUserRequest) GetContactIdentifiers() map[string]string {
+	if c == nil {
 		return nil
 	}
-	return o.ContactIdentifiers
+	return c.ContactIdentifiers
 }
 
-func (o *CreateUserRequest) GetEmail() string {
-	if o == nil {
+func (c *CreateUserRequest) GetEmail() string {
+	if c == nil {
 		return ""
 	}
-	return o.Email
+	return c.Email
 }
 
-func (o *CreateUserRequest) GetFirstName() *string {
-	if o == nil {
+func (c *CreateUserRequest) GetFirstName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.FirstName
+	return c.FirstName
 }
 
-func (o *CreateUserRequest) GetLastName() *string {
-	if o == nil {
+func (c *CreateUserRequest) GetLastName() *string {
+	if c == nil {
 		return nil
 	}
-	return o.LastName
+	return c.LastName
 }
 
-func (o *CreateUserRequest) GetOrgID() string {
-	if o == nil {
+func (c *CreateUserRequest) GetOrgID() string {
+	if c == nil {
 		return ""
 	}
-	return o.OrgID
+	return c.OrgID
 }
 
-func (o *CreateUserRequest) GetPassword() string {
-	if o == nil {
+func (c *CreateUserRequest) GetPassword() string {
+	if c == nil {
 		return ""
 	}
-	return o.Password
+	return c.Password
 }
 
-func (o *CreateUserRequest) GetRegistrationIdentifiers() map[string]map[string]string {
-	if o == nil {
+func (c *CreateUserRequest) GetRegistrationIdentifiers() map[string]map[string]string {
+	if c == nil {
 		return nil
 	}
-	return o.RegistrationIdentifiers
+	return c.RegistrationIdentifiers
 }

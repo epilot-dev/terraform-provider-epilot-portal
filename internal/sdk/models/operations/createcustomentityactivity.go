@@ -38,11 +38,11 @@ type CreateCustomEntityActivityRequestBody struct {
 	Type Type `json:"type"`
 }
 
-func (o *CreateCustomEntityActivityRequestBody) GetType() Type {
-	if o == nil {
+func (c *CreateCustomEntityActivityRequestBody) GetType() Type {
+	if c == nil {
 		return Type("")
 	}
-	return o.Type
+	return c.Type
 }
 
 type CreateCustomEntityActivityRequest struct {
@@ -53,18 +53,18 @@ type CreateCustomEntityActivityRequest struct {
 	Entities []string `queryParam:"style=form,explode=false,name=entities"`
 }
 
-func (o *CreateCustomEntityActivityRequest) GetRequestBody() *CreateCustomEntityActivityRequestBody {
-	if o == nil {
+func (c *CreateCustomEntityActivityRequest) GetRequestBody() *CreateCustomEntityActivityRequestBody {
+	if c == nil {
 		return nil
 	}
-	return o.RequestBody
+	return c.RequestBody
 }
 
-func (o *CreateCustomEntityActivityRequest) GetEntities() []string {
-	if o == nil {
+func (c *CreateCustomEntityActivityRequest) GetEntities() []string {
+	if c == nil {
 		return nil
 	}
-	return o.Entities
+	return c.Entities
 }
 
 type CreateCustomEntityActivityResponse struct {
@@ -80,37 +80,37 @@ type CreateCustomEntityActivityResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *CreateCustomEntityActivityResponse) GetActivityItem() *shared.ActivityItem {
-	if o == nil {
+func (c *CreateCustomEntityActivityResponse) GetActivityItem() *shared.ActivityItem {
+	if c == nil {
 		return nil
 	}
-	return o.ActivityItem
+	return c.ActivityItem
 }
 
-func (o *CreateCustomEntityActivityResponse) GetContentType() string {
-	if o == nil {
+func (c *CreateCustomEntityActivityResponse) GetContentType() string {
+	if c == nil {
 		return ""
 	}
-	return o.ContentType
+	return c.ContentType
 }
 
-func (o *CreateCustomEntityActivityResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (c *CreateCustomEntityActivityResponse) GetErrorResp() *shared.ErrorResp {
+	if c == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return c.ErrorResp
 }
 
-func (o *CreateCustomEntityActivityResponse) GetStatusCode() int {
-	if o == nil {
+func (c *CreateCustomEntityActivityResponse) GetStatusCode() int {
+	if c == nil {
 		return 0
 	}
-	return o.StatusCode
+	return c.StatusCode
 }
 
-func (o *CreateCustomEntityActivityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (c *CreateCustomEntityActivityResponse) GetRawResponse() *http.Response {
+	if c == nil {
 		return nil
 	}
-	return o.RawResponse
+	return c.RawResponse
 }

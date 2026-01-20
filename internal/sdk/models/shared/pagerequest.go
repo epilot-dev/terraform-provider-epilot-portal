@@ -82,106 +82,106 @@ func (p PageRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PageRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"order", "slug"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *PageRequest) GetAdditionalProperties() any {
-	if o == nil {
+func (p *PageRequest) GetAdditionalProperties() any {
+	if p == nil {
 		return nil
 	}
-	return o.AdditionalProperties
+	return p.AdditionalProperties
 }
 
-func (o *PageRequest) GetBlocks() map[string]Block {
-	if o == nil {
+func (p *PageRequest) GetBlocks() map[string]Block {
+	if p == nil {
 		return nil
 	}
-	return o.Blocks
+	return p.Blocks
 }
 
-func (o *PageRequest) GetContent() map[string]any {
-	if o == nil {
+func (p *PageRequest) GetContent() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.Content
+	return p.Content
 }
 
-func (o *PageRequest) GetDesign() map[string]any {
-	if o == nil {
+func (p *PageRequest) GetDesign() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.Design
+	return p.Design
 }
 
-func (o *PageRequest) GetIsDeleted() *bool {
-	if o == nil {
+func (p *PageRequest) GetIsDeleted() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsDeleted
+	return p.IsDeleted
 }
 
-func (o *PageRequest) GetIsEntryRoute() *bool {
-	if o == nil {
+func (p *PageRequest) GetIsEntryRoute() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsEntryRoute
+	return p.IsEntryRoute
 }
 
-func (o *PageRequest) GetIsPublic() *bool {
-	if o == nil {
+func (p *PageRequest) GetIsPublic() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsPublic
+	return p.IsPublic
 }
 
-func (o *PageRequest) GetIsSystem() *bool {
-	if o == nil {
+func (p *PageRequest) GetIsSystem() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.IsSystem
+	return p.IsSystem
 }
 
-func (o *PageRequest) GetOrder() float64 {
-	if o == nil {
+func (p *PageRequest) GetOrder() float64 {
+	if p == nil {
 		return 0.0
 	}
-	return o.Order
+	return p.Order
 }
 
-func (o *PageRequest) GetParentID() *string {
-	if o == nil {
+func (p *PageRequest) GetParentID() *string {
+	if p == nil {
 		return nil
 	}
-	return o.ParentID
+	return p.ParentID
 }
 
-func (o *PageRequest) GetPath() *string {
-	if o == nil {
+func (p *PageRequest) GetPath() *string {
+	if p == nil {
 		return nil
 	}
-	return o.Path
+	return p.Path
 }
 
-func (o *PageRequest) GetSchema() []PageRequestSchema {
-	if o == nil {
+func (p *PageRequest) GetSchema() []PageRequestSchema {
+	if p == nil {
 		return nil
 	}
-	return o.Schema
+	return p.Schema
 }
 
-func (o *PageRequest) GetSlug() string {
-	if o == nil {
+func (p *PageRequest) GetSlug() string {
+	if p == nil {
 		return ""
 	}
-	return o.Slug
+	return p.Slug
 }
 
-func (o *PageRequest) GetVisibility() map[string]any {
-	if o == nil {
+func (p *PageRequest) GetVisibility() map[string]any {
+	if p == nil {
 		return nil
 	}
-	return o.Visibility
+	return p.Visibility
 }

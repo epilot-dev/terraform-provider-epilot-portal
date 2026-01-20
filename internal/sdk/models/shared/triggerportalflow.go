@@ -9,29 +9,29 @@ type FileConfig struct {
 	SharedWithEndCustomer *bool `json:"shared_with_end_customer,omitempty"`
 }
 
-func (o *FileConfig) GetTags() []string {
-	if o == nil {
+func (f *FileConfig) GetTags() []string {
+	if f == nil {
 		return nil
 	}
-	return o.Tags
+	return f.Tags
 }
 
-func (o *FileConfig) GetSharedWithEndCustomer() *bool {
-	if o == nil {
+func (f *FileConfig) GetSharedWithEndCustomer() *bool {
+	if f == nil {
 		return nil
 	}
-	return o.SharedWithEndCustomer
+	return f.SharedWithEndCustomer
 }
 
 type EcpConfig struct {
 	FileConfig *FileConfig `json:"file_config,omitempty"`
 }
 
-func (o *EcpConfig) GetFileConfig() *FileConfig {
-	if o == nil {
+func (e *EcpConfig) GetFileConfig() *FileConfig {
+	if e == nil {
 		return nil
 	}
-	return o.FileConfig
+	return e.FileConfig
 }
 
 type TriggerPortalFlow struct {
@@ -40,16 +40,16 @@ type TriggerPortalFlow struct {
 	EcpConfig  *EcpConfig `json:"ecp_config,omitempty"`
 }
 
-func (o *TriggerPortalFlow) GetActivityID() *string {
-	if o == nil {
+func (t *TriggerPortalFlow) GetActivityID() *string {
+	if t == nil {
 		return nil
 	}
-	return o.ActivityID
+	return t.ActivityID
 }
 
-func (o *TriggerPortalFlow) GetEcpConfig() *EcpConfig {
-	if o == nil {
+func (t *TriggerPortalFlow) GetEcpConfig() *EcpConfig {
+	if t == nil {
 		return nil
 	}
-	return o.EcpConfig
+	return t.EcpConfig
 }

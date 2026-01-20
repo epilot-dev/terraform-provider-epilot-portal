@@ -11,23 +11,23 @@ type ExtraSchemaAttributes struct {
 	Name string `json:"name"`
 }
 
-func (o *ExtraSchemaAttributes) GetGroup() string {
-	if o == nil {
+func (e *ExtraSchemaAttributes) GetGroup() string {
+	if e == nil {
 		return ""
 	}
-	return o.Group
+	return e.Group
 }
 
-func (o *ExtraSchemaAttributes) GetLabel() string {
-	if o == nil {
+func (e *ExtraSchemaAttributes) GetLabel() string {
+	if e == nil {
 		return ""
 	}
-	return o.Label
+	return e.Label
 }
 
-func (o *ExtraSchemaAttributes) GetName() string {
-	if o == nil {
+func (e *ExtraSchemaAttributes) GetName() string {
+	if e == nil {
 		return ""
 	}
-	return o.Name
+	return e.Name
 }

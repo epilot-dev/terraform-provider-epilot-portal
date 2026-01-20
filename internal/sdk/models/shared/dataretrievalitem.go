@@ -7,16 +7,16 @@ type DataRetrievalItem struct {
 	Hook      *PublicDataRetrievalHookDetails `json:"hook,omitempty"`
 }
 
-func (o *DataRetrievalItem) GetExtension() *PublicExtensionDetails {
-	if o == nil {
+func (d *DataRetrievalItem) GetExtension() *PublicExtensionDetails {
+	if d == nil {
 		return nil
 	}
-	return o.Extension
+	return d.Extension
 }
 
-func (o *DataRetrievalItem) GetHook() *PublicDataRetrievalHookDetails {
-	if o == nil {
+func (d *DataRetrievalItem) GetHook() *PublicDataRetrievalHookDetails {
+	if d == nil {
 		return nil
 	}
-	return o.Hook
+	return d.Hook
 }

@@ -17,25 +17,25 @@ type SwapPortalConfigRequestBody struct {
 	TargetPortalID string `json:"target_portal_id"`
 }
 
-func (o *SwapPortalConfigRequestBody) GetItemsToSwap() []shared.SwappableConfig {
-	if o == nil {
+func (s *SwapPortalConfigRequestBody) GetItemsToSwap() []shared.SwappableConfig {
+	if s == nil {
 		return nil
 	}
-	return o.ItemsToSwap
+	return s.ItemsToSwap
 }
 
-func (o *SwapPortalConfigRequestBody) GetSourcePortalID() string {
-	if o == nil {
+func (s *SwapPortalConfigRequestBody) GetSourcePortalID() string {
+	if s == nil {
 		return ""
 	}
-	return o.SourcePortalID
+	return s.SourcePortalID
 }
 
-func (o *SwapPortalConfigRequestBody) GetTargetPortalID() string {
-	if o == nil {
+func (s *SwapPortalConfigRequestBody) GetTargetPortalID() string {
+	if s == nil {
 		return ""
 	}
-	return o.TargetPortalID
+	return s.TargetPortalID
 }
 
 // SwapPortalConfigResponseBody - Domain and users swapped successfully.
@@ -43,11 +43,11 @@ type SwapPortalConfigResponseBody struct {
 	Message *string `json:"message,omitempty"`
 }
 
-func (o *SwapPortalConfigResponseBody) GetMessage() *string {
-	if o == nil {
+func (s *SwapPortalConfigResponseBody) GetMessage() *string {
+	if s == nil {
 		return nil
 	}
-	return o.Message
+	return s.Message
 }
 
 type SwapPortalConfigResponse struct {
@@ -63,37 +63,37 @@ type SwapPortalConfigResponse struct {
 	Object *SwapPortalConfigResponseBody
 }
 
-func (o *SwapPortalConfigResponse) GetContentType() string {
-	if o == nil {
+func (s *SwapPortalConfigResponse) GetContentType() string {
+	if s == nil {
 		return ""
 	}
-	return o.ContentType
+	return s.ContentType
 }
 
-func (o *SwapPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (s *SwapPortalConfigResponse) GetErrorResp() *shared.ErrorResp {
+	if s == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return s.ErrorResp
 }
 
-func (o *SwapPortalConfigResponse) GetStatusCode() int {
-	if o == nil {
+func (s *SwapPortalConfigResponse) GetStatusCode() int {
+	if s == nil {
 		return 0
 	}
-	return o.StatusCode
+	return s.StatusCode
 }
 
-func (o *SwapPortalConfigResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (s *SwapPortalConfigResponse) GetRawResponse() *http.Response {
+	if s == nil {
 		return nil
 	}
-	return o.RawResponse
+	return s.RawResponse
 }
 
-func (o *SwapPortalConfigResponse) GetObject() *SwapPortalConfigResponseBody {
-	if o == nil {
+func (s *SwapPortalConfigResponse) GetObject() *SwapPortalConfigResponseBody {
+	if s == nil {
 		return nil
 	}
-	return o.Object
+	return s.Object
 }

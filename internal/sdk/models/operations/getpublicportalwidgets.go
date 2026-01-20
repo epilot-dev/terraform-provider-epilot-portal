@@ -13,18 +13,18 @@ type GetPublicPortalWidgetsRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *GetPublicPortalWidgetsRequest) GetOrgID() string {
-	if o == nil {
+func (g *GetPublicPortalWidgetsRequest) GetOrgID() string {
+	if g == nil {
 		return ""
 	}
-	return o.OrgID
+	return g.OrgID
 }
 
-func (o *GetPublicPortalWidgetsRequest) GetOrigin() string {
-	if o == nil {
+func (g *GetPublicPortalWidgetsRequest) GetOrigin() string {
+	if g == nil {
 		return ""
 	}
-	return o.Origin
+	return g.Origin
 }
 
 type GetPublicPortalWidgetsResponse struct {
@@ -40,37 +40,37 @@ type GetPublicPortalWidgetsResponse struct {
 	UpsertPortalWidget *shared.UpsertPortalWidget
 }
 
-func (o *GetPublicPortalWidgetsResponse) GetContentType() string {
-	if o == nil {
+func (g *GetPublicPortalWidgetsResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetPublicPortalWidgetsResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetPublicPortalWidgetsResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetPublicPortalWidgetsResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetPublicPortalWidgetsResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetPublicPortalWidgetsResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetPublicPortalWidgetsResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetPublicPortalWidgetsResponse) GetUpsertPortalWidget() *shared.UpsertPortalWidget {
-	if o == nil {
+func (g *GetPublicPortalWidgetsResponse) GetUpsertPortalWidget() *shared.UpsertPortalWidget {
+	if g == nil {
 		return nil
 	}
-	return o.UpsertPortalWidget
+	return g.UpsertPortalWidget
 }

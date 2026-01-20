@@ -12,11 +12,11 @@ type DeletePortalRequest struct {
 	Origin string `queryParam:"style=form,explode=true,name=origin"`
 }
 
-func (o *DeletePortalRequest) GetOrigin() string {
-	if o == nil {
+func (d *DeletePortalRequest) GetOrigin() string {
+	if d == nil {
 		return ""
 	}
-	return o.Origin
+	return d.Origin
 }
 
 type DeletePortalResponse struct {
@@ -30,30 +30,30 @@ type DeletePortalResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *DeletePortalResponse) GetContentType() string {
-	if o == nil {
+func (d *DeletePortalResponse) GetContentType() string {
+	if d == nil {
 		return ""
 	}
-	return o.ContentType
+	return d.ContentType
 }
 
-func (o *DeletePortalResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (d *DeletePortalResponse) GetErrorResp() *shared.ErrorResp {
+	if d == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return d.ErrorResp
 }
 
-func (o *DeletePortalResponse) GetStatusCode() int {
-	if o == nil {
+func (d *DeletePortalResponse) GetStatusCode() int {
+	if d == nil {
 		return 0
 	}
-	return o.StatusCode
+	return d.StatusCode
 }
 
-func (o *DeletePortalResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (d *DeletePortalResponse) GetRawResponse() *http.Response {
+	if d == nil {
 		return nil
 	}
-	return o.RawResponse
+	return d.RawResponse
 }

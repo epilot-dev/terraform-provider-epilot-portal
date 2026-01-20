@@ -11,23 +11,23 @@ type IdentifierAttribute struct {
 	Type *string `json:"type,omitempty"`
 }
 
-func (o *IdentifierAttribute) GetLabel() *string {
-	if o == nil {
+func (i *IdentifierAttribute) GetLabel() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Label
+	return i.Label
 }
 
-func (o *IdentifierAttribute) GetName() *string {
-	if o == nil {
+func (i *IdentifierAttribute) GetName() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Name
+	return i.Name
 }
 
-func (o *IdentifierAttribute) GetType() *string {
-	if o == nil {
+func (i *IdentifierAttribute) GetType() *string {
+	if i == nil {
 		return nil
 	}
-	return o.Type
+	return i.Type
 }

@@ -11,11 +11,11 @@ type GetOrganizationSettingsByDomainRequest struct {
 	Domain string `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *GetOrganizationSettingsByDomainRequest) GetDomain() string {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
 // GetOrganizationSettingsByDomainResponseBody - Retrieved organization settings successfully.
@@ -23,11 +23,11 @@ type GetOrganizationSettingsByDomainResponseBody struct {
 	Data *shared.OrganizationSettings `json:"data,omitempty"`
 }
 
-func (o *GetOrganizationSettingsByDomainResponseBody) GetData() *shared.OrganizationSettings {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainResponseBody) GetData() *shared.OrganizationSettings {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetOrganizationSettingsByDomainResponse struct {
@@ -43,37 +43,37 @@ type GetOrganizationSettingsByDomainResponse struct {
 	Object *GetOrganizationSettingsByDomainResponseBody
 }
 
-func (o *GetOrganizationSettingsByDomainResponse) GetContentType() string {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetOrganizationSettingsByDomainResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetOrganizationSettingsByDomainResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetOrganizationSettingsByDomainResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetOrganizationSettingsByDomainResponse) GetObject() *GetOrganizationSettingsByDomainResponseBody {
-	if o == nil {
+func (g *GetOrganizationSettingsByDomainResponse) GetObject() *GetOrganizationSettingsByDomainResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

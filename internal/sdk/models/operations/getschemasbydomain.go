@@ -11,11 +11,11 @@ type GetSchemasByDomainRequest struct {
 	Domain string `queryParam:"style=form,explode=true,name=domain"`
 }
 
-func (o *GetSchemasByDomainRequest) GetDomain() string {
-	if o == nil {
+func (g *GetSchemasByDomainRequest) GetDomain() string {
+	if g == nil {
 		return ""
 	}
-	return o.Domain
+	return g.Domain
 }
 
 // GetSchemasByDomainResponseBody - Retrieved schemas for an organization successfully.
@@ -23,11 +23,11 @@ type GetSchemasByDomainResponseBody struct {
 	Schemas []shared.Schema `json:"schemas,omitempty"`
 }
 
-func (o *GetSchemasByDomainResponseBody) GetSchemas() []shared.Schema {
-	if o == nil {
+func (g *GetSchemasByDomainResponseBody) GetSchemas() []shared.Schema {
+	if g == nil {
 		return nil
 	}
-	return o.Schemas
+	return g.Schemas
 }
 
 type GetSchemasByDomainResponse struct {
@@ -43,37 +43,37 @@ type GetSchemasByDomainResponse struct {
 	Object *GetSchemasByDomainResponseBody
 }
 
-func (o *GetSchemasByDomainResponse) GetContentType() string {
-	if o == nil {
+func (g *GetSchemasByDomainResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetSchemasByDomainResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetSchemasByDomainResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetSchemasByDomainResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetSchemasByDomainResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetSchemasByDomainResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetSchemasByDomainResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetSchemasByDomainResponse) GetObject() *GetSchemasByDomainResponseBody {
-	if o == nil {
+func (g *GetSchemasByDomainResponse) GetObject() *GetSchemasByDomainResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

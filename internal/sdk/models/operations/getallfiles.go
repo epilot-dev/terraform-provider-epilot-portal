@@ -16,32 +16,32 @@ type GetAllFilesRequest struct {
 	Size      float64  `queryParam:"style=form,explode=true,name=size"`
 }
 
-func (o *GetAllFilesRequest) GetEntityIds() []string {
-	if o == nil {
+func (g *GetAllFilesRequest) GetEntityIds() []string {
+	if g == nil {
 		return nil
 	}
-	return o.EntityIds
+	return g.EntityIds
 }
 
-func (o *GetAllFilesRequest) GetFileTypes() []string {
-	if o == nil {
+func (g *GetAllFilesRequest) GetFileTypes() []string {
+	if g == nil {
 		return nil
 	}
-	return o.FileTypes
+	return g.FileTypes
 }
 
-func (o *GetAllFilesRequest) GetFrom() float64 {
-	if o == nil {
+func (g *GetAllFilesRequest) GetFrom() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.From
+	return g.From
 }
 
-func (o *GetAllFilesRequest) GetSize() float64 {
-	if o == nil {
+func (g *GetAllFilesRequest) GetSize() float64 {
+	if g == nil {
 		return 0.0
 	}
-	return o.Size
+	return g.Size
 }
 
 // GetAllFilesResponseBody - The files have been fetched successfully.
@@ -51,18 +51,18 @@ type GetAllFilesResponseBody struct {
 	Results []shared.FileItem `json:"results,omitempty"`
 }
 
-func (o *GetAllFilesResponseBody) GetHits() *float64 {
-	if o == nil {
+func (g *GetAllFilesResponseBody) GetHits() *float64 {
+	if g == nil {
 		return nil
 	}
-	return o.Hits
+	return g.Hits
 }
 
-func (o *GetAllFilesResponseBody) GetResults() []shared.FileItem {
-	if o == nil {
+func (g *GetAllFilesResponseBody) GetResults() []shared.FileItem {
+	if g == nil {
 		return nil
 	}
-	return o.Results
+	return g.Results
 }
 
 type GetAllFilesResponse struct {
@@ -78,37 +78,37 @@ type GetAllFilesResponse struct {
 	Object *GetAllFilesResponseBody
 }
 
-func (o *GetAllFilesResponse) GetContentType() string {
-	if o == nil {
+func (g *GetAllFilesResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetAllFilesResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetAllFilesResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetAllFilesResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetAllFilesResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetAllFilesResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetAllFilesResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetAllFilesResponse) GetObject() *GetAllFilesResponseBody {
-	if o == nil {
+func (g *GetAllFilesResponse) GetObject() *GetAllFilesResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -29,32 +29,32 @@ func (p *Pagination) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *Pagination) GetFrom() *float64 {
-	if o == nil {
+func (p *Pagination) GetFrom() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.From
+	return p.From
 }
 
-func (o *Pagination) GetHasMore() *bool {
-	if o == nil {
+func (p *Pagination) GetHasMore() *bool {
+	if p == nil {
 		return nil
 	}
-	return o.HasMore
+	return p.HasMore
 }
 
-func (o *Pagination) GetSize() *float64 {
-	if o == nil {
+func (p *Pagination) GetSize() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Size
+	return p.Size
 }
 
-func (o *Pagination) GetTotal() *float64 {
-	if o == nil {
+func (p *Pagination) GetTotal() *float64 {
+	if p == nil {
 		return nil
 	}
-	return o.Total
+	return p.Total
 }
 
 // EntityResponseWithHits - Response for entity search requests
@@ -77,23 +77,23 @@ func (e *EntityResponseWithHits) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *EntityResponseWithHits) GetHits() *float64 {
-	if o == nil {
+func (e *EntityResponseWithHits) GetHits() *float64 {
+	if e == nil {
 		return nil
 	}
-	return o.Hits
+	return e.Hits
 }
 
-func (o *EntityResponseWithHits) GetPagination() *Pagination {
-	if o == nil {
+func (e *EntityResponseWithHits) GetPagination() *Pagination {
+	if e == nil {
 		return nil
 	}
-	return o.Pagination
+	return e.Pagination
 }
 
-func (o *EntityResponseWithHits) GetResults() []EntityItem {
-	if o == nil {
+func (e *EntityResponseWithHits) GetResults() []EntityItem {
+	if e == nil {
 		return nil
 	}
-	return o.Results
+	return e.Results
 }

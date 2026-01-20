@@ -16,25 +16,25 @@ type UpsertPortalRequest struct {
 	PortalID *string `queryParam:"style=form,explode=true,name=portal_id"`
 }
 
-func (o *UpsertPortalRequest) GetUpsertPortalConfig() shared.UpsertPortalConfig {
-	if o == nil {
+func (u *UpsertPortalRequest) GetUpsertPortalConfig() shared.UpsertPortalConfig {
+	if u == nil {
 		return shared.UpsertPortalConfig{}
 	}
-	return o.UpsertPortalConfig
+	return u.UpsertPortalConfig
 }
 
-func (o *UpsertPortalRequest) GetOrigin() string {
-	if o == nil {
+func (u *UpsertPortalRequest) GetOrigin() string {
+	if u == nil {
 		return ""
 	}
-	return o.Origin
+	return u.Origin
 }
 
-func (o *UpsertPortalRequest) GetPortalID() *string {
-	if o == nil {
+func (u *UpsertPortalRequest) GetPortalID() *string {
+	if u == nil {
 		return nil
 	}
-	return o.PortalID
+	return u.PortalID
 }
 
 type UpsertPortalResponse struct {
@@ -50,37 +50,37 @@ type UpsertPortalResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UpsertPortalResponse) GetContentType() string {
-	if o == nil {
+func (u *UpsertPortalResponse) GetContentType() string {
+	if u == nil {
 		return ""
 	}
-	return o.ContentType
+	return u.ContentType
 }
 
-func (o *UpsertPortalResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (u *UpsertPortalResponse) GetErrorResp() *shared.ErrorResp {
+	if u == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return u.ErrorResp
 }
 
-func (o *UpsertPortalResponse) GetPortalConfig() *shared.PortalConfig {
-	if o == nil {
+func (u *UpsertPortalResponse) GetPortalConfig() *shared.PortalConfig {
+	if u == nil {
 		return nil
 	}
-	return o.PortalConfig
+	return u.PortalConfig
 }
 
-func (o *UpsertPortalResponse) GetStatusCode() int {
-	if o == nil {
+func (u *UpsertPortalResponse) GetStatusCode() int {
+	if u == nil {
 		return 0
 	}
-	return o.StatusCode
+	return u.StatusCode
 }
 
-func (o *UpsertPortalResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (u *UpsertPortalResponse) GetRawResponse() *http.Response {
+	if u == nil {
 		return nil
 	}
-	return o.RawResponse
+	return u.RawResponse
 }

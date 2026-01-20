@@ -12,11 +12,11 @@ type GetOpportunityRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetOpportunityRequest) GetID() string {
-	if o == nil {
+func (g *GetOpportunityRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetOpportunityResponseBody - The returned opportunities
@@ -34,46 +34,46 @@ type GetOpportunityResponseBody struct {
 	Workflow []map[string]any `json:"workflow,omitempty"`
 }
 
-func (o *GetOpportunityResponseBody) GetEntity() *shared.Opportunity {
-	if o == nil {
+func (g *GetOpportunityResponseBody) GetEntity() *shared.Opportunity {
+	if g == nil {
 		return nil
 	}
-	return o.Entity
+	return g.Entity
 }
 
-func (o *GetOpportunityResponseBody) GetFiles() []shared.File {
-	if o == nil {
+func (g *GetOpportunityResponseBody) GetFiles() []shared.File {
+	if g == nil {
 		return nil
 	}
-	return o.Files
+	return g.Files
 }
 
-func (o *GetOpportunityResponseBody) GetJourneyActions() []shared.JourneyActions {
-	if o == nil {
+func (g *GetOpportunityResponseBody) GetJourneyActions() []shared.JourneyActions {
+	if g == nil {
 		return nil
 	}
-	return o.JourneyActions
+	return g.JourneyActions
 }
 
-func (o *GetOpportunityResponseBody) GetOrders() []shared.Order {
-	if o == nil {
+func (g *GetOpportunityResponseBody) GetOrders() []shared.Order {
+	if g == nil {
 		return nil
 	}
-	return o.Orders
+	return g.Orders
 }
 
-func (o *GetOpportunityResponseBody) GetRelations() []shared.EntityItem {
-	if o == nil {
+func (g *GetOpportunityResponseBody) GetRelations() []shared.EntityItem {
+	if g == nil {
 		return nil
 	}
-	return o.Relations
+	return g.Relations
 }
 
-func (o *GetOpportunityResponseBody) GetWorkflow() []map[string]any {
-	if o == nil {
+func (g *GetOpportunityResponseBody) GetWorkflow() []map[string]any {
+	if g == nil {
 		return nil
 	}
-	return o.Workflow
+	return g.Workflow
 }
 
 type GetOpportunityResponse struct {
@@ -89,37 +89,37 @@ type GetOpportunityResponse struct {
 	Object *GetOpportunityResponseBody
 }
 
-func (o *GetOpportunityResponse) GetContentType() string {
-	if o == nil {
+func (g *GetOpportunityResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetOpportunityResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetOpportunityResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetOpportunityResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetOpportunityResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetOpportunityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetOpportunityResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetOpportunityResponse) GetObject() *GetOpportunityResponseBody {
-	if o == nil {
+func (g *GetOpportunityResponse) GetObject() *GetOpportunityResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

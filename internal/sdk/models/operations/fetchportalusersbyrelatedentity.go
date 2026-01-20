@@ -13,18 +13,18 @@ type FetchPortalUsersByRelatedEntityRequest struct {
 	Slug shared.EntitySlug `queryParam:"style=form,explode=true,name=slug"`
 }
 
-func (o *FetchPortalUsersByRelatedEntityRequest) GetEntityID() string {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityRequest) GetEntityID() string {
+	if f == nil {
 		return ""
 	}
-	return o.EntityID
+	return f.EntityID
 }
 
-func (o *FetchPortalUsersByRelatedEntityRequest) GetSlug() shared.EntitySlug {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityRequest) GetSlug() shared.EntitySlug {
+	if f == nil {
 		return shared.EntitySlug("")
 	}
-	return o.Slug
+	return f.Slug
 }
 
 // FetchPortalUsersByRelatedEntityResponseBody - Returns the portal users under the given entity.
@@ -32,11 +32,11 @@ type FetchPortalUsersByRelatedEntityResponseBody struct {
 	PortalUsers []shared.PortalUser `json:"portalUsers,omitempty"`
 }
 
-func (o *FetchPortalUsersByRelatedEntityResponseBody) GetPortalUsers() []shared.PortalUser {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityResponseBody) GetPortalUsers() []shared.PortalUser {
+	if f == nil {
 		return nil
 	}
-	return o.PortalUsers
+	return f.PortalUsers
 }
 
 type FetchPortalUsersByRelatedEntityResponse struct {
@@ -52,37 +52,37 @@ type FetchPortalUsersByRelatedEntityResponse struct {
 	Object *FetchPortalUsersByRelatedEntityResponseBody
 }
 
-func (o *FetchPortalUsersByRelatedEntityResponse) GetContentType() string {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityResponse) GetContentType() string {
+	if f == nil {
 		return ""
 	}
-	return o.ContentType
+	return f.ContentType
 }
 
-func (o *FetchPortalUsersByRelatedEntityResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityResponse) GetErrorResp() *shared.ErrorResp {
+	if f == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return f.ErrorResp
 }
 
-func (o *FetchPortalUsersByRelatedEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityResponse) GetStatusCode() int {
+	if f == nil {
 		return 0
 	}
-	return o.StatusCode
+	return f.StatusCode
 }
 
-func (o *FetchPortalUsersByRelatedEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityResponse) GetRawResponse() *http.Response {
+	if f == nil {
 		return nil
 	}
-	return o.RawResponse
+	return f.RawResponse
 }
 
-func (o *FetchPortalUsersByRelatedEntityResponse) GetObject() *FetchPortalUsersByRelatedEntityResponseBody {
-	if o == nil {
+func (f *FetchPortalUsersByRelatedEntityResponse) GetObject() *FetchPortalUsersByRelatedEntityResponseBody {
+	if f == nil {
 		return nil
 	}
-	return o.Object
+	return f.Object
 }

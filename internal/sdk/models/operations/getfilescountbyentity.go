@@ -20,37 +20,37 @@ type GetFilesCountByEntityResponse struct {
 	Classes []shared.EntityFileCount
 }
 
-func (o *GetFilesCountByEntityResponse) GetContentType() string {
-	if o == nil {
+func (g *GetFilesCountByEntityResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetFilesCountByEntityResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetFilesCountByEntityResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetFilesCountByEntityResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetFilesCountByEntityResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetFilesCountByEntityResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetFilesCountByEntityResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetFilesCountByEntityResponse) GetClasses() []shared.EntityFileCount {
-	if o == nil {
+func (g *GetFilesCountByEntityResponse) GetClasses() []shared.EntityFileCount {
+	if g == nil {
 		return nil
 	}
-	return o.Classes
+	return g.Classes
 }

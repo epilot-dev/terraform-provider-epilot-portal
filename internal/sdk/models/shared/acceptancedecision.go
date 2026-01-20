@@ -39,9 +39,9 @@ type AcceptanceDecision struct {
 	Decision Decision `json:"decision"`
 }
 
-func (o *AcceptanceDecision) GetDecision() Decision {
-	if o == nil {
+func (a *AcceptanceDecision) GetDecision() Decision {
+	if a == nil {
 		return Decision("")
 	}
-	return o.Decision
+	return a.Decision
 }

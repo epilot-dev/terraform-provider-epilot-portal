@@ -11,11 +11,11 @@ type GetECPContactRequest struct {
 	ID string `queryParam:"style=form,explode=true,name=id"`
 }
 
-func (o *GetECPContactRequest) GetID() string {
-	if o == nil {
+func (g *GetECPContactRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetECPContactResponseBody - The contact returned successfully.
@@ -24,11 +24,11 @@ type GetECPContactResponseBody struct {
 	Data *shared.Contact `json:"data,omitempty"`
 }
 
-func (o *GetECPContactResponseBody) GetData() *shared.Contact {
-	if o == nil {
+func (g *GetECPContactResponseBody) GetData() *shared.Contact {
+	if g == nil {
 		return nil
 	}
-	return o.Data
+	return g.Data
 }
 
 type GetECPContactResponse struct {
@@ -44,37 +44,37 @@ type GetECPContactResponse struct {
 	Object *GetECPContactResponseBody
 }
 
-func (o *GetECPContactResponse) GetContentType() string {
-	if o == nil {
+func (g *GetECPContactResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetECPContactResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetECPContactResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetECPContactResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetECPContactResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetECPContactResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetECPContactResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetECPContactResponse) GetObject() *GetECPContactResponseBody {
-	if o == nil {
+func (g *GetECPContactResponse) GetObject() *GetECPContactResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -12,11 +12,11 @@ type GetFileByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
-func (o *GetFileByIDRequest) GetID() string {
-	if o == nil {
+func (g *GetFileByIDRequest) GetID() string {
+	if g == nil {
 		return ""
 	}
-	return o.ID
+	return g.ID
 }
 
 // GetFileByIDResponseBody - The files have been fetched successfully.
@@ -24,11 +24,11 @@ type GetFileByIDResponseBody struct {
 	File *shared.FileItem `json:"file,omitempty"`
 }
 
-func (o *GetFileByIDResponseBody) GetFile() *shared.FileItem {
-	if o == nil {
+func (g *GetFileByIDResponseBody) GetFile() *shared.FileItem {
+	if g == nil {
 		return nil
 	}
-	return o.File
+	return g.File
 }
 
 type GetFileByIDResponse struct {
@@ -44,37 +44,37 @@ type GetFileByIDResponse struct {
 	Object *GetFileByIDResponseBody
 }
 
-func (o *GetFileByIDResponse) GetContentType() string {
-	if o == nil {
+func (g *GetFileByIDResponse) GetContentType() string {
+	if g == nil {
 		return ""
 	}
-	return o.ContentType
+	return g.ContentType
 }
 
-func (o *GetFileByIDResponse) GetErrorResp() *shared.ErrorResp {
-	if o == nil {
+func (g *GetFileByIDResponse) GetErrorResp() *shared.ErrorResp {
+	if g == nil {
 		return nil
 	}
-	return o.ErrorResp
+	return g.ErrorResp
 }
 
-func (o *GetFileByIDResponse) GetStatusCode() int {
-	if o == nil {
+func (g *GetFileByIDResponse) GetStatusCode() int {
+	if g == nil {
 		return 0
 	}
-	return o.StatusCode
+	return g.StatusCode
 }
 
-func (o *GetFileByIDResponse) GetRawResponse() *http.Response {
-	if o == nil {
+func (g *GetFileByIDResponse) GetRawResponse() *http.Response {
+	if g == nil {
 		return nil
 	}
-	return o.RawResponse
+	return g.RawResponse
 }
 
-func (o *GetFileByIDResponse) GetObject() *GetFileByIDResponseBody {
-	if o == nil {
+func (g *GetFileByIDResponse) GetObject() *GetFileByIDResponseBody {
+	if g == nil {
 		return nil
 	}
-	return o.Object
+	return g.Object
 }

@@ -13,30 +13,30 @@ type EntityFileCount struct {
 	FileCount int64 `json:"file_count"`
 }
 
-func (o *EntityFileCount) GetSchema() EntitySlug {
-	if o == nil {
+func (e *EntityFileCount) GetSchema() EntitySlug {
+	if e == nil {
 		return EntitySlug("")
 	}
-	return o.Schema
+	return e.Schema
 }
 
-func (o *EntityFileCount) GetTitle() *string {
-	if o == nil {
+func (e *EntityFileCount) GetTitle() *string {
+	if e == nil {
 		return nil
 	}
-	return o.Title
+	return e.Title
 }
 
-func (o *EntityFileCount) GetEntityID() string {
-	if o == nil {
+func (e *EntityFileCount) GetEntityID() string {
+	if e == nil {
 		return ""
 	}
-	return o.EntityID
+	return e.EntityID
 }
 
-func (o *EntityFileCount) GetFileCount() int64 {
-	if o == nil {
+func (e *EntityFileCount) GetFileCount() int64 {
+	if e == nil {
 		return 0
 	}
-	return o.FileCount
+	return e.FileCount
 }

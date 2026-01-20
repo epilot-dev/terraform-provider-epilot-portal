@@ -430,44 +430,44 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	var allowedFileExtensions *shared.AllowedFileExtensions
 	if r.AllowedFileExtensions != nil {
 		archive := make([]string, 0, len(r.AllowedFileExtensions.Archive))
-		for _, archiveItem := range r.AllowedFileExtensions.Archive {
-			archive = append(archive, archiveItem.ValueString())
+		for archiveIndex := range r.AllowedFileExtensions.Archive {
+			archive = append(archive, r.AllowedFileExtensions.Archive[archiveIndex].ValueString())
 		}
 		audioVideo := make([]string, 0, len(r.AllowedFileExtensions.AudioVideo))
-		for _, audioVideoItem := range r.AllowedFileExtensions.AudioVideo {
-			audioVideo = append(audioVideo, audioVideoItem.ValueString())
+		for audioVideoIndex := range r.AllowedFileExtensions.AudioVideo {
+			audioVideo = append(audioVideo, r.AllowedFileExtensions.AudioVideo[audioVideoIndex].ValueString())
 		}
 		cad := make([]string, 0, len(r.AllowedFileExtensions.Cad))
-		for _, cadItem := range r.AllowedFileExtensions.Cad {
-			cad = append(cad, cadItem.ValueString())
+		for cadIndex := range r.AllowedFileExtensions.Cad {
+			cad = append(cad, r.AllowedFileExtensions.Cad[cadIndex].ValueString())
 		}
 		calendar := make([]string, 0, len(r.AllowedFileExtensions.Calendar))
-		for _, calendarItem := range r.AllowedFileExtensions.Calendar {
-			calendar = append(calendar, calendarItem.ValueString())
+		for calendarIndex := range r.AllowedFileExtensions.Calendar {
+			calendar = append(calendar, r.AllowedFileExtensions.Calendar[calendarIndex].ValueString())
 		}
 		document := make([]string, 0, len(r.AllowedFileExtensions.Document))
-		for _, documentItem := range r.AllowedFileExtensions.Document {
-			document = append(document, documentItem.ValueString())
+		for documentIndex := range r.AllowedFileExtensions.Document {
+			document = append(document, r.AllowedFileExtensions.Document[documentIndex].ValueString())
 		}
 		email := make([]string, 0, len(r.AllowedFileExtensions.Email))
-		for _, emailItem := range r.AllowedFileExtensions.Email {
-			email = append(email, emailItem.ValueString())
+		for emailIndex := range r.AllowedFileExtensions.Email {
+			email = append(email, r.AllowedFileExtensions.Email[emailIndex].ValueString())
 		}
 		image := make([]string, 0, len(r.AllowedFileExtensions.Image))
-		for _, imageItem := range r.AllowedFileExtensions.Image {
-			image = append(image, imageItem.ValueString())
+		for imageIndex := range r.AllowedFileExtensions.Image {
+			image = append(image, r.AllowedFileExtensions.Image[imageIndex].ValueString())
 		}
 		other := make([]string, 0, len(r.AllowedFileExtensions.Other))
-		for _, otherItem := range r.AllowedFileExtensions.Other {
-			other = append(other, otherItem.ValueString())
+		for otherIndex := range r.AllowedFileExtensions.Other {
+			other = append(other, r.AllowedFileExtensions.Other[otherIndex].ValueString())
 		}
 		presentation := make([]string, 0, len(r.AllowedFileExtensions.Presentation))
-		for _, presentationItem := range r.AllowedFileExtensions.Presentation {
-			presentation = append(presentation, presentationItem.ValueString())
+		for presentationIndex := range r.AllowedFileExtensions.Presentation {
+			presentation = append(presentation, r.AllowedFileExtensions.Presentation[presentationIndex].ValueString())
 		}
 		spreadsheet := make([]string, 0, len(r.AllowedFileExtensions.Spreadsheet))
-		for _, spreadsheetItem := range r.AllowedFileExtensions.Spreadsheet {
-			spreadsheet = append(spreadsheet, spreadsheetItem.ValueString())
+		for spreadsheetIndex := range r.AllowedFileExtensions.Spreadsheet {
+			spreadsheet = append(spreadsheet, r.AllowedFileExtensions.Spreadsheet[spreadsheetIndex].ValueString())
 		}
 		allowedFileExtensions = &shared.AllowedFileExtensions{
 			Archive:      archive,
@@ -513,8 +513,8 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			}
 		}
 		preferredSsoProviders := make([]string, 0, len(r.AuthSettings.PreferredSsoProviders))
-		for _, preferredSsoProvidersItem := range r.AuthSettings.PreferredSsoProviders {
-			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
+		for preferredSsoProvidersIndex := range r.AuthSettings.PreferredSsoProviders {
+			preferredSsoProviders = append(preferredSsoProviders, r.AuthSettings.PreferredSsoProviders[preferredSsoProvidersIndex].ValueString())
 		}
 		authSettings = &shared.PortalConfigV3AuthSettings{
 			AutoRedirectToSso:     autoRedirectToSso,
@@ -597,8 +597,8 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		config = nil
 	}
 	contactIdentifiers := make([]string, 0, len(r.ContactIdentifiers))
-	for _, contactIdentifiersItem := range r.ContactIdentifiers {
-		contactIdentifiers = append(contactIdentifiers, contactIdentifiersItem.ValueString())
+	for contactIdentifiersIndex := range r.ContactIdentifiers {
+		contactIdentifiers = append(contactIdentifiers, r.ContactIdentifiers[contactIdentifiersIndex].ValueString())
 	}
 	var contractIdentifiers interface{}
 	if !r.ContractIdentifiers.IsUnknown() && !r.ContractIdentifiers.IsNull() {
@@ -626,46 +626,46 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	var defaultUserToNotify *shared.DefaultUserToNotify
 	if r.DefaultUserToNotify != nil {
 		onPendingUser := make([]shared.AdminUser, 0, len(r.DefaultUserToNotify.OnPendingUser))
-		for _, onPendingUserItem := range r.DefaultUserToNotify.OnPendingUser {
-			var additionalProperties interface{}
-			if !onPendingUserItem.AdditionalProperties.IsUnknown() && !onPendingUserItem.AdditionalProperties.IsNull() {
-				_ = json.Unmarshal([]byte(onPendingUserItem.AdditionalProperties.ValueString()), &additionalProperties)
+		for onPendingUserIndex := range r.DefaultUserToNotify.OnPendingUser {
+			var additionalProperties map[string]any
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].AdditionalProperties.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].AdditionalProperties.IsNull() {
+				_ = json.Unmarshal([]byte(r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].AdditionalProperties.ValueString()), &additionalProperties)
 			}
 			displayName := new(string)
-			if !onPendingUserItem.DisplayName.IsUnknown() && !onPendingUserItem.DisplayName.IsNull() {
-				*displayName = onPendingUserItem.DisplayName.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].DisplayName.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].DisplayName.IsNull() {
+				*displayName = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].DisplayName.ValueString()
 			} else {
 				displayName = nil
 			}
 			email1 := new(string)
-			if !onPendingUserItem.Email.IsUnknown() && !onPendingUserItem.Email.IsNull() {
-				*email1 = onPendingUserItem.Email.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Email.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Email.IsNull() {
+				*email1 = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Email.ValueString()
 			} else {
 				email1 = nil
 			}
 			var imageURI *shared.ImageURI
-			if onPendingUserItem.ImageURI != nil {
+			if r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI != nil {
 				key := new(string)
-				if !onPendingUserItem.ImageURI.Key.IsUnknown() && !onPendingUserItem.ImageURI.Key.IsNull() {
-					*key = onPendingUserItem.ImageURI.Key.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Key.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Key.IsNull() {
+					*key = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Key.ValueString()
 				} else {
 					key = nil
 				}
 				original := new(string)
-				if !onPendingUserItem.ImageURI.Original.IsUnknown() && !onPendingUserItem.ImageURI.Original.IsNull() {
-					*original = onPendingUserItem.ImageURI.Original.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Original.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Original.IsNull() {
+					*original = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Original.ValueString()
 				} else {
 					original = nil
 				}
 				thumbnail32 := new(string)
-				if !onPendingUserItem.ImageURI.Thumbnail32.IsUnknown() && !onPendingUserItem.ImageURI.Thumbnail32.IsNull() {
-					*thumbnail32 = onPendingUserItem.ImageURI.Thumbnail32.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail32.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail32.IsNull() {
+					*thumbnail32 = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail32.ValueString()
 				} else {
 					thumbnail32 = nil
 				}
 				thumbnail64 := new(string)
-				if !onPendingUserItem.ImageURI.Thumbnail64.IsUnknown() && !onPendingUserItem.ImageURI.Thumbnail64.IsNull() {
-					*thumbnail64 = onPendingUserItem.ImageURI.Thumbnail64.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail64.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail64.IsNull() {
+					*thumbnail64 = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail64.ValueString()
 				} else {
 					thumbnail64 = nil
 				}
@@ -677,26 +677,26 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 				}
 			}
 			orgID := new(string)
-			if !onPendingUserItem.OrgID.IsUnknown() && !onPendingUserItem.OrgID.IsNull() {
-				*orgID = onPendingUserItem.OrgID.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].OrgID.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].OrgID.IsNull() {
+				*orgID = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].OrgID.ValueString()
 			} else {
 				orgID = nil
 			}
 			phone := new(string)
-			if !onPendingUserItem.Phone.IsUnknown() && !onPendingUserItem.Phone.IsNull() {
-				*phone = onPendingUserItem.Phone.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Phone.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Phone.IsNull() {
+				*phone = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Phone.ValueString()
 			} else {
 				phone = nil
 			}
 			typeVar := new(string)
-			if !onPendingUserItem.Type.IsUnknown() && !onPendingUserItem.Type.IsNull() {
-				*typeVar = onPendingUserItem.Type.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Type.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Type.IsNull() {
+				*typeVar = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Type.ValueString()
 			} else {
 				typeVar = nil
 			}
 			userID := new(string)
-			if !onPendingUserItem.UserID.IsUnknown() && !onPendingUserItem.UserID.IsNull() {
-				*userID = onPendingUserItem.UserID.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].UserID.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].UserID.IsNull() {
+				*userID = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].UserID.ValueString()
 			} else {
 				userID = nil
 			}
@@ -837,18 +837,18 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		enabled2 = nil
 	}
 	entityActions := make([]shared.EntityActions, 0, len(r.EntityActions))
-	for _, entityActionsItem := range r.EntityActions {
+	for entityActionsIndex := range r.EntityActions {
 		var actionLabel *shared.PortalConfigV3ActionLabel
-		if entityActionsItem.ActionLabel != nil {
+		if r.EntityActions[entityActionsIndex].ActionLabel != nil {
 			de := new(string)
-			if !entityActionsItem.ActionLabel.De.IsUnknown() && !entityActionsItem.ActionLabel.De.IsNull() {
-				*de = entityActionsItem.ActionLabel.De.ValueString()
+			if !r.EntityActions[entityActionsIndex].ActionLabel.De.IsUnknown() && !r.EntityActions[entityActionsIndex].ActionLabel.De.IsNull() {
+				*de = r.EntityActions[entityActionsIndex].ActionLabel.De.ValueString()
 			} else {
 				de = nil
 			}
 			en := new(string)
-			if !entityActionsItem.ActionLabel.En.IsUnknown() && !entityActionsItem.ActionLabel.En.IsNull() {
-				*en = entityActionsItem.ActionLabel.En.ValueString()
+			if !r.EntityActions[entityActionsIndex].ActionLabel.En.IsUnknown() && !r.EntityActions[entityActionsIndex].ActionLabel.En.IsNull() {
+				*en = r.EntityActions[entityActionsIndex].ActionLabel.En.ValueString()
 			} else {
 				en = nil
 			}
@@ -858,14 +858,14 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			}
 		}
 		journeyID := new(string)
-		if !entityActionsItem.JourneyID.IsUnknown() && !entityActionsItem.JourneyID.IsNull() {
-			*journeyID = entityActionsItem.JourneyID.ValueString()
+		if !r.EntityActions[entityActionsIndex].JourneyID.IsUnknown() && !r.EntityActions[entityActionsIndex].JourneyID.IsNull() {
+			*journeyID = r.EntityActions[entityActionsIndex].JourneyID.ValueString()
 		} else {
 			journeyID = nil
 		}
 		slug := new(shared.EntitySlug)
-		if !entityActionsItem.Slug.IsUnknown() && !entityActionsItem.Slug.IsNull() {
-			*slug = shared.EntitySlug(entityActionsItem.Slug.ValueString())
+		if !r.EntityActions[entityActionsIndex].Slug.IsUnknown() && !r.EntityActions[entityActionsIndex].Slug.IsNull() {
+			*slug = shared.EntitySlug(r.EntityActions[entityActionsIndex].Slug.ValueString())
 		} else {
 			slug = nil
 		}
@@ -884,8 +884,8 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		var typeVar1 *shared.PortalConfigV3Type
 		if r.EntityIdentifiers.Type != nil {
 			attributes := make([]string, 0, len(r.EntityIdentifiers.Type.Attributes))
-			for _, attributesItem := range r.EntityIdentifiers.Type.Attributes {
-				attributes = append(attributes, attributesItem.ValueString())
+			for attributesIndex := range r.EntityIdentifiers.Type.Attributes {
+				attributes = append(attributes, r.EntityIdentifiers.Type.Attributes[attributesIndex].ValueString())
 			}
 			isEnabled := new(bool)
 			if !r.EntityIdentifiers.Type.IsEnabled.IsUnknown() && !r.EntityIdentifiers.Type.IsEnabled.IsNull() {
@@ -903,17 +903,17 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		}
 	}
 	extensionHooks := make(map[string]*shared.ExtensionHookConfig)
-	for extensionHooksKey, extensionHooksValue := range r.ExtensionHooks {
+	for extensionHooksKey := range r.ExtensionHooks {
 		var extensionHooksInst *shared.ExtensionHookConfig
 		appID := new(string)
-		if !extensionHooksValue.AppID.IsUnknown() && !extensionHooksValue.AppID.IsNull() {
-			*appID = extensionHooksValue.AppID.ValueString()
+		if !r.ExtensionHooks[extensionHooksKey].AppID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].AppID.IsNull() {
+			*appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
 		} else {
 			appID = nil
 		}
 		hookID := new(string)
-		if !extensionHooksValue.HookID.IsUnknown() && !extensionHooksValue.HookID.IsNull() {
-			*hookID = extensionHooksValue.HookID.ValueString()
+		if !r.ExtensionHooks[extensionHooksKey].HookID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].HookID.IsNull() {
+			*hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
 		} else {
 			hookID = nil
 		}
@@ -924,20 +924,20 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		extensionHooks[extensionHooksKey] = extensionHooksInst
 	}
 	extensions := make([]shared.ExtensionConfig, 0, len(r.Extensions))
-	for _, extensionsItem := range r.Extensions {
+	for extensionsIndex := range r.Extensions {
 		var id string
-		id = extensionsItem.ID.ValueString()
+		id = r.Extensions[extensionsIndex].ID.ValueString()
 
 		optionsVar := make(map[string]string)
-		for optionsKey, optionsValue := range extensionsItem.Options {
+		for optionsKey := range r.Extensions[extensionsIndex].Options {
 			var optionsInst string
-			optionsInst = optionsValue.ValueString()
+			optionsInst = r.Extensions[extensionsIndex].Options[optionsKey].ValueString()
 
 			optionsVar[optionsKey] = optionsInst
 		}
 		status := new(shared.ExtensionConfigStatus)
-		if !extensionsItem.Status.IsUnknown() && !extensionsItem.Status.IsNull() {
-			*status = shared.ExtensionConfigStatus(extensionsItem.Status.ValueString())
+		if !r.Extensions[extensionsIndex].Status.IsUnknown() && !r.Extensions[extensionsIndex].Status.IsNull() {
+			*status = shared.ExtensionConfigStatus(r.Extensions[extensionsIndex].Status.ValueString())
 		} else {
 			status = nil
 		}
@@ -1130,16 +1130,16 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		selfRegistrationSetting = nil
 	}
 	triggeredJourneys := make([]shared.PortalConfigV3TriggeredJourneys, 0, len(r.TriggeredJourneys))
-	for _, triggeredJourneysItem := range r.TriggeredJourneys {
+	for triggeredJourneysIndex := range r.TriggeredJourneys {
 		journeyId1 := new(string)
-		if !triggeredJourneysItem.JourneyID.IsUnknown() && !triggeredJourneysItem.JourneyID.IsNull() {
-			*journeyId1 = triggeredJourneysItem.JourneyID.ValueString()
+		if !r.TriggeredJourneys[triggeredJourneysIndex].JourneyID.IsUnknown() && !r.TriggeredJourneys[triggeredJourneysIndex].JourneyID.IsNull() {
+			*journeyId1 = r.TriggeredJourneys[triggeredJourneysIndex].JourneyID.ValueString()
 		} else {
 			journeyId1 = nil
 		}
 		triggerName := new(shared.PortalConfigV3TriggerName)
-		if !triggeredJourneysItem.TriggerName.IsUnknown() && !triggeredJourneysItem.TriggerName.IsNull() {
-			*triggerName = shared.PortalConfigV3TriggerName(triggeredJourneysItem.TriggerName.ValueString())
+		if !r.TriggeredJourneys[triggeredJourneysIndex].TriggerName.IsUnknown() && !r.TriggeredJourneys[triggeredJourneysIndex].TriggerName.IsNull() {
+			*triggerName = shared.PortalConfigV3TriggerName(r.TriggeredJourneys[triggeredJourneysIndex].TriggerName.ValueString())
 		} else {
 			triggerName = nil
 		}
@@ -1219,44 +1219,44 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	var allowedFileExtensions *shared.AllowedFileExtensions
 	if r.AllowedFileExtensions != nil {
 		archive := make([]string, 0, len(r.AllowedFileExtensions.Archive))
-		for _, archiveItem := range r.AllowedFileExtensions.Archive {
-			archive = append(archive, archiveItem.ValueString())
+		for archiveIndex := range r.AllowedFileExtensions.Archive {
+			archive = append(archive, r.AllowedFileExtensions.Archive[archiveIndex].ValueString())
 		}
 		audioVideo := make([]string, 0, len(r.AllowedFileExtensions.AudioVideo))
-		for _, audioVideoItem := range r.AllowedFileExtensions.AudioVideo {
-			audioVideo = append(audioVideo, audioVideoItem.ValueString())
+		for audioVideoIndex := range r.AllowedFileExtensions.AudioVideo {
+			audioVideo = append(audioVideo, r.AllowedFileExtensions.AudioVideo[audioVideoIndex].ValueString())
 		}
 		cad := make([]string, 0, len(r.AllowedFileExtensions.Cad))
-		for _, cadItem := range r.AllowedFileExtensions.Cad {
-			cad = append(cad, cadItem.ValueString())
+		for cadIndex := range r.AllowedFileExtensions.Cad {
+			cad = append(cad, r.AllowedFileExtensions.Cad[cadIndex].ValueString())
 		}
 		calendar := make([]string, 0, len(r.AllowedFileExtensions.Calendar))
-		for _, calendarItem := range r.AllowedFileExtensions.Calendar {
-			calendar = append(calendar, calendarItem.ValueString())
+		for calendarIndex := range r.AllowedFileExtensions.Calendar {
+			calendar = append(calendar, r.AllowedFileExtensions.Calendar[calendarIndex].ValueString())
 		}
 		document := make([]string, 0, len(r.AllowedFileExtensions.Document))
-		for _, documentItem := range r.AllowedFileExtensions.Document {
-			document = append(document, documentItem.ValueString())
+		for documentIndex := range r.AllowedFileExtensions.Document {
+			document = append(document, r.AllowedFileExtensions.Document[documentIndex].ValueString())
 		}
 		email := make([]string, 0, len(r.AllowedFileExtensions.Email))
-		for _, emailItem := range r.AllowedFileExtensions.Email {
-			email = append(email, emailItem.ValueString())
+		for emailIndex := range r.AllowedFileExtensions.Email {
+			email = append(email, r.AllowedFileExtensions.Email[emailIndex].ValueString())
 		}
 		image := make([]string, 0, len(r.AllowedFileExtensions.Image))
-		for _, imageItem := range r.AllowedFileExtensions.Image {
-			image = append(image, imageItem.ValueString())
+		for imageIndex := range r.AllowedFileExtensions.Image {
+			image = append(image, r.AllowedFileExtensions.Image[imageIndex].ValueString())
 		}
 		other := make([]string, 0, len(r.AllowedFileExtensions.Other))
-		for _, otherItem := range r.AllowedFileExtensions.Other {
-			other = append(other, otherItem.ValueString())
+		for otherIndex := range r.AllowedFileExtensions.Other {
+			other = append(other, r.AllowedFileExtensions.Other[otherIndex].ValueString())
 		}
 		presentation := make([]string, 0, len(r.AllowedFileExtensions.Presentation))
-		for _, presentationItem := range r.AllowedFileExtensions.Presentation {
-			presentation = append(presentation, presentationItem.ValueString())
+		for presentationIndex := range r.AllowedFileExtensions.Presentation {
+			presentation = append(presentation, r.AllowedFileExtensions.Presentation[presentationIndex].ValueString())
 		}
 		spreadsheet := make([]string, 0, len(r.AllowedFileExtensions.Spreadsheet))
-		for _, spreadsheetItem := range r.AllowedFileExtensions.Spreadsheet {
-			spreadsheet = append(spreadsheet, spreadsheetItem.ValueString())
+		for spreadsheetIndex := range r.AllowedFileExtensions.Spreadsheet {
+			spreadsheet = append(spreadsheet, r.AllowedFileExtensions.Spreadsheet[spreadsheetIndex].ValueString())
 		}
 		allowedFileExtensions = &shared.AllowedFileExtensions{
 			Archive:      archive,
@@ -1302,8 +1302,8 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			}
 		}
 		preferredSsoProviders := make([]string, 0, len(r.AuthSettings.PreferredSsoProviders))
-		for _, preferredSsoProvidersItem := range r.AuthSettings.PreferredSsoProviders {
-			preferredSsoProviders = append(preferredSsoProviders, preferredSsoProvidersItem.ValueString())
+		for preferredSsoProvidersIndex := range r.AuthSettings.PreferredSsoProviders {
+			preferredSsoProviders = append(preferredSsoProviders, r.AuthSettings.PreferredSsoProviders[preferredSsoProvidersIndex].ValueString())
 		}
 		authSettings = &shared.UpsertPortalConfigV3AuthSettings{
 			AutoRedirectToSso:     autoRedirectToSso,
@@ -1386,8 +1386,8 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		config = nil
 	}
 	contactIdentifiers := make([]string, 0, len(r.ContactIdentifiers))
-	for _, contactIdentifiersItem := range r.ContactIdentifiers {
-		contactIdentifiers = append(contactIdentifiers, contactIdentifiersItem.ValueString())
+	for contactIdentifiersIndex := range r.ContactIdentifiers {
+		contactIdentifiers = append(contactIdentifiers, r.ContactIdentifiers[contactIdentifiersIndex].ValueString())
 	}
 	var contractIdentifiers interface{}
 	if !r.ContractIdentifiers.IsUnknown() && !r.ContractIdentifiers.IsNull() {
@@ -1415,46 +1415,46 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	var defaultUserToNotify *shared.UpsertPortalConfigV3DefaultUserToNotify
 	if r.DefaultUserToNotify != nil {
 		onPendingUser := make([]shared.AdminUser, 0, len(r.DefaultUserToNotify.OnPendingUser))
-		for _, onPendingUserItem := range r.DefaultUserToNotify.OnPendingUser {
-			var additionalProperties interface{}
-			if !onPendingUserItem.AdditionalProperties.IsUnknown() && !onPendingUserItem.AdditionalProperties.IsNull() {
-				_ = json.Unmarshal([]byte(onPendingUserItem.AdditionalProperties.ValueString()), &additionalProperties)
+		for onPendingUserIndex := range r.DefaultUserToNotify.OnPendingUser {
+			var additionalProperties map[string]any
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].AdditionalProperties.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].AdditionalProperties.IsNull() {
+				_ = json.Unmarshal([]byte(r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].AdditionalProperties.ValueString()), &additionalProperties)
 			}
 			displayName := new(string)
-			if !onPendingUserItem.DisplayName.IsUnknown() && !onPendingUserItem.DisplayName.IsNull() {
-				*displayName = onPendingUserItem.DisplayName.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].DisplayName.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].DisplayName.IsNull() {
+				*displayName = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].DisplayName.ValueString()
 			} else {
 				displayName = nil
 			}
 			email1 := new(string)
-			if !onPendingUserItem.Email.IsUnknown() && !onPendingUserItem.Email.IsNull() {
-				*email1 = onPendingUserItem.Email.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Email.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Email.IsNull() {
+				*email1 = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Email.ValueString()
 			} else {
 				email1 = nil
 			}
 			var imageURI *shared.ImageURI
-			if onPendingUserItem.ImageURI != nil {
+			if r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI != nil {
 				key := new(string)
-				if !onPendingUserItem.ImageURI.Key.IsUnknown() && !onPendingUserItem.ImageURI.Key.IsNull() {
-					*key = onPendingUserItem.ImageURI.Key.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Key.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Key.IsNull() {
+					*key = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Key.ValueString()
 				} else {
 					key = nil
 				}
 				original := new(string)
-				if !onPendingUserItem.ImageURI.Original.IsUnknown() && !onPendingUserItem.ImageURI.Original.IsNull() {
-					*original = onPendingUserItem.ImageURI.Original.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Original.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Original.IsNull() {
+					*original = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Original.ValueString()
 				} else {
 					original = nil
 				}
 				thumbnail32 := new(string)
-				if !onPendingUserItem.ImageURI.Thumbnail32.IsUnknown() && !onPendingUserItem.ImageURI.Thumbnail32.IsNull() {
-					*thumbnail32 = onPendingUserItem.ImageURI.Thumbnail32.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail32.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail32.IsNull() {
+					*thumbnail32 = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail32.ValueString()
 				} else {
 					thumbnail32 = nil
 				}
 				thumbnail64 := new(string)
-				if !onPendingUserItem.ImageURI.Thumbnail64.IsUnknown() && !onPendingUserItem.ImageURI.Thumbnail64.IsNull() {
-					*thumbnail64 = onPendingUserItem.ImageURI.Thumbnail64.ValueString()
+				if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail64.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail64.IsNull() {
+					*thumbnail64 = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].ImageURI.Thumbnail64.ValueString()
 				} else {
 					thumbnail64 = nil
 				}
@@ -1466,26 +1466,26 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 				}
 			}
 			orgID := new(string)
-			if !onPendingUserItem.OrgID.IsUnknown() && !onPendingUserItem.OrgID.IsNull() {
-				*orgID = onPendingUserItem.OrgID.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].OrgID.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].OrgID.IsNull() {
+				*orgID = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].OrgID.ValueString()
 			} else {
 				orgID = nil
 			}
 			phone := new(string)
-			if !onPendingUserItem.Phone.IsUnknown() && !onPendingUserItem.Phone.IsNull() {
-				*phone = onPendingUserItem.Phone.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Phone.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Phone.IsNull() {
+				*phone = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Phone.ValueString()
 			} else {
 				phone = nil
 			}
 			typeVar := new(string)
-			if !onPendingUserItem.Type.IsUnknown() && !onPendingUserItem.Type.IsNull() {
-				*typeVar = onPendingUserItem.Type.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Type.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Type.IsNull() {
+				*typeVar = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].Type.ValueString()
 			} else {
 				typeVar = nil
 			}
 			userID := new(string)
-			if !onPendingUserItem.UserID.IsUnknown() && !onPendingUserItem.UserID.IsNull() {
-				*userID = onPendingUserItem.UserID.ValueString()
+			if !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].UserID.IsUnknown() && !r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].UserID.IsNull() {
+				*userID = r.DefaultUserToNotify.OnPendingUser[onPendingUserIndex].UserID.ValueString()
 			} else {
 				userID = nil
 			}
@@ -1626,18 +1626,18 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		enabled2 = nil
 	}
 	entityActions := make([]shared.UpsertPortalConfigV3EntityActions, 0, len(r.EntityActions))
-	for _, entityActionsItem := range r.EntityActions {
+	for entityActionsIndex := range r.EntityActions {
 		var actionLabel *shared.UpsertPortalConfigV3ActionLabel
-		if entityActionsItem.ActionLabel != nil {
+		if r.EntityActions[entityActionsIndex].ActionLabel != nil {
 			de := new(string)
-			if !entityActionsItem.ActionLabel.De.IsUnknown() && !entityActionsItem.ActionLabel.De.IsNull() {
-				*de = entityActionsItem.ActionLabel.De.ValueString()
+			if !r.EntityActions[entityActionsIndex].ActionLabel.De.IsUnknown() && !r.EntityActions[entityActionsIndex].ActionLabel.De.IsNull() {
+				*de = r.EntityActions[entityActionsIndex].ActionLabel.De.ValueString()
 			} else {
 				de = nil
 			}
 			en := new(string)
-			if !entityActionsItem.ActionLabel.En.IsUnknown() && !entityActionsItem.ActionLabel.En.IsNull() {
-				*en = entityActionsItem.ActionLabel.En.ValueString()
+			if !r.EntityActions[entityActionsIndex].ActionLabel.En.IsUnknown() && !r.EntityActions[entityActionsIndex].ActionLabel.En.IsNull() {
+				*en = r.EntityActions[entityActionsIndex].ActionLabel.En.ValueString()
 			} else {
 				en = nil
 			}
@@ -1647,14 +1647,14 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			}
 		}
 		journeyID := new(string)
-		if !entityActionsItem.JourneyID.IsUnknown() && !entityActionsItem.JourneyID.IsNull() {
-			*journeyID = entityActionsItem.JourneyID.ValueString()
+		if !r.EntityActions[entityActionsIndex].JourneyID.IsUnknown() && !r.EntityActions[entityActionsIndex].JourneyID.IsNull() {
+			*journeyID = r.EntityActions[entityActionsIndex].JourneyID.ValueString()
 		} else {
 			journeyID = nil
 		}
 		slug := new(shared.EntitySlug)
-		if !entityActionsItem.Slug.IsUnknown() && !entityActionsItem.Slug.IsNull() {
-			*slug = shared.EntitySlug(entityActionsItem.Slug.ValueString())
+		if !r.EntityActions[entityActionsIndex].Slug.IsUnknown() && !r.EntityActions[entityActionsIndex].Slug.IsNull() {
+			*slug = shared.EntitySlug(r.EntityActions[entityActionsIndex].Slug.ValueString())
 		} else {
 			slug = nil
 		}
@@ -1673,8 +1673,8 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		var typeVar1 *shared.UpsertPortalConfigV3Type
 		if r.EntityIdentifiers.Type != nil {
 			attributes := make([]string, 0, len(r.EntityIdentifiers.Type.Attributes))
-			for _, attributesItem := range r.EntityIdentifiers.Type.Attributes {
-				attributes = append(attributes, attributesItem.ValueString())
+			for attributesIndex := range r.EntityIdentifiers.Type.Attributes {
+				attributes = append(attributes, r.EntityIdentifiers.Type.Attributes[attributesIndex].ValueString())
 			}
 			isEnabled := new(bool)
 			if !r.EntityIdentifiers.Type.IsEnabled.IsUnknown() && !r.EntityIdentifiers.Type.IsEnabled.IsNull() {
@@ -1692,17 +1692,17 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		}
 	}
 	extensionHooks := make(map[string]*shared.ExtensionHookConfig)
-	for extensionHooksKey, extensionHooksValue := range r.ExtensionHooks {
+	for extensionHooksKey := range r.ExtensionHooks {
 		var extensionHooksInst *shared.ExtensionHookConfig
 		appID := new(string)
-		if !extensionHooksValue.AppID.IsUnknown() && !extensionHooksValue.AppID.IsNull() {
-			*appID = extensionHooksValue.AppID.ValueString()
+		if !r.ExtensionHooks[extensionHooksKey].AppID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].AppID.IsNull() {
+			*appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
 		} else {
 			appID = nil
 		}
 		hookID := new(string)
-		if !extensionHooksValue.HookID.IsUnknown() && !extensionHooksValue.HookID.IsNull() {
-			*hookID = extensionHooksValue.HookID.ValueString()
+		if !r.ExtensionHooks[extensionHooksKey].HookID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].HookID.IsNull() {
+			*hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
 		} else {
 			hookID = nil
 		}
@@ -1713,20 +1713,20 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		extensionHooks[extensionHooksKey] = extensionHooksInst
 	}
 	extensions := make([]shared.ExtensionConfig, 0, len(r.Extensions))
-	for _, extensionsItem := range r.Extensions {
+	for extensionsIndex := range r.Extensions {
 		var id string
-		id = extensionsItem.ID.ValueString()
+		id = r.Extensions[extensionsIndex].ID.ValueString()
 
 		optionsVar := make(map[string]string)
-		for optionsKey, optionsValue := range extensionsItem.Options {
+		for optionsKey := range r.Extensions[extensionsIndex].Options {
 			var optionsInst string
-			optionsInst = optionsValue.ValueString()
+			optionsInst = r.Extensions[extensionsIndex].Options[optionsKey].ValueString()
 
 			optionsVar[optionsKey] = optionsInst
 		}
 		status := new(shared.ExtensionConfigStatus)
-		if !extensionsItem.Status.IsUnknown() && !extensionsItem.Status.IsNull() {
-			*status = shared.ExtensionConfigStatus(extensionsItem.Status.ValueString())
+		if !r.Extensions[extensionsIndex].Status.IsUnknown() && !r.Extensions[extensionsIndex].Status.IsNull() {
+			*status = shared.ExtensionConfigStatus(r.Extensions[extensionsIndex].Status.ValueString())
 		} else {
 			status = nil
 		}
@@ -1870,16 +1870,16 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		selfRegistrationSetting = nil
 	}
 	triggeredJourneys := make([]shared.UpsertPortalConfigV3TriggeredJourneys, 0, len(r.TriggeredJourneys))
-	for _, triggeredJourneysItem := range r.TriggeredJourneys {
+	for triggeredJourneysIndex := range r.TriggeredJourneys {
 		journeyId1 := new(string)
-		if !triggeredJourneysItem.JourneyID.IsUnknown() && !triggeredJourneysItem.JourneyID.IsNull() {
-			*journeyId1 = triggeredJourneysItem.JourneyID.ValueString()
+		if !r.TriggeredJourneys[triggeredJourneysIndex].JourneyID.IsUnknown() && !r.TriggeredJourneys[triggeredJourneysIndex].JourneyID.IsNull() {
+			*journeyId1 = r.TriggeredJourneys[triggeredJourneysIndex].JourneyID.ValueString()
 		} else {
 			journeyId1 = nil
 		}
 		triggerName := new(shared.UpsertPortalConfigV3TriggerName)
-		if !triggeredJourneysItem.TriggerName.IsUnknown() && !triggeredJourneysItem.TriggerName.IsNull() {
-			*triggerName = shared.UpsertPortalConfigV3TriggerName(triggeredJourneysItem.TriggerName.ValueString())
+		if !r.TriggeredJourneys[triggeredJourneysIndex].TriggerName.IsUnknown() && !r.TriggeredJourneys[triggeredJourneysIndex].TriggerName.IsNull() {
+			*triggerName = shared.UpsertPortalConfigV3TriggerName(r.TriggeredJourneys[triggeredJourneysIndex].TriggerName.ValueString())
 		} else {
 			triggerName = nil
 		}
