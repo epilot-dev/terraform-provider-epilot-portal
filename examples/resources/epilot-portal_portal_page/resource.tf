@@ -27,8 +27,10 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   design = {
     key = jsonencode("value")
   }
+  detail_schema  = "contact"
   domain         = "customer-portal.epilot.io"
   is_deleted     = false
+  is_detail      = false
   is_entry_route = false
   is_public      = true
   is_system      = false
@@ -36,7 +38,7 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   parent_id      = "c495fef9-eeca-4019-a989-8390dcd9825b"
   path           = "/dashboard"
   schema = [
-    "contract"
+    "..."
   ]
   slug = "dashboard"
   visibility = {

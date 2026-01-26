@@ -4,7 +4,7 @@ package shared
 
 type EntityFileCount struct {
 	// URL-friendly identifier for the entity schema
-	Schema EntitySlug `json:"_schema"`
+	Schema string `json:"_schema"`
 	// The title of the parent entity
 	Title *string `json:"_title,omitempty"`
 	// Entity ID
@@ -13,9 +13,9 @@ type EntityFileCount struct {
 	FileCount int64 `json:"file_count"`
 }
 
-func (e *EntityFileCount) GetSchema() EntitySlug {
+func (e *EntityFileCount) GetSchema() string {
 	if e == nil {
-		return EntitySlug("")
+		return ""
 	}
 	return e.Schema
 }

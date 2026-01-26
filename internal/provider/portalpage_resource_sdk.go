@@ -88,8 +88,10 @@ func (r *PortalPageResourceModel) RefreshFromSharedPage(ctx context.Context, res
 				r.Design[key4] = jsontypes.NewNormalizedValue(string(result4))
 			}
 		}
+		r.DetailSchema = types.StringPointerValue(resp.DetailSchema)
 		r.ID = types.StringPointerValue(resp.ID)
 		r.IsDeleted = types.BoolPointerValue(resp.IsDeleted)
+		r.IsDetail = types.BoolPointerValue(resp.IsDetail)
 		r.IsEntryRoute = types.BoolPointerValue(resp.IsEntryRoute)
 		r.IsPublic = types.BoolPointerValue(resp.IsPublic)
 		r.IsSystem = types.BoolPointerValue(resp.IsSystem)
@@ -99,7 +101,7 @@ func (r *PortalPageResourceModel) RefreshFromSharedPage(ctx context.Context, res
 		r.Path = types.StringPointerValue(resp.Path)
 		r.Schema = make([]types.String, 0, len(resp.Schema))
 		for _, v := range resp.Schema {
-			r.Schema = append(r.Schema, types.StringValue(string(v)))
+			r.Schema = append(r.Schema, types.StringValue(v))
 		}
 		r.Slug = types.StringValue(resp.Slug)
 		if len(resp.Visibility) > 0 {
@@ -266,11 +268,23 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 		_ = json.Unmarshal([]byte(r.Design[designKey1].ValueString()), &designInst1)
 		design1[designKey1] = designInst1
 	}
+	detailSchema := new(string)
+	if !r.DetailSchema.IsUnknown() && !r.DetailSchema.IsNull() {
+		*detailSchema = r.DetailSchema.ValueString()
+	} else {
+		detailSchema = nil
+	}
 	isDeleted := new(bool)
 	if !r.IsDeleted.IsUnknown() && !r.IsDeleted.IsNull() {
 		*isDeleted = r.IsDeleted.ValueBool()
 	} else {
 		isDeleted = nil
+	}
+	isDetail := new(bool)
+	if !r.IsDetail.IsUnknown() && !r.IsDetail.IsNull() {
+		*isDetail = r.IsDetail.ValueBool()
+	} else {
+		isDetail = nil
 	}
 	isEntryRoute := new(bool)
 	if !r.IsEntryRoute.IsUnknown() && !r.IsEntryRoute.IsNull() {
@@ -305,9 +319,9 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 	} else {
 		path = nil
 	}
-	schema := make([]shared.PageRequestSchema, 0, len(r.Schema))
-	for _, schemaItem := range r.Schema {
-		schema = append(schema, shared.PageRequestSchema(schemaItem.ValueString()))
+	schema := make([]string, 0, len(r.Schema))
+	for schemaIndex := range r.Schema {
+		schema = append(schema, r.Schema[schemaIndex].ValueString())
 	}
 	var slug string
 	slug = r.Slug.ValueString()
@@ -323,7 +337,9 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 		Blocks:               blocks,
 		Content:              content1,
 		Design:               design1,
+		DetailSchema:         detailSchema,
 		IsDeleted:            isDeleted,
+		IsDetail:             isDetail,
 		IsEntryRoute:         isEntryRoute,
 		IsPublic:             isPublic,
 		IsSystem:             isSystem,

@@ -67,6 +67,7 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
 - `self_registration_setting` (String)
 - `triggered_journeys` (Attributes List) Journeys automatically opened on a portal user action (see [below for nested schema](#nestedatt--triggered_journeys))
+- `user_account_self_management` (Boolean) Enable or disable user account self management
 
 <a id="nestedatt--advanced_mfa"></a>
 ### Nested Schema for `advanced_mfa`
@@ -127,6 +128,7 @@ Read-Only:
 
 Read-Only:
 
+- `maximum_length` (Number) Maximum password length
 - `minimum_length` (Number) Minimum password length
 - `require_lowercase` (Boolean) Require lowercase characters
 - `require_numbers` (Boolean) Require numbers
@@ -196,6 +198,7 @@ Read-Only:
 - `on_map_a_pending_user` (String) Entity ID
 - `on_new_quote` (String) Entity ID
 - `on_workflow_step_assigned` (String) Entity ID
+- `partner_invitation` (String) Entity ID
 - `verify_code_to_set_password` (String) Entity ID
 
 
@@ -240,8 +243,9 @@ Read-Only:
 
 Read-Only:
 
-- `app_id` (String) The ID of the app that is being hooked into.
-- `hook_id` (String) The ID of the hook that is being configured.
+- `app_id` (String) The ID of the selected app.
+- `extension_id` (String) The ID of the selected extension.
+- `hook_id` (String) The ID of the selected hook.
 
 
 <a id="nestedatt--extensions"></a>

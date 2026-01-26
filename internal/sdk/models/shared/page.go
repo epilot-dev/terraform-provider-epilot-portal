@@ -3,50 +3,9 @@
 package shared
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 	"time"
 )
-
-// PageSchema - The schema of the page
-type PageSchema string
-
-const (
-	PageSchemaContact      PageSchema = "contact"
-	PageSchemaContract     PageSchema = "contract"
-	PageSchemaMeter        PageSchema = "meter"
-	PageSchemaOrder        PageSchema = "order"
-	PageSchemaOpportunity  PageSchema = "opportunity"
-	PageSchemaMeterCounter PageSchema = "meter_counter"
-)
-
-func (e PageSchema) ToPointer() *PageSchema {
-	return &e
-}
-func (e *PageSchema) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "contact":
-		fallthrough
-	case "contract":
-		fallthrough
-	case "meter":
-		fallthrough
-	case "order":
-		fallthrough
-	case "opportunity":
-		fallthrough
-	case "meter_counter":
-		*e = PageSchema(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PageSchema: %v", v)
-	}
-}
 
 type Page struct {
 	AdditionalProperties any              `additionalProperties:"true" json:"-"`
@@ -55,10 +14,14 @@ type Page struct {
 	Content map[string]any `json:"content,omitempty"`
 	// The design of the page
 	Design map[string]any `json:"design,omitempty"`
+	// The schema of the detail page
+	DetailSchema *string `json:"detail_schema,omitempty"`
 	// The id of the page
 	ID *string `json:"id,omitempty"`
 	// Send the flag as true to delete the page
 	IsDeleted *bool `json:"is_deleted,omitempty"`
+	// Whether the page is a detail page
+	IsDetail *bool `json:"is_detail,omitempty"`
 	// Whether the page is the entry route
 	IsEntryRoute *bool `json:"is_entry_route,omitempty"`
 	// Whether the page is public
@@ -74,8 +37,8 @@ type Page struct {
 	// The path of the page
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	Path   *string      `json:"path,omitempty"`
-	Schema []PageSchema `json:"schema,omitempty"`
+	Path   *string  `json:"path,omitempty"`
+	Schema []string `json:"schema,omitempty"`
 	// The slug of the page
 	Slug string `json:"slug"`
 	// The conditions that need to be met for the page to be shown
@@ -121,6 +84,13 @@ func (p *Page) GetDesign() map[string]any {
 	return p.Design
 }
 
+func (p *Page) GetDetailSchema() *string {
+	if p == nil {
+		return nil
+	}
+	return p.DetailSchema
+}
+
 func (p *Page) GetID() *string {
 	if p == nil {
 		return nil
@@ -133,6 +103,13 @@ func (p *Page) GetIsDeleted() *bool {
 		return nil
 	}
 	return p.IsDeleted
+}
+
+func (p *Page) GetIsDetail() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.IsDetail
 }
 
 func (p *Page) GetIsEntryRoute() *bool {
@@ -184,7 +161,7 @@ func (p *Page) GetPath() *string {
 	return p.Path
 }
 
-func (p *Page) GetSchema() []PageSchema {
+func (p *Page) GetSchema() []string {
 	if p == nil {
 		return nil
 	}

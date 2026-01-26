@@ -176,6 +176,8 @@ func (c *CertificateDetails) GetStatus() *GetOrgPortalConfigStatus {
 
 // PasswordPolicy - Password policy for the portal
 type PasswordPolicy struct {
+	// Maximum password length
+	MaximumLength *int64 `json:"maximum_length,omitempty"`
 	// Minimum password length
 	MinimumLength *int64 `json:"minimum_length,omitempty"`
 	// Require lowercase characters
@@ -186,6 +188,13 @@ type PasswordPolicy struct {
 	RequireSymbols *bool `json:"require_symbols,omitempty"`
 	// Require uppercase characters
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
+}
+
+func (p *PasswordPolicy) GetMaximumLength() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.MaximumLength
 }
 
 func (p *PasswordPolicy) GetMinimumLength() *int64 {
@@ -357,7 +366,7 @@ type EntityEditRules struct {
 	NumberOfDaysBeforeRestriction *int64             `json:"number_of_days_before_restriction,omitempty"`
 	RuleType                      *RuleType          `json:"rule_type,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Slug *shared.EntitySlug `json:"slug,omitempty"`
+	Slug *string `json:"slug,omitempty"`
 }
 
 func (e *EntityEditRules) GetAllowedDecrement() *string {
@@ -423,7 +432,7 @@ func (e *EntityEditRules) GetRuleType() *RuleType {
 	return e.RuleType
 }
 
-func (e *EntityEditRules) GetSlug() *shared.EntitySlug {
+func (e *EntityEditRules) GetSlug() *string {
 	if e == nil {
 		return nil
 	}
@@ -590,6 +599,9 @@ const (
 	SelfRegistrationSettingAllowWithContactCreation    SelfRegistrationSetting = "ALLOW_WITH_CONTACT_CREATION"
 	SelfRegistrationSettingAllowWithoutContactCreation SelfRegistrationSetting = "ALLOW_WITHOUT_CONTACT_CREATION"
 	SelfRegistrationSettingDeny                        SelfRegistrationSetting = "DENY"
+	SelfRegistrationSettingAlwaysCreateContact         SelfRegistrationSetting = "ALWAYS_CREATE_CONTACT"
+	SelfRegistrationSettingDisallowCompletely          SelfRegistrationSetting = "DISALLOW_COMPLETELY"
+	SelfRegistrationSettingBlockIfPortalUserExists     SelfRegistrationSetting = "BLOCK_IF_PORTAL_USER_EXISTS"
 )
 
 func (e SelfRegistrationSetting) ToPointer() *SelfRegistrationSetting {
@@ -606,6 +618,12 @@ func (e *SelfRegistrationSetting) UnmarshalJSON(data []byte) error {
 	case "ALLOW_WITHOUT_CONTACT_CREATION":
 		fallthrough
 	case "DENY":
+		fallthrough
+	case "ALWAYS_CREATE_CONTACT":
+		fallthrough
+	case "DISALLOW_COMPLETELY":
+		fallthrough
+	case "BLOCK_IF_PORTAL_USER_EXISTS":
 		*e = SelfRegistrationSetting(v)
 		return nil
 	default:
@@ -742,6 +760,8 @@ type GetOrgPortalConfigResponseBody struct {
 	SelfRegistrationSetting *SelfRegistrationSetting    `json:"self_registration_setting,omitempty"`
 	// Journeys automatically opened on a portal user action
 	TriggeredJourneys []TriggeredJourneys `json:"triggered_journeys,omitempty"`
+	// Enable or disable user account self management
+	UserAccountSelfManagement *bool `json:"user_account_self_management,omitempty"`
 }
 
 func (g *GetOrgPortalConfigResponseBody) GetAccessToken() *string {
@@ -1015,6 +1035,13 @@ func (g *GetOrgPortalConfigResponseBody) GetTriggeredJourneys() []TriggeredJourn
 		return nil
 	}
 	return g.TriggeredJourneys
+}
+
+func (g *GetOrgPortalConfigResponseBody) GetUserAccountSelfManagement() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.UserAccountSelfManagement
 }
 
 type GetOrgPortalConfigResponse struct {

@@ -31,6 +31,8 @@ type EmailTemplates struct {
 	// Entity ID
 	OnWorkflowStepAssigned *string `json:"onWorkflowStepAssigned,omitempty"`
 	// Entity ID
+	PartnerInvitation *string `json:"partnerInvitation,omitempty"`
+	// Entity ID
 	VerifyCodeToSetPassword *string `json:"verifyCodeToSetPassword,omitempty"`
 }
 
@@ -123,6 +125,13 @@ func (e *EmailTemplates) GetOnWorkflowStepAssigned() *string {
 		return nil
 	}
 	return e.OnWorkflowStepAssigned
+}
+
+func (e *EmailTemplates) GetPartnerInvitation() *string {
+	if e == nil {
+		return nil
+	}
+	return e.PartnerInvitation
 }
 
 func (e *EmailTemplates) GetVerifyCodeToSetPassword() *string {

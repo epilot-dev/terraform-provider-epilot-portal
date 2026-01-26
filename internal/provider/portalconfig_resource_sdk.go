@@ -107,6 +107,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 				r.CognitoDetails.PasswordPolicy = nil
 			} else {
 				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigV3PasswordPolicy{}
+				r.CognitoDetails.PasswordPolicy.MaximumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MaximumLength)
 				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
 				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
 				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
@@ -185,6 +186,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			r.EmailTemplates.OnMapAPendingUser = types.StringPointerValue(resp.EmailTemplates.OnMapAPendingUser)
 			r.EmailTemplates.OnNewQuote = types.StringPointerValue(resp.EmailTemplates.OnNewQuote)
 			r.EmailTemplates.OnWorkflowStepAssigned = types.StringPointerValue(resp.EmailTemplates.OnWorkflowStepAssigned)
+			r.EmailTemplates.PartnerInvitation = types.StringPointerValue(resp.EmailTemplates.PartnerInvitation)
 			r.EmailTemplates.VerifyCodeToSetPassword = types.StringPointerValue(resp.EmailTemplates.VerifyCodeToSetPassword)
 		}
 		r.Enabled = types.BoolPointerValue(resp.Enabled)
@@ -201,11 +203,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 				entityActions.ActionLabel.En = types.StringPointerValue(entityActionsItem.ActionLabel.En)
 			}
 			entityActions.JourneyID = types.StringPointerValue(entityActionsItem.JourneyID)
-			if entityActionsItem.Slug != nil {
-				entityActions.Slug = types.StringValue(string(*entityActionsItem.Slug))
-			} else {
-				entityActions.Slug = types.StringNull()
-			}
+			entityActions.Slug = types.StringPointerValue(entityActionsItem.Slug)
 
 			r.EntityActions = append(r.EntityActions, entityActions)
 		}
@@ -231,13 +229,14 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			}
 		}
 		if len(resp.ExtensionHooks) > 0 {
-			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookConfig, len(resp.ExtensionHooks))
-			for extensionHookConfigKey, extensionHookConfigValue := range resp.ExtensionHooks {
-				var extensionHookConfigResult tfTypes.ExtensionHookConfig
-				extensionHookConfigResult.AppID = types.StringPointerValue(extensionHookConfigValue.AppID)
-				extensionHookConfigResult.HookID = types.StringPointerValue(extensionHookConfigValue.HookID)
+			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookSelection, len(resp.ExtensionHooks))
+			for extensionHookSelectionKey, extensionHookSelectionValue := range resp.ExtensionHooks {
+				var extensionHookSelectionResult tfTypes.ExtensionHookSelection
+				extensionHookSelectionResult.AppID = types.StringValue(extensionHookSelectionValue.AppID)
+				extensionHookSelectionResult.ExtensionID = types.StringValue(extensionHookSelectionValue.ExtensionID)
+				extensionHookSelectionResult.HookID = types.StringValue(extensionHookSelectionValue.HookID)
 
-				r.ExtensionHooks[extensionHookConfigKey] = extensionHookConfigResult
+				r.ExtensionHooks[extensionHookSelectionKey] = extensionHookSelectionResult
 			}
 		}
 		r.Extensions = []tfTypes.ExtensionConfig{}
@@ -354,6 +353,7 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 
 			r.TriggeredJourneys = append(r.TriggeredJourneys, triggeredJourneys)
 		}
+		r.UserAccountSelfManagement = types.BoolPointerValue(resp.UserAccountSelfManagement)
 	}
 
 	return diags
@@ -545,6 +545,12 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		}
 		var passwordPolicy *shared.PortalConfigV3PasswordPolicy
 		if r.CognitoDetails.PasswordPolicy != nil {
+			maximumLength := new(int64)
+			if !r.CognitoDetails.PasswordPolicy.MaximumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MaximumLength.IsNull() {
+				*maximumLength = r.CognitoDetails.PasswordPolicy.MaximumLength.ValueInt64()
+			} else {
+				maximumLength = nil
+			}
 			minimumLength := new(int64)
 			if !r.CognitoDetails.PasswordPolicy.MinimumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MinimumLength.IsNull() {
 				*minimumLength = r.CognitoDetails.PasswordPolicy.MinimumLength.ValueInt64()
@@ -576,6 +582,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 				requireUppercase = nil
 			}
 			passwordPolicy = &shared.PortalConfigV3PasswordPolicy{
+				MaximumLength:    maximumLength,
 				MinimumLength:    minimumLength,
 				RequireLowercase: requireLowercase,
 				RequireNumbers:   requireNumbers,
@@ -807,6 +814,12 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		} else {
 			onWorkflowStepAssigned = nil
 		}
+		partnerInvitation := new(string)
+		if !r.EmailTemplates.PartnerInvitation.IsUnknown() && !r.EmailTemplates.PartnerInvitation.IsNull() {
+			*partnerInvitation = r.EmailTemplates.PartnerInvitation.ValueString()
+		} else {
+			partnerInvitation = nil
+		}
 		verifyCodeToSetPassword := new(string)
 		if !r.EmailTemplates.VerifyCodeToSetPassword.IsUnknown() && !r.EmailTemplates.VerifyCodeToSetPassword.IsNull() {
 			*verifyCodeToSetPassword = r.EmailTemplates.VerifyCodeToSetPassword.ValueString()
@@ -827,6 +840,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			OnMapAPendingUser:            onMapAPendingUser,
 			OnNewQuote:                   onNewQuote,
 			OnWorkflowStepAssigned:       onWorkflowStepAssigned,
+			PartnerInvitation:            partnerInvitation,
 			VerifyCodeToSetPassword:      verifyCodeToSetPassword,
 		}
 	}
@@ -863,9 +877,9 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		} else {
 			journeyID = nil
 		}
-		slug := new(shared.EntitySlug)
+		slug := new(string)
 		if !r.EntityActions[entityActionsIndex].Slug.IsUnknown() && !r.EntityActions[entityActionsIndex].Slug.IsNull() {
-			*slug = shared.EntitySlug(r.EntityActions[entityActionsIndex].Slug.ValueString())
+			*slug = r.EntityActions[entityActionsIndex].Slug.ValueString()
 		} else {
 			slug = nil
 		}
@@ -902,24 +916,22 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			Type: typeVar1,
 		}
 	}
-	extensionHooks := make(map[string]*shared.ExtensionHookConfig)
+	extensionHooks := make(map[string]*shared.ExtensionHookSelection)
 	for extensionHooksKey := range r.ExtensionHooks {
-		var extensionHooksInst *shared.ExtensionHookConfig
-		appID := new(string)
-		if !r.ExtensionHooks[extensionHooksKey].AppID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].AppID.IsNull() {
-			*appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
-		} else {
-			appID = nil
-		}
-		hookID := new(string)
-		if !r.ExtensionHooks[extensionHooksKey].HookID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].HookID.IsNull() {
-			*hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
-		} else {
-			hookID = nil
-		}
-		extensionHooksInst = &shared.ExtensionHookConfig{
-			AppID:  appID,
-			HookID: hookID,
+		var extensionHooksInst *shared.ExtensionHookSelection
+		var appID string
+		appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
+
+		var extensionID string
+		extensionID = r.ExtensionHooks[extensionHooksKey].ExtensionID.ValueString()
+
+		var hookID string
+		hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
+
+		extensionHooksInst = &shared.ExtensionHookSelection{
+			AppID:       appID,
+			ExtensionID: extensionID,
+			HookID:      hookID,
 		}
 		extensionHooks[extensionHooksKey] = extensionHooksInst
 	}
@@ -1148,6 +1160,12 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			TriggerName: triggerName,
 		})
 	}
+	userAccountSelfManagement := new(bool)
+	if !r.UserAccountSelfManagement.IsUnknown() && !r.UserAccountSelfManagement.IsNull() {
+		*userAccountSelfManagement = r.UserAccountSelfManagement.ValueBool()
+	} else {
+		userAccountSelfManagement = nil
+	}
 	out := shared.PortalConfigV3{
 		AccessToken:                 accessToken,
 		AdvancedMfa:                 advancedMfa,
@@ -1190,6 +1208,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		RegistrationIdentifiers:     registrationIdentifiers,
 		SelfRegistrationSetting:     selfRegistrationSetting,
 		TriggeredJourneys:           triggeredJourneys,
+		UserAccountSelfManagement:   userAccountSelfManagement,
 	}
 
 	return &out, diags
@@ -1334,6 +1353,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		}
 		var passwordPolicy *shared.UpsertPortalConfigV3PasswordPolicy
 		if r.CognitoDetails.PasswordPolicy != nil {
+			maximumLength := new(int64)
+			if !r.CognitoDetails.PasswordPolicy.MaximumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MaximumLength.IsNull() {
+				*maximumLength = r.CognitoDetails.PasswordPolicy.MaximumLength.ValueInt64()
+			} else {
+				maximumLength = nil
+			}
 			minimumLength := new(int64)
 			if !r.CognitoDetails.PasswordPolicy.MinimumLength.IsUnknown() && !r.CognitoDetails.PasswordPolicy.MinimumLength.IsNull() {
 				*minimumLength = r.CognitoDetails.PasswordPolicy.MinimumLength.ValueInt64()
@@ -1365,6 +1390,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 				requireUppercase = nil
 			}
 			passwordPolicy = &shared.UpsertPortalConfigV3PasswordPolicy{
+				MaximumLength:    maximumLength,
 				MinimumLength:    minimumLength,
 				RequireLowercase: requireLowercase,
 				RequireNumbers:   requireNumbers,
@@ -1596,6 +1622,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		} else {
 			onWorkflowStepAssigned = nil
 		}
+		partnerInvitation := new(string)
+		if !r.EmailTemplates.PartnerInvitation.IsUnknown() && !r.EmailTemplates.PartnerInvitation.IsNull() {
+			*partnerInvitation = r.EmailTemplates.PartnerInvitation.ValueString()
+		} else {
+			partnerInvitation = nil
+		}
 		verifyCodeToSetPassword := new(string)
 		if !r.EmailTemplates.VerifyCodeToSetPassword.IsUnknown() && !r.EmailTemplates.VerifyCodeToSetPassword.IsNull() {
 			*verifyCodeToSetPassword = r.EmailTemplates.VerifyCodeToSetPassword.ValueString()
@@ -1616,6 +1648,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			OnMapAPendingUser:            onMapAPendingUser,
 			OnNewQuote:                   onNewQuote,
 			OnWorkflowStepAssigned:       onWorkflowStepAssigned,
+			PartnerInvitation:            partnerInvitation,
 			VerifyCodeToSetPassword:      verifyCodeToSetPassword,
 		}
 	}
@@ -1652,9 +1685,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		} else {
 			journeyID = nil
 		}
-		slug := new(shared.EntitySlug)
+		slug := new(string)
 		if !r.EntityActions[entityActionsIndex].Slug.IsUnknown() && !r.EntityActions[entityActionsIndex].Slug.IsNull() {
-			*slug = shared.EntitySlug(r.EntityActions[entityActionsIndex].Slug.ValueString())
+			*slug = r.EntityActions[entityActionsIndex].Slug.ValueString()
 		} else {
 			slug = nil
 		}
@@ -1691,24 +1724,22 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			Type: typeVar1,
 		}
 	}
-	extensionHooks := make(map[string]*shared.ExtensionHookConfig)
+	extensionHooks := make(map[string]*shared.ExtensionHookSelection)
 	for extensionHooksKey := range r.ExtensionHooks {
-		var extensionHooksInst *shared.ExtensionHookConfig
-		appID := new(string)
-		if !r.ExtensionHooks[extensionHooksKey].AppID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].AppID.IsNull() {
-			*appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
-		} else {
-			appID = nil
-		}
-		hookID := new(string)
-		if !r.ExtensionHooks[extensionHooksKey].HookID.IsUnknown() && !r.ExtensionHooks[extensionHooksKey].HookID.IsNull() {
-			*hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
-		} else {
-			hookID = nil
-		}
-		extensionHooksInst = &shared.ExtensionHookConfig{
-			AppID:  appID,
-			HookID: hookID,
+		var extensionHooksInst *shared.ExtensionHookSelection
+		var appID string
+		appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
+
+		var extensionID string
+		extensionID = r.ExtensionHooks[extensionHooksKey].ExtensionID.ValueString()
+
+		var hookID string
+		hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
+
+		extensionHooksInst = &shared.ExtensionHookSelection{
+			AppID:       appID,
+			ExtensionID: extensionID,
+			HookID:      hookID,
 		}
 		extensionHooks[extensionHooksKey] = extensionHooksInst
 	}
@@ -1888,6 +1919,12 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			TriggerName: triggerName,
 		})
 	}
+	userAccountSelfManagement := new(bool)
+	if !r.UserAccountSelfManagement.IsUnknown() && !r.UserAccountSelfManagement.IsNull() {
+		*userAccountSelfManagement = r.UserAccountSelfManagement.ValueBool()
+	} else {
+		userAccountSelfManagement = nil
+	}
 	out := shared.UpsertPortalConfigV3{
 		AccessToken:                 accessToken,
 		AdvancedMfa:                 advancedMfa,
@@ -1925,6 +1962,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		RegistrationIdentifiers:     registrationIdentifiers,
 		SelfRegistrationSetting:     selfRegistrationSetting,
 		TriggeredJourneys:           triggeredJourneys,
+		UserAccountSelfManagement:   userAccountSelfManagement,
 	}
 
 	return &out, diags

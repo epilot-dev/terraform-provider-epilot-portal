@@ -7,24 +7,45 @@ import (
 	"net/http"
 )
 
-type RequestBody struct {
+type EntityContext struct {
 	// Entity ID
 	ID           *string `json:"_id,omitempty"`
 	IsMainEntity *bool   `json:"is_main_entity,omitempty"`
 }
 
-func (r *RequestBody) GetID() *string {
-	if r == nil {
+func (e *EntityContext) GetID() *string {
+	if e == nil {
 		return nil
 	}
-	return r.ID
+	return e.ID
 }
 
-func (r *RequestBody) GetIsMainEntity() *bool {
+func (e *EntityContext) GetIsMainEntity() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.IsMainEntity
+}
+
+// ReplaceECPTemplateVariablesRequestBody - ECPVariables payload
+type ReplaceECPTemplateVariablesRequestBody struct {
+	EntityContext map[string]EntityContext `json:"entity_context,omitempty"`
+	// Entity ID
+	TemplateID *string `json:"template_id,omitempty"`
+}
+
+func (r *ReplaceECPTemplateVariablesRequestBody) GetEntityContext() map[string]EntityContext {
 	if r == nil {
 		return nil
 	}
-	return r.IsMainEntity
+	return r.EntityContext
+}
+
+func (r *ReplaceECPTemplateVariablesRequestBody) GetTemplateID() *string {
+	if r == nil {
+		return nil
+	}
+	return r.TemplateID
 }
 
 type CustomerPortal struct {
@@ -97,10 +118,46 @@ func (i *InstallerPortal) GetUserEmailsOnEntity() []string {
 	return i.UserEmailsOnEntity
 }
 
+type PortalUser struct {
+	EntityLink         *string  `json:"entityLink,omitempty"`
+	InvitationLink     *string  `json:"invitationLink,omitempty"`
+	NewDocumentLink    *string  `json:"newDocumentLink,omitempty"`
+	UserEmailsOnEntity []string `json:"userEmailsOnEntity,omitempty"`
+}
+
+func (p *PortalUser) GetEntityLink() *string {
+	if p == nil {
+		return nil
+	}
+	return p.EntityLink
+}
+
+func (p *PortalUser) GetInvitationLink() *string {
+	if p == nil {
+		return nil
+	}
+	return p.InvitationLink
+}
+
+func (p *PortalUser) GetNewDocumentLink() *string {
+	if p == nil {
+		return nil
+	}
+	return p.NewDocumentLink
+}
+
+func (p *PortalUser) GetUserEmailsOnEntity() []string {
+	if p == nil {
+		return nil
+	}
+	return p.UserEmailsOnEntity
+}
+
 // ReplaceECPTemplateVariablesResponseBody - Replaced portal template variables successfully.
 type ReplaceECPTemplateVariablesResponseBody struct {
 	CustomerPortal  *CustomerPortal  `json:"customerPortal,omitempty"`
 	InstallerPortal *InstallerPortal `json:"installerPortal,omitempty"`
+	PortalUser      *PortalUser      `json:"portalUser,omitempty"`
 }
 
 func (r *ReplaceECPTemplateVariablesResponseBody) GetCustomerPortal() *CustomerPortal {
@@ -115,6 +172,13 @@ func (r *ReplaceECPTemplateVariablesResponseBody) GetInstallerPortal() *Installe
 		return nil
 	}
 	return r.InstallerPortal
+}
+
+func (r *ReplaceECPTemplateVariablesResponseBody) GetPortalUser() *PortalUser {
+	if r == nil {
+		return nil
+	}
+	return r.PortalUser
 }
 
 type ReplaceECPTemplateVariablesResponse struct {

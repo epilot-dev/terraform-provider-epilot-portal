@@ -148,7 +148,6 @@ func (e *SchemasExtensionHookMeterReadingPlausibilityCheckType) UnmarshalJSON(da
 }
 
 // ExtensionHookMeterReadingPlausibilityCheckSchemas - Hook that checks the plausibility of meter readings before they are saved. This hook makes a POST call whenever a user is trying to save a meter reading. The expected response to the call is:
-//
 //   - 200:
 //     If meter reading is plausible, the response should contain:
 //   - valid: true
@@ -162,6 +161,8 @@ type ExtensionHookMeterReadingPlausibilityCheckSchemas struct {
 	// Response to the call
 	Resolved SchemasExtensionHookMeterReadingPlausibilityCheckResolved `json:"resolved"`
 	Type     SchemasExtensionHookMeterReadingPlausibilityCheckType     `json:"type"`
+	// If true, requests are made from a set of static IP addresses and only allow connections to a set of allowed IP addresses. Get in touch with us to add your IP addresses.
+	UseStaticIps *bool `default:"false" json:"use_static_ips"`
 }
 
 func (e ExtensionHookMeterReadingPlausibilityCheckSchemas) MarshalJSON() ([]byte, error) {
@@ -208,6 +209,13 @@ func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetType() SchemasExt
 		return SchemasExtensionHookMeterReadingPlausibilityCheckType("")
 	}
 	return e.Type
+}
+
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetUseStaticIps() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.UseStaticIps
 }
 
 type SchemasExtensionHookCostDataRetrievalCall struct {
@@ -325,6 +333,8 @@ type ExtensionHookCostDataRetrievalSchemas struct {
 	ID       *string                                   `json:"id,omitempty"`
 	Resolved *SchemasResolved                          `json:"resolved,omitempty"`
 	Type     SchemasExtensionHookCostDataRetrievalType `json:"type"`
+	// If true, requests are made from a set of static IP addresses and only allow connections to a set of allowed IP addresses. Get in touch with us to add your IP addresses.
+	UseStaticIps *bool `default:"false" json:"use_static_ips"`
 }
 
 func (e ExtensionHookCostDataRetrievalSchemas) MarshalJSON() ([]byte, error) {
@@ -371,6 +381,13 @@ func (e *ExtensionHookCostDataRetrievalSchemas) GetType() SchemasExtensionHookCo
 		return SchemasExtensionHookCostDataRetrievalType("")
 	}
 	return e.Type
+}
+
+func (e *ExtensionHookCostDataRetrievalSchemas) GetUseStaticIps() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.UseStaticIps
 }
 
 type Call struct {
@@ -488,6 +505,8 @@ type Schemas struct {
 	ID       *string   `json:"id,omitempty"`
 	Resolved *Resolved `json:"resolved,omitempty"`
 	Type     Type      `json:"type"`
+	// If true, requests are made from a set of static IP addresses and only allow connections to a set of allowed IP addresses. Get in touch with us to add your IP addresses.
+	UseStaticIps *bool `default:"false" json:"use_static_ips"`
 }
 
 func (s Schemas) MarshalJSON() ([]byte, error) {
@@ -534,6 +553,13 @@ func (s *Schemas) GetType() Type {
 		return Type("")
 	}
 	return s.Type
+}
+
+func (s *Schemas) GetUseStaticIps() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.UseStaticIps
 }
 
 type SchemasExtensionHookPriceDataRetrievalCall struct {
@@ -651,6 +677,8 @@ type ExtensionHookPriceDataRetrievalSchemas struct {
 	ID       *string                                         `json:"id,omitempty"`
 	Resolved *SchemasExtensionHookPriceDataRetrievalResolved `json:"resolved,omitempty"`
 	Type     SchemasExtensionHookPriceDataRetrievalType      `json:"type"`
+	// If true, requests are made from a set of static IP addresses and only allow connections to a set of allowed IP addresses. Get in touch with us to add your IP addresses.
+	UseStaticIps *bool `default:"false" json:"use_static_ips"`
 }
 
 func (e ExtensionHookPriceDataRetrievalSchemas) MarshalJSON() ([]byte, error) {
@@ -699,11 +727,69 @@ func (e *ExtensionHookPriceDataRetrievalSchemas) GetType() SchemasExtensionHookP
 	return e.Type
 }
 
+func (e *ExtensionHookPriceDataRetrievalSchemas) GetUseStaticIps() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.UseStaticIps
+}
+
+// AssignmentMode - Mode of contract assignment. See hook description for mode details.
+type AssignmentMode string
+
+const (
+	AssignmentModeContracts           AssignmentMode = "contracts"
+	AssignmentModeContactToContracts  AssignmentMode = "contact_to_contracts"
+	AssignmentModeContactToPortalUser AssignmentMode = "contact_to_portal_user"
+)
+
+func (e AssignmentMode) ToPointer() *AssignmentMode {
+	return &e
+}
+func (e *AssignmentMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "contracts":
+		fallthrough
+	case "contact_to_contracts":
+		fallthrough
+	case "contact_to_portal_user":
+		*e = AssignmentMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AssignmentMode: %v", v)
+	}
+}
+
+// Body - Optional JSON body to use for the call. Defaults to object with all configured identifiers grouped by entity, e.g. `{"contract": {"contract_name": "Name"}}`. Supports variable interpolation.
+type Body struct {
+}
+
+func (b Body) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *Body) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 type SchemasCall struct {
+	// Optional JSON body to use for the call. Defaults to object with all configured identifiers grouped by entity, e.g. `{"contract": {"contract_name": "Name"}}`. Supports variable interpolation.
+	Body *Body `json:"body,omitempty"`
 	// Headers to use. Supports variable interpolation.
 	Headers map[string]string `json:"headers"`
+	// HTTP method to use for the call
+	Method *string `default:"POST" json:"method"`
 	// Parameters to append to the URL. Supports variable interpolation.
 	Params map[string]string `json:"params,omitempty"`
+	// Contact ID usually retrieved from the response body, e.g. `{{CallResponse.data.contact_id}}`. If no result is passed and the request suceeds, we attempt to resolve the Contact ID automatically. Supports variable interpolation.
+	Result *string `json:"result,omitempty"`
 	// URL to call. Supports variable interpolation.
 	URL string `json:"url"`
 }
@@ -719,6 +805,13 @@ func (s *SchemasCall) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (s *SchemasCall) GetBody() *Body {
+	if s == nil {
+		return nil
+	}
+	return s.Body
+}
+
 func (s *SchemasCall) GetHeaders() map[string]string {
 	if s == nil {
 		return map[string]string{}
@@ -726,11 +819,25 @@ func (s *SchemasCall) GetHeaders() map[string]string {
 	return s.Headers
 }
 
+func (s *SchemasCall) GetMethod() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Method
+}
+
 func (s *SchemasCall) GetParams() map[string]string {
 	if s == nil {
 		return nil
 	}
 	return s.Params
+}
+
+func (s *SchemasCall) GetResult() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Result
 }
 
 func (s *SchemasCall) GetURL() string {
@@ -795,24 +902,31 @@ func (e *SchemasType) UnmarshalJSON(data []byte) error {
 	}
 }
 
-// ExtensionHookContractIdentificationSchemas - Hook that replaces the built-in contract identification for self-assignment. This hook makes a POST call whenever a user is trying to self-assign a contract to find the corresponding contract(s). The expected response to the call is:
+// ExtensionHookContractIdentificationSchemas - Hook that replaces the built-in Contract identification for self-assignment. This hook involves an HTTP request whenever a user is trying to self-assign Contract(s).
+// The expected response http status code to the call is:
+//   - 200 if found
+//   - 404 if not found
 //
-//   - 200 if found with either:
-//   - contract_id array
-//   - contact_id string
-//   - 404 if no contract is found
+// The following assignment modes are supported:
+//   - `contracts`: We expect the response to contain Contract ids (customizable using `result` property).
+//   - `contact_to_contracts`: We expect the response to contain a Contact id (customizable using `result` property) and we will assign the Contact as a Customer to the Contracts and (optionally) update the Contact attribute specified by `contact_relation_attribute` to add the matched Contact.
+//   - `contact_to_portal_user`: We expect the response to contain a Contact id (customizable using `result` property) and we will assign the Contact to the Portal User. Portal User will be able to see all data including Contracts transitively.
 //
-// If `contact_id` is provided in the response, Contracts are retrieved from this Contact. In that case, optionally, if you also specify `contact_relation_attribute`, the specified Contact attribute of the user performing the action will be modified to add the matched Contact.
+// Defaults to `contact_to_contracts` for backwards compatibility. We recommend using `contact_to_portal_user` as it does not influence the data model of business entities.
 type ExtensionHookContractIdentificationSchemas struct {
-	Auth *ExtensionAuthBlock `json:"auth,omitempty"`
-	Call SchemasCall         `json:"call"`
-	// Name of the Contact attribute to update with the matched Contact ID. Must be a Contact relation attribute supporting multiple entities.
+	// Mode of contract assignment. See hook description for mode details.
+	AssignmentMode *AssignmentMode     `default:"contact_to_contracts" json:"assignment_mode"`
+	Auth           *ExtensionAuthBlock `json:"auth,omitempty"`
+	Call           SchemasCall         `json:"call"`
+	// Name of the Contact attribute to update with the matched Contact ID when using `contact_to_contracts` mode. Must be a Contact relation attribute supporting multiple entities.
 	ContactRelationAttribute *string `json:"contact_relation_attribute,omitempty"`
 	// Explanation of the hook.
 	Explanation *Explanation `json:"explanation,omitempty"`
 	// Identifier of the hook. Should not change between updates.
 	ID   *string     `json:"id,omitempty"`
 	Type SchemasType `json:"type"`
+	// If true, requests are made from a set of static IP addresses and only allow connections to a set of allowed IP addresses. Get in touch with us to add your IP addresses.
+	UseStaticIps *bool `default:"false" json:"use_static_ips"`
 }
 
 func (e ExtensionHookContractIdentificationSchemas) MarshalJSON() ([]byte, error) {
@@ -824,6 +938,13 @@ func (e *ExtensionHookContractIdentificationSchemas) UnmarshalJSON(data []byte) 
 		return err
 	}
 	return nil
+}
+
+func (e *ExtensionHookContractIdentificationSchemas) GetAssignmentMode() *AssignmentMode {
+	if e == nil {
+		return nil
+	}
+	return e.AssignmentMode
 }
 
 func (e *ExtensionHookContractIdentificationSchemas) GetAuth() *ExtensionAuthBlock {
@@ -868,13 +989,39 @@ func (e *ExtensionHookContractIdentificationSchemas) GetType() SchemasType {
 	return e.Type
 }
 
+func (e *ExtensionHookContractIdentificationSchemas) GetUseStaticIps() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.UseStaticIps
+}
+
+// SchemasBody - Optional JSON body to use for the call. Defaults to object with all configured identifiers grouped by entity, e.g. `{"contract": {"contract_name": "Name"}}`. Supports variable interpolation.
+type SchemasBody struct {
+}
+
+func (s SchemasBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SchemasBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 type SchemasExtensionHookRegistrationIdentifiersCheckCall struct {
+	// Optional JSON body to use for the call. Defaults to object with all configured identifiers grouped by entity, e.g. `{"contract": {"contract_name": "Name"}}`. Supports variable interpolation.
+	Body *SchemasBody `json:"body,omitempty"`
 	// Headers to use. Supports variable interpolation.
 	Headers map[string]string `json:"headers"`
+	// HTTP method to use for the call
+	Method *string `default:"POST" json:"method"`
 	// Parameters to append to the URL. Supports variable interpolation.
 	Params map[string]string `json:"params,omitempty"`
-	// Contact ID usually retrieved from the response body, e.g. `{{CallResponse.data.contact_id}}`. Supports variable interpolation.
-	Result string `json:"result"`
+	// Contact ID usually retrieved from the response body, e.g. `{{CallResponse.data.contact_id}}`. If no result is passed and the request suceeds, we attempt to resolve the Contact ID automatically. Supports variable interpolation.
+	Result *string `json:"result,omitempty"`
 	// URL to call. Supports variable interpolation.
 	URL string `json:"url"`
 }
@@ -890,11 +1037,25 @@ func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) UnmarshalJSON(dat
 	return nil
 }
 
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetBody() *SchemasBody {
+	if s == nil {
+		return nil
+	}
+	return s.Body
+}
+
 func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetHeaders() map[string]string {
 	if s == nil {
 		return map[string]string{}
 	}
 	return s.Headers
+}
+
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetMethod() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Method
 }
 
 func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetParams() map[string]string {
@@ -904,9 +1065,9 @@ func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetParams() map[s
 	return s.Params
 }
 
-func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetResult() string {
+func (s *SchemasExtensionHookRegistrationIdentifiersCheckCall) GetResult() *string {
 	if s == nil {
-		return ""
+		return nil
 	}
 	return s.Result
 }
@@ -942,7 +1103,6 @@ func (e *SchemasExtensionHookRegistrationIdentifiersCheckType) UnmarshalJSON(dat
 }
 
 // ExtensionHookRegistrationIdentifiersCheckSchemas - Hook that replaces the built-in registration identifiers check. This hook makes a POST call whenever a user is trying to register to find the corresponding contact. The expected response to the call is:
-//
 //   - 200 with contact id if exactly one contact is found
 //   - 404 if no contact is found or more than contact is found
 type ExtensionHookRegistrationIdentifiersCheckSchemas struct {
@@ -951,6 +1111,8 @@ type ExtensionHookRegistrationIdentifiersCheckSchemas struct {
 	// Identifier of the hook. Should not change between updates.
 	ID   *string                                              `json:"id,omitempty"`
 	Type SchemasExtensionHookRegistrationIdentifiersCheckType `json:"type"`
+	// If true, requests are made from a set of static IP addresses and only allow connections to a set of allowed IP addresses. Get in touch with us to add your IP addresses.
+	UseStaticIps *bool `default:"false" json:"use_static_ips"`
 }
 
 func (e ExtensionHookRegistrationIdentifiersCheckSchemas) MarshalJSON() ([]byte, error) {
@@ -990,6 +1152,13 @@ func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) GetType() SchemasExte
 		return SchemasExtensionHookRegistrationIdentifiersCheckType("")
 	}
 	return e.Type
+}
+
+func (e *ExtensionHookRegistrationIdentifiersCheckSchemas) GetUseStaticIps() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.UseStaticIps
 }
 
 type HooksType string
@@ -1379,6 +1548,8 @@ func (o *OptionsObj) GetType() ExtensionType {
 type Extension struct {
 	// Identifier of the app from which the extension was installed. Should not change between updates.
 	AppID *string `json:"app_id,omitempty"`
+	// Name of the app from which the extension was installed. Should not change between updates.
+	AppName *string `json:"app_name,omitempty"`
 	// Name of the extension.
 	Description *Description `json:"description,omitempty"`
 	// Hooks that influence the behavior of Portal.
@@ -1400,6 +1571,13 @@ func (e *Extension) GetAppID() *string {
 		return nil
 	}
 	return e.AppID
+}
+
+func (e *Extension) GetAppName() *string {
+	if e == nil {
+		return nil
+	}
+	return e.AppName
 }
 
 func (e *Extension) GetDescription() *Description {

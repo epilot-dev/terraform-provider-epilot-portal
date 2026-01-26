@@ -43,9 +43,11 @@ type PortalPageResourceModel struct {
 	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
 	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
 	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
+	DetailSchema         types.String                    `tfsdk:"detail_schema"`
 	Domain               types.String                    `queryParam:"style=form,explode=true,name=domain" tfsdk:"domain"`
 	ID                   types.String                    `tfsdk:"id"`
 	IsDeleted            types.Bool                      `tfsdk:"is_deleted"`
+	IsDetail             types.Bool                      `tfsdk:"is_detail"`
 	IsEntryRoute         types.Bool                      `tfsdk:"is_entry_route"`
 	IsPublic             types.Bool                      `tfsdk:"is_public"`
 	IsSystem             types.Bool                      `tfsdk:"is_system"`
@@ -172,6 +174,11 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 					mapvalidator.ValueStringsAre(validators.IsValidJSON()),
 				},
 			},
+			"detail_schema": schema.StringAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `The schema of the detail page`,
+			},
 			"domain": schema.StringAttribute{
 				Required: true,
 				PlanModifiers: []planmodifier.String{
@@ -187,6 +194,11 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				Description: `Send the flag as true to delete the page`,
+			},
+			"is_detail": schema.BoolAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `Whether the page is a detail page`,
 			},
 			"is_entry_route": schema.BoolAttribute{
 				Computed:    true,

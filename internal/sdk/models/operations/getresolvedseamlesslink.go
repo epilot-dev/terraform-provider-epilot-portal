@@ -7,32 +7,11 @@ import (
 	"net/http"
 )
 
-type ContextEntities struct {
-	// Entity id
-	EntityID string `queryParam:"name=entity_id"`
-	// Entity schema
-	EntitySchema string `queryParam:"name=entity_schema"`
-}
-
-func (c *ContextEntities) GetEntityID() string {
-	if c == nil {
-		return ""
-	}
-	return c.EntityID
-}
-
-func (c *ContextEntities) GetEntitySchema() string {
-	if c == nil {
-		return ""
-	}
-	return c.EntitySchema
-}
-
 type GetResolvedSeamlessLinkRequest struct {
 	// ID of the App if the Portal Extension was installed from an App
 	AppID *string `queryParam:"style=form,explode=true,name=app_id"`
 	// If the request is in a context of certain entities (i.e. the user in in a context of a specific contract), links can be customized for that. Portal User and Contact entities are automatically part of the context.
-	ContextEntities []ContextEntities `queryParam:"style=form,explode=true,name=context_entities"`
+	ContextEntities []shared.ContextEntity `queryParam:"style=form,explode=true,name=context_entities"`
 	// ID of the Portal Extension
 	ExtensionID string `queryParam:"style=form,explode=true,name=extension_id"`
 	// ID of the Seamless Link
@@ -46,7 +25,7 @@ func (g *GetResolvedSeamlessLinkRequest) GetAppID() *string {
 	return g.AppID
 }
 
-func (g *GetResolvedSeamlessLinkRequest) GetContextEntities() []ContextEntities {
+func (g *GetResolvedSeamlessLinkRequest) GetContextEntities() []shared.ContextEntity {
 	if g == nil {
 		return nil
 	}

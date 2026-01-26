@@ -54,7 +54,7 @@ type PortalConfigResourceModel struct {
 	EntityActions               []tfTypes.EntityActions                             `tfsdk:"entity_actions"`
 	EntityEditRules             jsontypes.Normalized                                `tfsdk:"entity_edit_rules"`
 	EntityIdentifiers           *tfTypes.UpsertPortalConfigV3EntityIdentifiers      `tfsdk:"entity_identifiers"`
-	ExtensionHooks              map[string]tfTypes.ExtensionHookConfig              `tfsdk:"extension_hooks"`
+	ExtensionHooks              map[string]tfTypes.ExtensionHookSelection           `tfsdk:"extension_hooks"`
 	Extensions                  []tfTypes.ExtensionConfig                           `tfsdk:"extensions"`
 	FeatureFlags                jsontypes.Normalized                                `tfsdk:"feature_flags"`
 	FeatureSettings             *tfTypes.UpsertPortalConfigV3FeatureSettings        `tfsdk:"feature_settings"`
@@ -77,6 +77,7 @@ type PortalConfigResourceModel struct {
 	RegistrationIdentifiers     jsontypes.Normalized                                `tfsdk:"registration_identifiers"`
 	SelfRegistrationSetting     types.String                                        `tfsdk:"self_registration_setting"`
 	TriggeredJourneys           []tfTypes.PortalConfigV3TriggeredJourneys           `tfsdk:"triggered_journeys"`
+	UserAccountSelfManagement   types.Bool                                          `tfsdk:"user_account_self_management"`
 }
 
 func (r *PortalConfigResource) Metadata(ctx context.Context, req resource.MetadataRequest, resp *resource.MetadataResponse) {
@@ -228,6 +229,11 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 						Computed: true,
 						Optional: true,
 						Attributes: map[string]schema.Attribute{
+							"maximum_length": schema.Int64Attribute{
+								Computed:    true,
+								Optional:    true,
+								Description: `Maximum password length`,
+							},
 							"minimum_length": schema.Int64Attribute{
 								Computed:    true,
 								Optional:    true,
@@ -444,6 +450,11 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 						Optional:    true,
 						Description: `Entity ID`,
 					},
+					"partner_invitation": schema.StringAttribute{
+						Computed:    true,
+						Optional:    true,
+						Description: `Entity ID`,
+					},
 					"verify_code_to_set_password": schema.StringAttribute{
 						Computed:    true,
 						Optional:    true,
@@ -487,20 +498,7 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 						"slug": schema.StringAttribute{
 							Computed:    true,
 							Optional:    true,
-							Description: `URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]`,
-							Validators: []validator.String{
-								stringvalidator.OneOf(
-									"contact",
-									"contract",
-									"file",
-									"order",
-									"opportunity",
-									"product",
-									"price",
-									"meter",
-									"meter_counter",
-								),
-							},
+							Description: `URL-friendly identifier for the entity schema`,
 						},
 					},
 				},
@@ -548,12 +546,26 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 						"app_id": schema.StringAttribute{
 							Computed:    true,
 							Optional:    true,
-							Description: `The ID of the app that is being hooked into.`,
+							Description: `The ID of the selected app. Not Null`,
+							Validators: []validator.String{
+								speakeasy_stringvalidators.NotNull(),
+							},
+						},
+						"extension_id": schema.StringAttribute{
+							Computed:    true,
+							Optional:    true,
+							Description: `The ID of the selected extension. Not Null`,
+							Validators: []validator.String{
+								speakeasy_stringvalidators.NotNull(),
+							},
 						},
 						"hook_id": schema.StringAttribute{
 							Computed:    true,
 							Optional:    true,
-							Description: `The ID of the hook that is being configured.`,
+							Description: `The ID of the selected hook. Not Null`,
+							Validators: []validator.String{
+								speakeasy_stringvalidators.NotNull(),
+							},
 						},
 					},
 				},
@@ -756,12 +768,15 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 			"self_registration_setting": schema.StringAttribute{
 				Computed:    true,
 				Optional:    true,
-				Description: `must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]`,
+				Description: `must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY", "ALWAYS_CREATE_CONTACT", "DISALLOW_COMPLETELY", "BLOCK_IF_PORTAL_USER_EXISTS"]`,
 				Validators: []validator.String{
 					stringvalidator.OneOf(
 						"ALLOW_WITH_CONTACT_CREATION",
 						"ALLOW_WITHOUT_CONTACT_CREATION",
 						"DENY",
+						"ALWAYS_CREATE_CONTACT",
+						"DISALLOW_COMPLETELY",
+						"BLOCK_IF_PORTAL_USER_EXISTS",
 					),
 				},
 			},
@@ -793,6 +808,11 @@ func (r *PortalConfigResource) Schema(ctx context.Context, req resource.SchemaRe
 					},
 				},
 				Description: `Journeys automatically opened on a portal user action`,
+			},
+			"user_account_self_management": schema.BoolAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `Enable or disable user account self management`,
 			},
 		},
 	}

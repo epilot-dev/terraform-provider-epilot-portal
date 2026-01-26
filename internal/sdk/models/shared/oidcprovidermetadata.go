@@ -2,11 +2,21 @@
 
 package shared
 
+import (
+	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
+)
+
 type OIDCProviderMetadata struct {
 	// URL of the authorization endpoint
 	AuthorizationEndpoint *string `json:"authorization_endpoint,omitempty"`
+	// URL to redirect to after logout completes
+	LogoutRedirectURI *string `json:"logout_redirect_uri,omitempty"`
+	// URL of the logout/end session endpoint
+	LogoutURI *string `json:"logout_uri,omitempty"`
 	// URL of the mobile redirect URI
 	MobileRedirectURI *string `json:"mobile_redirect_uri,omitempty"`
+	// When true, skip SSO logout redirect during "login as" flow. Use this for providers that cannot redirect back after logout and would break log in as.
+	SkipLoginAsLogout *bool `default:"false" json:"skip_login_as_logout"`
 	// The password for the test auth, only used for testing on auth code flow
 	TestAuthPassword *string `json:"test_auth_password,omitempty"`
 	// The username for the test auth, only used for testing on auth code flow
@@ -17,6 +27,17 @@ type OIDCProviderMetadata struct {
 	UserinfoEndpoint *string `json:"userinfo_endpoint,omitempty"`
 }
 
+func (o OIDCProviderMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(o, "", false)
+}
+
+func (o *OIDCProviderMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &o, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (o *OIDCProviderMetadata) GetAuthorizationEndpoint() *string {
 	if o == nil {
 		return nil
@@ -24,11 +45,32 @@ func (o *OIDCProviderMetadata) GetAuthorizationEndpoint() *string {
 	return o.AuthorizationEndpoint
 }
 
+func (o *OIDCProviderMetadata) GetLogoutRedirectURI() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LogoutRedirectURI
+}
+
+func (o *OIDCProviderMetadata) GetLogoutURI() *string {
+	if o == nil {
+		return nil
+	}
+	return o.LogoutURI
+}
+
 func (o *OIDCProviderMetadata) GetMobileRedirectURI() *string {
 	if o == nil {
 		return nil
 	}
 	return o.MobileRedirectURI
+}
+
+func (o *OIDCProviderMetadata) GetSkipLoginAsLogout() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.SkipLoginAsLogout
 }
 
 func (o *OIDCProviderMetadata) GetTestAuthPassword() *string {

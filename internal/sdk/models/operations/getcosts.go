@@ -45,6 +45,10 @@ func (e *QueryParamInterval) UnmarshalJSON(data []byte) error {
 }
 
 type GetCostsRequest struct {
+	// App ID for consumption data.
+	AppID *string `queryParam:"style=form,explode=true,name=app_id"`
+	// Additional entities to include in the context for variable interpolation in the hook.
+	ContextEntities []shared.ContextEntity `queryParam:"style=form,explode=true,name=context_entities"`
 	// Extension ID for cost data.
 	ExtensionID string `queryParam:"style=form,explode=true,name=extensionId"`
 	// Start date for cost data (ISO 8601 format).
@@ -53,8 +57,10 @@ type GetCostsRequest struct {
 	HookID string `queryParam:"style=form,explode=true,name=hookId"`
 	// Interval between cost data points (e.g., PT15M for 15 minutes, PT1H for hourly). Not all intervals have to be supported.
 	Interval QueryParamInterval `queryParam:"style=form,explode=true,name=interval"`
-	// Meter ID for cost data.
-	MeterID string `queryParam:"style=form,explode=true,name=meter_id"`
+	// Meter ID for cost data. Deprecated - use context_entities instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	MeterID *string `queryParam:"style=form,explode=true,name=meter_id"`
 	// End date for cost data (ISO 8601 format).
 	To time.Time `queryParam:"style=form,explode=true,name=to"`
 }
@@ -68,6 +74,20 @@ func (g *GetCostsRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (g *GetCostsRequest) GetAppID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.AppID
+}
+
+func (g *GetCostsRequest) GetContextEntities() []shared.ContextEntity {
+	if g == nil {
+		return nil
+	}
+	return g.ContextEntities
 }
 
 func (g *GetCostsRequest) GetExtensionID() string {
@@ -98,9 +118,9 @@ func (g *GetCostsRequest) GetInterval() QueryParamInterval {
 	return g.Interval
 }
 
-func (g *GetCostsRequest) GetMeterID() string {
+func (g *GetCostsRequest) GetMeterID() *string {
 	if g == nil {
-		return ""
+		return nil
 	}
 	return g.MeterID
 }

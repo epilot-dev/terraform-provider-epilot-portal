@@ -6,7 +6,7 @@ type ContractIdentifier struct {
 	// Name of the identifier/attribute
 	Name *string `json:"name,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Schema *EntitySlug `json:"schema,omitempty"`
+	Schema *string `json:"schema,omitempty"`
 }
 
 func (c *ContractIdentifier) GetName() *string {
@@ -16,7 +16,7 @@ func (c *ContractIdentifier) GetName() *string {
 	return c.Name
 }
 
-func (c *ContractIdentifier) GetSchema() *EntitySlug {
+func (c *ContractIdentifier) GetSchema() *string {
 	if c == nil {
 		return nil
 	}

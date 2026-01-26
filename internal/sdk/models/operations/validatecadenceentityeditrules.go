@@ -13,7 +13,7 @@ type ValidateCadenceEntityEditRulesRequest struct {
 	// Entity id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Entity Type
-	Slug shared.EntitySlug `pathParam:"style=simple,explode=false,name=slug"`
+	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 }
 
 func (v *ValidateCadenceEntityEditRulesRequest) GetAttribute() *string {
@@ -30,9 +30,9 @@ func (v *ValidateCadenceEntityEditRulesRequest) GetID() string {
 	return v.ID
 }
 
-func (v *ValidateCadenceEntityEditRulesRequest) GetSlug() shared.EntitySlug {
+func (v *ValidateCadenceEntityEditRulesRequest) GetSlug() string {
 	if v == nil {
-		return shared.EntitySlug("")
+		return ""
 	}
 	return v.Slug
 }

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 5a857039-7f4b-42d5-86fd-449767242ed2
 management:
-  docChecksum: e4bc94f22669b9c9d0ff0b0ae1d8332b
+  docChecksum: 5026c12467cde746e465f99e199c615a
   docVersion: 1.0.0
   speakeasyVersion: 1.685.3
   generationVersion: 2.795.8
-  releaseVersion: 0.26.1
-  configChecksum: 8e942ee0e0e654a86112cfa2579a2e01
+  releaseVersion: 0.26.2
+  configChecksum: 7183243e99a62827a1bfe57a1e184f7d
   repoURL: https://github.com/epilot-dev/terraform-provider-epilot-product.git
   repoSubDirectory: .
   published: true
 persistentEdits:
-  generation_id: c10f1640-32b1-47d7-b6d1-76d725367e66
-  pristine_commit_hash: ce8eb87a89c666414e09485cfde2de35134e43ff
-  pristine_tree_hash: f55643ac6766a9cd8b121010762cbfd4fb55ec35
+  generation_id: 1fef5093-726e-4cf9-8270-37bc0cd6b306
+  pristine_commit_hash: 53f890592b5e5a3554e16c461d0ab60213e1dda4
+  pristine_tree_hash: c96c8700d08c283619df59f6c23dcb350efad3de
 features:
   go:
     additionalProperties: 0.1.1
@@ -56,8 +56,8 @@ trackedFiles:
     pristine_git_object: bf5e9beb5fabd4206606db03bbea4212c5b91a67
   examples/provider/provider.tf:
     id: 954e955c0240
-    last_write_checksum: sha1:68daf3c3686d9d57c0aca8672c44ab22364b6f97
-    pristine_git_object: 4c4d6c13f008d64a42ef789f56d51bcbc80dc49b
+    last_write_checksum: sha1:844aa86c8e2d382846995e5286879a16c8f23f23
+    pristine_git_object: 52c1b32a50f3c66a33f15e52cc7ae943a19d16f9
   examples/resources/epilot-portal_portal_config/import-by-string-id.tf:
     id: 5959b9233a25
     last_write_checksum: sha1:3de44db0ce45eb75f4d0eeeddef2e6d50722d6b3
@@ -68,8 +68,8 @@ trackedFiles:
     pristine_git_object: d2dc2648909442ab4c42fff1f37b9045b22bbbb9
   examples/resources/epilot-portal_portal_config/resource.tf:
     id: 6fe38c15140a
-    last_write_checksum: sha1:7c7bf6580b3662b918c1b9ed0ee1a8e9d9e863b4
-    pristine_git_object: 21b037711d92671fe435e76999da8c0556ee93e5
+    last_write_checksum: sha1:3a289c98eae73bb16a15335ca6cfcde26b8b2f22
+    pristine_git_object: e3d5d76b12b18901a95c896df110d57f25ec9f21
   examples/resources/epilot-portal_portal_page/import-by-string-id.tf:
     id: d5683ec82098
     last_write_checksum: sha1:5ba04ec0c47b8b1b5ae8e9341d47bc1bf66d42b9
@@ -80,8 +80,8 @@ trackedFiles:
     pristine_git_object: 4a7353c1b1d2b38b4eda132e6cb35ca1607da92c
   examples/resources/epilot-portal_portal_page/resource.tf:
     id: e1899d9e6c4c
-    last_write_checksum: sha1:1f3699bf78bb3e68181abed6d1b7971bb5ec1926
-    pristine_git_object: 20879ea84872b3c3c80a51102bcf14559dccbc54
+    last_write_checksum: sha1:b74fc45e333fc0848a0c418951004024f8f5c4d8
+    pristine_git_object: 2253daafdf3b160b1fb6ce6874549d7a863ae4e5
   go.mod:
     id: c47645c391ad
     last_write_checksum: sha1:1b6458e27fe60a00e6244d93d2c34e64bcdb3ffd
@@ -180,40 +180,40 @@ trackedFiles:
     pristine_git_object: 0ea64fbeb1fd7709d7241a8e06d34bfe9d0323d3
   internal/provider/portalconfig_data_source.go:
     id: 36aabcf4b5b2
-    last_write_checksum: sha1:b5ec2e8939378acd57b6308f725f58a6937acfd8
-    pristine_git_object: 08f3e140bb513b2b71dd19f986ef9180a68c6bd2
+    last_write_checksum: sha1:65747c7cc737092b36ee4b69b3b50e8e74908e23
+    pristine_git_object: 0e7ec43429d8a289b96f47597ab8c4cf82f9b41a
   internal/provider/portalconfig_data_source_sdk.go:
     id: bc5c2e8d678c
-    last_write_checksum: sha1:a2281c5f24f38d26c19a7f4c781f2d421c88d269
-    pristine_git_object: 243b9d1b0f0c7b8070792acb94ccb0e8592fce56
+    last_write_checksum: sha1:f72a0deaeb4e8733857983fa7e406eb930fe40d8
+    pristine_git_object: 0e8ac43d169aea1d8642a6f6cb8f85997a859431
   internal/provider/portalconfig_resource.go:
     id: 77c3c5478196
-    last_write_checksum: sha1:797be5b39a698267a3f7fa801ce29eb62caf18de
-    pristine_git_object: 72b01246ceef50fbb779bf6f7c6aa03a2f1f30b4
+    last_write_checksum: sha1:b5e5f348b7f19afb5df8b3688830d03bcc5648bc
+    pristine_git_object: 836af497440fa34a9dcf62372150c02903620f15
   internal/provider/portalconfig_resource_sdk.go:
     id: 152d71e2a6f1
-    last_write_checksum: sha1:ac6f17093f2153f064a2aed48c59d55ec50ef513
-    pristine_git_object: 2f9f16826262150a09ad265a17a158959e279e86
+    last_write_checksum: sha1:e8f7e308cf95f717174853bbdb0200180121e45d
+    pristine_git_object: acbb0a515e1e67026b95f3c29955ed37d75c912e
   internal/provider/portalpage_data_source.go:
     id: 48fa36c8b186
-    last_write_checksum: sha1:0f4a0a42f62f330658dd7b9b6cb26ab00e6e3d88
-    pristine_git_object: f6239a0ac1a2f62ee6ee4ef5fa3225a34472bf20
+    last_write_checksum: sha1:3dd99abc695662d9bed3f225c9674a60db6fb6d5
+    pristine_git_object: fcdb28be69edaa1a32e27c58fe0a7e26ad014b98
   internal/provider/portalpage_data_source_sdk.go:
     id: 40381c07a006
-    last_write_checksum: sha1:355077e344d7616570f728f6e3e2c630b232dcfd
-    pristine_git_object: 0d72982f69ac34d592c9b1035140d5de1ea7d098
+    last_write_checksum: sha1:e9b61a5a2d3b92e1d6aa40a82de4ce478d2a1031
+    pristine_git_object: 6c9e7f8a668f1f5666b54eeb83dc6700b23938d4
   internal/provider/portalpage_resource.go:
     id: bb40cee2c540
-    last_write_checksum: sha1:b298388d3047a044a9534884e9bef46de5eb0926
-    pristine_git_object: ffb43df87d789bed3a9b1407801f07b1ee6eb683
+    last_write_checksum: sha1:2ab578e088c7a12627172c362844304f0aeab50f
+    pristine_git_object: bd7d448b17a08496e2971017fa7aa99a7b2752d3
   internal/provider/portalpage_resource_sdk.go:
     id: 9602eef44469
-    last_write_checksum: sha1:bf35d74972740b51bf0bdff42188deb990326b1d
-    pristine_git_object: 0979e36ef3bd2afc4c9b3f6f776c6063603eb40e
+    last_write_checksum: sha1:e5a88acc4473a49f9929f426887e8ef7bcf7dca7
+    pristine_git_object: 2123e82fc2be0214a980538d29836edb65a16fda
   internal/provider/provider.go:
     id: 1e7e86841cf3
-    last_write_checksum: sha1:f96d4febdbc717db90925eba31e7ca051bfbd310
-    pristine_git_object: 5b700f1de19a84f2dc5b37a6f7ada1050a9e5769
+    last_write_checksum: sha1:2a3fda0fbc32276bf0ad9e09f315d28adc26d2ec
+    pristine_git_object: 304347515a23e3b742abcc8246a71aa7ffe08f1d
   internal/provider/reflect/diags.go:
     id: 35b6b44972e2
     last_write_checksum: sha1:ace8bc53054bb1d8ee8689acf3e4323de75a6297
@@ -300,8 +300,8 @@ trackedFiles:
     pristine_git_object: 6918d04af81451ee50ab23298ac8c3b584fe5ac3
   internal/provider/types/email_templates.go:
     id: eb3a9f95f885
-    last_write_checksum: sha1:6f462fce8ee1dc1bb462034bef572338bd893c31
-    pristine_git_object: b8eb765c1a9cce86fed0e896d208ebadbbf6126f
+    last_write_checksum: sha1:9bf18cf3788b11ad15ffdf59aa783c6e1c43eb2f
+    pristine_git_object: 7adf9d6a292052eb2dca5ac47c5088b87ef84f44
   internal/provider/types/entity_actions.go:
     id: f618b48b08ac
     last_write_checksum: sha1:ef443dc0d653f79aa8d887d9c332d3109aa74f8a
@@ -310,10 +310,10 @@ trackedFiles:
     id: ec6183813a7b
     last_write_checksum: sha1:2024e8a7bcb6c25898c55a8079586c2c7dbc43f3
     pristine_git_object: 9b8a70bf301991f824d67ae36f14569fe79fad3f
-  internal/provider/types/extension_hook_config.go:
-    id: e784ebd3a56a
-    last_write_checksum: sha1:a056acd66a98c7b8c78bfae6eb5e8cd3748283b5
-    pristine_git_object: 7c5d4b81782e0e4a315ccaf212e9e27fd6c3daf4
+  internal/provider/types/extension_hook_selection.go:
+    id: 59c5e01ecb03
+    last_write_checksum: sha1:f44170cb397e197676923e996eb24e3ff29ff2a6
+    pristine_git_object: 03450f44643c8f61d0d8b426ad804f95f9c58e33
   internal/provider/types/image_uri.go:
     id: f67acb618576
     last_write_checksum: sha1:c8e4f6313630f4e2309e31df1ee4cba27c286f45
@@ -364,8 +364,8 @@ trackedFiles:
     pristine_git_object: df1322a745e5b0b89fb1435abbe3c1c225b46135
   internal/provider/types/upsert_portal_config_v3_password_policy.go:
     id: d64fe6be2ae9
-    last_write_checksum: sha1:4e7a3d064b8b7e0a077bd00e45d964b051fb935d
-    pristine_git_object: 4a8bb6ab9f45832bce60130fcd3fc7521e01061d
+    last_write_checksum: sha1:585fbad861bbe4c23ffe8b6fe28d3309e06a1948
+    pristine_git_object: d6bdaa622465065821c2c7de654da141e8f21fb5
   internal/provider/types/upsert_portal_config_v3_type.go:
     id: 0db2ca5b5ec2
     last_write_checksum: sha1:c9baca8f14e508710acee7084aa6e199f35736a5
@@ -386,22 +386,22 @@ trackedFiles:
     id: 7dd623b28b8c
     last_write_checksum: sha1:a4b014ae9abed2df56e5dfd3dc7673bfc66c7ef6
     pristine_git_object: ea099ce7500bfb7a532366c3d972f8baab9e045c
+  internal/sdk/billingaccounts.go:
+    id: 2943588015df
+    last_write_checksum: sha1:71ce7a897c49dce1dd3702a9061fa4fb4397261e
+    pristine_git_object: ef933dbc7f9ace4d68c230cba5d36177f86c9f80
   internal/sdk/docs/models/operations/option.md:
     id: a35737eb2e35
     last_write_checksum: sha1:08cfee5d266c9d82987e448f6c98a143aa42c5f8
     pristine_git_object: 35d8a1e2ad48a64702c6a654ac8880dabec053b0
   internal/sdk/ecp.go:
     id: 73642bf2893d
-    last_write_checksum: sha1:ba649373ffe57561757791fc26c3f2c1161c4f0c
-    pristine_git_object: 2b6194c20058eac7a9ea4de4dfa5880196799f20
+    last_write_checksum: sha1:47fa1547a53087b966083737538c964454df87fe
+    pristine_git_object: 8680d4e0e95f868e7644ad34108477b615319eec
   internal/sdk/ecpadmin.go:
     id: 9cc1ad1c6b85
-    last_write_checksum: sha1:5c0ad3411a3de0c0b682a594f11e92052ce72020
-    pristine_git_object: fa558d5df4818f91aed981e49cd1eb5ea65f6732
-  internal/sdk/internal.go:
-    id: 5d775b232b26
-    last_write_checksum: sha1:1ade5b065dd119207413de3feb48ae5658284fd3
-    pristine_git_object: 39dbcf32fb0b93ded3b39eb71408795cab3430b1
+    last_write_checksum: sha1:1e99d092aa229a1e348883b5b8e10e35ac0913d8
+    pristine_git_object: 61df741a55e6a470d1db698b6689938c3b28bbdc
   internal/sdk/internal/config/sdkconfiguration.go:
     id: 6af0bc8635d9
     last_write_checksum: sha1:0540824ec98d0f47ae05c89873786a752949f45b
@@ -464,8 +464,8 @@ trackedFiles:
     pristine_git_object: 0415b536598baa76c5d1a8fc32816ed1b83f9137
   internal/sdk/login.go:
     id: eaf4fd93ec34
-    last_write_checksum: sha1:6b3183862804ed68f2c4d8cd3776d1ec65d6e19b
-    pristine_git_object: ce519adaa07e1ded64e137d510f8854152908e7c
+    last_write_checksum: sha1:6d0d51149f98c907591131bc74207a61da7e1180
+    pristine_git_object: b2a57a697f753101a4683daf590febe0c47fedba
   internal/sdk/models/errors/sdkerror.go:
     id: 19b5a8d3586b
     last_write_checksum: sha1:5d65fce5049df7c5113e11c9ccb1e4c46b91901c
@@ -476,16 +476,24 @@ trackedFiles:
     pristine_git_object: 17a042d3e4e3cfb487df675cafd4c39b1387b8c8
   internal/sdk/models/operations/cantriggerportalflow.go:
     id: 2c0a909db400
-    last_write_checksum: sha1:e37987ba15bb5c3947cf31db79d135f74c23c1c3
-    pristine_git_object: b791a506e025f1760c1b1be580470c6c3ab13758
+    last_write_checksum: sha1:2ea1fd890b67472220909eaedcbfe3378c376bca
+    pristine_git_object: f987915271b25fa17f52b448f0c6b9e35b8875e3
   internal/sdk/models/operations/checkcontactexists.go:
     id: 4e944a87393c
     last_write_checksum: sha1:c99da7833759823c87b8dd996ac9c7dd05ff6347
     pristine_git_object: 275a329175f301c48c3134e2204f01da8ed1382d
+  internal/sdk/models/operations/checkcontactexistsv3.go:
+    id: 8094c1db809f
+    last_write_checksum: sha1:14bb592c882a41a0f0bdca4c3e52853b4464f659
+    pristine_git_object: e3f646f4b68de7266979c1b3353caf4200adde14
   internal/sdk/models/operations/configuredistribution.go:
     id: b051dd2641b3
     last_write_checksum: sha1:cd64255aba2f6afaf55ac72b98faf5a84709407f
     pristine_git_object: ecfb29f03e7e1d95c34ffa1592577616899cc402
+  internal/sdk/models/operations/configuredistributionv3.go:
+    id: 994fc27c2346
+    last_write_checksum: sha1:e908d050c30926f71b7023a5bd65fa1fc6db35da
+    pristine_git_object: 76546dc541ab5de53306b833f414a5c854a374d4
   internal/sdk/models/operations/confirmuser.go:
     id: bbacef22dc02
     last_write_checksum: sha1:a5dd5b1de261e1e1104ff6ac952f42f2f456f4eb
@@ -496,8 +504,8 @@ trackedFiles:
     pristine_git_object: f13cf07cccb8959ef844dcd6ce73d9aaafcbcca8
   internal/sdk/models/operations/createcustomentityactivity.go:
     id: 10d5e61c8399
-    last_write_checksum: sha1:c5081c4d3562c51a2bbb70f341a2c9a1f520e874
-    pristine_git_object: 712845def149b23151f197bd7930ec15cc7574c6
+    last_write_checksum: sha1:35826b9433109ceccbe54878c1d9056b3ca1784f
+    pristine_git_object: 0e0ad6e00a514a06911e37818e05f2d2477820ae
   internal/sdk/models/operations/createportalconfig.go:
     id: b16d41cf9381
     last_write_checksum: sha1:0848d92ee2b38b7117d196f16d908a46babdb90e
@@ -514,6 +522,10 @@ trackedFiles:
     id: 2caa197308da
     last_write_checksum: sha1:940e1b8b6d11195ad88ad7561496489f9c910c14
     pristine_git_object: a2a3c5c9fb28fa9181557e75ac94e7d486fdd063
+  internal/sdk/models/operations/createuserv3.go:
+    id: 6b37ad06ebfd
+    last_write_checksum: sha1:f1aad98c9cf177d43a59526de49969ae2dc93d59
+    pristine_git_object: 597d1c8568e5c0eb4f3cb6c263308fecb7643c8f
   internal/sdk/models/operations/deleteentityfile.go:
     id: b358cb8bc056
     last_write_checksum: sha1:df0350faf3860d9631786b373deba97b8ac06f98
@@ -542,14 +554,22 @@ trackedFiles:
     id: a955699d6536
     last_write_checksum: sha1:4ad3e77dcdcc7dc3434aeb7e994f0ec6e2f31d46
     pristine_git_object: c4c5a256bd1f19dc330a5676b6b90aebd941064b
+  internal/sdk/models/operations/disablepartner.go:
+    id: 29770e116631
+    last_write_checksum: sha1:0042a40d9f1c877cb96fc2f78135b59b71c0c01f
+    pristine_git_object: da361cc40a7b7b1dcece1f6f350b92c34afc0e14
+  internal/sdk/models/operations/enablepartner.go:
+    id: faac14773aeb
+    last_write_checksum: sha1:392f009c8d28c3c0fe3179764983ea24b42b9773
+    pristine_git_object: b318d167152f11244616a7904f1c19413c461ece
   internal/sdk/models/operations/extrapermissionattributes.go:
     id: 671074f12af2
     last_write_checksum: sha1:f8c6505fac1d00c4709e1f6124d0ba6fcecac42f
     pristine_git_object: bd2f9e29e393c1755b0ed7a9b46f6b0a95d86892
   internal/sdk/models/operations/fetchportalusersbyrelatedentity.go:
     id: 22b5f4abed51
-    last_write_checksum: sha1:53c1915973a3386e9ac024e396133866fdd07818
-    pristine_git_object: d2d46f86e98b2d41032a818fe54d61c0eaa3bc12
+    last_write_checksum: sha1:bc2b4994d04127cada6296f35de7aca2e5b725ab
+    pristine_git_object: 1bfe7ef11f32cd526310f86a5bd0149f444b22e8
   internal/sdk/models/operations/getallcontracts.go:
     id: dc61a3d21493
     last_write_checksum: sha1:db0c45c91931661356fa41d4f9b9eb292281eb2e
@@ -578,14 +598,18 @@ trackedFiles:
     id: 4589117ffff5
     last_write_checksum: sha1:da2c8ffd0833fc0c506c08a741a813aa3acf8c90
     pristine_git_object: 264b6d851bc5fd865278ac1c304d542a5aa171b6
+  internal/sdk/models/operations/getbillingaccount.go:
+    id: 65078e2dd467
+    last_write_checksum: sha1:26cfbb18c93f4306fdddad46f1292ca1a88cd90a
+    pristine_git_object: a84ac5f5eeb47767edb3dc9a7ea90be9ad3181f8
   internal/sdk/models/operations/getbillingevents.go:
     id: 8c7892197c47
     last_write_checksum: sha1:060243570cad22e59f0ec92f63176a4a008942e3
     pristine_git_object: c0e5871884424f0223d53519e79e1497797866be
   internal/sdk/models/operations/getconsumption.go:
     id: 1f37426ba6ad
-    last_write_checksum: sha1:b90445c55254dad66a590115593b117a7c51cf3a
-    pristine_git_object: 0242a63bd81f481b3edfda61ecaf41856a4c0a9e
+    last_write_checksum: sha1:7daef0acd9e9385ee068b4cb9833f237480b677c
+    pristine_git_object: 3725f993a83187e4dd9a87671e06dbc15f4cf1e9
   internal/sdk/models/operations/getcontact.go:
     id: da07c87764a5
     last_write_checksum: sha1:45b0e52271596a7f2ec813fb786dff2c92cef241
@@ -596,8 +620,8 @@ trackedFiles:
     pristine_git_object: f96de7f0dc97eec7816569331546763232b8210a
   internal/sdk/models/operations/getcosts.go:
     id: 3de672afa86c
-    last_write_checksum: sha1:9b8818e6c3446ea191e415821b45ae03fbfb7ac1
-    pristine_git_object: 761dea92981cd083d2af7c0d5af403643c55f493
+    last_write_checksum: sha1:bc27e45fe236c60aeae8d977578ef604ff2bf19b
+    pristine_git_object: c51cae78b1d0b41efeb77143ab621e75474aa360
   internal/sdk/models/operations/getcustomerbalance.go:
     id: ddcefd5d1a81
     last_write_checksum: sha1:d546f8ec559dd5c5c0ab8b78b5e71fbe6b33716b
@@ -614,18 +638,26 @@ trackedFiles:
     id: f336fb8e8094
     last_write_checksum: sha1:049580a80a9396c2fe258f077e2ff12bf5704ccd
     pristine_git_object: 5e89b8f9a6e82ee7cd0c4d234a3ad2ff20ee7dea
+  internal/sdk/models/operations/getemailtemplatesbyportalid.go:
+    id: 098f58f9898d
+    last_write_checksum: sha1:2781328fedc437620e57205126f125641979185c
+    pristine_git_object: a4da3985e97a8a26788df325fd4bcf4d0946064b
   internal/sdk/models/operations/getentityactivityfeed.go:
     id: 5a19128b83b4
-    last_write_checksum: sha1:3f88f436ea33e914506a584128d344e46d7c68c9
-    pristine_git_object: 52686f8cc0af54cd84ff98f04b0e059596549e4d
+    last_write_checksum: sha1:3f7ddd5ee2de6c8b73c83a49ef95b9c6bb84de9b
+    pristine_git_object: 184d5bf1621718f9f5194989b9199df318babe44
   internal/sdk/models/operations/getentityidentifiers.go:
     id: ed8763977d8e
-    last_write_checksum: sha1:147c1f0bcfd934a4a64edb71dc4e21c2782b40e5
-    pristine_git_object: 7d327e112a8621c6e360b68eade9b7b18673d628
+    last_write_checksum: sha1:95a9fab793273f3516018b66b4e3ca11ea561974
+    pristine_git_object: 983c945fb4f32b01d425c18d85c3d60eb53d28fe
   internal/sdk/models/operations/getexternallinks.go:
     id: 23113e0c41d2
     last_write_checksum: sha1:c5b0e28ba8d401a2428aba556bbf41c3f91bc35f
     pristine_git_object: 68d789a82b490d483a4f066cfc07fb26ff763974
+  internal/sdk/models/operations/getexternallinksv3.go:
+    id: 53305776d9ff
+    last_write_checksum: sha1:08d8196ab0bf337cb0a11e199da7f4ae3d2a205d
+    pristine_git_object: 51b4e32da861043cdc686ecc9a4e912c29693685
   internal/sdk/models/operations/getfilebyid.go:
     id: 6d99f0de66e7
     last_write_checksum: sha1:e62844d29eacb3e6bde03a36c01a2df3a2190154
@@ -634,10 +666,6 @@ trackedFiles:
     id: "175407819090"
     last_write_checksum: sha1:51a84bfaac2839f3c650f4d935277506592fc0cb
     pristine_git_object: 6a279c28183e7fe3bb2e14839e0e7394650c4ffa
-  internal/sdk/models/operations/getjuicesettings.go:
-    id: 78785320fa0e
-    last_write_checksum: sha1:fb7a5c4d5a25a445975c20bc1cca1650c5aa31ca
-    pristine_git_object: 7b318122d64fb7b7242cc65710163f8ac6f96784
   internal/sdk/models/operations/getopportunity.go:
     id: e7b6248530a0
     last_write_checksum: sha1:4a1ac64e2957602567043834bb075c17e143a2f7
@@ -656,8 +684,12 @@ trackedFiles:
     pristine_git_object: 3c70e05f3880a33305410ba48b1931a60686737b
   internal/sdk/models/operations/getorgportalconfig.go:
     id: f18c1e45e753
-    last_write_checksum: sha1:bd638de94a7368c6678efee0cc3ebf82d4312fa4
-    pristine_git_object: c95e01957f5cc5d4bd80460481ba91cae17b88de
+    last_write_checksum: sha1:35a64213abbdb7396162c60032ce9a3666aee6c3
+    pristine_git_object: 1e1647b755bcae488e1da129208ca0b6cfbadae8
+  internal/sdk/models/operations/getorgportalconfigv3.go:
+    id: 3b1db43678a6
+    last_write_checksum: sha1:323300b6ff96957567a33dfe491d927a7d02b6df
+    pristine_git_object: f4848d24cefc65b9e9f6351c4a785af91aeed6e4
   internal/sdk/models/operations/getportalconfig.go:
     id: 26e4c8a7272e
     last_write_checksum: sha1:91a630e31a3e3babe3fc4ced869d5fe247a08d80
@@ -674,6 +706,10 @@ trackedFiles:
     id: 599b2deb6269
     last_write_checksum: sha1:19aa25920499f4a7220380c4369a03692de7fd7c
     pristine_git_object: 2c6c2c89ce21f97b819b0d38fbf6985ae55de2b0
+  internal/sdk/models/operations/getportalextensionsv3.go:
+    id: 75195123204b
+    last_write_checksum: sha1:822cbc660e4af6ce89c9cef0d2e423563c586f60
+    pristine_git_object: b512407f5675648df510e9317dec75cd3b7416bd
   internal/sdk/models/operations/getportalpage.go:
     id: 1e10ddae63e2
     last_write_checksum: sha1:0e586f7348d067c26e55ced08dd2a729a20155a6
@@ -688,20 +724,24 @@ trackedFiles:
     pristine_git_object: 08474a63aa36553981e0054b825029966ca00e07
   internal/sdk/models/operations/getportalpages.go:
     id: a0a1e0922013
-    last_write_checksum: sha1:3a4b104b0f75b0bac5dec2f3c5e9aaf6a3f8b845
-    pristine_git_object: b084af307c72ddd051433eb2b83348dcec34cdcf
+    last_write_checksum: sha1:66385407892c590dbe062b04eccffa6bdcd0556f
+    pristine_git_object: da9943932ff8d428228682e49153456e90dc8ee2
   internal/sdk/models/operations/getportaluser.go:
     id: 2bab8b494939
     last_write_checksum: sha1:a0b3f51604488bc8c96ed2e9d2af101a621196b9
     pristine_git_object: ac2e76705329f9b7ecb96ef28afa4fec453314bb
+  internal/sdk/models/operations/getportaluserentity.go:
+    id: f749a3ed1186
+    last_write_checksum: sha1:2264f5e6f0eeb1fe3b34bec1e78efdcbb2f56e98
+    pristine_git_object: f73049075dd206fdb8fd77c540a599d1a820cc1c
   internal/sdk/models/operations/getportalwidgets.go:
     id: 42f4cf107dd7
     last_write_checksum: sha1:81ff732b9d03893584fbf8dc8481bbc360a0fce4
     pristine_git_object: 1894dccab2097f45d26abc8d8d2a22fa7445f030
   internal/sdk/models/operations/getprices.go:
     id: 8c23c212a100
-    last_write_checksum: sha1:427a16d0496e8434258fbbf75de0726b5156585c
-    pristine_git_object: 7d078c23a750e87defd2b0ecb7463e8b8a83f1c5
+    last_write_checksum: sha1:2f9330d10981c2f6ca22386a754b411c2b3efba7
+    pristine_git_object: 8cf03f49f026a4d876aeac4f934e327eb5ea1c67
   internal/sdk/models/operations/getpublicpages.go:
     id: 467c4ce5fae1
     last_write_checksum: sha1:d33f7362be920a5d3ba38dc854179e04dfff632c
@@ -710,10 +750,18 @@ trackedFiles:
     id: 7482cadd36d5
     last_write_checksum: sha1:d759dd658c0dbe216aee971613c5bd87ff260f1c
     pristine_git_object: 53dda33919fbaca8cb78a5aa1f858f61883771fc
+  internal/sdk/models/operations/getpublicportalconfigv3.go:
+    id: 9e107df186b7
+    last_write_checksum: sha1:8ee68ee1472cccfa0b6a39d6c2e4e63c5e0ec925
+    pristine_git_object: 052cc5a27a6a9d29aea00bcc6f18d5df605cc7a4
   internal/sdk/models/operations/getpublicportalextensiondetails.go:
     id: 5123fb6e7d95
     last_write_checksum: sha1:1bedd3fc212da585b57fd86f637fb9923ae7e9bc
     pristine_git_object: 3b5556445b734216656d85f3b1d2884460dba121
+  internal/sdk/models/operations/getpublicportalextensiondetailsv3.go:
+    id: 5675b54cc754
+    last_write_checksum: sha1:b4559040dc7a484e3e855282b7dc689fdfe8096c
+    pristine_git_object: 12d3fdfe3578f2c5cd71fcef4165314eb51136ef
   internal/sdk/models/operations/getpublicportalwidgets.go:
     id: a948a019a4c7
     last_write_checksum: sha1:bc041c4e4fdef4288b49dae740e882391c0e7492
@@ -730,10 +778,14 @@ trackedFiles:
     id: 633d01150c28
     last_write_checksum: sha1:f7be490c9887dab2bc4a911c41f8708788352a58
     pristine_git_object: bf18b0154be199cf2459eb3247952e7698aab12b
+  internal/sdk/models/operations/getresolvedexternallinkv3.go:
+    id: ee506a4e492f
+    last_write_checksum: sha1:8e2694defd5d12ae371d53992a3da89e8bcbcbdf
+    pristine_git_object: d98f2fc8b1513640e844982fce62b53ebdb83106
   internal/sdk/models/operations/getresolvedseamlesslink.go:
     id: 19cfea7030da
-    last_write_checksum: sha1:9a980caf7e039452a0a9246762fd0f7d63abbf10
-    pristine_git_object: 93682aaed9a0fd30c4d402d6b6d4709dc1dbea35
+    last_write_checksum: sha1:5499464c33282ef8c22f1510253a903831173a56
+    pristine_git_object: 66b4414431ade4ab8b10b43272cad152d7704622
   internal/sdk/models/operations/getschemas.go:
     id: e9848d4004aa
     last_write_checksum: sha1:a569c011b08cb50937640aacd0dc64b4d53906a3
@@ -758,14 +810,18 @@ trackedFiles:
     id: 7b31b50a3458
     last_write_checksum: sha1:ec72dbb6d4c5faea98c86f30e6024643bbf05e7e
     pristine_git_object: 0e2fbfe60183b088482cdaa0abc8987c5fee87bd
+  internal/sdk/models/operations/invitepartner.go:
+    id: ddef861104d8
+    last_write_checksum: sha1:e9de48b26b75c945761c7ec0aae007fcc3b9b196
+    pristine_git_object: 273e16b4ad8d02e5892014b2215b25f280a19f40
   internal/sdk/models/operations/listallportalconfigs.go:
     id: b4b61a86c4db
     last_write_checksum: sha1:dc4f9fb0b4eda93332870f3102925b4c05289750
     pristine_git_object: 551b8f1c8199a3ef5373e8aaad53a2e1285701f1
-  internal/sdk/models/operations/listportalsinternal.go:
-    id: 5910685718c9
-    last_write_checksum: sha1:0bf0f65348ecf2670c1a81a7786745b63d6792bf
-    pristine_git_object: 370a52eded04dcdac093687556a142d243449e14
+  internal/sdk/models/operations/listbusinesspartners.go:
+    id: a7943f223711
+    last_write_checksum: sha1:c061766447ab34a53c3cc86230e942af6fb8eeee
+    pristine_git_object: af7e81c2abd215cdf3ced59d498cc705149f475e
   internal/sdk/models/operations/logintoportalasuser.go:
     id: 3ad048463886
     last_write_checksum: sha1:8311b6d1127691580887b0b123b97cac8eefb2d2
@@ -788,12 +844,20 @@ trackedFiles:
     pristine_git_object: f6526d47c0d331f5c866e80dc6208a7995cea992
   internal/sdk/models/operations/replaceecptemplatevariables.go:
     id: 6893ff97f0be
-    last_write_checksum: sha1:fa84f3a4b1ebf5096a6ff74011e813c128a548df
-    pristine_git_object: 8533f6696fc8bba17143e11814be7250f0976bdd
+    last_write_checksum: sha1:cccd4cc53b8a8ba97951575fabf9afabc065e4e1
+    pristine_git_object: 0768299b4ae2daf55d8e0847d6b04d98d472ac0f
   internal/sdk/models/operations/resendconfirmationemail.go:
     id: 42ebc416c70c
     last_write_checksum: sha1:79b6b340f9c4b34fd54ccc407bdaae7134dd01fd
     pristine_git_object: 07236d5f281822cfbba1b44019601515779d6241
+  internal/sdk/models/operations/resendpartnerinvitation.go:
+    id: b2ff3e1ec279
+    last_write_checksum: sha1:29302a0de58d6e0d548a703c87c5a576b434a953
+    pristine_git_object: 069edf2d357eeede6d2f1523883296d6d1e165e3
+  internal/sdk/models/operations/revokepartner.go:
+    id: 2c587c848491
+    last_write_checksum: sha1:b6a42ef815e759ec29939cfb5ac833e7c1b7ec8a
+    pristine_git_object: 088b251286c1ea20fb833543984ba3000d8bf7fd
   internal/sdk/models/operations/revoketoken.go:
     id: 9cdf0c4be62e
     last_write_checksum: sha1:be54500b0ec99f84dd5759915bef153b31cf5f16
@@ -822,14 +886,18 @@ trackedFiles:
     id: 9226292f61bc
     last_write_checksum: sha1:3fd5cf8f2114fb8f9f3561142824c21b8ccf7747
     pristine_git_object: 3131cf6b5e608d2a336f89ab6dab3675117e195c
+  internal/sdk/models/operations/ssologinv3.go:
+    id: 2f98d3b38040
+    last_write_checksum: sha1:37b71b0d0f0d7f0f65977ac043e508c3984326c8
+    pristine_git_object: 6ecc99fd77a143477778ab621db71b027e6eaf6e
   internal/sdk/models/operations/ssoredirect.go:
     id: 8b1cacdba807
     last_write_checksum: sha1:8f1774b9a3e326f0b327bb79b79ab1147092293d
     pristine_git_object: e6440a5040bc68a056d974d58565c48d26c01e42
   internal/sdk/models/operations/swapportalconfig.go:
     id: d09b90900b17
-    last_write_checksum: sha1:ec7ebbec916d3256d6b6f9dfa05c4ca2d1eb80d5
-    pristine_git_object: ea28041fa404bc4c2ae29f7d2b04efe644f1b9d7
+    last_write_checksum: sha1:68b622c79c4bb918bd2616c69ba673c9fddd8e99
+    pristine_git_object: 9506302424fdd593e24dc3fd4152b34f0a01bcdd
   internal/sdk/models/operations/trackfiledownloaded.go:
     id: 36f4020e8be6
     last_write_checksum: sha1:0ec677fd3512ad299f1771071ec564bd92985b10
@@ -838,6 +906,10 @@ trackedFiles:
     id: 3f335207b636
     last_write_checksum: sha1:9637c795ffb74988a53f2232caabf9985e551a96
     pristine_git_object: 00aa4d2a04ba5fe1c4f2ce42ab589ecaa5ad3ec8
+  internal/sdk/models/operations/triggerentityaccesseventv3.go:
+    id: c7f5609d4e1f
+    last_write_checksum: sha1:64538cb8bb8a5b86fc1f8211594fa19770a3a903
+    pristine_git_object: ff41882fd797b53cb8b692ea979351cd1425e5bd
   internal/sdk/models/operations/updatecampaignportalblockstatus.go:
     id: 735732034ac2
     last_write_checksum: sha1:468205b2959ab2106392d13b9bd884270f84cf5b
@@ -886,6 +958,10 @@ trackedFiles:
     id: 0f82322dd160
     last_write_checksum: sha1:805dc445954f2d28d43421c2534af74ed595ff99
     pristine_git_object: cfa2a11a39928fc3636a0715c80b2f82828d7e25
+  internal/sdk/models/operations/upsertemailtemplatesbyportalid.go:
+    id: 99e644b67c75
+    last_write_checksum: sha1:765b2482831ab0535bc1ae888a35cf1607a0ce14
+    pristine_git_object: be5d61cdd5430ecdbfb74c2a89b8fd6e76c01d0d
   internal/sdk/models/operations/upsertportal.go:
     id: 6dfaf196d1de
     last_write_checksum: sha1:f9ae3f54ab1182bd3fc0847945d3eaf71fc7391f
@@ -898,14 +974,22 @@ trackedFiles:
     id: ace2ec24a644
     last_write_checksum: sha1:ad948d6310c91b3e669740f0895ea9e883244cb6
     pristine_git_object: 03dffcadf28a4bc5385cec04cfe0aa55e916fd90
+  internal/sdk/models/operations/userexistsv3.go:
+    id: 9408204da81f
+    last_write_checksum: sha1:61c3792af092352adf3ceba0d5f1d0de6213d70c
+    pristine_git_object: edb81ba142cbc5914d8bc02358a0999f8f52dbbc
   internal/sdk/models/operations/validatecaarecords.go:
     id: a8415783e1c0
     last_write_checksum: sha1:65284241380a0324931d72a32c9b3f9f1d6c6ece
     pristine_git_object: 6daa48b4a290ce235e4c38381e5018ae76f24ff9
+  internal/sdk/models/operations/validatecaarecordsv3.go:
+    id: bc8c6d007799
+    last_write_checksum: sha1:4f276a22d948d62c88e03d52540aa902036899ed
+    pristine_git_object: 863f333de73b4749cf3400a579e1d3a01a89ef07
   internal/sdk/models/operations/validatecadenceentityeditrules.go:
     id: f52112feacf9
-    last_write_checksum: sha1:d06de5603f06a516bd17b20bd38a307ade47a962
-    pristine_git_object: 50b2b76a4de0c1e116862319b252013a78ffacdf
+    last_write_checksum: sha1:4e0644a6f5f31374f043468269fec7a3ec976716
+    pristine_git_object: 1e19dc479d170233ce23da6ba1b9a15282cfb8c0
   internal/sdk/models/operations/validatetoken.go:
     id: dd850341cbbf
     last_write_checksum: sha1:cd2b3ecb4f7b198b53c64ceda0031adfe12edc3e
@@ -942,6 +1026,10 @@ trackedFiles:
     id: 56554ccec5bc
     last_write_checksum: sha1:13e2707eafac4c892705754b803595f0fa7af69f
     pristine_git_object: 544a04a65568a14e2c750e4d711fe78b09a7f65c
+  internal/sdk/models/shared/billingaccount.go:
+    id: ba02673639fb
+    last_write_checksum: sha1:c809636e376fe301f9d6a8a96f2335e4aae21058
+    pristine_git_object: 0b0bba9b0d6be96a4cb4773264bad0650d837b96
   internal/sdk/models/shared/billingevent.go:
     id: 3371f8573869
     last_write_checksum: sha1:53f05b6b9e698f1c155eaef451d68aae4daa696c
@@ -958,6 +1046,10 @@ trackedFiles:
     id: e865df70477f
     last_write_checksum: sha1:af135f3b898125cd16e000e033c71cfe046fc857
     pristine_git_object: 8af585a53ff7a792baad5df838fba8730c1dda8c
+  internal/sdk/models/shared/businesspartneritem.go:
+    id: d530f3292499
+    last_write_checksum: sha1:dfa3a2f183b3e13807ebe22f80354d9530145b6a
+    pristine_git_object: ae4cf3d0f613bd340cd689dbec6d400ccfebde3a
   internal/sdk/models/shared/campaignwidget.go:
     id: 0ceb537913e0
     last_write_checksum: sha1:0407876b9461d272c6e1f81a34e3029eac4834b3
@@ -974,18 +1066,22 @@ trackedFiles:
     id: 94a57b607ebb
     last_write_checksum: sha1:34091e3c0174163cd35479e56db332c5417e50ba
     pristine_git_object: 287ef1dc728c4607ef6f25de8af5e548c385b4b6
+  internal/sdk/models/shared/contextentity.go:
+    id: 0726030f8b2a
+    last_write_checksum: sha1:f182953f68eaf8aa918521035cd53729d966c2fb
+    pristine_git_object: 10f5b62856ef16284305f885e61578a09b94b0d5
   internal/sdk/models/shared/contract.go:
     id: 3b727e11fdc9
     last_write_checksum: sha1:22c647b906f8d298f5e9794e66429f13ba596ca7
     pristine_git_object: fa1e578c98af5916f821b65246b14c56b647a973
   internal/sdk/models/shared/contractidentifier.go:
     id: 72631008f2ef
-    last_write_checksum: sha1:0f4e0238c783de2afae110a8d4ab963a3a0e0ea4
-    pristine_git_object: f5f32f705f85839ce79a1e07f3fd8a9ec43daf98
+    last_write_checksum: sha1:d9d4cd4e6bf62d5855af72ad219bae4bf0209289
+    pristine_git_object: e7214d5fe02cb5ecd22f2506e6f30dca1d2fb08a
   internal/sdk/models/shared/createuserrequest.go:
     id: 217d8239e203
-    last_write_checksum: sha1:1887b74b52ae6d10868eee31e0520bc175373854
-    pristine_git_object: 27606572fc59c025f96edd7e9ff162d99d4df589
+    last_write_checksum: sha1:af888623dc0990a889a367ac21708650322c6eb6
+    pristine_git_object: 4bfd6cb9f94efcf6f1a21588198ff62d5c7951bd
   internal/sdk/models/shared/dataretrievalitem.go:
     id: 9c5ecc02b25f
     last_write_checksum: sha1:6467480f91b5cd7536c86cacda7c620efb024392
@@ -996,36 +1092,40 @@ trackedFiles:
     pristine_git_object: 08d2bcb0579bc40faa0adb3140340f747e143928
   internal/sdk/models/shared/emailtemplates.go:
     id: 8e54de236e83
-    last_write_checksum: sha1:3b1d70cf6d5f76524e32e2997c4737aa66481076
-    pristine_git_object: b10021d9f8d46e7c51a38754a9b0a6825ec4bac9
+    last_write_checksum: sha1:356d5ef15d3a43468c00f46fdf64fb9c264ff57d
+    pristine_git_object: e6982e72cc5c0cf6fb27dc9853d31b838fba5898
   internal/sdk/models/shared/entityeditrule.go:
     id: 9da85807b77d
-    last_write_checksum: sha1:0b6a0ade7d632a5139e552cf41feceb9220c1166
-    pristine_git_object: 282d536e24b4a97003ad6305808df8196b192011
+    last_write_checksum: sha1:804a2d70030160587445451d4c37c14bd0a704e8
+    pristine_git_object: fa0e1ef19c091c6ea9817ef0548b8d7e6b4205f2
   internal/sdk/models/shared/entityfilecount.go:
     id: 2525e08c2a7d
-    last_write_checksum: sha1:44f6028f2f7d0936e4cc3b684f3f9b2306f91dff
-    pristine_git_object: 11c62942e99c608060e28c9a097e3bd0bbcb4c04
+    last_write_checksum: sha1:712c4ce58078c78e0e6385f4c63d2a8aac676b6d
+    pristine_git_object: 48dc404bb87384d898ad1364caeefb21e37d0713
+  internal/sdk/models/shared/entitygetparams.go:
+    id: db76c2d7abbf
+    last_write_checksum: sha1:3f0d92ac53c2e3ca1e47977d062da4652fa943c9
+    pristine_git_object: e5f6b4452e98bd22dc11fe600e1c6f90c94ef236
   internal/sdk/models/shared/entityitem.go:
     id: 4b864c30e1f3
-    last_write_checksum: sha1:628f774bba16a3b99fef938c088bd988bc131a8f
-    pristine_git_object: 67c18a4e8835c3d2008392ed193fb06aa4fd21dd
+    last_write_checksum: sha1:121ad22b65a75beae94a67a3dcdbf10b5353ae7f
+    pristine_git_object: 0b9efe4c890dfb730e071c84712b94e522f45590
+  internal/sdk/models/shared/entityresponse.go:
+    id: 7457589c9406
+    last_write_checksum: sha1:ad70ae72a5bad0fab890c0446348013b0630c660
+    pristine_git_object: eadfe6a6963c3d4d6162eb951bcd082042c118a0
   internal/sdk/models/shared/entityresponsegroupedwithhits.go:
     id: 853f98774dc5
-    last_write_checksum: sha1:69ae3c6617189658aafe9d5b02fb6b07516f9835
-    pristine_git_object: 6dec4721f7827232323f59499fc10b8b7bbd633d
+    last_write_checksum: sha1:84ce60ed96d34f986ca8a90fef4b28af2f0b77b1
+    pristine_git_object: 4b7bfbb594ef754309550679fbcc49bd2c01159c
   internal/sdk/models/shared/entityresponsewithhits.go:
     id: 79a04e9fec1b
     last_write_checksum: sha1:e64306b48aa34dfc9e7d454a26de5d71f13a1f78
     pristine_git_object: 0f836a7b0fc932db1a57d955ef2285346d9ddc14
   internal/sdk/models/shared/entitysearchparams.go:
     id: ed08a0940bbe
-    last_write_checksum: sha1:54cf2f05e85b4a883414beceb0888e8b9ca1505c
-    pristine_git_object: 8393a7aa13f1cd13acc08562b589f677eb3d234a
-  internal/sdk/models/shared/entityslug.go:
-    id: 979d0d5c9c5d
-    last_write_checksum: sha1:34f5e1b99f5c65e6d925fef560783239b72571a4
-    pristine_git_object: 66063d3a28b250b5c0ec7bda0dba1424ca7afaf4
+    last_write_checksum: sha1:1c24b3d8f7ee6edd8d96f7cdef48d89592202c09
+    pristine_git_object: db8751f9999b45939469ae465c8936d452b4d535
   internal/sdk/models/shared/entitywidget.go:
     id: f69aca9f376e
     last_write_checksum: sha1:41713197ddc5cebdc20cdb11816b23d6585df4ec
@@ -1036,8 +1136,8 @@ trackedFiles:
     pristine_git_object: 14d148d54181f6907c46c22214b9ab38db747845
   internal/sdk/models/shared/extension.go:
     id: 53674be07ff6
-    last_write_checksum: sha1:731ff65bc99da466a4064ae1745f7973ba9b4e49
-    pristine_git_object: ba24f8b7300861c217f884ef45c4e4aab8d9ea65
+    last_write_checksum: sha1:091520479778e7ab2edd2470269a376ff418e9a6
+    pristine_git_object: 65770a2c9c5067872ad84e81a6b04081428a73a8
   internal/sdk/models/shared/extensionauthblock.go:
     id: 4fd816fdab0d
     last_write_checksum: sha1:4ca2c7e2da45c82dcb9ea21e414f173ab1c7f6c9
@@ -1046,10 +1146,10 @@ trackedFiles:
     id: a859d0818c15
     last_write_checksum: sha1:54e831458367575430f27b01cac54edcbb92a384
     pristine_git_object: 6c333e5c5c59d9071fafa8f1f4bd1a84fdb7421d
-  internal/sdk/models/shared/extensionhookconfig.go:
-    id: f53ed7d44aa3
-    last_write_checksum: sha1:e47349a05543a60f5bcfee87e63fe156cd8408be
-    pristine_git_object: 91f1578a09ee51deb79f982e62cfca69601ce913
+  internal/sdk/models/shared/extensionhookselection.go:
+    id: 36b5049bac63
+    last_write_checksum: sha1:4b7921fee6ee1dbfa8495fbd7336a502e26f7d96
+    pristine_git_object: f616768f837bb32b856b725d1bc4a4b25f295d31
   internal/sdk/models/shared/extensionseamlesslink.go:
     id: 7e8bd30938fb
     last_write_checksum: sha1:3be73cc3fe443b752d9c3dc0a3d127a34f8bdbc7
@@ -1072,8 +1172,8 @@ trackedFiles:
     pristine_git_object: 832d67be966a2e203e068903982b6a8cff898dbc
   internal/sdk/models/shared/fileitem.go:
     id: db5ed5c8bbf6
-    last_write_checksum: sha1:55fad761ebf6f3d6e08c8f3ffa44df28962b8111
-    pristine_git_object: 992761136ea8dcb6644b8df25b455364c39065b1
+    last_write_checksum: sha1:bfdabfaf8f0ac796d8ee5d9e765e5806889bd286
+    pristine_git_object: 796666e48770a0e62695073cbf092456c91a6b02
   internal/sdk/models/shared/grant.go:
     id: dc59d40196b3
     last_write_checksum: sha1:4291f2125c4f52a5a24a9b518521eb46e5346f5b
@@ -1090,10 +1190,6 @@ trackedFiles:
     id: 570b1d6fc4cb
     last_write_checksum: sha1:47b0c84f923c7cfdb4089358fa6171482e080c74
     pristine_git_object: 0e18ec521bbb6df779a0107da12fadea20d1c010
-  internal/sdk/models/shared/juicesettings.go:
-    id: 8e82a4b26ad9
-    last_write_checksum: sha1:9d4bec1fedbf48e4dffbc765df6ac5b761b38c17
-    pristine_git_object: 1e452b50f9e4b8cfc89d930df36635191b3c4482
   internal/sdk/models/shared/meter.go:
     id: 56b367420f05
     last_write_checksum: sha1:ad1fea379c18f5c2bb67f8665b126afab4816f1c
@@ -1124,8 +1220,8 @@ trackedFiles:
     pristine_git_object: 0bf50b156a60e5be158729e4699f2ca93d7b4b21
   internal/sdk/models/shared/oidcprovidermetadata.go:
     id: 22d05e947883
-    last_write_checksum: sha1:6cb357b7339c1b076bcc86069253e2326bcd1d78
-    pristine_git_object: bcac82957ebedab843b926f4f482a1cfcac9993e
+    last_write_checksum: sha1:bf4d5ca8b56d5ad2fc1ada05d196b1eabaf10fa7
+    pristine_git_object: 8e789ba65964d84f83ee1ff460cf63158e97ef8c
   internal/sdk/models/shared/opportunity.go:
     id: 972452ab52ea
     last_write_checksum: sha1:40a4bdd29773d3e4bd63f7f893b8256d875166f6
@@ -1140,24 +1236,28 @@ trackedFiles:
     pristine_git_object: cd0c578a6d7cae3ec30797e45f977cbc48ed8ea3
   internal/sdk/models/shared/page.go:
     id: 8433a4439000
-    last_write_checksum: sha1:db2ce8b9674079fe5a211f4cff586185c0a783cd
-    pristine_git_object: dd2f104169d706b618d53d1f499e3acc77d9764d
+    last_write_checksum: sha1:9678a9699b04ed15c4a813d0ea5d16288c663865
+    pristine_git_object: 20306b7a019d6f679df37d37e2608b31c1587816
   internal/sdk/models/shared/pagerequest.go:
     id: 278612a3e288
-    last_write_checksum: sha1:d1238be420b405ffe3ac636cf31b4582aa6290bf
-    pristine_git_object: 49e9ff6450767c8a8e7603dcba6901d80032e60d
+    last_write_checksum: sha1:d496c3420fffd70d3876ca83ca3e5c017070e390
+    pristine_git_object: 11cf329ca9b5ac82109cd503724c77d33c52134f
   internal/sdk/models/shared/portalconfig.go:
     id: 3b0774bffd1b
-    last_write_checksum: sha1:44207a3eff5ac75fc8340c72962cd264ee71dbb6
-    pristine_git_object: 9719f0d85b0cee42cda16ebc9ca1abfad79ffb20
+    last_write_checksum: sha1:d5b9e3f5be2f8cd05797e6aeb8262672c9aed9a9
+    pristine_git_object: 229425f5667981433d06d93e2bb9d1972db1289f
   internal/sdk/models/shared/portalconfigv3.go:
     id: 0a13ae1046c1
-    last_write_checksum: sha1:3f21114ced3639759462a9f0c561e6b36bca3728
-    pristine_git_object: a1c5a70132b580842c9a47ef430b17f47724c3a6
+    last_write_checksum: sha1:c41b45dfda5169e60e641122e3a3ed178343a579
+    pristine_git_object: b8013ab8e691143de43bd63e82158d5035e41ad7
   internal/sdk/models/shared/portaluser.go:
     id: 377a6b5efb77
     last_write_checksum: sha1:88735d4de5321e30ac81c2d8fb6ebf1d7757ba86
     pristine_git_object: daf2c910663d057a737d4b2c2d4ee2c5e4a1abae
+  internal/sdk/models/shared/portaluserregistrationstatus.go:
+    id: 20849aea07e9
+    last_write_checksum: sha1:33db826292a6be5070935bbd6f28239b5b225ec4
+    pristine_git_object: 72dd9b886074c1cb6b91b9d45223175d031a971f
   internal/sdk/models/shared/product.go:
     id: d6c4c6b4521c
     last_write_checksum: sha1:aa006c69ccd3194b30f3549ad9e29e65d0340614
@@ -1224,12 +1324,12 @@ trackedFiles:
     pristine_git_object: a6d7f6f8074235cf0b557367311dd82275da2b9d
   internal/sdk/models/shared/upsertportalconfig.go:
     id: b07f9aea705c
-    last_write_checksum: sha1:6cfb558993f401ebac4dffa0de4010571c761fbd
-    pristine_git_object: c48e54a31ddbea4d9979d42fedf5a3458ad2e763
+    last_write_checksum: sha1:88849e6e30f547edd1a911f2e2bfc984437e5fa4
+    pristine_git_object: 389686b9a22f04d93879c912144244aff1d5c408
   internal/sdk/models/shared/upsertportalconfigv3.go:
     id: 4513cc8aac70
-    last_write_checksum: sha1:0b89bc4c5b0990e646edf76a6bdde29a1f45d407
-    pristine_git_object: 301d4f786dbf11741b5263efb41531f5be01e708
+    last_write_checksum: sha1:f4a4982a4a374877b1e9eb9fee8928952c8af9fd
+    pristine_git_object: cc1127d518319c3026053d0cd8f5f0e8c9399519
   internal/sdk/models/shared/upsertportalwidget.go:
     id: 8ad1124b2204
     last_write_checksum: sha1:08ec100214f2fedd07f92cf914c234a404a6d811
@@ -1252,16 +1352,16 @@ trackedFiles:
     pristine_git_object: e6e5a01c6e721e879e24a38a1f97e3e27d4686d4
   internal/sdk/public.go:
     id: 77166078add8
-    last_write_checksum: sha1:463ec0fc046470a57063e10c0420a60c7e8a5918
-    pristine_git_object: 7f70ea66e261ccf2f285a9d160bcab0076e0d4bf
+    last_write_checksum: sha1:c62a61b813d33894ff39a4740bd8a699d3cbc094
+    pristine_git_object: 29a42a3c4905b52e408242774a5231aff7ec4d52
   internal/sdk/retry/config.go:
     id: 7ea5fa9128b6
     last_write_checksum: sha1:f565273be789ffe0e3c160de1ac72a63cfe67fbe
     pristine_git_object: aa809fccb3445b1e2530a979dad620512f50e70f
   internal/sdk/sdk.go:
     id: 02d7190ee502
-    last_write_checksum: sha1:30343e3b8e5801e19e97d04c79b5f733471d097b
-    pristine_git_object: e2a10feacc58b87baa2600a790728efb4a52735b
+    last_write_checksum: sha1:d5513f4d7afad01ae867b97495a3db30520d3ef9
+    pristine_git_object: 47f92970223d02180057eebfb08d1d6c73644b0b
   internal/sdk/types/bigint.go:
     id: fc530b70337e
     last_write_checksum: sha1:49b004005d0461fb04b846eca062b070b0360b31
@@ -1377,10 +1477,10 @@ examples:
   createPortalConfig:
     speakeasy-default-create-portal-config:
       requestBody:
-        application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+        application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
       responses:
         "201":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "400":
           application/json: {}
         "500":
@@ -1391,10 +1491,10 @@ examples:
         query:
           domain: "customer-portal.epilot.io"
       requestBody:
-        application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
+        application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
       responses:
         "200":
-          application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
+          application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
         "401":
           application/json: {}
         "500":
@@ -1478,7 +1578,7 @@ examples:
     speakeasy-default-get-all-portal-configs:
       responses:
         "200":
-          application/json: {"data": [{"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}]}
+          application/json: {"data": [{"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}]}
         "401":
           application/json: {}
         "500":
@@ -1511,7 +1611,7 @@ examples:
           origin: "END_CUSTOMER_PORTAL"
       responses:
         "200":
-          application/json: {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}
+          application/json: {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}
         "401":
           application/json: {}
         "500":
@@ -1547,7 +1647,7 @@ examples:
           origin: "INSTALLER_PORTAL"
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "certificate_details": {"failed_reason": "CAA_ERROR"}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "certificate_details": {"failed_reason": "CAA_ERROR"}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "401":
           application/json: {}
         "500":
@@ -1556,7 +1656,7 @@ examples:
     speakeasy-default-get-portal-config:
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "401":
           application/json: {}
         "500":
@@ -1568,7 +1668,7 @@ examples:
           portal_id: "5da0a718-c822-403d-9f5d-20d4584e0528"
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "401":
           application/json: {}
         "500":
@@ -1577,7 +1677,7 @@ examples:
     speakeasy-default-get-portal-extensions:
       responses:
         "200":
-          application/json: [{"hooks": [{"auth": {"cache": {"key": "{{Options.api_key}}", "ttl": "{{AuthResponse.data.expires_in}}"}, "method": "GET", "url": "https://linear-lift.org"}, "call": {"body": {"key": "<value>", "key1": "<value>"}, "headers": {"key": "<value>"}, "url": "https://frizzy-follower.biz"}, "resolved": {"lower_limit": "{{CallResponse.data.lower_limit}}", "upper_limit": "{{CallResponse.data.upper_limit}}", "valid": "{{CallResponse.data.valid}}"}, "type": "meterReadingPlausibilityCheck"}], "id": "<id>", "links": [{"auth": {"cache": {"key": "{{Options.api_key}}", "ttl": "{{AuthResponse.data.expires_in}}"}, "method": "GET", "url": "https://linear-lift.org"}, "condition": "{{Contact.customer_number | is_not_empty}}", "id": "<id>", "name": {"en": "<value>"}, "redirect": {}, "type": "seamless"}], "name": {"en": "<value>"}}]
+          application/json: [{"hooks": [{"auth": {"cache": {"key": "{{Options.api_key}}", "ttl": "{{AuthResponse.data.expires_in}}"}, "method": "GET", "url": "https://linear-lift.org"}, "call": {"body": {"key": "<value>", "key1": "<value>"}, "headers": {"key": "<value>"}, "url": "https://frizzy-follower.biz"}, "resolved": {"lower_limit": "{{CallResponse.data.lower_limit}}", "upper_limit": "{{CallResponse.data.upper_limit}}", "valid": "{{CallResponse.data.valid}}"}, "type": "meterReadingPlausibilityCheck", "use_static_ips": false}], "id": "<id>", "links": [{"auth": {"cache": {"key": "{{Options.api_key}}", "ttl": "{{AuthResponse.data.expires_in}}"}, "method": "GET", "url": "https://linear-lift.org"}, "condition": "{{Contact.customer_number | is_not_empty}}", "id": "<id>", "name": {"en": "<value>"}, "redirect": {}, "type": "seamless"}], "name": {"en": "<value>"}}]
         "401":
           application/json: {}
         "500":
@@ -1589,7 +1689,7 @@ examples:
           id: "5da0a718-c822-403d-9f5d-20d4584e0528"
       responses:
         "200":
-          application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
+          application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
         "401":
           application/json: {}
         "500":
@@ -1700,10 +1800,10 @@ examples:
         path:
           portal_id: "5da0a718-c822-403d-9f5d-20d4584e0528"
       requestBody:
-        application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+        application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "400":
           application/json: {}
         "500":
@@ -1711,10 +1811,10 @@ examples:
   replaceECPTemplateVariables:
     speakeasy-default-replace-ECP-template-variables:
       requestBody:
-        application/json: {"key": {"_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}}
+        application/json: {"entity_context": {"key": {"_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}}, "template_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}
       responses:
         "200":
-          application/json: {"customerPortal": {"entityLink": "https://end-customer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "invitationLink": "https://end-customer-portal.ecp.dev.epilot.io/register?contactId=7aa44fb8-d60e-40cc-9a3a-ba09a1ff7f51&email=john@doe.com", "newDocumentLink": "https://end-customer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "userEmailsOnEntity": ["john@doe.com", "mary@doe.com"]}, "installerPortal": {"entityLink": "https://installer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "invitationLink": "https://installer-portal.ecp.dev.epilot.io/register?contactId=7aa44fb8-d60e-40cc-9a3a-ba09a1ff7f51&email=john@doe.com", "newDocumentLink": "https://installer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "userEmailsOnEntity": ["peter@doe.com", "jane@doe.com"]}}
+          application/json: {"customerPortal": {"entityLink": "https://end-customer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "invitationLink": "https://end-customer-portal.ecp.dev.epilot.io/register?contactId=7aa44fb8-d60e-40cc-9a3a-ba09a1ff7f51&email=john@doe.com", "newDocumentLink": "https://end-customer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "userEmailsOnEntity": ["john@doe.com", "mary@doe.com"]}, "installerPortal": {"entityLink": "https://installer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "invitationLink": "https://installer-portal.ecp.dev.epilot.io/register?contactId=7aa44fb8-d60e-40cc-9a3a-ba09a1ff7f51&email=john@doe.com", "newDocumentLink": "https://installer-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "userEmailsOnEntity": ["peter@doe.com", "jane@doe.com"]}, "portalUser": {"entityLink": "https://employee-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "invitationLink": "https://employee-portal.ecp.dev.epilot.io/register?contactId=7aa44fb8-d60e-40cc-9a3a-ba09a1ff7f51&email=john@doe.com", "newDocumentLink": "https://employee-portal.ecp.dev.epilot.io/requests/opportunities/b8fef220-abe0-4382-a704-26848f60977b", "userEmailsOnEntity": ["peter@doe.com", "jane@doe.com"]}}
         "401":
           application/json: {}
         "500":
@@ -1748,10 +1848,10 @@ examples:
         path:
           id: "5da0a718-c822-403d-9f5d-20d4584e0528"
       requestBody:
-        application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
+        application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
       responses:
         "200":
-          application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
+          application/json: {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}
         "401":
           application/json: {}
         "500":
@@ -1777,10 +1877,10 @@ examples:
         query:
           origin: "INSTALLER_PORTAL"
       requestBody:
-        application/json: {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}
+        application/json: {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}
       responses:
         "200":
-          application/json: {"emailTemplates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "message": "Email Templates upserted successfully"}
+          application/json: {"emailTemplates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "message": "Email Templates upserted successfully"}
         "401":
           application/json: {}
         "500":
@@ -1791,10 +1891,10 @@ examples:
         query:
           origin: "END_CUSTOMER_PORTAL"
       requestBody:
-        application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+        application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "default_user_to_notify": {"onPendingUser": [{"display_name": "John", "email": "j.doe@epilot.cloud", "image_uri": {"key": "fuafjvoHKsudhfagweucjasdvga", "original": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original", "thumbnail_32": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=32&h=32", "thumbnail_64": "https://fuafjvoHKsu.cloudimg.io/v7/e-mage-sam-bucket-dev.s3.eu-central-1.amazonaws.com/files/fuafjvoHKsudhfagweucjasdvga/original?w=64&h=64"}, "org_id": "123", "phone": "12345 67890", "type": "user", "user_id": "123456"}]}, "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_actions": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "slug": "contact"}], "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "400":
           application/json: {}
         "500":
@@ -1968,6 +2068,7 @@ examples:
           from: "2025-04-02T05:39:53.619Z"
           to: "2024-04-20T09:32:44.091Z"
           interval: "P1M"
+          context_entities: [{"entity_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "entity_schema": "contract"}]
       responses:
         "200":
           application/json: {}
@@ -2006,6 +2107,7 @@ examples:
           from: "2024-11-15T17:37:03.985Z"
           to: "2023-07-28T03:54:55.930Z"
           interval: "PT1H"
+          context_entities: [{"entity_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "entity_schema": "contract"}]
       responses:
         "200":
           application/json: {"costs": [{"tax_behavior": "exclusive", "tax_rate": 19, "timestamp": "2025-04-02T17:23:56.064Z", "unit_amount": 1234, "unit_amount_currency": "EUR", "unit_amount_decimal": "12.34"}]}
@@ -2086,6 +2188,7 @@ examples:
           from: "2025-06-20T14:38:20.336Z"
           to: "2024-12-19T18:37:54.093Z"
           interval: "PT15M"
+          context_entities: [{"entity_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "entity_schema": "contract"}]
       responses:
         "200":
           application/json: {"prices": [{"components": {"auction_price_amount": 1000, "auction_price_amount_decimal": "10.00", "grid_fee_amount": 100, "grid_fee_amount_decimal": "1.00", "margin_amount": 34, "margin_amount_decimal": "0.34", "source_fee_amount": 50, "source_fee_amount_decimal": "0.50", "taxes_levies_amount": 50, "taxes_levies_amount_decimal": "0.50"}, "tax_behavior": "exclusive", "tax_rate": 19, "timestamp": "2024-04-12T21:45:50.225Z", "unit_amount": 1234, "unit_amount_currency": "EUR", "unit_amount_decimal": "12.34"}]}
@@ -2175,7 +2278,7 @@ examples:
   searchPortalUserEntities:
     speakeasy-default-search-portal-user-entities:
       requestBody:
-        application/json: {"contracts": ["3ec28ab5-8598-41ef-9486-b57fca1d5e2a"], "fields": ["_id", "_title"], "filters": [{}, {}], "filters_schema": ["contact", "portal_user"], "from": 0, "group": "customer._title", "group_size": 100, "group_sort": "desc", "hydrate": false, "q": "contract", "q_fields": ["_title", "customer._title", "customer.first_name", "customer.last_name"], "size": 100, "slug": "contact", "sort": "_created_at:desc", "targets": ["3ec28ab5-8598-41ef-9486-b57fca1d5e2a"]}
+        application/json: {"fields": ["_id", "_title"], "filters": [{}, {}], "filters_context": [{"portal_user": true}, {"contact": true}, {"contract": "3ec28ab5-8598-41ef-9486-b57fca1d5e2a"}], "from": 0, "group": "customer._title", "group_size": 100, "group_sort": "desc", "group_title": "{{customer[Primary].first_name}} {{customer[Primary].last_name}}", "hydrate": false, "q": "contract", "q_fields": ["_title", "customer._title", "customer.first_name", "customer.last_name"], "size": 100, "slug": "contact", "sort": "_created_at:desc", "targets": ["3ec28ab5-8598-41ef-9486-b57fca1d5e2a"], "templates": {"content_top_name": "Customer #{{contract.customer_number}}", "main_content_name": "{{contract.contract_name}} ({{contract.contract_number}})", "content_bottom_name": "{{custom_contract_delivery_address}}"}}
       responses:
         "200":
           application/json: {"hits": 50, "results": [{"_created_at": "2021-02-09T12:41:43.662Z", "_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "_org": "123", "_schema": "contact", "_tags": ["example", "mock"], "_title": "Example Entity", "_updated_at": "2021-02-09T12:41:43.662Z"}]}
@@ -2428,7 +2531,7 @@ examples:
           domain: "example.com"
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "500":
           application/json: {}
   getPublicPages:
@@ -2453,7 +2556,7 @@ examples:
           origin: "END_CUSTOMER_PORTAL"
       responses:
         "200":
-          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}]}
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
         "500":
           application/json: {}
   getPublicPortalExtensionDetails:
@@ -2576,7 +2679,7 @@ examples:
   swapPortalConfig:
     speakeasy-default-swap-portal-config:
       requestBody:
-        application/json: {"source_portal_id": "<id>", "target_portal_id": "<id>"}
+        application/json: {"source_portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "target_portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c"}
       responses:
         "200":
           application/json: {"message": "Domain and users swapped successfully."}
@@ -2618,6 +2721,286 @@ examples:
           application/json: {}
         "500":
           application/json: {}
+  configureDistributionV3:
+    speakeasy-default-configure-distribution-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {"domainName": "dsj8op4ha01jha23.cloudfront.net"}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getEmailTemplatesByPortalId:
+    speakeasy-default-get-email-templates-by-portal-id:
+      parameters:
+        path:
+          portal_id: "<id>"
+      responses:
+        "200":
+          application/json: {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getExternalLinksV3:
+    speakeasy-default-get-external-links-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+          contactId: "5da0a718-c822-403d-9f5d-20d4584e0528"
+      responses:
+        "200":
+          application/json: [{"id": "<id>", "label": {"key": "<value>", "key1": "<value>"}, "link": "<value>", "type": "seamless"}]
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getOrgPortalConfigV3:
+    speakeasy-default-get-org-portal-config-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "certificate_details": {"failed_reason": "CAA_ERROR"}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "logout_redirect_uri": "https://customer-portal.com/login", "logout_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/logout", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getPortalExtensionsV3:
+    speakeasy-default-get-portal-extensions-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: [{"hooks": [{"auth": {"cache": {"key": "{{Options.api_key}}", "ttl": "{{AuthResponse.data.expires_in}}"}, "method": "GET", "url": "https://dearest-countess.org/"}, "call": {"body": {"key": "<value>", "key1": "<value>", "key2": "<value>"}, "headers": {"key": "<value>", "key1": "<value>"}, "url": "https://accomplished-swordfish.net"}, "resolved": {"lower_limit": "{{CallResponse.data.lower_limit}}", "upper_limit": "{{CallResponse.data.upper_limit}}", "valid": "{{CallResponse.data.valid}}"}, "type": "meterReadingPlausibilityCheck", "use_static_ips": false}], "id": "<id>", "links": [{"auth": {"cache": {"key": "{{Options.api_key}}", "ttl": "{{AuthResponse.data.expires_in}}"}, "method": "GET", "url": "https://dearest-countess.org/"}, "condition": "{{Contact.customer_number | is_not_empty}}", "id": "<id>", "name": {"en": "<value>"}, "redirect": {}, "type": "seamless"}], "name": {"en": "<value>"}}]
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getResolvedExternalLinkV3:
+    speakeasy-default-get-resolved-external-link-v3:
+      parameters:
+        path:
+          id: "5da0a718-c822-403d-9f5d-20d4584e0528"
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+          contactId: "5da0a718-c822-403d-9f5d-20d4584e0528"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "label": {"key": "<value>"}, "link": "<value>", "type": "seamless"}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  upsertEmailTemplatesByPortalId:
+    speakeasy-default-upsert-email-templates-by-portal-id:
+      parameters:
+        path:
+          portal_id: "<id>"
+      requestBody:
+        application/json: {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}
+      responses:
+        "200":
+          application/json: {"emailTemplates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "message": "Email Templates upserted successfully"}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  validateCaaRecordsV3:
+    speakeasy-default-validate-caa-records-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  disablePartner:
+    speakeasy-default-disable-partner:
+      parameters:
+        path:
+          partner_id: "<id>"
+      responses:
+        "200":
+          application/json: {"message": "Partner disabled from portal successfully"}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  enablePartner:
+    speakeasy-default-enable-partner:
+      parameters:
+        path:
+          partner_id: "<id>"
+      responses:
+        "200":
+          application/json: {"message": "Partner enabled from portal successfully"}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  getBillingAccount:
+    speakeasy-default-get-billing-account:
+      parameters:
+        path:
+          id: "5da0a718-c822-403d-9f5d-20d4584e0528"
+      responses:
+        "200":
+          application/json: {"entity": {"_created_at": "2021-02-09T12:41:43.662Z", "_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "_org": "123", "_tags": ["example", "mock"], "_title": "Example Entity", "_updated_at": "2021-02-09T12:41:43.662Z", "balance_currency": "EUR", "billing_address": {"$relation_ref": [{"_id": "f589786b-3024-43cd-9cb3-5a3c953f2896", "entity_id": "f589786b-3024-43cd-9cb3-5a3c953f2896", "path": "address"}]}, "billing_contact": {"$relation": [{"entity_id": "f589786b-3024-43cd-9cb3-5a3c953f2896"}]}}, "relations": [{"_created_at": "2021-02-09T12:41:43.662Z", "_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "_org": "123", "_schema": "contact", "_tags": ["example", "mock"], "_title": "Example Entity", "_updated_at": "2021-02-09T12:41:43.662Z", "templates_output": {"content_top_name": "Customer #123456", "main_content_name": "Orange Flexible A2 (654321)", "content_bottom_name": "Porscheplatz 1, 70435 Stuttgart, Germany", "nested_content": {"title": "Orange Flexible A2", "subtitle": "654321"}}}]}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  getPortalUserEntity:
+    speakeasy-default-get-portal-user-entity:
+      requestBody:
+        application/json: {"entity_id": "3ec28ab5-8598-41ef-9486-b57fca1d5e2a", "fields": ["_id", "_title"], "filters": [{}, {}], "filters_context": [{"portal_user": true}, {"contact": true}, {"contract": "3ec28ab5-8598-41ef-9486-b57fca1d5e2a"}], "hydrate": false, "slug": "contact", "targets": ["3ec28ab5-8598-41ef-9486-b57fca1d5e2a"], "templates": {"content_top_name": "Customer #{{contract.customer_number}}", "main_content_name": "{{contract.contract_name}} ({{contract.contract_number}})", "content_bottom_name": "{{custom_contract_delivery_address}}", "nested_content": {"title": "{{contract.contract_name}}", "subtitle": "{{contract.contract_number}}"}}}
+      responses:
+        "200":
+          application/json: {"result": {"_created_at": "2021-02-09T12:41:43.662Z", "_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "_org": "123", "_schema": "contact", "_tags": ["example", "mock"], "_title": "Example Entity", "_updated_at": "2021-02-09T12:41:43.662Z", "templates_output": {"content_top_name": "Customer #123456", "main_content_name": "Orange Flexible A2 (654321)", "content_bottom_name": "Porscheplatz 1, 70435 Stuttgart, Germany", "nested_content": {"title": "Orange Flexible A2", "subtitle": "654321"}}}}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  invitePartner:
+    speakeasy-default-invite-partner:
+      requestBody:
+        application/json: {"email": "Amara_Stark38@gmail.com", "represents_contact_list": ["5da0a718-c822-403d-9f5d-20d4584e0528"]}
+      responses:
+        "200":
+          application/json: {"message": "User invited successfully"}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  listBusinessPartners:
+    speakeasy-default-list-business-partners:
+      responses:
+        "200":
+          application/json: {"data": [{"_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "_title": "John Doe", "access_status": true, "email": "john.doe@example.com", "first_name": "John", "has_portal_user": true, "last_name": "Doe"}]}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  resendPartnerInvitation:
+    speakeasy-default-resend-partner-invitation:
+      parameters:
+        path:
+          partner_id: "<id>"
+      responses:
+        "200":
+          application/json: {"message": "Partner invitation resent successfully"}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  revokePartner:
+    speakeasy-default-revoke-partner:
+      parameters:
+        path:
+          partner_id: "<id>"
+      responses:
+        "200":
+          application/json: {"message": "Partner revoked from portal successfully"}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  triggerEntityAccessEventV3:
+    speakeasy-default-trigger-entity-access-event-v3:
+      parameters:
+        path:
+          schema: "contract"
+        query:
+          entity_id: "5da0a718-c822-403d-9f5d-20d4584e0528"
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {}
+  checkContactExistsV3:
+    speakeasy-default-check-contact-exists-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      requestBody:
+        application/json: {"org_id": "728", "registration_identifiers": {"contact": {"email": "john.doe@example.com"}, "contract": {"contract_number": "123456"}}}
+      responses:
+        "200":
+          application/json: {"contactId": "5da0a718-c822-403d-9f5d-20d4584e0528", "exists": true}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  createUserV3:
+    speakeasy-default-create-user-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      requestBody:
+        application/json: {"contactId": "5da0a718-c822-403d-9f5d-20d4584e0528", "email": "testemail921@yopmail.com", "first_name": "John", "last_name": "Doe", "orgId": "728", "password": "124n$aAJs*d41h4", "registration_identifiers": {"contact": {"email": "john.doe@example.com"}, "contract": {"contract_number": "123456"}}}
+      responses:
+        "201":
+          application/json: {"message": "User created successfully"}
+        "400":
+          application/json: {}
+        "500":
+          application/json: {}
+  getPublicPortalConfigV3:
+    speakeasy-default-get-public-portal-config-v3:
+      parameters:
+        query:
+          org_id: "12324"
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {"allowed_file_extensions": {"archive": ["zip"], "audioVideo": ["mp4"], "cad": ["cad"], "calendar": ["ics"], "document": ["pdf"], "email": ["eml"], "image": ["jpg"], "other": ["txt"], "presentation": ["ppt"], "spreadsheet": ["xls"]}, "approval_state_attributes": {"contact": ["name", "address"], "contract": ["installment_amount"]}, "auth_settings": {"preferred_sso_providers": ["office-365-login"]}, "cognito_details": {"cognito_user_pool_arn": "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341", "cognito_user_pool_client_id": "6bsd0jkgoie74k2i8mrhc1vest", "cognito_user_pool_id": "eu-central-1_CUEQRNbUb", "password_policy": {"maximum_length": 256, "minimum_length": 8, "require_lowercase": true, "require_numbers": true, "require_symbols": true, "require_uppercase": true}}, "contract_identifiers": [{"name": "email", "schema": "contact"}, {"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "design_id": "5da0a718-c822-403d-9f5d-20d4584e0528", "domain": "abc.com", "email_templates": {"advancedAuth": "5da0a718-c822-403d-9f5d-20d4584e0528", "advancedMFA": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmAccount": "5da0a718-c822-403d-9f5d-20d4584e0528", "confirmEmailUpdate": "5da0a718-c822-403d-9f5d-20d4584e0528", "forgotPassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "invitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeyLoginOTP": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignInOneTimePassword": "5da0a718-c822-403d-9f5d-20d4584e0528", "journeySignUp": "5da0a718-c822-403d-9f5d-20d4584e0528", "onDocUpload": "5da0a718-c822-403d-9f5d-20d4584e0528", "onMapAPendingUser": "5da0a718-c822-403d-9f5d-20d4584e0528", "onNewQuote": "5da0a718-c822-403d-9f5d-20d4584e0528", "onWorkflowStepAssigned": "5da0a718-c822-403d-9f5d-20d4584e0528", "partnerInvitation": "5da0a718-c822-403d-9f5d-20d4584e0528", "verifyCodeToSetPassword": "5da0a718-c822-403d-9f5d-20d4584e0528"}, "entity_edit_rules": [{"allowed_decrement": "10%", "allowed_increment": "10%", "attribute": "first_name", "cadence_period": 1, "changes_allowed": 1, "grace_period": 1, "number_of_days_before_restriction": 10, "slug": "contact"}], "grants": [{"action": "entity-read", "effect": "allow", "resource": "entity:123:contact:f7c22299-ca72-4bca-8538-0a88eeefc947"}], "identity_providers": [{"display_name": "Office 365 Login", "mobile_oidc_config": {"client_id": "123456", "client_secret": "123456"}, "oidc_config": {"client_id": "ab81daf8-8b1f-42d6-94ca-c51621054c75", "client_secret": "7BIUnn~6shh.7fNtXb..3k1Mp3s6k6WK3B", "has_client_secret": true, "metadata": {"authorization_endpoint": "https://www.facebook.com/v12.0/dialog/oauth", "logout_redirect_uri": "https://customer-portal.com/login", "logout_uri": "https://login.microsoftonline.com/common/oauth2/v2.0/logout", "mobile_redirect_uri": "msauth.io.epilot.ecp://auth", "skip_login_as_logout": false, "test_auth_username": "test@epilot.io", "token_endpoint": "https://graph.facebook.com/v12.0/oauth/access_token", "userinfo_endpoint": "https://graph.facebook.com/me"}, "oidc_issuer": "https://login.microsoftonline.com/33d4f3e5-3df2-421e-b92e-a63cfa680a88/v2.0", "redirect_uri": "https://customer-portal.com/login", "scope": "openid email", "type": "implicit"}, "slug": "office-365-login"}], "images": {"orderLeftTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg", "orderRightTeaser": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg", "welcomeBanner": "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/welcome-banner.jpeg"}, "name": "Installer Portal", "organization_id": "12345", "pages": {"key": {"blocks": {"key": {"id": "c495fef9-eeca-4019-a989-8390dcd9825b", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "type": "tab"}}, "detail_schema": "contact", "id": "c495fef9-eeca-4019-a989-8390dcd9825b", "is_deleted": false, "is_detail": false, "is_entry_route": false, "is_public": true, "is_system": false, "last_modified_at": "2021-02-09T12:41:43.662Z", "order": 1, "parentId": "c495fef9-eeca-4019-a989-8390dcd9825b", "slug": "dashboard"}}, "portal_id": "453ad7bf-86d5-46c8-8252-bcc868df5e3c", "portal_sk_v3": "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c", "registration_identifiers": [{"name": "last_name", "schema": "contact"}, {"name": "contract_number", "schema": "contract"}], "triggered_journeys": [{"journey_id": "5da0a718-c822-403d-9f5d-20d4584e0528"}], "user_account_self_management": false}
+        "500":
+          application/json: {}
+  getPublicPortalExtensionDetailsV3:
+    speakeasy-default-get-public-portal-extension-details-v3:
+      parameters:
+        query:
+          org_id: "12324"
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {"contractIdentification": {"hook": {"explanation": {"en": "This process will give you access to all Contracts kept"}}}}
+        "401":
+          application/json: {}
+        "500":
+          application/json: {}
+  userExistsV3:
+    speakeasy-default-user-exists-v3:
+      parameters:
+        query:
+          email: "user@example.com"
+          org_id: "123"
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+      responses:
+        "200":
+          application/json: {"exists": true}
+        "500":
+          application/json: {}
+  ssoLoginV3:
+    speakeasy-default-sso-login-v3:
+      parameters:
+        query:
+          portal_id: "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
+          org_id: "123"
+          contact_id: "5da0a718-c822-403d-9f5d-20d4584e0528"
+      requestBody:
+        application/json: {"provider_slug": "office-365-login"}
+      responses:
+        "200":
+          application/json: {"email": "portal-customer@email.com"}
 examplesVersion: 1.0.2
 generatedTests: {}
 generatedFiles:

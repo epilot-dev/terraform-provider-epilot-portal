@@ -7,6 +7,7 @@ import (
 )
 
 type UpsertPortalConfigV3PasswordPolicy struct {
+	MaximumLength    types.Int64 `tfsdk:"maximum_length"`
 	MinimumLength    types.Int64 `tfsdk:"minimum_length"`
 	RequireLowercase types.Bool  `tfsdk:"require_lowercase"`
 	RequireNumbers   types.Bool  `tfsdk:"require_numbers"`

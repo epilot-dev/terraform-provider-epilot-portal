@@ -42,8 +42,10 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   design = {
     key = jsonencode("value")
   }
+  detail_schema  = "contact"
   domain         = "customer-portal.epilot.io"
   is_deleted     = false
+  is_detail      = false
   is_entry_route = false
   is_public      = true
   is_system      = false
@@ -51,7 +53,7 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   parent_id      = "c495fef9-eeca-4019-a989-8390dcd9825b"
   path           = "/dashboard"
   schema = [
-    "contract"
+    "..."
   ]
   slug = "dashboard"
   visibility = {
@@ -75,7 +77,9 @@ resource "epilot-portal_portal_page" "my_portalpage" {
 - `blocks` (Attributes Map) (see [below for nested schema](#nestedatt--blocks))
 - `content` (Map of String) The content of the page
 - `design` (Map of String) The design of the page
+- `detail_schema` (String) The schema of the detail page
 - `is_deleted` (Boolean) Send the flag as true to delete the page
+- `is_detail` (Boolean) Whether the page is a detail page
 - `is_entry_route` (Boolean) Whether the page is the entry route
 - `is_public` (Boolean) Whether the page is public
 - `is_system` (Boolean) Whether the page is a system page

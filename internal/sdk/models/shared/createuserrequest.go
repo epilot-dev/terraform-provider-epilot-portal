@@ -3,6 +3,8 @@
 package shared
 
 type CreateUserRequest struct {
+	// ID of the account
+	AccountID *string `json:"account_id,omitempty"`
 	// Entity ID
 	ContactID *string `json:"contactId,omitempty"`
 	// Deprecated. Use registration_identifiers instead.
@@ -21,6 +23,13 @@ type CreateUserRequest struct {
 	Password string `json:"password"`
 	// Identifier-value pairs per schema to identify a contact of a portal user during the resgistration
 	RegistrationIdentifiers map[string]map[string]string `json:"registration_identifiers,omitempty"`
+}
+
+func (c *CreateUserRequest) GetAccountID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.AccountID
 }
 
 func (c *CreateUserRequest) GetContactID() *string {

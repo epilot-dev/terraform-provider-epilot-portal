@@ -50,7 +50,7 @@ type CreateCustomEntityActivityRequest struct {
 	// Comma-separated list of entities which the activity primarily concerns. Deprecated - ignored as the list of entities is automatically determined now.
 	//
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-	Entities []string `queryParam:"style=form,explode=false,name=entities"`
+	Entities []string `queryParam:"style=form,explode=true,name=entities"`
 }
 
 func (c *CreateCustomEntityActivityRequest) GetRequestBody() *CreateCustomEntityActivityRequestBody {

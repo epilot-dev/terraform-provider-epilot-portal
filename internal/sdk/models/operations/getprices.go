@@ -45,6 +45,10 @@ func (e *GetPricesQueryParamInterval) UnmarshalJSON(data []byte) error {
 }
 
 type GetPricesRequest struct {
+	// App ID for consumption data.
+	AppID *string `queryParam:"style=form,explode=true,name=app_id"`
+	// Additional entities to include in the context for variable interpolation in the hook.
+	ContextEntities []shared.ContextEntity `queryParam:"style=form,explode=true,name=context_entities"`
 	// Extension ID for price data.
 	ExtensionID string `queryParam:"style=form,explode=true,name=extensionId"`
 	// Start date for price data (ISO 8601 format).
@@ -53,8 +57,10 @@ type GetPricesRequest struct {
 	HookID string `queryParam:"style=form,explode=true,name=hookId"`
 	// Interval between price data points (e.g., PT15M for 15 minutes, PT1H for hourly). Not all intervals have to be supported.
 	Interval GetPricesQueryParamInterval `queryParam:"style=form,explode=true,name=interval"`
-	// Meter ID for price data.
-	MeterID string `queryParam:"style=form,explode=true,name=meter_id"`
+	// Meter ID for price data. Deprecated - use context_entities instead.
+	//
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	MeterID *string `queryParam:"style=form,explode=true,name=meter_id"`
 	// End date for price data (ISO 8601 format).
 	To time.Time `queryParam:"style=form,explode=true,name=to"`
 }
@@ -68,6 +74,20 @@ func (g *GetPricesRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (g *GetPricesRequest) GetAppID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.AppID
+}
+
+func (g *GetPricesRequest) GetContextEntities() []shared.ContextEntity {
+	if g == nil {
+		return nil
+	}
+	return g.ContextEntities
 }
 
 func (g *GetPricesRequest) GetExtensionID() string {
@@ -98,9 +118,9 @@ func (g *GetPricesRequest) GetInterval() GetPricesQueryParamInterval {
 	return g.Interval
 }
 
-func (g *GetPricesRequest) GetMeterID() string {
+func (g *GetPricesRequest) GetMeterID() *string {
 	if g == nil {
-		return ""
+		return nil
 	}
 	return g.MeterID
 }

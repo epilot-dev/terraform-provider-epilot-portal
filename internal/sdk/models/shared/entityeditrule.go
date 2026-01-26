@@ -13,7 +13,7 @@ type EntityEditRule struct {
 	NumberOfDaysBeforeRestriction *float64 `json:"number_of_days_before_restriction,omitempty"`
 	RuleType                      *string  `json:"rule_type,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Slug *EntitySlug `json:"slug,omitempty"`
+	Slug *string `json:"slug,omitempty"`
 }
 
 func (e *EntityEditRule) GetAllowedDecrement() *string {
@@ -79,7 +79,7 @@ func (e *EntityEditRule) GetRuleType() *string {
 	return e.RuleType
 }
 
-func (e *EntityEditRule) GetSlug() *EntitySlug {
+func (e *EntityEditRule) GetSlug() *string {
 	if e == nil {
 		return nil
 	}

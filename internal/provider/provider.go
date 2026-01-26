@@ -58,7 +58,7 @@ func (p *EpilotPortalProvider) Schema(ctx context.Context, req provider.SchemaRe
 				Sensitive:           true,
 			},
 			"server_url": schema.StringAttribute{
-				Description: `Server URL (defaults to https://customer-portal-api.sls.epilot.io/)`,
+				Description: `Server URL (defaults to https://customer-portal-api.sls.epilot.io)`,
 				Optional:    true,
 			},
 		},
@@ -78,7 +78,7 @@ func (p *EpilotPortalProvider) Configure(ctx context.Context, req provider.Confi
 	serverUrl := data.ServerURL.ValueString()
 
 	if serverUrl == "" {
-		serverUrl = "https://customer-portal-api.sls.epilot.io/"
+		serverUrl = "https://customer-portal-api.sls.epilot.io"
 	}
 
 	security := shared.Security{}

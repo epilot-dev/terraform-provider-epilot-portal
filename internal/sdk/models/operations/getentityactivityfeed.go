@@ -23,7 +23,7 @@ type GetEntityActivityFeedRequest struct {
 	// max number of results to return
 	Size *int64 `default:"25" queryParam:"style=form,explode=true,name=size"`
 	// Entity Type
-	Slug shared.EntitySlug `pathParam:"style=simple,explode=false,name=slug"`
+	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 	// Filter by activity type
 	Type *string `queryParam:"style=form,explode=true,name=type"`
 }
@@ -81,9 +81,9 @@ func (g *GetEntityActivityFeedRequest) GetSize() *int64 {
 	return g.Size
 }
 
-func (g *GetEntityActivityFeedRequest) GetSlug() shared.EntitySlug {
+func (g *GetEntityActivityFeedRequest) GetSlug() string {
 	if g == nil {
-		return shared.EntitySlug("")
+		return ""
 	}
 	return g.Slug
 }

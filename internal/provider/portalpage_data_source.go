@@ -34,8 +34,10 @@ type PortalPageDataSourceModel struct {
 	Blocks               map[string]tfTypes.Block        `tfsdk:"blocks"`
 	Content              map[string]jsontypes.Normalized `tfsdk:"content"`
 	Design               map[string]jsontypes.Normalized `tfsdk:"design"`
+	DetailSchema         types.String                    `tfsdk:"detail_schema"`
 	ID                   types.String                    `tfsdk:"id"`
 	IsDeleted            types.Bool                      `tfsdk:"is_deleted"`
+	IsDetail             types.Bool                      `tfsdk:"is_detail"`
 	IsEntryRoute         types.Bool                      `tfsdk:"is_entry_route"`
 	IsPublic             types.Bool                      `tfsdk:"is_public"`
 	IsSystem             types.Bool                      `tfsdk:"is_system"`
@@ -127,6 +129,10 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 				ElementType: jsontypes.NormalizedType{},
 				Description: `The design of the page`,
 			},
+			"detail_schema": schema.StringAttribute{
+				Computed:    true,
+				Description: `The schema of the detail page`,
+			},
 			"id": schema.StringAttribute{
 				Required:    true,
 				Description: `The id of the page`,
@@ -134,6 +140,10 @@ func (r *PortalPageDataSource) Schema(ctx context.Context, req datasource.Schema
 			"is_deleted": schema.BoolAttribute{
 				Computed:    true,
 				Description: `Send the flag as true to delete the page`,
+			},
+			"is_detail": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Whether the page is a detail page`,
 			},
 			"is_entry_route": schema.BoolAttribute{
 				Computed:    true,

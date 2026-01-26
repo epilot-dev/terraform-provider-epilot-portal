@@ -51,6 +51,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     cognito_user_pool_client_id = "6bsd0jkgoie74k2i8mrhc1vest"
     cognito_user_pool_id        = "eu-central-1_CUEQRNbUb"
     password_policy = {
+      maximum_length    = 256
       minimum_length    = 8
       require_lowercase = true
       require_numbers   = true
@@ -103,6 +104,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     on_map_a_pending_user             = "5da0a718-c822-403d-9f5d-20d4584e0528"
     on_new_quote                      = "5da0a718-c822-403d-9f5d-20d4584e0528"
     on_workflow_step_assigned         = "5da0a718-c822-403d-9f5d-20d4584e0528"
+    partner_invitation                = "5da0a718-c822-403d-9f5d-20d4584e0528"
     verify_code_to_set_password       = "5da0a718-c822-403d-9f5d-20d4584e0528"
   }
   enabled = false
@@ -127,8 +129,9 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   }
   extension_hooks = {
     key = {
-      app_id  = "...my_app_id..."
-      hook_id = "...my_hook_id..."
+      app_id       = "...my_app_id..."
+      extension_id = "...my_extension_id..."
+      hook_id      = "...my_hook_id..."
     }
   }
   extensions = [
@@ -159,15 +162,16 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   name                           = "Installer Portal"
   origin                         = "...my_origin..."
   pages                          = "{ \"see\": \"documentation\" }"
-  portal_id                      = "5da0a718-c822-403d-9f5d-20d4584e0528"
+  portal_id                      = "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
   portal_sk_v3                   = "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c"
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
-  self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"
+  self_registration_setting      = "ALWAYS_CREATE_CONTACT"
   triggered_journeys = [
     {
       journey_id   = "5da0a718-c822-403d-9f5d-20d4584e0528"
       trigger_name = "DECLINE_ORDER"
     }
   ]
+  user_account_self_management = false
 }

@@ -88,8 +88,10 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(ctx context.Context, r
 				r.Design[key4] = jsontypes.NewNormalizedValue(string(result4))
 			}
 		}
+		r.DetailSchema = types.StringPointerValue(resp.DetailSchema)
 		r.ID = types.StringPointerValue(resp.ID)
 		r.IsDeleted = types.BoolPointerValue(resp.IsDeleted)
+		r.IsDetail = types.BoolPointerValue(resp.IsDetail)
 		r.IsEntryRoute = types.BoolPointerValue(resp.IsEntryRoute)
 		r.IsPublic = types.BoolPointerValue(resp.IsPublic)
 		r.IsSystem = types.BoolPointerValue(resp.IsSystem)
@@ -99,7 +101,7 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(ctx context.Context, r
 		r.Path = types.StringPointerValue(resp.Path)
 		r.Schema = make([]types.String, 0, len(resp.Schema))
 		for _, v := range resp.Schema {
-			r.Schema = append(r.Schema, types.StringValue(string(v)))
+			r.Schema = append(r.Schema, types.StringValue(v))
 		}
 		r.Slug = types.StringValue(resp.Slug)
 		if len(resp.Visibility) > 0 {

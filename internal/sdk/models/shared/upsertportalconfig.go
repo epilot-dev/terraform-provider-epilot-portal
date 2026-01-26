@@ -96,6 +96,8 @@ func (u *UpsertPortalConfigAuthSettings) GetPreferredSsoProviders() []string {
 
 // UpsertPortalConfigPasswordPolicy - Password policy for the portal
 type UpsertPortalConfigPasswordPolicy struct {
+	// Maximum password length
+	MaximumLength *int64 `json:"maximum_length,omitempty"`
 	// Minimum password length
 	MinimumLength *int64 `json:"minimum_length,omitempty"`
 	// Require lowercase characters
@@ -106,6 +108,13 @@ type UpsertPortalConfigPasswordPolicy struct {
 	RequireSymbols *bool `json:"require_symbols,omitempty"`
 	// Require uppercase characters
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
+}
+
+func (u *UpsertPortalConfigPasswordPolicy) GetMaximumLength() *int64 {
+	if u == nil {
+		return nil
+	}
+	return u.MaximumLength
 }
 
 func (u *UpsertPortalConfigPasswordPolicy) GetMinimumLength() *int64 {
@@ -242,7 +251,7 @@ type UpsertPortalConfigEntityActions struct {
 	// Entity ID
 	JourneyID *string `json:"journey_id,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Slug *EntitySlug `json:"slug,omitempty"`
+	Slug *string `json:"slug,omitempty"`
 }
 
 func (u *UpsertPortalConfigEntityActions) GetActionLabel() *UpsertPortalConfigActionLabel {
@@ -259,7 +268,7 @@ func (u *UpsertPortalConfigEntityActions) GetJourneyID() *string {
 	return u.JourneyID
 }
 
-func (u *UpsertPortalConfigEntityActions) GetSlug() *EntitySlug {
+func (u *UpsertPortalConfigEntityActions) GetSlug() *string {
 	if u == nil {
 		return nil
 	}
@@ -338,7 +347,7 @@ type UpsertPortalConfigEntityEditRules struct {
 	NumberOfDaysBeforeRestriction *int64                               `json:"number_of_days_before_restriction,omitempty"`
 	RuleType                      *UpsertPortalConfigRuleType          `json:"rule_type,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Slug *EntitySlug `json:"slug,omitempty"`
+	Slug *string `json:"slug,omitempty"`
 }
 
 func (u *UpsertPortalConfigEntityEditRules) GetAllowedDecrement() *string {
@@ -404,7 +413,7 @@ func (u *UpsertPortalConfigEntityEditRules) GetRuleType() *UpsertPortalConfigRul
 	return u.RuleType
 }
 
-func (u *UpsertPortalConfigEntityEditRules) GetSlug() *EntitySlug {
+func (u *UpsertPortalConfigEntityEditRules) GetSlug() *string {
 	if u == nil {
 		return nil
 	}
@@ -523,6 +532,9 @@ const (
 	UpsertPortalConfigSelfRegistrationSettingAllowWithContactCreation    UpsertPortalConfigSelfRegistrationSetting = "ALLOW_WITH_CONTACT_CREATION"
 	UpsertPortalConfigSelfRegistrationSettingAllowWithoutContactCreation UpsertPortalConfigSelfRegistrationSetting = "ALLOW_WITHOUT_CONTACT_CREATION"
 	UpsertPortalConfigSelfRegistrationSettingDeny                        UpsertPortalConfigSelfRegistrationSetting = "DENY"
+	UpsertPortalConfigSelfRegistrationSettingAlwaysCreateContact         UpsertPortalConfigSelfRegistrationSetting = "ALWAYS_CREATE_CONTACT"
+	UpsertPortalConfigSelfRegistrationSettingDisallowCompletely          UpsertPortalConfigSelfRegistrationSetting = "DISALLOW_COMPLETELY"
+	UpsertPortalConfigSelfRegistrationSettingBlockIfPortalUserExists     UpsertPortalConfigSelfRegistrationSetting = "BLOCK_IF_PORTAL_USER_EXISTS"
 )
 
 func (e UpsertPortalConfigSelfRegistrationSetting) ToPointer() *UpsertPortalConfigSelfRegistrationSetting {
@@ -539,6 +551,12 @@ func (e *UpsertPortalConfigSelfRegistrationSetting) UnmarshalJSON(data []byte) e
 	case "ALLOW_WITHOUT_CONTACT_CREATION":
 		fallthrough
 	case "DENY":
+		fallthrough
+	case "ALWAYS_CREATE_CONTACT":
+		fallthrough
+	case "DISALLOW_COMPLETELY":
+		fallthrough
+	case "BLOCK_IF_PORTAL_USER_EXISTS":
 		*e = UpsertPortalConfigSelfRegistrationSetting(v)
 		return nil
 	default:
@@ -635,7 +653,7 @@ type UpsertPortalConfig struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *UpsertPortalConfigEntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]*ExtensionHookConfig `json:"extension_hooks,omitempty"`
+	ExtensionHooks map[string]*ExtensionHookSelection `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature settings for the portal
@@ -668,6 +686,8 @@ type UpsertPortalConfig struct {
 	SelfRegistrationSetting *UpsertPortalConfigSelfRegistrationSetting `json:"self_registration_setting,omitempty"`
 	// Journeys automatically opened on a portal user action
 	TriggeredJourneys []UpsertPortalConfigTriggeredJourneys `json:"triggered_journeys,omitempty"`
+	// Enable or disable user account self management
+	UserAccountSelfManagement *bool `json:"user_account_self_management,omitempty"`
 }
 
 func (u *UpsertPortalConfig) GetAccessToken() *string {
@@ -796,7 +816,7 @@ func (u *UpsertPortalConfig) GetEntityIdentifiers() *UpsertPortalConfigEntityIde
 	return u.EntityIdentifiers
 }
 
-func (u *UpsertPortalConfig) GetExtensionHooks() map[string]*ExtensionHookConfig {
+func (u *UpsertPortalConfig) GetExtensionHooks() map[string]*ExtensionHookSelection {
 	if u == nil {
 		return nil
 	}
@@ -920,4 +940,11 @@ func (u *UpsertPortalConfig) GetTriggeredJourneys() []UpsertPortalConfigTriggere
 		return nil
 	}
 	return u.TriggeredJourneys
+}
+
+func (u *UpsertPortalConfig) GetUserAccountSelfManagement() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.UserAccountSelfManagement
 }

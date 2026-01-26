@@ -96,6 +96,8 @@ func (u *UpsertPortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
 
 // UpsertPortalConfigV3PasswordPolicy - Password policy for the portal
 type UpsertPortalConfigV3PasswordPolicy struct {
+	// Maximum password length
+	MaximumLength *int64 `json:"maximum_length,omitempty"`
 	// Minimum password length
 	MinimumLength *int64 `json:"minimum_length,omitempty"`
 	// Require lowercase characters
@@ -106,6 +108,13 @@ type UpsertPortalConfigV3PasswordPolicy struct {
 	RequireSymbols *bool `json:"require_symbols,omitempty"`
 	// Require uppercase characters
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
+}
+
+func (u *UpsertPortalConfigV3PasswordPolicy) GetMaximumLength() *int64 {
+	if u == nil {
+		return nil
+	}
+	return u.MaximumLength
 }
 
 func (u *UpsertPortalConfigV3PasswordPolicy) GetMinimumLength() *int64 {
@@ -242,7 +251,7 @@ type UpsertPortalConfigV3EntityActions struct {
 	// Entity ID
 	JourneyID *string `json:"journey_id,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Slug *EntitySlug `json:"slug,omitempty"`
+	Slug *string `json:"slug,omitempty"`
 }
 
 func (u *UpsertPortalConfigV3EntityActions) GetActionLabel() *UpsertPortalConfigV3ActionLabel {
@@ -259,7 +268,7 @@ func (u *UpsertPortalConfigV3EntityActions) GetJourneyID() *string {
 	return u.JourneyID
 }
 
-func (u *UpsertPortalConfigV3EntityActions) GetSlug() *EntitySlug {
+func (u *UpsertPortalConfigV3EntityActions) GetSlug() *string {
 	if u == nil {
 		return nil
 	}
@@ -378,6 +387,9 @@ const (
 	UpsertPortalConfigV3SelfRegistrationSettingAllowWithContactCreation    UpsertPortalConfigV3SelfRegistrationSetting = "ALLOW_WITH_CONTACT_CREATION"
 	UpsertPortalConfigV3SelfRegistrationSettingAllowWithoutContactCreation UpsertPortalConfigV3SelfRegistrationSetting = "ALLOW_WITHOUT_CONTACT_CREATION"
 	UpsertPortalConfigV3SelfRegistrationSettingDeny                        UpsertPortalConfigV3SelfRegistrationSetting = "DENY"
+	UpsertPortalConfigV3SelfRegistrationSettingAlwaysCreateContact         UpsertPortalConfigV3SelfRegistrationSetting = "ALWAYS_CREATE_CONTACT"
+	UpsertPortalConfigV3SelfRegistrationSettingDisallowCompletely          UpsertPortalConfigV3SelfRegistrationSetting = "DISALLOW_COMPLETELY"
+	UpsertPortalConfigV3SelfRegistrationSettingBlockIfPortalUserExists     UpsertPortalConfigV3SelfRegistrationSetting = "BLOCK_IF_PORTAL_USER_EXISTS"
 )
 
 func (e UpsertPortalConfigV3SelfRegistrationSetting) ToPointer() *UpsertPortalConfigV3SelfRegistrationSetting {
@@ -394,6 +406,12 @@ func (e *UpsertPortalConfigV3SelfRegistrationSetting) UnmarshalJSON(data []byte)
 	case "ALLOW_WITHOUT_CONTACT_CREATION":
 		fallthrough
 	case "DENY":
+		fallthrough
+	case "ALWAYS_CREATE_CONTACT":
+		fallthrough
+	case "DISALLOW_COMPLETELY":
+		fallthrough
+	case "BLOCK_IF_PORTAL_USER_EXISTS":
 		*e = UpsertPortalConfigV3SelfRegistrationSetting(v)
 		return nil
 	default:
@@ -490,7 +508,7 @@ type UpsertPortalConfigV3 struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *UpsertPortalConfigV3EntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]*ExtensionHookConfig `json:"extension_hooks,omitempty"`
+	ExtensionHooks map[string]*ExtensionHookSelection `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature settings for the portal
@@ -523,6 +541,8 @@ type UpsertPortalConfigV3 struct {
 	SelfRegistrationSetting *UpsertPortalConfigV3SelfRegistrationSetting `json:"self_registration_setting,omitempty"`
 	// Journeys automatically opened on a portal user action
 	TriggeredJourneys []UpsertPortalConfigV3TriggeredJourneys `json:"triggered_journeys,omitempty"`
+	// Enable or disable user account self management
+	UserAccountSelfManagement *bool `json:"user_account_self_management,omitempty"`
 }
 
 func (u *UpsertPortalConfigV3) GetAccessToken() *string {
@@ -651,7 +671,7 @@ func (u *UpsertPortalConfigV3) GetEntityIdentifiers() *UpsertPortalConfigV3Entit
 	return u.EntityIdentifiers
 }
 
-func (u *UpsertPortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
+func (u *UpsertPortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookSelection {
 	if u == nil {
 		return nil
 	}
@@ -775,4 +795,11 @@ func (u *UpsertPortalConfigV3) GetTriggeredJourneys() []UpsertPortalConfigV3Trig
 		return nil
 	}
 	return u.TriggeredJourneys
+}
+
+func (u *UpsertPortalConfigV3) GetUserAccountSelfManagement() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.UserAccountSelfManagement
 }

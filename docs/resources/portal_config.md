@@ -66,6 +66,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     cognito_user_pool_client_id = "6bsd0jkgoie74k2i8mrhc1vest"
     cognito_user_pool_id        = "eu-central-1_CUEQRNbUb"
     password_policy = {
+      maximum_length    = 256
       minimum_length    = 8
       require_lowercase = true
       require_numbers   = true
@@ -118,6 +119,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     on_map_a_pending_user             = "5da0a718-c822-403d-9f5d-20d4584e0528"
     on_new_quote                      = "5da0a718-c822-403d-9f5d-20d4584e0528"
     on_workflow_step_assigned         = "5da0a718-c822-403d-9f5d-20d4584e0528"
+    partner_invitation                = "5da0a718-c822-403d-9f5d-20d4584e0528"
     verify_code_to_set_password       = "5da0a718-c822-403d-9f5d-20d4584e0528"
   }
   enabled = false
@@ -142,8 +144,9 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   }
   extension_hooks = {
     key = {
-      app_id  = "...my_app_id..."
-      hook_id = "...my_hook_id..."
+      app_id       = "...my_app_id..."
+      extension_id = "...my_extension_id..."
+      hook_id      = "...my_hook_id..."
     }
   }
   extensions = [
@@ -174,17 +177,18 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
   name                           = "Installer Portal"
   origin                         = "...my_origin..."
   pages                          = "{ \"see\": \"documentation\" }"
-  portal_id                      = "5da0a718-c822-403d-9f5d-20d4584e0528"
+  portal_id                      = "453ad7bf-86d5-46c8-8252-bcc868df5e3c"
   portal_sk_v3                   = "PORTAL_CONFIG#453ad7bf-86d5-46c8-8252-bcc868df5e3c"
   prevent_search_engine_indexing = true
   registration_identifiers       = "{ \"see\": \"documentation\" }"
-  self_registration_setting      = "ALLOW_WITHOUT_CONTACT_CREATION"
+  self_registration_setting      = "ALWAYS_CREATE_CONTACT"
   triggered_journeys = [
     {
       journey_id   = "5da0a718-c822-403d-9f5d-20d4584e0528"
       trigger_name = "DECLINE_ORDER"
     }
   ]
+  user_account_self_management = false
 }
 ```
 
@@ -227,8 +231,9 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `portal_sk_v3` (String) Key of the portal config
 - `prevent_search_engine_indexing` (Boolean) Prevent indexing by search engines
 - `registration_identifiers` (String) Identifiers to identify a contact of a portal user during the registration. Parsed as JSON.
-- `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY"]
+- `self_registration_setting` (String) must be one of ["ALLOW_WITH_CONTACT_CREATION", "ALLOW_WITHOUT_CONTACT_CREATION", "DENY", "ALWAYS_CREATE_CONTACT", "DISALLOW_COMPLETELY", "BLOCK_IF_PORTAL_USER_EXISTS"]
 - `triggered_journeys` (Attributes List) Journeys automatically opened on a portal user action (see [below for nested schema](#nestedatt--triggered_journeys))
+- `user_account_self_management` (Boolean) Enable or disable user account self management
 
 ### Read-Only
 
@@ -297,6 +302,7 @@ Optional:
 
 Optional:
 
+- `maximum_length` (Number) Maximum password length
 - `minimum_length` (Number) Minimum password length
 - `require_lowercase` (Boolean) Require lowercase characters
 - `require_numbers` (Boolean) Require numbers
@@ -366,6 +372,7 @@ Optional:
 - `on_map_a_pending_user` (String) Entity ID
 - `on_new_quote` (String) Entity ID
 - `on_workflow_step_assigned` (String) Entity ID
+- `partner_invitation` (String) Entity ID
 - `verify_code_to_set_password` (String) Entity ID
 
 
@@ -376,7 +383,7 @@ Optional:
 
 - `action_label` (Attributes) (see [below for nested schema](#nestedatt--entity_actions--action_label))
 - `journey_id` (String) Entity ID
-- `slug` (String) URL-friendly identifier for the entity schema. must be one of ["contact", "contract", "file", "order", "opportunity", "product", "price", "meter", "meter_counter"]
+- `slug` (String) URL-friendly identifier for the entity schema
 
 <a id="nestedatt--entity_actions--action_label"></a>
 ### Nested Schema for `entity_actions.action_label`
@@ -410,8 +417,9 @@ Optional:
 
 Optional:
 
-- `app_id` (String) The ID of the app that is being hooked into.
-- `hook_id` (String) The ID of the hook that is being configured.
+- `app_id` (String) The ID of the selected app. Not Null
+- `extension_id` (String) The ID of the selected extension. Not Null
+- `hook_id` (String) The ID of the selected hook. Not Null
 
 
 <a id="nestedatt--extensions"></a>

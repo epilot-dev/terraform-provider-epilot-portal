@@ -71,6 +71,9 @@ actions:
   - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["registration_identifiers"]
     update:
       x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["feature_settings"]
+    update:
+      x-speakeasy-type-override: any
   - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["grants"]
     update:
       x-speakeasy-type-override: any

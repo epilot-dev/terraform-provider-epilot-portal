@@ -3,9 +3,100 @@
 package shared
 
 import (
+	"errors"
+	"fmt"
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 	"time"
 )
+
+type TemplatesOutputType string
+
+const (
+	TemplatesOutputTypeStr      TemplatesOutputType = "str"
+	TemplatesOutputTypeMapOfStr TemplatesOutputType = "mapOfStr"
+)
+
+type TemplatesOutput struct {
+	Str      *string           `queryParam:"inline" union:"member"`
+	MapOfStr map[string]string `queryParam:"inline" union:"member"`
+
+	Type TemplatesOutputType
+}
+
+func CreateTemplatesOutputStr(str string) TemplatesOutput {
+	typ := TemplatesOutputTypeStr
+
+	return TemplatesOutput{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateTemplatesOutputMapOfStr(mapOfStr map[string]string) TemplatesOutput {
+	typ := TemplatesOutputTypeMapOfStr
+
+	return TemplatesOutput{
+		MapOfStr: mapOfStr,
+		Type:     typ,
+	}
+}
+
+func (u *TemplatesOutput) UnmarshalJSON(data []byte) error {
+
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  TemplatesOutputTypeStr,
+			Value: &str,
+		})
+	}
+
+	var mapOfStr map[string]string = map[string]string{}
+	if err := utils.UnmarshalJSON(data, &mapOfStr, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  TemplatesOutputTypeMapOfStr,
+			Value: mapOfStr,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for TemplatesOutput", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for TemplatesOutput", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(TemplatesOutputType)
+	switch best.Type {
+	case TemplatesOutputTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case TemplatesOutputTypeMapOfStr:
+		u.MapOfStr = best.Value.(map[string]string)
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for TemplatesOutput", string(data))
+}
+
+func (u TemplatesOutput) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.MapOfStr != nil {
+		return utils.MarshalJSON(u.MapOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type TemplatesOutput: all fields are null")
+}
 
 type EntityItem struct {
 	AdditionalProperties any `additionalProperties:"true" json:"-"`
@@ -16,13 +107,15 @@ type EntityItem struct {
 	// Organization ID the entity belongs to
 	Org string `json:"_org"`
 	// URL-friendly identifier for the entity schema
-	Schema EntitySlug `json:"_schema"`
+	Schema string `json:"_schema"`
 	// Array of entity tags
 	Tags []string `json:"_tags,omitempty"`
 	// Title of the entity
 	Title string `json:"_title"`
 	// Last update timestamp of the entity
 	UpdatedAt time.Time `json:"_updated_at"`
+	// Resolved template strings corresponding to the templates parameter. Supports both string values and nested objects of strings.
+	TemplatesOutput map[string]TemplatesOutput `json:"templates_output,omitempty"`
 }
 
 func (e EntityItem) MarshalJSON() ([]byte, error) {
@@ -64,9 +157,9 @@ func (e *EntityItem) GetOrg() string {
 	return e.Org
 }
 
-func (e *EntityItem) GetSchema() EntitySlug {
+func (e *EntityItem) GetSchema() string {
 	if e == nil {
-		return EntitySlug("")
+		return ""
 	}
 	return e.Schema
 }
@@ -90,4 +183,11 @@ func (e *EntityItem) GetUpdatedAt() time.Time {
 		return time.Time{}
 	}
 	return e.UpdatedAt
+}
+
+func (e *EntityItem) GetTemplatesOutput() map[string]TemplatesOutput {
+	if e == nil {
+		return nil
+	}
+	return e.TemplatesOutput
 }

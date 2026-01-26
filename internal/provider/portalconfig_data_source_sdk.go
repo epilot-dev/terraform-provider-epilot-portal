@@ -107,6 +107,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 				r.CognitoDetails.PasswordPolicy = nil
 			} else {
 				r.CognitoDetails.PasswordPolicy = &tfTypes.UpsertPortalConfigV3PasswordPolicy{}
+				r.CognitoDetails.PasswordPolicy.MaximumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MaximumLength)
 				r.CognitoDetails.PasswordPolicy.MinimumLength = types.Int64PointerValue(resp.CognitoDetails.PasswordPolicy.MinimumLength)
 				r.CognitoDetails.PasswordPolicy.RequireLowercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireLowercase)
 				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
@@ -185,6 +186,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			r.EmailTemplates.OnMapAPendingUser = types.StringPointerValue(resp.EmailTemplates.OnMapAPendingUser)
 			r.EmailTemplates.OnNewQuote = types.StringPointerValue(resp.EmailTemplates.OnNewQuote)
 			r.EmailTemplates.OnWorkflowStepAssigned = types.StringPointerValue(resp.EmailTemplates.OnWorkflowStepAssigned)
+			r.EmailTemplates.PartnerInvitation = types.StringPointerValue(resp.EmailTemplates.PartnerInvitation)
 			r.EmailTemplates.VerifyCodeToSetPassword = types.StringPointerValue(resp.EmailTemplates.VerifyCodeToSetPassword)
 		}
 		r.Enabled = types.BoolPointerValue(resp.Enabled)
@@ -201,11 +203,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 				entityActions.ActionLabel.En = types.StringPointerValue(entityActionsItem.ActionLabel.En)
 			}
 			entityActions.JourneyID = types.StringPointerValue(entityActionsItem.JourneyID)
-			if entityActionsItem.Slug != nil {
-				entityActions.Slug = types.StringValue(string(*entityActionsItem.Slug))
-			} else {
-				entityActions.Slug = types.StringNull()
-			}
+			entityActions.Slug = types.StringPointerValue(entityActionsItem.Slug)
 
 			r.EntityActions = append(r.EntityActions, entityActions)
 		}
@@ -231,13 +229,14 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			}
 		}
 		if len(resp.ExtensionHooks) > 0 {
-			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookConfig, len(resp.ExtensionHooks))
-			for extensionHookConfigKey, extensionHookConfigValue := range resp.ExtensionHooks {
-				var extensionHookConfigResult tfTypes.ExtensionHookConfig
-				extensionHookConfigResult.AppID = types.StringPointerValue(extensionHookConfigValue.AppID)
-				extensionHookConfigResult.HookID = types.StringPointerValue(extensionHookConfigValue.HookID)
+			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookSelection, len(resp.ExtensionHooks))
+			for extensionHookSelectionKey, extensionHookSelectionValue := range resp.ExtensionHooks {
+				var extensionHookSelectionResult tfTypes.ExtensionHookSelection
+				extensionHookSelectionResult.AppID = types.StringValue(extensionHookSelectionValue.AppID)
+				extensionHookSelectionResult.ExtensionID = types.StringValue(extensionHookSelectionValue.ExtensionID)
+				extensionHookSelectionResult.HookID = types.StringValue(extensionHookSelectionValue.HookID)
 
-				r.ExtensionHooks[extensionHookConfigKey] = extensionHookConfigResult
+				r.ExtensionHooks[extensionHookSelectionKey] = extensionHookSelectionResult
 			}
 		}
 		r.Extensions = []tfTypes.ExtensionConfig{}
@@ -354,6 +353,7 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 
 			r.TriggeredJourneys = append(r.TriggeredJourneys, triggeredJourneys)
 		}
+		r.UserAccountSelfManagement = types.BoolPointerValue(resp.UserAccountSelfManagement)
 	}
 
 	return diags

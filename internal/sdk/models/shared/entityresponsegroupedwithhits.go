@@ -62,6 +62,8 @@ type Groups struct {
 	Count *float64 `json:"count,omitempty"`
 	// Group title
 	Group *string `json:"group,omitempty"`
+	// Resolved group title from variable
+	GroupTitle *string `json:"group_title,omitempty"`
 	// Pagination metadata for entities within this group
 	Pagination *EntityResponseGroupedWithHitsPagination `json:"pagination,omitempty"`
 	Results    []EntityItem                             `json:"results,omitempty"`
@@ -90,6 +92,13 @@ func (g *Groups) GetGroup() *string {
 		return nil
 	}
 	return g.Group
+}
+
+func (g *Groups) GetGroupTitle() *string {
+	if g == nil {
+		return nil
+	}
+	return g.GroupTitle
 }
 
 func (g *Groups) GetPagination() *EntityResponseGroupedWithHitsPagination {

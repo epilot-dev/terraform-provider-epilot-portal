@@ -18,8 +18,7 @@ import (
 
 // ServerList contains the list of servers available to the SDK
 var ServerList = []string{
-	// Production environment
-	"https://customer-portal-api.sls.epilot.io/",
+	"https://customer-portal-api.sls.epilot.io",
 }
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
@@ -54,10 +53,10 @@ type SDK struct {
 	// APIs defined for a ECP Admin
 	ECPAdmin *ECPAdmin
 	// APIs defined for a portal user
-	Ecp      *Ecp
-	Balance  *Balance
-	Activity *Activity
-	Internal *Internal
+	Ecp             *Ecp
+	BillingAccounts *BillingAccounts
+	Balance         *Balance
+	Activity        *Activity
 	// Public APIs
 	Public *Public
 	Login  *Login
@@ -136,9 +135,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
-		SDKVersion: "0.26.1",
+		SDKVersion: "0.26.2",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/terraform 0.26.1 2.795.8 1.0.0 github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk",
+			UserAgent:  "speakeasy-sdk/terraform 0.26.2 2.795.8 1.0.0 github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -161,9 +160,9 @@ func New(opts ...SDKOption) *SDK {
 
 	sdk.ECPAdmin = newECPAdmin(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Ecp = newEcp(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.BillingAccounts = newBillingAccounts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Balance = newBalance(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Activity = newActivity(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Internal = newInternal(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Public = newPublic(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Login = newLogin(sdk, sdk.sdkConfiguration, sdk.hooks)
 

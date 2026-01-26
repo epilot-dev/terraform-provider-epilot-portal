@@ -9,37 +9,97 @@ import (
 	"github.com/epilot-dev/terraform-provider-epilot-portal/internal/sdk/internal/utils"
 )
 
-// Filters - Elasticsearch filter object
-type Filters struct {
+// EntitySearchParamsFilters - Elasticsearch filter object
+type EntitySearchParamsFilters struct {
 }
 
-type FiltersSchema string
+type EntitySearchParamsFiltersContextType string
 
 const (
-	FiltersSchemaContact    FiltersSchema = "contact"
-	FiltersSchemaContract   FiltersSchema = "contract"
-	FiltersSchemaPortalUser FiltersSchema = "portal_user"
+	EntitySearchParamsFiltersContextTypeBoolean EntitySearchParamsFiltersContextType = "boolean"
+	EntitySearchParamsFiltersContextTypeStr     EntitySearchParamsFiltersContextType = "str"
 )
 
-func (e FiltersSchema) ToPointer() *FiltersSchema {
-	return &e
+type EntitySearchParamsFiltersContext struct {
+	Boolean *bool   `queryParam:"inline" union:"member"`
+	Str     *string `queryParam:"inline" union:"member"`
+
+	Type EntitySearchParamsFiltersContextType
 }
-func (e *FiltersSchema) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+func CreateEntitySearchParamsFiltersContextBoolean(boolean bool) EntitySearchParamsFiltersContext {
+	typ := EntitySearchParamsFiltersContextTypeBoolean
+
+	return EntitySearchParamsFiltersContext{
+		Boolean: &boolean,
+		Type:    typ,
 	}
-	switch v {
-	case "contact":
-		fallthrough
-	case "contract":
-		fallthrough
-	case "portal_user":
-		*e = FiltersSchema(v)
+}
+
+func CreateEntitySearchParamsFiltersContextStr(str string) EntitySearchParamsFiltersContext {
+	typ := EntitySearchParamsFiltersContextTypeStr
+
+	return EntitySearchParamsFiltersContext{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func (u *EntitySearchParamsFiltersContext) UnmarshalJSON(data []byte) error {
+
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
+	var boolean bool = false
+	if err := utils.UnmarshalJSON(data, &boolean, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  EntitySearchParamsFiltersContextTypeBoolean,
+			Value: &boolean,
+		})
+	}
+
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  EntitySearchParamsFiltersContextTypeStr,
+			Value: &str,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntitySearchParamsFiltersContext", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntitySearchParamsFiltersContext", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(EntitySearchParamsFiltersContextType)
+	switch best.Type {
+	case EntitySearchParamsFiltersContextTypeBoolean:
+		u.Boolean = best.Value.(*bool)
 		return nil
-	default:
-		return fmt.Errorf("invalid value for FiltersSchema: %v", v)
+	case EntitySearchParamsFiltersContextTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
 	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for EntitySearchParamsFiltersContext", string(data))
+}
+
+func (u EntitySearchParamsFiltersContext) MarshalJSON() ([]byte, error) {
+	if u.Boolean != nil {
+		return utils.MarshalJSON(u.Boolean, "", true)
+	}
+
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type EntitySearchParamsFiltersContext: all fields are null")
 }
 
 type GroupAfterKeyType string
@@ -161,33 +221,33 @@ func (e *GroupSort) UnmarshalJSON(data []byte) error {
 type SlugType string
 
 const (
-	SlugTypeEntitySlug        SlugType = "EntitySlug"
-	SlugTypeArrayOfEntitySlug SlugType = "arrayOfEntitySlug"
+	SlugTypeStr        SlugType = "str"
+	SlugTypeArrayOfStr SlugType = "arrayOfStr"
 )
 
 // Slug - Single entity schema slug or array of slugs
 type Slug struct {
-	EntitySlug        *EntitySlug  `queryParam:"inline" union:"member"`
-	ArrayOfEntitySlug []EntitySlug `queryParam:"inline" union:"member"`
+	Str        *string  `queryParam:"inline" union:"member"`
+	ArrayOfStr []string `queryParam:"inline" union:"member"`
 
 	Type SlugType
 }
 
-func CreateSlugEntitySlug(entitySlug EntitySlug) Slug {
-	typ := SlugTypeEntitySlug
+func CreateSlugStr(str string) Slug {
+	typ := SlugTypeStr
 
 	return Slug{
-		EntitySlug: &entitySlug,
-		Type:       typ,
+		Str:  &str,
+		Type: typ,
 	}
 }
 
-func CreateSlugArrayOfEntitySlug(arrayOfEntitySlug []EntitySlug) Slug {
-	typ := SlugTypeArrayOfEntitySlug
+func CreateSlugArrayOfStr(arrayOfStr []string) Slug {
+	typ := SlugTypeArrayOfStr
 
 	return Slug{
-		ArrayOfEntitySlug: arrayOfEntitySlug,
-		Type:              typ,
+		ArrayOfStr: arrayOfStr,
+		Type:       typ,
 	}
 }
 
@@ -196,19 +256,19 @@ func (u *Slug) UnmarshalJSON(data []byte) error {
 	var candidates []utils.UnionCandidate
 
 	// Collect all valid candidates
-	var entitySlug EntitySlug = EntitySlug("")
-	if err := utils.UnmarshalJSON(data, &entitySlug, "", true, nil); err == nil {
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
 		candidates = append(candidates, utils.UnionCandidate{
-			Type:  SlugTypeEntitySlug,
-			Value: &entitySlug,
+			Type:  SlugTypeStr,
+			Value: &str,
 		})
 	}
 
-	var arrayOfEntitySlug []EntitySlug = []EntitySlug{}
-	if err := utils.UnmarshalJSON(data, &arrayOfEntitySlug, "", true, nil); err == nil {
+	var arrayOfStr []string = []string{}
+	if err := utils.UnmarshalJSON(data, &arrayOfStr, "", true, nil); err == nil {
 		candidates = append(candidates, utils.UnionCandidate{
-			Type:  SlugTypeArrayOfEntitySlug,
-			Value: arrayOfEntitySlug,
+			Type:  SlugTypeArrayOfStr,
+			Value: arrayOfStr,
 		})
 	}
 
@@ -225,11 +285,11 @@ func (u *Slug) UnmarshalJSON(data []byte) error {
 	// Set the union type and value based on the best candidate
 	u.Type = best.Type.(SlugType)
 	switch best.Type {
-	case SlugTypeEntitySlug:
-		u.EntitySlug = best.Value.(*EntitySlug)
+	case SlugTypeStr:
+		u.Str = best.Value.(*string)
 		return nil
-	case SlugTypeArrayOfEntitySlug:
-		u.ArrayOfEntitySlug = best.Value.([]EntitySlug)
+	case SlugTypeArrayOfStr:
+		u.ArrayOfStr = best.Value.([]string)
 		return nil
 	}
 
@@ -237,27 +297,25 @@ func (u *Slug) UnmarshalJSON(data []byte) error {
 }
 
 func (u Slug) MarshalJSON() ([]byte, error) {
-	if u.EntitySlug != nil {
-		return utils.MarshalJSON(u.EntitySlug, "", true)
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
 	}
 
-	if u.ArrayOfEntitySlug != nil {
-		return utils.MarshalJSON(u.ArrayOfEntitySlug, "", true)
+	if u.ArrayOfStr != nil {
+		return utils.MarshalJSON(u.ArrayOfStr, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Slug: all fields are null")
 }
 
 type EntitySearchParams struct {
-	// List of contract IDs to filter by
-	Contracts []string `json:"contracts,omitempty"`
 	// List of entity fields to include in search results
 	Fields []string `json:"fields,omitempty"`
 	// Additional filters to apply to the search query
-	Filters []Filters `json:"filters,omitempty"`
-	// Schema-based filters for entity relations.
-	FiltersSchema []FiltersSchema `json:"filters_schema,omitempty"`
-	From          *int64          `default:"0" json:"from"`
+	Filters []EntitySearchParamsFilters `json:"filters,omitempty"`
+	// Context-based filters for entity relations.
+	FiltersContext []map[string]EntitySearchParamsFiltersContext `json:"filters_context,omitempty"`
+	From           *int64                                        `default:"0" json:"from"`
 	// Field to group results by
 	Group *string `json:"group,omitempty"`
 	// Composite aggregation key for group pagination
@@ -266,6 +324,8 @@ type EntitySearchParams struct {
 	GroupSize *int64 `default:"100" json:"group_size"`
 	// Sort order for groups
 	GroupSort *GroupSort `default:"asc" json:"group_sort"`
+	// Template for group title using variables
+	GroupTitle *string `json:"group_title,omitempty"`
 	// When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
 	Hydrate *bool `default:"false" json:"hydrate"`
 	// Keyword search query
@@ -279,6 +339,8 @@ type EntitySearchParams struct {
 	Sort *string `json:"sort,omitempty"`
 	// Filters from these targets will be applied to the search query.
 	Targets []string `json:"targets,omitempty"`
+	// Template strings to parse and return as synthetic fields
+	Templates map[string]string `json:"templates,omitempty"`
 }
 
 func (e EntitySearchParams) MarshalJSON() ([]byte, error) {
@@ -292,13 +354,6 @@ func (e *EntitySearchParams) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (e *EntitySearchParams) GetContracts() []string {
-	if e == nil {
-		return nil
-	}
-	return e.Contracts
-}
-
 func (e *EntitySearchParams) GetFields() []string {
 	if e == nil {
 		return nil
@@ -306,18 +361,18 @@ func (e *EntitySearchParams) GetFields() []string {
 	return e.Fields
 }
 
-func (e *EntitySearchParams) GetFilters() []Filters {
+func (e *EntitySearchParams) GetFilters() []EntitySearchParamsFilters {
 	if e == nil {
 		return nil
 	}
 	return e.Filters
 }
 
-func (e *EntitySearchParams) GetFiltersSchema() []FiltersSchema {
+func (e *EntitySearchParams) GetFiltersContext() []map[string]EntitySearchParamsFiltersContext {
 	if e == nil {
 		return nil
 	}
-	return e.FiltersSchema
+	return e.FiltersContext
 }
 
 func (e *EntitySearchParams) GetFrom() *int64 {
@@ -353,6 +408,13 @@ func (e *EntitySearchParams) GetGroupSort() *GroupSort {
 		return nil
 	}
 	return e.GroupSort
+}
+
+func (e *EntitySearchParams) GetGroupTitle() *string {
+	if e == nil {
+		return nil
+	}
+	return e.GroupTitle
 }
 
 func (e *EntitySearchParams) GetHydrate() *bool {
@@ -402,4 +464,11 @@ func (e *EntitySearchParams) GetTargets() []string {
 		return nil
 	}
 	return e.Targets
+}
+
+func (e *EntitySearchParams) GetTemplates() map[string]string {
+	if e == nil {
+		return nil
+	}
+	return e.Templates
 }

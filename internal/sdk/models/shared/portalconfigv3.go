@@ -96,6 +96,8 @@ func (p *PortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
 
 // PortalConfigV3PasswordPolicy - Password policy for the portal
 type PortalConfigV3PasswordPolicy struct {
+	// Maximum password length
+	MaximumLength *int64 `json:"maximum_length,omitempty"`
 	// Minimum password length
 	MinimumLength *int64 `json:"minimum_length,omitempty"`
 	// Require lowercase characters
@@ -106,6 +108,13 @@ type PortalConfigV3PasswordPolicy struct {
 	RequireSymbols *bool `json:"require_symbols,omitempty"`
 	// Require uppercase characters
 	RequireUppercase *bool `json:"require_uppercase,omitempty"`
+}
+
+func (p *PortalConfigV3PasswordPolicy) GetMaximumLength() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.MaximumLength
 }
 
 func (p *PortalConfigV3PasswordPolicy) GetMinimumLength() *int64 {
@@ -242,7 +251,7 @@ type EntityActions struct {
 	// Entity ID
 	JourneyID *string `json:"journey_id,omitempty"`
 	// URL-friendly identifier for the entity schema
-	Slug *EntitySlug `json:"slug,omitempty"`
+	Slug *string `json:"slug,omitempty"`
 }
 
 func (e *EntityActions) GetActionLabel() *PortalConfigV3ActionLabel {
@@ -259,7 +268,7 @@ func (e *EntityActions) GetJourneyID() *string {
 	return e.JourneyID
 }
 
-func (e *EntityActions) GetSlug() *EntitySlug {
+func (e *EntityActions) GetSlug() *string {
 	if e == nil {
 		return nil
 	}
@@ -426,6 +435,9 @@ const (
 	PortalConfigV3SelfRegistrationSettingAllowWithContactCreation    PortalConfigV3SelfRegistrationSetting = "ALLOW_WITH_CONTACT_CREATION"
 	PortalConfigV3SelfRegistrationSettingAllowWithoutContactCreation PortalConfigV3SelfRegistrationSetting = "ALLOW_WITHOUT_CONTACT_CREATION"
 	PortalConfigV3SelfRegistrationSettingDeny                        PortalConfigV3SelfRegistrationSetting = "DENY"
+	PortalConfigV3SelfRegistrationSettingAlwaysCreateContact         PortalConfigV3SelfRegistrationSetting = "ALWAYS_CREATE_CONTACT"
+	PortalConfigV3SelfRegistrationSettingDisallowCompletely          PortalConfigV3SelfRegistrationSetting = "DISALLOW_COMPLETELY"
+	PortalConfigV3SelfRegistrationSettingBlockIfPortalUserExists     PortalConfigV3SelfRegistrationSetting = "BLOCK_IF_PORTAL_USER_EXISTS"
 )
 
 func (e PortalConfigV3SelfRegistrationSetting) ToPointer() *PortalConfigV3SelfRegistrationSetting {
@@ -442,6 +454,12 @@ func (e *PortalConfigV3SelfRegistrationSetting) UnmarshalJSON(data []byte) error
 	case "ALLOW_WITHOUT_CONTACT_CREATION":
 		fallthrough
 	case "DENY":
+		fallthrough
+	case "ALWAYS_CREATE_CONTACT":
+		fallthrough
+	case "DISALLOW_COMPLETELY":
+		fallthrough
+	case "BLOCK_IF_PORTAL_USER_EXISTS":
 		*e = PortalConfigV3SelfRegistrationSetting(v)
 		return nil
 	default:
@@ -538,7 +556,7 @@ type PortalConfigV3 struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *PortalConfigV3EntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]*ExtensionHookConfig `json:"extension_hooks,omitempty"`
+	ExtensionHooks map[string]*ExtensionHookSelection `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature flags for the portal
@@ -580,6 +598,8 @@ type PortalConfigV3 struct {
 	SelfRegistrationSetting *PortalConfigV3SelfRegistrationSetting `json:"self_registration_setting,omitempty"`
 	// Journeys automatically opened on a portal user action
 	TriggeredJourneys []PortalConfigV3TriggeredJourneys `json:"triggered_journeys,omitempty"`
+	// Enable or disable user account self management
+	UserAccountSelfManagement *bool `json:"user_account_self_management,omitempty"`
 }
 
 func (p *PortalConfigV3) GetAccessToken() *string {
@@ -708,7 +728,7 @@ func (p *PortalConfigV3) GetEntityIdentifiers() *PortalConfigV3EntityIdentifiers
 	return p.EntityIdentifiers
 }
 
-func (p *PortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookConfig {
+func (p *PortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookSelection {
 	if p == nil {
 		return nil
 	}
@@ -867,4 +887,11 @@ func (p *PortalConfigV3) GetTriggeredJourneys() []PortalConfigV3TriggeredJourney
 		return nil
 	}
 	return p.TriggeredJourneys
+}
+
+func (p *PortalConfigV3) GetUserAccountSelfManagement() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.UserAccountSelfManagement
 }

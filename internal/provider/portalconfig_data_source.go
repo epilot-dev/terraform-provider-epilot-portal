@@ -48,7 +48,7 @@ type PortalConfigDataSourceModel struct {
 	EntityActions               []tfTypes.EntityActions                             `tfsdk:"entity_actions"`
 	EntityEditRules             jsontypes.Normalized                                `tfsdk:"entity_edit_rules"`
 	EntityIdentifiers           *tfTypes.UpsertPortalConfigV3EntityIdentifiers      `tfsdk:"entity_identifiers"`
-	ExtensionHooks              map[string]tfTypes.ExtensionHookConfig              `tfsdk:"extension_hooks"`
+	ExtensionHooks              map[string]tfTypes.ExtensionHookSelection           `tfsdk:"extension_hooks"`
 	Extensions                  []tfTypes.ExtensionConfig                           `tfsdk:"extensions"`
 	FeatureFlags                jsontypes.Normalized                                `tfsdk:"feature_flags"`
 	FeatureSettings             *tfTypes.UpsertPortalConfigV3FeatureSettings        `tfsdk:"feature_settings"`
@@ -71,6 +71,7 @@ type PortalConfigDataSourceModel struct {
 	RegistrationIdentifiers     jsontypes.Normalized                                `tfsdk:"registration_identifiers"`
 	SelfRegistrationSetting     types.String                                        `tfsdk:"self_registration_setting"`
 	TriggeredJourneys           []tfTypes.PortalConfigV3TriggeredJourneys           `tfsdk:"triggered_journeys"`
+	UserAccountSelfManagement   types.Bool                                          `tfsdk:"user_account_self_management"`
 }
 
 // Metadata returns the data source type name.
@@ -192,6 +193,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 					"password_policy": schema.SingleNestedAttribute{
 						Computed: true,
 						Attributes: map[string]schema.Attribute{
+							"maximum_length": schema.Int64Attribute{
+								Computed:    true,
+								Description: `Maximum password length`,
+							},
 							"minimum_length": schema.Int64Attribute{
 								Computed:    true,
 								Description: `Minimum password length`,
@@ -364,6 +369,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 						Computed:    true,
 						Description: `Entity ID`,
 					},
+					"partner_invitation": schema.StringAttribute{
+						Computed:    true,
+						Description: `Entity ID`,
+					},
 					"verify_code_to_set_password": schema.StringAttribute{
 						Computed:    true,
 						Description: `Entity ID`,
@@ -434,11 +443,15 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 					Attributes: map[string]schema.Attribute{
 						"app_id": schema.StringAttribute{
 							Computed:    true,
-							Description: `The ID of the app that is being hooked into.`,
+							Description: `The ID of the selected app.`,
+						},
+						"extension_id": schema.StringAttribute{
+							Computed:    true,
+							Description: `The ID of the selected extension.`,
 						},
 						"hook_id": schema.StringAttribute{
 							Computed:    true,
-							Description: `The ID of the hook that is being configured.`,
+							Description: `The ID of the selected hook.`,
 						},
 					},
 				},
@@ -617,6 +630,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 					},
 				},
 				Description: `Journeys automatically opened on a portal user action`,
+			},
+			"user_account_self_management": schema.BoolAttribute{
+				Computed:    true,
+				Description: `Enable or disable user account self management`,
 			},
 		},
 	}

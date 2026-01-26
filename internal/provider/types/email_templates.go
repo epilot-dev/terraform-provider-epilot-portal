@@ -20,5 +20,6 @@ type EmailTemplates struct {
 	OnMapAPendingUser            types.String `tfsdk:"on_map_a_pending_user"`
 	OnNewQuote                   types.String `tfsdk:"on_new_quote"`
 	OnWorkflowStepAssigned       types.String `tfsdk:"on_workflow_step_assigned"`
+	PartnerInvitation            types.String `tfsdk:"partner_invitation"`
 	VerifyCodeToSetPassword      types.String `tfsdk:"verify_code_to_set_password"`
 }

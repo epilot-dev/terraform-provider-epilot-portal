@@ -11,9 +11,9 @@ import (
 type SwapPortalConfigRequestBody struct {
 	// Items to swap
 	ItemsToSwap []shared.SwappableConfig `json:"items_to_swap,omitempty"`
-	// Source portal ID
+	// ID of the portal
 	SourcePortalID string `json:"source_portal_id"`
-	// Target portal ID
+	// ID of the portal
 	TargetPortalID string `json:"target_portal_id"`
 }
 

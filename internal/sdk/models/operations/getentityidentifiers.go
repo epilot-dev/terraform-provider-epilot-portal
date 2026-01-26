@@ -9,12 +9,12 @@ import (
 
 type GetEntityIdentifiersRequest struct {
 	// The slug of an entity
-	Slug shared.EntitySlug `pathParam:"style=simple,explode=false,name=slug"`
+	Slug string `pathParam:"style=simple,explode=false,name=slug"`
 }
 
-func (g *GetEntityIdentifiersRequest) GetSlug() shared.EntitySlug {
+func (g *GetEntityIdentifiersRequest) GetSlug() string {
 	if g == nil {
-		return shared.EntitySlug("")
+		return ""
 	}
 	return g.Slug
 }

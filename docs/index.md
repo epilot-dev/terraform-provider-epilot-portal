@@ -16,7 +16,7 @@ terraform {
   required_providers {
     epilot-portal = {
       source  = "epilot-dev/epilot-portal"
-      version = "0.26.1"
+      version = "0.26.2"
     }
   }
 }
@@ -34,4 +34,4 @@ provider "epilot-portal" {
 - `either_auth` (String, Sensitive) Portal or Epilot Bearer Token.
 - `epilot_auth` (String, Sensitive) Epilot Bearer Token.
 - `portal_auth` (String, Sensitive) Portal Cognito Token.
-- `server_url` (String) Server URL (defaults to https://customer-portal-api.sls.epilot.io/)
+- `server_url` (String) Server URL (defaults to https://customer-portal-api.sls.epilot.io)

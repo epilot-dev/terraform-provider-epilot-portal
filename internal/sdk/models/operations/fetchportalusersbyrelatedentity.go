@@ -9,8 +9,7 @@ import (
 
 type FetchPortalUsersByRelatedEntityRequest struct {
 	EntityID string `queryParam:"style=form,explode=true,name=entity_id"`
-	// URL-friendly identifier for the entity schema
-	Slug shared.EntitySlug `queryParam:"style=form,explode=true,name=slug"`
+	Slug     string `queryParam:"style=form,explode=true,name=slug"`
 }
 
 func (f *FetchPortalUsersByRelatedEntityRequest) GetEntityID() string {
@@ -20,9 +19,9 @@ func (f *FetchPortalUsersByRelatedEntityRequest) GetEntityID() string {
 	return f.EntityID
 }
 
-func (f *FetchPortalUsersByRelatedEntityRequest) GetSlug() shared.EntitySlug {
+func (f *FetchPortalUsersByRelatedEntityRequest) GetSlug() string {
 	if f == nil {
-		return shared.EntitySlug("")
+		return ""
 	}
 	return f.Slug
 }

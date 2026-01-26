@@ -11,14 +11,14 @@ import (
 
 type Relations struct {
 	// URL-friendly identifier for the entity schema
-	Schema *EntitySlug `json:"_schema,omitempty"`
+	Schema *string `json:"_schema,omitempty"`
 	// The title of the parent entity
 	Title *string `json:"_title,omitempty"`
 	// Entity ID
 	EntityID *string `json:"entity_id,omitempty"`
 }
 
-func (r *Relations) GetSchema() *EntitySlug {
+func (r *Relations) GetSchema() *string {
 	if r == nil {
 		return nil
 	}
