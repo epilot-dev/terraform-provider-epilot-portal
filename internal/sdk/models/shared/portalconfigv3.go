@@ -19,81 +19,6 @@ func (p *PortalConfigV3AdvancedMfa) GetEnabled() *bool {
 	return p.Enabled
 }
 
-type PortalConfigV3EntryPoint string
-
-const (
-	PortalConfigV3EntryPointPassword PortalConfigV3EntryPoint = "PASSWORD"
-	PortalConfigV3EntryPointSso      PortalConfigV3EntryPoint = "SSO"
-)
-
-func (e PortalConfigV3EntryPoint) ToPointer() *PortalConfigV3EntryPoint {
-	return &e
-}
-func (e *PortalConfigV3EntryPoint) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "PASSWORD":
-		fallthrough
-	case "SSO":
-		*e = PortalConfigV3EntryPoint(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PortalConfigV3EntryPoint: %v", v)
-	}
-}
-
-type PortalConfigV3PasswordlessLogin struct {
-	// Passwordless login feature flag
-	Enabled *bool `json:"enabled,omitempty"`
-}
-
-func (p *PortalConfigV3PasswordlessLogin) GetEnabled() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.Enabled
-}
-
-// PortalConfigV3AuthSettings - Authentication settings for the portal
-type PortalConfigV3AuthSettings struct {
-	// Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
-	AutoRedirectToSso     *bool                            `json:"auto_redirect_to_sso,omitempty"`
-	EntryPoint            *PortalConfigV3EntryPoint        `json:"entry_point,omitempty"`
-	PasswordlessLogin     *PortalConfigV3PasswordlessLogin `json:"passwordless_login,omitempty"`
-	PreferredSsoProviders []string                         `json:"preferred_sso_providers,omitempty"`
-}
-
-func (p *PortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.AutoRedirectToSso
-}
-
-func (p *PortalConfigV3AuthSettings) GetEntryPoint() *PortalConfigV3EntryPoint {
-	if p == nil {
-		return nil
-	}
-	return p.EntryPoint
-}
-
-func (p *PortalConfigV3AuthSettings) GetPasswordlessLogin() *PortalConfigV3PasswordlessLogin {
-	if p == nil {
-		return nil
-	}
-	return p.PasswordlessLogin
-}
-
-func (p *PortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
-	if p == nil {
-		return nil
-	}
-	return p.PreferredSsoProviders
-}
-
 // PortalConfigV3PasswordPolicy - Password policy for the portal
 type PortalConfigV3PasswordPolicy struct {
 	// Maximum password length
@@ -310,46 +235,6 @@ func (p *PortalConfigV3EntityIdentifiers) GetType() *PortalConfigV3Type {
 	return p.Type
 }
 
-// PortalConfigV3FeatureSettings - Feature settings for the portal
-type PortalConfigV3FeatureSettings struct {
-	// Billing feature flag
-	Billing *bool `json:"billing,omitempty"`
-	// Change due date feature flag
-	ChangeDueDate *bool `json:"change_due_date,omitempty"`
-	// Enable or disable the new design for the portal
-	NewDesign *bool `json:"new_design,omitempty"`
-	// Start page feature flag
-	StartPage *bool `json:"start_page,omitempty"`
-}
-
-func (p *PortalConfigV3FeatureSettings) GetBilling() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.Billing
-}
-
-func (p *PortalConfigV3FeatureSettings) GetChangeDueDate() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.ChangeDueDate
-}
-
-func (p *PortalConfigV3FeatureSettings) GetNewDesign() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.NewDesign
-}
-
-func (p *PortalConfigV3FeatureSettings) GetStartPage() *bool {
-	if p == nil {
-		return nil
-	}
-	return p.StartPage
-}
-
 // PortalConfigV3Images - Teaser & Banner Image web links
 type PortalConfigV3Images struct {
 	// URL of the order left teaser image
@@ -524,7 +409,7 @@ type PortalConfigV3 struct {
 	AllowedFileExtensions   *AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
 	ApprovalStateAttributes any                    `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
-	AuthSettings *PortalConfigV3AuthSettings `json:"auth_settings,omitempty"`
+	AuthSettings any `json:"auth_settings,omitempty"`
 	// AWS Cognito Pool details for the portal
 	CognitoDetails *PortalConfigV3CognitoDetails `json:"cognito_details,omitempty"`
 	// Stringified object with configuration details
@@ -556,13 +441,13 @@ type PortalConfigV3 struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *PortalConfigV3EntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]*ExtensionHookSelection `json:"extension_hooks,omitempty"`
+	ExtensionHooks any `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature flags for the portal
 	FeatureFlags any `json:"feature_flags,omitempty"`
 	// Feature settings for the portal
-	FeatureSettings *PortalConfigV3FeatureSettings `json:"feature_settings,omitempty"`
+	FeatureSettings any `json:"feature_settings,omitempty"`
 	// Permissions granted to a portal user while accessing entities
 	Grants            any `json:"grants,omitempty"`
 	IdentityProviders any `json:"identity_providers,omitempty"`
@@ -630,7 +515,7 @@ func (p *PortalConfigV3) GetApprovalStateAttributes() any {
 	return p.ApprovalStateAttributes
 }
 
-func (p *PortalConfigV3) GetAuthSettings() *PortalConfigV3AuthSettings {
+func (p *PortalConfigV3) GetAuthSettings() any {
 	if p == nil {
 		return nil
 	}
@@ -728,7 +613,7 @@ func (p *PortalConfigV3) GetEntityIdentifiers() *PortalConfigV3EntityIdentifiers
 	return p.EntityIdentifiers
 }
 
-func (p *PortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookSelection {
+func (p *PortalConfigV3) GetExtensionHooks() any {
 	if p == nil {
 		return nil
 	}
@@ -749,7 +634,7 @@ func (p *PortalConfigV3) GetFeatureFlags() any {
 	return p.FeatureFlags
 }
 
-func (p *PortalConfigV3) GetFeatureSettings() *PortalConfigV3FeatureSettings {
+func (p *PortalConfigV3) GetFeatureSettings() any {
 	if p == nil {
 		return nil
 	}

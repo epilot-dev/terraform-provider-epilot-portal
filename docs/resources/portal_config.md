@@ -51,16 +51,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     ]
   }
   approval_state_attributes = "{ \"see\": \"documentation\" }"
-  auth_settings = {
-    auto_redirect_to_sso = true
-    entry_point          = "SSO"
-    passwordless_login = {
-      enabled = true
-    }
-    preferred_sso_providers = [
-      "office-365-login"
-    ]
-  }
+  auth_settings             = "{ \"see\": \"documentation\" }"
   cognito_details = {
     cognito_user_pool_arn       = "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341"
     cognito_user_pool_client_id = "6bsd0jkgoie74k2i8mrhc1vest"
@@ -142,13 +133,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       is_enabled = false
     }
   }
-  extension_hooks = {
-    key = {
-      app_id       = "...my_app_id..."
-      extension_id = "...my_extension_id..."
-      hook_id      = "...my_hook_id..."
-    }
-  }
+  extension_hooks = "{ \"see\": \"documentation\" }"
   extensions = [
     {
       id = "...my_id..."
@@ -158,12 +143,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       status = "installed"
     }
   ]
-  feature_settings = {
-    billing         = true
-    change_due_date = false
-    new_design      = true
-    start_page      = true
-  }
+  feature_settings = "{ \"see\": \"documentation\" }"
   images = {
     order_left_teaser  = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg"
     order_right_teaser = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg"
@@ -201,7 +181,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `advanced_mfa` (Attributes) (see [below for nested schema](#nestedatt--advanced_mfa))
 - `allowed_file_extensions` (Attributes) Allowed file extensions for upload (see [below for nested schema](#nestedatt--allowed_file_extensions))
 - `approval_state_attributes` (String) Parsed as JSON.
-- `auth_settings` (Attributes) Authentication settings for the portal (see [below for nested schema](#nestedatt--auth_settings))
+- `auth_settings` (String) Authentication settings for the portal. Parsed as JSON.
 - `cognito_details` (Attributes) AWS Cognito Pool details for the portal (see [below for nested schema](#nestedatt--cognito_details))
 - `config` (String) Stringified object with configuration details
 - `contact_identifiers` (List of String, Deprecated) Deprecated. Use registration_identifiers instead.
@@ -215,9 +195,9 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
 - `entity_actions` (Attributes List) Journey actions allowed on an entity by a portal user (see [below for nested schema](#nestedatt--entity_actions))
 - `entity_edit_rules` (String) Rules for editing an entity by a portal user. Parsed as JSON.
 - `entity_identifiers` (Attributes, Deprecated) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. (see [below for nested schema](#nestedatt--entity_identifiers))
-- `extension_hooks` (Attributes Map) Configured Portal extensions hooks (see [below for nested schema](#nestedatt--extension_hooks))
+- `extension_hooks` (String) Configured Portal extensions hooks. Parsed as JSON.
 - `extensions` (Attributes List) Configured Portal extensions (see [below for nested schema](#nestedatt--extensions))
-- `feature_settings` (Attributes) Feature settings for the portal (see [below for nested schema](#nestedatt--feature_settings))
+- `feature_settings` (String) Feature settings for the portal. Parsed as JSON.
 - `images` (Attributes) Teaser & Banner Image web links (see [below for nested schema](#nestedatt--images))
 - `inactive_contract_cutoff_years` (Number) Number of years to look back for showing inactive contracts in the portal
 - `is_dummy` (Boolean) Whether this is a dummy/test portal configuration
@@ -266,25 +246,6 @@ Optional:
 - `other` (List of String)
 - `presentation` (List of String)
 - `spreadsheet` (List of String)
-
-
-<a id="nestedatt--auth_settings"></a>
-### Nested Schema for `auth_settings`
-
-Optional:
-
-- `auto_redirect_to_sso` (Boolean) Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
-- `entry_point` (String) must be one of ["PASSWORD", "SSO"]
-- `passwordless_login` (Attributes) (see [below for nested schema](#nestedatt--auth_settings--passwordless_login))
-- `preferred_sso_providers` (List of String)
-
-<a id="nestedatt--auth_settings--passwordless_login"></a>
-### Nested Schema for `auth_settings.passwordless_login`
-
-Optional:
-
-- `enabled` (Boolean) Passwordless login feature flag
-
 
 
 <a id="nestedatt--cognito_details"></a>
@@ -412,16 +373,6 @@ Optional:
 
 
 
-<a id="nestedatt--extension_hooks"></a>
-### Nested Schema for `extension_hooks`
-
-Optional:
-
-- `app_id` (String) The ID of the selected app. Not Null
-- `extension_id` (String) The ID of the selected extension. Not Null
-- `hook_id` (String) The ID of the selected hook. Not Null
-
-
 <a id="nestedatt--extensions"></a>
 ### Nested Schema for `extensions`
 
@@ -430,17 +381,6 @@ Optional:
 - `id` (String) Name of the extension. Not Null
 - `options` (Map of String) Extension option values.
 - `status` (String) Status of the extension. Default: "installed"; must be one of ["installed", "enabled"]
-
-
-<a id="nestedatt--feature_settings"></a>
-### Nested Schema for `feature_settings`
-
-Optional:
-
-- `billing` (Boolean) Billing feature flag
-- `change_due_date` (Boolean) Change due date feature flag
-- `new_design` (Boolean) Enable or disable the new design for the portal
-- `start_page` (Boolean) Start page feature flag
 
 
 <a id="nestedatt--images"></a>

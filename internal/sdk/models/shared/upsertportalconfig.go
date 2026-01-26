@@ -653,7 +653,7 @@ type UpsertPortalConfig struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *UpsertPortalConfigEntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]*ExtensionHookSelection `json:"extension_hooks,omitempty"`
+	ExtensionHooks any `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature settings for the portal
@@ -816,7 +816,7 @@ func (u *UpsertPortalConfig) GetEntityIdentifiers() *UpsertPortalConfigEntityIde
 	return u.EntityIdentifiers
 }
 
-func (u *UpsertPortalConfig) GetExtensionHooks() map[string]*ExtensionHookSelection {
+func (u *UpsertPortalConfig) GetExtensionHooks() any {
 	if u == nil {
 		return nil
 	}

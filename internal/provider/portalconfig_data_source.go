@@ -34,7 +34,7 @@ type PortalConfigDataSourceModel struct {
 	AdvancedMfa                 *tfTypes.UpsertPortalConfigV3AdvancedMfa            `tfsdk:"advanced_mfa"`
 	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                      `tfsdk:"allowed_file_extensions"`
 	ApprovalStateAttributes     jsontypes.Normalized                                `tfsdk:"approval_state_attributes"`
-	AuthSettings                *tfTypes.UpsertPortalConfigV3AuthSettings           `tfsdk:"auth_settings"`
+	AuthSettings                jsontypes.Normalized                                `tfsdk:"auth_settings"`
 	CognitoDetails              *tfTypes.UpsertPortalConfigV3CognitoDetails         `tfsdk:"cognito_details"`
 	Config                      types.String                                        `tfsdk:"config"`
 	ContactIdentifiers          []types.String                                      `tfsdk:"contact_identifiers"`
@@ -48,10 +48,10 @@ type PortalConfigDataSourceModel struct {
 	EntityActions               []tfTypes.EntityActions                             `tfsdk:"entity_actions"`
 	EntityEditRules             jsontypes.Normalized                                `tfsdk:"entity_edit_rules"`
 	EntityIdentifiers           *tfTypes.UpsertPortalConfigV3EntityIdentifiers      `tfsdk:"entity_identifiers"`
-	ExtensionHooks              map[string]tfTypes.ExtensionHookSelection           `tfsdk:"extension_hooks"`
+	ExtensionHooks              jsontypes.Normalized                                `tfsdk:"extension_hooks"`
 	Extensions                  []tfTypes.ExtensionConfig                           `tfsdk:"extensions"`
 	FeatureFlags                jsontypes.Normalized                                `tfsdk:"feature_flags"`
-	FeatureSettings             *tfTypes.UpsertPortalConfigV3FeatureSettings        `tfsdk:"feature_settings"`
+	FeatureSettings             jsontypes.Normalized                                `tfsdk:"feature_settings"`
 	Grants                      jsontypes.Normalized                                `tfsdk:"grants"`
 	IdentityProviders           jsontypes.Normalized                                `tfsdk:"identity_providers"`
 	Images                      *tfTypes.UpsertPortalConfigV3Images                 `tfsdk:"images"`
@@ -149,31 +149,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 				Computed:    true,
 				Description: `Parsed as JSON.`,
 			},
-			"auth_settings": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"auto_redirect_to_sso": schema.BoolAttribute{
-						Computed:    true,
-						Description: `Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.`,
-					},
-					"entry_point": schema.StringAttribute{
-						Computed: true,
-					},
-					"passwordless_login": schema.SingleNestedAttribute{
-						Computed: true,
-						Attributes: map[string]schema.Attribute{
-							"enabled": schema.BoolAttribute{
-								Computed:    true,
-								Description: `Passwordless login feature flag`,
-							},
-						},
-					},
-					"preferred_sso_providers": schema.ListAttribute{
-						Computed:    true,
-						ElementType: types.StringType,
-					},
-				},
-				Description: `Authentication settings for the portal`,
+			"auth_settings": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Description: `Authentication settings for the portal. Parsed as JSON.`,
 			},
 			"cognito_details": schema.SingleNestedAttribute{
 				Computed: true,
@@ -437,25 +416,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 				DeprecationMessage: `This will be removed in a future release, please migrate away from it as soon as possible`,
 				Description:        `Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead.`,
 			},
-			"extension_hooks": schema.MapNestedAttribute{
-				Computed: true,
-				NestedObject: schema.NestedAttributeObject{
-					Attributes: map[string]schema.Attribute{
-						"app_id": schema.StringAttribute{
-							Computed:    true,
-							Description: `The ID of the selected app.`,
-						},
-						"extension_id": schema.StringAttribute{
-							Computed:    true,
-							Description: `The ID of the selected extension.`,
-						},
-						"hook_id": schema.StringAttribute{
-							Computed:    true,
-							Description: `The ID of the selected hook.`,
-						},
-					},
-				},
-				Description: `Configured Portal extensions hooks`,
+			"extension_hooks": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Description: `Configured Portal extensions hooks. Parsed as JSON.`,
 			},
 			"extensions": schema.ListNestedAttribute{
 				Computed: true,
@@ -483,27 +447,10 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 				Computed:    true,
 				Description: `Feature flags for the portal. Parsed as JSON.`,
 			},
-			"feature_settings": schema.SingleNestedAttribute{
-				Computed: true,
-				Attributes: map[string]schema.Attribute{
-					"billing": schema.BoolAttribute{
-						Computed:    true,
-						Description: `Billing feature flag`,
-					},
-					"change_due_date": schema.BoolAttribute{
-						Computed:    true,
-						Description: `Change due date feature flag`,
-					},
-					"new_design": schema.BoolAttribute{
-						Computed:    true,
-						Description: `Enable or disable the new design for the portal`,
-					},
-					"start_page": schema.BoolAttribute{
-						Computed:    true,
-						Description: `Start page feature flag`,
-					},
-				},
-				Description: `Feature settings for the portal`,
+			"feature_settings": schema.StringAttribute{
+				CustomType:  jsontypes.NormalizedType{},
+				Computed:    true,
+				Description: `Feature settings for the portal. Parsed as JSON.`,
 			},
 			"grants": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},

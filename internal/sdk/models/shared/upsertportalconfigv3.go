@@ -19,81 +19,6 @@ func (u *UpsertPortalConfigV3AdvancedMfa) GetEnabled() *bool {
 	return u.Enabled
 }
 
-type UpsertPortalConfigV3EntryPoint string
-
-const (
-	UpsertPortalConfigV3EntryPointPassword UpsertPortalConfigV3EntryPoint = "PASSWORD"
-	UpsertPortalConfigV3EntryPointSso      UpsertPortalConfigV3EntryPoint = "SSO"
-)
-
-func (e UpsertPortalConfigV3EntryPoint) ToPointer() *UpsertPortalConfigV3EntryPoint {
-	return &e
-}
-func (e *UpsertPortalConfigV3EntryPoint) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "PASSWORD":
-		fallthrough
-	case "SSO":
-		*e = UpsertPortalConfigV3EntryPoint(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for UpsertPortalConfigV3EntryPoint: %v", v)
-	}
-}
-
-type UpsertPortalConfigV3PasswordlessLogin struct {
-	// Passwordless login feature flag
-	Enabled *bool `json:"enabled,omitempty"`
-}
-
-func (u *UpsertPortalConfigV3PasswordlessLogin) GetEnabled() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.Enabled
-}
-
-// UpsertPortalConfigV3AuthSettings - Authentication settings for the portal
-type UpsertPortalConfigV3AuthSettings struct {
-	// Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
-	AutoRedirectToSso     *bool                                  `json:"auto_redirect_to_sso,omitempty"`
-	EntryPoint            *UpsertPortalConfigV3EntryPoint        `json:"entry_point,omitempty"`
-	PasswordlessLogin     *UpsertPortalConfigV3PasswordlessLogin `json:"passwordless_login,omitempty"`
-	PreferredSsoProviders []string                               `json:"preferred_sso_providers,omitempty"`
-}
-
-func (u *UpsertPortalConfigV3AuthSettings) GetAutoRedirectToSso() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.AutoRedirectToSso
-}
-
-func (u *UpsertPortalConfigV3AuthSettings) GetEntryPoint() *UpsertPortalConfigV3EntryPoint {
-	if u == nil {
-		return nil
-	}
-	return u.EntryPoint
-}
-
-func (u *UpsertPortalConfigV3AuthSettings) GetPasswordlessLogin() *UpsertPortalConfigV3PasswordlessLogin {
-	if u == nil {
-		return nil
-	}
-	return u.PasswordlessLogin
-}
-
-func (u *UpsertPortalConfigV3AuthSettings) GetPreferredSsoProviders() []string {
-	if u == nil {
-		return nil
-	}
-	return u.PreferredSsoProviders
-}
-
 // UpsertPortalConfigV3PasswordPolicy - Password policy for the portal
 type UpsertPortalConfigV3PasswordPolicy struct {
 	// Maximum password length
@@ -310,46 +235,6 @@ func (u *UpsertPortalConfigV3EntityIdentifiers) GetType() *UpsertPortalConfigV3T
 	return u.Type
 }
 
-// UpsertPortalConfigV3FeatureSettings - Feature settings for the portal
-type UpsertPortalConfigV3FeatureSettings struct {
-	// Billing feature flag
-	Billing *bool `json:"billing,omitempty"`
-	// Change due date feature flag
-	ChangeDueDate *bool `json:"change_due_date,omitempty"`
-	// Enable or disable the new design for the portal
-	NewDesign *bool `json:"new_design,omitempty"`
-	// Start page feature flag
-	StartPage *bool `json:"start_page,omitempty"`
-}
-
-func (u *UpsertPortalConfigV3FeatureSettings) GetBilling() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.Billing
-}
-
-func (u *UpsertPortalConfigV3FeatureSettings) GetChangeDueDate() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.ChangeDueDate
-}
-
-func (u *UpsertPortalConfigV3FeatureSettings) GetNewDesign() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.NewDesign
-}
-
-func (u *UpsertPortalConfigV3FeatureSettings) GetStartPage() *bool {
-	if u == nil {
-		return nil
-	}
-	return u.StartPage
-}
-
 // UpsertPortalConfigV3Images - Teaser & Banner Image web links
 type UpsertPortalConfigV3Images struct {
 	// URL of the order left teaser image
@@ -476,7 +361,7 @@ type UpsertPortalConfigV3 struct {
 	AllowedFileExtensions   *AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
 	ApprovalStateAttributes any                    `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
-	AuthSettings *UpsertPortalConfigV3AuthSettings `json:"auth_settings,omitempty"`
+	AuthSettings any `json:"auth_settings,omitempty"`
 	// AWS Cognito Pool details for the portal
 	CognitoDetails *UpsertPortalConfigV3CognitoDetails `json:"cognito_details,omitempty"`
 	// Stringified object with configuration details
@@ -508,11 +393,11 @@ type UpsertPortalConfigV3 struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	EntityIdentifiers *UpsertPortalConfigV3EntityIdentifiers `json:"entity_identifiers,omitempty"`
 	// Configured Portal extensions hooks
-	ExtensionHooks map[string]*ExtensionHookSelection `json:"extension_hooks,omitempty"`
+	ExtensionHooks any `json:"extension_hooks,omitempty"`
 	// Configured Portal extensions
 	Extensions []ExtensionConfig `json:"extensions,omitempty"`
 	// Feature settings for the portal
-	FeatureSettings *UpsertPortalConfigV3FeatureSettings `json:"feature_settings,omitempty"`
+	FeatureSettings any `json:"feature_settings,omitempty"`
 	// Teaser & Banner Image web links
 	Images *UpsertPortalConfigV3Images `json:"images,omitempty"`
 	// Number of years to look back for showing inactive contracts in the portal
@@ -573,7 +458,7 @@ func (u *UpsertPortalConfigV3) GetApprovalStateAttributes() any {
 	return u.ApprovalStateAttributes
 }
 
-func (u *UpsertPortalConfigV3) GetAuthSettings() *UpsertPortalConfigV3AuthSettings {
+func (u *UpsertPortalConfigV3) GetAuthSettings() any {
 	if u == nil {
 		return nil
 	}
@@ -671,7 +556,7 @@ func (u *UpsertPortalConfigV3) GetEntityIdentifiers() *UpsertPortalConfigV3Entit
 	return u.EntityIdentifiers
 }
 
-func (u *UpsertPortalConfigV3) GetExtensionHooks() map[string]*ExtensionHookSelection {
+func (u *UpsertPortalConfigV3) GetExtensionHooks() any {
 	if u == nil {
 		return nil
 	}
@@ -685,7 +570,7 @@ func (u *UpsertPortalConfigV3) GetExtensions() []ExtensionConfig {
 	return u.Extensions
 }
 
-func (u *UpsertPortalConfigV3) GetFeatureSettings() *UpsertPortalConfigV3FeatureSettings {
+func (u *UpsertPortalConfigV3) GetFeatureSettings() any {
 	if u == nil {
 		return nil
 	}

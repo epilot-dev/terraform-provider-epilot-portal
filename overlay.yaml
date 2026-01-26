@@ -74,6 +74,9 @@ actions:
   - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["feature_settings"]
     update:
       x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["CommonConfigAttributesV3"]["properties"]["auth_settings"]
+    update:
+      x-speakeasy-type-override: any
   - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["grants"]
     update:
       x-speakeasy-type-override: any
@@ -81,6 +84,9 @@ actions:
     update:
       x-speakeasy-type-override: any
   - target: $["components"]["schemas"]["PortalConfigV3"]["allOf"][2]["properties"]["identity_providers"]
+    update:
+      x-speakeasy-type-override: any
+  - target: $["components"]["schemas"]["UpdateOnlyPortalConfigAttributes"]["properties"]["extension_hooks"]
     update:
       x-speakeasy-type-override: any
 

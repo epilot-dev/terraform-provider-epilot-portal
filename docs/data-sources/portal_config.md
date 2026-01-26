@@ -31,7 +31,7 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `advanced_mfa` (Attributes) (see [below for nested schema](#nestedatt--advanced_mfa))
 - `allowed_file_extensions` (Attributes) Allowed file extensions for upload (see [below for nested schema](#nestedatt--allowed_file_extensions))
 - `approval_state_attributes` (String) Parsed as JSON.
-- `auth_settings` (Attributes) Authentication settings for the portal (see [below for nested schema](#nestedatt--auth_settings))
+- `auth_settings` (String) Authentication settings for the portal. Parsed as JSON.
 - `cognito_details` (Attributes) AWS Cognito Pool details for the portal (see [below for nested schema](#nestedatt--cognito_details))
 - `config` (String) Stringified object with configuration details
 - `contact_identifiers` (List of String, Deprecated) Deprecated. Use registration_identifiers instead.
@@ -45,10 +45,10 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `entity_actions` (Attributes List) Journey actions allowed on an entity by a portal user (see [below for nested schema](#nestedatt--entity_actions))
 - `entity_edit_rules` (String) Rules for editing an entity by a portal user. Parsed as JSON.
 - `entity_identifiers` (Attributes, Deprecated) Identifiers used to identify an entity by a portal user. Deprecated. Use contract_identifiers instead. (see [below for nested schema](#nestedatt--entity_identifiers))
-- `extension_hooks` (Attributes Map) Configured Portal extensions hooks (see [below for nested schema](#nestedatt--extension_hooks))
+- `extension_hooks` (String) Configured Portal extensions hooks. Parsed as JSON.
 - `extensions` (Attributes List) Configured Portal extensions (see [below for nested schema](#nestedatt--extensions))
 - `feature_flags` (String) Feature flags for the portal. Parsed as JSON.
-- `feature_settings` (Attributes) Feature settings for the portal (see [below for nested schema](#nestedatt--feature_settings))
+- `feature_settings` (String) Feature settings for the portal. Parsed as JSON.
 - `grants` (String) Permissions granted to a portal user while accessing entities. Parsed as JSON.
 - `identity_providers` (String) Parsed as JSON.
 - `images` (Attributes) Teaser & Banner Image web links (see [below for nested schema](#nestedatt--images))
@@ -92,25 +92,6 @@ Read-Only:
 - `other` (List of String)
 - `presentation` (List of String)
 - `spreadsheet` (List of String)
-
-
-<a id="nestedatt--auth_settings"></a>
-### Nested Schema for `auth_settings`
-
-Read-Only:
-
-- `auto_redirect_to_sso` (Boolean) Decide whether to automatically redirect to the provider page during login, which would completely bypass showing the portal authentication page.
-- `entry_point` (String)
-- `passwordless_login` (Attributes) (see [below for nested schema](#nestedatt--auth_settings--passwordless_login))
-- `preferred_sso_providers` (List of String)
-
-<a id="nestedatt--auth_settings--passwordless_login"></a>
-### Nested Schema for `auth_settings.passwordless_login`
-
-Read-Only:
-
-- `enabled` (Boolean) Passwordless login feature flag
-
 
 
 <a id="nestedatt--cognito_details"></a>
@@ -238,16 +219,6 @@ Read-Only:
 
 
 
-<a id="nestedatt--extension_hooks"></a>
-### Nested Schema for `extension_hooks`
-
-Read-Only:
-
-- `app_id` (String) The ID of the selected app.
-- `extension_id` (String) The ID of the selected extension.
-- `hook_id` (String) The ID of the selected hook.
-
-
 <a id="nestedatt--extensions"></a>
 ### Nested Schema for `extensions`
 
@@ -256,17 +227,6 @@ Read-Only:
 - `id` (String) Name of the extension
 - `options` (Map of String) Extension option values.
 - `status` (String) Status of the extension
-
-
-<a id="nestedatt--feature_settings"></a>
-### Nested Schema for `feature_settings`
-
-Read-Only:
-
-- `billing` (Boolean) Billing feature flag
-- `change_due_date` (Boolean) Change due date feature flag
-- `new_design` (Boolean) Enable or disable the new design for the portal
-- `start_page` (Boolean) Start page feature flag
 
 
 <a id="nestedatt--images"></a>

@@ -36,16 +36,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
     ]
   }
   approval_state_attributes = "{ \"see\": \"documentation\" }"
-  auth_settings = {
-    auto_redirect_to_sso = true
-    entry_point          = "SSO"
-    passwordless_login = {
-      enabled = true
-    }
-    preferred_sso_providers = [
-      "office-365-login"
-    ]
-  }
+  auth_settings             = "{ \"see\": \"documentation\" }"
   cognito_details = {
     cognito_user_pool_arn       = "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341"
     cognito_user_pool_client_id = "6bsd0jkgoie74k2i8mrhc1vest"
@@ -127,13 +118,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       is_enabled = false
     }
   }
-  extension_hooks = {
-    key = {
-      app_id       = "...my_app_id..."
-      extension_id = "...my_extension_id..."
-      hook_id      = "...my_hook_id..."
-    }
-  }
+  extension_hooks = "{ \"see\": \"documentation\" }"
   extensions = [
     {
       id = "...my_id..."
@@ -143,12 +128,7 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       status = "installed"
     }
   ]
-  feature_settings = {
-    billing         = true
-    change_due_date = false
-    new_design      = true
-    start_page      = true
-  }
+  feature_settings = "{ \"see\": \"documentation\" }"
   images = {
     order_left_teaser  = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-left-teaser.jpeg"
     order_right_teaser = "https://epilot-bucket.s3.eu-central-1.amazonaws.com/12344/6538fddb-f0e9-4f0f-af51-6e57891ff20a/order-right-teaser.jpeg"

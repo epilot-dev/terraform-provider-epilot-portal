@@ -76,25 +76,10 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			r.ApprovalStateAttributes = jsontypes.NewNormalizedValue(string(approvalStateAttributesResult))
 		}
 		if resp.AuthSettings == nil {
-			r.AuthSettings = nil
+			r.AuthSettings = jsontypes.NewNormalizedNull()
 		} else {
-			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
-			r.AuthSettings.AutoRedirectToSso = types.BoolPointerValue(resp.AuthSettings.AutoRedirectToSso)
-			if resp.AuthSettings.EntryPoint != nil {
-				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
-			} else {
-				r.AuthSettings.EntryPoint = types.StringNull()
-			}
-			if resp.AuthSettings.PasswordlessLogin == nil {
-				r.AuthSettings.PasswordlessLogin = nil
-			} else {
-				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
-				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
-			}
-			r.AuthSettings.PreferredSsoProviders = make([]types.String, 0, len(resp.AuthSettings.PreferredSsoProviders))
-			for _, v := range resp.AuthSettings.PreferredSsoProviders {
-				r.AuthSettings.PreferredSsoProviders = append(r.AuthSettings.PreferredSsoProviders, types.StringValue(v))
-			}
+			authSettingsResult, _ := json.Marshal(resp.AuthSettings)
+			r.AuthSettings = jsontypes.NewNormalizedValue(string(authSettingsResult))
 		}
 		if resp.CognitoDetails == nil {
 			r.CognitoDetails = nil
@@ -228,16 +213,11 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 				r.EntityIdentifiers.Type.IsEnabled = types.BoolPointerValue(resp.EntityIdentifiers.Type.IsEnabled)
 			}
 		}
-		if len(resp.ExtensionHooks) > 0 {
-			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookSelection, len(resp.ExtensionHooks))
-			for extensionHookSelectionKey, extensionHookSelectionValue := range resp.ExtensionHooks {
-				var extensionHookSelectionResult tfTypes.ExtensionHookSelection
-				extensionHookSelectionResult.AppID = types.StringValue(extensionHookSelectionValue.AppID)
-				extensionHookSelectionResult.ExtensionID = types.StringValue(extensionHookSelectionValue.ExtensionID)
-				extensionHookSelectionResult.HookID = types.StringValue(extensionHookSelectionValue.HookID)
-
-				r.ExtensionHooks[extensionHookSelectionKey] = extensionHookSelectionResult
-			}
+		if resp.ExtensionHooks == nil {
+			r.ExtensionHooks = jsontypes.NewNormalizedNull()
+		} else {
+			extensionHooksResult, _ := json.Marshal(resp.ExtensionHooks)
+			r.ExtensionHooks = jsontypes.NewNormalizedValue(string(extensionHooksResult))
 		}
 		r.Extensions = []tfTypes.ExtensionConfig{}
 
@@ -266,13 +246,10 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			r.FeatureFlags = jsontypes.NewNormalizedValue(string(featureFlagsResult))
 		}
 		if resp.FeatureSettings == nil {
-			r.FeatureSettings = nil
+			r.FeatureSettings = jsontypes.NewNormalizedNull()
 		} else {
-			r.FeatureSettings = &tfTypes.UpsertPortalConfigV3FeatureSettings{}
-			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
-			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
-			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
-			r.FeatureSettings.StartPage = types.BoolPointerValue(resp.FeatureSettings.StartPage)
+			featureSettingsResult, _ := json.Marshal(resp.FeatureSettings)
+			r.FeatureSettings = jsontypes.NewNormalizedValue(string(featureSettingsResult))
 		}
 		if resp.Grants == nil {
 			r.Grants = jsontypes.NewNormalizedNull()
@@ -486,42 +463,9 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
 		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
 	}
-	var authSettings *shared.PortalConfigV3AuthSettings
-	if r.AuthSettings != nil {
-		autoRedirectToSso := new(bool)
-		if !r.AuthSettings.AutoRedirectToSso.IsUnknown() && !r.AuthSettings.AutoRedirectToSso.IsNull() {
-			*autoRedirectToSso = r.AuthSettings.AutoRedirectToSso.ValueBool()
-		} else {
-			autoRedirectToSso = nil
-		}
-		entryPoint := new(shared.PortalConfigV3EntryPoint)
-		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
-			*entryPoint = shared.PortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
-		} else {
-			entryPoint = nil
-		}
-		var passwordlessLogin *shared.PortalConfigV3PasswordlessLogin
-		if r.AuthSettings.PasswordlessLogin != nil {
-			enabled1 := new(bool)
-			if !r.AuthSettings.PasswordlessLogin.Enabled.IsUnknown() && !r.AuthSettings.PasswordlessLogin.Enabled.IsNull() {
-				*enabled1 = r.AuthSettings.PasswordlessLogin.Enabled.ValueBool()
-			} else {
-				enabled1 = nil
-			}
-			passwordlessLogin = &shared.PortalConfigV3PasswordlessLogin{
-				Enabled: enabled1,
-			}
-		}
-		preferredSsoProviders := make([]string, 0, len(r.AuthSettings.PreferredSsoProviders))
-		for preferredSsoProvidersIndex := range r.AuthSettings.PreferredSsoProviders {
-			preferredSsoProviders = append(preferredSsoProviders, r.AuthSettings.PreferredSsoProviders[preferredSsoProvidersIndex].ValueString())
-		}
-		authSettings = &shared.PortalConfigV3AuthSettings{
-			AutoRedirectToSso:     autoRedirectToSso,
-			EntryPoint:            entryPoint,
-			PasswordlessLogin:     passwordlessLogin,
-			PreferredSsoProviders: preferredSsoProviders,
-		}
+	var authSettings interface{}
+	if !r.AuthSettings.IsUnknown() && !r.AuthSettings.IsNull() {
+		_ = json.Unmarshal([]byte(r.AuthSettings.ValueString()), &authSettings)
 	}
 	var cognitoDetails *shared.PortalConfigV3CognitoDetails
 	if r.CognitoDetails != nil {
@@ -844,11 +788,11 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			VerifyCodeToSetPassword:      verifyCodeToSetPassword,
 		}
 	}
-	enabled2 := new(bool)
+	enabled1 := new(bool)
 	if !r.Enabled.IsUnknown() && !r.Enabled.IsNull() {
-		*enabled2 = r.Enabled.ValueBool()
+		*enabled1 = r.Enabled.ValueBool()
 	} else {
-		enabled2 = nil
+		enabled1 = nil
 	}
 	entityActions := make([]shared.EntityActions, 0, len(r.EntityActions))
 	for entityActionsIndex := range r.EntityActions {
@@ -916,24 +860,9 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			Type: typeVar1,
 		}
 	}
-	extensionHooks := make(map[string]*shared.ExtensionHookSelection)
-	for extensionHooksKey := range r.ExtensionHooks {
-		var extensionHooksInst *shared.ExtensionHookSelection
-		var appID string
-		appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
-
-		var extensionID string
-		extensionID = r.ExtensionHooks[extensionHooksKey].ExtensionID.ValueString()
-
-		var hookID string
-		hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
-
-		extensionHooksInst = &shared.ExtensionHookSelection{
-			AppID:       appID,
-			ExtensionID: extensionID,
-			HookID:      hookID,
-		}
-		extensionHooks[extensionHooksKey] = extensionHooksInst
+	var extensionHooks interface{}
+	if !r.ExtensionHooks.IsUnknown() && !r.ExtensionHooks.IsNull() {
+		_ = json.Unmarshal([]byte(r.ExtensionHooks.ValueString()), &extensionHooks)
 	}
 	extensions := make([]shared.ExtensionConfig, 0, len(r.Extensions))
 	for extensionsIndex := range r.Extensions {
@@ -963,38 +892,9 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	if !r.FeatureFlags.IsUnknown() && !r.FeatureFlags.IsNull() {
 		_ = json.Unmarshal([]byte(r.FeatureFlags.ValueString()), &featureFlags)
 	}
-	var featureSettings *shared.PortalConfigV3FeatureSettings
-	if r.FeatureSettings != nil {
-		billing := new(bool)
-		if !r.FeatureSettings.Billing.IsUnknown() && !r.FeatureSettings.Billing.IsNull() {
-			*billing = r.FeatureSettings.Billing.ValueBool()
-		} else {
-			billing = nil
-		}
-		changeDueDate := new(bool)
-		if !r.FeatureSettings.ChangeDueDate.IsUnknown() && !r.FeatureSettings.ChangeDueDate.IsNull() {
-			*changeDueDate = r.FeatureSettings.ChangeDueDate.ValueBool()
-		} else {
-			changeDueDate = nil
-		}
-		newDesign := new(bool)
-		if !r.FeatureSettings.NewDesign.IsUnknown() && !r.FeatureSettings.NewDesign.IsNull() {
-			*newDesign = r.FeatureSettings.NewDesign.ValueBool()
-		} else {
-			newDesign = nil
-		}
-		startPage := new(bool)
-		if !r.FeatureSettings.StartPage.IsUnknown() && !r.FeatureSettings.StartPage.IsNull() {
-			*startPage = r.FeatureSettings.StartPage.ValueBool()
-		} else {
-			startPage = nil
-		}
-		featureSettings = &shared.PortalConfigV3FeatureSettings{
-			Billing:       billing,
-			ChangeDueDate: changeDueDate,
-			NewDesign:     newDesign,
-			StartPage:     startPage,
-		}
+	var featureSettings interface{}
+	if !r.FeatureSettings.IsUnknown() && !r.FeatureSettings.IsNull() {
+		_ = json.Unmarshal([]byte(r.FeatureSettings.ValueString()), &featureSettings)
 	}
 	var grants interface{}
 	if !r.Grants.IsUnknown() && !r.Grants.IsNull() {
@@ -1070,26 +970,26 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	if r.OrgSettings != nil {
 		var canary *shared.PortalConfigV3Canary
 		if r.OrgSettings.Canary != nil {
-			enabled3 := new(bool)
+			enabled2 := new(bool)
 			if !r.OrgSettings.Canary.Enabled.IsUnknown() && !r.OrgSettings.Canary.Enabled.IsNull() {
-				*enabled3 = r.OrgSettings.Canary.Enabled.ValueBool()
+				*enabled2 = r.OrgSettings.Canary.Enabled.ValueBool()
 			} else {
-				enabled3 = nil
+				enabled2 = nil
 			}
 			canary = &shared.PortalConfigV3Canary{
-				Enabled: enabled3,
+				Enabled: enabled2,
 			}
 		}
 		var notracking *shared.PortalConfigV3Notracking
 		if r.OrgSettings.Notracking != nil {
-			enabled4 := new(bool)
+			enabled3 := new(bool)
 			if !r.OrgSettings.Notracking.Enabled.IsUnknown() && !r.OrgSettings.Notracking.Enabled.IsNull() {
-				*enabled4 = r.OrgSettings.Notracking.Enabled.ValueBool()
+				*enabled3 = r.OrgSettings.Notracking.Enabled.ValueBool()
 			} else {
-				enabled4 = nil
+				enabled3 = nil
 			}
 			notracking = &shared.PortalConfigV3Notracking{
-				Enabled: enabled4,
+				Enabled: enabled3,
 			}
 		}
 		orgSettings = &shared.PortalConfigV3OrgSettings{
@@ -1181,7 +1081,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		DesignID:                    designID,
 		Domain:                      domain,
 		EmailTemplates:              emailTemplates,
-		Enabled:                     enabled2,
+		Enabled:                     enabled1,
 		EntityActions:               entityActions,
 		EntityEditRules:             entityEditRules,
 		EntityIdentifiers:           entityIdentifiers,
@@ -1294,42 +1194,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
 		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
 	}
-	var authSettings *shared.UpsertPortalConfigV3AuthSettings
-	if r.AuthSettings != nil {
-		autoRedirectToSso := new(bool)
-		if !r.AuthSettings.AutoRedirectToSso.IsUnknown() && !r.AuthSettings.AutoRedirectToSso.IsNull() {
-			*autoRedirectToSso = r.AuthSettings.AutoRedirectToSso.ValueBool()
-		} else {
-			autoRedirectToSso = nil
-		}
-		entryPoint := new(shared.UpsertPortalConfigV3EntryPoint)
-		if !r.AuthSettings.EntryPoint.IsUnknown() && !r.AuthSettings.EntryPoint.IsNull() {
-			*entryPoint = shared.UpsertPortalConfigV3EntryPoint(r.AuthSettings.EntryPoint.ValueString())
-		} else {
-			entryPoint = nil
-		}
-		var passwordlessLogin *shared.UpsertPortalConfigV3PasswordlessLogin
-		if r.AuthSettings.PasswordlessLogin != nil {
-			enabled1 := new(bool)
-			if !r.AuthSettings.PasswordlessLogin.Enabled.IsUnknown() && !r.AuthSettings.PasswordlessLogin.Enabled.IsNull() {
-				*enabled1 = r.AuthSettings.PasswordlessLogin.Enabled.ValueBool()
-			} else {
-				enabled1 = nil
-			}
-			passwordlessLogin = &shared.UpsertPortalConfigV3PasswordlessLogin{
-				Enabled: enabled1,
-			}
-		}
-		preferredSsoProviders := make([]string, 0, len(r.AuthSettings.PreferredSsoProviders))
-		for preferredSsoProvidersIndex := range r.AuthSettings.PreferredSsoProviders {
-			preferredSsoProviders = append(preferredSsoProviders, r.AuthSettings.PreferredSsoProviders[preferredSsoProvidersIndex].ValueString())
-		}
-		authSettings = &shared.UpsertPortalConfigV3AuthSettings{
-			AutoRedirectToSso:     autoRedirectToSso,
-			EntryPoint:            entryPoint,
-			PasswordlessLogin:     passwordlessLogin,
-			PreferredSsoProviders: preferredSsoProviders,
-		}
+	var authSettings interface{}
+	if !r.AuthSettings.IsUnknown() && !r.AuthSettings.IsNull() {
+		_ = json.Unmarshal([]byte(r.AuthSettings.ValueString()), &authSettings)
 	}
 	var cognitoDetails *shared.UpsertPortalConfigV3CognitoDetails
 	if r.CognitoDetails != nil {
@@ -1652,11 +1519,11 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			VerifyCodeToSetPassword:      verifyCodeToSetPassword,
 		}
 	}
-	enabled2 := new(bool)
+	enabled1 := new(bool)
 	if !r.Enabled.IsUnknown() && !r.Enabled.IsNull() {
-		*enabled2 = r.Enabled.ValueBool()
+		*enabled1 = r.Enabled.ValueBool()
 	} else {
-		enabled2 = nil
+		enabled1 = nil
 	}
 	entityActions := make([]shared.UpsertPortalConfigV3EntityActions, 0, len(r.EntityActions))
 	for entityActionsIndex := range r.EntityActions {
@@ -1724,24 +1591,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			Type: typeVar1,
 		}
 	}
-	extensionHooks := make(map[string]*shared.ExtensionHookSelection)
-	for extensionHooksKey := range r.ExtensionHooks {
-		var extensionHooksInst *shared.ExtensionHookSelection
-		var appID string
-		appID = r.ExtensionHooks[extensionHooksKey].AppID.ValueString()
-
-		var extensionID string
-		extensionID = r.ExtensionHooks[extensionHooksKey].ExtensionID.ValueString()
-
-		var hookID string
-		hookID = r.ExtensionHooks[extensionHooksKey].HookID.ValueString()
-
-		extensionHooksInst = &shared.ExtensionHookSelection{
-			AppID:       appID,
-			ExtensionID: extensionID,
-			HookID:      hookID,
-		}
-		extensionHooks[extensionHooksKey] = extensionHooksInst
+	var extensionHooks interface{}
+	if !r.ExtensionHooks.IsUnknown() && !r.ExtensionHooks.IsNull() {
+		_ = json.Unmarshal([]byte(r.ExtensionHooks.ValueString()), &extensionHooks)
 	}
 	extensions := make([]shared.ExtensionConfig, 0, len(r.Extensions))
 	for extensionsIndex := range r.Extensions {
@@ -1767,38 +1619,9 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			Status:  status,
 		})
 	}
-	var featureSettings *shared.UpsertPortalConfigV3FeatureSettings
-	if r.FeatureSettings != nil {
-		billing := new(bool)
-		if !r.FeatureSettings.Billing.IsUnknown() && !r.FeatureSettings.Billing.IsNull() {
-			*billing = r.FeatureSettings.Billing.ValueBool()
-		} else {
-			billing = nil
-		}
-		changeDueDate := new(bool)
-		if !r.FeatureSettings.ChangeDueDate.IsUnknown() && !r.FeatureSettings.ChangeDueDate.IsNull() {
-			*changeDueDate = r.FeatureSettings.ChangeDueDate.ValueBool()
-		} else {
-			changeDueDate = nil
-		}
-		newDesign := new(bool)
-		if !r.FeatureSettings.NewDesign.IsUnknown() && !r.FeatureSettings.NewDesign.IsNull() {
-			*newDesign = r.FeatureSettings.NewDesign.ValueBool()
-		} else {
-			newDesign = nil
-		}
-		startPage := new(bool)
-		if !r.FeatureSettings.StartPage.IsUnknown() && !r.FeatureSettings.StartPage.IsNull() {
-			*startPage = r.FeatureSettings.StartPage.ValueBool()
-		} else {
-			startPage = nil
-		}
-		featureSettings = &shared.UpsertPortalConfigV3FeatureSettings{
-			Billing:       billing,
-			ChangeDueDate: changeDueDate,
-			NewDesign:     newDesign,
-			StartPage:     startPage,
-		}
+	var featureSettings interface{}
+	if !r.FeatureSettings.IsUnknown() && !r.FeatureSettings.IsNull() {
+		_ = json.Unmarshal([]byte(r.FeatureSettings.ValueString()), &featureSettings)
 	}
 	var images *shared.UpsertPortalConfigV3Images
 	if r.Images != nil {
@@ -1940,7 +1763,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		DesignID:                    designID,
 		Domain:                      domain,
 		EmailTemplates:              emailTemplates,
-		Enabled:                     enabled2,
+		Enabled:                     enabled1,
 		EntityActions:               entityActions,
 		EntityEditRules:             entityEditRules,
 		EntityIdentifiers:           entityIdentifiers,

@@ -76,25 +76,10 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			r.ApprovalStateAttributes = jsontypes.NewNormalizedValue(string(approvalStateAttributesResult))
 		}
 		if resp.AuthSettings == nil {
-			r.AuthSettings = nil
+			r.AuthSettings = jsontypes.NewNormalizedNull()
 		} else {
-			r.AuthSettings = &tfTypes.UpsertPortalConfigV3AuthSettings{}
-			r.AuthSettings.AutoRedirectToSso = types.BoolPointerValue(resp.AuthSettings.AutoRedirectToSso)
-			if resp.AuthSettings.EntryPoint != nil {
-				r.AuthSettings.EntryPoint = types.StringValue(string(*resp.AuthSettings.EntryPoint))
-			} else {
-				r.AuthSettings.EntryPoint = types.StringNull()
-			}
-			if resp.AuthSettings.PasswordlessLogin == nil {
-				r.AuthSettings.PasswordlessLogin = nil
-			} else {
-				r.AuthSettings.PasswordlessLogin = &tfTypes.UpsertPortalConfigV3AdvancedMfa{}
-				r.AuthSettings.PasswordlessLogin.Enabled = types.BoolPointerValue(resp.AuthSettings.PasswordlessLogin.Enabled)
-			}
-			r.AuthSettings.PreferredSsoProviders = make([]types.String, 0, len(resp.AuthSettings.PreferredSsoProviders))
-			for _, v := range resp.AuthSettings.PreferredSsoProviders {
-				r.AuthSettings.PreferredSsoProviders = append(r.AuthSettings.PreferredSsoProviders, types.StringValue(v))
-			}
+			authSettingsResult, _ := json.Marshal(resp.AuthSettings)
+			r.AuthSettings = jsontypes.NewNormalizedValue(string(authSettingsResult))
 		}
 		if resp.CognitoDetails == nil {
 			r.CognitoDetails = nil
@@ -228,16 +213,11 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 				r.EntityIdentifiers.Type.IsEnabled = types.BoolPointerValue(resp.EntityIdentifiers.Type.IsEnabled)
 			}
 		}
-		if len(resp.ExtensionHooks) > 0 {
-			r.ExtensionHooks = make(map[string]tfTypes.ExtensionHookSelection, len(resp.ExtensionHooks))
-			for extensionHookSelectionKey, extensionHookSelectionValue := range resp.ExtensionHooks {
-				var extensionHookSelectionResult tfTypes.ExtensionHookSelection
-				extensionHookSelectionResult.AppID = types.StringValue(extensionHookSelectionValue.AppID)
-				extensionHookSelectionResult.ExtensionID = types.StringValue(extensionHookSelectionValue.ExtensionID)
-				extensionHookSelectionResult.HookID = types.StringValue(extensionHookSelectionValue.HookID)
-
-				r.ExtensionHooks[extensionHookSelectionKey] = extensionHookSelectionResult
-			}
+		if resp.ExtensionHooks == nil {
+			r.ExtensionHooks = jsontypes.NewNormalizedNull()
+		} else {
+			extensionHooksResult, _ := json.Marshal(resp.ExtensionHooks)
+			r.ExtensionHooks = jsontypes.NewNormalizedValue(string(extensionHooksResult))
 		}
 		r.Extensions = []tfTypes.ExtensionConfig{}
 
@@ -266,13 +246,10 @@ func (r *PortalConfigDataSourceModel) RefreshFromSharedPortalConfigV3(ctx contex
 			r.FeatureFlags = jsontypes.NewNormalizedValue(string(featureFlagsResult))
 		}
 		if resp.FeatureSettings == nil {
-			r.FeatureSettings = nil
+			r.FeatureSettings = jsontypes.NewNormalizedNull()
 		} else {
-			r.FeatureSettings = &tfTypes.UpsertPortalConfigV3FeatureSettings{}
-			r.FeatureSettings.Billing = types.BoolPointerValue(resp.FeatureSettings.Billing)
-			r.FeatureSettings.ChangeDueDate = types.BoolPointerValue(resp.FeatureSettings.ChangeDueDate)
-			r.FeatureSettings.NewDesign = types.BoolPointerValue(resp.FeatureSettings.NewDesign)
-			r.FeatureSettings.StartPage = types.BoolPointerValue(resp.FeatureSettings.StartPage)
+			featureSettingsResult, _ := json.Marshal(resp.FeatureSettings)
+			r.FeatureSettings = jsontypes.NewNormalizedValue(string(featureSettingsResult))
 		}
 		if resp.Grants == nil {
 			r.Grants = jsontypes.NewNormalizedNull()
