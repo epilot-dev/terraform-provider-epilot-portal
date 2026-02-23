@@ -30,6 +30,7 @@ data "epilot-portal_portal_config" "my_portalconfig" {
 - `access_token` (String) Access token for the portal
 - `advanced_mfa` (Attributes) (see [below for nested schema](#nestedatt--advanced_mfa))
 - `allowed_file_extensions` (Attributes) Allowed file extensions for upload (see [below for nested schema](#nestedatt--allowed_file_extensions))
+- `allowed_portal_entities` (List of String) Allowed portal entities for the portal
 - `approval_state_attributes` (String) Parsed as JSON.
 - `auth_settings` (String) Authentication settings for the portal. Parsed as JSON.
 - `cognito_details` (Attributes) AWS Cognito Pool details for the portal (see [below for nested schema](#nestedatt--cognito_details))
@@ -99,10 +100,22 @@ Read-Only:
 
 Read-Only:
 
+- `advanced_authentication` (Attributes) Advanced authentication settings for the portal (see [below for nested schema](#nestedatt--cognito_details--advanced_authentication))
 - `cognito_user_pool_arn` (String) Cognito user pool ARN
 - `cognito_user_pool_client_id` (String) Cognito user pool client ID
 - `cognito_user_pool_id` (String) Cognito user pool ID
 - `password_policy` (Attributes) Password policy for the portal (see [below for nested schema](#nestedatt--cognito_details--password_policy))
+- `timeouts` (Attributes) Timeouts for the cognito tokens (see [below for nested schema](#nestedatt--cognito_details--timeouts))
+
+<a id="nestedatt--cognito_details--advanced_authentication"></a>
+### Nested Schema for `cognito_details.advanced_authentication`
+
+Read-Only:
+
+- `adaptive_authentication` (Boolean) Automatically assesses risk for every authentication session. Based on risk ratings, can block authentication or require MFA for suspicious sign-in attempts. Helps protect user accounts from potential attacks by adapting security measures in real-time.
+- `compromised_credentials_detection` (Boolean) Checks passwords against databases of leaked and commonly-guessed passwords during sign-up, sign-in, and password reset. Blocks or warns users when insecure passwords are detected, preventing unauthorized access from compromised credentials.
+- `user_activity_logging` (Boolean) Enables detailed logging of user authentication attempts including risk assessments, IP addresses, user agents, and device information. These logs can be used for security analysis and monitoring.
+
 
 <a id="nestedatt--cognito_details--password_policy"></a>
 ### Nested Schema for `cognito_details.password_policy`
@@ -115,6 +128,16 @@ Read-Only:
 - `require_numbers` (Boolean) Require numbers
 - `require_symbols` (Boolean) Require symbols
 - `require_uppercase` (Boolean) Require uppercase characters
+
+
+<a id="nestedatt--cognito_details--timeouts"></a>
+### Nested Schema for `cognito_details.timeouts`
+
+Read-Only:
+
+- `access_token` (Number) Timeout for the access token
+- `id_token` (Number) Timeout for the id token
+- `refresh_token` (Number) Timeout for the refresh token
 
 
 

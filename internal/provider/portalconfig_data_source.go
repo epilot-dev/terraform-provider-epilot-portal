@@ -33,6 +33,7 @@ type PortalConfigDataSourceModel struct {
 	AccessToken                 types.String                                        `tfsdk:"access_token"`
 	AdvancedMfa                 *tfTypes.UpsertPortalConfigV3AdvancedMfa            `tfsdk:"advanced_mfa"`
 	AllowedFileExtensions       *tfTypes.AllowedFileExtensions                      `tfsdk:"allowed_file_extensions"`
+	AllowedPortalEntities       []types.String                                      `tfsdk:"allowed_portal_entities"`
 	ApprovalStateAttributes     jsontypes.Normalized                                `tfsdk:"approval_state_attributes"`
 	AuthSettings                jsontypes.Normalized                                `tfsdk:"auth_settings"`
 	CognitoDetails              *tfTypes.UpsertPortalConfigV3CognitoDetails         `tfsdk:"cognito_details"`
@@ -144,6 +145,11 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 				},
 				Description: `Allowed file extensions for upload`,
 			},
+			"allowed_portal_entities": schema.ListAttribute{
+				Computed:    true,
+				ElementType: types.StringType,
+				Description: `Allowed portal entities for the portal`,
+			},
 			"approval_state_attributes": schema.StringAttribute{
 				CustomType:  jsontypes.NormalizedType{},
 				Computed:    true,
@@ -157,6 +163,24 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 			"cognito_details": schema.SingleNestedAttribute{
 				Computed: true,
 				Attributes: map[string]schema.Attribute{
+					"advanced_authentication": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"adaptive_authentication": schema.BoolAttribute{
+								Computed:    true,
+								Description: `Automatically assesses risk for every authentication session. Based on risk ratings, can block authentication or require MFA for suspicious sign-in attempts. Helps protect user accounts from potential attacks by adapting security measures in real-time.`,
+							},
+							"compromised_credentials_detection": schema.BoolAttribute{
+								Computed:    true,
+								Description: `Checks passwords against databases of leaked and commonly-guessed passwords during sign-up, sign-in, and password reset. Blocks or warns users when insecure passwords are detected, preventing unauthorized access from compromised credentials.`,
+							},
+							"user_activity_logging": schema.BoolAttribute{
+								Computed:    true,
+								Description: `Enables detailed logging of user authentication attempts including risk assessments, IP addresses, user agents, and device information. These logs can be used for security analysis and monitoring.`,
+							},
+						},
+						Description: `Advanced authentication settings for the portal`,
+					},
 					"cognito_user_pool_arn": schema.StringAttribute{
 						Computed:    true,
 						Description: `Cognito user pool ARN`,
@@ -198,6 +222,24 @@ func (r *PortalConfigDataSource) Schema(ctx context.Context, req datasource.Sche
 							},
 						},
 						Description: `Password policy for the portal`,
+					},
+					"timeouts": schema.SingleNestedAttribute{
+						Computed: true,
+						Attributes: map[string]schema.Attribute{
+							"access_token": schema.Int64Attribute{
+								Computed:    true,
+								Description: `Timeout for the access token`,
+							},
+							"id_token": schema.Int64Attribute{
+								Computed:    true,
+								Description: `Timeout for the id token`,
+							},
+							"refresh_token": schema.Int64Attribute{
+								Computed:    true,
+								Description: `Timeout for the refresh token`,
+							},
+						},
+						Description: `Timeouts for the cognito tokens`,
 					},
 				},
 				Description: `AWS Cognito Pool details for the portal`,

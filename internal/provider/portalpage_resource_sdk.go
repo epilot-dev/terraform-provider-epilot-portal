@@ -103,6 +103,7 @@ func (r *PortalPageResourceModel) RefreshFromSharedPage(ctx context.Context, res
 		for _, v := range resp.Schema {
 			r.Schema = append(r.Schema, types.StringValue(v))
 		}
+		r.ShowInNavigation = types.BoolPointerValue(resp.ShowInNavigation)
 		r.Slug = types.StringValue(resp.Slug)
 		if len(resp.Visibility) > 0 {
 			r.Visibility = make(map[string]jsontypes.Normalized, len(resp.Visibility))
@@ -323,6 +324,12 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 	for schemaIndex := range r.Schema {
 		schema = append(schema, r.Schema[schemaIndex].ValueString())
 	}
+	showInNavigation := new(bool)
+	if !r.ShowInNavigation.IsUnknown() && !r.ShowInNavigation.IsNull() {
+		*showInNavigation = r.ShowInNavigation.ValueBool()
+	} else {
+		showInNavigation = nil
+	}
 	var slug string
 	slug = r.Slug.ValueString()
 
@@ -347,6 +354,7 @@ func (r *PortalPageResourceModel) ToSharedPageRequest(ctx context.Context) (*sha
 		ParentID:             parentId1,
 		Path:                 path,
 		Schema:               schema,
+		ShowInNavigation:     showInNavigation,
 		Slug:                 slug,
 		Visibility:           visibility1,
 	}

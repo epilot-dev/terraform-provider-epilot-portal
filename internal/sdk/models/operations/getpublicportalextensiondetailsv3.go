@@ -8,21 +8,31 @@ import (
 )
 
 type GetPublicPortalExtensionDetailsV3Request struct {
-	OrgID string `queryParam:"style=form,explode=true,name=org_id"`
-	// Portal ID
-	PortalID string `queryParam:"style=form,explode=true,name=portal_id"`
+	// Portal domain for identification (alternative to org_id + portal_id)
+	Domain *string `queryParam:"style=form,explode=true,name=domain"`
+	// Organization ID (required if domain is not provided)
+	OrgID *string `queryParam:"style=form,explode=true,name=org_id"`
+	// Portal ID (required if domain is not provided)
+	PortalID *string `queryParam:"style=form,explode=true,name=portal_id"`
 }
 
-func (g *GetPublicPortalExtensionDetailsV3Request) GetOrgID() string {
+func (g *GetPublicPortalExtensionDetailsV3Request) GetDomain() *string {
 	if g == nil {
-		return ""
+		return nil
+	}
+	return g.Domain
+}
+
+func (g *GetPublicPortalExtensionDetailsV3Request) GetOrgID() *string {
+	if g == nil {
+		return nil
 	}
 	return g.OrgID
 }
 
-func (g *GetPublicPortalExtensionDetailsV3Request) GetPortalID() string {
+func (g *GetPublicPortalExtensionDetailsV3Request) GetPortalID() *string {
 	if g == nil {
-		return ""
+		return nil
 	}
 	return g.PortalID
 }

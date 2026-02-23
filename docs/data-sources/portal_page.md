@@ -42,6 +42,7 @@ data "epilot-portal_portal_page" "my_portalpage" {
 - `parent_id` (String) The id of the parent page
 - `path` (String, Deprecated) The path of the page
 - `schema` (List of String)
+- `show_in_navigation` (Boolean) Whether the detail page should appear in the main navigation
 - `slug` (String) The slug of the page
 - `visibility` (Map of String) The conditions that need to be met for the page to be shown
 

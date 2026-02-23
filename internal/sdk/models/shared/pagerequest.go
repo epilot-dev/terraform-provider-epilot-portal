@@ -34,6 +34,8 @@ type PageRequest struct {
 	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
 	Path   *string  `json:"path,omitempty"`
 	Schema []string `json:"schema,omitempty"`
+	// Whether the detail page should appear in the main navigation
+	ShowInNavigation *bool `json:"show_in_navigation,omitempty"`
 	// The slug of the page
 	Slug string `json:"slug"`
 	// The conditions that need to be met for the page to be shown
@@ -147,6 +149,13 @@ func (p *PageRequest) GetSchema() []string {
 		return nil
 	}
 	return p.Schema
+}
+
+func (p *PageRequest) GetShowInNavigation() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.ShowInNavigation
 }
 
 func (p *PageRequest) GetSlug() string {

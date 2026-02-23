@@ -103,6 +103,7 @@ func (r *PortalPageDataSourceModel) RefreshFromSharedPage(ctx context.Context, r
 		for _, v := range resp.Schema {
 			r.Schema = append(r.Schema, types.StringValue(v))
 		}
+		r.ShowInNavigation = types.BoolPointerValue(resp.ShowInNavigation)
 		r.Slug = types.StringValue(resp.Slug)
 		if len(resp.Visibility) > 0 {
 			r.Visibility = make(map[string]jsontypes.Normalized, len(resp.Visibility))

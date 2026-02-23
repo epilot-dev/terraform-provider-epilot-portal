@@ -35,9 +35,18 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       "xls"
     ]
   }
+  allowed_portal_entities = [
+    "contact",
+    "contract",
+  ]
   approval_state_attributes = "{ \"see\": \"documentation\" }"
   auth_settings             = "{ \"see\": \"documentation\" }"
   cognito_details = {
+    advanced_authentication = {
+      adaptive_authentication           = true
+      compromised_credentials_detection = true
+      user_activity_logging             = true
+    }
     cognito_user_pool_arn       = "arn:aws:cognito-idp:us-east-1:123412341234:userpool/us-east-1_123412341"
     cognito_user_pool_client_id = "6bsd0jkgoie74k2i8mrhc1vest"
     cognito_user_pool_id        = "eu-central-1_CUEQRNbUb"
@@ -48,6 +57,11 @@ resource "epilot-portal_portal_config" "my_portalconfig" {
       require_numbers   = true
       require_symbols   = true
       require_uppercase = true
+    }
+    timeouts = {
+      access_token  = 300
+      id_token      = 300
+      refresh_token = 300
     }
   }
   config = "...my_config..."

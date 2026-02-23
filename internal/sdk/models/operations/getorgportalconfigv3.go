@@ -174,6 +174,37 @@ func (g *GetOrgPortalConfigV3CertificateDetails) GetStatus() *GetOrgPortalConfig
 	return g.Status
 }
 
+// GetOrgPortalConfigV3AdvancedAuthentication - Advanced authentication settings for the portal
+type GetOrgPortalConfigV3AdvancedAuthentication struct {
+	// Automatically assesses risk for every authentication session. Based on risk ratings, can block authentication or require MFA for suspicious sign-in attempts. Helps protect user accounts from potential attacks by adapting security measures in real-time.
+	AdaptiveAuthentication *bool `json:"adaptive_authentication,omitempty"`
+	// Checks passwords against databases of leaked and commonly-guessed passwords during sign-up, sign-in, and password reset. Blocks or warns users when insecure passwords are detected, preventing unauthorized access from compromised credentials.
+	CompromisedCredentialsDetection *bool `json:"compromised_credentials_detection,omitempty"`
+	// Enables detailed logging of user authentication attempts including risk assessments, IP addresses, user agents, and device information. These logs can be used for security analysis and monitoring.
+	UserActivityLogging *bool `json:"user_activity_logging,omitempty"`
+}
+
+func (g *GetOrgPortalConfigV3AdvancedAuthentication) GetAdaptiveAuthentication() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.AdaptiveAuthentication
+}
+
+func (g *GetOrgPortalConfigV3AdvancedAuthentication) GetCompromisedCredentialsDetection() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.CompromisedCredentialsDetection
+}
+
+func (g *GetOrgPortalConfigV3AdvancedAuthentication) GetUserActivityLogging() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.UserActivityLogging
+}
+
 // GetOrgPortalConfigV3PasswordPolicy - Password policy for the portal
 type GetOrgPortalConfigV3PasswordPolicy struct {
 	// Maximum password length
@@ -232,8 +263,41 @@ func (g *GetOrgPortalConfigV3PasswordPolicy) GetRequireUppercase() *bool {
 	return g.RequireUppercase
 }
 
+// GetOrgPortalConfigV3Timeouts - Timeouts for the cognito tokens
+type GetOrgPortalConfigV3Timeouts struct {
+	// Timeout for the access token
+	AccessToken *int64 `json:"access_token,omitempty"`
+	// Timeout for the id token
+	IDToken *int64 `json:"id_token,omitempty"`
+	// Timeout for the refresh token
+	RefreshToken *int64 `json:"refresh_token,omitempty"`
+}
+
+func (g *GetOrgPortalConfigV3Timeouts) GetAccessToken() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.AccessToken
+}
+
+func (g *GetOrgPortalConfigV3Timeouts) GetIDToken() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.IDToken
+}
+
+func (g *GetOrgPortalConfigV3Timeouts) GetRefreshToken() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.RefreshToken
+}
+
 // GetOrgPortalConfigV3CognitoDetails - AWS Cognito Pool details for the portal
 type GetOrgPortalConfigV3CognitoDetails struct {
+	// Advanced authentication settings for the portal
+	AdvancedAuthentication *GetOrgPortalConfigV3AdvancedAuthentication `json:"advanced_authentication,omitempty"`
 	// Cognito user pool ARN
 	CognitoUserPoolArn *string `json:"cognito_user_pool_arn,omitempty"`
 	// Cognito user pool client ID
@@ -242,6 +306,15 @@ type GetOrgPortalConfigV3CognitoDetails struct {
 	CognitoUserPoolID *string `json:"cognito_user_pool_id,omitempty"`
 	// Password policy for the portal
 	PasswordPolicy *GetOrgPortalConfigV3PasswordPolicy `json:"password_policy,omitempty"`
+	// Timeouts for the cognito tokens
+	Timeouts *GetOrgPortalConfigV3Timeouts `json:"timeouts,omitempty"`
+}
+
+func (g *GetOrgPortalConfigV3CognitoDetails) GetAdvancedAuthentication() *GetOrgPortalConfigV3AdvancedAuthentication {
+	if g == nil {
+		return nil
+	}
+	return g.AdvancedAuthentication
 }
 
 func (g *GetOrgPortalConfigV3CognitoDetails) GetCognitoUserPoolArn() *string {
@@ -270,6 +343,13 @@ func (g *GetOrgPortalConfigV3CognitoDetails) GetPasswordPolicy() *GetOrgPortalCo
 		return nil
 	}
 	return g.PasswordPolicy
+}
+
+func (g *GetOrgPortalConfigV3CognitoDetails) GetTimeouts() *GetOrgPortalConfigV3Timeouts {
+	if g == nil {
+		return nil
+	}
+	return g.Timeouts
 }
 
 // GetOrgPortalConfigV3ContractSelectorConfig - Configuration for contract selector in the portal
@@ -686,8 +766,10 @@ type GetOrgPortalConfigV3ResponseBody struct {
 	AccessToken *string                          `json:"accessToken,omitempty"`
 	AdvancedMfa *GetOrgPortalConfigV3AdvancedMfa `json:"advanced_mfa,omitempty"`
 	// Allowed file extensions for upload
-	AllowedFileExtensions   *shared.AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
-	ApprovalStateAttributes map[string][]string           `json:"approval_state_attributes,omitempty"`
+	AllowedFileExtensions *shared.AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
+	// Allowed portal entities for the portal
+	AllowedPortalEntities   []string            `json:"allowed_portal_entities,omitempty"`
+	ApprovalStateAttributes map[string][]string `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
 	AuthSettings       *GetOrgPortalConfigV3AuthSettings       `json:"auth_settings,omitempty"`
 	CertificateDetails *GetOrgPortalConfigV3CertificateDetails `json:"certificate_details,omitempty"`
@@ -783,6 +865,13 @@ func (g *GetOrgPortalConfigV3ResponseBody) GetAllowedFileExtensions() *shared.Al
 		return nil
 	}
 	return g.AllowedFileExtensions
+}
+
+func (g *GetOrgPortalConfigV3ResponseBody) GetAllowedPortalEntities() []string {
+	if g == nil {
+		return nil
+	}
+	return g.AllowedPortalEntities
 }
 
 func (g *GetOrgPortalConfigV3ResponseBody) GetApprovalStateAttributes() map[string][]string {

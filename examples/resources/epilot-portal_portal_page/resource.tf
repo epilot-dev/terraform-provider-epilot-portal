@@ -40,7 +40,8 @@ resource "epilot-portal_portal_page" "my_portalpage" {
   schema = [
     "..."
   ]
-  slug = "dashboard"
+  show_in_navigation = false
+  slug               = "dashboard"
   visibility = {
     key = jsonencode("value")
   }

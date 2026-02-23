@@ -69,6 +69,10 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 				r.AllowedFileExtensions.Spreadsheet = append(r.AllowedFileExtensions.Spreadsheet, types.StringValue(v))
 			}
 		}
+		r.AllowedPortalEntities = make([]types.String, 0, len(resp.AllowedPortalEntities))
+		for _, v := range resp.AllowedPortalEntities {
+			r.AllowedPortalEntities = append(r.AllowedPortalEntities, types.StringValue(v))
+		}
 		if resp.ApprovalStateAttributes == nil {
 			r.ApprovalStateAttributes = jsontypes.NewNormalizedNull()
 		} else {
@@ -85,6 +89,14 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 			r.CognitoDetails = nil
 		} else {
 			r.CognitoDetails = &tfTypes.UpsertPortalConfigV3CognitoDetails{}
+			if resp.CognitoDetails.AdvancedAuthentication == nil {
+				r.CognitoDetails.AdvancedAuthentication = nil
+			} else {
+				r.CognitoDetails.AdvancedAuthentication = &tfTypes.UpsertPortalConfigV3AdvancedAuthentication{}
+				r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication = types.BoolPointerValue(resp.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication)
+				r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection = types.BoolPointerValue(resp.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection)
+				r.CognitoDetails.AdvancedAuthentication.UserActivityLogging = types.BoolPointerValue(resp.CognitoDetails.AdvancedAuthentication.UserActivityLogging)
+			}
 			r.CognitoDetails.CognitoUserPoolArn = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolArn)
 			r.CognitoDetails.CognitoUserPoolClientID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolClientID)
 			r.CognitoDetails.CognitoUserPoolID = types.StringPointerValue(resp.CognitoDetails.CognitoUserPoolID)
@@ -98,6 +110,14 @@ func (r *PortalConfigResourceModel) RefreshFromSharedPortalConfigV3(ctx context.
 				r.CognitoDetails.PasswordPolicy.RequireNumbers = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireNumbers)
 				r.CognitoDetails.PasswordPolicy.RequireSymbols = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireSymbols)
 				r.CognitoDetails.PasswordPolicy.RequireUppercase = types.BoolPointerValue(resp.CognitoDetails.PasswordPolicy.RequireUppercase)
+			}
+			if resp.CognitoDetails.Timeouts == nil {
+				r.CognitoDetails.Timeouts = nil
+			} else {
+				r.CognitoDetails.Timeouts = &tfTypes.UpsertPortalConfigV3Timeouts{}
+				r.CognitoDetails.Timeouts.AccessToken = types.Int64PointerValue(resp.CognitoDetails.Timeouts.AccessToken)
+				r.CognitoDetails.Timeouts.IDToken = types.Int64PointerValue(resp.CognitoDetails.Timeouts.IDToken)
+				r.CognitoDetails.Timeouts.RefreshToken = types.Int64PointerValue(resp.CognitoDetails.Timeouts.RefreshToken)
 			}
 		}
 		r.Config = types.StringPointerValue(resp.Config)
@@ -459,6 +479,10 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 			Spreadsheet:  spreadsheet,
 		}
 	}
+	allowedPortalEntities := make([]string, 0, len(r.AllowedPortalEntities))
+	for allowedPortalEntitiesIndex := range r.AllowedPortalEntities {
+		allowedPortalEntities = append(allowedPortalEntities, r.AllowedPortalEntities[allowedPortalEntitiesIndex].ValueString())
+	}
 	var approvalStateAttributes interface{}
 	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
 		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
@@ -469,6 +493,32 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 	}
 	var cognitoDetails *shared.PortalConfigV3CognitoDetails
 	if r.CognitoDetails != nil {
+		var advancedAuthentication *shared.PortalConfigV3AdvancedAuthentication
+		if r.CognitoDetails.AdvancedAuthentication != nil {
+			adaptiveAuthentication := new(bool)
+			if !r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication.IsUnknown() && !r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication.IsNull() {
+				*adaptiveAuthentication = r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication.ValueBool()
+			} else {
+				adaptiveAuthentication = nil
+			}
+			compromisedCredentialsDetection := new(bool)
+			if !r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection.IsUnknown() && !r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection.IsNull() {
+				*compromisedCredentialsDetection = r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection.ValueBool()
+			} else {
+				compromisedCredentialsDetection = nil
+			}
+			userActivityLogging := new(bool)
+			if !r.CognitoDetails.AdvancedAuthentication.UserActivityLogging.IsUnknown() && !r.CognitoDetails.AdvancedAuthentication.UserActivityLogging.IsNull() {
+				*userActivityLogging = r.CognitoDetails.AdvancedAuthentication.UserActivityLogging.ValueBool()
+			} else {
+				userActivityLogging = nil
+			}
+			advancedAuthentication = &shared.PortalConfigV3AdvancedAuthentication{
+				AdaptiveAuthentication:          adaptiveAuthentication,
+				CompromisedCredentialsDetection: compromisedCredentialsDetection,
+				UserActivityLogging:             userActivityLogging,
+			}
+		}
 		cognitoUserPoolArn := new(string)
 		if !r.CognitoDetails.CognitoUserPoolArn.IsUnknown() && !r.CognitoDetails.CognitoUserPoolArn.IsNull() {
 			*cognitoUserPoolArn = r.CognitoDetails.CognitoUserPoolArn.ValueString()
@@ -534,11 +584,39 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 				RequireUppercase: requireUppercase,
 			}
 		}
+		var timeouts *shared.PortalConfigV3Timeouts
+		if r.CognitoDetails.Timeouts != nil {
+			accessToken1 := new(int64)
+			if !r.CognitoDetails.Timeouts.AccessToken.IsUnknown() && !r.CognitoDetails.Timeouts.AccessToken.IsNull() {
+				*accessToken1 = r.CognitoDetails.Timeouts.AccessToken.ValueInt64()
+			} else {
+				accessToken1 = nil
+			}
+			idToken := new(int64)
+			if !r.CognitoDetails.Timeouts.IDToken.IsUnknown() && !r.CognitoDetails.Timeouts.IDToken.IsNull() {
+				*idToken = r.CognitoDetails.Timeouts.IDToken.ValueInt64()
+			} else {
+				idToken = nil
+			}
+			refreshToken := new(int64)
+			if !r.CognitoDetails.Timeouts.RefreshToken.IsUnknown() && !r.CognitoDetails.Timeouts.RefreshToken.IsNull() {
+				*refreshToken = r.CognitoDetails.Timeouts.RefreshToken.ValueInt64()
+			} else {
+				refreshToken = nil
+			}
+			timeouts = &shared.PortalConfigV3Timeouts{
+				AccessToken:  accessToken1,
+				IDToken:      idToken,
+				RefreshToken: refreshToken,
+			}
+		}
 		cognitoDetails = &shared.PortalConfigV3CognitoDetails{
+			AdvancedAuthentication:  advancedAuthentication,
 			CognitoUserPoolArn:      cognitoUserPoolArn,
 			CognitoUserPoolClientID: cognitoUserPoolClientID,
 			CognitoUserPoolID:       cognitoUserPoolID,
 			PasswordPolicy:          passwordPolicy,
+			Timeouts:                timeouts,
 		}
 	}
 	config := new(string)
@@ -1070,6 +1148,7 @@ func (r *PortalConfigResourceModel) ToSharedPortalConfigV3(ctx context.Context) 
 		AccessToken:                 accessToken,
 		AdvancedMfa:                 advancedMfa,
 		AllowedFileExtensions:       allowedFileExtensions,
+		AllowedPortalEntities:       allowedPortalEntities,
 		ApprovalStateAttributes:     approvalStateAttributes,
 		AuthSettings:                authSettings,
 		CognitoDetails:              cognitoDetails,
@@ -1190,6 +1269,10 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 			Spreadsheet:  spreadsheet,
 		}
 	}
+	allowedPortalEntities := make([]string, 0, len(r.AllowedPortalEntities))
+	for allowedPortalEntitiesIndex := range r.AllowedPortalEntities {
+		allowedPortalEntities = append(allowedPortalEntities, r.AllowedPortalEntities[allowedPortalEntitiesIndex].ValueString())
+	}
 	var approvalStateAttributes interface{}
 	if !r.ApprovalStateAttributes.IsUnknown() && !r.ApprovalStateAttributes.IsNull() {
 		_ = json.Unmarshal([]byte(r.ApprovalStateAttributes.ValueString()), &approvalStateAttributes)
@@ -1200,6 +1283,32 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 	}
 	var cognitoDetails *shared.UpsertPortalConfigV3CognitoDetails
 	if r.CognitoDetails != nil {
+		var advancedAuthentication *shared.UpsertPortalConfigV3AdvancedAuthentication
+		if r.CognitoDetails.AdvancedAuthentication != nil {
+			adaptiveAuthentication := new(bool)
+			if !r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication.IsUnknown() && !r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication.IsNull() {
+				*adaptiveAuthentication = r.CognitoDetails.AdvancedAuthentication.AdaptiveAuthentication.ValueBool()
+			} else {
+				adaptiveAuthentication = nil
+			}
+			compromisedCredentialsDetection := new(bool)
+			if !r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection.IsUnknown() && !r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection.IsNull() {
+				*compromisedCredentialsDetection = r.CognitoDetails.AdvancedAuthentication.CompromisedCredentialsDetection.ValueBool()
+			} else {
+				compromisedCredentialsDetection = nil
+			}
+			userActivityLogging := new(bool)
+			if !r.CognitoDetails.AdvancedAuthentication.UserActivityLogging.IsUnknown() && !r.CognitoDetails.AdvancedAuthentication.UserActivityLogging.IsNull() {
+				*userActivityLogging = r.CognitoDetails.AdvancedAuthentication.UserActivityLogging.ValueBool()
+			} else {
+				userActivityLogging = nil
+			}
+			advancedAuthentication = &shared.UpsertPortalConfigV3AdvancedAuthentication{
+				AdaptiveAuthentication:          adaptiveAuthentication,
+				CompromisedCredentialsDetection: compromisedCredentialsDetection,
+				UserActivityLogging:             userActivityLogging,
+			}
+		}
 		cognitoUserPoolArn := new(string)
 		if !r.CognitoDetails.CognitoUserPoolArn.IsUnknown() && !r.CognitoDetails.CognitoUserPoolArn.IsNull() {
 			*cognitoUserPoolArn = r.CognitoDetails.CognitoUserPoolArn.ValueString()
@@ -1265,11 +1374,39 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 				RequireUppercase: requireUppercase,
 			}
 		}
+		var timeouts *shared.UpsertPortalConfigV3Timeouts
+		if r.CognitoDetails.Timeouts != nil {
+			accessToken1 := new(int64)
+			if !r.CognitoDetails.Timeouts.AccessToken.IsUnknown() && !r.CognitoDetails.Timeouts.AccessToken.IsNull() {
+				*accessToken1 = r.CognitoDetails.Timeouts.AccessToken.ValueInt64()
+			} else {
+				accessToken1 = nil
+			}
+			idToken := new(int64)
+			if !r.CognitoDetails.Timeouts.IDToken.IsUnknown() && !r.CognitoDetails.Timeouts.IDToken.IsNull() {
+				*idToken = r.CognitoDetails.Timeouts.IDToken.ValueInt64()
+			} else {
+				idToken = nil
+			}
+			refreshToken := new(int64)
+			if !r.CognitoDetails.Timeouts.RefreshToken.IsUnknown() && !r.CognitoDetails.Timeouts.RefreshToken.IsNull() {
+				*refreshToken = r.CognitoDetails.Timeouts.RefreshToken.ValueInt64()
+			} else {
+				refreshToken = nil
+			}
+			timeouts = &shared.UpsertPortalConfigV3Timeouts{
+				AccessToken:  accessToken1,
+				IDToken:      idToken,
+				RefreshToken: refreshToken,
+			}
+		}
 		cognitoDetails = &shared.UpsertPortalConfigV3CognitoDetails{
+			AdvancedAuthentication:  advancedAuthentication,
 			CognitoUserPoolArn:      cognitoUserPoolArn,
 			CognitoUserPoolClientID: cognitoUserPoolClientID,
 			CognitoUserPoolID:       cognitoUserPoolID,
 			PasswordPolicy:          passwordPolicy,
+			Timeouts:                timeouts,
 		}
 	}
 	config := new(string)
@@ -1752,6 +1889,7 @@ func (r *PortalConfigResourceModel) ToSharedUpsertPortalConfigV3(ctx context.Con
 		AccessToken:                 accessToken,
 		AdvancedMfa:                 advancedMfa,
 		AllowedFileExtensions:       allowedFileExtensions,
+		AllowedPortalEntities:       allowedPortalEntities,
 		ApprovalStateAttributes:     approvalStateAttributes,
 		AuthSettings:                authSettings,
 		CognitoDetails:              cognitoDetails,

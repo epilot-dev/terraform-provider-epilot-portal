@@ -155,6 +155,8 @@ type EntityResponseGroupedWithHits struct {
 	GroupsPagination *GroupsPagination `json:"groups_pagination,omitempty"`
 	// Number of groups returned in this response
 	Hits *float64 `json:"hits,omitempty"`
+	// Side-loaded enrichment data requested via the `include` parameter.
+	Includes *SearchIncludes `json:"includes,omitempty"`
 }
 
 func (e EntityResponseGroupedWithHits) MarshalJSON() ([]byte, error) {
@@ -187,4 +189,11 @@ func (e *EntityResponseGroupedWithHits) GetHits() *float64 {
 		return nil
 	}
 	return e.Hits
+}
+
+func (e *EntityResponseGroupedWithHits) GetIncludes() *SearchIncludes {
+	if e == nil {
+		return nil
+	}
+	return e.Includes
 }

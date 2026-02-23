@@ -21,11 +21,31 @@ func (c *ContractIdentification) GetHook() *PublicContractIdentificationDetails 
 	return c.Hook
 }
 
+type MeterReadingPlausibilityCheck struct {
+	Extension *PublicExtensionDetails                     `json:"extension,omitempty"`
+	Hook      *PublicMeterReadingPlausibilityCheckDetails `json:"hook,omitempty"`
+}
+
+func (m *MeterReadingPlausibilityCheck) GetExtension() *PublicExtensionDetails {
+	if m == nil {
+		return nil
+	}
+	return m.Extension
+}
+
+func (m *MeterReadingPlausibilityCheck) GetHook() *PublicMeterReadingPlausibilityCheckDetails {
+	if m == nil {
+		return nil
+	}
+	return m.Hook
+}
+
 type PublicExtensionCapabilities struct {
-	ConsumptionDataRetrieval []DataRetrievalItem     `json:"consumptionDataRetrieval,omitempty"`
-	ContractIdentification   *ContractIdentification `json:"contractIdentification,omitempty"`
-	CostDataRetrieval        []DataRetrievalItem     `json:"costDataRetrieval,omitempty"`
-	PriceDataRetrieval       []DataRetrievalItem     `json:"priceDataRetrieval,omitempty"`
+	ConsumptionDataRetrieval      []DataRetrievalItem            `json:"consumptionDataRetrieval,omitempty"`
+	ContractIdentification        *ContractIdentification        `json:"contractIdentification,omitempty"`
+	CostDataRetrieval             []DataRetrievalItem            `json:"costDataRetrieval,omitempty"`
+	MeterReadingPlausibilityCheck *MeterReadingPlausibilityCheck `json:"meterReadingPlausibilityCheck,omitempty"`
+	PriceDataRetrieval            []DataRetrievalItem            `json:"priceDataRetrieval,omitempty"`
 }
 
 func (p *PublicExtensionCapabilities) GetConsumptionDataRetrieval() []DataRetrievalItem {
@@ -47,6 +67,13 @@ func (p *PublicExtensionCapabilities) GetCostDataRetrieval() []DataRetrievalItem
 		return nil
 	}
 	return p.CostDataRetrieval
+}
+
+func (p *PublicExtensionCapabilities) GetMeterReadingPlausibilityCheck() *MeterReadingPlausibilityCheck {
+	if p == nil {
+		return nil
+	}
+	return p.MeterReadingPlausibilityCheck
 }
 
 func (p *PublicExtensionCapabilities) GetPriceDataRetrieval() []DataRetrievalItem {

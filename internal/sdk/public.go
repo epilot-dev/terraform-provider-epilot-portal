@@ -3055,6 +3055,9 @@ func (s *Public) GetPublicPortalExtensionDetails(ctx context.Context, request op
 
 // GetPublicPortalExtensionDetailsV3 - getPublicPortalExtensionDetailsV3
 // Get public extension details shown to end customers and configuring users.
+// Supports two identification methods:
+// 1. Using org_id + portal_id
+// 2. Using domain
 func (s *Public) GetPublicPortalExtensionDetailsV3(ctx context.Context, request operations.GetPublicPortalExtensionDetailsV3Request, opts ...operations.Option) (*operations.GetPublicPortalExtensionDetailsV3Response, error) {
 	o := operations.Options{}
 	supportedOptions := []string{

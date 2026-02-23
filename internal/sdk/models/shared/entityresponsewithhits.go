@@ -61,6 +61,8 @@ func (p *Pagination) GetTotal() *float64 {
 type EntityResponseWithHits struct {
 	// Number of entities returned in this response
 	Hits *float64 `json:"hits,omitempty"`
+	// Side-loaded enrichment data requested via the `include` parameter.
+	Includes *SearchIncludes `json:"includes,omitempty"`
 	// Pagination metadata
 	Pagination *Pagination  `json:"pagination,omitempty"`
 	Results    []EntityItem `json:"results,omitempty"`
@@ -82,6 +84,13 @@ func (e *EntityResponseWithHits) GetHits() *float64 {
 		return nil
 	}
 	return e.Hits
+}
+
+func (e *EntityResponseWithHits) GetIncludes() *SearchIncludes {
+	if e == nil {
+		return nil
+	}
+	return e.Includes
 }
 
 func (e *EntityResponseWithHits) GetPagination() *Pagination {

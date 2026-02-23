@@ -56,6 +56,7 @@ type PortalPageResourceModel struct {
 	ParentID             types.String                    `tfsdk:"parent_id"`
 	Path                 types.String                    `tfsdk:"path"`
 	Schema               []types.String                  `tfsdk:"schema"`
+	ShowInNavigation     types.Bool                      `tfsdk:"show_in_navigation"`
 	Slug                 types.String                    `tfsdk:"slug"`
 	Visibility           map[string]jsontypes.Normalized `tfsdk:"visibility"`
 }
@@ -238,6 +239,11 @@ func (r *PortalPageResource) Schema(ctx context.Context, req resource.SchemaRequ
 				Computed:    true,
 				Optional:    true,
 				ElementType: types.StringType,
+			},
+			"show_in_navigation": schema.BoolAttribute{
+				Computed:    true,
+				Optional:    true,
+				Description: `Whether the detail page should appear in the main navigation`,
 			},
 			"slug": schema.StringAttribute{
 				Required:    true,

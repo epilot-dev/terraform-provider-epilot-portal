@@ -7,8 +7,10 @@ import (
 )
 
 type UpsertPortalConfigV3CognitoDetails struct {
-	CognitoUserPoolArn      types.String                        `tfsdk:"cognito_user_pool_arn"`
-	CognitoUserPoolClientID types.String                        `tfsdk:"cognito_user_pool_client_id"`
-	CognitoUserPoolID       types.String                        `tfsdk:"cognito_user_pool_id"`
-	PasswordPolicy          *UpsertPortalConfigV3PasswordPolicy `tfsdk:"password_policy"`
+	AdvancedAuthentication  *UpsertPortalConfigV3AdvancedAuthentication `tfsdk:"advanced_authentication"`
+	CognitoUserPoolArn      types.String                                `tfsdk:"cognito_user_pool_arn"`
+	CognitoUserPoolClientID types.String                                `tfsdk:"cognito_user_pool_client_id"`
+	CognitoUserPoolID       types.String                                `tfsdk:"cognito_user_pool_id"`
+	PasswordPolicy          *UpsertPortalConfigV3PasswordPolicy         `tfsdk:"password_policy"`
+	Timeouts                *UpsertPortalConfigV3Timeouts               `tfsdk:"timeouts"`
 }

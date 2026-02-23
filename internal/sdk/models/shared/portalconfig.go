@@ -94,6 +94,37 @@ func (a *AuthSettings) GetPreferredSsoProviders() []string {
 	return a.PreferredSsoProviders
 }
 
+// AdvancedAuthentication - Advanced authentication settings for the portal
+type AdvancedAuthentication struct {
+	// Automatically assesses risk for every authentication session. Based on risk ratings, can block authentication or require MFA for suspicious sign-in attempts. Helps protect user accounts from potential attacks by adapting security measures in real-time.
+	AdaptiveAuthentication *bool `json:"adaptive_authentication,omitempty"`
+	// Checks passwords against databases of leaked and commonly-guessed passwords during sign-up, sign-in, and password reset. Blocks or warns users when insecure passwords are detected, preventing unauthorized access from compromised credentials.
+	CompromisedCredentialsDetection *bool `json:"compromised_credentials_detection,omitempty"`
+	// Enables detailed logging of user authentication attempts including risk assessments, IP addresses, user agents, and device information. These logs can be used for security analysis and monitoring.
+	UserActivityLogging *bool `json:"user_activity_logging,omitempty"`
+}
+
+func (a *AdvancedAuthentication) GetAdaptiveAuthentication() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.AdaptiveAuthentication
+}
+
+func (a *AdvancedAuthentication) GetCompromisedCredentialsDetection() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.CompromisedCredentialsDetection
+}
+
+func (a *AdvancedAuthentication) GetUserActivityLogging() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.UserActivityLogging
+}
+
 // PasswordPolicy - Password policy for the portal
 type PasswordPolicy struct {
 	// Maximum password length
@@ -152,8 +183,41 @@ func (p *PasswordPolicy) GetRequireUppercase() *bool {
 	return p.RequireUppercase
 }
 
+// Timeouts for the cognito tokens
+type Timeouts struct {
+	// Timeout for the access token
+	AccessToken *int64 `json:"access_token,omitempty"`
+	// Timeout for the id token
+	IDToken *int64 `json:"id_token,omitempty"`
+	// Timeout for the refresh token
+	RefreshToken *int64 `json:"refresh_token,omitempty"`
+}
+
+func (t *Timeouts) GetAccessToken() *int64 {
+	if t == nil {
+		return nil
+	}
+	return t.AccessToken
+}
+
+func (t *Timeouts) GetIDToken() *int64 {
+	if t == nil {
+		return nil
+	}
+	return t.IDToken
+}
+
+func (t *Timeouts) GetRefreshToken() *int64 {
+	if t == nil {
+		return nil
+	}
+	return t.RefreshToken
+}
+
 // CognitoDetails - AWS Cognito Pool details for the portal
 type CognitoDetails struct {
+	// Advanced authentication settings for the portal
+	AdvancedAuthentication *AdvancedAuthentication `json:"advanced_authentication,omitempty"`
 	// Cognito user pool ARN
 	CognitoUserPoolArn *string `json:"cognito_user_pool_arn,omitempty"`
 	// Cognito user pool client ID
@@ -162,6 +226,15 @@ type CognitoDetails struct {
 	CognitoUserPoolID *string `json:"cognito_user_pool_id,omitempty"`
 	// Password policy for the portal
 	PasswordPolicy *PasswordPolicy `json:"password_policy,omitempty"`
+	// Timeouts for the cognito tokens
+	Timeouts *Timeouts `json:"timeouts,omitempty"`
+}
+
+func (c *CognitoDetails) GetAdvancedAuthentication() *AdvancedAuthentication {
+	if c == nil {
+		return nil
+	}
+	return c.AdvancedAuthentication
 }
 
 func (c *CognitoDetails) GetCognitoUserPoolArn() *string {
@@ -190,6 +263,13 @@ func (c *CognitoDetails) GetPasswordPolicy() *PasswordPolicy {
 		return nil
 	}
 	return c.PasswordPolicy
+}
+
+func (c *CognitoDetails) GetTimeouts() *Timeouts {
+	if c == nil {
+		return nil
+	}
+	return c.Timeouts
 }
 
 // ContractSelectorConfig - Configuration for contract selector in the portal
@@ -605,8 +685,10 @@ type PortalConfig struct {
 	AccessToken *string      `json:"accessToken,omitempty"`
 	AdvancedMfa *AdvancedMfa `json:"advanced_mfa,omitempty"`
 	// Allowed file extensions for upload
-	AllowedFileExtensions   *AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
-	ApprovalStateAttributes map[string][]string    `json:"approval_state_attributes,omitempty"`
+	AllowedFileExtensions *AllowedFileExtensions `json:"allowed_file_extensions,omitempty"`
+	// Allowed portal entities for the portal
+	AllowedPortalEntities   []string            `json:"allowed_portal_entities,omitempty"`
+	ApprovalStateAttributes map[string][]string `json:"approval_state_attributes,omitempty"`
 	// Authentication settings for the portal
 	AuthSettings *AuthSettings `json:"auth_settings,omitempty"`
 	// AWS Cognito Pool details for the portal
@@ -701,6 +783,13 @@ func (p *PortalConfig) GetAllowedFileExtensions() *AllowedFileExtensions {
 		return nil
 	}
 	return p.AllowedFileExtensions
+}
+
+func (p *PortalConfig) GetAllowedPortalEntities() []string {
+	if p == nil {
+		return nil
+	}
+	return p.AllowedPortalEntities
 }
 
 func (p *PortalConfig) GetApprovalStateAttributes() map[string][]string {

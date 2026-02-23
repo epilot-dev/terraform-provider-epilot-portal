@@ -9,9 +9,20 @@ import (
 
 // InvitePartnerRequestBody - Partner to invite
 type InvitePartnerRequestBody struct {
+	// Additional contact entity fields to set when creating the contact for the invited user.
+	// These are mapped directly to contact entity attributes (e.g. first_name, last_name, phone).
+	//
+	ContactData map[string]string `json:"contact_data,omitempty"`
 	// Email address of the partner to invite
 	Email                 string   `json:"email"`
 	RepresentsContactList []string `json:"represents_contact_list,omitempty"`
+}
+
+func (i *InvitePartnerRequestBody) GetContactData() map[string]string {
+	if i == nil {
+		return nil
+	}
+	return i.ContactData
 }
 
 func (i *InvitePartnerRequestBody) GetEmail() string {

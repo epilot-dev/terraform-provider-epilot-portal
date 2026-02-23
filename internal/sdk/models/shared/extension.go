@@ -82,13 +82,146 @@ func (s *SchemasExtensionHookMeterReadingPlausibilityCheckCall) GetURL() string 
 	return s.URL
 }
 
+// PlausibilityMode - Mode for plausibility check:
+// - "check": Validates meter reading and returns valid: boolean (used during submission)
+// - "range": Returns min/max allowed values for each counter for validation before submission
+type PlausibilityMode string
+
+const (
+	PlausibilityModeCheck PlausibilityMode = "check"
+	PlausibilityModeRange PlausibilityMode = "range"
+)
+
+func (e PlausibilityMode) ToPointer() *PlausibilityMode {
+	return &e
+}
+func (e *PlausibilityMode) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "check":
+		fallthrough
+	case "range":
+		*e = PlausibilityMode(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for PlausibilityMode: %v", v)
+	}
+}
+
+type CounterIdentifiersType string
+
+const (
+	CounterIdentifiersTypeStr      CounterIdentifiersType = "str"
+	CounterIdentifiersTypeMapOfStr CounterIdentifiersType = "mapOfStr"
+)
+
+// CounterIdentifiers - Counter identifier(s) used to match against the meter's counters.
+// Can be a string (counter ID) or an object with counter properties.
+// The backend resolves this to meter_counter_id in the final response.
+// Relevant only if plausibility_mode is "range".
+type CounterIdentifiers struct {
+	Str      *string           `queryParam:"inline" union:"member"`
+	MapOfStr map[string]string `queryParam:"inline" union:"member"`
+
+	Type CounterIdentifiersType
+}
+
+func CreateCounterIdentifiersStr(str string) CounterIdentifiers {
+	typ := CounterIdentifiersTypeStr
+
+	return CounterIdentifiers{
+		Str:  &str,
+		Type: typ,
+	}
+}
+
+func CreateCounterIdentifiersMapOfStr(mapOfStr map[string]string) CounterIdentifiers {
+	typ := CounterIdentifiersTypeMapOfStr
+
+	return CounterIdentifiers{
+		MapOfStr: mapOfStr,
+		Type:     typ,
+	}
+}
+
+func (u *CounterIdentifiers) UnmarshalJSON(data []byte) error {
+
+	var candidates []utils.UnionCandidate
+
+	// Collect all valid candidates
+	var str string = ""
+	if err := utils.UnmarshalJSON(data, &str, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  CounterIdentifiersTypeStr,
+			Value: &str,
+		})
+	}
+
+	var mapOfStr map[string]string = map[string]string{}
+	if err := utils.UnmarshalJSON(data, &mapOfStr, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  CounterIdentifiersTypeMapOfStr,
+			Value: mapOfStr,
+		})
+	}
+
+	if len(candidates) == 0 {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for CounterIdentifiers", string(data))
+	}
+
+	// Pick the best candidate using multi-stage filtering
+	best := utils.PickBestUnionCandidate(candidates, data)
+	if best == nil {
+		return fmt.Errorf("could not unmarshal `%s` into any supported union types for CounterIdentifiers", string(data))
+	}
+
+	// Set the union type and value based on the best candidate
+	u.Type = best.Type.(CounterIdentifiersType)
+	switch best.Type {
+	case CounterIdentifiersTypeStr:
+		u.Str = best.Value.(*string)
+		return nil
+	case CounterIdentifiersTypeMapOfStr:
+		u.MapOfStr = best.Value.(map[string]string)
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for CounterIdentifiers", string(data))
+}
+
+func (u CounterIdentifiers) MarshalJSON() ([]byte, error) {
+	if u.Str != nil {
+		return utils.MarshalJSON(u.Str, "", true)
+	}
+
+	if u.MapOfStr != nil {
+		return utils.MarshalJSON(u.MapOfStr, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type CounterIdentifiers: all fields are null")
+}
+
 // SchemasExtensionHookMeterReadingPlausibilityCheckResolved - Response to the call
 type SchemasExtensionHookMeterReadingPlausibilityCheckResolved struct {
+	// Counter identifier(s) used to match against the meter's counters.
+	// Can be a string (counter ID) or an object with counter properties.
+	// The backend resolves this to meter_counter_id in the final response.
+	// Relevant only if plausibility_mode is "range".
+	//
+	CounterIdentifiers *CounterIdentifiers `json:"counter_identifiers,omitempty"`
+	// Optional path to an array in the response. If specified and the path points to an array,
+	// the hook will map over each item using 'Item' variable for interpolation.
+	// Relevant only if plausibility_mode is "range".
+	//
+	DataPath *string `json:"dataPath,omitempty"`
 	// Lower allowed limit of the meter reading
 	LowerLimit *string `json:"lower_limit,omitempty"`
 	// Upper allowed limit of the meter reading
 	UpperLimit *string `json:"upper_limit,omitempty"`
-	// Indicate whether the meter reading is plausible
+	// Indicate whether the meter reading is plausible. Relevant only if plausibility_mode is "check".
 	Valid *string `json:"valid,omitempty"`
 }
 
@@ -101,6 +234,20 @@ func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) UnmarshalJSO
 		return err
 	}
 	return nil
+}
+
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetCounterIdentifiers() *CounterIdentifiers {
+	if s == nil {
+		return nil
+	}
+	return s.CounterIdentifiers
+}
+
+func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetDataPath() *string {
+	if s == nil {
+		return nil
+	}
+	return s.DataPath
 }
 
 func (s *SchemasExtensionHookMeterReadingPlausibilityCheckResolved) GetLowerLimit() *string {
@@ -158,6 +305,11 @@ type ExtensionHookMeterReadingPlausibilityCheckSchemas struct {
 	Call SchemasExtensionHookMeterReadingPlausibilityCheckCall `json:"call"`
 	// Identifier of the hook. Should not change between updates.
 	ID *string `json:"id,omitempty"`
+	// Mode for plausibility check:
+	// - "check": Validates meter reading and returns valid: boolean (used during submission)
+	// - "range": Returns min/max allowed values for each counter for validation before submission
+	//
+	PlausibilityMode *PlausibilityMode `default:"check" json:"plausibility_mode"`
 	// Response to the call
 	Resolved SchemasExtensionHookMeterReadingPlausibilityCheckResolved `json:"resolved"`
 	Type     SchemasExtensionHookMeterReadingPlausibilityCheckType     `json:"type"`
@@ -195,6 +347,13 @@ func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetID() *string {
 		return nil
 	}
 	return e.ID
+}
+
+func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetPlausibilityMode() *PlausibilityMode {
+	if e == nil {
+		return nil
+	}
+	return e.PlausibilityMode
 }
 
 func (e *ExtensionHookMeterReadingPlausibilityCheckSchemas) GetResolved() SchemasExtensionHookMeterReadingPlausibilityCheckResolved {

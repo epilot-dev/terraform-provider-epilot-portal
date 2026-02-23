@@ -218,17 +218,42 @@ func (e *GroupSort) UnmarshalJSON(data []byte) error {
 	}
 }
 
+type Include string
+
+const (
+	IncludeActiveWorkflow Include = "active_workflow"
+)
+
+func (e Include) ToPointer() *Include {
+	return &e
+}
+func (e *Include) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "active_workflow":
+		*e = Include(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for Include: %v", v)
+	}
+}
+
 type SlugType string
 
 const (
-	SlugTypeStr        SlugType = "str"
-	SlugTypeArrayOfStr SlugType = "arrayOfStr"
+	SlugTypeStr                     SlugType = "str"
+	SlugTypeArrayOfStr              SlugType = "arrayOfStr"
+	SlugTypeArrayOfEntitySlugConfig SlugType = "arrayOfEntitySlugConfig"
 )
 
-// Slug - Single entity schema slug or array of slugs
+// Slug - Entity slug, array of slugs, or array of per-slug configurations
 type Slug struct {
-	Str        *string  `queryParam:"inline" union:"member"`
-	ArrayOfStr []string `queryParam:"inline" union:"member"`
+	Str                     *string            `queryParam:"inline" union:"member"`
+	ArrayOfStr              []string           `queryParam:"inline" union:"member"`
+	ArrayOfEntitySlugConfig []EntitySlugConfig `queryParam:"inline" union:"member"`
 
 	Type SlugType
 }
@@ -248,6 +273,15 @@ func CreateSlugArrayOfStr(arrayOfStr []string) Slug {
 	return Slug{
 		ArrayOfStr: arrayOfStr,
 		Type:       typ,
+	}
+}
+
+func CreateSlugArrayOfEntitySlugConfig(arrayOfEntitySlugConfig []EntitySlugConfig) Slug {
+	typ := SlugTypeArrayOfEntitySlugConfig
+
+	return Slug{
+		ArrayOfEntitySlugConfig: arrayOfEntitySlugConfig,
+		Type:                    typ,
 	}
 }
 
@@ -272,6 +306,14 @@ func (u *Slug) UnmarshalJSON(data []byte) error {
 		})
 	}
 
+	var arrayOfEntitySlugConfig []EntitySlugConfig = []EntitySlugConfig{}
+	if err := utils.UnmarshalJSON(data, &arrayOfEntitySlugConfig, "", true, nil); err == nil {
+		candidates = append(candidates, utils.UnionCandidate{
+			Type:  SlugTypeArrayOfEntitySlugConfig,
+			Value: arrayOfEntitySlugConfig,
+		})
+	}
+
 	if len(candidates) == 0 {
 		return fmt.Errorf("could not unmarshal `%s` into any supported union types for Slug", string(data))
 	}
@@ -291,6 +333,9 @@ func (u *Slug) UnmarshalJSON(data []byte) error {
 	case SlugTypeArrayOfStr:
 		u.ArrayOfStr = best.Value.([]string)
 		return nil
+	case SlugTypeArrayOfEntitySlugConfig:
+		u.ArrayOfEntitySlugConfig = best.Value.([]EntitySlugConfig)
+		return nil
 	}
 
 	return fmt.Errorf("could not unmarshal `%s` into any supported union types for Slug", string(data))
@@ -303,6 +348,10 @@ func (u Slug) MarshalJSON() ([]byte, error) {
 
 	if u.ArrayOfStr != nil {
 		return utils.MarshalJSON(u.ArrayOfStr, "", true)
+	}
+
+	if u.ArrayOfEntitySlugConfig != nil {
+		return utils.MarshalJSON(u.ArrayOfEntitySlugConfig, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type Slug: all fields are null")
@@ -328,13 +377,15 @@ type EntitySearchParams struct {
 	GroupTitle *string `json:"group_title,omitempty"`
 	// When true, enables entity hydration to resolve nested $relation & $relation_ref references in-place.
 	Hydrate *bool `default:"false" json:"hydrate"`
+	// Optional enrichment data to side-load alongside results under the `includes` response key.
+	Include []Include `json:"include,omitempty"`
 	// Keyword search query
 	Q *string `json:"q,omitempty"`
 	// List of fields that can be searched
 	QFields []string `json:"q_fields,omitempty"`
 	// Max search size is 1000 with higher values defaulting to 1000
 	Size *int64 `default:"100" json:"size"`
-	// Single entity schema slug or array of slugs
+	// Entity slug, array of slugs, or array of per-slug configurations
 	Slug Slug    `json:"slug"`
 	Sort *string `json:"sort,omitempty"`
 	// Filters from these targets will be applied to the search query.
@@ -422,6 +473,13 @@ func (e *EntitySearchParams) GetHydrate() *bool {
 		return nil
 	}
 	return e.Hydrate
+}
+
+func (e *EntitySearchParams) GetInclude() []Include {
+	if e == nil {
+		return nil
+	}
+	return e.Include
 }
 
 func (e *EntitySearchParams) GetQ() *string {
