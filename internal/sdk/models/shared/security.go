@@ -3,16 +3,8 @@
 package shared
 
 type Security struct {
-	EitherAuth *string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
 	EpilotAuth *string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-	PortalAuth *string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
-}
-
-func (s *Security) GetEitherAuth() *string {
-	if s == nil {
-		return nil
-	}
-	return s.EitherAuth
+	EpilotOrg  *string `security:"scheme,type=apiKey,subtype=header,name=x-epilot-org-id"`
 }
 
 func (s *Security) GetEpilotAuth() *string {
@@ -22,9 +14,9 @@ func (s *Security) GetEpilotAuth() *string {
 	return s.EpilotAuth
 }
 
-func (s *Security) GetPortalAuth() *string {
+func (s *Security) GetEpilotOrg() *string {
 	if s == nil {
 		return nil
 	}
-	return s.PortalAuth
+	return s.EpilotOrg
 }
